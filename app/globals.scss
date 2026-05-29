@@ -1,0 +1,35 @@
+:root {
+  --sise-blue: #00408c;
+  --sise-white: #ffffff;
+  --sise-gray: #d9d9d9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--sise-white);
+  color: #0b0b0b;
+}
+
+img {
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}

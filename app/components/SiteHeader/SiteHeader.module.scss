@@ -1,0 +1,242 @@
+.header {
+  width: 100%;
+  background: #00408c;
+}
+
+.inner {
+  display: flex;
+  align-items: flex-start;
+  width: min(1920px, 100%);
+  height: 80px;
+  margin: 0 auto;
+  padding-right: 240px;
+  padding-left: 0;
+  position: relative;
+}
+
+.aguila {
+  width: 136px;
+  height: 80px;
+}
+
+.recurso {
+  margin-top: 16px;
+  margin-left: 108px;
+  width: 85px;
+  height: 50px;
+}
+
+.menuButton {
+  display: none;
+  margin-left: auto;
+  margin-top: 18px;
+  margin-right: 16px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menuButton:hover {
+  opacity: 0.85;
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.menuButtonIcon {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #ffffff;
+  margin: 0 auto;
+  position: relative;
+}
+
+.menuButtonIcon::before,
+.menuButtonIcon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 26px;
+  height: 2px;
+  background: #ffffff;
+}
+
+.menuButtonIcon::before {
+  top: -8px;
+}
+
+.menuButtonIcon::after {
+  top: 8px;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navItemFirst {
+  margin-top: 32px;
+  margin-left: 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: flex-start;
+}
+
+.vector {
+  margin-top: 28px;
+  margin-left: 53px;
+  background: #ffffff;
+  width: 1px;
+  height: 26px;
+}
+
+.navLink {
+  display: block;
+  margin-top: 32px;
+  margin-left: 52px;
+  line-height: 18px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.navItemFirst .navLink {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.navLink:hover {
+  opacity: 0.85;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.hogar {
+  width: 72px;
+  height: 18px;
+}
+
+.empresas {
+  width: 104px;
+  height: 18px;
+}
+
+.urbano {
+  width: 84px;
+  height: 18px;
+}
+
+.agro {
+  width: 57px;
+  height: 18px;
+}
+
+.ciudad {
+  width: 74px;
+  height: 18px;
+}
+
+.nosotros {
+  width: 110px;
+  height: 18px;
+}
+
+.contacto {
+  width: 109px;
+  height: 18px;
+}
+
+@media (max-width: 1366px) {
+  .inner {
+    padding-right: 32px;
+    padding-left: 16px;
+  }
+
+  .recurso {
+    margin-left: 24px;
+  }
+
+  .nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .inner {
+    padding-right: 0;
+  }
+
+  .menuButton {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .navList {
+    display: none;
+  }
+
+  .navListOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    background: #00408c;
+    padding: 18px 16px 24px;
+    width: 100%;
+    pointer-events: auto;
+  }
+
+  .navItemFirst,
+  .navItem {
+    margin: 0;
+  }
+
+  .vector {
+    display: none;
+  }
+
+  .navLink {
+    margin: 0;
+    padding: 10px 12px;
+    width: auto;
+    height: auto;
+  }
+}
