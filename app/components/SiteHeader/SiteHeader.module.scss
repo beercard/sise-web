@@ -1,6 +1,8 @@
 .header {
   width: 100%;
   background: #00408c;
+  position: relative;
+  z-index: 100;
 }
 
 .inner {
@@ -9,19 +11,29 @@
   width: min(1920px, 100%);
   height: 80px;
   margin: 0 auto;
+  position: relative;
   padding-right: 240px;
   padding-left: 0;
-  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: flex-start;
+}
+
+.brand a {
+  display: flex;
 }
 
 .aguila {
+  display: block;
   width: 136px;
   height: 80px;
 }
 
 .recurso {
   margin-top: 16px;
-  margin-left: 108px;
+  margin-left: 56px;
   width: 85px;
   height: 50px;
 }
@@ -29,8 +41,6 @@
 .menuButton {
   display: none;
   margin-left: auto;
-  margin-top: 18px;
-  margin-right: 16px;
   width: 44px;
   height: 44px;
   background: transparent;
@@ -77,6 +87,24 @@
   top: 8px;
 }
 
+.menuButtonOpen .menuButtonIcon {
+  background: transparent;
+}
+
+.menuButtonOpen .menuButtonIcon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menuButtonOpen .menuButtonIcon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.backdrop {
+  display: none;
+}
+
 .nav {
   flex: 1;
   display: flex;
@@ -93,7 +121,7 @@
 
 .navItemFirst {
   margin-top: 32px;
-  margin-left: 0;
+  margin-left: 40px;
 }
 
 .navItem {
@@ -103,7 +131,7 @@
 
 .vector {
   margin-top: 28px;
-  margin-left: 53px;
+  margin-left: clamp(18px, 2.8vw, 53px);
   background: #ffffff;
   width: 1px;
   height: 26px;
@@ -112,22 +140,149 @@
 .navLink {
   display: block;
   margin-top: 32px;
-  margin-left: 52px;
+  margin-left: 0;
+  line-height: 18px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-size: clamp(14px, 1.15vw, 20px);
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.navItemFirst .navItemContent {
+  margin-left: 0;
+}
+
+.navItemFirst .navLink {
+  margin-top: 0;
+}
+
+.navLink:hover {
+  opacity: 0.85;
+}
+
+.navItemContent {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-left: clamp(18px, 2.8vw, 52px);
+}
+
+.navItemTop {
+  display: flex;
+  align-items: flex-start;
+}
+
+.navItemWithSubmenu {
+  position: relative;
+}
+
+.submenuToggle {
+  display: none;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin-top: 26px;
+  margin-left: 6px;
+  cursor: pointer;
+  position: relative;
+}
+
+.submenuToggle::before,
+.submenuToggle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 2px;
+  background: #ffffff;
+  transform-origin: center;
+}
+
+.submenuToggle::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.submenuToggle::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.submenu {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 240px;
+  background: #00408c;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 50;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+.submenu::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.navItemWithSubmenu:hover .submenu,
+.navItemWithSubmenu:focus-within .submenu,
+.submenuOpen {
+  display: flex;
+}
+
+.submenuHeader {
+  height: 80px;
+  background: rgba(8, 87, 181, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 18px;
   letter-spacing: 1px;
   color: #ffffff;
   font-size: 20px;
   font-weight: 700;
-  transition: all 0.3s ease;
 }
 
-.navItemFirst .navLink {
-  margin-top: 0;
-  margin-left: 0;
+.submenuLink {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 18px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.navLink:hover {
-  opacity: 0.85;
+.submenuLink:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.submenuLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -4px;
+}
+
+.submenuDivider {
+  width: 87px;
+  height: 1px;
+  background: #ffffff;
+  align-self: center;
+  margin-top: -1px;
+  margin-bottom: -1px;
 }
 
 .navLink:focus-visible {
@@ -189,24 +344,49 @@
   .nav::-webkit-scrollbar {
     display: none;
   }
+
+  .navItemFirst {
+    margin-left: 24px;
+  }
 }
 
 @media (max-width: 960px) {
   .inner {
     padding-right: 0;
+    padding-left: 0;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    border: 0;
+    padding: 0;
+    z-index: 99;
   }
 
   .menuButton {
     display: block;
+    margin-top: 18px;
+    margin-right: 16px;
+    z-index: 101;
   }
 
   .nav {
-    position: absolute;
+    display: none;
+  }
+
+  .navOpen {
+    display: flex;
+    position: fixed;
     top: 80px;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     justify-content: center;
-    pointer-events: none;
+    z-index: 100;
   }
 
   .navList {
@@ -216,12 +396,14 @@
   .navListOpen {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 14px;
+    align-items: stretch;
+    gap: 6px;
     background: #00408c;
-    padding: 18px 16px 24px;
+    padding: 12px 16px 24px;
     width: 100%;
-    pointer-events: auto;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   }
 
   .navItemFirst,
@@ -233,10 +415,112 @@
     display: none;
   }
 
+  .navItemContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navItemTop {
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
   .navLink {
     margin: 0;
-    padding: 10px 12px;
+    padding: 14px 12px;
     width: auto;
+    flex: 1;
     height: auto;
+    font-size: 18px;
+    text-align: left;
+    border-radius: 10px;
+    transition: background 0.2s ease, opacity 0.2s ease;
+  }
+
+  .navLink:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .submenuToggle {
+    display: inline-flex;
+    margin-top: 0;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s ease;
+  }
+
+  .submenuToggle::before,
+  .submenuToggle::after {
+    width: 12px;
+  }
+
+  .submenuToggle::before {
+    transform: translate(-65%, -50%) rotate(45deg);
+  }
+
+  .submenuToggle::after {
+    transform: translate(-35%, -50%) rotate(-45deg);
+  }
+
+  .submenuToggleOpen {
+    transform: rotate(180deg);
+  }
+
+  .submenu {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    margin-top: 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .submenu::before {
+    display: none;
+  }
+
+  .submenuHeader {
+    display: none;
+  }
+
+  .submenuLink {
+    height: auto;
+    padding: 12px 16px 12px 24px;
+    justify-content: flex-start;
+    font-size: 16px;
+  }
+
+  .submenuDivider {
+    width: 100%;
+    margin: 0;
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 520px) {
+  .inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .aguila {
+    width: 112px;
+  }
+
+  .recurso {
+    width: 72px;
+    margin-left: 12px;
+  }
+
+  .menuButton {
+    margin-right: 8px;
   }
 }

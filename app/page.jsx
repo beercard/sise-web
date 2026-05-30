@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import HeroCarousel from './components/HeroCarousel/HeroCarousel';
+import Cotizador from './components/Cotizador/Cotizador';
 import SiteHeader from './components/SiteHeader/SiteHeader';
+import WhyChooseSise from './components/WhyChooseSise/WhyChooseSise';
 
 import styles from './page.module.scss';
 
@@ -10,212 +13,17 @@ export default function HomePage() {
     <div className={styles.page}>
       <SiteHeader />
 
-      <main>
-        <section className={styles.hero} aria-label="Hero">
-          <Image
-            src="/image/mpr027zv-tyj9vj2.png"
-            alt=""
-            className={styles.heroImage}
-            fill
-            priority
-            sizes="100vw"
-          />
-          <div className={styles.heroGradient} aria-hidden="true" />
-          <h1 className={styles.heroTitle}>
-            <span className={styles.heroTitleRegular}>
-              Soluciones en seguridad electrónica&nbsp;
-            </span>
-            <span className={styles.heroTitleBold}>accesible, moderna y humana</span>
-            <span className={styles.heroTitleRegular}>.</span>
-          </h1>
-        </section>
+      <main className={styles.main}>
+        <HeroCarousel />
 
         <section className={styles.quote} aria-label="Cotizador">
           <h2 className={styles.quoteTitle}>Cotizá tu alarma</h2>
           <p className={styles.quoteSubtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
 
-          <div className={styles.quoteBox}>
-            <p className={styles.quoteKicker}>Tipo de propiedad</p>
-            <p className={styles.quoteQuestion}>¿Dónde querés instalar la alarma?</p>
-
-            <div className={styles.quoteOptions} role="group" aria-label="Tipo de propiedad">
-              <button className={styles.quoteOption} type="button">
-                Casa
-              </button>
-              <button className={styles.quoteOption} type="button">
-                Comercio
-              </button>
-              <button className={styles.quoteOption} type="button">
-                Departamento
-              </button>
-              <button className={styles.quoteOption} type="button">
-                Oficina
-              </button>
-            </div>
-          </div>
+          <Cotizador />
         </section>
 
-        <section className={styles.whyChoose} aria-label="Por qué elegir SISE">
-          <div className={styles.whyChooseInner}>
-            <h2 className={styles.whyChooseTitle}>¿Por qué elegir SISE?</h2>
-
-            <div className={styles.whyChooseCards}>
-              <article className={styles.whyChooseCard}>
-                <Image
-                  src="/image/mpr027zv-zfkbktb.png"
-                  alt=""
-                  className={styles.whyChooseIcon}
-                  width={63}
-                  height={55}
-                />
-                <h3 className={styles.whyChooseCardTitle}>Monitoreo 24/7 real</h3>
-                <p className={styles.whyChooseCardText}>
-                  Operadores especializados supervisan en tiempo real para prevenir, no
-                  solo registrar.
-                </p>
-              </article>
-
-              <article className={styles.whyChooseCardAlt}>
-                <Image
-                  src="/image/mpr027zv-24x9sa2.png"
-                  alt=""
-                  className={styles.whyChooseIconAlt}
-                  width={40}
-                  height={82}
-                />
-                <h3 className={styles.whyChooseCardTitleAlt}>
-                  Tecnología de última generación
-                </h3>
-                <p className={styles.whyChooseCardTextAlt}>
-                  Soluciones modernas, fáciles de usar y pensadas para vos.
-                </p>
-              </article>
-
-              <article className={styles.whyChooseCardAlt2}>
-                <Image
-                  src="/image/mpr027zv-xilwxfu.png"
-                  alt=""
-                  className={styles.whyChooseIconAlt2}
-                  width={52}
-                  height={62}
-                />
-                <h3 className={styles.whyChooseCardTitleAlt2}>Respuesta rápida y humana</h3>
-                <p className={styles.whyChooseCardTextAlt2}>
-                  Actuamos al instante ante cualquier evento, brindando seguridad
-                  constante.
-                </p>
-              </article>
-            </div>
-
-            <Image
-              src="/image/mpr027zv-e2to3ki.png"
-              alt=""
-              className={styles.bandStrip1}
-              width={1934}
-              height={142}
-            />
-            <Image
-              src="/image/mpr027zv-e2to3ki.png"
-              alt=""
-              className={styles.bandStrip2}
-              width={1934}
-              height={142}
-            />
-            <Image
-              src="/image/mpr027zv-e2to3ki.png"
-              alt=""
-              className={styles.bandStrip3}
-              width={1934}
-              height={142}
-            />
-            <Image
-              src="/image/mpr027zv-e2to3ki.png"
-              alt=""
-              className={styles.bandStrip4}
-              width={1934}
-              height={142}
-            />
-
-            <div className={styles.categoriesRow}>
-              <Link className={styles.categoryCardHogar} href="#hogar" id="hogar">
-                <Image
-                  src="/image/mpr027zv-o3zo3d3.png"
-                  alt=""
-                  className={styles.categoryTopImage}
-                  width={256}
-                  height={222}
-                />
-                <Image
-                  src="/image/mpr027zv-y10zsrg.png"
-                  alt="SISE Hogar"
-                  className={styles.categoryLogoHogar}
-                  width={107}
-                  height={47}
-                />
-              </Link>
-
-              <Link className={styles.categoryCardEmpresas} href="#empresas" id="empresas">
-                <Image
-                  src="/image/mpr027zv-j0j5y64.png"
-                  alt=""
-                  className={styles.categoryTopImage}
-                  width={256}
-                  height={222}
-                />
-                <Image
-                  src="/image/mpr027zv-8dc81fc.png"
-                  alt="SISE Empresas"
-                  className={styles.categoryLogoEmpresas}
-                  width={104}
-                  height={45}
-                />
-              </Link>
-
-              <Link className={styles.categoryCardUrbano} href="#urbano" id="urbano">
-                <Image
-                  src="/image/mpr027zp-xpul2cf.png"
-                  alt="SISE Urbano"
-                  width={256}
-                  height={285}
-                />
-              </Link>
-
-              <Link className={styles.categoryCardAgro} href="#agro" id="agro">
-                <Image
-                  src="/image/mpr027zv-n7crbeg.png"
-                  alt=""
-                  className={styles.categoryTopImageAgro}
-                  width={256}
-                  height={221}
-                />
-                <Image
-                  src="/image/mpr027zv-qr7hyq4.png"
-                  alt="SISE Agro"
-                  className={styles.categoryLogoAgro}
-                  width={106}
-                  height={50}
-                />
-              </Link>
-
-              <Link className={styles.categoryCardCiudad} href="#ciudad" id="ciudad">
-                <Image
-                  src="/image/mpr027zv-zs0bqjf.png"
-                  alt=""
-                  className={styles.categoryTopImage}
-                  width={256}
-                  height={222}
-                />
-                <Image
-                  src="/image/mpr027zv-vzj6kyz.png"
-                  alt="SISE Ciudad"
-                  className={styles.categoryLogoCiudad}
-                  width={102}
-                  height={49}
-                />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <WhyChooseSise />
       </main>
 
       <footer className={styles.footer} aria-label="Pie de página">
@@ -237,7 +45,14 @@ export default function HomePage() {
               <br />
               Director Técnico: Sra. Mónica Bettina Schapsis.
               <br />
-              Avenida 9 de julio 2514, Resistencia, Chaco.
+              <a
+                className={styles.footerAddressLink}
+                href="https://maps.app.goo.gl/e7NhrBiiP8tcg56V8"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Avenida 9 de julio 2514, Resistencia, Chaco.
+              </a>
             </p>
             <Link className={styles.footerLink} href="#arrepentimiento" id="arrepentimiento">
               Arrepentimiento de Compra/Revocación
@@ -257,12 +72,14 @@ export default function HomePage() {
                   width={17}
                   height={23}
                 />
-                <p className={styles.footerPhoneNumber}>0800-222-5153</p>
+                <a className={styles.footerPhoneNumber} href="tel:08002225153">
+                  0800-222-5153
+                </a>
               </div>
             </div>
 
             <div className={styles.footerCenterBottom}>
-              <Link className={styles.footerSmallLink} href="#baja">
+              <Link className={styles.footerSmallLink} href="#baja" id="baja">
                 Solicitar Baja de Servicio
               </Link>
               <div className={styles.footerDividerSmall} aria-hidden="true" />
@@ -273,6 +90,17 @@ export default function HomePage() {
             <Link className={styles.footerSmallLink} href="#legales" id="legales">
               Legales
             </Link>
+          </div>
+
+          <div className={styles.footerDivider2} aria-hidden="true" />
+
+          <a
+            href="https://www.instagram.com/sise.argentina"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram SISE Argentina"
+            className={styles.footerDesktopSocial}
+          >
             <Image
               src="/image/mpr027zq-24241pb.svg"
               alt=""
@@ -280,57 +108,141 @@ export default function HomePage() {
               width={38}
               height={38}
             />
-          </div>
-
-          <div className={styles.footerDivider2} aria-hidden="true" />
-
-          <Image
-            src="/image/mpr027zq-wrx922f.svg"
-            alt=""
-            className={styles.footerSocial2}
-            width={37}
-            height={38}
-          />
-          <Image
-            src="/image/mpr027zq-2s75f6y.svg"
-            alt=""
-            className={styles.footerSocial3}
-            width={29}
-            height={34}
-          />
+          </a>
+          <a
+            href="https://www.facebook.com/sise.argentina"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook SISE Argentina"
+            className={styles.footerDesktopSocial}
+          >
+            <Image
+              src="/image/mpr027zq-wrx922f.svg"
+              alt=""
+              className={styles.footerSocial2}
+              width={37}
+              height={38}
+            />
+          </a>
+          <a
+            href="https://www.tiktok.com/@sise.argentina"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="TikTok SISE Argentina"
+            className={styles.footerDesktopSocial}
+          >
+            <Image
+              src="/image/mpr027zq-2s75f6y.svg"
+              alt=""
+              className={styles.footerSocial3}
+              width={29}
+              height={34}
+            />
+          </a>
 
           <div className={styles.footerRight} id="contacto">
             <div className={styles.footerRightIcons}>
-              <Image
-                src="/image/mpr027zq-tjycpem.svg"
-                alt=""
-                className={styles.footerRightIcon1}
-                width={37}
-                height={26}
-              />
-              <Image
-                src="/image/mpr027zq-sdf4kqo.svg"
-                alt=""
-                className={styles.footerRightIcon2}
-                width={38}
-                height={28}
-              />
+              <a
+                href="https://www.youtube.com/@SISEArgentina"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube SISE Argentina"
+              >
+                <Image
+                  src="/image/mpr027zq-tjycpem.svg"
+                  alt=""
+                  className={styles.footerRightIcon1}
+                  width={37}
+                  height={26}
+                />
+              </a>
+              <a href="mailto:info@siseargentina.com" aria-label="Email info@siseargentina.com">
+                <Image
+                  src="/image/mpr027zq-sdf4kqo.svg"
+                  alt=""
+                  className={styles.footerRightIcon2}
+                  width={38}
+                  height={28}
+                />
+              </a>
             </div>
             <p className={styles.footerAfip}>
               AFIP
               <br />
               Formulario 960/D
             </p>
-            <Image
-              src="/image/mpr027zv-ibvx8vh.png"
-              alt=""
-              className={styles.footerAfipImage}
-              width={76}
-              height={76}
-            />
-            <Link className={styles.footerSmallLink} href="#cookies">
+            <a
+              href="https://acrobat.adobe.com/id/urn:aaid:sc:va6c2:e782b67e-0a57-4a53-95f2-30d680c19f37"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="AFIP Formulario 960/D"
+            >
+              <Image
+                src="/image/mpr027zv-ibvx8vh.png"
+                alt=""
+                className={styles.footerAfipImage}
+                width={76}
+                height={76}
+              />
+            </a>
+            <Link className={styles.footerSmallLink} href="#cookies" id="cookies">
               Gestión de Cookies
             </Link>
+          </div>
+
+          <div className={styles.footerMobileGroup} aria-label="Footer mobile">
+            <div className={styles.footerMobileSocials} aria-label="Redes sociales" id="contacto-mobile">
+              <a
+                href="https://www.instagram.com/sise.argentina"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram SISE Argentina"
+              >
+                <Image src="/image/mpr027zq-24241pb.svg" alt="" width={38} height={38} />
+              </a>
+              <a
+                href="https://www.facebook.com/sise.argentina"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook SISE Argentina"
+              >
+                <Image src="/image/mpr027zq-wrx922f.svg" alt="" width={37} height={38} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@sise.argentina"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TikTok SISE Argentina"
+              >
+                <Image src="/image/mpr027zq-2s75f6y.svg" alt="" width={29} height={34} />
+              </a>
+              <a
+                href="https://www.youtube.com/@SISEArgentina"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube SISE Argentina"
+              >
+                <Image src="/image/mpr027zq-tjycpem.svg" alt="" width={37} height={26} />
+              </a>
+              <a href="mailto:info@siseargentina.com" aria-label="Email info@siseargentina.com">
+                <Image src="/image/mpr027zq-sdf4kqo.svg" alt="" width={38} height={28} />
+              </a>
+            </div>
+
+            <div className={styles.footerMobileLinks} aria-label="Links legales">
+              <Link className={styles.footerSmallLink} href="#baja">
+                Solicitar Baja de Servicio
+              </Link>
+              <Link className={styles.footerSmallLink} href="#legales">
+                Legales
+              </Link>
+              <Link className={styles.footerSmallLink} href="#cookies">
+                Gestión de Cookies
+              </Link>
+              <Link className={styles.footerSmallLink} href="#arrepentimiento">
+                Arrepentimiento de Compra/Revocación
+              </Link>
+            </div>
           </div>
         </div>
       </footer>
