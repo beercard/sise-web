@@ -7,9 +7,9 @@ import Link from 'next/link';
 import styles from './SiteHeader.module.scss';
 
 const navItems = [
-  { href: '#hogar', label: 'HOGAR', className: styles.hogar },
+  { href: '/hogar', label: 'HOGAR', className: styles.hogar },
   {
-    href: '#empresas',
+    href: '/#empresas',
     label: 'EMPRESAS',
     className: styles.empresas,
     submenu: [
@@ -18,7 +18,7 @@ const navItems = [
     ]
   },
   {
-    href: '#urbano',
+    href: '/#urbano',
     label: 'URBANO',
     className: styles.urbano,
     submenu: [
@@ -26,10 +26,10 @@ const navItems = [
       { href: '#', label: 'CONSTRUCCIÓN' }
     ]
   },
-  { href: '#agro', label: 'AGRO', className: styles.agro },
-  { href: '#ciudad', label: 'CIUDAD', className: styles.ciudad },
+  { href: '/#agro', label: 'AGRO', className: styles.agro },
+  { href: '/#ciudad', label: 'CIUDAD', className: styles.ciudad },
   {
-    href: '#nosotros',
+    href: '/#nosotros',
     label: 'NOSOTROS',
     className: styles.nosotros,
     submenu: [
@@ -37,7 +37,7 @@ const navItems = [
       { href: '#', label: 'RSE' }
     ]
   },
-  { href: '#contacto', label: 'CONTACTO', className: styles.contacto }
+  { href: '/#contacto', label: 'CONTACTO', className: styles.contacto }
 ];
 
 export default function SiteHeader() {
