@@ -377,8 +377,17 @@
   flex: 0 0 auto;
 }
 
+.houseEdit {
+  position: relative;
+}
+
 .housePerimetral {
   background-image: url('/image/mpudc5hr-9rrsadu.png');
+  position: relative;
+  padding: 0;
+  display: block;
+  background-size: 100% 100%;
+  background-position: 0 0;
 }
 
 .houseInterior {
@@ -453,6 +462,22 @@
   align-items: center;
 }
 
+.pointEdit {
+  position: absolute;
+  margin: 0 !important;
+  touch-action: none;
+  cursor: grab;
+}
+
+.pointEdit:active {
+  cursor: grabbing;
+}
+
+.pointAbsolute {
+  position: absolute;
+  margin: 0 !important;
+}
+
 .pointButton.pointActive {
   background: rgba(33, 119, 165, 0.75);
   transform: scale(1.04);
@@ -518,6 +543,106 @@
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
+}
+
+.techEditor {
+  margin: 20px 366px 0 299px;
+  width: 956px;
+  border-radius: 14px;
+  background: rgba(0, 64, 140, 0.05);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.techEditorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.techEditorTitle {
+  margin: 0;
+  line-height: 18px;
+  color: #00408c;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.techEditorActions {
+  display: flex;
+  gap: 10px;
+}
+
+.techEditorBtn {
+  border: 0;
+  border-radius: 10px;
+  background: #00408c;
+  padding: 8px 12px;
+  line-height: 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.techEditorRows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.techEditorRow {
+  display: grid;
+  grid-template-columns: 1fr 240px 120px;
+  align-items: center;
+  gap: 12px;
+}
+
+.techEditorLabel {
+  margin: 0;
+  line-height: 16px;
+  color: #00408c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.techEditorPick {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  line-height: 16px;
+  color: #00408c;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.techEditorPickActive {
+  text-decoration: underline;
+}
+
+.techEditorSelect {
+  width: 100%;
+  border: 1px solid rgba(0, 64, 140, 0.25);
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 8px 10px;
+  line-height: 16px;
+  color: #00408c;
+  font-size: 14px;
+}
+
+.techEditorPos {
+  margin: 0;
+  text-align: right;
+  line-height: 16px;
+  color: rgba(0, 64, 140, 0.8);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .techArrow {
@@ -788,22 +913,65 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .heroBottomInner {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .heroText {
+    align-items: center;
+  }
+
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .heroCard {
+    margin-top: 0;
+  }
+
+  .technologyRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .techCardGroup {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 960px) {
+  .heroMedia {
+    height: 640px;
+  }
+
   .heroGradient {
     width: 100%;
     height: 100%;
   }
 
   .heroTitleGroup {
-    width: 100%;
+    width: calc(100% - 32px);
     left: 16px;
-    top: 260px;
+    top: 320px;
   }
 
   .heroTitle {
     width: 100%;
     font-size: 44px;
     line-height: 44px;
+  }
+
+  .heroLogo {
+    width: 280px;
+    height: auto;
   }
 
   .heroBottom {
@@ -825,6 +993,23 @@
     text-align: center;
   }
 
+  .heroLead {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .heroBody {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .heroPunch {
+    margin-top: 24px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
   .heroText {
     align-items: center;
   }
@@ -840,6 +1025,25 @@
     width: min(460px, calc(100% - 60px));
   }
 
+  .heroCardBox {
+    padding: 32px 24px !important;
+  }
+
+  .heroCardTitle,
+  .heroCardText {
+    width: 100%;
+  }
+
+  .heroCardTitle {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .heroCardText {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
   .technologyTitle {
     width: 100%;
     height: auto;
@@ -849,8 +1053,38 @@
   }
 
   .tabs {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    border: 1px solid rgba(33, 119, 165, 0.35);
+    border-radius: 999px;
+    padding: 10px 14px;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .tabActive {
+    background: #2177a5;
+    color: #ffffff;
+  }
+
+  .tabActive::after {
+    display: none;
   }
 
   .technologyRow {
@@ -861,11 +1095,198 @@
 
   .house {
     width: min(735px, 100%);
+    height: auto;
+    aspect-ratio: 735 / 527;
+  }
+
+  .houseInterior,
+  .houseConectividad {
+    height: auto;
+    aspect-ratio: 735 / 505;
   }
 
   .techCardGroup {
     margin-top: 0;
     width: 100%;
     min-width: 0;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) 24px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .techCardViewport {
+    width: 100%;
+    max-width: 460px;
+    height: 360px;
+    justify-self: center;
+  }
+
+  .techCard {
+    width: 100%;
+    height: 360px;
+    padding: 28px 24px !important;
+  }
+
+  .techCardTitle {
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .techCardText {
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .techCardImage {
+    width: min(220px, 70vw);
+    height: auto;
+    margin-top: 14px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    object-fit: contain;
+    max-height: 150px;
+  }
+
+  .techCardOverlayText,
+  .techCardConnectivityText {
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroTitleGroup {
+    top: 280px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+    line-height: 34px;
+  }
+
+  .heroLead {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .heroPunch {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .technologyTitle {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .techCardTitle {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .techCardText {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .techCardViewport {
+    height: 340px;
+  }
+
+  .techCard {
+    height: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroMedia {
+    height: 520px;
+  }
+
+  .heroTitleGroup {
+    top: 240px;
+  }
+
+  .heroLogo {
+    width: 240px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    line-height: 30px;
+  }
+
+  .heroBottomInner {
+    padding: 28px 16px 36px;
+  }
+
+  .heroCardStage {
+    width: min(460px, calc(100% - 48px));
+  }
+
+  .heroArrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .heroCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .heroCardText {
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .technologyTitle {
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .techArrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .techCardViewport {
+    width: min(420px, calc(100% - 48px));
+    height: 330px;
+  }
+
+  .techCard {
+    height: 330px;
+  }
+}
+
+@media (max-width: 360px) {
+  .technologyTitle {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .techCardTitle {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .techCardText {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .techCardOverlayText,
+  .techCardConnectivityText {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .techCardImage {
+    max-height: 130px;
   }
 }

@@ -74,9 +74,9 @@ export default function HogarPage() {
 
       <TechnologyModule />
 
-      <div className={styles.cotizadorWrap} aria-label="Cotizador online">
+      <section className={styles.cotizadorWrap} aria-label="Cotizador online">
         <Cotizador />
-      </div>
+      </section>
     </div>
   );
 }

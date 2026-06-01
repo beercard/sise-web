@@ -1,16 +1,58 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from '../../page.module.scss';
 
 const ANIMATION_MS = 420;
+const STORAGE_KEY = 'sise-tech-editor-v1';
+const POINT_SIZE = 28;
+
+const DEFAULT_EDITOR_CONFIG = {
+  positions: {
+    perimetral: {
+      cerco: { top: 245, left: 53 },
+      camaras: { top: 215, left: 150 },
+      magneticos: { top: 289, left: 195 },
+      cartel: { top: 238, left: 618 },
+      sirena: { top: 259, left: 222 }
+    },
+    interior: {
+      sensor: { top: 121, left: 408 },
+      teclado: { top: 255, left: 485 },
+      mando: { top: 350, left: 406 },
+      central: { top: 251, left: 518 },
+      camara: { top: 61, left: 467 }
+    },
+    conectividad: {
+      app: { top: 303, left: 354 }
+    }
+  },
+  mapping: {}
+};
 
 const TAB_IDS = {
   PERIMETRAL: 'perimetral',
   INTERIOR: 'interior',
   CONECTIVIDAD: 'conectividad'
+};
+
+const HOUSE_BASE_SIZES = {
+  perimetral: { width: 735, height: 527 },
+  interior: { width: 735, height: 505 },
+  conectividad: { width: 735, height: 505 }
+};
+
+const getHouseScale = (tabId, houseEl) => {
+  const base = HOUSE_BASE_SIZES[tabId];
+  if (!base || !houseEl) return { x: 1, y: 1 };
+  const scaleX = houseEl.clientWidth / base.width;
+  const scaleY = houseEl.clientHeight / base.height;
+  return {
+    x: Number.isFinite(scaleX) && scaleX > 0 ? scaleX : 1,
+    y: Number.isFinite(scaleY) && scaleY > 0 ? scaleY : 1
+  };
 };
 
 const getDirection = (currentIndex, nextIndex) => {
@@ -19,6 +61,18 @@ const getDirection = (currentIndex, nextIndex) => {
 };
 
 export default function TechnologyModule() {
+  const [isEditMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('edit') === '1';
+    } catch {
+      return false;
+    }
+  });
+
+  const [viewportWidth, setViewportWidth] = useState(() => (typeof window === 'undefined' ? 0 : window.innerWidth));
+
   const tabs = useMemo(
     () => [
       {
@@ -211,8 +265,9 @@ export default function TechnologyModule() {
               type: 'connectivity',
               backgroundSrc: '/image/mpulc23z-ua6f137.png',
               wrapperWidth: 183,
-              wrapperHeight: 158,
+              wrapperHeight: 172,
               wrapperMarginTop: 74,
+              imageTop: 14,
               text: { top: -57, right: -55, width: 292 }
             }
           }
@@ -224,12 +279,70 @@ export default function TechnologyModule() {
 
   const [activeTabId, setActiveTabId] = useState(TAB_IDS.PERIMETRAL);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activePointId, setActivePointId] = useState(() => tabs[0]?.points?.[0]?.id ?? null);
   const [previousIndex, setPreviousIndex] = useState(null);
   const [direction, setDirection] = useState('next');
   const [tabNonce, setTabNonce] = useState(0);
+  const [pointPositions, setPointPositions] = useState(() => {
+    if (typeof window === 'undefined') return DEFAULT_EDITOR_CONFIG.positions;
+    if (!isEditMode) return DEFAULT_EDITOR_CONFIG.positions;
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return DEFAULT_EDITOR_CONFIG.positions;
+      const parsed = JSON.parse(raw);
+      return parsed?.positions ?? DEFAULT_EDITOR_CONFIG.positions;
+    } catch {
+      return DEFAULT_EDITOR_CONFIG.positions;
+    }
+  });
+  const [pointToSlide, setPointToSlide] = useState(() => {
+    if (typeof window === 'undefined') return DEFAULT_EDITOR_CONFIG.mapping;
+    if (!isEditMode) return DEFAULT_EDITOR_CONFIG.mapping;
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return DEFAULT_EDITOR_CONFIG.mapping;
+      const parsed = JSON.parse(raw);
+      return parsed?.mapping ?? DEFAULT_EDITOR_CONFIG.mapping;
+    } catch {
+      return DEFAULT_EDITOR_CONFIG.mapping;
+    }
+  });
+  const [houseScale, setHouseScale] = useState({ x: 1, y: 1 });
 
   const activeIndexRef = useRef(activeIndex);
   const animTimeoutRef = useRef(null);
+  const houseRef = useRef(null);
+  const pointRefs = useRef({});
+  const dragRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const onResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
+    const houseEl = houseRef.current;
+    if (!houseEl) return;
+
+    const update = () => setHouseScale(getHouseScale(activeTabId, houseEl));
+    const raf = window.requestAnimationFrame(update);
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(update);
+      resizeObserver.observe(houseEl);
+    }
+
+    window.addEventListener('resize', update);
+
+    return () => {
+      window.removeEventListener('resize', update);
+      window.cancelAnimationFrame(raf);
+      if (resizeObserver) resizeObserver.disconnect();
+    };
+  }, [activeTabId]);
 
   useEffect(() => {
     activeIndexRef.current = activeIndex;
@@ -251,7 +364,30 @@ export default function TechnologyModule() {
   const slides = activeTab.slides;
   const points = activeTab.points;
 
-  const startTransition = (nextIndex, nextDirection) => {
+  const defaultPointToSlide = useMemo(() => {
+    return tabs.reduce((acc, tab) => {
+      acc[tab.id] = tab.points.reduce((map, point, idx) => {
+        map[point.id] = Math.min(idx, tab.slides.length - 1);
+        return map;
+      }, {});
+      return acc;
+    }, {});
+  }, [tabs]);
+
+  const mappingForTab = useMemo(
+    () => pointToSlide[activeTabId] ?? defaultPointToSlide[activeTabId] ?? {},
+    [activeTabId, defaultPointToSlide, pointToSlide]
+  );
+
+  const reverseMappingForTab = useMemo(() => {
+    const reverse = {};
+    Object.entries(mappingForTab).forEach(([pointId, slideIndex]) => {
+      if (reverse[slideIndex] == null) reverse[slideIndex] = pointId;
+    });
+    return reverse;
+  }, [mappingForTab]);
+
+  const startTransition = useCallback((nextIndex, nextDirection) => {
     const currentIndex = activeIndexRef.current;
     if (nextIndex === currentIndex) return;
 
@@ -265,20 +401,37 @@ export default function TechnologyModule() {
       setPreviousIndex(null);
       animTimeoutRef.current = null;
     }, ANIMATION_MS);
-  };
+  }, []);
 
-  const handleSelectPoint = (index) => {
-    startTransition(index, getDirection(activeIndexRef.current, index));
+  useEffect(() => {
+    if (!activePointId) return;
+    const mapped = mappingForTab[activePointId];
+    if (mapped == null) return;
+    if (mapped === activeIndexRef.current) return;
+    startTransition(mapped, getDirection(activeIndexRef.current, mapped));
+  }, [activePointId, mappingForTab, startTransition]);
+
+  const handleSelectPoint = (pointId) => {
+    setActivePointId(pointId);
+    const mapped = mappingForTab[pointId];
+    if (mapped == null) return;
+    startTransition(mapped, getDirection(activeIndexRef.current, mapped));
   };
 
   const handlePrev = () => {
     const currentIndex = activeIndexRef.current;
-    startTransition((currentIndex - 1 + slides.length) % slides.length, 'prev');
+    const nextIndex = (currentIndex - 1 + slides.length) % slides.length;
+    startTransition(nextIndex, 'prev');
+    const nextPointId = reverseMappingForTab[nextIndex];
+    if (nextPointId) setActivePointId(nextPointId);
   };
 
   const handleNext = () => {
     const currentIndex = activeIndexRef.current;
-    startTransition((currentIndex + 1) % slides.length, 'next');
+    const nextIndex = (currentIndex + 1) % slides.length;
+    startTransition(nextIndex, 'next');
+    const nextPointId = reverseMappingForTab[nextIndex];
+    if (nextPointId) setActivePointId(nextPointId);
   };
 
   const handleTabChange = (tabId) => {
@@ -290,6 +443,8 @@ export default function TechnologyModule() {
     setActiveIndex(0);
     setDirection('next');
     setTabNonce((nonce) => nonce + 1);
+    const firstPoint = tabs.find((tab) => tab.id === tabId)?.points?.[0];
+    setActivePointId(firstPoint?.id ?? null);
   };
 
   const currentSlide = slides[activeIndex];
@@ -308,8 +463,26 @@ export default function TechnologyModule() {
   const renderSlideContent = (slide, extraClassName) => {
     if (!slide) return null;
 
-    const style = slide.styleVars ? { ...slide.styleVars } : undefined;
-    const shouldRenderMainText = slide.art?.type !== 'overlay' && slide.art?.type !== 'connectivity';
+    const isMobile = viewportWidth > 0 && viewportWidth <= 480;
+    const isNarrowMobile = viewportWidth > 0 && viewportWidth <= 360;
+    const style = slide.styleVars ? { ...slide.styleVars } : {};
+
+    if (isMobile) {
+      style['--tech-card-padding'] = '26px 24px 22px';
+      style['--tech-card-align-items'] = 'center';
+      style['--tech-card-title-width'] = '100%';
+      style['--tech-card-title-height'] = 'auto';
+      style['--tech-card-title-min-height'] = '0px';
+      style['--tech-card-text-width'] = '100%';
+      style['--tech-card-text-margin'] = '16px 0 0';
+      style['--tech-card-image-width'] = isNarrowMobile ? '180px' : '200px';
+      style['--tech-card-image-height'] = 'auto';
+      style['--tech-card-image-margin'] = '14px 0 0';
+      style['--tech-card-sirena-margin-top'] = '12px';
+    }
+
+    const shouldRenderMainText = isMobile ? slide.art?.type !== 'overlay' : slide.art?.type !== 'overlay' && slide.art?.type !== 'connectivity';
+    const artScale = isNarrowMobile ? 0.72 : isMobile ? 0.8 : 1;
 
     return (
       <div className={`${styles.techCard} ${extraClassName}`} style={style}>
@@ -325,18 +498,29 @@ export default function TechnologyModule() {
           />
         ) : null}
         {slide.art?.type === 'absolute' ? (
-          <Image
-            src={slide.art.src}
-            alt=""
-            className={styles.techCardAbsoluteImage}
-            width={slide.art.width}
-            height={slide.art.height}
-            style={{
-              top: `${slide.art.top}px`,
-              left: `${slide.art.left}px`,
-              transform: `rotate(${slide.art.rotate}deg)`
-            }}
-          />
+          isMobile ? (
+            <Image
+              src={slide.art.src}
+              alt=""
+              className={styles.techCardImage}
+              width={slide.art.width}
+              height={slide.art.height}
+              style={{ transform: `rotate(${slide.art.rotate}deg)` }}
+            />
+          ) : (
+            <Image
+              src={slide.art.src}
+              alt=""
+              className={styles.techCardAbsoluteImage}
+              width={slide.art.width}
+              height={slide.art.height}
+              style={{
+                top: `${slide.art.top}px`,
+                left: `${slide.art.left}px`,
+                transform: `rotate(${slide.art.rotate}deg)`
+              }}
+            />
+          )
         ) : null}
         {slide.art?.type === 'overlay' ? (
           <div
@@ -344,7 +528,9 @@ export default function TechnologyModule() {
             style={{
               width: `${slide.art.wrapperWidth}px`,
               height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined
+              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
+              transform: isMobile ? `scale(${artScale})` : undefined,
+              transformOrigin: isMobile ? 'top center' : undefined
             }}
           >
             <p
@@ -377,22 +563,29 @@ export default function TechnologyModule() {
             style={{
               width: `${slide.art.wrapperWidth}px`,
               height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined
+              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
+              transform: isMobile ? `scale(${artScale})` : undefined,
+              transformOrigin: isMobile ? 'top center' : undefined
             }}
           >
-            <p
-              className={styles.techCardConnectivityText}
-              style={{
-                top: `${slide.art.text.top}px`,
-                right: `${slide.art.text.right}px`,
-                width: `${slide.art.text.width}px`
-              }}
-            >
-              {slide.text}
-            </p>
+            {!isMobile ? (
+              <p
+                className={styles.techCardConnectivityText}
+                style={{
+                  top: `${slide.art.text.top}px`,
+                  right: `${slide.art.text.right}px`,
+                  width: `${slide.art.text.width}px`
+                }}
+              >
+                {slide.text}
+              </p>
+            ) : null}
             <div
               className={styles.techCardConnectivityImage}
-              style={{ '--connectivity-bg': `url('${slide.art.backgroundSrc}')` }}
+              style={{
+                '--connectivity-bg': `url('${slide.art.backgroundSrc}')`,
+                top: isMobile ? '8px' : slide.art.imageTop ? `${slide.art.imageTop}px` : undefined
+              }}
               aria-hidden="true"
             >
               <div className={styles.techCardConnectivityBar} />
@@ -401,6 +594,138 @@ export default function TechnologyModule() {
         ) : null}
       </div>
     );
+  };
+
+  const positionsForTab = pointPositions[activeTabId] ?? {};
+
+  useEffect(() => {
+    if (!isEditMode) return;
+    if (pointPositions[activeTabId]) return;
+    const houseEl = houseRef.current;
+    if (!houseEl) return;
+
+    const raf = window.requestAnimationFrame(() => {
+      const houseRect = houseEl.getBoundingClientRect();
+      const scale = getHouseScale(activeTabId, houseEl);
+      const measured = points.reduce((acc, point) => {
+        const el = pointRefs.current[point.id];
+        if (!el) return acc;
+        const rect = el.getBoundingClientRect();
+        acc[point.id] = {
+          top: Math.round((rect.top - houseRect.top) / scale.y),
+          left: Math.round((rect.left - houseRect.left) / scale.x)
+        };
+        return acc;
+      }, {});
+
+      setPointPositions((prev) => ({ ...prev, [activeTabId]: measured }));
+    });
+
+    return () => window.cancelAnimationFrame(raf);
+  }, [activeTabId, isEditMode, pointPositions, points]);
+
+  useEffect(() => {
+    if (!isEditMode) return;
+    const payload = {
+      positions: pointPositions,
+      mapping: pointToSlide
+    };
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    } catch {
+      return;
+    }
+  }, [isEditMode, pointPositions, pointToSlide]);
+
+  const handlePointPointerDown = (pointId, event) => {
+    if (!isEditMode) return;
+    const houseEl = houseRef.current;
+    if (!houseEl) return;
+    const current = (pointPositions[activeTabId] ?? {})[pointId];
+    if (!current) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const target = event.currentTarget;
+    target.setPointerCapture(event.pointerId);
+    dragRef.current = {
+      pointId,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startTop: current.top,
+      startLeft: current.left
+    };
+    setActivePointId(pointId);
+  };
+
+  const handlePointPointerMove = (event) => {
+    if (!isEditMode) return;
+    const drag = dragRef.current;
+    if (!drag) return;
+    if (drag.pointerId !== event.pointerId) return;
+    const houseEl = houseRef.current;
+    if (!houseEl) return;
+
+    const scale = getHouseScale(activeTabId, houseEl);
+    const nextTop = drag.startTop + (event.clientY - drag.startY) / scale.y;
+    const nextLeft = drag.startLeft + (event.clientX - drag.startX) / scale.x;
+
+    const maxTop = (houseEl.clientHeight - POINT_SIZE) / scale.y;
+    const maxLeft = (houseEl.clientWidth - POINT_SIZE) / scale.x;
+
+    const clampedTop = Math.round(Math.max(0, Math.min(maxTop, nextTop)));
+    const clampedLeft = Math.round(Math.max(0, Math.min(maxLeft, nextLeft)));
+
+    setPointPositions((prev) => ({
+      ...prev,
+      [activeTabId]: {
+        ...(prev[activeTabId] ?? {}),
+        [drag.pointId]: { top: clampedTop, left: clampedLeft }
+      }
+    }));
+  };
+
+  const handlePointPointerUp = (event) => {
+    if (!isEditMode) return;
+    const drag = dragRef.current;
+    if (!drag) return;
+    if (drag.pointerId !== event.pointerId) return;
+    dragRef.current = null;
+  };
+
+  const handleMappingChange = (pointId, slideIndex) => {
+    setPointToSlide((prev) => ({
+      ...prev,
+      [activeTabId]: {
+        ...(prev[activeTabId] ?? defaultPointToSlide[activeTabId] ?? {}),
+        [pointId]: slideIndex
+      }
+    }));
+  };
+
+  const handleCopyEditorConfig = async () => {
+    const payload = {
+      positions: pointPositions,
+      mapping: pointToSlide
+    };
+    const text = JSON.stringify(payload, null, 2);
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      return;
+    }
+  };
+
+  const handleResetEditorConfig = () => {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      return;
+    }
+    setPointPositions(DEFAULT_EDITOR_CONFIG.positions);
+    setPointToSlide(DEFAULT_EDITOR_CONFIG.mapping);
   };
 
   return (
@@ -437,17 +762,41 @@ export default function TechnologyModule() {
       </div>
 
       <div className={styles.technologyRow} data-anim={tabNonce}>
-        <div className={`${styles.house} ${activeTab.houseClassName}`} aria-label="Plano hogar">
+        <div
+          ref={houseRef}
+          className={`${styles.house} ${activeTab.houseClassName} ${isEditMode ? styles.houseEdit : ''}`}
+          aria-label="Plano hogar"
+          onPointerMove={handlePointPointerMove}
+          onPointerUp={handlePointPointerUp}
+          onPointerCancel={handlePointPointerUp}
+        >
           {points.map((point, index) => {
-            const isActive = index === activeIndex;
+            const isActive = point.id === activePointId;
+            const position = positionsForTab[point.id];
+            const scaledPosition = position
+              ? {
+                  top: Math.round(position.top * houseScale.y),
+                  left: Math.round(position.left * houseScale.x)
+                }
+              : null;
             return (
               <button
                 key={point.id}
                 type="button"
-                className={`${styles.pointButton} ${point.pointClassName} ${isActive ? styles.pointActive : ''}`}
+                ref={(el) => {
+                  if (!el) return;
+                  pointRefs.current[point.id] = el;
+                }}
+                className={`${styles.pointButton} ${point.pointClassName} ${isActive ? styles.pointActive : ''} ${
+                  isEditMode ? styles.pointEdit : ''
+                } ${position ? styles.pointAbsolute : ''}`}
                 aria-label={point.label}
                 aria-pressed={isActive}
-                onClick={() => handleSelectPoint(index)}
+                style={
+                  scaledPosition ? { top: `${scaledPosition.top}px`, left: `${scaledPosition.left}px` } : undefined
+                }
+                onClick={() => handleSelectPoint(point.id)}
+                onPointerDown={(event) => handlePointPointerDown(point.id, event)}
               >
                 <span className={styles.ellipse2} aria-hidden="true">
                   <span className={styles.ellipse3} aria-hidden="true" />
@@ -480,6 +829,55 @@ export default function TechnologyModule() {
           )}
         </div>
       </div>
+
+      {isEditMode ? (
+        <div className={styles.techEditor} aria-label="Editor de puntos">
+          <div className={styles.techEditorHeader}>
+            <p className={styles.techEditorTitle}>Editor (solo dev)</p>
+            <div className={styles.techEditorActions}>
+              <button type="button" className={styles.techEditorBtn} onClick={handleCopyEditorConfig}>
+                Copiar JSON
+              </button>
+              <button type="button" className={styles.techEditorBtn} onClick={handleResetEditorConfig}>
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <div className={styles.techEditorRows}>
+            {points.map((point) => {
+              const position = positionsForTab[point.id];
+              const value = mappingForTab[point.id] ?? 0;
+              const isSelected = point.id === activePointId;
+              return (
+                <div key={point.id} className={styles.techEditorRow}>
+                  <button
+                    type="button"
+                    className={`${styles.techEditorPick} ${isSelected ? styles.techEditorPickActive : ''}`}
+                    onClick={() => setActivePointId(point.id)}
+                  >
+                    {point.label}
+                  </button>
+                  <select
+                    className={styles.techEditorSelect}
+                    value={value}
+                    onChange={(e) => handleMappingChange(point.id, Number(e.target.value))}
+                  >
+                    {slides.map((slide, idx) => (
+                      <option key={`${slide.title}-${idx}`} value={idx}>
+                        {slide.title}
+                      </option>
+                    ))}
+                  </select>
+                  <p className={styles.techEditorPos}>
+                    {position ? `x:${position.left} y:${position.top}` : 'x:- y:-'}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
