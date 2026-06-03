@@ -1,0 +1,63 @@
+'use client';
+
+import Image from 'next/image';
+
+import ComercioMonitoreoCarousel from '../ComercioMonitoreoCarousel/ComercioMonitoreoCarousel';
+
+import styles from '../../page.module.scss';
+
+export default function ComercioHero() {
+  return (
+    <section className={styles.hero} aria-label="SISE Comercio">
+      <div className={styles.heroMedia}>
+        <Image
+          src="/image/mpvuunzj-eolvy7n.png"
+          alt=""
+          className={styles.heroImage}
+          fill
+          priority
+          sizes="100vw"
+        />
+        <div className={styles.heroGradient} aria-hidden="true" />
+
+        <Image
+          src="/image/mpvuunzj-tkfn7dr.png"
+          alt=""
+          className={styles.heroKicker}
+          width={416}
+          height={64}
+          priority
+        />
+
+        <h1 className={styles.heroTitle}>
+          <span className={styles.heroTitleLight}>Seguridad que protege </span>
+          <span className={styles.heroTitleStrong}>tu rentabilidad</span>
+        </h1>
+      </div>
+
+      <div className={styles.heroBottom} aria-label="Información">
+        <div className={styles.heroBottomInner}>
+          <div className={styles.heroText}>
+            <p className={styles.heroSectionTitle}>COMERCIOS</p>
+            <div className={styles.heroDivider} aria-hidden="true" />
+            <p className={styles.heroLead}>
+              En los comercios, la seguridad impacta directamente en el resultado del negocio.
+            </p>
+            <p className={styles.heroBody}>
+              En SISE ofrecemos soluciones orientadas a prevenir pérdidas, reducir riesgos y
+              garantizar la continuidad operativa.
+            </p>
+            <p className={styles.heroPunch}>
+              No se trata sólo de evitar robos,
+              <br />
+              sino de cuidar tu inversión todos los días.
+            </p>
+          </div>
+
+          <ComercioMonitoreoCarousel />
+        </div>
+      </div>
+    </section>
+  );
+}
+
