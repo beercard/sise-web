@@ -114,7 +114,7 @@ export default function SiteHeader() {
 
         <button
           type="button"
-          className={styles.menuButton}
+          className={`${styles.menuButton} ${isOpen ? styles.menuButtonOpen : ''}`}
           aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={isOpen}
           aria-controls={navId}

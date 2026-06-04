@@ -69,7 +69,7 @@
 .heroBottomInner {
   width: min(1920px, 100%);
   margin: 0 auto;
-  padding: 68px 366px 96px;
+  padding: 68px clamp(24px, 19vw, 366px) 96px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
