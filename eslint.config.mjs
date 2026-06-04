@@ -1,3 +1,12 @@
 import config from 'eslint-config-next/core-web-vitals';
 
-export default config;
+const baseConfig = Array.isArray(config) ? config : [config];
+
+const eslintConfig = [
+  ...baseConfig,
+  {
+    ignores: ['.figma/**']
+  }
+];
+
+export default eslintConfig;

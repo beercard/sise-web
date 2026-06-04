@@ -2,7 +2,7 @@
   width: 100%;
   background: #00408c;
   position: relative;
-  z-index: 100;
+  z-index: 40;
 }
 
 .inner {
@@ -11,29 +11,18 @@
   width: min(1920px, 100%);
   height: 80px;
   margin: 0 auto;
-  position: relative;
   padding-right: 240px;
-  padding-left: 0;
-}
-
-.brand {
-  display: flex;
-  align-items: flex-start;
-}
-
-.brand a {
-  display: flex;
+  position: relative;
 }
 
 .aguila {
-  display: block;
   width: 136px;
   height: 80px;
 }
 
 .recurso {
   margin-top: 16px;
-  margin-left: 56px;
+  margin-left: 40px;
   width: 85px;
   height: 50px;
 }
@@ -41,6 +30,8 @@
 .menuButton {
   display: none;
   margin-left: auto;
+  margin-top: 18px;
+  margin-right: 16px;
   width: 44px;
   height: 44px;
   background: transparent;
@@ -87,127 +78,147 @@
   top: 8px;
 }
 
-.menuButtonOpen .menuButtonIcon {
-  background: transparent;
-}
-
-.menuButtonOpen .menuButtonIcon::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.menuButtonOpen .menuButtonIcon::after {
-  top: 0;
-  transform: rotate(-45deg);
-}
-
-.backdrop {
-  display: none;
-}
-
 .nav {
-  flex: 1;
+  margin-left: 56px;
+  height: 80px;
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-right: 140px;
+  width: auto;
+  max-width: calc(100% - 340px);
+  overflow: visible;
+  z-index: 60;
 }
 
 .navList {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   margin: 0;
   padding: 0;
   list-style: none;
+  flex-wrap: nowrap;
 }
 
 .navItemFirst {
-  margin-top: 32px;
-  margin-left: 40px;
+  position: relative;
 }
 
 .navItem {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
+  position: relative;
 }
 
-.vector {
-  margin-top: 28px;
-  margin-left: clamp(18px, 2.8vw, 53px);
+.navItemBody {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: 80px;
+}
+
+.navItem:not(:first-child) {
+  padding-left: 52px;
+}
+
+.navItem:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background: #ffffff;
   width: 1px;
   height: 26px;
-}
-
-.navLink {
-  display: block;
-  margin-top: 32px;
-  margin-left: 0;
-  line-height: 18px;
-  letter-spacing: 1px;
-  color: #ffffff;
-  font-size: clamp(14px, 1.15vw, 20px);
-  font-weight: 700;
-  transition: all 0.3s ease;
-}
-
-.navItemFirst .navItemContent {
-  margin-left: 0;
-}
-
-.navItemFirst .navLink {
-  margin-top: 0;
-}
-
-.navLink:hover {
-  opacity: 0.85;
-}
-
-.navItemContent {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  margin-left: clamp(18px, 2.8vw, 52px);
-}
-
-.navItemTop {
-  display: flex;
-  align-items: flex-start;
 }
 
 .navItemWithSubmenu {
   position: relative;
 }
 
-.submenuToggle {
-  display: none;
-  width: 28px;
-  height: 28px;
+.navLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  line-height: 18px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  transition: all 0.3s ease;
   background: transparent;
   border: 0;
   padding: 0;
-  margin-top: 26px;
-  margin-left: 6px;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.navLinkGroup {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 80px;
+  width: max-content;
 }
 
-.submenuToggle::before,
-.submenuToggle::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 2px;
-  background: #ffffff;
-  transform-origin: center;
+.navLinkRow {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  padding: 0 24px;
+  justify-content: center;
 }
 
-.submenuToggle::before {
-  transform: translate(-50%, -50%) rotate(45deg);
+.navItemWithSubmenu .navLinkRow:hover {
+  background: rgba(8, 87, 181, 0.8);
 }
 
-.submenuToggle::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+.navLinkRowActive {
+  background: rgba(8, 87, 181, 0.8);
+}
+
+.submenuToggle {
+  display: none;
+  margin-top: 0;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.submenuToggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.submenuToggle:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.submenuToggleIcon {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid #ffffff;
+  margin-top: 4px;
+}
+
+.navLink:hover {
+  opacity: 0.85;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .submenu {
@@ -215,80 +226,105 @@
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  width: 210px;
-  height: 240px;
-  background: #00408c;
   display: none;
   flex-direction: column;
-  align-items: stretch;
-  z-index: 50;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+  gap: 0;
+  padding: 0;
+  background: #00408c;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  z-index: 200;
 }
 
-.submenu::before {
+.submenuempresas {
+  width: 210px;
+}
+
+.submenuurbano {
+  width: 190px;
+}
+
+.submenunosotros {
+  width: 216px;
+}
+
+.submenuItem {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  background: #00408c;
+  width: 100%;
+  height: 80px;
+  padding: 0 52px;
+  text-align: left;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.submenuurbano .submenuItem {
+  font-size: 16px;
+}
+
+.submenuItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.submenuItem:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.submenu::after {
   content: '';
   position: absolute;
-  top: -40px;
-  left: 0;
-  width: 100%;
-  height: 40px;
+  left: 50%;
+  top: 80px;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  width: 87px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.submenuurbano::after {
+  width: 79px;
+}
+
+.submenunosotros::after {
+  width: 89px;
+}
+
+.submenuItem:last-child {
+  border-bottom: 0;
+}
+
+.navItemempresas .navLinkGroup {
+  width: 210px;
+}
+
+.navItemurbano .navLinkGroup {
+  width: 190px;
+}
+
+.navItemnosotros .navLinkGroup {
+  width: 216px;
+}
+
+.navItemWithSubmenu .navLinkRow {
+  justify-content: flex-start;
+  padding-left: 53px;
+  padding-right: 53px;
 }
 
 .navItemWithSubmenu:hover .submenu,
 .navItemWithSubmenu:focus-within .submenu,
 .submenuOpen {
   display: flex;
-}
-
-.submenuHeader {
-  height: 80px;
-  background: rgba(8, 87, 181, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 18px;
-  letter-spacing: 1px;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.submenuLink {
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 18px;
-  letter-spacing: 1px;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.submenuLink:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.submenuLink:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: -4px;
-}
-
-.submenuDivider {
-  width: 87px;
-  height: 1px;
-  background: #ffffff;
-  align-self: center;
-  margin-top: -1px;
-  margin-bottom: -1px;
-}
-
-.navLink:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 4px;
-  border-radius: 4px;
 }
 
 .hogar {
@@ -328,8 +364,8 @@
 
 @media (max-width: 1366px) {
   .inner {
-    padding-right: 32px;
-    padding-left: 16px;
+    padding-right: 120px;
+    padding-left: 24px;
   }
 
   .recurso {
@@ -337,16 +373,30 @@
   }
 
   .nav {
-    overflow-x: auto;
-    scrollbar-width: none;
+    margin-left: 40px;
+    padding-right: 72px;
+    max-width: calc(100% - 240px);
   }
 
-  .nav::-webkit-scrollbar {
-    display: none;
+  .navItem:not(:first-child) {
+    padding-left: 24px;
   }
 
-  .navItemFirst {
-    margin-left: 24px;
+  .navItem:not(:first-child)::before {
+    left: 12px;
+  }
+
+  .navLink {
+    font-size: 18px;
+  }
+
+  .navLinkRow {
+    padding: 0 16px;
+  }
+
+  .navItemWithSubmenu .navLinkRow {
+    padding-left: 36px;
+    padding-right: 36px;
   }
 }
 
@@ -354,39 +404,41 @@
   .inner {
     padding-right: 0;
     padding-left: 0;
+    align-items: center;
   }
 
-  .backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    border: 0;
-    padding: 0;
-    z-index: 99;
+  .recurso {
+    margin-left: 12px;
   }
 
   .menuButton {
     display: block;
-    margin-top: 18px;
-    margin-right: 16px;
-    z-index: 101;
   }
 
   .nav {
-    display: none;
-  }
-
-  .navOpen {
-    display: flex;
     position: fixed;
     top: 80px;
     left: 0;
     right: 0;
     bottom: 0;
+    transform: none;
+    height: auto;
     width: 100%;
-    justify-content: center;
-    z-index: 100;
+    max-width: none;
+    margin-left: 0;
+    background: rgba(0, 64, 140, 0.94);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
+  }
+
+  .navOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .navList {
@@ -397,130 +449,148 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
-    background: #00408c;
-    padding: 12px 16px 24px;
-    width: 100%;
+    gap: 8px;
+    padding: 20px 16px 28px;
     height: 100%;
     overflow-y: auto;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    overscroll-behavior: contain;
+    width: min(380px, 100%);
+    margin-left: auto;
+    background: #00408c;
+    box-shadow: -16px 0 32px rgba(0, 0, 0, 0.28);
   }
 
   .navItemFirst,
   .navItem {
     margin: 0;
-  }
-
-  .vector {
-    display: none;
-  }
-
-  .navItemContent {
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
-    margin-left: 0;
     width: 100%;
   }
 
-  .navItemTop {
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+  .navItemBody {
+    height: auto;
+  }
+
+  .navItem:not(:first-child) {
+    padding-left: 0;
+  }
+
+  .navItem:not(:first-child)::before {
+    display: none;
   }
 
   .navLink {
     margin: 0;
-    padding: 14px 12px;
-    width: auto;
-    flex: 1;
-    height: auto;
-    font-size: 18px;
-    text-align: left;
-    border-radius: 10px;
-    transition: background 0.2s ease, opacity 0.2s ease;
+    padding: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  .navLink:hover {
-    background: rgba(255, 255, 255, 0.08);
+  .navLinkGroup {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    height: auto;
+  }
+
+  .hogar,
+  .empresas,
+  .urbano,
+  .agro,
+  .ciudad,
+  .nosotros,
+  .contacto {
+    width: auto;
+    height: auto;
   }
 
   .submenuToggle {
-    display: inline-flex;
+    display: block;
     margin-top: 0;
-    width: 40px;
-    height: 40px;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .submenuToggleIcon {
+    border-left-width: 7px;
+    border-right-width: 7px;
+    border-top-width: 8px;
+    margin-top: 0;
     transition: transform 0.2s ease;
   }
 
-  .submenuToggle::before,
-  .submenuToggle::after {
-    width: 12px;
-  }
-
-  .submenuToggle::before {
-    transform: translate(-65%, -50%) rotate(45deg);
-  }
-
-  .submenuToggle::after {
-    transform: translate(-35%, -50%) rotate(-45deg);
-  }
-
-  .submenuToggleOpen {
+  .submenuToggle[aria-expanded='true'] .submenuToggleIcon {
     transform: rotate(180deg);
   }
 
   .submenu {
     position: static;
+    top: auto;
+    left: auto;
     transform: none;
     width: 100%;
-    height: auto;
+    max-width: none;
+    background: rgba(255, 255, 255, 0.08);
     box-shadow: none;
-    margin-top: 4px;
     border-radius: 12px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .submenu::before {
+    margin-top: 8px;
     display: none;
-  }
-
-  .submenuHeader {
-    display: none;
-  }
-
-  .submenuLink {
     height: auto;
-    padding: 12px 16px 12px 24px;
-    justify-content: flex-start;
+    padding: 6px 0;
+  }
+
+  .submenuOpen {
+    display: flex;
+  }
+
+  .submenuItem {
+    background: transparent;
+    border-radius: 0;
+    height: 48px;
+    padding: 0 16px;
     font-size: 16px;
   }
 
-  .submenuDivider {
-    width: 100%;
-    margin: 0;
-    opacity: 0.2;
+  .submenu::after {
+    display: none;
   }
-}
 
-@media (max-width: 520px) {
-  .inner {
-    padding-left: 0;
-    padding-right: 0;
+  .navLinkRow {
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    justify-content: flex-start;
+    padding: 0 16px;
+    height: 56px;
+    gap: 12px;
+  }
+
+  .navItemWithSubmenu .navLinkRow {
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .navLinkRowActive {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .navItemWithSubmenu .navLinkRow:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .navLink {
+    justify-content: flex-start;
+    font-size: 18px;
+    flex: 1 1 auto;
   }
 
   .aguila {
-    width: 112px;
-  }
-
-  .recurso {
-    width: 72px;
-    margin-left: 12px;
-  }
-
-  .menuButton {
-    margin-right: 8px;
+    margin-left: 0;
   }
 }
