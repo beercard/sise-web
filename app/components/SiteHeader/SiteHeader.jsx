@@ -134,12 +134,11 @@ export default function SiteHeader() {
               const isSubmenuOpen = openSubmenu === item.href;
               const submenuClassName = styles[`submenu${item.label.toLowerCase()}`];
               const navItemVariantClassName = styles[`navItem${item.label.toLowerCase()}`];
-              const isMobileAccordion = hasSubmenu && !isDesktop;
 
               const content = (
                 <div className={styles.navLinkGroup}>
                   <div className={`${styles.navLinkRow} ${isSubmenuOpen ? styles.navLinkRowActive : ''}`}>
-                    {isMobileAccordion ? (
+                    {hasSubmenu ? (
                       <button
                         type="button"
                         className={`${styles.navLink} ${item.className}`}
@@ -151,21 +150,7 @@ export default function SiteHeader() {
                         {item.label}
                       </button>
                     ) : (
-                      <Link
-                        className={`${styles.navLink} ${item.className}`}
-                        href={item.href}
-                        aria-haspopup={hasSubmenu ? 'menu' : undefined}
-                        aria-expanded={hasSubmenu ? isSubmenuOpen : undefined}
-                        aria-controls={hasSubmenu ? submenuId : undefined}
-                        onClick={(event) => {
-                          if (hasSubmenu && isDesktop) {
-                            event.preventDefault();
-                            setOpenSubmenu((current) => (current === item.href ? null : item.href));
-                            return;
-                          }
-                          closeMenu();
-                        }}
-                      >
+                      <Link className={`${styles.navLink} ${item.className}`} href={item.href} onClick={closeMenu}>
                         {item.label}
                       </Link>
                     )}
