@@ -359,7 +359,10 @@
 
 .technologyRow {
   margin-top: 30px;
-  padding: 0 366px 0 299px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: clamp(24px, 15vw, 299px);
+  padding-right: clamp(24px, 19vw, 366px);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;

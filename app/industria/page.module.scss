@@ -1,4 +1,4 @@
-.comercio {
+.industria {
   width: 100%;
   background: var(--sise-white);
 }
@@ -69,7 +69,7 @@
 .heroBottomInner {
   width: min(1920px, 100%);
   margin: 0 auto;
-  padding: 68px clamp(24px, 19vw, 366px) 96px;
+  padding: 68px clamp(24px, 19vw, 366px) 113px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -84,7 +84,7 @@
 
 .heroSectionTitle {
   margin: 0;
-  width: 578px;
+  width: 416px;
   height: 37px;
   line-height: 30px;
   color: #ffffff;
@@ -94,38 +94,26 @@
 
 .heroDivider {
   margin-top: 11px;
-  width: 240px;
+  width: 476px;
   height: 2px;
   background: #ffffff;
 }
 
 .heroLead {
-  margin: 36px 0 0;
-  width: 578px;
-  height: 59px;
+  margin: 62px 0 0;
+  width: 414px;
+  height: 158px;
   line-height: 30px;
   color: #ffffff;
   font-size: 32px;
+}
+
+.heroLeadLight {
   font-weight: 500;
 }
 
-.heroBody {
-  margin: 32px 0 0;
-  width: 507px;
-  height: 44px;
-  line-height: 20px;
-  color: #ffffff;
-  font-size: 20px;
-}
-
-.heroPunch {
-  margin: 32px 0 0;
-  width: 568px;
-  height: 54px;
-  line-height: 26px;
-  color: #ffffff;
-  font-size: 32px;
-  font-weight: 600;
+.heroLeadStrong {
+  font-weight: 700;
 }
 
 .heroCard {
@@ -158,11 +146,6 @@
   cursor: pointer;
 }
 
-.heroArrow:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 .heroArrowLeft img {
   display: block;
   transform: rotate(90deg);
@@ -178,9 +161,9 @@
   inset: 0;
   border-radius: 22px;
   background: #d9d9d9;
-  padding-top: var(--hero-card-pad-top, 68px);
+  padding-top: var(--hero-card-pad-top, 73px);
   padding-right: var(--hero-card-pad-right, 54px);
-  padding-bottom: var(--hero-card-pad-bottom, 64px);
+  padding-bottom: var(--hero-card-pad-bottom, 80px);
   padding-left: var(--hero-card-pad-left, 54px);
   display: flex;
   flex-direction: column;
@@ -188,6 +171,24 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+.heroCardTitle {
+  width: var(--hero-card-content-width, 334px);
+  text-align: center;
+  line-height: 32px;
+  color: #06234c;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.heroCardText {
+  margin: 20px 0 0;
+  width: var(--hero-card-content-width, 334px);
+  text-align: center;
+  line-height: 20px;
+  color: #06234c;
+  font-size: 20px;
 }
 
 .heroCardEnterRight {
@@ -247,34 +248,6 @@
   100% {
     opacity: 0;
     transform: translateX(18px);
-  }
-}
-
-.heroCardTitle {
-  margin: 0;
-  width: var(--hero-card-content-width, 334px);
-  text-align: center;
-  line-height: 32px;
-  color: #06234c;
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.heroCardText {
-  margin: 14px 0 0;
-  width: var(--hero-card-content-width, 334px);
-  text-align: center;
-  line-height: 20px;
-  color: #06234c;
-  font-size: 20px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroCardEnterRight,
-  .heroCardEnterLeft,
-  .heroCardExitLeft,
-  .heroCardExitRight {
-    animation: none;
   }
 }
 
@@ -368,22 +341,23 @@
 }
 
 .technologyRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-top: 32px;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: clamp(24px, 12vw, 234px);
   padding-right: clamp(24px, 19vw, 366px);
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
 }
 
 .house {
   width: 735px;
-  height: 527px;
+  height: 511px;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  background-position: 0 0;
   position: relative;
 }
 
@@ -392,21 +366,15 @@
 }
 
 .housePerimetral {
-  background-image: url('/image/mpvuunzj-xlmkksx.png');
+  background-image: url('/image/mq03yfqa-dzg7p10.png');
 }
 
 .houseInterior {
-  background-image: url('/image/mpvxx6dk-abr86k8.png');
-  height: 511px;
-  background-size: 100% 100%;
-  background-position: 0 0;
+  background-image: url('/image/mq03yfqa-dzg7p10.png');
 }
 
 .houseConectividad {
-  background-image: url('/image/mpvxzsty-pl5cyho.png');
-  height: 511px;
-  background-size: 100% 100%;
-  background-position: 0 0;
+  background-image: url('/image/mq03yufr-wn4uxrc.png');
 }
 
 .pointButton {
@@ -546,8 +514,8 @@
 
 .techCardImageWrap {
   margin-top: var(--tech-card-image-margin-top, 22px);
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: var(--tech-card-image-margin-left, auto);
+  margin-right: var(--tech-card-image-margin-right, auto);
   width: min(var(--tech-card-image-width, 192px), 240px);
   height: min(var(--tech-card-image-height, 117px), 200px);
   display: flex;
@@ -588,21 +556,6 @@
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.techCardSirenaFrame {
-  margin-top: var(--tech-card-sirena-margin-top, 14px);
-  margin-left: 93px;
-  margin-right: 93px;
-  padding: 123px 4px 2px 18px;
-  background-image: var(--sirena-bg);
-  background-position: -21px -10px;
-  background-size: 138.38% 111.04%;
-  background-repeat: no-repeat;
-}
-
-.techCardSirenaSvg {
-  display: block;
 }
 
 .techCardConnectivityWrap {
@@ -862,12 +815,16 @@
   }
 
   .heroSectionTitle,
-  .heroLead,
-  .heroBody,
-  .heroPunch {
+  .heroDivider,
+  .heroLead {
     width: 100%;
     height: auto;
     text-align: center;
+  }
+
+  .heroDivider {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .heroCard {
@@ -901,9 +858,9 @@
     left: 16px;
     top: 350px;
     width: calc(100% - 32px);
+    height: auto;
     font-size: 44px;
     line-height: 44px;
-    height: auto;
   }
 
   .heroBottom {
@@ -912,67 +869,69 @@
 
   .heroBottomInner {
     flex-direction: column;
-    align-items: center;
     gap: 28px;
-    padding: 32px 16px 40px;
-  }
-
-  .heroSectionTitle,
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
+    padding: 48px 16px 56px;
     height: auto;
-    text-align: center;
   }
 
   .heroText {
     align-items: center;
   }
 
+  .heroSectionTitle,
+  .heroDivider,
   .heroLead {
-    font-size: 24px;
-    line-height: 28px;
+    width: 100%;
+    height: auto;
   }
 
-  .heroBody {
-    font-size: 16px;
-    line-height: 22px;
+  .heroSectionTitle,
+  .heroLead {
+    text-align: center;
   }
 
-  .heroPunch {
-    font-size: 24px;
-    line-height: 28px;
+  .heroDivider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroLead {
+    font-size: 22px;
+    line-height: 26px;
+    margin-top: 24px;
   }
 
   .heroCard {
-    margin-top: 0;
-    min-width: 0;
     width: 100%;
-    max-width: 520px;
+    min-width: 0;
+    margin-top: 0;
+    justify-content: center;
+    gap: 12px;
   }
 
   .heroCardStage {
-    width: min(460px, calc(100% - 60px));
+    width: min(460px, calc(100% - 84px));
   }
 
   .heroCardBox {
-    padding: 32px 24px;
-  }
-
-  .heroCardTitle,
-  .heroCardText {
-    width: 100%;
+    padding: 28px 24px !important;
   }
 
   .heroCardTitle {
-    font-size: 26px;
-    line-height: 28px;
+    width: 100% !important;
+    font-size: 24px;
+    line-height: 26px;
   }
 
   .heroCardText {
-    font-size: 16px;
-    line-height: 20px;
+    width: 100% !important;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .technology {
+    padding-top: 72px;
   }
 
   .technologyTitle {
@@ -1009,6 +968,12 @@
     background: rgba(255, 255, 255, 0.8);
   }
 
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: auto;
+  }
+
   .tabActive {
     background: #06234c;
     color: #ffffff;
@@ -1022,16 +987,12 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .house {
     width: min(735px, 100%);
-    height: auto;
-    aspect-ratio: 735 / 527;
-  }
-
-  .houseInterior,
-  .houseConectividad {
     height: auto;
     aspect-ratio: 735 / 511;
   }
@@ -1061,12 +1022,27 @@
     width: 100%;
     height: 360px;
     padding: 28px 24px !important;
+    align-items: center !important;
   }
 
   .techCardTitle,
   .techCardText {
     width: 100% !important;
     height: auto;
+    text-align: center !important;
+  }
+
+  .techCardTitle {
+    margin: 0 !important;
+    min-height: 0 !important;
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .techCardText {
+    margin: 12px 0 0 !important;
+    font-size: 15px;
+    line-height: 18px;
   }
 
   .techCardImageWrap {
@@ -1098,7 +1074,7 @@
 
   .techEditorRow {
     grid-template-columns: 1fr;
-    gap: 6px;
+    justify-items: stretch;
   }
 
   .techEditorPos {
@@ -1106,61 +1082,44 @@
   }
 }
 
-@media (max-width: 600px) {
-  .heroTitle {
-    font-size: 36px;
-    line-height: 34px;
-  }
-}
-
 @media (max-width: 480px) {
   .heroMedia {
-    height: 520px;
-  }
-
-  .heroKicker {
-    top: 240px;
+    height: 560px;
   }
 
   .heroTitle {
-    top: 300px;
+    top: 330px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .heroLead {
+    font-size: 20px;
+  }
+
+  .technologyTitle {
     font-size: 32px;
-    line-height: 30px;
+    line-height: 34px;
   }
 
-  .heroBottomInner {
-    padding: 28px 16px 36px;
-  }
-
-  .heroCardStage {
-    width: min(460px, calc(100% - 48px));
-  }
-
-  .heroArrow {
-    width: 24px;
-    height: 24px;
-  }
-
-  .heroCardTitle {
-    font-size: 24px;
-    line-height: 26px;
-  }
-
-  .heroCardText {
-    font-size: 15px;
-    line-height: 19px;
+  .heroCardBox {
+    padding: 24px 18px !important;
   }
 }
 
 @media (max-width: 360px) {
-  .heroTitle {
-    font-size: 28px;
-    line-height: 28px;
+  .heroCardTitle {
+    font-size: 22px;
+    line-height: 24px;
   }
 
-  .heroLead,
-  .heroPunch {
-    font-size: 22px;
-    line-height: 26px;
+  .heroCardText {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .techCardViewport,
+  .techCard {
+    height: 340px;
   }
 }

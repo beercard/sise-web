@@ -24,7 +24,7 @@ export default function SiteHeader() {
         className: styles.empresas,
         submenu: [
           { href: '/comercio', label: 'COMERCIO' },
-          { href: '/#empresas', label: 'INDUSTRIA' }
+          { href: '/industria', label: 'INDUSTRIA' }
         ]
       },
       {
@@ -32,7 +32,7 @@ export default function SiteHeader() {
         label: 'URBANO',
         className: styles.urbano,
         submenu: [
-          { href: '/#urbano', label: 'EDIFICIOS' },
+          { href: '/edificios', label: 'EDIFICIOS' },
           { href: '/#urbano', label: 'CONSTRUCCIÓN' }
         ]
       },
