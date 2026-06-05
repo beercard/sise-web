@@ -10,8 +10,8 @@
   overflow: hidden;
   min-height: 1295px;
   padding-top: 165px;
-  padding-left: clamp(16px, 20vw, 373px);
-  padding-right: clamp(16px, 19vw, 360px);
+  padding-left: clamp(16px, 6vw, 200px);
+  padding-right: clamp(16px, 6vw, 200px);
 }
 
 .title {
@@ -30,8 +30,9 @@
   width: 100%;
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: center;
   gap: 38px;
+  flex-wrap: wrap;
 }
 
 .card,
@@ -151,9 +152,11 @@
 .bandStrip3,
 .bandStrip4 {
   position: absolute;
-  right: -7px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   opacity: 0.4;
-  width: 1934px;
+  width: min(1934px, 100%);
   height: 142px;
 }
 
@@ -176,8 +179,10 @@
 .categoriesDesktop {
   position: absolute;
   top: 846px;
-  left: 244px;
-  right: 243px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(1433px, calc(100% - 48px));
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -291,14 +296,8 @@
 }
 
 @media (max-width: 1366px) {
-  .inner {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
   .categoriesDesktop {
-    left: 24px;
-    right: 24px;
+    width: calc(100% - 32px);
   }
 }
 

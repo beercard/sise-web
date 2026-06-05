@@ -6,6 +6,10 @@
 .hero {
   width: 100%;
   background: var(--sise-white);
+  --hero-group-width: 1140px;
+  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-container-width: min(1920px, 100%);
+  --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
 }
 
 .heroMedia {
@@ -35,7 +39,7 @@
 .heroKicker {
   position: absolute;
   top: 360px;
-  left: 366px;
+  left: var(--hero-content-left);
   width: 416px;
   height: 64px;
 }
@@ -43,7 +47,7 @@
 .heroTitle {
   position: absolute;
   top: 440px;
-  left: 366px;
+  left: var(--hero-content-left);
   width: 610px;
   height: 102px;
   margin: 0;
@@ -69,10 +73,11 @@
 .heroBottomInner {
   width: min(1920px, 100%);
   margin: 0 auto;
-  padding: 68px clamp(24px, 19vw, 366px) 96px;
+  padding: 68px var(--hero-pad-x) 96px;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 64px);
   height: 100%;
 }
 
@@ -282,6 +287,8 @@
   width: min(1920px, 100%);
   margin: 0 auto;
   padding-top: 72px;
+  --tech-group-width: 1320px;
+  --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
 .technologyTitle {
@@ -371,16 +378,19 @@
   margin-top: 32px;
   padding-top: 0;
   padding-bottom: 0;
-  padding-left: clamp(24px, 12vw, 234px);
-  padding-right: clamp(24px, 19vw, 366px);
+  padding-left: var(--tech-pad-x);
+  padding-right: var(--tech-pad-x);
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 64px);
 }
 
 .house {
-  width: 735px;
-  height: 527px;
+  width: min(735px, 55vw);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 735 / 527;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -397,14 +407,16 @@
 
 .houseInterior {
   background-image: url('/image/mpvxx6dk-abr86k8.png');
-  height: 511px;
+  height: auto;
+  aspect-ratio: 735 / 511;
   background-size: 100% 100%;
   background-position: 0 0;
 }
 
 .houseConectividad {
   background-image: url('/image/mpvxzsty-pl5cyho.png');
-  height: 511px;
+  height: auto;
+  aspect-ratio: 735 / 511;
   background-size: 100% 100%;
   background-position: 0 0;
 }
@@ -460,12 +472,13 @@
 
 .techCardGroup {
   margin-top: 53px;
-  width: 520px;
-  min-width: 520px;
+  width: min(520px, 100%);
+  min-width: 0;
   height: 357px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 0 1 520px;
 }
 
 .techArrow {
@@ -501,8 +514,9 @@
 }
 
 .techCardViewport {
-  width: 460px;
-  height: 357px;
+  width: min(460px, calc(100% - 60px));
+  height: auto;
+  aspect-ratio: 460 / 357;
   position: relative;
   flex: 0 0 auto;
 }
@@ -514,8 +528,8 @@
   display: flex;
   flex-direction: column;
   align-items: var(--tech-card-align-items, center);
-  width: 460px;
-  height: 357px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -836,29 +850,29 @@
 @media (max-width: 1366px) {
   .heroKicker,
   .heroTitle {
-    left: 24px;
+    left: var(--hero-content-left);
   }
 
   .heroBottomInner {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: var(--hero-pad-x);
+    padding-right: var(--hero-pad-x);
   }
 
   .technologyRow {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: var(--tech-pad-x);
+    padding-right: var(--tech-pad-x);
   }
 }
 
 @media (max-width: 1200px) {
   .heroBottomInner {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 28px;
   }
 
   .heroText {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .heroSectionTitle,
@@ -867,7 +881,7 @@
   .heroPunch {
     width: 100%;
     height: auto;
-    text-align: center;
+    text-align: left;
   }
 
   .heroCard {

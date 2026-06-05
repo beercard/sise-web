@@ -7,11 +7,13 @@
 
 .inner {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: min(1920px, 100%);
   height: 80px;
   margin: 0 auto;
-  padding-right: clamp(24px, 8vw, 240px);
+  padding-left: 0;
+  padding-right: clamp(16px, 6vw, 200px);
+  gap: clamp(10px, 1.6vw, 40px);
   position: relative;
 }
 
@@ -21,8 +23,8 @@
 }
 
 .recurso {
-  margin-top: 16px;
-  margin-left: 40px;
+  margin-top: 0;
+  margin-left: 0;
   width: 85px;
   height: 50px;
 }
@@ -93,14 +95,20 @@
 }
 
 .nav {
-  margin-left: 56px;
+  --nav-gap: clamp(16px, 2.2vw, 52px);
+  --nav-pad-x: clamp(10px, 1.35vw, 24px);
+  --nav-font: clamp(16px, 1.05vw, 20px);
+  --nav-subpad: clamp(22px, 2.2vw, 53px);
+  margin-left: 0;
   height: 80px;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: stretch;
+  justify-content: center;
   padding-right: 0;
   width: auto;
-  max-width: calc(100% - 340px);
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
   overflow: visible;
   z-index: 60;
 }
@@ -132,13 +140,13 @@
 }
 
 .navItem:not(:first-child) {
-  padding-left: 52px;
+  padding-left: var(--nav-gap);
 }
 
 .navItem:not(:first-child)::before {
   content: '';
   position: absolute;
-  left: 26px;
+  left: calc(var(--nav-gap) / 2);
   top: 50%;
   transform: translate(-50%, -50%);
   background: #ffffff;
@@ -160,7 +168,7 @@
   line-height: 18px;
   letter-spacing: 1px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: var(--nav-font);
   font-weight: 700;
   transition: all 0.3s ease;
   background: transparent;
@@ -184,7 +192,7 @@
   align-items: center;
   height: 80px;
   width: 100%;
-  padding: 0 24px;
+  padding: 0 var(--nav-pad-x);
   justify-content: center;
 }
 
@@ -238,8 +246,8 @@
 .submenu {
   position: absolute;
   top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  transform: none;
   display: none;
   flex-direction: column;
   gap: 0;
@@ -248,33 +256,34 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
   border-radius: 0;
   z-index: 200;
+  width: 100%;
 }
 
 .submenuempresas {
-  width: 210px;
+  width: 100%;
 }
 
 .submenuurbano {
-  width: 190px;
+  width: 100%;
 }
 
 .submenunosotros {
-  width: 216px;
+  width: 100%;
 }
 
 .submenuItem {
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background: #00408c;
   width: 100%;
-  height: 80px;
-  padding: 0 52px;
-  text-align: left;
+  height: 64px;
+  padding: 0 var(--nav-pad-x);
+  text-align: center;
   letter-spacing: 1px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: var(--nav-font);
   font-weight: 700;
   text-decoration: none;
   transition: background 0.3s ease, opacity 0.3s ease;
@@ -282,14 +291,16 @@
 
 .submenuurbano .submenuItem {
   justify-content: center;
-  padding: 0;
+  padding: 0 var(--nav-pad-x);
   text-align: center;
-  font-size: 18px;
+  font-size: clamp(15px, 0.95vw, 18px);
+  letter-spacing: 0.6px;
+  line-height: 18px;
 }
 
 .submenunosotros .submenuItem {
   justify-content: center;
-  padding: 0;
+  padding: 0 var(--nav-pad-x);
   text-align: center;
 }
 
@@ -306,10 +317,10 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: 80px;
+  top: 64px;
   transform: translate(-50%, -50%);
   background: #ffffff;
-  width: 87px;
+  width: 60%;
   height: 1px;
   pointer-events: none;
 }
@@ -327,21 +338,21 @@
 }
 
 .navItemempresas .navLinkGroup {
-  width: 210px;
+  width: clamp(170px, 10.5vw, 210px);
 }
 
 .navItemurbano .navLinkGroup {
-  width: 190px;
+  width: clamp(150px, 9.8vw, 190px);
 }
 
 .navItemnosotros .navLinkGroup {
-  width: 216px;
+  width: clamp(176px, 11vw, 216px);
 }
 
 .navItemWithSubmenu .navLinkRow {
   justify-content: flex-start;
-  padding-left: 53px;
-  padding-right: 53px;
+  padding-left: var(--nav-subpad);
+  padding-right: var(--nav-subpad);
 }
 
 .navItemWithSubmenu:hover .submenu,
@@ -387,39 +398,39 @@
 
 @media (max-width: 1366px) {
   .inner {
-    padding-right: clamp(24px, 6vw, 120px);
-    padding-left: 24px;
+    padding-right: clamp(16px, 4vw, 120px);
+    padding-left: 16px;
   }
 
   .recurso {
-    margin-left: 24px;
+    margin-left: 0;
   }
 
   .nav {
-    margin-left: 40px;
+    margin-left: 0;
     padding-right: 0;
-    max-width: calc(100% - 240px);
+    max-width: none;
   }
 
   .navItem:not(:first-child) {
-    padding-left: 24px;
+    padding-left: var(--nav-gap);
   }
 
   .navItem:not(:first-child)::before {
-    left: 12px;
+    left: calc(var(--nav-gap) / 2);
   }
 
   .navLink {
-    font-size: 18px;
+    font-size: var(--nav-font);
   }
 
   .navLinkRow {
-    padding: 0 16px;
+    padding: 0 var(--nav-pad-x);
   }
 
   .navItemWithSubmenu .navLinkRow {
-    padding-left: 36px;
-    padding-right: 36px;
+    padding-left: var(--nav-subpad);
+    padding-right: var(--nav-subpad);
   }
 }
 
