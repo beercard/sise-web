@@ -1,0 +1,892 @@
+.construccion {
+  width: 100%;
+  background: var(--sise-white);
+}
+
+.hero {
+  width: 100%;
+  background: var(--sise-white);
+  --hero-group-width: 1140px;
+  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-container-width: min(1920px, 100%);
+  --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
+}
+
+.heroMedia {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  background: #250f7f;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  width: min(980px, 58%);
+  background-image: linear-gradient(90deg, rgba(37, 15, 127, 0.95) 0%, rgba(37, 15, 127, 0.7) 58%, rgba(37, 15, 127, 0) 100%);
+  pointer-events: none;
+}
+
+.heroKicker {
+  position: absolute;
+  top: 360px;
+  left: var(--hero-content-left);
+  width: 352px;
+  height: auto;
+}
+
+.heroTitle {
+  position: absolute;
+  top: 440px;
+  left: var(--hero-content-left);
+  width: 668px;
+  margin: 0;
+  line-height: 52px;
+  color: #ffffff;
+  font-size: 64px;
+}
+
+.heroTitleLight {
+  font-weight: 400;
+}
+
+.heroTitleStrong {
+  font-weight: 700;
+}
+
+.heroBottom {
+  width: 100%;
+  height: 471px;
+  background: #250f7f;
+}
+
+.heroBottomInner {
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  padding: 68px var(--hero-pad-x) 89px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 64px);
+  height: 100%;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heroSectionTitle {
+  margin: 0;
+  width: 456px;
+  height: 37px;
+  line-height: 30px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heroDivider {
+  margin-top: 11px;
+  width: 444px;
+  height: 2px;
+  background: #ffffff;
+}
+
+.heroLead {
+  margin: 41px 0 0;
+  width: 578px;
+  height: 59px;
+  line-height: 30px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.heroBody {
+  margin: 37px 0 0;
+  width: 548px;
+  height: 127px;
+  line-height: 32px;
+  color: #ffffff;
+  font-size: 32px;
+}
+
+.heroCard {
+  margin-top: 46px;
+  width: 520px;
+  min-width: 520px;
+  height: 244px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heroCardStage {
+  position: relative;
+  width: 460px;
+  height: 244px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.heroArrow {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.heroArrow:disabled {
+  opacity: 1;
+}
+
+.heroArrowLeft img {
+  display: block;
+  transform: rotate(90deg);
+}
+
+.heroArrowRight img {
+  display: block;
+  transform: rotate(-90deg);
+}
+
+.heroCardBox {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding-top: var(--hero-card-pad-top, 76px);
+  padding-right: var(--hero-card-pad-right, 63px);
+  padding-bottom: var(--hero-card-pad-bottom, 77px);
+  padding-left: var(--hero-card-pad-left, 62px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroCardTitle {
+  margin: 0;
+  width: var(--hero-card-content-width, 317px);
+  text-align: center;
+  line-height: 32px;
+  color: #250f7f;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.heroCardText {
+  margin: 18px 0 0;
+  width: var(--hero-card-content-width, 317px);
+  text-align: center;
+  line-height: 20px;
+  color: #250f7f;
+  font-size: 20px;
+}
+
+.technology {
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  padding-top: 72px;
+  --tech-group-width: 1320px;
+  --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
+}
+
+.technologyTitle {
+  margin: 0 auto;
+  width: 944px;
+  height: 91px;
+  text-align: center;
+  line-height: 46px;
+  color: #000000;
+  font-size: 48px;
+}
+
+.technologyTitleStrong {
+  font-weight: 600;
+}
+
+.technologyTitleLight {
+  font-weight: 500;
+}
+
+.tabs {
+  margin-top: 45px;
+  width: min(944px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  padding: 0 0 10px;
+  height: 29px;
+  text-align: center;
+  line-height: 19px;
+  letter-spacing: 1px;
+  color: #250f7f;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  cursor: pointer;
+  position: relative;
+}
+
+.tabs > :nth-child(1) {
+  width: 254px;
+}
+
+.tabs > :nth-child(2) {
+  width: 229px;
+}
+
+.tabs > :nth-child(3) {
+  width: 153px;
+}
+
+.tabActive::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: var(--tab-underline-left, 0px);
+  width: var(--tab-underline-width, 100%);
+  height: 3px;
+  background: #250f7f;
+}
+
+.tabUnderlinePerimetral {
+  --tab-underline-left: 0px;
+  --tab-underline-width: 254px;
+}
+
+.tabUnderlineInterior {
+  --tab-underline-left: 2px;
+  --tab-underline-width: 225px;
+}
+
+.tabUnderlineConectividad {
+  --tab-underline-left: 3px;
+  --tab-underline-width: 147px;
+}
+
+.technologyRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 64px);
+  margin-top: 31px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--tech-pad-x);
+  padding-right: var(--tech-pad-x);
+}
+
+.house {
+  width: min(735px, 55vw);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2486 / 1728;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.housePerimetral {
+  background-image: url('/image/mq11fkmb-wexdi8h.png');
+}
+
+.houseInterior {
+  background-image: url('/image/mq11fkmb-wexdi8h.png');
+}
+
+.houseConectividad {
+  background-image: url('/image/mq11fkmb-wexdi8h.png');
+}
+
+.houseEdit {
+  touch-action: none;
+}
+
+.pointButton {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #250f7f80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.ellipse2 {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  border-radius: 50%;
+  background: #250f7f;
+  padding: 4px;
+}
+
+.ellipse3 {
+  border-radius: 50%;
+  background: #ffffff;
+  width: 8px;
+  height: 8px;
+}
+
+.pointActive {
+  background: rgba(37, 15, 127, 0.75);
+  transform: scale(1.04);
+}
+
+.pointEdit {
+  cursor: grab;
+}
+
+.pointEdit:active {
+  cursor: grabbing;
+}
+
+.techCardGroup {
+  margin-top: 54px;
+  width: min(520px, 100%);
+  min-width: 0;
+  height: 357px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 1 520px;
+}
+
+.techArrow {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.techArrow img {
+  display: block;
+  transform: rotate(90deg);
+}
+
+.techArrow:last-child img {
+  transform: rotate(-90deg);
+}
+
+.techCardViewport {
+  width: min(460px, calc(100% - 60px));
+  height: auto;
+  aspect-ratio: 460 / 357;
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.techCard {
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding: var(--tech-card-padding, 42px 83px);
+  display: flex;
+  flex-direction: column;
+  align-items: var(--tech-card-align-items, center);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.techCardTitle {
+  margin: var(--tech-card-title-margin, 0);
+  width: var(--tech-card-title-width, 276px);
+  height: var(--tech-card-title-height, 63px);
+  min-height: var(--tech-card-title-min-height, 0px);
+  text-align: var(--tech-card-title-align, center);
+  line-height: 32px;
+  color: #250f7f;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.techCardText {
+  margin: var(--tech-card-text-margin, 17px 0 0);
+  width: var(--tech-card-text-width, 276px);
+  height: auto;
+  min-height: var(--tech-card-text-min-height, 0px);
+  text-align: var(--tech-card-text-align, center);
+  line-height: 20px;
+  color: #250f7f;
+  font-size: 20px;
+}
+
+.techCardImageWrap {
+  margin-top: var(--tech-card-image-margin-top, 17px);
+  margin-left: var(--tech-card-image-margin-left, 0px);
+  margin-right: var(--tech-card-image-margin-right, 0px);
+  width: var(--tech-card-image-width, 192px);
+  height: var(--tech-card-image-height, 117px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(var(--tech-card-image-scale, 1));
+  transform-origin: top center;
+}
+
+.techCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.techCardStatic {
+  animation: techCardFadeIn 240ms ease both;
+}
+
+.techCardEnterNext {
+  animation: techCardEnterNext 420ms ease both;
+}
+
+.techCardExitNext {
+  animation: techCardExitNext 420ms ease both;
+}
+
+.techCardEnterPrev {
+  animation: techCardEnterPrev 420ms ease both;
+}
+
+.techCardExitPrev {
+  animation: techCardExitPrev 420ms ease both;
+}
+
+@keyframes techCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes techCardEnterNext {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes techCardExitNext {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes techCardEnterPrev {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes techCardExitPrev {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
+.techEditor {
+  width: min(980px, 100%);
+  margin: 48px auto 0;
+  padding: 0 24px 56px;
+}
+
+.techEditorRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.techEditorButton {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #250f7f;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.techEditorButtonSecondary {
+  border: 1px solid rgba(37, 15, 127, 0.4);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: transparent;
+  color: #250f7f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.techEditorGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.techEditorLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.techEditorLabelText {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.techEditorSelect {
+  border: 1px solid rgba(37, 15, 127, 0.2);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #ffffff;
+  color: #250f7f;
+  font-weight: 600;
+}
+
+.cotizadorWrap {
+  margin-top: 57px;
+}
+
+@media (max-width: 1366px) {
+  .heroKicker,
+  .heroTitle {
+    left: var(--hero-content-left);
+  }
+
+  .heroBottomInner {
+    padding-left: var(--hero-pad-x);
+    padding-right: var(--hero-pad-x);
+  }
+
+  .technologyRow {
+    padding-left: var(--tech-pad-x);
+    padding-right: var(--tech-pad-x);
+  }
+}
+
+@media (max-width: 1200px) {
+  .heroBottomInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .heroText {
+    align-items: flex-start;
+  }
+
+  .heroSectionTitle,
+  .heroDivider,
+  .heroLead,
+  .heroBody {
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+
+  .heroDivider {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .heroCard {
+    margin-top: 0;
+  }
+
+  .technologyRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .techCardGroup {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroMedia {
+    height: 640px;
+  }
+
+  .heroGradient {
+    width: 100%;
+    background-image: linear-gradient(180deg, rgba(37, 15, 127, 0.92) 0%, rgba(37, 15, 127, 0.72) 52%, rgba(37, 15, 127, 0) 100%);
+  }
+
+  .heroKicker {
+    left: 16px;
+    top: 280px;
+    width: min(320px, calc(100% - 32px));
+    height: auto;
+  }
+
+  .heroTitle {
+    left: 16px;
+    top: 350px;
+    width: calc(100% - 32px);
+    font-size: 44px;
+    line-height: 44px;
+  }
+
+  .heroBottom {
+    height: auto;
+  }
+
+  .heroBottomInner {
+    padding: 48px 16px 56px;
+    height: auto;
+  }
+
+  .heroSectionTitle {
+    font-size: 24px;
+  }
+
+  .heroLead,
+  .heroBody {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .heroBody {
+    margin-top: 18px;
+  }
+
+  .heroCard {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .heroCardStage {
+    width: min(460px, calc(100% - 84px));
+  }
+
+  .heroCardBox {
+    padding: 28px 24px;
+  }
+
+  .heroCardTitle,
+  .heroCardText {
+    width: 100%;
+  }
+
+  .technologyTitle {
+    width: 100%;
+    height: auto;
+    padding: 0 16px;
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .tabs {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    border: 1px solid rgba(37, 15, 127, 0.35);
+    border-radius: 999px;
+    padding: 10px 14px;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: auto;
+  }
+
+  .tabActive {
+    background: #250f7f;
+    color: #ffffff;
+  }
+
+  .tabActive::after {
+    display: none;
+  }
+
+  .house {
+    width: min(735px, 100%);
+    height: auto;
+  }
+
+  .techCardGroup {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) 24px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .techCardViewport {
+    width: 100%;
+    max-width: 460px;
+    height: 360px;
+    justify-self: center;
+  }
+
+  .techCard {
+    width: 100%;
+    height: 360px;
+    padding: 28px 24px;
+  }
+
+  .techCardTitle,
+  .techCardText {
+    width: 100%;
+    height: auto;
+  }
+
+  .techCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .techCardText {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .techCardImageWrap {
+    width: min(var(--tech-card-image-width, 220px), 70vw);
+    height: var(--tech-card-image-height, auto);
+    margin-top: var(--tech-card-image-margin-top, 14px);
+    margin-left: var(--tech-card-image-margin-left, 0px);
+    margin-right: var(--tech-card-image-margin-right, 0px);
+    transform: scale(var(--tech-card-image-scale, 1));
+    transform-origin: top center;
+  }
+
+  .techCardImage {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+  }
+
+  .techEditorGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroMedia {
+    height: 560px;
+  }
+
+  .heroTitle {
+    top: 330px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .technologyTitle {
+    font-size: 32px;
+    line-height: 34px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroCardTitle {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .heroCardText {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .techCardViewport,
+  .techCard {
+    height: 340px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .techCardStatic,
+  .techCardEnterNext,
+  .techCardExitNext,
+  .techCardEnterPrev,
+  .techCardExitPrev {
+    animation: none;
+  }
+}
+

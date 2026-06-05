@@ -33,7 +33,7 @@ export default function SiteHeader() {
         className: styles.urbano,
         submenu: [
           { href: '/edificios', label: 'EDIFICIOS' },
-          { href: '/#urbano', label: 'CONSTRUCCIÓN' }
+          { href: '/construccion', label: 'CONSTRUCCIÓN' }
         ]
       },
       { href: '/#agro', label: 'AGRO', className: styles.agro },
