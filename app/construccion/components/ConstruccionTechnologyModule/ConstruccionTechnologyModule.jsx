@@ -20,23 +20,21 @@ const CARD_ANIMATION_MS = 420;
 const DEFAULT_EDITOR_CONFIG = {
   positions: {
     perimetral: {
-      camaras: { top: 438, left: 1962 },
-      sirena: { top: 1208, left: 1646 },
-      cartel: { top: 1140, left: 692 },
-      cerco: { top: 258, left: 240 },
-      guardia: { top: 746, left: 1278 },
-      magneticos: { top: 608, left: 1544 }
+      camaras: { top: 539, left: 1901 },
+      sirena: { top: 782, left: 1791 },
+      cartel: { top: 1387, left: 1081 },
+      cerco: { top: 938, left: 2039 },
+      magneticos: { top: 1359, left: 1379 }
     },
     interior: {
-      camaras: { top: 512, left: 1722 },
-      sensor: { top: 630, left: 1220 },
-      teclado: { top: 822, left: 1424 },
-      mando: { top: 964, left: 1540 },
-      central: { top: 746, left: 1320 },
-      acceso: { top: 1184, left: 1918 }
+      camaras: { top: 512, left: 1729 },
+      sensor: { top: 717, left: 1193 },
+      teclado: { top: 1153, left: 879 },
+      mando: { top: 487, left: 958 },
+      central: { top: 1088, left: 789 }
     },
     conectividad: {
-      app: { top: 918, left: 1702 }
+      app: { top: 989, left: 1019 }
     }
   },
   mapping: {}
@@ -86,35 +84,9 @@ export default function ConstruccionTechnologyModule() {
   const [previousIndex, setPreviousIndex] = useState(null);
   const [direction, setDirection] = useState('next');
 
-  const [pointPositions, setPointPositions] = useState(() => {
-    if (typeof window === 'undefined') return DEFAULT_EDITOR_CONFIG.positions;
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (!raw) return DEFAULT_EDITOR_CONFIG.positions;
-      const parsed = JSON.parse(raw);
-      return mergePositions(DEFAULT_EDITOR_CONFIG.positions, parsed?.positions);
-    } catch {
-      return DEFAULT_EDITOR_CONFIG.positions;
-    }
-  });
-
-  const [pointToSlide, setPointToSlide] = useState(() => {
-    if (typeof window === 'undefined') return DEFAULT_EDITOR_CONFIG.mapping;
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (!raw) return DEFAULT_EDITOR_CONFIG.mapping;
-      const parsed = JSON.parse(raw);
-      return mergeMapping(DEFAULT_EDITOR_CONFIG.mapping, parsed?.mapping);
-    } catch {
-      return DEFAULT_EDITOR_CONFIG.mapping;
-    }
-  });
-
-  const [isEditMode] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const params = new URLSearchParams(window.location.search);
-    return params.get('edit') === '1';
-  });
+  const [pointPositions, setPointPositions] = useState(DEFAULT_EDITOR_CONFIG.positions);
+  const [pointToSlide, setPointToSlide] = useState(DEFAULT_EDITOR_CONFIG.mapping);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const [viewportWidth, setViewportWidth] = useState(0);
   const [houseScale, setHouseScale] = useState({ x: 1, y: 1 });
@@ -129,6 +101,26 @@ export default function ConstruccionTechnologyModule() {
   useEffect(() => {
     activeIndexRef.current = activeIndex;
   }, [activeIndex]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nextIsEditMode = params.get('edit') === '1';
+    queueMicrotask(() => setIsEditMode(nextIsEditMode));
+
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      const nextPositions = mergePositions(DEFAULT_EDITOR_CONFIG.positions, parsed?.positions);
+      const nextMapping = mergeMapping(DEFAULT_EDITOR_CONFIG.mapping, parsed?.mapping);
+      queueMicrotask(() => {
+        setPointPositions(nextPositions);
+        setPointToSlide(nextMapping);
+      });
+    } catch {
+      return;
+    }
+  }, []);
 
   useEffect(() => {
     if (!isEditMode) return;
@@ -156,11 +148,10 @@ export default function ConstruccionTechnologyModule() {
     if (activeTabId === TAB_IDS.PERIMETRAL) {
       return [
         { id: 'camaras', label: 'Cámaras de vigilancia' },
-        { id: 'sirena', label: 'Sirena exterior' },
+        { id: 'magneticos', label: 'Magnéticos' },
         { id: 'cartel', label: 'Cartel disuasivo' },
-        { id: 'cerco', label: 'Cerco eléctrico perimetral' },
-        { id: 'guardia', label: 'Guardia virtual' },
-        { id: 'magneticos', label: 'Magnéticos' }
+        { id: 'sirena', label: 'Sirena exterior' },
+        { id: 'cerco', label: 'Cerco eléctrico perimetral' }
       ];
     }
 
@@ -170,8 +161,7 @@ export default function ConstruccionTechnologyModule() {
         { id: 'sensor', label: 'Sensor de movimiento' },
         { id: 'teclado', label: 'Teclado de configuración' },
         { id: 'mando', label: 'Mando a distancia' },
-        { id: 'central', label: 'Central con comunicador' },
-        { id: 'acceso', label: 'Control de acceso' }
+        { id: 'central', label: 'Central con comunicador' }
       ];
     }
 
@@ -198,7 +188,91 @@ export default function ConstruccionTechnologyModule() {
             '--tech-card-image-margin-top': '17px',
             '--tech-card-image-margin-left': '0px'
           },
-          art: { type: 'image', src: '/image/mq11fkmb-reai7ts.png', width: 384, height: 234 }
+          art: { type: 'image', src: '/image/mq1driuo-mdt8itt.png', width: 192, height: 117 }
+        },
+        {
+          id: 'magneticos',
+          title: 'Magnéticos',
+          text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
+          styleVars: {
+            '--tech-card-padding': '48px 84px 33px 82px',
+            '--tech-card-align-items': 'flex-start',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '31px',
+            '--tech-card-title-min-height': '31px',
+            '--tech-card-title-align': 'center',
+            '--tech-card-text-width': '265px',
+            '--tech-card-text-margin': '12px 0 0 7px',
+            '--tech-card-image-width': '160px',
+            '--tech-card-image-height': '160px',
+            '--tech-card-image-margin-top': '14px',
+            '--tech-card-image-margin-left': '60px'
+          },
+          art: { type: 'image', src: '/image/mq1dqza1-fsdhqjv.png', width: 160, height: 160 }
+        },
+        {
+          id: 'cartel',
+          title: 'Cartel disuasivo',
+          text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
+          styleVars: {
+            '--tech-card-padding': '48px 82px 51px 84px',
+            '--tech-card-align-items': 'flex-start',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '31px',
+            '--tech-card-title-min-height': '31px',
+            '--tech-card-title-align': 'center',
+            '--tech-card-text-width': '276px',
+            '--tech-card-text-margin': '12px 0 0',
+            '--tech-card-image-width': '139px',
+            '--tech-card-image-height': '147px',
+            '--tech-card-image-margin-top': '9px',
+            '--tech-card-image-margin-left': '68px'
+          },
+          art: { type: 'image', src: '/image/mq1dqzf0-mv5n48y.png', width: 139, height: 147 }
+        },
+        {
+          id: 'sirena',
+          title: 'Sirena exterior',
+          text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
+          styleVars: {
+            '--tech-card-padding': '51px 83px 44px',
+            '--tech-card-align-items': 'center',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '31px',
+            '--tech-card-title-min-height': '31px',
+            '--tech-card-text-width': '273px',
+            '--tech-card-text-margin': '9px 0 0'
+          },
+          art: {
+            type: 'sirena',
+            backgroundSrc: '/image/mq1dqzd1-o05u1lj.png',
+            wrapperHeight: 149,
+            wrapperMarginX: 93,
+            wrapperPadding: { top: 123, right: 4, bottom: 2, left: 18 },
+            wrapperMarginTop: 14,
+            iconSrc: '/image/mq1dqzcz-lidi66k.svg',
+            iconWidth: 69,
+            iconHeight: 24
+          }
+        },
+        {
+          id: 'cerco',
+          title: 'Cerco eléctrico perimetral',
+          text: 'Primera barrera de seguridad que protege tu propiedad y disuade ingresos no autorizados.',
+          styleVars: {
+            '--tech-card-padding': '42px 83px 22px',
+            '--tech-card-align-items': 'center',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '63px',
+            '--tech-card-title-min-height': '63px',
+            '--tech-card-text-width': '276px',
+            '--tech-card-text-margin': '17px 0 0',
+            '--tech-card-image-width': '215px',
+            '--tech-card-image-height': '154px',
+            '--tech-card-image-margin-top': '0px',
+            '--tech-card-image-margin-left': '0px'
+          },
+          art: { type: 'image', src: '/image/mq1dqz72-657hfaz.png', width: 215, height: 154 }
         }
       ];
     }
@@ -206,9 +280,9 @@ export default function ConstruccionTechnologyModule() {
     if (activeTabId === TAB_IDS.INTERIOR) {
       return [
         {
-          id: 'sensor',
-          title: 'Sensores de movimiento',
-          text: 'Detección inteligente para reducir zonas vulnerables y alertar ante movimientos sospechosos.',
+          id: 'camaras',
+          title: 'Cámaras de vigilancia',
+          text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
           styleVars: {
             '--tech-card-padding': '42px 83px',
             '--tech-card-align-items': 'center',
@@ -222,7 +296,78 @@ export default function ConstruccionTechnologyModule() {
             '--tech-card-image-margin-top': '17px',
             '--tech-card-image-margin-left': '0px'
           },
-          art: { type: 'image', src: '/image/mq11fkmb-reai7ts.png', width: 384, height: 234 }
+          art: { type: 'image', src: '/image/mq1driuo-mdt8itt.png', width: 192, height: 117 }
+        },
+        {
+          id: 'sensor',
+          title: 'Sensor de movimiento',
+          text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
+          styleVars: {
+            '--tech-card-padding': '35px 83px 13px',
+            '--tech-card-align-items': 'center',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '63px',
+            '--tech-card-title-min-height': '63px'
+          },
+          art: {
+            type: 'overlay',
+            wrapperWidth: 193,
+            wrapperHeight: 180,
+            wrapperMarginTop: 66,
+            text: { top: -55, right: -40, width: 273 },
+            image: { src: '/image/mq1driz4-hstdnwi.png', width: 193, height: 180 }
+          }
+        },
+        {
+          id: 'teclado',
+          title: 'Teclado de configuración',
+          text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
+          styleVars: {
+            '--tech-card-padding': '35px 83px 189px',
+            '--tech-card-align-items': 'center',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '63px',
+            '--tech-card-title-min-height': '63px',
+            '--tech-card-text-width': '216px',
+            '--tech-card-text-margin': '11px 0 0'
+          },
+          art: { type: 'absolute', src: '/image/mq1drj2l-9aihuby.png', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+        },
+        {
+          id: 'mando',
+          title: 'Mando a distancia',
+          text: 'Activá o desactivá tu sistema con comodidad.',
+          styleVars: {
+            '--tech-card-padding': '48px 83px 225px',
+            '--tech-card-align-items': 'flex-start',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '31px',
+            '--tech-card-title-min-height': '31px',
+            '--tech-card-title-align': 'center',
+            '--tech-card-text-width': '216px',
+            '--tech-card-text-margin': '14px 0 0 29px'
+          },
+          art: { type: 'absolute', src: '/image/mq1drizh-fn9qlh1.png', width: 186, height: 174, top: 150, left: 127, rotate: 16 }
+        },
+        {
+          id: 'central',
+          title: 'Central con comunicador',
+          text: 'Tecnología centralizada que conecta, procesa y reporta cada evento de seguridad.',
+          styleVars: {
+            '--tech-card-padding': '35px 83px 22px',
+            '--tech-card-align-items': 'flex-start',
+            '--tech-card-title-width': '276px',
+            '--tech-card-title-height': '63px',
+            '--tech-card-title-min-height': '63px',
+            '--tech-card-title-align': 'center',
+            '--tech-card-text-width': '246px',
+            '--tech-card-text-margin': '13px 0 0 15px',
+            '--tech-card-image-width': '219px',
+            '--tech-card-image-height': '156px',
+            '--tech-card-image-margin-top': '9px',
+            '--tech-card-image-margin-left': '27px'
+          },
+          art: { type: 'image', src: '/image/mq1drixh-479vyth.png', width: 219, height: 156 }
         }
       ];
     }
@@ -230,22 +375,25 @@ export default function ConstruccionTechnologyModule() {
     return [
       {
         id: 'app',
-        title: 'Conectividad',
-        text: 'Control, notificaciones y supervisión remota en tiempo real desde cualquier lugar.',
+        title: 'Control desde el celular',
+        text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
         styleVars: {
-          '--tech-card-padding': '42px 83px',
+          '--tech-card-padding': '42px 120px 20px 121px',
           '--tech-card-align-items': 'center',
-          '--tech-card-title-width': '276px',
+          '--tech-card-title-width': '201px',
           '--tech-card-title-height': '63px',
           '--tech-card-title-min-height': '63px',
-          '--tech-card-text-width': '276px',
-          '--tech-card-text-margin': '17px 0 0',
-          '--tech-card-image-width': '192px',
-          '--tech-card-image-height': '117px',
-          '--tech-card-image-margin-top': '17px',
-          '--tech-card-image-margin-left': '0px'
+          '--tech-card-text-width': '292px',
+          '--tech-card-text-margin': '17px 0 0'
         },
-        art: { type: 'image', src: '/image/mq11fkmb-reai7ts.png', width: 384, height: 234 }
+        art: {
+          type: 'connectivity',
+          backgroundSrc: '/image/mq1dsdck-ao77h8o.png',
+          wrapperWidth: 183,
+          wrapperHeight: 158,
+          wrapperMarginTop: 74,
+          text: { top: -57, right: -55, width: 292 }
+        }
       }
     ];
   }, [activeTabId]);
@@ -372,17 +520,13 @@ export default function ConstruccionTechnologyModule() {
 
     if (isMobile) {
       const mobileImageWidth =
-        slide.id === 'acceso'
+        slide.id === 'sirena'
           ? isNarrowMobile
-            ? '90px'
-            : '100px'
-          : slide.id === 'sirena'
-            ? isNarrowMobile
-              ? '140px'
-              : '150px'
-            : isNarrowMobile
-              ? '180px'
-              : '200px';
+            ? '140px'
+            : '150px'
+          : isNarrowMobile
+            ? '180px'
+            : '200px';
 
       style['--tech-card-padding'] = '26px 24px 22px';
       style['--tech-card-align-items'] = 'center';

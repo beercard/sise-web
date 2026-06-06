@@ -1,0 +1,1065 @@
+.agro {
+  width: 100%;
+  background: var(--sise-white);
+}
+
+.hero {
+  width: 100%;
+  background: var(--sise-white);
+  --hero-group-width: 1140px;
+  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-container-width: min(1920px, 100%);
+  --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
+}
+
+.heroMedia {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  background: #00408c;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  width: min(980px, 58%);
+  background-image: linear-gradient(90deg, rgba(6, 85, 88, 0.95) 0%, rgba(6, 85, 88, 0.7) 58%, rgba(6, 85, 88, 0) 100%);
+  pointer-events: none;
+}
+
+.heroKicker {
+  position: absolute;
+  top: 360px;
+  left: var(--hero-content-left);
+  width: 352px;
+  height: auto;
+}
+
+.heroTitle {
+  position: absolute;
+  top: 440px;
+  left: var(--hero-content-left);
+  width: 668px;
+  margin: 0;
+  line-height: 52px;
+  color: #ffffff;
+  font-size: 64px;
+}
+
+.heroTitleLight {
+  font-weight: 400;
+}
+
+.heroTitleStrong {
+  font-weight: 700;
+}
+
+.heroBottom {
+  width: 100%;
+  height: 471px;
+  background: #065558;
+}
+
+.heroBottomInner {
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  padding: 68px var(--hero-pad-x) 89px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 64px);
+  height: 100%;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heroSectionTitle {
+  margin: 0;
+  width: 456px;
+  height: 37px;
+  line-height: 30px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heroDivider {
+  margin-top: 11px;
+  width: 444px;
+  height: 2px;
+  background: #ffffff;
+}
+
+.heroLead {
+  margin: 41px 0 0;
+  width: 578px;
+  height: 59px;
+  line-height: 30px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.heroBody {
+  margin: 37px 0 0;
+  width: 548px;
+  height: 127px;
+  line-height: 32px;
+  color: #ffffff;
+  font-size: 32px;
+}
+
+.heroCarousel {
+  width: min(520px, 100%);
+  height: 244px;
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
+  align-items: center;
+  gap: 0;
+  margin-top: 46px;
+}
+
+.heroArrow {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.heroArrow:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.heroArrowLeft img {
+  display: block;
+  transform: rotate(90deg);
+}
+
+.heroArrowRight img {
+  display: block;
+  transform: rotate(-90deg);
+}
+
+.heroCardViewport {
+  position: relative;
+  width: 100%;
+  height: 244px;
+  overflow: hidden;
+}
+
+.heroCard {
+  position: absolute;
+  inset: 0;
+}
+
+.heroCardBox {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding-top: var(--hero-card-pad-top, 76px);
+  padding-right: var(--hero-card-pad-right, 63px);
+  padding-bottom: var(--hero-card-pad-bottom, 77px);
+  padding-left: var(--hero-card-pad-left, 62px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroCardTitle {
+  margin: 0;
+  width: var(--hero-card-content-width, 317px);
+  text-align: center;
+  line-height: 32px;
+  color: #065558;
+  font-size: 32px;
+  font-weight: 600;
+  white-space: pre-line;
+}
+
+.heroCardText {
+  margin: 18px 0 0;
+  width: var(--hero-card-content-width, 317px);
+  text-align: center;
+  line-height: 20px;
+  color: #065558;
+  font-size: 20px;
+  white-space: pre-line;
+}
+
+.heroCardEnterRight {
+  animation: heroCardEnterRight 420ms ease both;
+}
+
+.heroCardEnterLeft {
+  animation: heroCardEnterLeft 420ms ease both;
+}
+
+.heroCardExitLeft {
+  animation: heroCardExitLeft 420ms ease both;
+}
+
+.heroCardExitRight {
+  animation: heroCardExitRight 420ms ease both;
+}
+
+@keyframes heroCardEnterRight {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroCardEnterLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroCardExitLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes heroCardExitRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
+.technology {
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  padding-top: 72px;
+  --tech-group-width: 1320px;
+  --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
+}
+
+.technologyInner {
+  width: 100%;
+}
+
+.technologyTitle {
+  margin: 0 auto;
+  width: 944px;
+  height: 91px;
+  text-align: center;
+  line-height: 46px;
+  color: #000000;
+  font-size: 48px;
+}
+
+.technologyTitleStrong {
+  font-weight: 600;
+}
+
+.technologyTitleLight {
+  font-weight: 500;
+}
+
+.tabs {
+  margin-top: 45px;
+  width: min(944px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  padding: 0 0 10px;
+  height: 29px;
+  text-align: center;
+  line-height: 19px;
+  letter-spacing: 1px;
+  color: #065558;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  cursor: pointer;
+  position: relative;
+}
+
+.tabs > :nth-child(1) {
+  width: 254px;
+}
+
+.tabs > :nth-child(2) {
+  width: 229px;
+}
+
+.tabs > :nth-child(3) {
+  width: 153px;
+}
+
+.tabUnderline {
+  position: absolute;
+  top: 20px;
+  left: var(--tab-underline-left, 0px);
+  width: var(--tab-underline-width, 100%);
+  height: 3px;
+  background: #065558;
+}
+
+.tabUnderlinePerimetral {
+  --tab-underline-left: 0px;
+  --tab-underline-width: 254px;
+}
+
+.tabUnderlineInterior {
+  --tab-underline-left: 2px;
+  --tab-underline-width: 225px;
+}
+
+.tabUnderlineConectividad {
+  --tab-underline-left: 3px;
+  --tab-underline-width: 147px;
+}
+
+.techBody {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 64px);
+  margin-top: 31px;
+  padding-left: var(--tech-pad-x);
+  padding-right: var(--tech-pad-x);
+}
+
+.techHouseColumn {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.houseViewport {
+  width: min(735px, 55vw);
+  max-width: 100%;
+}
+
+.house {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2486 / 1728;
+  position: relative;
+}
+
+.houseImage {
+  object-fit: contain;
+}
+
+.pointButton {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(6, 85, 88, 0.5);
+  border: 0;
+  padding: 6px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ellipse2 {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  border-radius: 50%;
+  background: #065558;
+  padding: 4px;
+}
+
+.ellipse3 {
+  border-radius: 50%;
+  background: #ffffff;
+  width: 8px;
+  height: 8px;
+}
+
+.pointActive {
+  background: rgba(6, 85, 88, 0.75);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.pointEdit {
+  cursor: grab;
+  touch-action: none;
+}
+
+.pointEdit:active {
+  cursor: grabbing;
+}
+
+.techCardGroup {
+  margin-top: 54px;
+  width: min(520px, 100%);
+  min-width: 0;
+  height: 357px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 1 520px;
+}
+
+.techCardArrow {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.techCardArrow span {
+  display: block;
+  width: 30px;
+  height: 18px;
+  background: #065558;
+  clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 30%, 50% 90%, 0 30%);
+  opacity: 0.9;
+}
+
+.techCardArrowLeft span {
+  transform: rotate(90deg);
+}
+
+.techCardArrowRight span {
+  transform: rotate(-90deg);
+}
+
+.techCardViewport {
+  width: min(460px, calc(100% - 60px));
+  height: auto;
+  aspect-ratio: 460 / 357;
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.techCard {
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding: var(--tech-card-padding, 42px 83px);
+  display: flex;
+  flex-direction: column;
+  align-items: var(--tech-card-align-items, center);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.techCardInner {
+  display: flex;
+  flex-direction: column;
+  align-items: var(--tech-card-align-items, center);
+}
+
+.techCardTitle {
+  margin: var(--tech-card-title-margin, 0);
+  width: var(--tech-card-title-width, 276px);
+  height: var(--tech-card-title-height, 63px);
+  min-height: var(--tech-card-title-min-height, 0px);
+  text-align: var(--tech-card-title-align, center);
+  line-height: 32px;
+  color: #00408c;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.techCardText {
+  margin: var(--tech-card-text-margin, 17px 0 0);
+  width: var(--tech-card-text-width, 276px);
+  height: auto;
+  min-height: var(--tech-card-text-min-height, 0px);
+  text-align: var(--tech-card-text-align, center);
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
+}
+
+.techCardImageWrap {
+  margin-top: var(--tech-card-image-margin-top, 17px);
+  margin-left: var(--tech-card-image-margin-left, 0px);
+  margin-right: var(--tech-card-image-margin-right, 0px);
+  width: var(--tech-card-image-width, 192px);
+  height: var(--tech-card-image-height, 117px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(var(--tech-card-image-scale, 1));
+  transform-origin: top center;
+}
+
+.techCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.techCardAbsoluteImage {
+  position: absolute;
+}
+
+.techCardGpsWrap {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.techCardGpsImage {
+  display: flex;
+  align-items: flex-start;
+  width: 221px;
+  height: 187px;
+  background-image: var(--gps-bg);
+  background-position: 0px -1px;
+  background-size: 100% 154.72%;
+  background-repeat: no-repeat;
+  padding: 47px 47px 123px 52px;
+}
+
+.techCardGpsBar {
+  background: #00408c;
+  width: 122px;
+  height: 17px;
+}
+
+.techCardOverlay {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.techCardOverlayText {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
+}
+
+.techCardOverlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.techCardConnectivityWrap {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.techCardConnectivityText {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.techCardConnectivityImage {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: flex-start;
+  width: 183px;
+  height: 158px;
+  background-image: var(--connectivity-bg);
+  background-position: 0px -1px;
+  background-size: 100% 151.77%;
+  background-repeat: no-repeat;
+  padding: 39px 39px 105px 43px;
+  z-index: 1;
+}
+
+.techCardConnectivityBar {
+  background: #00408c;
+  width: 101px;
+  height: 14px;
+}
+
+.techCardSirena {
+  margin-top: var(--tech-card-sirena-margin-top, 14px);
+  margin-left: var(--sirena-margin-x, 93px);
+  margin-right: var(--sirena-margin-x, 93px);
+  padding-top: var(--sirena-pad-top, 123px);
+  padding-right: var(--sirena-pad-right, 4px);
+  padding-bottom: var(--sirena-pad-bottom, 2px);
+  padding-left: var(--sirena-pad-left, 18px);
+  background-image: var(--sirena-bg);
+  background-position: -21px -10px;
+  background-size: 138.38% 111.04%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.techCardSirenaIcon {
+  display: block;
+}
+
+.techCardEnterRight {
+  animation: techCardEnterRight 420ms ease both;
+}
+
+.techCardEnterLeft {
+  animation: techCardEnterLeft 420ms ease both;
+}
+
+.techCardExitLeft {
+  animation: techCardExitLeft 420ms ease both;
+}
+
+.techCardExitRight {
+  animation: techCardExitRight 420ms ease both;
+}
+
+@keyframes techCardEnterRight {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes techCardEnterLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes techCardExitLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes techCardExitRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
+.techEditor {
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(6, 85, 88, 0.25);
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.techEditorRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.techEditorRow + .techEditorRow {
+  margin-top: 10px;
+}
+
+.techEditorButton {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #065558;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.techEditorButtonSecondary {
+  border: 1px solid rgba(6, 85, 88, 0.35);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: transparent;
+  color: #065558;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.techEditorHint {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 13px;
+}
+
+.techEditorHintStrong {
+  color: #065558;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.cotizadorWrap {
+  margin-top: 57px;
+}
+
+@media (max-width: 1366px) {
+  .hero {
+    --hero-group-width: 1040px;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroMedia {
+    height: 640px;
+  }
+
+  .heroGradient {
+    width: 100%;
+    background-image: linear-gradient(180deg, rgba(6, 85, 88, 0.92) 0%, rgba(6, 85, 88, 0.72) 52%, rgba(6, 85, 88, 0) 100%);
+  }
+
+  .heroKicker {
+    top: 230px;
+    width: 280px;
+  }
+
+  .heroTitle {
+    top: 300px;
+    width: min(520px, calc(100% - 48px));
+    line-height: 42px;
+    font-size: 46px;
+  }
+
+  .heroBottom {
+    height: auto;
+  }
+
+  .heroBottomInner {
+    padding: 46px 24px 52px;
+    flex-direction: column;
+  }
+
+  .heroText {
+    align-items: center;
+  }
+
+  .heroSectionTitle,
+  .heroLead,
+  .heroBody {
+    width: 100%;
+    text-align: center;
+  }
+
+  .heroDivider {
+    margin-left: auto;
+    margin-right: auto;
+    width: min(440px, 100%);
+  }
+
+  .heroLead {
+    margin-top: 24px;
+    height: auto;
+  }
+
+  .heroBody {
+    margin-top: 16px;
+    height: auto;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .heroCarousel {
+    margin-top: 28px;
+    width: min(460px, calc(100% - 48px));
+    grid-template-columns: 24px 1fr 24px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroArrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .heroCardBox {
+    padding: 28px 24px;
+  }
+
+  .heroCardTitle,
+  .heroCardText {
+    width: 100%;
+  }
+
+  .heroCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .heroCardText {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .technology {
+    padding-top: 56px;
+  }
+
+  .technologyTitle {
+    width: 100%;
+    height: auto;
+    padding: 0 16px;
+    line-height: 36px;
+    font-size: 34px;
+  }
+
+  .tabs {
+    margin-top: 24px;
+    width: 100%;
+    padding: 0 16px;
+    gap: 10px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    border: 1px solid rgba(6, 85, 88, 0.35);
+    border-radius: 999px;
+    padding: 10px 14px;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .tabUnderline {
+    display: none;
+  }
+
+  .tabActive {
+    background: #065558;
+    color: #ffffff;
+  }
+
+  .techBody {
+    margin-top: 22px;
+    padding: 0 16px;
+    flex-direction: column;
+  }
+
+  .houseViewport {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .house {
+    width: min(735px, 100%);
+  }
+
+  .techCardGroup {
+    margin-top: 18px;
+    width: 100%;
+    height: auto;
+  }
+
+  .techCardGroup {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) 24px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .techCardViewport {
+    width: 100%;
+    max-width: 460px;
+    height: 360px;
+    justify-self: center;
+  }
+
+  .techCard {
+    width: 100%;
+    height: 360px;
+    padding: 28px 24px;
+  }
+
+  .techCardTitle,
+  .techCardText {
+    width: 100%;
+    height: auto;
+  }
+
+  .techCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .techCardText {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .techCardImageWrap {
+    width: min(var(--tech-card-image-width, 220px), 70vw);
+    height: var(--tech-card-image-height, auto);
+    margin-top: var(--tech-card-image-margin-top, 14px);
+    margin-left: var(--tech-card-image-margin-left, 0px);
+    margin-right: var(--tech-card-image-margin-right, 0px);
+    transform: scale(var(--tech-card-image-scale, 1));
+    transform-origin: top center;
+  }
+
+  .techCardImage {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroMedia {
+    height: 560px;
+  }
+
+  .heroTitle {
+    top: 330px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .heroCardBox {
+    padding: 24px 18px;
+  }
+
+  .technologyTitle {
+    font-size: 32px;
+    line-height: 34px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroCardTitle {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .heroCardText {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .techCardTitle {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .techCardText {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .techCardOverlayText,
+  .techCardConnectivityText {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .techCardImage {
+    max-height: 130px;
+  }
+
+  .techCardViewport,
+  .techCard {
+    height: 340px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroCardEnterRight,
+  .heroCardEnterLeft,
+  .heroCardExitLeft,
+  .heroCardExitRight,
+  .techCardEnterRight,
+  .techCardEnterLeft,
+  .techCardExitLeft,
+  .techCardExitRight {
+    animation: none;
+  }
+}

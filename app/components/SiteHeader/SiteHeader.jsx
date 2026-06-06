@@ -36,8 +36,8 @@ export default function SiteHeader() {
           { href: '/construccion', label: 'CONSTRUCCIÓN' }
         ]
       },
-      { href: '/#agro', label: 'AGRO', className: styles.agro },
-      { href: '/#ciudad', label: 'CIUDAD', className: styles.ciudad },
+      { href: '/agro', label: 'AGRO', className: styles.agro },
+      { href: '/ciudad', label: 'CIUDAD', className: styles.ciudad },
       {
         href: '/#nosotros',
         label: 'NOSOTROS',

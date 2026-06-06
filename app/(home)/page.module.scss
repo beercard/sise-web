@@ -1,0 +1,420 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--sise-white);
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+}
+
+.quote {
+  width: min(1920px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quoteTitle {
+  margin: clamp(32px, 6vw, 67px) 0 0;
+  width: auto;
+  height: auto;
+  text-align: center;
+  line-height: clamp(40px, 5vw, 52px);
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+}
+
+.quoteSubtitle {
+  margin: 15px 0 0;
+  width: auto;
+  height: auto;
+  text-align: center;
+  line-height: clamp(20px, 3vw, 26px);
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: clamp(18px, 3.2vw, 32px);
+}
+
+.quoteBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 28px 0 0;
+  background: var(--sise-gray);
+  padding: 33px clamp(16px, 26.8vw, 514px) 64px;
+}
+
+.quoteKicker {
+  margin: 0;
+  width: min(944px, 100%);
+  height: auto;
+  text-align: center;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 20px;
+}
+
+.quoteQuestion {
+  margin: 17px 0 0;
+  width: min(944px, 100%);
+  height: auto;
+  text-align: center;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.quoteOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  gap: 14px;
+}
+
+.quoteOption {
+  border: 0;
+  border-radius: 10px;
+  background: var(--sise-white);
+  width: 212px;
+  height: 40px;
+  text-align: center;
+  line-height: 19px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quoteOption:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.quoteOption:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.quoteOption:focus-visible {
+  outline: 2px solid var(--sise-blue);
+  outline-offset: 4px;
+}
+
+.whyChoose {
+  width: min(1920px, 100%);
+}
+
+.whyChooseInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--sise-blue);
+  padding: 165px clamp(24px, 18.75vw, 360px) 0 clamp(24px, 19.4vw, 373px);
+  width: 100%;
+  height: auto;
+  min-height: 1295px;
+  position: relative;
+  overflow: hidden;
+}
+
+.whyChooseTitle {
+  margin: 0 0 0 297px;
+  width: 592px;
+  height: 57px;
+  text-align: center;
+  line-height: 52px;
+  letter-spacing: 0;
+  color: var(--sise-white);
+  font-size: 64px;
+  font-weight: 700;
+}
+
+.whyChooseCards {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 54px;
+}
+
+.whyChooseCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--sise-white);
+  padding: 35px 35px 43px 34px;
+  width: 332px;
+}
+
+.whyChooseIcon {
+  width: 63px;
+  height: 55px;
+}
+
+.whyChooseCardTitle {
+  margin: 25px 0 0;
+  width: 194px;
+  height: 54px;
+  text-align: center;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.whyChooseCardText {
+  margin: 13px 0 0;
+  width: 263px;
+  height: 49px;
+  text-align: center;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 20px;
+}
+
+.whyChooseCardAlt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  background: var(--sise-white);
+  padding: 21px 39px 43px 36px;
+  width: 332px;
+}
+
+.whyChooseIconAlt {
+  margin-left: 110px;
+  width: 40px;
+  height: 82px;
+}
+
+.whyChooseCardTitleAlt {
+  margin: 12px 0 0;
+  width: 257px;
+  height: 54px;
+  text-align: center;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.whyChooseCardTextAlt {
+  margin: 13px 0 0 27px;
+  width: 202px;
+  height: 49px;
+  text-align: center;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 20px;
+}
+
+.whyChooseCardAlt2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  background: var(--sise-white);
+  padding: 31px 48px 43px 51px;
+  width: 332px;
+}
+
+.whyChooseIconAlt2 {
+  margin-left: 90px;
+  width: 52px;
+  height: 62px;
+}
+
+.whyChooseCardTitleAlt2 {
+  margin: 22px 0 0 2px;
+  width: 230px;
+  height: 54px;
+  text-align: center;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.whyChooseCardTextAlt2 {
+  margin: 13px 0 0;
+  width: 234px;
+  height: 49px;
+  text-align: center;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 20px;
+}
+
+.bandStrip1,
+.bandStrip2,
+.bandStrip3,
+.bandStrip4 {
+  position: absolute;
+  right: -7px;
+  opacity: 0.4;
+  width: 1934px;
+  height: 142px;
+}
+
+.bandStrip1 {
+  top: 710px;
+}
+
+.bandStrip2 {
+  top: 856px;
+}
+
+.bandStrip3 {
+  top: 1002px;
+}
+
+.bandStrip4 {
+  top: 1148px;
+}
+
+.categoriesRow {
+  position: absolute;
+  top: 846px;
+  left: 244px;
+  right: 243px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 38px;
+}
+
+.categoryCardHogar,
+.categoryCardEmpresas,
+.categoryCardAgro,
+.categoryCardCiudad,
+.categoryCardUrbano {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  width: 256px;
+  height: 285px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.categoryCardHogar:hover,
+.categoryCardEmpresas:hover,
+.categoryCardAgro:hover,
+.categoryCardCiudad:hover,
+.categoryCardUrbano:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.categoryCardHogar:focus-visible,
+.categoryCardEmpresas:focus-visible,
+.categoryCardAgro:focus-visible,
+.categoryCardCiudad:focus-visible,
+.categoryCardUrbano:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.categoryTopImage {
+  border-radius: 10px 10px 0 0;
+  width: 256px;
+  height: 222px;
+  object-fit: cover;
+}
+
+.categoryCardHogar {
+  background: #2177a5;
+  justify-content: flex-end;
+  padding-bottom: 7px;
+}
+
+.categoryLogoHogar {
+  width: 107px;
+  height: 47px;
+  margin-top: 8px;
+}
+
+.categoryCardEmpresas {
+  background: #06234c;
+  justify-content: flex-end;
+  padding-bottom: 9px;
+}
+
+.categoryLogoEmpresas {
+  width: 104px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.categoryCardUrbano {
+  background: transparent;
+  padding: 0;
+}
+
+.categoryCardUrbano img {
+  width: 256px;
+  height: 285px;
+}
+
+.categoryCardAgro {
+  background: #065558;
+  justify-content: flex-start;
+  padding-bottom: 4px;
+}
+
+.categoryTopImageAgro {
+  border-radius: 10px 10px 0 0;
+  width: 256px;
+  height: 221px;
+  object-fit: cover;
+}
+
+.categoryLogoAgro {
+  width: 106px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.categoryCardCiudad {
+  background: #597a9c;
+  justify-content: flex-end;
+  padding-bottom: 6px;
+  padding-right: 1px;
+}
+
+.categoryLogoCiudad {
+  width: 102px;
+  height: 49px;
+  margin-top: 8px;
+}
+
+.footer {
+  width: 100%;
+  background: var(--sise-blue);
+  margin-top: 14px;
+}
+
+.footerInner {
+  width: min(1920px, 100%);
+}

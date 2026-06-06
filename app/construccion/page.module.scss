@@ -196,6 +196,66 @@
   font-size: 20px;
 }
 
+.heroCardEnterRight {
+  animation: heroCardEnterRight 420ms ease both;
+}
+
+.heroCardEnterLeft {
+  animation: heroCardEnterLeft 420ms ease both;
+}
+
+.heroCardExitLeft {
+  animation: heroCardExitLeft 420ms ease both;
+}
+
+.heroCardExitRight {
+  animation: heroCardExitRight 420ms ease both;
+}
+
+@keyframes heroCardEnterRight {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroCardEnterLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroCardExitLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes heroCardExitRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
@@ -429,7 +489,7 @@
   min-height: var(--tech-card-title-min-height, 0px);
   text-align: var(--tech-card-title-align, center);
   line-height: 32px;
-  color: #250f7f;
+  color: #00408c;
   font-size: 32px;
   font-weight: 600;
 }
@@ -441,7 +501,7 @@
   min-height: var(--tech-card-text-min-height, 0px);
   text-align: var(--tech-card-text-align, center);
   line-height: 20px;
-  color: #250f7f;
+  color: #00408c;
   font-size: 20px;
 }
 
@@ -462,6 +522,90 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.techCardAbsoluteImage {
+  position: absolute;
+}
+
+.techCardOverlay {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.techCardOverlayText {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
+}
+
+.techCardOverlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.techCardConnectivityWrap {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.techCardConnectivityText {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.techCardConnectivityImage {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: flex-start;
+  width: 183px;
+  height: 158px;
+  background-image: var(--connectivity-bg);
+  background-position: 0px -1px;
+  background-size: 100% 151.77%;
+  background-repeat: no-repeat;
+  padding: 39px 39px 105px 43px;
+  z-index: 1;
+}
+
+.techCardConnectivityBar {
+  background: #00408c;
+  width: 101px;
+  height: 14px;
+}
+
+.techCardSirena {
+  margin-top: var(--tech-card-sirena-margin-top, 14px);
+  margin-left: var(--sirena-margin-x, 93px);
+  margin-right: var(--sirena-margin-x, 93px);
+  padding-top: var(--sirena-pad-top, 123px);
+  padding-right: var(--sirena-pad-right, 4px);
+  padding-bottom: var(--sirena-pad-bottom, 2px);
+  padding-left: var(--sirena-pad-left, 18px);
+  background-image: var(--sirena-bg);
+  background-position: -21px -10px;
+  background-size: 138.38% 111.04%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.techCardSirenaIcon {
+  display: block;
 }
 
 .techCardStatic {
@@ -665,6 +809,10 @@
     height: 640px;
   }
 
+  .heroImage {
+    object-position: 78% 18%;
+  }
+
   .heroGradient {
     width: 100%;
     background-image: linear-gradient(180deg, rgba(37, 15, 127, 0.92) 0%, rgba(37, 15, 127, 0.72) 52%, rgba(37, 15, 127, 0) 100%);
@@ -692,6 +840,21 @@
   .heroBottomInner {
     padding: 48px 16px 56px;
     height: auto;
+  }
+
+  .heroText {
+    align-items: center;
+  }
+
+  .heroSectionTitle,
+  .heroLead,
+  .heroBody {
+    text-align: center;
+  }
+
+  .heroDivider {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .heroSectionTitle {
@@ -726,6 +889,17 @@
   .heroCardTitle,
   .heroCardText {
     width: 100%;
+  }
+
+  .heroCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .heroCardText {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 18px;
   }
 
   .technologyTitle {
@@ -851,10 +1025,18 @@
     height: 560px;
   }
 
+  .heroImage {
+    object-position: 82% 16%;
+  }
+
   .heroTitle {
     top: 330px;
     font-size: 40px;
     line-height: 40px;
+  }
+
+  .heroCardBox {
+    padding: 24px 18px !important;
   }
 
   .technologyTitle {
