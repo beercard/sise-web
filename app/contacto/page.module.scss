@@ -1,0 +1,319 @@
+.contacto {
+  background: #ffffff;
+  --pad-x: 366px;
+}
+
+.hero {
+  position: relative;
+  min-height: 1053px;
+  overflow: hidden;
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #00408c 0%,
+    rgba(0, 64, 140, 0.84) 33%,
+    rgba(0, 64, 140, 0.18) 66%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.heroCopy {
+  position: absolute;
+  z-index: 1;
+  top: 401px;
+  left: var(--pad-x);
+  width: min(774px, calc(100% - (var(--pad-x) * 2)));
+}
+
+.heroTitle {
+  margin: 0;
+  width: auto;
+  max-width: 383px;
+  color: #ffffff;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 51px;
+  text-wrap: balance;
+}
+
+.heroLine {
+  margin: 57px 0 0;
+  color: #ffffff;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  text-wrap: pretty;
+}
+
+.heroLine + .heroLine {
+  margin-top: 32px;
+}
+
+.heroLink {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.heroLink:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 1750px) {
+  .contacto {
+    --pad-x: 284px;
+  }
+
+  .hero {
+    min-height: 980px;
+  }
+
+  .heroCopy {
+    top: 352px;
+    width: min(740px, calc(100% - 420px));
+  }
+}
+
+@media (max-width: 1500px) {
+  .contacto {
+    --pad-x: 148px;
+  }
+
+  .hero {
+    min-height: 900px;
+  }
+
+  .heroCopy {
+    top: 302px;
+    width: min(680px, calc(100% - 256px));
+  }
+
+  .heroTitle {
+    width: auto;
+    max-width: 360px;
+    font-size: 56px;
+    line-height: 48px;
+  }
+
+  .heroLine {
+    font-size: 28px;
+    line-height: 30px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .contacto {
+    --pad-x: 112px;
+  }
+
+  .hero {
+    min-height: 820px;
+  }
+
+  .heroImage {
+    object-position: 58% center;
+  }
+
+  .heroCopy {
+    top: 256px;
+    width: min(620px, calc(100% - 200px));
+  }
+
+  .heroTitle {
+    max-width: 332px;
+    font-size: 52px;
+    line-height: 45px;
+  }
+
+  .heroLine {
+    margin-top: 34px;
+    max-width: 620px;
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .heroLine + .heroLine {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .contacto {
+    --pad-x: 88px;
+  }
+
+  .hero {
+    min-height: 740px;
+  }
+
+  .heroImage {
+    object-position: 62% center;
+  }
+
+  .heroCopy {
+    top: 236px;
+    width: min(560px, calc(100% - 176px));
+  }
+
+  .heroTitle {
+    max-width: 320px;
+    font-size: 48px;
+    line-height: 42px;
+  }
+
+  .heroLine {
+    margin-top: 38px;
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .heroLine + .heroLine {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 960px) {
+  .contacto {
+    --pad-x: 32px;
+  }
+
+  .hero {
+    min-height: 640px;
+  }
+
+  .heroImage {
+    object-position: 67% center;
+  }
+
+  .heroOverlay {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 64, 140, 0.92) 0%,
+      rgba(0, 64, 140, 0.82) 38%,
+      rgba(0, 64, 140, 0.34) 68%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .heroCopy {
+    top: 184px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    width: auto;
+  }
+
+  .heroTitle {
+    max-width: 290px;
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .heroLine {
+    max-width: 420px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contacto {
+    --pad-x: 24px;
+  }
+
+  .hero {
+    min-height: 590px;
+  }
+
+  .heroImage {
+    object-position: 69% center;
+  }
+
+  .heroCopy {
+    top: 166px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+  }
+
+  .heroTitle {
+    max-width: 258px;
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .heroLine {
+    max-width: 340px;
+    margin-top: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .heroLine + .heroLine {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 540px;
+  }
+
+  .heroImage {
+    object-position: 70% center;
+  }
+
+  .heroOverlay {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 64, 140, 0.94) 0%,
+      rgba(0, 64, 140, 0.86) 48%,
+      rgba(0, 64, 140, 0.42) 76%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .heroCopy {
+    top: 156px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+  }
+
+  .heroTitle {
+    max-width: 240px;
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .heroLine {
+    max-width: 280px;
+    margin-top: 26px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .heroLine + .heroLine {
+    margin-top: 16px;
+  }
+
+  .heroLink {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+}

@@ -39,15 +39,15 @@ export default function SiteHeader() {
       { href: '/agro', label: 'AGRO', className: styles.agro },
       { href: '/ciudad', label: 'CIUDAD', className: styles.ciudad },
       {
-        href: '/#nosotros',
+        href: '/historia',
         label: 'NOSOTROS',
         className: styles.nosotros,
         submenu: [
-          { href: '/#nosotros', label: 'HISTORIA' },
-          { href: '/#nosotros', label: 'RSE' }
+          { href: '/historia', label: 'HISTORIA' },
+          { href: '/rse', label: 'RSE' }
         ]
       },
-      { href: '/#contacto', label: 'CONTACTO', className: styles.contacto }
+      { href: '/contacto', label: 'CONTACTO', className: styles.contacto }
     ],
     []
   );
@@ -126,6 +126,9 @@ export default function SiteHeader() {
         <nav
           className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}
           aria-label="Navegación principal"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) closeMenu();
+          }}
         >
           <ul id={navId} className={`${styles.navList} ${isOpen ? styles.navListOpen : ''}`}>
             {navItems.map((item, index) => {

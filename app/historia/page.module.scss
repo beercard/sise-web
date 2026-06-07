@@ -1,0 +1,782 @@
+.historia {
+  background: #ffffff;
+  --pad-x: 366px;
+}
+
+.hero {
+  position: relative;
+  min-height: 917px;
+  overflow: hidden;
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: 70% 30%;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    90deg,
+    #00408c 0%,
+    rgba(0, 64, 140, 0.5) 49.88%,
+    rgba(255, 255, 255, 0) 99.77%
+  );
+}
+
+.heroCopy {
+  position: absolute;
+  left: var(--pad-x);
+  top: 459px;
+  right: var(--pad-x);
+  width: min(931px, calc(100% - (var(--pad-x) * 2)));
+}
+
+.heroTitle {
+  width: auto;
+  max-width: 456px;
+  line-height: 51px;
+  letter-spacing: 0;
+  color: #ffffff;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.heroSubtitle {
+  margin-top: 26px;
+  width: auto;
+  max-width: 931px;
+  line-height: 32px;
+  letter-spacing: 0;
+  color: #ffffff;
+  font-size: 32px;
+  text-wrap: pretty;
+}
+
+.heroSubtitleRegular,
+.heroSubtitleStrong {
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.heroSubtitleRegular {
+  font-weight: 400;
+}
+
+.heroSubtitleStrong {
+  font-weight: 700;
+}
+
+.recognition {
+  padding-top: 74px;
+  padding-bottom: 87px;
+}
+
+.recognitionTitle {
+  margin: 0 0 55px var(--pad-x);
+  width: 593px;
+  line-height: 48px;
+  letter-spacing: 0;
+  color: #000000;
+  font-size: 48px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+}
+
+.recognitionTitleRegular {
+  font-weight: 400;
+}
+
+.recognitionTitleStrong {
+  font-weight: 600;
+}
+
+.recognitionCards {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+}
+
+.recognitionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding: 27px 64px;
+  width: 578px;
+}
+
+.recognitionCardWide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding: 27px 25px 27px 24px;
+  width: 578px;
+}
+
+.recognitionCardImageLeft {
+  margin-left: 74px;
+  width: 317px;
+  height: 245px;
+  object-fit: cover;
+}
+
+.recognitionCardImageRight {
+  border-radius: 21px;
+  width: 529px;
+  height: 245px;
+  object-fit: cover;
+}
+
+.recognitionCardText,
+.recognitionCardTextWide {
+  margin-top: 28px;
+  text-align: center;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #000000;
+  font-size: 20px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  text-wrap: pretty;
+}
+
+.recognitionCardText {
+  width: 450px;
+}
+
+.recognitionCardTextWide {
+  width: 402px;
+}
+
+.recognitionCardTextRegular {
+  font-weight: 400;
+}
+
+.recognitionCardTextStrong {
+  font-weight: 600;
+}
+
+.recognitionParagraph {
+  margin: 55px 0 0 var(--pad-x);
+  width: 773px;
+  line-height: 30px;
+  letter-spacing: 0;
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  text-wrap: pretty;
+}
+
+.recognitionParagraphStrong {
+  margin: 25px 0 0 var(--pad-x);
+  width: 773px;
+  line-height: 30px;
+  letter-spacing: 0;
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  text-wrap: pretty;
+}
+
+.timeline {
+  background: #d9d9d9;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.timelineInner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 72px;
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  padding-left: var(--pad-x);
+  padding-right: 0;
+  min-height: 748px;
+}
+
+.timelineGraphic {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 50px;
+  flex: 0 0 auto;
+}
+
+.timelineHeading {
+  width: 456px;
+  margin-bottom: 34px;
+  line-height: 38px;
+  letter-spacing: 0;
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.timelineBar1,
+.timelineBar2,
+.timelineBar3,
+.timelineBar4,
+.timelineBar5,
+.timelineBar6,
+.timelineBar7,
+.timelineBar8,
+.timelineBar9,
+.timelineBar10,
+.timelineBar11,
+.timelineBar12,
+.timelineBar13,
+.timelineBar14,
+.timelineBar15 {
+  display: none;
+}
+
+.timelineBar1 {
+  margin-top: 35px;
+  width: 307px;
+}
+
+.timelineBar2 {
+  margin-top: 18px;
+  margin-left: 94px;
+  width: 317px;
+}
+
+.timelineBar3 {
+  margin-top: 1px;
+  width: 158px;
+}
+
+.timelineBar4 {
+  margin-top: 103px;
+  margin-left: 108px;
+  width: 333px;
+}
+
+.timelineBar5 {
+  margin-top: 36px;
+  margin-left: 336px;
+  width: 91px;
+}
+
+.timelineRow {
+  display: none;
+}
+
+.timelineBar6 {
+  width: 90px;
+}
+
+.timelineBar7 {
+  width: 197px;
+}
+
+.timelineBar8 {
+  margin-top: 1px;
+  width: 446px;
+}
+
+.timelineBar9 {
+  margin-top: 1px;
+  width: 295px;
+}
+
+.timelineBar10 {
+  margin-top: 36px;
+  margin-left: 271px;
+  width: 103px;
+}
+
+.timelineBar11 {
+  width: 235px;
+}
+
+.timelineBar12 {
+  margin-top: 52px;
+  margin-left: 295px;
+  width: 115px;
+}
+
+.timelineBar13 {
+  margin-top: 1px;
+  width: 152px;
+}
+
+.timelineBar14 {
+  margin-top: 18px;
+  width: 222px;
+}
+
+.timelineBar15 {
+  display: none;
+}
+
+.timelineStory {
+  position: absolute;
+  top: 130px;
+  left: var(--pad-x);
+  width: 450px;
+  line-height: 17px;
+  letter-spacing: 0;
+  color: #000000;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.timelineStoryStrong,
+.timelineStoryRegular {
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 17px;
+}
+
+.timelineStoryStrong {
+  font-weight: 600;
+}
+
+.timelineStoryRegular {
+  font-weight: 400;
+}
+
+.timelineRight {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+  background-image: url(/image/mq2q87jo-1em8vcu.png);
+  background-position: 12% 25%;
+  background-size: 200% auto;
+  background-repeat: no-repeat;
+  min-height: 748px;
+  width: calc(100% - 528px);
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.timelineRightText {
+  position: absolute;
+  left: 108px;
+  top: 408px;
+  width: 558px;
+  line-height: 29px;
+  letter-spacing: 0;
+  color: #000000;
+  font-size: 32px;
+  z-index: 1;
+}
+
+.timelineRight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(217, 217, 217, 0.72);
+}
+
+.timelineStoryHighlight {
+  background: #ffffff;
+  padding: 0 3px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0;
+  color: #000000;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.timelineRightTextRegular,
+.timelineRightTextStrong {
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  line-height: 29px;
+}
+
+.timelineRightTextRegular {
+  font-weight: 400;
+}
+
+.timelineRightTextStrong {
+  font-weight: 600;
+}
+
+@media (max-width: 1750px) {
+  .historia {
+    --pad-x: 120px;
+  }
+
+  .recognitionCards {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .recognitionCard,
+  .recognitionCardWide {
+    width: min(578px, 100%);
+  }
+
+  .timelineRightText {
+    left: 64px;
+    right: 40px;
+    width: auto;
+  }
+}
+
+@media (max-width: 1500px) {
+  .historia {
+    --pad-x: 120px;
+  }
+
+  .recognitionCards {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .historia {
+    --pad-x: 64px;
+  }
+
+  .hero {
+    min-height: 820px;
+  }
+
+  .heroCopy {
+    top: 360px;
+  }
+
+  .heroTitle {
+    width: auto;
+    max-width: 520px;
+    font-size: 56px;
+    line-height: 48px;
+  }
+
+  .heroSubtitle {
+    width: min(760px, calc(100vw - (var(--pad-x) * 2)));
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .heroSubtitleRegular,
+  .heroSubtitleStrong {
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .timelineInner {
+    width: 100%;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+    flex-direction: column;
+    gap: 36px;
+    min-height: 0;
+  }
+
+  .timelineRight {
+    padding: 0;
+    background-position: 12% 25%;
+    background-size: 200% auto;
+    min-height: 520px;
+    width: 100%;
+  }
+
+  .timelineRightText {
+    left: 24px;
+    right: 24px;
+    top: auto;
+    bottom: 28px;
+    width: auto;
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .timelineRightTextRegular,
+  .timelineRightTextStrong {
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .timelineStory {
+    position: static;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .timelineGraphic {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .historia {
+    --pad-x: 24px;
+  }
+
+  .hero {
+    min-height: 720px;
+  }
+
+  .heroCopy {
+    top: 240px;
+  }
+
+  .heroTitle {
+    width: auto;
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .heroSubtitle {
+    width: auto;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .heroSubtitleRegular,
+  .heroSubtitleStrong {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .recognitionTitle {
+    margin-left: 0;
+    width: auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .recognitionCards {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .recognitionCard,
+  .recognitionCardWide {
+    width: 100%;
+    max-width: 578px;
+    padding: 24px;
+  }
+
+  .recognitionCardImageLeft {
+    margin-left: auto;
+    margin-right: auto;
+    width: min(317px, 100%);
+    height: auto;
+  }
+
+  .recognitionCardImageRight {
+    width: 100%;
+    height: auto;
+  }
+
+  .recognitionCardText,
+  .recognitionCardTextWide {
+    width: 100%;
+    margin-top: 18px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .recognitionParagraph,
+  .recognitionParagraphStrong {
+    margin-left: 0;
+    width: auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .timelineInner {
+    gap: 28px;
+  }
+
+  .timelineHeading {
+    width: auto;
+    margin-bottom: 24px;
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .timelineStory {
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .timelineStoryStrong,
+  .timelineStoryRegular,
+  .timelineStoryHighlight {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .timelineRight {
+    min-height: 420px;
+    background-position: 12% 25%;
+    background-size: 200% auto;
+  }
+
+  .timelineRightText {
+    width: auto;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .timelineRightTextRegular,
+  .timelineRightTextStrong {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 660px;
+  }
+
+  .heroCopy {
+    top: 220px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .heroSubtitle,
+  .heroSubtitleRegular,
+  .heroSubtitleStrong {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .recognitionTitle {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .recognitionCardText,
+  .recognitionCardTextWide,
+  .recognitionParagraph,
+  .recognitionParagraphStrong,
+  .timelineStory,
+  .timelineStoryStrong,
+  .timelineStoryRegular,
+  .timelineStoryHighlight,
+  .timelineRightText,
+  .timelineRightTextRegular,
+  .timelineRightTextStrong {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 640px;
+  }
+
+  .heroImage {
+    object-position: 78% 24%;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .recognition {
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+
+  .recognitionTitle {
+    font-size: 28px;
+    line-height: 28px;
+    margin-bottom: 28px;
+  }
+
+  .recognitionCard,
+  .recognitionCardWide {
+    border-radius: 18px;
+    padding: 18px;
+  }
+
+  .recognitionCardText,
+  .recognitionCardTextWide {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .recognitionParagraph,
+  .recognitionParagraphStrong {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .timelineInner {
+    gap: 20px;
+  }
+
+  .timelineHeading {
+    margin-bottom: 18px;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .timelineStory {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .timelineStoryStrong,
+  .timelineStoryRegular,
+  .timelineStoryHighlight {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .timelineRight {
+    min-height: 340px;
+    background-position: 12% 25%;
+    background-size: 200% auto;
+  }
+
+  .timelineRightText {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .timelineRightTextRegular,
+  .timelineRightTextStrong {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

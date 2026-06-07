@@ -465,131 +465,161 @@ export default function TechnologyModule() {
 
     const isMobile = viewportWidth > 0 && viewportWidth <= 480;
     const isNarrowMobile = viewportWidth > 0 && viewportWidth <= 360;
+    const isTablet = viewportWidth > 480 && viewportWidth <= 960;
     const style = slide.styleVars ? { ...slide.styleVars } : {};
+    const artType = slide.art?.type;
+
+    style['--tech-card-align-items'] = 'center';
+    style['--tech-card-title-width'] = '100%';
+    style['--tech-card-title-height'] = 'auto';
+    style['--tech-card-title-min-height'] = isMobile ? '0px' : isTablet ? '64px' : '76px';
+    style['--tech-card-title-max-width'] = isMobile ? '100%' : '312px';
+    style['--tech-card-text-width'] = '100%';
+    style['--tech-card-text-height'] = 'auto';
+    style['--tech-card-text-min-height'] = '0px';
+    style['--tech-card-text-max-width'] = isMobile ? '100%' : artType === 'connectivity' ? '320px' : '304px';
+    style['--tech-card-text-margin'] = isMobile ? '10px 0 0' : '12px 0 0';
+    style['--tech-card-art-stage-margin-top'] = isMobile ? '16px' : '20px';
+    style['--tech-card-art-stage-align-items'] =
+      artType === 'overlay' || artType === 'connectivity' ? 'center' : 'flex-end';
+    style['--tech-card-art-stage-min-height'] =
+      artType === 'overlay' || artType === 'connectivity'
+        ? isMobile
+          ? '108px'
+          : isTablet
+            ? '136px'
+            : '170px'
+        : isMobile
+          ? '134px'
+          : isTablet
+            ? '164px'
+            : '194px';
+    style['--tech-card-image-margin'] = '0 auto';
+
+    if (artType === 'sirena') {
+      style['--tech-card-sirena-margin-top'] = '0px';
+      style['--tech-card-sirena-shift-y'] = isMobile ? '8px' : isTablet ? '12px' : '26px';
+    }
+
+    if (artType === 'sirena' && !isMobile && !isTablet) {
+      style['--tech-card-art-stage-min-height'] = '224px';
+      style['--tech-card-art-stage-margin-top'] = '28px';
+    }
+
+    if (artType === 'image' || artType === 'absolute') {
+      const maxImageWidth = Math.min(Math.max(slide.art.width ?? 210, 150), artType === 'absolute' ? 205 : 220);
+      const maxImageHeight = Math.min(Math.max(slide.art.height ?? 150, 120), artType === 'absolute' ? 176 : 170);
+      style['--tech-card-image-width'] = 'auto';
+      style['--tech-card-image-height'] = 'auto';
+      style['--tech-card-image-max-width'] = `${maxImageWidth}px`;
+      style['--tech-card-image-max-height'] = `${maxImageHeight}px`;
+    }
+
+    if (!isMobile && !isTablet) {
+      style['--tech-card-padding'] = '36px 34px 30px';
+    }
+
+    if (isTablet) {
+      style['--tech-card-padding'] = '30px 26px 24px';
+    }
 
     if (isMobile) {
       style['--tech-card-padding'] = '26px 24px 22px';
-      style['--tech-card-align-items'] = 'center';
-      style['--tech-card-title-width'] = '100%';
-      style['--tech-card-title-height'] = 'auto';
-      style['--tech-card-title-min-height'] = '0px';
-      style['--tech-card-text-width'] = '100%';
-      style['--tech-card-text-margin'] = '16px 0 0';
       style['--tech-card-image-width'] = isNarrowMobile ? '180px' : '200px';
       style['--tech-card-image-height'] = 'auto';
-      style['--tech-card-image-margin'] = '14px 0 0';
       style['--tech-card-sirena-margin-top'] = '12px';
+      if (artType !== 'overlay' && artType !== 'connectivity') {
+        style['--tech-card-art-stage-min-height'] = isNarrowMobile ? '110px' : '124px';
+      }
     }
 
-    const shouldRenderMainText = isMobile ? slide.art?.type !== 'overlay' : slide.art?.type !== 'overlay' && slide.art?.type !== 'connectivity';
-    const artScale = isNarrowMobile ? 0.72 : isMobile ? 0.8 : 1;
+    const shouldRenderMainText = Boolean(slide.text);
+    const artScale =
+      artType === 'overlay' || artType === 'connectivity'
+        ? isNarrowMobile
+          ? 0.7
+          : isMobile
+            ? 0.78
+            : isTablet
+              ? 0.9
+              : 1
+        : isNarrowMobile
+          ? 0.72
+          : isMobile
+            ? 0.8
+            : 1;
 
     return (
       <div className={`${styles.techCard} ${extraClassName}`} style={style}>
         <p className={styles.techCardTitle}>{slide.title}</p>
         {shouldRenderMainText ? <p className={styles.techCardText}>{slide.text}</p> : null}
-        {slide.art?.type === 'image' ? (
-          <Image
-            src={slide.art.src}
-            alt=""
-            className={styles.techCardImage}
-            width={slide.art.width}
-            height={slide.art.height}
-          />
-        ) : null}
-        {slide.art?.type === 'absolute' ? (
-          isMobile ? (
-            <Image
-              src={slide.art.src}
-              alt=""
-              className={styles.techCardImage}
-              width={slide.art.width}
-              height={slide.art.height}
-              style={{ transform: `rotate(${slide.art.rotate}deg)` }}
-            />
-          ) : (
-            <Image
-              src={slide.art.src}
-              alt=""
-              className={styles.techCardAbsoluteImage}
-              width={slide.art.width}
-              height={slide.art.height}
-              style={{
-                top: `${slide.art.top}px`,
-                left: `${slide.art.left}px`,
-                transform: `rotate(${slide.art.rotate}deg)`
-              }}
-            />
-          )
-        ) : null}
-        {slide.art?.type === 'overlay' ? (
-          <div
-            className={styles.techCardOverlay}
-            style={{
-              width: `${slide.art.wrapperWidth}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            <p
-              className={styles.techCardOverlayText}
-              style={{
-                top: `${slide.art.text.top}px`,
-                right: `${slide.art.text.right}px`,
-                width: `${slide.art.text.width}px`
-              }}
-            >
-              {slide.text}
-            </p>
-            <Image
-              src={slide.art.image.src}
-              alt=""
-              className={styles.techCardOverlayImage}
-              width={slide.art.image.width}
-              height={slide.art.image.height}
-            />
-          </div>
-        ) : null}
-        {slide.art?.type === 'sirena' ? (
-          <div className={styles.techCardSirenaFrame} style={{ '--sirena-bg': `url('${slide.art.backgroundSrc}')` }}>
-            <Image src={slide.art.svgSrc} alt="" width={69} height={24} className={styles.techCardSirenaSvg} />
-          </div>
-        ) : null}
-        {slide.art?.type === 'connectivity' ? (
-          <div
-            className={styles.techCardConnectivityWrap}
-            style={{
-              width: `${slide.art.wrapperWidth}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            {!isMobile ? (
-              <p
-                className={styles.techCardConnectivityText}
+        {artType ? (
+          <div className={styles.techCardArtStage}>
+            {artType === 'image' ? (
+              <Image
+                src={slide.art.src}
+                alt=""
+                className={styles.techCardImage}
+                width={slide.art.width}
+                height={slide.art.height}
+              />
+            ) : null}
+            {artType === 'absolute' ? (
+              <Image
+                src={slide.art.src}
+                alt=""
+                className={styles.techCardAbsoluteImage}
+                width={slide.art.width}
+                height={slide.art.height}
+                style={{ transform: `rotate(${slide.art.rotate}deg)` }}
+              />
+            ) : null}
+            {artType === 'overlay' ? (
+              <div
+                className={styles.techCardOverlay}
                 style={{
-                  top: `${slide.art.text.top}px`,
-                  right: `${slide.art.text.right}px`,
-                  width: `${slide.art.text.width}px`
+                  width: `${slide.art.wrapperWidth}px`,
+                  height: `${slide.art.wrapperHeight}px`,
+                  transform: isMobile ? `scale(${artScale})` : undefined,
+                  transformOrigin: isMobile ? 'top center' : undefined
                 }}
               >
-                {slide.text}
-              </p>
+                <Image
+                  src={slide.art.image.src}
+                  alt=""
+                  className={styles.techCardOverlayImage}
+                  width={slide.art.image.width}
+                  height={slide.art.image.height}
+                />
+              </div>
             ) : null}
-            <div
-              className={styles.techCardConnectivityImage}
-              style={{
-                '--connectivity-bg': `url('${slide.art.backgroundSrc}')`,
-                top: isMobile ? '8px' : slide.art.imageTop ? `${slide.art.imageTop}px` : undefined
-              }}
-              aria-hidden="true"
-            >
-              <div className={styles.techCardConnectivityBar} />
-            </div>
+            {artType === 'sirena' ? (
+              <div className={styles.techCardSirenaFrame} style={{ '--sirena-bg': `url('${slide.art.backgroundSrc}')` }}>
+                <Image src={slide.art.svgSrc} alt="" width={69} height={24} className={styles.techCardSirenaSvg} />
+              </div>
+            ) : null}
+            {artType === 'connectivity' ? (
+              <div
+                className={styles.techCardConnectivityWrap}
+                style={{
+                  width: `${slide.art.wrapperWidth}px`,
+                  height: `${slide.art.wrapperHeight}px`,
+                  transform: isMobile || isTablet ? `scale(${artScale})` : undefined,
+                  transformOrigin: isMobile || isTablet ? 'top center' : undefined
+                }}
+              >
+                <div
+                  className={styles.techCardConnectivityImage}
+                  style={{
+                    '--connectivity-bg': `url('${slide.art.backgroundSrc}')`,
+                    top: isMobile ? '8px' : isTablet ? '10px' : slide.art.imageTop ? `${slide.art.imageTop}px` : undefined
+                  }}
+                  aria-hidden="true"
+                >
+                  <div className={styles.techCardConnectivityBar} />
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>

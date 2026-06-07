@@ -3,6 +3,14 @@ import Link from 'next/link';
 
 import styles from './WhyChooseSise.module.scss';
 
+const categoryLinks = {
+  hogar: '/hogar',
+  empresas: '/comercio',
+  urbano: '/edificios',
+  agro: '/agro',
+  ciudad: '/ciudad'
+};
+
 export default function WhyChooseSise() {
   return (
     <section className={styles.section} aria-label="Por qué elegir SISE" id="porque-sise">
@@ -86,7 +94,7 @@ export default function WhyChooseSise() {
         />
 
         <div className={styles.categoriesDesktop}>
-          <Link className={styles.categoryCardHogar} href="#hogar">
+          <Link className={styles.categoryCardHogar} href={categoryLinks.hogar}>
             <Image
               src="/image/mpr027zv-o3zo3d3.png"
               alt=""
@@ -103,7 +111,7 @@ export default function WhyChooseSise() {
             />
           </Link>
 
-          <Link className={styles.categoryCardEmpresas} href="#empresas">
+          <Link className={styles.categoryCardEmpresas} href={categoryLinks.empresas}>
             <Image
               src="/image/mpr027zv-j0j5y64.png"
               alt=""
@@ -120,11 +128,11 @@ export default function WhyChooseSise() {
             />
           </Link>
 
-          <Link className={styles.categoryCardUrbano} href="#urbano">
+          <Link className={styles.categoryCardUrbano} href={categoryLinks.urbano}>
             <Image src="/image/mpr027zp-xpul2cf.png" alt="SISE Urbano" width={256} height={285} />
           </Link>
 
-          <Link className={styles.categoryCardAgro} href="#agro">
+          <Link className={styles.categoryCardAgro} href={categoryLinks.agro}>
             <Image
               src="/image/mpr027zv-n7crbeg.png"
               alt=""
@@ -141,7 +149,7 @@ export default function WhyChooseSise() {
             />
           </Link>
 
-          <Link className={styles.categoryCardCiudad} href="#ciudad">
+          <Link className={styles.categoryCardCiudad} href={categoryLinks.ciudad}>
             <Image
               src="/image/mpr027zv-zs0bqjf.png"
               alt=""
@@ -160,7 +168,7 @@ export default function WhyChooseSise() {
         </div>
 
         <div className={styles.categoriesMobile}>
-          <Link className={styles.categoryCardHogarMobile} href="#hogar">
+          <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
             <div className={styles.categoryImageWrap}>
               <Image
                 src="/image/mpr027zv-o3zo3d3.png"
@@ -181,7 +189,7 @@ export default function WhyChooseSise() {
             </div>
           </Link>
 
-          <Link className={styles.categoryCardEmpresasMobile} href="#empresas">
+          <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
             <div className={styles.categoryImageWrap}>
               <Image
                 src="/image/mpr027zv-j0j5y64.png"
@@ -202,7 +210,7 @@ export default function WhyChooseSise() {
             </div>
           </Link>
 
-          <Link className={styles.categoryCardUrbanoMobile} href="#urbano">
+          <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
             <div className={styles.categoryImageWrap}>
               <Image
                 src="/image/mpr027zp-xpul2cf.png"
@@ -223,7 +231,7 @@ export default function WhyChooseSise() {
             </div>
           </Link>
 
-          <Link className={styles.categoryCardAgroMobile} href="#agro">
+          <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
             <div className={styles.categoryImageWrap}>
               <Image
                 src="/image/mpr027zv-n7crbeg.png"
@@ -244,7 +252,7 @@ export default function WhyChooseSise() {
             </div>
           </Link>
 
-          <Link className={styles.categoryCardCiudadMobile} href="#ciudad">
+          <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
             <div className={styles.categoryImageWrap}>
               <Image
                 src="/image/mpr027zv-zs0bqjf.png"
