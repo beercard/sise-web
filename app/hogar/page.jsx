@@ -1,16 +1,19 @@
 import Image from 'next/image';
 
 import Cotizador from '../components/Cotizador/Cotizador';
+import { buildPageMetadata } from '../lib/seo';
 
 import MonitoreoCarousel from './components/MonitoreoCarousel/MonitoreoCarousel';
 import TechnologyModule from './components/TechnologyModule/TechnologyModule';
 
 import styles from './page.module.scss';
 
-export const metadata = {
-  title: 'SISE | Hogar',
-  description: 'Soluciones de seguridad electrónica para el hogar.'
-};
+export const metadata = buildPageMetadata({
+  title: 'Seguridad para el hogar',
+  description:
+    'Alarmas monitoreadas, sensores, sirenas, camaras y control desde tu celular para proteger tu hogar con monitoreo profesional 24/7.',
+  path: '/hogar'
+});
 
 export default function HogarPage() {
   return (
@@ -49,19 +52,19 @@ export default function HogarPage() {
             <div className={styles.heroText}>
               <p className={styles.heroLead}>
                 <span className={styles.heroLeadLight}>
-                  La seguridad de tu hogar no es solo tecnología,&nbsp;
+                  Una alarma monitoreada no es solo tecnología,&nbsp;
                 </span>
                 <span className={styles.heroLeadStrong}>es la paz de tu familia.</span>
               </p>
 
               <p className={styles.heroBody}>
-                Desarrollamos soluciones confiables que protegen tu hogar antes, durante y después de
-                cualquier intrusión.
+                Desarrollamos soluciones confiables que protegen tu hogar antes, durante y después
+                de cualquier intrusión.
                 <br />
                 <br />
-                Nuestro sistema combina tecnología avanzada con monitoreo profesional 24/7 y control
-                total desde tu celular, para que puedas trabajar, viajar o descansar con la certeza
-                de que un equipo experto cuida lo que más querés en todo momento.
+                Nuestro sistema combina sensores, sirena, cámaras, monitoreo profesional 24/7 y
+                control total desde tu celular, para que puedas trabajar, viajar o descansar con la
+                certeza de que un equipo experto cuida lo que más querés en todo momento.
               </p>
 
               <p className={styles.heroPunch}>Con SISE, no solo alertamos: actuamos.</p>

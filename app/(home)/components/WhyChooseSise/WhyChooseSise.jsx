@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,54 +14,195 @@ const categoryLinks = {
   ciudad: '/ciudad'
 };
 
+const infoCards = [
+  {
+    id: 'monitoreo',
+    cardClassName: 'card',
+    iconClassName: 'cardIcon',
+    iconSrc: '/image/mpr027zv-zfkbktb.png',
+    iconAlt: '',
+    iconWidth: 63,
+    iconHeight: 55,
+    titleClassName: 'cardTitle',
+    title: 'Monitoreo 24/7 real',
+    textClassName: 'cardText',
+    modalPanelClassName: 'modalPanel',
+    modalSurfaceClassName: 'modalSurface',
+    text: (
+      <>
+        Operadores especializados supervisan <strong>en tiempo real</strong> para
+        prevenir, no solo registrar.
+      </>
+    ),
+    modalText: (
+      <>
+        Nuestro equipo no espera a que pase lo peor. Si detectamos un intento de
+        intrusión, <strong>activamos los protocolos de respuesta al instante</strong>, te
+        avisamos y enviamos asistencia <strong>antes de que la situación escale</strong>.
+      </>
+    )
+  },
+  {
+    id: 'tecnologia',
+    cardClassName: 'cardAlt',
+    iconClassName: 'cardIconAlt',
+    iconSrc: '/image/mpr027zv-24x9sa2.png',
+    iconAlt: '',
+    iconWidth: 40,
+    iconHeight: 82,
+    titleClassName: 'cardTitleAlt',
+    title: 'Tecnología de última generación',
+    textClassName: 'cardTextAlt',
+    modalPanelClassName: 'modalPanelAlt',
+    modalSurfaceClassName: 'modalSurfaceAlt',
+    text: (
+      <>
+        Soluciones <strong>modernas, fáciles de usar</strong> y pensadas para vos.
+      </>
+    ),
+    modalText: (
+      <>
+        Olvidate de sistemas complejos. Desde cámaras inteligentes hasta la{' '}
+        <strong>Cámara Campo con energía solar</strong>, todo lo gestionás de forma
+        intuitiva con el <strong>control desde tu celular</strong> estés donde estés.
+      </>
+    )
+  },
+  {
+    id: 'respuesta',
+    cardClassName: 'cardAlt2',
+    iconClassName: 'cardIconAlt2',
+    iconSrc: '/image/mpr027zv-xilwxfu.png',
+    iconAlt: '',
+    iconWidth: 52,
+    iconHeight: 62,
+    titleClassName: 'cardTitleAlt2',
+    title: (
+      <>
+        Respuesta
+        <br />
+        rápida y humana
+      </>
+    ),
+    textClassName: 'cardTextAlt2',
+    modalPanelClassName: 'modalPanelAlt2',
+    modalSurfaceClassName: 'modalSurfaceAlt2',
+    text: (
+      <>
+        Actuamos al instante ante cualquier evento, brindando{' '}
+        <strong>seguridad constante.</strong>
+      </>
+    ),
+    modalText: (
+      <>
+        Somos de Resistencia. Con nuestra base operativa local y{' '}
+        <strong>más de 15 años de trayectoria</strong>, te garantizamos soporte técnico
+        cercano y <strong>personas reales</strong> listas para asistirte cuando más lo
+        necesitás.
+      </>
+    )
+  }
+];
+
 export default function WhyChooseSise() {
+  const [activeModal, setActiveModal] = useState(null);
+
+  const activeCard = useMemo(
+    () => infoCards.find((card) => card.id === activeModal) ?? null,
+    [activeModal]
+  );
+
+  useEffect(() => {
+    if (!activeModal) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setActiveModal(null);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [activeModal]);
+
   return (
     <section className={styles.section} aria-label="Por qué elegir SISE" id="porque-sise">
       <div className={styles.inner}>
         <h2 className={styles.title}>¿Por qué elegir SISE?</h2>
 
         <div className={styles.cards}>
-          <article className={styles.card}>
-            <Image
-              src="/image/mpr027zv-zfkbktb.png"
-              alt=""
-              className={styles.cardIcon}
-              width={63}
-              height={55}
-            />
-            <h3 className={styles.cardTitle}>Monitoreo 24/7 real</h3>
-            <p className={styles.cardText}>
-              Operadores especializados supervisan en tiempo real para prevenir, no solo
-              registrar.
-            </p>
-          </article>
-
-          <article className={styles.cardAlt}>
-            <Image
-              src="/image/mpr027zv-24x9sa2.png"
-              alt=""
-              className={styles.cardIconAlt}
-              width={40}
-              height={82}
-            />
-            <h3 className={styles.cardTitleAlt}>Tecnología de última generación</h3>
-            <p className={styles.cardTextAlt}>Soluciones modernas, fáciles de usar y pensadas para vos.</p>
-          </article>
-
-          <article className={styles.cardAlt2}>
-            <Image
-              src="/image/mpr027zv-xilwxfu.png"
-              alt=""
-              className={styles.cardIconAlt2}
-              width={52}
-              height={62}
-            />
-            <h3 className={styles.cardTitleAlt2}>Respuesta rápida y humana</h3>
-            <p className={styles.cardTextAlt2}>
-              Actuamos al instante ante cualquier evento, brindando seguridad constante.
-            </p>
-          </article>
+          {infoCards.map((card) => (
+            <article key={card.id} className={styles[card.cardClassName]}>
+              <div className={styles.cardIconWrap}>
+                <Image
+                  src={card.iconSrc}
+                  alt={card.iconAlt}
+                  className={styles[card.iconClassName]}
+                  width={card.iconWidth}
+                  height={card.iconHeight}
+                />
+              </div>
+              <h3 className={styles[card.titleClassName]}>{card.title}</h3>
+              <p className={styles[card.textClassName]}>{card.text}</p>
+              <button
+                type="button"
+                className={styles.infoButton}
+                onClick={() => setActiveModal(card.id)}
+                aria-haspopup="dialog"
+                aria-expanded={activeModal === card.id}
+              >
+                + info
+              </button>
+            </article>
+          ))}
         </div>
+
+        {activeCard ? (
+          <div
+            className={styles.modalOverlay}
+            role="presentation"
+            onClick={() => setActiveModal(null)}
+          >
+            <div
+              className={styles[activeCard.modalPanelClassName]}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`why-choose-modal-title-${activeCard.id}`}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                className={styles.modalCloseOuter}
+                aria-label="Cerrar modal"
+                onClick={() => setActiveModal(null)}
+              >
+                ×
+              </button>
+              <div className={styles[activeCard.modalSurfaceClassName]}>
+                <p
+                  className={styles.modalText}
+                  id={`why-choose-modal-title-${activeCard.id}`}
+                >
+                  {activeCard.modalText}
+                </p>
+                <button
+                  type="button"
+                  className={styles.closeButton}
+                  onClick={() => setActiveModal(null)}
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
 
         <Image
           src="/image/mpr027zv-e2to3ki.png"

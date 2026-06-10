@@ -33,7 +33,9 @@ export default function CiudadHero() {
       <div className={styles.heroBottom}>
         <div className={styles.heroBottomInner}>
           <p className={styles.heroBody}>
-            Desarrollamos infraestructura para la prevención del delito y el control del espacio público, trabajando junto a gobiernos y organismos.
+            Desarrollamos soluciones de videovigilancia urbana, monitoreo del espacio público y
+            herramientas para municipios, gobiernos y organismos que buscan prevenir el delito y
+            actuar con información en tiempo real.
           </p>
           <CiudadMonitoreoCarousel />
         </div>

@@ -1,0 +1,121 @@
+.section {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 72px 24px 0 366px;
+  background: var(--sise-white);
+}
+
+.inner {
+  width: min(1187px, calc(100% - 390px));
+}
+
+.copyBlock {
+  width: min(1187px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.title {
+  margin: 0;
+  color: var(--sise-blue);
+  width: min(1065px, 100%);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.text {
+  margin: 0;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34px;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.textRegular {
+  font-weight: 400;
+}
+
+.textStrong {
+  font-weight: 600;
+}
+
+.inlineLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+
+.inlineLink:hover {
+  text-decoration-thickness: 2px;
+}
+
+.inlineLink:focus-visible {
+  outline: 2px solid rgba(0, 64, 140, 0.42);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 1366px) {
+  .section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .inner {
+    width: min(1187px, 100%);
+  }
+}
+
+@media (max-width: 960px) {
+  .section {
+    padding-top: 48px;
+  }
+
+  .copyBlock {
+    gap: 14px;
+  }
+
+  .title {
+    width: 100%;
+    font-size: 40px;
+    line-height: 1.04;
+    white-space: normal;
+  }
+
+  .text {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 40px 20px 0;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .text {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

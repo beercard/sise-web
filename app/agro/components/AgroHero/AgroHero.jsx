@@ -24,12 +24,13 @@ export default function AgroHero() {
       <div className={styles.heroBottom} aria-label="Servicios destacados">
         <div className={styles.heroBottomInner}>
           <div className={styles.heroText}>
-            <p className={styles.heroSectionTitle}>CONSTRUCCIÓN Y OBRAS</p>
+            <p className={styles.heroSectionTitle}>SEGURIDAD RURAL</p>
             <div className={styles.heroDivider} aria-hidden="true" />
-            <p className={styles.heroLead}>Protección desde el primer día</p>
+            <p className={styles.heroLead}>Monitoreo remoto para establecimientos agropecuarios</p>
             <p className={styles.heroBody}>
-              Brindamos seguridad activa y monitoreo constante en obras, previniendo robos, vandalismo e intrusiones
-              durante todo el desarrollo.
+              Protegemos tranqueras, galpones, silobolsas, maquinaria y cascos de estancia con
+              videovigilancia, conectividad y control desde el celular, aun en entornos extensos o
+              de difícil acceso.
             </p>
           </div>
 
@@ -39,4 +40,3 @@ export default function AgroHero() {
     </section>
   );
 }
-

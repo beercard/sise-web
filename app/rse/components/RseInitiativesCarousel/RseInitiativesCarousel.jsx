@@ -9,6 +9,71 @@ const AUTOPLAY_MS = 5500;
 
 const ITEMS = [
   {
+    id: 'group77',
+    title: 'Educación y formación\nde talento',
+    subtitle: 'Convenio con UEGP N.º 27 "Emilio Lamarca"',
+    introParts: [
+      { text: 'SISE mantiene un trabajo sostenido con esta institución educativa, brindando a estudiantes del último año la posibilidad de realizar ' },
+      { text: 'pasantías educativas', strong: true },
+      { text: ' en distintas áreas de la empresa.' }
+    ],
+    image: '/image/mq2uf58k-hkxy7zy.png',
+    bodyLabel: 'Durante estas prácticas, los estudiantes:',
+    bullets: [
+      'Adquieren experiencia en un entorno laboral real',
+      'Conocen el funcionamiento de una organización',
+      'Fortalecen su formación integral'
+    ],
+    closing:
+      'Este acuerdo refuerza el vínculo entre el ámbito educativo y el mundo del trabajo, acompañando a jóvenes en una etapa clave de su desarrollo.',
+    preview:
+      'Pasantías educativas para acercar a estudiantes al entorno laboral real y fortalecer su formación profesional.'
+  },
+  {
+    id: 'group76',
+    title: 'Inclusión y\noportunidades laborales',
+    subtitle: 'Convenio de pasantías con Asociación Los Girasoles',
+    introParts: [
+      { text: 'Desde el año 2018, SISE Argentina impulsa la ' },
+      { text: 'inclusión laboral', strong: true },
+      { text: ' mediante un convenio con la Asociación Los Girasoles, organización dedicada a la integración social de jóvenes con capacidades diferentes.' }
+    ],
+    image: '/image/mq2twaum-f3eh90n.png',
+    bodyLabel: 'En el marco de la Ley N.º 6.454 de pasantías profesionales, esta iniciativa promueve:',
+    bullets: [
+      'La inclusión laboral en entornos reales de trabajo',
+      'El desarrollo de habilidades y competencias',
+      'La integración progresiva al ámbito laboral',
+      'El fortalecimiento del vínculo entre empresa y organizaciones sociales'
+    ],
+    closing:
+      'A través de este programa, acompañamos el desarrollo individual respetando las capacidades y potencialidades de cada persona.',
+    preview:
+      'Un programa sostenido de inclusión laboral que promueve oportunidades reales, desarrollo personal e integración social.'
+  },
+  {
+    id: 'group78',
+    title: 'Educación y formación\nde talento',
+    subtitle: 'Convenio con Universidad Tecnológica Nacional (UTN)',
+    introParts: [
+      { text: 'En articulación con la UTN, SISE desarrolla un programa de ' },
+      { text: 'prácticas profesionales', strong: true },
+      { text: ' para estudiantes de Ingeniería Industrial.' }
+    ],
+    image: '/image/mq2uf59b-txvmh24.png',
+    imageBackground: '/image/mq2uf59b-l9wq65i.png',
+    bodyLabel: 'Esta iniciativa permite:',
+    bullets: [
+      'Aplicar conocimientos técnicos en contextos reales',
+      'Integrarse a áreas operativas y tecnológicas',
+      'Desarrollar competencias profesionales y trabajo en equipo'
+    ],
+    closing:
+      'De esta manera, contribuimos a la formación de futuros profesionales, fomentando la innovación y el desarrollo del talento joven.',
+    preview:
+      'Prácticas profesionales con la UTN para integrar estudiantes a áreas operativas y tecnológicas de la empresa.'
+  },
+  {
     id: 'group74',
     title: 'Infraestructura y\nseguridad pública',
     subtitle: 'Videovigilancia en Puente General Belgrano',
@@ -49,49 +114,6 @@ const ITEMS = [
       'Esta acción acompaña el desarrollo de una infraestructura clave para la salud regional, reafirmando nuestro compromiso con proyectos de alto impacto social.',
     preview:
       'Videovigilancia de obra para reforzar control del predio, seguimiento y transparencia en infraestructura de salud.'
-  },
-  {
-    id: 'group77',
-    title: 'Educación y formación\nde talento',
-    subtitle: 'Convenio con UEGP N.º 27 "Emilio Lamarca"',
-    introParts: [
-      { text: 'SISE mantiene un trabajo sostenido con esta institución educativa, brindando a estudiantes del último año la posibilidad de realizar ' },
-      { text: 'pasantías educativas', strong: true },
-      { text: ' en distintas áreas de la empresa.' }
-    ],
-    image: '/image/mq2uf58k-hkxy7zy.png',
-    bodyLabel: 'Durante estas prácticas, los estudiantes:',
-    bullets: [
-      'Adquieren experiencia en un entorno laboral real',
-      'Conocen el funcionamiento de una organización',
-      'Fortalecen su formación integral'
-    ],
-    closing:
-      'Este acuerdo refuerza el vínculo entre el ámbito educativo y el mundo del trabajo, acompañando a jóvenes en una etapa clave de su desarrollo.',
-    preview:
-      'Pasantías educativas para acercar a estudiantes al entorno laboral real y fortalecer su formación profesional.'
-  },
-  {
-    id: 'group78',
-    title: 'Educación y formación\nde talento',
-    subtitle: 'Convenio con Universidad Tecnológica Nacional (UTN)',
-    introParts: [
-      { text: 'En articulación con la UTN, SISE desarrolla un programa de ' },
-      { text: 'prácticas profesionales', strong: true },
-      { text: ' para estudiantes de Ingeniería Industrial.' }
-    ],
-    image: '/image/mq2uf59b-txvmh24.png',
-    imageBackground: '/image/mq2uf59b-l9wq65i.png',
-    bodyLabel: 'Esta iniciativa permite:',
-    bullets: [
-      'Aplicar conocimientos técnicos en contextos reales',
-      'Integrarse a áreas operativas y tecnológicas',
-      'Desarrollar competencias profesionales y trabajo en equipo'
-    ],
-    closing:
-      'De esta manera, contribuimos a la formación de futuros profesionales, fomentando la innovación y el desarrollo del talento joven.',
-    preview:
-      'Prácticas profesionales con la UTN para integrar estudiantes a áreas operativas y tecnológicas de la empresa.'
   },
   {
     id: 'group79',
@@ -244,10 +266,11 @@ function InitiativeCard({ item, isActive, onActivate, direction }) {
 }
 
 export default function RseInitiativesCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const initialIndex = ITEMS.findIndex((item) => item.id === 'group76');
+  const [activeIndex, setActiveIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
   const [direction, setDirection] = useState('next');
   const [isPaused, setIsPaused] = useState(false);
-  const activeIndexRef = useRef(0);
+  const activeIndexRef = useRef(initialIndex === -1 ? 0 : initialIndex);
 
   useEffect(() => {
     activeIndexRef.current = activeIndex;

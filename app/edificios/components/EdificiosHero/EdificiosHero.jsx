@@ -35,8 +35,9 @@ export default function EdificiosHero() {
               menor costo operativo.
             </p>
             <p className={styles.heroBody}>
-              Implementamos soluciones tecnológicas que mejoran la seguridad en espacios compartidos,
-              optimizando costos y brindando mayor control a los residentes.
+              Implementamos control de accesos, videovigilancia y monitoreo para halls, portones,
+              garajes y espacios comunes, optimizando costos y brindando más control a consorcios
+              y residentes.
             </p>
           </div>
 

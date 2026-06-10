@@ -28,9 +28,13 @@ export default function IndustriaHero() {
             <div className={styles.heroDivider} aria-hidden="true" />
             <p className={styles.heroLead}>
               <span className={styles.heroLeadLight}>
-                Diseñamos soluciones robustas y personalizadas para proteger activos, procesos y logística,
+                Diseñamos soluciones robustas y personalizadas para proteger activos, perímetros,
+                ingresos y logística,
               </span>
-              <span className={styles.heroLeadStrong}> garantizando la continuidad del negocio.</span>
+              <span className={styles.heroLeadStrong}>
+                {' '}
+                garantizando continuidad operativa y control en tiempo real.
+              </span>
             </p>
           </div>
 

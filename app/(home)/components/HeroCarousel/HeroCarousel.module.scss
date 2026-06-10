@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  width: min(1920px, 100%);
+  width: 100%;
   height: 800px;
   background: #00408c;
   overflow: hidden;
@@ -51,14 +51,18 @@
   position: absolute;
   top: 470px;
   left: 366px;
-  width: 944px;
-  height: 102px;
+  width: 1080px;
+  height: auto;
   line-height: 52px;
   letter-spacing: 0;
   color: #ffffff;
   font-size: 64px;
   margin: 0;
   z-index: 1;
+}
+
+.heroBreak {
+  display: block;
 }
 
 .heroTitleRegular {
@@ -131,7 +135,7 @@
   .heroTitle {
     top: 418px;
     left: 48px;
-    width: calc(100% - 96px);
+    width: min(1080px, calc(100% - 96px));
   }
 }
 
@@ -160,7 +164,7 @@
 
   .heroTitle {
     top: 372px;
-    width: min(820px, calc(100% - 96px));
+    width: min(960px, calc(100% - 96px));
   }
 }
 
@@ -238,6 +242,10 @@
     top: 286px;
     left: 20px;
     width: calc(100% - 40px);
+  }
+
+  .heroBreak {
+    display: none;
   }
 
   .heroGradient {

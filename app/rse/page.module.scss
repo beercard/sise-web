@@ -1,6 +1,8 @@
 .rse {
   background: #ffffff;
   --pad-x: 114px;
+  --hero-pad-x: 366px;
+  overflow-x: clip;
 }
 
 .hero {
@@ -28,12 +30,13 @@
 .heroCopy {
   position: absolute;
   z-index: 1;
-  top: 320px;
-  left: var(--pad-x);
+  top: 360px;
+  left: var(--hero-pad-x);
+  right: var(--hero-pad-x);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: min(774px, calc(100% - (var(--pad-x) * 2)));
+  width: min(774px, calc(100% - (var(--hero-pad-x) * 2)));
 }
 
 .heroTitle {
@@ -80,13 +83,15 @@
 
 .carouselShell {
   position: relative;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .cardsViewport {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(640px, 764px) minmax(180px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(640px, 764px) minmax(0, 1fr);
   align-items: center;
-  gap: 56px;
+  gap: 24px;
   overflow: hidden;
 }
 
@@ -174,25 +179,35 @@
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.08;
+  white-space: nowrap;
 }
 
 .previewSubtitle {
-  min-height: 49px;
+  min-height: 56px;
   margin: 20px 0 0;
-  padding: 6px 18px;
+  width: 100%;
+  padding: 8px 12px 10px;
   background: #00408c;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .initiativeSubtitleBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 22px;
   background: #00408c;
+  padding: 0 8px;
+  overflow: hidden;
 }
 
 .initiativeSubtitle {
-  min-height: 49px;
+  min-height: 58px;
   margin: 0;
+  max-width: 100%;
+  padding: 8px 8px 10px;
+  font-size: 25px;
 }
 
 .previewImageWrap,
@@ -415,6 +430,7 @@
 @media (max-width: 1500px) {
   .rse {
     --pad-x: 72px;
+    --hero-pad-x: 220px;
   }
 
   .hero {
@@ -422,8 +438,10 @@
   }
 
   .heroCopy {
-    top: 320px;
-    width: min(680px, calc(100% - 144px));
+    top: 312px;
+    left: var(--hero-pad-x);
+    right: var(--hero-pad-x);
+    width: min(680px, calc(100% - (var(--hero-pad-x) * 2)));
   }
 
   .heroTitle {
@@ -469,11 +487,11 @@
   }
 
   .previewSubtitle {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .initiativeSubtitle {
-    font-size: 28px;
+    font-size: 21px;
   }
 
   .previewExcerpt,
@@ -497,6 +515,7 @@
 @media (max-width: 1200px) {
   .rse {
     --pad-x: 40px;
+    --hero-pad-x: 96px;
   }
 
   .hero {
@@ -508,8 +527,10 @@
   }
 
   .heroCopy {
-    top: 276px;
-    width: min(560px, calc(100% - (var(--pad-x) * 2)));
+    top: 246px;
+    left: var(--hero-pad-x);
+    right: var(--hero-pad-x);
+    width: min(560px, calc(100% - (var(--hero-pad-x) * 2)));
   }
 
   .heroTitle {
@@ -613,6 +634,7 @@
     min-height: 44px;
     font-size: 18px;
     line-height: 20px;
+    white-space: normal;
   }
 
   .initiativeSubtitleBar {
@@ -661,7 +683,7 @@
   }
 
   .heroCopy {
-    top: 184px;
+    top: 172px;
   }
 
   .heroTitle {
@@ -714,7 +736,7 @@
   }
 
   .heroCopy {
-    top: 172px;
+    top: 160px;
     left: var(--pad-x);
     right: var(--pad-x);
     width: auto;
@@ -739,16 +761,18 @@
   }
 
   .initiativesInner {
-    padding: 0 16px;
+    padding: 0 24px;
   }
 
   .carouselShell {
-    padding-bottom: 64px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 8px 64px;
   }
 
   .initiativeCardActive {
     border-radius: 18px;
-    padding: 30px 18px 26px;
+    padding: 30px 20px 26px;
   }
 
   .initiativeTitle {
@@ -761,6 +785,7 @@
     min-height: 0;
     font-size: 16px;
     line-height: 18px;
+    white-space: normal;
   }
 
   .initiativeSubtitleBar {

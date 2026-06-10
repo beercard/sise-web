@@ -107,7 +107,7 @@
 .heroLead {
   margin: 41px 0 0;
   width: 578px;
-  height: 59px;
+  min-height: 59px;
   line-height: 30px;
   color: #ffffff;
   font-size: 32px;
@@ -117,7 +117,7 @@
 .heroBody {
   margin: 37px 0 0;
   width: 548px;
-  height: 127px;
+  min-height: 127px;
   line-height: 32px;
   color: #ffffff;
   font-size: 32px;

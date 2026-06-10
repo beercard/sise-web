@@ -427,8 +427,8 @@ export default function CiudadTechnologyModule() {
   return (
     <section className={styles.technology} aria-label="Tecnologías">
       <h2 className={styles.technologyTitle}>
-        <span className={styles.technologyTitleStrong}>Seguridad total </span>
-        <span className={styles.technologyTitleLight}>para tu negocio,</span>
+        <span className={styles.technologyTitleStrong}>Tecnología aplicada </span>
+        <span className={styles.technologyTitleLight}>a la seguridad urbana,</span>
         <br />
         <span className={styles.technologyTitleLight}>en todo momento</span>
       </h2>

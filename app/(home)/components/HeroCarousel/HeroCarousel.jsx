@@ -56,6 +56,7 @@ export default function HeroCarousel({ slides = defaultSlides, intervalMs = 5500
 
       <h1 className={styles.heroTitle}>
         <span className={styles.heroTitleRegular}>Soluciones en seguridad electrónica&nbsp;</span>
+        <br className={styles.heroBreak} />
         <span className={styles.heroTitleBold}>accesible, moderna y humana</span>
         <span className={styles.heroTitleRegular}>.</span>
       </h1>

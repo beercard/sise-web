@@ -2,13 +2,16 @@ import AgroHero from './components/AgroHero/AgroHero';
 import AgroTechnologyModule from './components/AgroTechnologyModule/AgroTechnologyModule';
 
 import Cotizador from '../components/Cotizador/Cotizador';
+import { buildPageMetadata } from '../lib/seo';
 
 import styles from './page.module.scss';
 
-export const metadata = {
-  title: 'SISE | Agro',
-  description: 'Soluciones de seguridad electrónica para el campo.'
-};
+export const metadata = buildPageMetadata({
+  title: 'Seguridad para el campo',
+  description:
+    'Seguridad electronica para el campo con monitoreo rural, videovigilancia, conectividad y control remoto de establecimientos agropecuarios.',
+  path: '/agro'
+});
 
 export default function AgroPage() {
   return (
@@ -21,4 +24,3 @@ export default function AgroPage() {
     </div>
   );
 }
-

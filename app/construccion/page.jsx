@@ -2,13 +2,16 @@ import ConstruccionHero from './components/ConstruccionHero/ConstruccionHero';
 import ConstruccionTechnologyModule from './components/ConstruccionTechnologyModule/ConstruccionTechnologyModule';
 
 import Cotizador from '../components/Cotizador/Cotizador';
+import { buildPageMetadata } from '../lib/seo';
 
 import styles from './page.module.scss';
 
-export const metadata = {
-  title: 'SISE | Construcción',
-  description: 'Soluciones de seguridad electrónica para construcción y obras.'
-};
+export const metadata = buildPageMetadata({
+  title: 'Seguridad para obras y construccion',
+  description:
+    'Seguridad electronica para obras y construccion con monitoreo, videovigilancia y control perimetral para proteger materiales, equipos y accesos.',
+  path: '/construccion'
+});
 
 export default function ConstruccionPage() {
   return (

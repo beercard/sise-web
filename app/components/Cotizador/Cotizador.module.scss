@@ -4,9 +4,37 @@
   flex-direction: column;
   align-items: center;
   background: var(--sise-gray);
-  margin-top: 28px;
+  margin-top: 0;
   box-sizing: border-box;
-  padding: 33px clamp(16px, 8vw, 240px) 64px;
+  padding: 67px clamp(16px, 26.8vw, 514px) 64px;
+}
+
+.header {
+  width: min(944px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  width: min(524px, 100%);
+  text-align: center;
+  line-height: 52px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 64px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 15px 0 0;
+  width: min(944px, 100%);
+  text-align: center;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: var(--sise-blue);
+  font-size: 32px;
 }
 
 .stepBox {
@@ -14,6 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 52px;
 }
 
 .kicker {
@@ -121,6 +150,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 52px;
 }
 
 .fields {
@@ -243,7 +273,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 126px 16px 134px;
+  padding: 96px 16px 134px;
 }
 
 .thanksTitle {
@@ -269,11 +299,27 @@
 
 @media (max-width: 600px) {
   .container {
-    margin-top: 16px;
     padding-top: 24px;
     padding-bottom: 40px;
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .title {
+    width: 100%;
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .subtitle {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .stepBox,
+  .formBox {
+    margin-top: 28px;
   }
 
   .option {

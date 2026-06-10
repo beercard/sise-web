@@ -26,10 +26,10 @@ export default function ConstruccionHero() {
           <div className={styles.heroText}>
             <p className={styles.heroSectionTitle}>CONSTRUCCIÓN Y OBRAS</p>
             <div className={styles.heroDivider} aria-hidden="true" />
-            <p className={styles.heroLead}>Protección desde el primer día</p>
+            <p className={styles.heroLead}>Seguridad activa para obras y obradores</p>
             <p className={styles.heroBody}>
-              Brindamos seguridad activa y monitoreo constante en obras, previniendo robos, vandalismo e intrusiones
-              durante todo el desarrollo.
+              Protegemos materiales, herramientas, maquinaria y accesos con videovigilancia,
+              monitoreo y control perimetral durante cada etapa del proyecto.
             </p>
           </div>
 

@@ -41,11 +41,12 @@ export default function ComercioHero() {
             <p className={styles.heroSectionTitle}>COMERCIOS</p>
             <div className={styles.heroDivider} aria-hidden="true" />
             <p className={styles.heroLead}>
-              En los comercios, la seguridad impacta directamente en el resultado del negocio.
+              En comercios y negocios, la seguridad impacta directo en la continuidad y la
+              rentabilidad.
             </p>
             <p className={styles.heroBody}>
-              En SISE ofrecemos soluciones orientadas a prevenir pérdidas, reducir riesgos y
-              garantizar la continuidad operativa.
+              Implementamos alarmas monitoreadas, cámaras y control de accesos para locales,
+              oficinas y depósitos, reduciendo riesgos en aperturas, cierres y operación diaria.
             </p>
             <p className={styles.heroPunch}>
               No se trata sólo de evitar robos,

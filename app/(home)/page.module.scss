@@ -15,7 +15,314 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
+  padding: 88px 0 0;
+}
+
+.seoIntro {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: clamp(34px, 5vw, 68px) 24px 0;
+}
+
+.seoIntroInner {
+  width: min(1120px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.seoIntroTitle {
+  margin: 0;
+  max-width: 900px;
+  color: var(--sise-blue);
+  font-size: clamp(34px, 4.2vw, 52px);
+  font-weight: 700;
+  line-height: clamp(38px, 4.5vw, 58px);
+  text-wrap: balance;
+}
+
+.seoIntroText {
+  margin: 0;
+  max-width: 980px;
+  color: var(--sise-blue);
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: clamp(28px, 2.3vw, 34px);
+  text-wrap: pretty;
+}
+
+.seoIntroText a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.authoritySection,
+.contextSection,
+.faqSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: clamp(40px, 6vw, 78px) 24px 0;
+}
+
+.authorityInner,
+.contextInner,
+.faqInner {
+  width: min(1120px, 100%);
+}
+
+.sectionHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sectionEyebrow {
+  margin: 0;
+  color: rgba(0, 64, 140, 0.72);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.sectionTitle {
+  margin: 0;
+  max-width: 920px;
+  color: var(--sise-blue);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  line-height: clamp(38px, 4.3vw, 58px);
+  text-wrap: balance;
+}
+
+.sectionText {
+  margin: 0;
+  max-width: 980px;
+  color: rgba(0, 64, 140, 0.88);
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: clamp(28px, 2.2vw, 34px);
+  text-wrap: pretty;
+}
+
+.sectionText a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.authorityGrid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.authorityCard {
+  min-height: 100%;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(0, 64, 140, 0.08) 0%, rgba(0, 64, 140, 0.02) 100%);
+  border: 1px solid rgba(0, 64, 140, 0.12);
+  padding: 28px 26px 30px;
+}
+
+.authorityCardEyebrow {
+  margin: 0;
+  color: var(--sise-blue);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.authorityCardTitle {
+  margin: 16px 0 0;
+  color: var(--sise-blue);
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 700;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.authorityCardText {
+  margin: 14px 0 0;
+  color: rgba(0, 64, 140, 0.88);
+  font-size: 18px;
+  line-height: 28px;
+  text-wrap: pretty;
+}
+
+.contextSection {
+  padding-bottom: 0;
+}
+
+.contextGrid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.contextCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100%;
+  border-radius: 24px;
+  background: var(--sise-blue);
+  padding: 28px 26px 30px;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contextCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px rgba(0, 64, 140, 0.16);
+}
+
+.contextCard:focus-visible {
+  outline: 2px solid var(--sise-blue);
+  outline-offset: 4px;
+}
+
+.contextCardTitle {
+  color: var(--sise-white);
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 700;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.contextCardText {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  line-height: 28px;
+  text-wrap: pretty;
+}
+
+.contextCardLink {
+  margin-top: auto;
+  color: var(--sise-white);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.faqSection {
+  padding-bottom: clamp(40px, 6vw, 78px);
+}
+
+.faqInner {
+  width: min(1188px, 100%);
+}
+
+.faqHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.faqTitle {
+  margin: 0;
+  width: min(944px, 100%);
+  color: var(--sise-blue);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.faqIntro {
+  margin: 0;
+  width: min(904px, 100%);
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.faqList {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faqItem {
+  min-height: 73px;
+  border-radius: 15px;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+
+.faqQuestion {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+  min-height: 73px;
+  padding: 23px 27px 18px 25px;
+  color: var(--sise-blue);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqQuestion::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 30px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='18' viewBox='0 0 30 18' fill='none'%3E%3Cpath d='M2 2L15 15L28 2' stroke='%2300408c' stroke-width='3.6' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px 18px;
+  transition: transform 0.2s ease;
+}
+
+.faqItem[open] .faqQuestion::after {
+  transform: rotate(180deg);
+}
+
+.faqItem[open] {
+  min-height: 142px;
+}
+
+.faqItem[open] .faqQuestion {
+  min-height: 72px;
+  padding-bottom: 8px;
+}
+
+.faqAnswer {
+  margin: 0;
+  width: min(1075px, calc(100% - 56px));
+  padding: 0 35px 23px 25px;
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-wrap: pretty;
 }
 
 .quoteTitle {
@@ -42,6 +349,60 @@
 }
 
 @media (max-width: 600px) {
+  .seoIntro {
+    padding: 28px 16px 0;
+  }
+
+  .seoIntroInner {
+    gap: 14px;
+  }
+
+  .seoIntroTitle {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .seoIntroText {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .authoritySection,
+  .contextSection,
+  .faqSection {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .sectionHeading {
+    gap: 12px;
+  }
+
+  .sectionEyebrow {
+    font-size: 13px;
+    letter-spacing: 1.3px;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .sectionText,
+  .authorityCardText,
+  .contextCardText,
+  .faqIntro,
+  .faqAnswer {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .faqTitle {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+
   .quoteTitle {
     margin-top: 28px;
     line-height: 36px;
@@ -52,6 +413,95 @@
     margin-top: 10px;
     line-height: 22px;
     font-size: 18px;
+  }
+}
+
+@media (max-width: 960px) {
+  .authorityGrid,
+  .contextGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .authorityCard,
+  .contextCard,
+  .faqItem {
+    border-radius: 22px;
+  }
+
+  .faqQuestion {
+    min-height: 70px;
+    padding: 20px 22px;
+    font-size: 26px;
+    line-height: 24px;
+  }
+
+  .faqItem[open] .faqQuestion {
+    padding-bottom: 8px;
+  }
+
+  .faqAnswer {
+    width: auto;
+    padding: 0 22px 22px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .authoritySection,
+  .contextSection,
+  .faqSection {
+    padding-top: 32px;
+  }
+
+  .authorityGrid,
+  .contextGrid,
+  .faqList {
+    margin-top: 22px;
+  }
+
+  .authorityCard,
+  .contextCard {
+    padding: 22px 18px 24px;
+  }
+
+  .faqHeader {
+    gap: 14px;
+  }
+
+  .faqTitle {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .faqIntro {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .faqItem {
+    border-radius: 15px;
+  }
+
+  .faqQuestion {
+    min-height: 64px;
+    padding: 17px 18px;
+    gap: 16px;
+    font-size: 22px;
+    line-height: 22px;
+  }
+
+  .faqQuestion::after {
+    width: 24px;
+    height: 14px;
+    background-size: 24px 14px;
+  }
+
+  .faqAnswer {
+    width: auto;
+    padding: 0 18px 18px;
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 

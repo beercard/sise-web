@@ -49,7 +49,7 @@ function buildSummary(answers) {
     .join('\n');
 }
 
-export default function Cotizador() {
+export default function Cotizador({ showHeader = false }) {
   const [step, setStep] = useState(STEP.PROPERTY_TYPE);
   const [answers, setAnswers] = useState(initialAnswers);
   const [submitting, setSubmitting] = useState(false);
@@ -119,7 +119,7 @@ export default function Cotizador() {
         multi: true
       },
       {
-        kicker: 'Tipo de contcto',
+        kicker: 'Tipo de contacto',
         question: '¿Cómo te gustaría que te contacten?',
         options: ['WhatsApp', 'Llamada', 'Mail'],
         onSelect: (value) => {
@@ -196,6 +196,13 @@ export default function Cotizador() {
   if (step === STEP.THANK_YOU) {
     return (
       <div className={styles.container} id="cotizador-online">
+        {showHeader ? (
+          <div className={styles.header}>
+            <h2 className={styles.title}>Cotizá tu alarma</h2>
+            <p className={styles.subtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
+          </div>
+        ) : null}
+
         <div className={styles.thanksBox}>
           <p className={styles.thanksTitle}>¡Muchas gracias!</p>
           <p className={styles.thanksText}>
@@ -212,6 +219,13 @@ export default function Cotizador() {
 
     return (
       <div className={styles.container} id="cotizador-online">
+        {showHeader ? (
+          <div className={styles.header}>
+            <h2 className={styles.title}>Cotizá tu alarma</h2>
+            <p className={styles.subtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
+          </div>
+        ) : null}
+
         <form className={styles.formBox} onSubmit={onSubmit} noValidate>
           <p className={styles.kicker}>Datos de contacto</p>
 
@@ -287,6 +301,13 @@ export default function Cotizador() {
 
   return (
     <div className={styles.container} id="cotizador-online">
+      {showHeader ? (
+        <div className={styles.header}>
+          <h2 className={styles.title}>Cotizá tu alarma</h2>
+          <p className={styles.subtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
+        </div>
+      ) : null}
+
       <div className={styles.stepBox}>
         <p className={styles.kicker}>{activeStep?.kicker}</p>
         <p className={styles.question}>{activeStep?.question}</p>
