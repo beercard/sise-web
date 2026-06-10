@@ -221,12 +221,25 @@
     padding-right: 24px;
   }
 
+  .inner {
+    align-items: center;
+  }
+
+  .header {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-right: 0;
+  }
+
   .title {
+    width: 100%;
     font-size: 40px;
     line-height: 40px;
   }
 
   .subtitle {
+    width: 100%;
     font-size: 20px;
     line-height: 28px;
   }
@@ -256,12 +269,34 @@
   .arrowButtonNext {
     align-self: center;
   }
+
+  .arrowButtonPrev {
+    grid-column: 1;
+  }
+
+  .arrowButtonNext {
+    grid-column: 3;
+  }
+
+  .arrowButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .arrowLeft,
+  .arrowRight {
+    background-size: 12px 18px;
+  }
 }
 
 @media (max-width: 600px) {
   .section {
     --content-start: 20px;
     padding: 28px 20px 0 var(--content-start);
+  }
+
+  .header {
+    gap: 8px;
   }
 
   .title {
@@ -303,6 +338,11 @@
   .carousel {
     grid-template-columns: 28px minmax(0, 1fr) 28px;
     gap: 8px;
+  }
+
+  .title,
+  .subtitle {
+    text-wrap: balance;
   }
 
   .arrowButton {
