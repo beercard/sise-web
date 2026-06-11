@@ -116,10 +116,12 @@
 
 .heroBody {
   margin: 32px 0 0;
-  width: 507px;
+  width: 407px;
   min-height: 44px;
   line-height: 20px;
   color: #ffffff;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
 }
 
@@ -258,20 +260,26 @@
 .heroCardTitle {
   margin: 0;
   width: var(--hero-card-content-width, 334px);
+  max-width: 100%;
   text-align: center;
   line-height: 32px;
   color: #06234c;
   font-size: 32px;
   font-weight: 600;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .heroCardText {
   margin: 14px 0 0;
   width: var(--hero-card-content-width, 334px);
+  max-width: 100%;
   text-align: center;
   line-height: 20px;
   color: #06234c;
   font-size: 20px;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -977,7 +985,7 @@
   }
 
   .heroCardBox {
-    padding: 32px 24px;
+    padding: 30px 18px;
   }
 
   .heroCardTitle,
@@ -1233,6 +1241,20 @@
     line-height: 26px;
   }
 
+  .heroCardBox {
+    padding: 22px 12px;
+  }
+
+  .heroCardTitle {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .heroCardText {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
   .techCardTitle {
     font-size: 28px;
     line-height: 28px;
@@ -1348,6 +1370,8 @@
   }
 
   .heroText {
+    width: 100%;
+    min-width: 0;
     align-items: center;
   }
 
@@ -1366,6 +1390,15 @@
   .heroPunch {
     font-size: 24px;
     line-height: 28px;
+  }
+
+  .heroSectionTitle,
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .heroCardTitle {
@@ -1428,6 +1461,14 @@
     padding: 28px 16px 36px;
   }
 
+  .heroCardStage {
+    width: min(460px, calc(100% - 40px));
+  }
+
+  .heroCardBox {
+    padding: 24px 14px;
+  }
+
   .heroCardTitle {
     font-size: 24px;
     line-height: 26px;
@@ -1444,12 +1485,24 @@
   height: auto;
 }
 
-/* Ritmo del bloque de texto del hero igual a /hogar (desktop). */
-.heroBody {
-  width: 524px;
+/* Ritmo del bloque de texto del hero igual a /hogar solo en desktop. */
+@media (min-width: 961px) {
+  .heroBody {
+    width: 524px;
+  }
+
+  .heroPunch {
+    margin: 38px 0 0;
+    width: 578px;
+  }
 }
 
-.heroPunch {
-  margin: 38px 0 0;
-  width: 578px;
+@media (max-width: 960px) {
+  .heroBody {
+    width: min(100%, 520px);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
 }

@@ -45,8 +45,7 @@ export default function ComercioHero() {
               rentabilidad.
             </p>
             <p className={styles.heroBody}>
-              Implementamos alarmas monitoreadas, cámaras y control de accesos para locales,
-              oficinas y depósitos, reduciendo riesgos en aperturas, cierres y operación diaria.
+              Implementamos alarmas monitoreadas, cámaras y control de accesos para locales, oficinas y depósitos, reduciendo riesgos en aperturas, cierres y operación diaria.
             </p>
             <p className={styles.heroPunch}>
               No se trata sólo de evitar robos,
