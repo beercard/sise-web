@@ -6,9 +6,9 @@ import Image from 'next/image';
 import styles from './HeroCarousel.module.scss';
 
 const defaultSlides = [
-  { src: '/image/mpr027zv-tyj9vj2.png', alt: '' },
-  { src: '/image/mpr027zv-tyj9vj2.png', alt: '' },
-  { src: '/image/mpr027zv-tyj9vj2.png', alt: '' }
+  { src: '/image/mpr027zv-tyj9vj2.webp', alt: '' },
+  { src: '/image/mpr027zv-tyj9vj2.webp', alt: '' },
+  { src: '/image/mpr027zv-tyj9vj2.webp', alt: '' }
 ];
 
 export default function HeroCarousel({ slides = defaultSlides, intervalMs = 5500 }) {
@@ -61,15 +61,14 @@ export default function HeroCarousel({ slides = defaultSlides, intervalMs = 5500
         <span className={styles.heroTitleRegular}>.</span>
       </h1>
 
-      <div className={styles.dots} role="tablist" aria-label="Cambiar slide">
+      <div className={styles.dots} role="group" aria-label="Cambiar slide">
         {safeSlides.map((_, index) => (
           <button
             key={index}
             type="button"
             className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ''}`}
             aria-label={`Slide ${index + 1}`}
-            aria-selected={index === activeIndex}
-            role="tab"
+            aria-current={index === activeIndex}
             onClick={() => setActiveIndex(index)}
           />
         ))}

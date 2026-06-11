@@ -48,7 +48,7 @@ export const metadata = {
     images: [
       {
         url: siteConfig.ogImage,
-        alt: `${siteConfig.name} - Seguridad electronica`
+        alt: `${siteConfig.name} - Seguridad electrónica`
       }
     ]
   },

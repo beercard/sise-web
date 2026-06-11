@@ -4,9 +4,9 @@ import { buildPageMetadata } from '../lib/seo';
 import styles from './page.module.scss';
 
 export const metadata = buildPageMetadata({
-  title: 'Contacto y atencion 24 horas',
+  title: 'Contacto y atención 24 horas',
   description:
-    'Contacta a SISE Argentina por telefono, WhatsApp o correo y recibe asesoramiento comercial y tecnico en seguridad electronica.',
+    'Contactá a SISE Argentina por teléfono, WhatsApp o correo y recibí asesoramiento comercial y técnico en seguridad electrónica.',
   path: '/contacto'
 });
 

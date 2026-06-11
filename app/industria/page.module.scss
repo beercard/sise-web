@@ -105,9 +105,9 @@
 }
 
 .heroLead {
-  margin: 62px 0 0;
-  width: 414px;
-  min-height: 158px;
+  margin: 36px 0 0;
+  width: 578px;
+  min-height: 59px;
   line-height: 30px;
   color: #ffffff;
   font-size: 32px;
@@ -122,7 +122,7 @@
 }
 
 .heroCard {
-  margin-top: 46px;
+  margin-top: 37px;
   width: 520px;
   min-width: 520px;
   height: 244px;
@@ -259,7 +259,7 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  padding-top: 72px;
+  padding-top: 86px;
   --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
@@ -376,15 +376,15 @@
 }
 
 .housePerimetral {
-  background-image: url('/image/mq03yfqa-dzg7p10.png');
+  background-image: url('/image/mq03yfqa-dzg7p10.webp');
 }
 
 .houseInterior {
-  background-image: url('/image/mq03yfqa-dzg7p10.png');
+  background-image: url('/image/mq03yfqa-dzg7p10.webp');
 }
 
 .houseConectividad {
-  background-image: url('/image/mq03yufr-wn4uxrc.png');
+  background-image: url('/image/mq03yufr-wn4uxrc.webp');
 }
 
 .pointButton {
@@ -1175,5 +1175,195 @@
   .techCardViewport,
   .techCard {
     height: 366px;
+  }
+}
+
+
+/* ── Armonización con la referencia de /hogar (posición + tipografía) ────
+   Replica la escalera responsive del hero de hogar: altura del media,
+   anclaje del kicker/título y disposición del bloque inferior con el
+   carrusel. Va al final del archivo para ganar la cascada. */
+.heroMedia {
+  height: 800px;
+}
+
+.heroKicker {
+  top: 360px;
+  left: var(--hero-content-left);
+}
+
+.heroTitle {
+  top: 440px;
+  left: var(--hero-content-left);
+  width: min(700px, calc(100% - (var(--hero-content-left) * 2)));
+  height: auto;
+}
+
+.heroBottomInner {
+  padding: 77px var(--hero-pad-x) 98px;
+}
+
+@media (max-width: 1366px) {
+  .heroMedia {
+    height: 720px;
+  }
+
+  .heroKicker {
+    top: 312px;
+  }
+
+  .heroTitle {
+    top: 392px;
+    width: min(620px, calc(100% - (var(--hero-content-left) * 2)));
+    font-size: 56px;
+    line-height: 48px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .heroMedia {
+    height: 660px;
+  }
+
+  .heroKicker {
+    top: 286px;
+    width: 374px;
+    height: auto;
+  }
+
+  .heroTitle {
+    top: 356px;
+    width: min(560px, calc(100% - 64px));
+    font-size: 50px;
+    line-height: 44px;
+  }
+
+  .heroBottomInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-top: 48px;
+    padding-bottom: 56px;
+    height: auto;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroMedia {
+    height: 640px;
+  }
+
+  .heroKicker {
+    left: 16px;
+    top: 320px;
+    width: min(348px, calc(100% - 32px));
+    height: auto;
+  }
+
+  .heroTitle {
+    left: 16px;
+    top: 386px;
+    width: calc(100% - 32px);
+    font-size: 44px;
+    line-height: 44px;
+  }
+
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .heroText {
+    align-items: center;
+  }
+
+  .heroLead {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .heroBody {
+    margin-top: 20px;
+    min-height: 0;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .heroPunch {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .heroCardTitle {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .heroCardText {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .heroBottomInner {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 32px 16px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroMedia {
+    height: 580px;
+  }
+
+  .heroKicker {
+    top: 280px;
+  }
+
+  .heroTitle {
+    top: 346px;
+    font-size: 36px;
+    line-height: 34px;
+  }
+
+  .heroLead,
+  .heroPunch {
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroMedia {
+    height: 520px;
+  }
+
+  .heroKicker {
+    top: 240px;
+    width: min(300px, calc(100% - 32px));
+  }
+
+  .heroTitle {
+    top: 300px;
+    font-size: 32px;
+    line-height: 30px;
+  }
+
+  .heroBottomInner {
+    padding: 28px 16px 36px;
+  }
+
+  .heroCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .heroCardText {
+    font-size: 15px;
+    line-height: 19px;
   }
 }

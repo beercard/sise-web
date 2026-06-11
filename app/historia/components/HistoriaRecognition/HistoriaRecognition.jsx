@@ -32,7 +32,7 @@ export default function HistoriaRecognition() {
 
         <article className={styles.recognitionCardWide}>
           <Image
-            src="/image/mq2q87jo-3o2yg7o.png"
+            src="/image/mq2q87jo-3o2yg7o.webp"
             alt="CASEL"
             width={529}
             height={245}

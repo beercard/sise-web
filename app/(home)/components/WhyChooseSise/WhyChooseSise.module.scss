@@ -1,3 +1,8 @@
+.section,
+.section * {
+  box-sizing: border-box;
+}
+
 .section {
   width: 100%;
   background: var(--sise-blue);
@@ -45,6 +50,11 @@
   width: 332px;
   min-height: 302px;
   position: relative;
+  overflow: hidden;
+}
+
+.cardExpanded {
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.14);
 }
 
 .card {
@@ -70,6 +80,15 @@
   justify-content: center;
 }
 
+.cardFront {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  flex: 1;
+}
+
 .cardIcon {
   width: 63px;
   height: 55px;
@@ -80,6 +99,7 @@
   width: 194px;
   min-height: 54px;
   text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   line-height: 26px;
   letter-spacing: 0;
   color: var(--sise-blue);
@@ -92,10 +112,12 @@
   width: 283px;
   min-height: 60px;
   text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   line-height: 20px;
   letter-spacing: 0;
   color: #000000;
   font-size: 20px;
+  font-weight: 400;
 }
 
 .cardIconAlt {
@@ -109,6 +131,7 @@
   width: 257px;
   min-height: 54px;
   text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   line-height: 26px;
   letter-spacing: 0;
   color: var(--sise-blue);
@@ -121,10 +144,12 @@
   width: 202px;
   min-height: 60px;
   text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   line-height: 20px;
   letter-spacing: 0;
   color: #000000;
   font-size: 20px;
+  font-weight: 400;
 }
 
 .cardIconAlt2 {
@@ -138,6 +163,7 @@
   width: 265px;
   min-height: 54px;
   text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   line-height: 26px;
   letter-spacing: 0;
   color: var(--sise-blue);
@@ -150,10 +176,12 @@
   width: 275px;
   min-height: 60px;
   text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   line-height: 20px;
   letter-spacing: 0;
   color: #000000;
   font-size: 20px;
+  font-weight: 400;
 }
 
 .cardText strong,
@@ -166,7 +194,7 @@
   margin: auto auto 0;
   margin-top: 20px;
   width: 78px;
-  min-height: 20px;
+  height: 20px;
   border: 0;
   background: var(--sise-blue);
   color: var(--sise-white);
@@ -175,7 +203,10 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0;
-  padding: 2px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3px 0 0;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -191,97 +222,116 @@
   outline-offset: 4px;
 }
 
-.modalOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  background: rgba(0, 0, 0, 0.42);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 24px 16px;
-  overflow-y: auto;
-}
-
 .modalPanel,
 .modalPanelAlt,
 .modalPanelAlt2 {
-  position: relative;
-  width: min(392px, 100%);
-  margin: auto 0;
-}
-
-.modalSurface,
-.modalSurfaceAlt,
-.modalSurfaceAlt2 {
-  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   border-radius: 10px;
   background: #0857b5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 46px 30px 32px;
-  max-height: calc(100vh - 72px);
-  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.24s ease, transform 0.24s ease;
+  transform: translateY(8px);
+}
+
+.cardRevealActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .modalPanel {
-  min-height: 338px;
+  padding: 61px 54px 23px;
 }
 
-.modalPanelAlt,
+.modalPanelAlt {
+  padding: 60px 50px 23px;
+}
+
 .modalPanelAlt2 {
-  min-height: 336px;
+  padding: 60px 55px 23px 54px;
 }
 
 .modalText {
   margin: 0;
+  width: 244px;
+  min-height: 163px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   color: #ffffff;
   text-align: center;
   font-size: 20px;
   line-height: 20px;
   letter-spacing: 0;
+  font-weight: 300;
 }
 
-.modalText strong {
+.modalTextAlt {
+  margin: 0;
+  width: 242px;
+  min-height: 156px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-weight: 300;
+}
+
+.modalTextAlt2 {
+  margin: 0;
+  width: 244px;
+  min-height: 163px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-weight: 300;
+}
+
+.modalText strong,
+.modalTextAlt strong,
+.modalTextAlt2 strong {
   font-weight: 600;
 }
 
-.modalCloseOuter {
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 34px;
-  height: 34px;
-  border: 0;
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--sise-blue);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.revealLine {
+  display: block;
 }
 
-.modalCloseOuter:hover {
-  transform: scale(1.04);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+.modalPanel .closeButton,
+.modalPanelAlt2 .closeButton {
+  margin-top: 35px;
 }
 
-.modalCloseOuter:focus-visible {
-  outline: 2px solid var(--sise-white);
-  outline-offset: 4px;
+.modalPanelAlt .closeButton {
+  margin-top: 42px;
+}
+
+.modalPanel .closeButton,
+.modalPanelAlt .closeButton,
+.modalPanelAlt2 .closeButton {
+  margin-left: 73px;
+  margin-right: 73px;
+}
+
+.modalPanelAlt .closeButton {
+  margin-left: 77px;
+  margin-right: 77px;
 }
 
 .closeButton {
-  margin-top: 18px;
   width: 78px;
-  min-height: 20px;
+  height: 20px;
   border: 0;
   background: #ffffff;
   color: var(--sise-blue);
@@ -290,7 +340,10 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0;
-  padding: 2px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3px 0 0;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -603,34 +656,28 @@
     font-size: 18px;
   }
 
-  .modalOverlay {
-    padding: 20px 16px;
-  }
-
   .modalPanel,
   .modalPanelAlt,
   .modalPanelAlt2 {
-    width: min(420px, 100%);
+    width: 100%;
+    padding: 34px 20px 22px;
   }
 
-  .modalSurface,
-  .modalSurfaceAlt,
-  .modalSurfaceAlt2 {
-    padding: 36px 20px 24px;
-    max-height: calc(100vh - 56px);
-  }
-
-  .modalText {
+  .modalText,
+  .modalTextAlt,
+  .modalTextAlt2 {
+    width: 100%;
+    min-height: auto;
     font-size: 18px;
     line-height: 22px;
   }
 
-  .modalCloseOuter {
-    top: -10px;
-    right: -2px;
-    width: 30px;
-    height: 30px;
-    font-size: 22px;
+  .modalPanel .closeButton,
+  .modalPanelAlt .closeButton,
+  .modalPanelAlt2 .closeButton {
+    margin-top: 24px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .categoriesMobile {

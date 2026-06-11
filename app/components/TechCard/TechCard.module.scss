@@ -1,0 +1,175 @@
+/*
+ * Tarjeta unificada del módulo "technology" (mapa + tabs) de todas las
+ * verticales. Estructura fija: título / texto / arte. El arte ocupa el
+ * espacio restante y la imagen se contiene dentro (object-fit), por lo que
+ * nunca puede pisar al texto en ningún breakpoint.
+ */
+.card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #d9d9d9;
+  padding: 32px 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  width: 100%;
+  max-width: 330px;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00408c;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 34px;
+  text-wrap: balance;
+}
+
+.text {
+  margin: 10px 0 0;
+  width: 100%;
+  max-width: 340px;
+  color: #00408c;
+  font-size: 19px;
+  line-height: 23px;
+  text-wrap: pretty;
+}
+
+.artStage {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artImage {
+  width: auto;
+  height: auto;
+  max-width: min(100%, 230px);
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Composiciones con imagen de fondo (sirena, conectividad, gps) */
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frameBg {
+  position: absolute;
+  inset: 0;
+  background: var(--frame-bg) center / contain no-repeat;
+}
+
+.frameBadge {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  max-width: 40%;
+}
+
+/* Detrás del fondo: asoma por la ventana transparente del marco. */
+.frameOverlay {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  max-width: 52%;
+  max-height: 58%;
+  object-fit: contain;
+}
+
+@media (max-width: 960px) {
+  .card {
+    padding: 26px 28px 20px;
+  }
+
+  .title {
+    min-height: 60px;
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .text {
+    font-size: 17px;
+    line-height: 21px;
+  }
+
+  .artStage {
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 18px 16px;
+  }
+
+  .title {
+    min-height: 52px;
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .text {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .artStage {
+    margin-top: 10px;
+  }
+
+  .artImage,
+  .frame {
+    max-width: min(100%, 190px);
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    padding: 16px 14px 14px;
+  }
+
+  .title {
+    min-height: 46px;
+    font-size: 21px;
+    line-height: 23px;
+  }
+
+  .text {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .artImage,
+  .frame {
+    max-width: min(100%, 165px);
+  }
+}

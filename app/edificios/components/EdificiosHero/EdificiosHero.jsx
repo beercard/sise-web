@@ -10,7 +10,7 @@ export default function EdificiosHero() {
   return (
     <section className={styles.hero} aria-label="SISE Urbano - Edificios y Consorcios">
       <div className={styles.heroMedia}>
-        <Image src="/image/mq077jvc-gz2p9c8.png" alt="" className={styles.heroImage} fill priority sizes="100vw" />
+        <Image src="/image/mq077jvc-gz2p9c8.webp" alt="" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <Image src="/image/mq077jvc-gg9xdtl.png" alt="SISE Urbano" className={styles.heroKicker} width={352} height={63} priority />

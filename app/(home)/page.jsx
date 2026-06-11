@@ -14,19 +14,19 @@ import WhyChooseSise from './components/WhyChooseSise/WhyChooseSise';
 import styles from './page.module.scss';
 
 export const metadata = buildPageMetadata({
-  title: 'Soluciones de seguridad electronica para hogares, empresas y ciudades',
+  title: 'Soluciones de seguridad electrónica para hogares, empresas y ciudades',
   description:
-    'Alarmas monitoreadas, camaras, videovigilancia, control de accesos y monitoreo 24/7 para hogares, empresas, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.',
+    'Alarmas monitoreadas, cámaras, videovigilancia, control de accesos y monitoreo 24/7 para hogares, empresas, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.',
   path: '/',
   keywords: [
     'alarmas monitoreadas',
-    'seguridad electronica',
-    'camaras de seguridad',
+    'seguridad electrónica',
+    'cámaras de seguridad',
     'control de accesos',
     'monitoreo 24/7',
-    'seguridad electronica en el NEA',
+    'seguridad electrónica en el NEA',
     'alarmas en Resistencia',
-    'seguridad electronica en Chaco'
+    'seguridad electrónica en Chaco'
   ]
 });
 
@@ -63,16 +63,16 @@ const homeStructuredData = {
   '@graph': [
     buildWebPageSchema({
       path: '/',
-      title: 'Soluciones de seguridad electronica para hogares, empresas y ciudades',
+      title: 'Soluciones de seguridad electrónica para hogares, empresas y ciudades',
       description:
-        'Alarmas monitoreadas, camaras, videovigilancia, control de accesos y monitoreo 24/7 para hogares, empresas, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.'
+        'Alarmas monitoreadas, cámaras, videovigilancia, control de accesos y monitoreo 24/7 para hogares, empresas, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.'
     }),
     buildServiceSchema({
       path: '/',
-      name: 'Seguridad electronica integral SISE Argentina',
+      name: 'Seguridad electrónica integral SISE Argentina',
       description:
-        'Soluciones integrales de alarmas monitoreadas, camaras, videovigilancia y control de accesos para hogares, empresas, edificios, campo y ciudades en todo el NEA.',
-      serviceType: 'Seguridad electronica y monitoreo',
+        'Soluciones integrales de alarmas monitoreadas, cámaras, videovigilancia y control de accesos para hogares, empresas, edificios, campo y ciudades en todo el NEA.',
+      serviceType: 'Seguridad electrónica y monitoreo',
       audience: 'Hogares, empresas y organismos',
       areaServed: buildLocalAreas()
     }),
@@ -85,7 +85,7 @@ const homeStructuredData = {
 
 export default function HomePage() {
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeStructuredData) }}
@@ -122,6 +122,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

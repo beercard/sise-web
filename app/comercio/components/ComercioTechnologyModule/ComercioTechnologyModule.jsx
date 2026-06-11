@@ -1,54 +1,40 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+import {
+  getDirection,
+  useAreaScale,
+  useSlideTransition,
+  useTechEditor
+} from '../../../lib/hooks';
+
+import TechCard from '../../../components/TechCard/TechCard';
 
 import styles from '../../page.module.scss';
 
-const ANIMATION_MS = 420;
 const STORAGE_KEY = 'sise-comercio-tech-editor-v1';
-const POINT_SIZE = 28;
 
-const DEFAULT_EDITOR_CONFIG = {
-  positions: {
-    perimetral: {
-      camaras: { top: 196, left: 670 },
-      magneticos: { top: 344, left: 524 },
-      cartel: { top: 271, left: 662 },
-      sirena: { top: 234, left: 664 }
-    },
-    interior: {
-      sensor: { top: 98, left: 206 },
-      teclado: { top: 214, left: 219 },
-      mando: { top: 231, left: 123 },
-      central: { top: 172, left: 218 },
-      humo: { top: 88, left: 458 },
-      acceso: { top: 171, left: 513 },
-      camara: { top: 50, left: 354 }
-    },
-    conectividad: {
-      app: { top: 231, left: 126 }
-    }
+const DEFAULT_POSITIONS = {
+  perimetral: {
+    camaras: { top: 196, left: 670 },
+    magneticos: { top: 344, left: 524 },
+    cartel: { top: 271, left: 662 },
+    sirena: { top: 234, left: 664 }
   },
-  mapping: {}
-};
-
-const mergePositions = (base, override) => {
-  const next = { ...base };
-  if (!override) return next;
-  Object.keys(override).forEach((tabId) => {
-    next[tabId] = { ...(base?.[tabId] ?? {}), ...(override?.[tabId] ?? {}) };
-  });
-  return next;
-};
-
-const mergeMapping = (base, override) => {
-  const next = { ...base };
-  if (!override) return next;
-  Object.keys(override).forEach((tabId) => {
-    next[tabId] = { ...(base?.[tabId] ?? {}), ...(override?.[tabId] ?? {}) };
-  });
-  return next;
+  interior: {
+    sensor: { top: 98, left: 206 },
+    teclado: { top: 214, left: 219 },
+    mando: { top: 231, left: 123 },
+    central: { top: 172, left: 218 },
+    humo: { top: 88, left: 458 },
+    acceso: { top: 171, left: 513 },
+    camara: { top: 50, left: 354 }
+  },
+  conectividad: {
+    app: { top: 231, left: 126 }
+  }
 };
 
 const TAB_IDS = {
@@ -57,19 +43,13 @@ const TAB_IDS = {
   CONECTIVIDAD: 'conectividad'
 };
 
+const HOUSE_BASE_SIZES = {
+  perimetral: { width: 735, height: 527 },
+  interior: { width: 735, height: 511 },
+  conectividad: { width: 735, height: 511 }
+};
+
 export default function ComercioTechnologyModule() {
-  const [isEditMode] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    try {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('edit') === '1';
-    } catch {
-      return false;
-    }
-  });
-
-  const [viewportWidth, setViewportWidth] = useState(() => (typeof window === 'undefined' ? 0 : window.innerWidth));
-
   const tabs = useMemo(
     () => [
       {
@@ -133,7 +113,7 @@ export default function ComercioTechnologyModule() {
             },
             art: {
               type: 'sirena',
-              backgroundSrc: '/image/mpvxw8ti-vltd01s.png',
+              backgroundSrc: '/image/mpvxw8ti-vltd01s.webp',
               svgSrc: '/image/mpvxw8th-x7vq0vb.svg'
             }
           }
@@ -177,7 +157,7 @@ export default function ComercioTechnologyModule() {
             },
             art: {
               type: 'absolute',
-              src: '/image/mpvxxyfe-psjzek1.png',
+              src: '/image/mpvxxyfe-psjzek1.webp',
               width: 201,
               height: 188,
               top: 157,
@@ -279,7 +259,7 @@ export default function ComercioTechnologyModule() {
             },
             art: {
               type: 'connectivity',
-              backgroundSrc: '/image/mpvy051r-8qcdbbi.png',
+              backgroundSrc: '/image/mpvy051r-8qcdbbi.webp',
               wrapperWidth: 183,
               wrapperHeight: 158,
               wrapperMarginTop: 74,
@@ -293,110 +273,11 @@ export default function ComercioTechnologyModule() {
     []
   );
 
-  const HOUSE_BASE_SIZES = useMemo(
-    () => ({
-      perimetral: { width: 735, height: 527 },
-      interior: { width: 735, height: 511 },
-      conectividad: { width: 735, height: 511 }
-    }),
-    []
-  );
-
-  const getHouseScale = useCallback(
-    (tabId, houseEl) => {
-      const base = HOUSE_BASE_SIZES[tabId];
-      if (!base || !houseEl) return { x: 1, y: 1 };
-      const scaleX = houseEl.clientWidth / base.width;
-      const scaleY = houseEl.clientHeight / base.height;
-      return {
-        x: Number.isFinite(scaleX) && scaleX > 0 ? scaleX : 1,
-        y: Number.isFinite(scaleY) && scaleY > 0 ? scaleY : 1
-      };
-    },
-    [HOUSE_BASE_SIZES]
-  );
-
-  const getDirection = (currentIndex, nextIndex) => {
-    if (nextIndex === currentIndex) return 'next';
-    return nextIndex > currentIndex ? 'next' : 'prev';
-  };
-
   const [activeTabId, setActiveTabId] = useState(TAB_IDS.PERIMETRAL);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [activePointId, setActivePointId] = useState(() => tabs[0]?.points?.[0]?.id ?? null);
-  const [previousIndex, setPreviousIndex] = useState(null);
-  const [direction, setDirection] = useState('next');
   const [tabNonce, setTabNonce] = useState(0);
-  const [pointPositions, setPointPositions] = useState(() => {
-    if (typeof window === 'undefined') return DEFAULT_EDITOR_CONFIG.positions;
-    if (!isEditMode) return DEFAULT_EDITOR_CONFIG.positions;
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (!raw) return DEFAULT_EDITOR_CONFIG.positions;
-      const parsed = JSON.parse(raw);
-      return mergePositions(DEFAULT_EDITOR_CONFIG.positions, parsed?.positions);
-    } catch {
-      return DEFAULT_EDITOR_CONFIG.positions;
-    }
-  });
-  const [pointToSlide, setPointToSlide] = useState(() => {
-    if (typeof window === 'undefined') return DEFAULT_EDITOR_CONFIG.mapping;
-    if (!isEditMode) return DEFAULT_EDITOR_CONFIG.mapping;
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (!raw) return DEFAULT_EDITOR_CONFIG.mapping;
-      const parsed = JSON.parse(raw);
-      return mergeMapping(DEFAULT_EDITOR_CONFIG.mapping, parsed?.mapping);
-    } catch {
-      return DEFAULT_EDITOR_CONFIG.mapping;
-    }
-  });
-  const [houseScale, setHouseScale] = useState({ x: 1, y: 1 });
 
-  const activeIndexRef = useRef(activeIndex);
-  const animTimeoutRef = useRef(null);
   const houseRef = useRef(null);
-  const pointRefs = useRef({});
-  const dragRef = useRef(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const onResize = () => setViewportWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  useEffect(() => {
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-
-    const update = () => setHouseScale(getHouseScale(activeTabId, houseEl));
-    const raf = window.requestAnimationFrame(update);
-
-    let resizeObserver;
-    if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(update);
-      resizeObserver.observe(houseEl);
-    }
-
-    window.addEventListener('resize', update);
-
-    return () => {
-      window.removeEventListener('resize', update);
-      window.cancelAnimationFrame(raf);
-      if (resizeObserver) resizeObserver.disconnect();
-    };
-  }, [activeTabId, getHouseScale]);
-
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  useEffect(() => {
-    return () => {
-      if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-    };
-  }, []);
 
   const activeTab = useMemo(
     () => tabs.find((tab) => tab.id === activeTabId) ?? tabs[0],
@@ -405,6 +286,22 @@ export default function ComercioTechnologyModule() {
 
   const slides = activeTab.slides;
   const points = activeTab.points;
+
+  const {
+    activeIndex,
+    previousIndex,
+    direction,
+    isAnimating,
+    activeIndexRef,
+    startTransition,
+    resetTo
+  } = useSlideTransition({ length: slides.length });
+
+  const { scale: houseScale, getScale } = useAreaScale({
+    baseSizes: HOUSE_BASE_SIZES,
+    activeAreaId: activeTabId,
+    areaRef: houseRef
+  });
 
   const defaultPointToSlide = useMemo(() => {
     return tabs.reduce((acc, tab) => {
@@ -415,6 +312,28 @@ export default function ComercioTechnologyModule() {
       return acc;
     }, {});
   }, [tabs]);
+
+  const {
+    isEditMode,
+    pointToSlide,
+    positionsForArea: positionsForTab,
+    pointRefs,
+    handlePointPointerDown,
+    handlePointPointerMove,
+    handlePointPointerUp,
+    handleMappingChange,
+    handleCopyEditorConfig,
+    handleResetEditorConfig
+  } = useTechEditor({
+    storageKey: STORAGE_KEY,
+    defaultPositions: DEFAULT_POSITIONS,
+    defaultMapping: defaultPointToSlide,
+    activeAreaId: activeTabId,
+    points,
+    areaRef: houseRef,
+    getScale,
+    onPointGrabbed: setActivePointId
+  });
 
   const mappingForTab = useMemo(
     () => pointToSlide[activeTabId] ?? defaultPointToSlide[activeTabId] ?? {},
@@ -429,29 +348,13 @@ export default function ComercioTechnologyModule() {
     return reverse;
   }, [mappingForTab]);
 
-  const startTransition = useCallback((nextIndex, nextDirection) => {
-    const currentIndex = activeIndexRef.current;
-    if (nextIndex === currentIndex) return;
-
-    if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-
-    setDirection(nextDirection);
-    setPreviousIndex(currentIndex);
-    setActiveIndex(nextIndex);
-
-    animTimeoutRef.current = window.setTimeout(() => {
-      setPreviousIndex(null);
-      animTimeoutRef.current = null;
-    }, ANIMATION_MS);
-  }, []);
-
   useEffect(() => {
     if (!activePointId) return;
     const mapped = mappingForTab[activePointId];
     if (mapped == null) return;
     if (mapped === activeIndexRef.current) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
-  }, [activePointId, mappingForTab, startTransition]);
+  }, [activePointId, activeIndexRef, mappingForTab, startTransition]);
 
   const handleSelectPoint = (pointId) => {
     setActivePointId(pointId);
@@ -478,12 +381,8 @@ export default function ComercioTechnologyModule() {
 
   const handleTabChange = (tabId) => {
     if (tabId === activeTabId) return;
-    if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-
     setActiveTabId(tabId);
-    setPreviousIndex(null);
-    setActiveIndex(0);
-    setDirection('next');
+    resetTo(0);
     setTabNonce((nonce) => nonce + 1);
     const firstPoint = tabs.find((tab) => tab.id === tabId)?.points?.[0];
     setActivePointId(firstPoint?.id ?? null);
@@ -491,7 +390,6 @@ export default function ComercioTechnologyModule() {
 
   const currentSlide = slides[activeIndex];
   const previousSlide = previousIndex === null ? null : slides[previousIndex];
-  const isAnimating = previousIndex !== null;
 
   const getCardClassName = (phase) => {
     if (phase === 'active') {
@@ -502,273 +400,9 @@ export default function ComercioTechnologyModule() {
     return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
   };
 
-  const renderSlideContent = (slide, extraClassName) => {
-    if (!slide) return null;
-
-    const isMobile = viewportWidth > 0 && viewportWidth <= 480;
-    const isNarrowMobile = viewportWidth > 0 && viewportWidth <= 360;
-    const style = slide.styleVars ? { ...slide.styleVars } : {};
-
-    if (isMobile) {
-      style['--tech-card-padding'] = '26px 24px 22px';
-      style['--tech-card-align-items'] = 'center';
-      style['--tech-card-title-width'] = '100%';
-      style['--tech-card-title-height'] = 'auto';
-      style['--tech-card-title-min-height'] = '0px';
-      style['--tech-card-text-width'] = '100%';
-      style['--tech-card-text-margin'] = '16px 0 0';
-      style['--tech-card-image-width'] = isNarrowMobile ? '180px' : '200px';
-      style['--tech-card-image-height'] = 'auto';
-      style['--tech-card-image-margin-top'] = '18px';
-      style['--tech-card-sirena-margin-top'] = '12px';
-      style['--tech-card-text-align'] = 'center';
-      style['--tech-card-title-align'] = 'center';
-      style['--tech-card-image-scale'] = '0.95';
-    }
-
-    const shouldRenderMainText = isMobile
-      ? slide.art?.type !== 'overlay'
-      : slide.art?.type !== 'overlay' && slide.art?.type !== 'connectivity';
-    const artScale = isNarrowMobile ? 0.74 : isMobile ? 0.82 : 1;
-
-    return (
-      <div className={`${styles.techCard} ${extraClassName}`} style={style}>
-        <p className={styles.techCardTitle}>{slide.title}</p>
-        {shouldRenderMainText ? <p className={styles.techCardText}>{slide.text}</p> : null}
-        {slide.art?.type === 'image' ? (
-          <div className={styles.techCardImageWrap}>
-            <Image src={slide.art.src} alt="" className={styles.techCardImage} width={slide.art.width} height={slide.art.height} />
-          </div>
-        ) : null}
-        {slide.art?.type === 'absolute' ? (
-          isMobile ? (
-            <div className={styles.techCardImageWrap}>
-              <Image
-                src={slide.art.src}
-                alt=""
-                className={styles.techCardImage}
-                width={slide.art.width}
-                height={slide.art.height}
-                style={{ transform: `rotate(${slide.art.rotate}deg) scale(var(--tech-card-image-scale, 0.92))` }}
-              />
-            </div>
-          ) : (
-            <Image
-              src={slide.art.src}
-              alt=""
-              className={styles.techCardAbsoluteImage}
-              width={slide.art.width}
-              height={slide.art.height}
-              style={{
-                top: `${slide.art.top}px`,
-                left: `${slide.art.left}px`,
-                transform: `rotate(${slide.art.rotate}deg)`
-              }}
-            />
-          )
-        ) : null}
-        {slide.art?.type === 'overlay' ? (
-          <div
-            className={styles.techCardOverlay}
-            style={{
-              width: `${slide.art.wrapperWidth}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            <p
-              className={styles.techCardOverlayText}
-              style={{
-                top: `${slide.art.text.top}px`,
-                right: `${slide.art.text.right}px`,
-                width: `${slide.art.text.width}px`
-              }}
-            >
-              {slide.text}
-            </p>
-            <Image src={slide.art.image.src} alt="" className={styles.techCardOverlayImage} width={slide.art.image.width} height={slide.art.image.height} />
-          </div>
-        ) : null}
-        {slide.art?.type === 'sirena' ? (
-          <div className={styles.techCardSirenaFrame} style={{ '--sirena-bg': `url('${slide.art.backgroundSrc}')` }}>
-            <Image src={slide.art.svgSrc} alt="" width={69} height={24} className={styles.techCardSirenaSvg} />
-          </div>
-        ) : null}
-        {slide.art?.type === 'connectivity' ? (
-          <div
-            className={styles.techCardConnectivityWrap}
-            style={{
-              width: `${slide.art.wrapperWidth}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: isMobile ? '32px' : slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            {!isMobile ? (
-              <p
-                className={styles.techCardConnectivityText}
-                style={{
-                  top: `${slide.art.text.top}px`,
-                  right: `${slide.art.text.right}px`,
-                  width: `${slide.art.text.width}px`
-                }}
-              >
-                {slide.text}
-              </p>
-            ) : null}
-            <div className={styles.techCardConnectivityImage} style={{ '--connectivity-bg': `url('${slide.art.backgroundSrc}')` }} aria-hidden="true">
-              <div className={styles.techCardConnectivityBar} />
-            </div>
-          </div>
-        ) : null}
-      </div>
-    );
-  };
-
-  const positionsForTab = useMemo(() => {
-    return mergePositions(DEFAULT_EDITOR_CONFIG.positions, pointPositions)[activeTabId] ?? {};
-  }, [activeTabId, pointPositions]);
-
-  useEffect(() => {
-    if (!isEditMode) return;
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-
-    const missing = points.filter((point) => !(pointPositions[activeTabId] ?? {})[point.id]);
-    if (missing.length === 0) return;
-
-    const raf = window.requestAnimationFrame(() => {
-      const houseRect = houseEl.getBoundingClientRect();
-      const scale = getHouseScale(activeTabId, houseEl);
-      const measured = missing.reduce((acc, point) => {
-        const el = pointRefs.current[point.id];
-        if (!el) return acc;
-        const rect = el.getBoundingClientRect();
-        acc[point.id] = {
-          top: Math.round((rect.top - houseRect.top) / scale.y),
-          left: Math.round((rect.left - houseRect.left) / scale.x)
-        };
-        return acc;
-      }, {});
-
-      setPointPositions((prev) => ({
-        ...prev,
-        [activeTabId]: {
-          ...(prev[activeTabId] ?? {}),
-          ...measured
-        }
-      }));
-    });
-
-    return () => window.cancelAnimationFrame(raf);
-  }, [activeTabId, getHouseScale, isEditMode, pointPositions, points]);
-
-  useEffect(() => {
-    if (!isEditMode) return;
-    const payload = {
-      positions: pointPositions,
-      mapping: pointToSlide
-    };
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-    } catch {
-      return;
-    }
-  }, [isEditMode, pointPositions, pointToSlide]);
-
-  const handlePointPointerDown = (pointId, event) => {
-    if (!isEditMode) return;
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-    const current = positionsForTab[pointId];
-    if (!current) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const target = event.currentTarget;
-    target.setPointerCapture(event.pointerId);
-    dragRef.current = {
-      pointId,
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      startTop: current.top,
-      startLeft: current.left
-    };
-    setActivePointId(pointId);
-  };
-
-  const handlePointPointerMove = (event) => {
-    if (!isEditMode) return;
-    const drag = dragRef.current;
-    if (!drag) return;
-    if (drag.pointerId !== event.pointerId) return;
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-
-    const scale = getHouseScale(activeTabId, houseEl);
-    const nextTop = drag.startTop + (event.clientY - drag.startY) / scale.y;
-    const nextLeft = drag.startLeft + (event.clientX - drag.startX) / scale.x;
-
-    const maxTop = (houseEl.clientHeight - POINT_SIZE) / scale.y;
-    const maxLeft = (houseEl.clientWidth - POINT_SIZE) / scale.x;
-
-    const clampedTop = Math.round(Math.max(0, Math.min(maxTop, nextTop)));
-    const clampedLeft = Math.round(Math.max(0, Math.min(maxLeft, nextLeft)));
-
-    setPointPositions((prev) => ({
-      ...prev,
-      [activeTabId]: {
-        ...(prev[activeTabId] ?? {}),
-        [drag.pointId]: { top: clampedTop, left: clampedLeft }
-      }
-    }));
-  };
-
-  const handlePointPointerUp = (event) => {
-    if (!isEditMode) return;
-    const drag = dragRef.current;
-    if (!drag) return;
-    if (drag.pointerId !== event.pointerId) return;
-    dragRef.current = null;
-  };
-
-  const handleMappingChange = (pointId, slideIndex) => {
-    setPointToSlide((prev) => ({
-      ...prev,
-      [activeTabId]: {
-        ...(prev[activeTabId] ?? defaultPointToSlide[activeTabId] ?? {}),
-        [pointId]: slideIndex
-      }
-    }));
-  };
-
-  const handleCopyEditorConfig = async () => {
-    const payload = {
-      positions: pointPositions,
-      mapping: pointToSlide
-    };
-    const text = JSON.stringify(payload, null, 2);
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      return;
-    }
-  };
-
-  const handleResetEditorConfig = () => {
-    try {
-      window.localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      return;
-    }
-    setPointPositions(DEFAULT_EDITOR_CONFIG.positions);
-    setPointToSlide(DEFAULT_EDITOR_CONFIG.mapping);
-  };
+  const renderSlideContent = (slide, extraClassName) => (
+    <TechCard slide={slide} className={extraClassName} />
+  );
 
   return (
     <section className={styles.technology} aria-label="Seguridad total para tu negocio">

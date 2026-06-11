@@ -11,7 +11,7 @@ export default function ComercioHero() {
     <section className={styles.hero} aria-label="SISE Comercio">
       <div className={styles.heroMedia}>
         <Image
-          src="/image/mpvuunzj-eolvy7n.png"
+          src="/image/mpvuunzj-eolvy7n.webp"
           alt=""
           className={styles.heroImage}
           fill

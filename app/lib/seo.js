@@ -2,13 +2,13 @@ export const siteConfig = {
   siteUrl: 'https://siseargentina.com',
   name: 'SISE Argentina',
   legalName: 'GRUPO SISE S.A.',
-  defaultTitle: 'SISE Argentina | Soluciones de seguridad electronica',
+  defaultTitle: 'SISE Argentina | Soluciones de seguridad electrónica',
   description:
-    'Soluciones de seguridad electronica para hogares, comercios, industrias, edificios, obras, campo y ciudades.',
+    'Soluciones de seguridad electrónica para hogares, comercios, industrias, edificios, obras, campo y ciudades.',
   locale: 'es_AR',
   themeColor: '#00408c',
   icon: '/image/mpr0za9r-avr9t9i.png',
-  ogImage: '/image/mpudc5hr-8gb1yso.png',
+  ogImage: '/image/og-home.jpg',
   phone: '+54 800 222 5153',
   email: 'info@siseargentina.com',
   whatsapp: '5493624231144',
@@ -68,7 +68,7 @@ export function buildPageMetadata({
       images: [
         {
           url: image,
-          alt: `${siteConfig.name} - ${title ?? 'Seguridad electronica'}`
+          alt: `${siteConfig.name} - ${title ?? 'Seguridad electrónica'}`
         }
       ]
     },

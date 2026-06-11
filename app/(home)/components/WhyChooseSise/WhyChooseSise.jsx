@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -26,8 +26,8 @@ const infoCards = [
     titleClassName: 'cardTitle',
     title: 'Monitoreo 24/7 real',
     textClassName: 'cardText',
-    modalPanelClassName: 'modalPanel',
-    modalSurfaceClassName: 'modalSurface',
+    revealPanelClassName: 'modalPanel',
+    revealTextClassName: 'modalText',
     text: (
       <>
         Operadores especializados supervisan <strong>en tiempo real</strong> para
@@ -36,9 +36,22 @@ const infoCards = [
     ),
     modalText: (
       <>
-        Nuestro equipo no espera a que pase lo peor. Si detectamos un intento de
-        intrusión, <strong>activamos los protocolos de respuesta al instante</strong>, te
-        avisamos y enviamos asistencia <strong>antes de que la situación escale</strong>.
+        <span className={styles.revealLine}>Nuestro equipo no espera</span>
+        <span className={styles.revealLine}>a que pase lo peor.</span>
+        <span className={styles.revealLine}>Si detectamos un intento</span>
+        <span className={styles.revealLine}>
+          de intrusión, <strong>activamos los</strong>
+        </span>
+        <span className={styles.revealLine}>
+          <strong>protocolos de respuesta al</strong>
+        </span>
+        <span className={styles.revealLine}>
+          <strong>instante</strong>, te avisamos y
+        </span>
+        <span className={styles.revealLine}>enviamos asistencia antes</span>
+        <span className={styles.revealLine}>
+          <strong>de que la situación escale.</strong>
+        </span>
       </>
     )
   },
@@ -53,8 +66,8 @@ const infoCards = [
     titleClassName: 'cardTitleAlt',
     title: 'Tecnología de última generación',
     textClassName: 'cardTextAlt',
-    modalPanelClassName: 'modalPanelAlt',
-    modalSurfaceClassName: 'modalSurfaceAlt',
+    revealPanelClassName: 'modalPanelAlt',
+    revealTextClassName: 'modalTextAlt',
     text: (
       <>
         Soluciones <strong>modernas, fáciles de usar</strong> y pensadas para vos.
@@ -62,9 +75,22 @@ const infoCards = [
     ),
     modalText: (
       <>
-        Olvidate de sistemas complejos. Desde cámaras inteligentes hasta la{' '}
-        <strong>Cámara Campo con energía solar</strong>, todo lo gestionás de forma
-        intuitiva con el <strong>control desde tu celular</strong> estés donde estés.
+        <span className={styles.revealLine}>Olvidate de sistemas</span>
+        <span className={styles.revealLine}>complejos. Desde cámaras</span>
+        <span className={styles.revealLine}>inteligentes hasta la</span>
+        <span className={styles.revealLine}>
+          <strong>Cámara Campo con</strong>
+        </span>
+        <span className={styles.revealLine}>
+          <strong>energía solar</strong>, todo lo
+        </span>
+        <span className={styles.revealLine}>gestionás de forma intuitiva</span>
+        <span className={styles.revealLine}>
+          con el <strong>control desde tu</strong>
+        </span>
+        <span className={styles.revealLine}>
+          <strong>celular</strong> estés donde estés.
+        </span>
       </>
     )
   },
@@ -85,8 +111,8 @@ const infoCards = [
       </>
     ),
     textClassName: 'cardTextAlt2',
-    modalPanelClassName: 'modalPanelAlt2',
-    modalSurfaceClassName: 'modalSurfaceAlt2',
+    revealPanelClassName: 'modalPanelAlt2',
+    revealTextClassName: 'modalTextAlt2',
     text: (
       <>
         Actuamos al instante ante cualquier evento, brindando{' '}
@@ -95,42 +121,45 @@ const infoCards = [
     ),
     modalText: (
       <>
-        Somos de Resistencia. Con nuestra base operativa local y{' '}
-        <strong>más de 15 años de trayectoria</strong>, te garantizamos soporte técnico
-        cercano y <strong>personas reales</strong> listas para asistirte cuando más lo
-        necesitás.
+        <span className={styles.revealLine}>Somos de Resistencia.</span>
+        <span className={styles.revealLine}>Con nuestra base</span>
+        <span className={styles.revealLine}>
+          operativa local y <strong>más de</strong>
+        </span>
+        <span className={styles.revealLine}>
+          <strong>15 años de trayectoria</strong>, te
+        </span>
+        <span className={styles.revealLine}>garantizamos soporte</span>
+        <span className={styles.revealLine}>
+          técnico cercano y <strong>personas</strong>
+        </span>
+        <span className={styles.revealLine}>
+          <strong>reales</strong> listas para asistirte
+        </span>
+        <span className={styles.revealLine}>cuando más lo necesitás.</span>
       </>
     )
   }
 ];
 
 export default function WhyChooseSise() {
-  const [activeModal, setActiveModal] = useState(null);
-
-  const activeCard = useMemo(
-    () => infoCards.find((card) => card.id === activeModal) ?? null,
-    [activeModal]
-  );
+  const [activeCard, setActiveCard] = useState(null);
 
   useEffect(() => {
-    if (!activeModal) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    if (!activeCard) return undefined;
 
     const onKeyDown = (event) => {
       if (event.key === 'Escape') {
-        setActiveModal(null);
+        setActiveCard(null);
       }
     };
 
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [activeModal]);
+  }, [activeCard]);
 
   return (
     <section className={styles.section} aria-label="Por qué elegir SISE" id="porque-sise">
@@ -139,70 +168,52 @@ export default function WhyChooseSise() {
 
         <div className={styles.cards}>
           {infoCards.map((card) => (
-            <article key={card.id} className={styles[card.cardClassName]}>
-              <div className={styles.cardIconWrap}>
-                <Image
-                  src={card.iconSrc}
-                  alt={card.iconAlt}
-                  className={styles[card.iconClassName]}
-                  width={card.iconWidth}
-                  height={card.iconHeight}
-                />
-              </div>
-              <h3 className={styles[card.titleClassName]}>{card.title}</h3>
-              <p className={styles[card.textClassName]}>{card.text}</p>
-              <button
-                type="button"
-                className={styles.infoButton}
-                onClick={() => setActiveModal(card.id)}
-                aria-haspopup="dialog"
-                aria-expanded={activeModal === card.id}
-              >
-                + info
-              </button>
-            </article>
-          ))}
-        </div>
-
-        {activeCard ? (
-          <div
-            className={styles.modalOverlay}
-            role="presentation"
-            onClick={() => setActiveModal(null)}
-          >
-            <div
-              className={styles[activeCard.modalPanelClassName]}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby={`why-choose-modal-title-${activeCard.id}`}
-              onClick={(event) => event.stopPropagation()}
+            <article
+              key={card.id}
+              className={`${styles[card.cardClassName]} ${
+                activeCard === card.id ? styles.cardExpanded : ''
+              }`}
             >
-              <button
-                type="button"
-                className={styles.modalCloseOuter}
-                aria-label="Cerrar modal"
-                onClick={() => setActiveModal(null)}
-              >
-                ×
-              </button>
-              <div className={styles[activeCard.modalSurfaceClassName]}>
-                <p
-                  className={styles.modalText}
-                  id={`why-choose-modal-title-${activeCard.id}`}
+              <div className={styles.cardFront}>
+                <div className={styles.cardIconWrap}>
+                  <Image
+                    src={card.iconSrc}
+                    alt={card.iconAlt}
+                    className={styles[card.iconClassName]}
+                    width={card.iconWidth}
+                    height={card.iconHeight}
+                  />
+                </div>
+                <h3 className={styles[card.titleClassName]}>{card.title}</h3>
+                <p className={styles[card.textClassName]}>{card.text}</p>
+                <button
+                  type="button"
+                  className={styles.infoButton}
+                  onClick={() => setActiveCard(card.id)}
+                  aria-expanded={activeCard === card.id}
                 >
-                  {activeCard.modalText}
-                </p>
+                  + info
+                </button>
+              </div>
+
+              <div
+                className={`${styles[card.revealPanelClassName]} ${
+                  activeCard === card.id ? styles.cardRevealActive : ''
+                }`}
+                aria-hidden={activeCard !== card.id}
+              >
+                <p className={styles[card.revealTextClassName]}>{card.modalText}</p>
                 <button
                   type="button"
                   className={styles.closeButton}
-                  onClick={() => setActiveModal(null)}
+                  onClick={() => setActiveCard(null)}
                 >
                   Cerrar
                 </button>
               </div>
-            </div>
-          </div>
-        ) : null}
+            </article>
+          ))}
+        </div>
 
         <Image
           src="/image/mpr027zv-e2to3ki.png"
@@ -240,7 +251,7 @@ export default function WhyChooseSise() {
         <div className={styles.categoriesDesktop}>
           <Link className={styles.categoryCardHogar} href={categoryLinks.hogar}>
             <Image
-              src="/image/mpr027zv-o3zo3d3.png"
+              src="/image/mpr027zv-o3zo3d3.webp"
               alt=""
               className={styles.categoryTopImage}
               width={256}
@@ -257,7 +268,7 @@ export default function WhyChooseSise() {
 
           <Link className={styles.categoryCardEmpresas} href={categoryLinks.empresas}>
             <Image
-              src="/image/mpr027zv-j0j5y64.png"
+              src="/image/mpr027zv-j0j5y64.webp"
               alt=""
               className={styles.categoryTopImage}
               width={256}
@@ -273,12 +284,12 @@ export default function WhyChooseSise() {
           </Link>
 
           <Link className={styles.categoryCardUrbano} href={categoryLinks.urbano}>
-            <Image src="/image/mpr027zp-xpul2cf.png" alt="SISE Urbano" width={256} height={285} />
+            <Image src="/image/mpr027zp-xpul2cf.webp" alt="SISE Urbano" width={256} height={285} />
           </Link>
 
           <Link className={styles.categoryCardAgro} href={categoryLinks.agro}>
             <Image
-              src="/image/mpr027zv-n7crbeg.png"
+              src="/image/mpr027zv-n7crbeg.webp"
               alt=""
               className={styles.categoryTopImageAgro}
               width={256}
@@ -295,7 +306,7 @@ export default function WhyChooseSise() {
 
           <Link className={styles.categoryCardCiudad} href={categoryLinks.ciudad}>
             <Image
-              src="/image/mpr027zv-zs0bqjf.png"
+              src="/image/mpr027zv-zs0bqjf.webp"
               alt=""
               className={styles.categoryTopImage}
               width={256}
@@ -315,7 +326,7 @@ export default function WhyChooseSise() {
           <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
             <div className={styles.categoryImageWrap}>
               <Image
-                src="/image/mpr027zv-o3zo3d3.png"
+                src="/image/mpr027zv-o3zo3d3.webp"
                 alt=""
                 fill
                 sizes="220px"
@@ -336,7 +347,7 @@ export default function WhyChooseSise() {
           <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
             <div className={styles.categoryImageWrap}>
               <Image
-                src="/image/mpr027zv-j0j5y64.png"
+                src="/image/mpr027zv-j0j5y64.webp"
                 alt=""
                 fill
                 sizes="220px"
@@ -357,7 +368,7 @@ export default function WhyChooseSise() {
           <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
             <div className={styles.categoryImageWrap}>
               <Image
-                src="/image/mpr027zp-xpul2cf.png"
+                src="/image/mpr027zp-xpul2cf.webp"
                 alt="SISE Urbano"
                 fill
                 sizes="220px"
@@ -366,7 +377,7 @@ export default function WhyChooseSise() {
             </div>
             <div className={styles.categoryLogoWrap}>
               <Image
-                src="/image/mpr027zp-xpul2cf.png"
+                src="/image/mpr027zp-xpul2cf.webp"
                 alt=""
                 fill
                 sizes="220px"
@@ -378,7 +389,7 @@ export default function WhyChooseSise() {
           <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
             <div className={styles.categoryImageWrap}>
               <Image
-                src="/image/mpr027zv-n7crbeg.png"
+                src="/image/mpr027zv-n7crbeg.webp"
                 alt=""
                 fill
                 sizes="220px"
@@ -399,7 +410,7 @@ export default function WhyChooseSise() {
           <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
             <div className={styles.categoryImageWrap}>
               <Image
-                src="/image/mpr027zv-zs0bqjf.png"
+                src="/image/mpr027zv-zs0bqjf.webp"
                 alt=""
                 fill
                 sizes="220px"

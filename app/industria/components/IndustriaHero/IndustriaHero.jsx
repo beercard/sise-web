@@ -10,7 +10,7 @@ export default function IndustriaHero() {
   return (
     <section className={styles.hero} aria-label="SISE Industria">
       <div className={styles.heroMedia}>
-        <Image src="/image/mq017wn8-mlb5tmm.png" alt="" className={styles.heroImage} fill priority sizes="100vw" />
+        <Image src="/image/mq017wn8-mlb5tmm.webp" alt="" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <Image src="/image/mq017wn8-l2f7mev.png" alt="" className={styles.heroKicker} width={416} height={64} priority />

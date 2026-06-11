@@ -17,7 +17,7 @@ const ITEMS = [
       { text: 'pasantías educativas', strong: true },
       { text: ' en distintas áreas de la empresa.' }
     ],
-    image: '/image/mq2uf58k-hkxy7zy.png',
+    image: '/image/mq2uf58k-hkxy7zy.webp',
     bodyLabel: 'Durante estas prácticas, los estudiantes:',
     bullets: [
       'Adquieren experiencia en un entorno laboral real',
@@ -38,7 +38,7 @@ const ITEMS = [
       { text: 'inclusión laboral', strong: true },
       { text: ' mediante un convenio con la Asociación Los Girasoles, organización dedicada a la integración social de jóvenes con capacidades diferentes.' }
     ],
-    image: '/image/mq2twaum-f3eh90n.png',
+    image: '/image/mq2twaum-f3eh90n.webp',
     bodyLabel: 'En el marco de la Ley N.º 6.454 de pasantías profesionales, esta iniciativa promueve:',
     bullets: [
       'La inclusión laboral en entornos reales de trabajo',
@@ -60,8 +60,8 @@ const ITEMS = [
       { text: 'prácticas profesionales', strong: true },
       { text: ' para estudiantes de Ingeniería Industrial.' }
     ],
-    image: '/image/mq2uf59b-txvmh24.png',
-    imageBackground: '/image/mq2uf59b-l9wq65i.png',
+    image: '/image/mq2uf59b-txvmh24.webp',
+    imageBackground: '/image/mq2uf59b-l9wq65i.webp',
     bodyLabel: 'Esta iniciativa permite:',
     bullets: [
       'Aplicar conocimientos técnicos en contextos reales',
@@ -82,7 +82,7 @@ const ITEMS = [
       { text: 'Puente General Belgrano', strong: true },
       { text: ', una de las principales conexiones viales de la región.' }
     ],
-    image: '/image/mq2uf593-wb2teak.png',
+    image: '/image/mq2uf593-wb2teak.webp',
     bodyLabel: 'Esta acción contribuye a:',
     bullets: [
       'Fortalecer la seguridad en un punto clave de circulación',
@@ -103,7 +103,7 @@ const ITEMS = [
       { text: 'videovigilancia para el monitoreo seguro', strong: true },
       { text: ' de la obra.' }
     ],
-    image: '/image/mq2uf58w-3qr8qqp.png',
+    image: '/image/mq2uf58w-3qr8qqp.webp',
     bodyLabel: 'Nuestra contribución incluye:',
     bullets: [
       'Control y seguridad del predio',
@@ -124,7 +124,7 @@ const ITEMS = [
       { text: 'videovigilancia con megáfono', strong: true },
       { text: ' en zonas críticas de la ciudad.' }
     ],
-    image: '/image/mq2uf59f-1yduapg.png',
+    image: '/image/mq2uf59f-1yduapg.webp',
     bodyLabel: 'Esta acción tiene como objetivo:',
     bullets: [
       'Prevenir el arrojo indebido de residuos',
@@ -145,7 +145,7 @@ const ITEMS = [
       { text: 'Club Sixty', strong: true },
       { text: '.' }
     ],
-    image: '/image/mq2uf59k-knk1tya.png',
+    image: '/image/mq2uf59k-knk1tya.webp',
     bodyLabel: 'Este compromiso permite:',
     bullets: [
       'Fomentar la actividad deportiva',

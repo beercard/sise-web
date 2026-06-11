@@ -7,7 +7,7 @@ export default function HistoriaHero() {
     <section className={styles.hero} aria-label="Historia SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
         <Image
-          src="/image/mq2q87jo-iv7vjn2.png"
+          src="/image/mq2q87jo-iv7vjn2.webp"
           alt=""
           fill
           priority

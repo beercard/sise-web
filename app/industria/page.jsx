@@ -9,7 +9,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Seguridad para industrias y empresas',
   description:
-    'Seguridad electronica para industrias y empresas con videovigilancia, control de accesos, alarmas y monitoreo 24/7.',
+    'Seguridad electrónica para industrias y empresas con videovigilancia, control de accesos, alarmas y monitoreo 24/7.',
   path: '/industria'
 });
 

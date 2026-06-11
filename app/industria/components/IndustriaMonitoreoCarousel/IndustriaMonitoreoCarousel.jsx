@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
+
+import { useAutoplay, useSlideTransition } from '../../../lib/hooks';
 
 import styles from '../../page.module.scss';
 
-const ANIMATION_MS = 420;
 const AUTOPLAY_MS = 6000;
 
 export default function IndustriaMonitoreoCarousel() {
@@ -55,63 +56,13 @@ export default function IndustriaMonitoreoCarousel() {
     []
   );
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [previousIndex, setPreviousIndex] = useState(null);
-  const [direction, setDirection] = useState('next');
   const [isPaused, setIsPaused] = useState(false);
 
-  const activeIndexRef = useRef(activeIndex);
-  const animTimeoutRef = useRef(null);
+  const { activeIndex, previousIndex, direction, goPrev, goNext } = useSlideTransition({
+    length: slides.length
+  });
 
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  const startTransition = useCallback((nextIndex, nextDirection) => {
-    const currentIndex = activeIndexRef.current;
-    if (nextIndex === currentIndex) return;
-
-    if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-
-    setDirection(nextDirection);
-    setPreviousIndex(currentIndex);
-    setActiveIndex(nextIndex);
-
-    animTimeoutRef.current = window.setTimeout(() => {
-      setPreviousIndex(null);
-      animTimeoutRef.current = null;
-    }, ANIMATION_MS);
-  }, []);
-
-  useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion || isPaused || slides.length <= 1) return undefined;
-
-    const intervalId = window.setInterval(() => {
-      const currentIndex = activeIndexRef.current;
-      startTransition((currentIndex + 1) % slides.length, 'next');
-    }, AUTOPLAY_MS);
-
-    return () => window.clearInterval(intervalId);
-  }, [isPaused, slides.length, startTransition]);
-
-  const goPrev = () => {
-    const currentIndex = activeIndexRef.current;
-    startTransition((currentIndex - 1 + slides.length) % slides.length, 'prev');
-  };
-
-  const goNext = () => {
-    const currentIndex = activeIndexRef.current;
-    startTransition((currentIndex + 1) % slides.length, 'next');
-  };
-
-  useEffect(() => {
-    return () => {
-      if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-    };
-  }, []);
+  useAutoplay({ paused: isPaused, length: slides.length, intervalMs: AUTOPLAY_MS, advance: goNext });
 
   const activeSlide = slides[activeIndex];
   const previousSlide = previousIndex === null ? null : slides[previousIndex];

@@ -7,9 +7,9 @@ import { buildPageMetadata } from '../lib/seo';
 import styles from './page.module.scss';
 
 export const metadata = buildPageMetadata({
-  title: 'Seguridad para obras y construccion',
+  title: 'Seguridad para obras y construcción',
   description:
-    'Seguridad electronica para obras y construccion con monitoreo, videovigilancia y control perimetral para proteger materiales, equipos y accesos.',
+    'Seguridad electrónica para obras y construcción con monitoreo, videovigilancia y control perimetral para proteger materiales, equipos y accesos.',
   path: '/construccion'
 });
 

@@ -92,10 +92,10 @@
 
 .heroBody {
   margin: 0;
-  width: 391px;
-  line-height: 32px;
+  width: 460px;
+  line-height: 20px;
   color: #ffffff;
-  font-size: 32px;
+  font-size: 20px;
 }
 
 .heroCarousel {
@@ -243,7 +243,7 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  padding-top: 72px;
+  padding-top: 86px;
   --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
@@ -1271,4 +1271,245 @@
   .techCardExitRight {
     animation: none;
   }
+}
+
+
+/* ── Armonización con la referencia de /hogar (posición + tipografía) ────
+   Adopta el sistema de variables de hogar para anclar el copy del hero y
+   el bloque inferior con el carrusel en la misma posición que el resto
+   de las verticales. Va al final del archivo para ganar la cascada. */
+.hero {
+  --hero-group-width: 1140px;
+  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-container-width: min(1920px, 100%);
+  --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
+}
+
+.heroMedia {
+  height: 800px;
+}
+
+.heroCopy {
+  top: 360px;
+  left: var(--hero-content-left);
+  width: min(700px, calc(100% - (var(--hero-content-left) * 2)));
+}
+
+.heroBottom {
+  height: auto;
+}
+
+/* Columna de texto y carrusel en la misma posición que hogar. */
+.heroBody {
+  width: 391px;
+  line-height: 32px;
+  font-size: 32px;
+}
+
+.heroCarousel {
+  margin-top: 0;
+}
+
+.heroBottomInner {
+  width: min(1920px, 100%);
+  padding: 77px var(--hero-pad-x) 98px;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 3vw, 64px);
+  height: auto;
+}
+
+@media (max-width: 1366px) {
+  .heroMedia {
+    height: 720px;
+  }
+
+  .heroCopy {
+    top: 312px;
+    width: min(620px, calc(100% - (var(--hero-content-left) * 2)));
+  }
+
+  .heroTitle {
+    width: 100%;
+    height: auto;
+    font-size: 56px;
+    line-height: 48px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .heroMedia {
+    height: 660px;
+  }
+
+  .heroCopy {
+    top: 286px;
+    width: min(560px, calc(100% - 64px));
+  }
+
+  .heroCityLogo {
+    width: 300px;
+    height: auto;
+  }
+
+  .heroTitle {
+    margin-top: 14px;
+    font-size: 50px;
+    line-height: 44px;
+  }
+
+  .heroCarousel {
+    margin-top: 0;
+  }
+
+  .heroBottomInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroMedia {
+    height: 640px;
+  }
+
+  .heroCopy {
+    left: 16px;
+    top: 320px;
+    width: calc(100% - 32px);
+  }
+
+  .heroCityLogo {
+    margin-top: 0;
+    width: 260px;
+    height: auto;
+  }
+
+  .heroTitle {
+    margin-top: 16px;
+    font-size: 44px;
+    line-height: 44px;
+  }
+
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .heroText {
+    align-items: center;
+  }
+
+  .heroLead {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .heroBody {
+    margin-top: 20px;
+    min-height: 0;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .heroPunch {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .heroCardTitle {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .heroCardText {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .heroBottomInner {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 40px 16px 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroMedia {
+    height: 580px;
+  }
+
+  .heroCopy {
+    top: 280px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+    line-height: 34px;
+  }
+
+  .heroLead,
+  .heroPunch {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .heroBody {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroMedia {
+    height: 520px;
+  }
+
+  .heroCopy {
+    top: 240px;
+  }
+
+  .heroCityLogo {
+    width: 224px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    line-height: 30px;
+  }
+
+  .heroBottomInner {
+    padding: 28px 16px 36px;
+  }
+
+  .heroCardTitle {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .heroCardText {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+
+/* Modulo technology alineado a la geometria de /hogar (desktop). */
+.techBody {
+  margin-top: 31px;
+}
+
+.techHouseColumn {
+  flex: 0 0 auto;
+}
+
+.techCardGroup {
+  height: auto;
+  margin-top: 53px;
 }

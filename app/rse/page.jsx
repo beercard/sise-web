@@ -7,7 +7,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Responsabilidad social empresarial',
   description:
-    'Conoce las acciones de responsabilidad social empresarial de SISE Argentina en comunidad, inclusion, deporte, educacion y ambiente.',
+    'Conoce las acciones de responsabilidad social empresarial de SISE Argentina en comunidad, inclusión, deporte, educación y ambiente.',
   path: '/rse'
 });
 

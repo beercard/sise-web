@@ -10,7 +10,7 @@ export default function CiudadHero() {
   return (
     <section className={styles.hero} aria-label="SISE Ciudad">
       <div className={styles.heroMedia}>
-        <Image src="/image/mq1jm0cy-0248t30.png" alt="" className={styles.heroImage} fill priority sizes="100vw" />
+        <Image src="/image/mq1jm0cy-0248t30.webp" alt="" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroOverlayPrimary} aria-hidden="true" />
         <div className={styles.heroOverlaySecondary} aria-hidden="true" />
 

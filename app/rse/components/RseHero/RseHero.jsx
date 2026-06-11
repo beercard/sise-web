@@ -7,7 +7,7 @@ export default function RseHero() {
     <section className={styles.hero} aria-label="Responsabilidad Social Empresarial">
       <div className={styles.heroMedia} aria-hidden="true">
         <Image
-          src="/image/mq2twaum-fdvb03h.png"
+          src="/image/mq2twaum-fdvb03h.webp"
           alt=""
           fill
           priority

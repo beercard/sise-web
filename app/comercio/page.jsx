@@ -9,7 +9,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Seguridad para comercios',
   description:
-    'Alarmas, camaras, control de accesos y monitoreo para locales, oficinas y comercios con respuesta profesional y gestion remota.',
+    'Alarmas, cámaras, control de accesos y monitoreo para locales, oficinas y comercios con respuesta profesional y gestión remota.',
   path: '/comercio'
 });
 

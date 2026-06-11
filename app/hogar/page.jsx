@@ -11,7 +11,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Seguridad para el hogar',
   description:
-    'Alarmas monitoreadas, sensores, sirenas, camaras y control desde tu celular para proteger tu hogar con monitoreo profesional 24/7.',
+    'Alarmas monitoreadas, sensores, sirenas, cámaras y control desde tu celular para proteger tu hogar con monitoreo profesional 24/7.',
   path: '/hogar'
 });
 
@@ -21,7 +21,7 @@ export default function HogarPage() {
       <section className={styles.hero} aria-label="SISE Hogar">
         <div className={styles.heroMedia}>
           <Image
-            src="/image/mpudc5hr-8gb1yso.png"
+            src="/image/mpudc5hr-8gb1yso.webp"
             alt=""
             className={styles.heroImage}
             fill

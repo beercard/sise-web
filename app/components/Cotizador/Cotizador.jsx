@@ -52,6 +52,7 @@ function buildSummary(answers) {
 export default function Cotizador({ showHeader = false }) {
   const [step, setStep] = useState(STEP.PROPERTY_TYPE);
   const [answers, setAnswers] = useState(initialAnswers);
+  const [website, setWebsite] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [stepError, setStepError] = useState('');
@@ -170,13 +171,18 @@ export default function Cotizador({ showHeader = false }) {
       return;
     }
 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(answers.email.trim())) {
+      setSubmitError('Ingresá un email válido.');
+      return;
+    }
+
     setSubmitting(true);
 
     try {
       const response = await fetch('/api/cotizador', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answers })
+        body: JSON.stringify({ answers, website })
       });
 
       const data = await response.json().catch(() => ({}));
@@ -229,6 +235,21 @@ export default function Cotizador({ showHeader = false }) {
         <form className={styles.formBox} onSubmit={onSubmit} noValidate>
           <p className={styles.kicker}>Datos de contacto</p>
 
+          {/* Honeypot anti-spam: oculto para personas, los bots lo completan. */}
+          <div style={{ display: 'none' }} aria-hidden="true">
+            <label>
+              No completar este campo
+              <input
+                type="text"
+                name="website"
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
+          </div>
+
           <div className={styles.fields}>
             <label className={styles.field}>
               <span className={styles.fieldLabel}>Nombre</span>
@@ -240,6 +261,7 @@ export default function Cotizador({ showHeader = false }) {
                 }
                 placeholder="Su nombre completo"
                 autoComplete="name"
+                maxLength={200}
               />
             </label>
 
@@ -254,6 +276,7 @@ export default function Cotizador({ showHeader = false }) {
                 placeholder="Su teléfono"
                 autoComplete="tel"
                 inputMode="tel"
+                maxLength={50}
               />
             </label>
 
@@ -268,6 +291,7 @@ export default function Cotizador({ showHeader = false }) {
                 placeholder="Su email"
                 autoComplete="email"
                 inputMode="email"
+                maxLength={200}
               />
             </label>
           </div>

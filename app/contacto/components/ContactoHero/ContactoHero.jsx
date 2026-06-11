@@ -10,7 +10,7 @@ export default function ContactoHero() {
     <section className={styles.hero} aria-label="Contacto SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
         <Image
-          src="/image/mq2wwuif-sspil3b.png"
+          src="/image/mq2wwuif-sspil3b.webp"
           alt=""
           fill
           priority

@@ -8,7 +8,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Historia y trayectoria',
   description:
-    'Conoce la historia, trayectoria y reconocimientos de SISE Argentina y su evolucion en soluciones de seguridad electronica.',
+    'Conoce la historia, trayectoria y reconocimientos de SISE Argentina y su evolución en soluciones de seguridad electrónica.',
   path: '/historia'
 });
 

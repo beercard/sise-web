@@ -3,6 +3,10 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { useAreaScale, useSlideTransition, useTechEditor } from '../../../lib/hooks';
+
+import TechCard from '../../../components/TechCard/TechCard';
+
 import styles from '../../page.module.scss';
 
 const TAB_IDS = {
@@ -12,60 +16,33 @@ const TAB_IDS = {
 };
 
 const STORAGE_KEY = 'sise-construccion-tech-editor-v1';
-const POINT_SIZE = 28;
 const HOUSE_BASE_WIDTH = 2486;
 const HOUSE_BASE_HEIGHT = 1728;
-const CARD_ANIMATION_MS = 420;
 
-const DEFAULT_EDITOR_CONFIG = {
-  positions: {
-    perimetral: {
-      camaras: { top: 539, left: 1901 },
-      sirena: { top: 782, left: 1791 },
-      cartel: { top: 1387, left: 1081 },
-      cerco: { top: 938, left: 2039 },
-      magneticos: { top: 1359, left: 1379 }
-    },
-    interior: {
-      camaras: { top: 512, left: 1729 },
-      sensor: { top: 717, left: 1193 },
-      teclado: { top: 1153, left: 879 },
-      mando: { top: 487, left: 958 },
-      central: { top: 1088, left: 789 }
-    },
-    conectividad: {
-      app: { top: 989, left: 1019 }
-    }
+const DEFAULT_POSITIONS = {
+  perimetral: {
+    camaras: { top: 539, left: 1901 },
+    sirena: { top: 782, left: 1791 },
+    cartel: { top: 1387, left: 1081 },
+    cerco: { top: 938, left: 2039 },
+    magneticos: { top: 1359, left: 1379 }
   },
-  mapping: {}
+  interior: {
+    camaras: { top: 512, left: 1729 },
+    sensor: { top: 717, left: 1193 },
+    teclado: { top: 1153, left: 879 },
+    mando: { top: 487, left: 958 },
+    central: { top: 1088, left: 789 }
+  },
+  conectividad: {
+    app: { top: 989, left: 1019 }
+  }
 };
 
-const mergePositions = (base, override) => {
-  const output = { ...base };
-  if (!override) return output;
-
-  Object.keys(override).forEach((tabId) => {
-    output[tabId] = {
-      ...(base[tabId] ?? {}),
-      ...(override[tabId] ?? {})
-    };
-  });
-
-  return output;
-};
-
-const mergeMapping = (base, override) => {
-  const output = { ...base };
-  if (!override) return output;
-
-  Object.keys(override).forEach((tabId) => {
-    output[tabId] = {
-      ...(base[tabId] ?? {}),
-      ...(override[tabId] ?? {})
-    };
-  });
-
-  return output;
+const HOUSE_BASE_SIZES = {
+  perimetral: { width: HOUSE_BASE_WIDTH, height: HOUSE_BASE_HEIGHT },
+  interior: { width: HOUSE_BASE_WIDTH, height: HOUSE_BASE_HEIGHT },
+  conectividad: { width: HOUSE_BASE_WIDTH, height: HOUSE_BASE_HEIGHT }
 };
 
 export default function ConstruccionTechnologyModule() {
@@ -80,69 +57,8 @@ export default function ConstruccionTechnologyModule() {
 
   const [activeTabId, setActiveTabId] = useState(TAB_IDS.PERIMETRAL);
   const [activePointId, setActivePointId] = useState('camaras');
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [previousIndex, setPreviousIndex] = useState(null);
-  const [direction, setDirection] = useState('next');
-
-  const [pointPositions, setPointPositions] = useState(DEFAULT_EDITOR_CONFIG.positions);
-  const [pointToSlide, setPointToSlide] = useState(DEFAULT_EDITOR_CONFIG.mapping);
-  const [isEditMode, setIsEditMode] = useState(false);
-
-  const [viewportWidth, setViewportWidth] = useState(0);
-  const [houseScale, setHouseScale] = useState({ x: 1, y: 1 });
 
   const houseRef = useRef(null);
-  const viewportRef = useRef(null);
-  const pointRefs = useRef({});
-  const dragRef = useRef(null);
-  const activeIndexRef = useRef(activeIndex);
-  const animTimeoutRef = useRef(null);
-
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const nextIsEditMode = params.get('edit') === '1';
-    queueMicrotask(() => setIsEditMode(nextIsEditMode));
-
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw);
-      const nextPositions = mergePositions(DEFAULT_EDITOR_CONFIG.positions, parsed?.positions);
-      const nextMapping = mergeMapping(DEFAULT_EDITOR_CONFIG.mapping, parsed?.mapping);
-      queueMicrotask(() => {
-        setPointPositions(nextPositions);
-        setPointToSlide(nextMapping);
-      });
-    } catch {
-      return;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isEditMode) return;
-    const payload = { positions: pointPositions, mapping: pointToSlide };
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-    } catch {
-      return;
-    }
-  }, [isEditMode, pointPositions, pointToSlide]);
-
-  useEffect(() => {
-    const el = viewportRef.current;
-    if (!el) return;
-
-    const update = () => setViewportWidth(el.getBoundingClientRect().width);
-    update();
-
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
 
   const points = useMemo(() => {
     if (activeTabId === TAB_IDS.PERIMETRAL) {
@@ -245,7 +161,7 @@ export default function ConstruccionTechnologyModule() {
           },
           art: {
             type: 'sirena',
-            backgroundSrc: '/image/mq1dqzd1-o05u1lj.png',
+            backgroundSrc: '/image/mq1dqzd1-o05u1lj.webp',
             wrapperHeight: 149,
             wrapperMarginX: 93,
             wrapperPadding: { top: 123, right: 4, bottom: 2, left: 18 },
@@ -331,7 +247,7 @@ export default function ConstruccionTechnologyModule() {
             '--tech-card-text-width': '216px',
             '--tech-card-text-margin': '11px 0 0'
           },
-          art: { type: 'absolute', src: '/image/mq1drj2l-9aihuby.png', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+          art: { type: 'absolute', src: '/image/mq1drj2l-9aihuby.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
         },
         {
           id: 'mando',
@@ -388,7 +304,7 @@ export default function ConstruccionTechnologyModule() {
         },
         art: {
           type: 'connectivity',
-          backgroundSrc: '/image/mq1dsdck-ao77h8o.png',
+          backgroundSrc: '/image/mq1dsdck-ao77h8o.webp',
           wrapperWidth: 183,
           wrapperHeight: 158,
           wrapperMarginTop: 74,
@@ -398,28 +314,42 @@ export default function ConstruccionTechnologyModule() {
     ];
   }, [activeTabId]);
 
-  const getHouseScale = useCallback((tabId, houseEl) => {
-    if (!houseEl) return { x: 1, y: 1 };
-    const rect = houseEl.getBoundingClientRect();
-    if (!rect.width || !rect.height) return { x: 1, y: 1 };
-    return { x: rect.width / HOUSE_BASE_WIDTH, y: rect.height / HOUSE_BASE_HEIGHT };
-  }, []);
+  const {
+    activeIndex,
+    previousIndex,
+    direction,
+    isAnimating,
+    activeIndexRef,
+    startTransition,
+    resetTo
+  } = useSlideTransition({ length: slides.length });
 
-  useEffect(() => {
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
+  const { scale: houseScale, getScale } = useAreaScale({
+    baseSizes: HOUSE_BASE_SIZES,
+    activeAreaId: activeTabId,
+    areaRef: houseRef
+  });
 
-    const update = () => setHouseScale(getHouseScale(activeTabId, houseEl));
-    update();
-
-    const ro = new ResizeObserver(update);
-    ro.observe(houseEl);
-    return () => ro.disconnect();
-  }, [activeTabId, getHouseScale]);
-
-  const positionsForTab = useMemo(() => {
-    return mergePositions(DEFAULT_EDITOR_CONFIG.positions, pointPositions)[activeTabId] ?? {};
-  }, [activeTabId, pointPositions]);
+  const {
+    isEditMode,
+    pointToSlide,
+    setPointToSlide,
+    positionsForArea: positionsForTab,
+    pointRefs,
+    handlePointPointerDown,
+    handlePointPointerMove,
+    handlePointPointerUp,
+    handleCopyEditorConfig: handleCopyJson,
+    handleResetEditorConfig: handleReset
+  } = useTechEditor({
+    storageKey: STORAGE_KEY,
+    defaultPositions: DEFAULT_POSITIONS,
+    activeAreaId: activeTabId,
+    points,
+    areaRef: houseRef,
+    getScale,
+    onPointGrabbed: setActivePointId
+  });
 
   const mappingForTab = useMemo(() => {
     const defaults = points.reduce((acc, point) => {
@@ -428,7 +358,7 @@ export default function ConstruccionTechnologyModule() {
       return acc;
     }, {});
 
-    const overrides = mergeMapping(DEFAULT_EDITOR_CONFIG.mapping, pointToSlide)[activeTabId] ?? {};
+    const overrides = pointToSlide[activeTabId] ?? {};
     return { ...defaults, ...overrides };
   }, [activeTabId, pointToSlide, points, slides]);
 
@@ -442,6 +372,7 @@ export default function ConstruccionTechnologyModule() {
     return reverse;
   }, [mappingForTab]);
 
+  // Dirección por camino más corto dentro del anillo de slides.
   const getDirection = useCallback((fromIndex, toIndex) => {
     if (slides.length <= 1) return 'next';
     const forward = (toIndex - fromIndex + slides.length) % slides.length;
@@ -449,38 +380,13 @@ export default function ConstruccionTechnologyModule() {
     return forward <= backward ? 'next' : 'prev';
   }, [slides.length]);
 
-  const startTransition = useCallback(
-    (nextIndex, nextDirection) => {
-      const currentIndex = activeIndexRef.current;
-      if (nextIndex === currentIndex) return;
-
-      if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-
-      setDirection(nextDirection);
-      setPreviousIndex(currentIndex);
-      setActiveIndex(nextIndex);
-
-      animTimeoutRef.current = window.setTimeout(() => {
-        setPreviousIndex(null);
-        animTimeoutRef.current = null;
-      }, CARD_ANIMATION_MS);
-    },
-    []
-  );
-
-  useEffect(() => {
-    return () => {
-      if (animTimeoutRef.current) window.clearTimeout(animTimeoutRef.current);
-    };
-  }, []);
-
   useEffect(() => {
     if (!activePointId) return;
     const mapped = mappingForTab[activePointId];
     if (mapped == null) return;
     if (mapped === activeIndexRef.current) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
-  }, [activePointId, getDirection, mappingForTab, startTransition]);
+  }, [activePointId, activeIndexRef, getDirection, mappingForTab, startTransition]);
 
   const goPrev = () => {
     const currentIndex = activeIndexRef.current;
@@ -500,7 +406,6 @@ export default function ConstruccionTechnologyModule() {
 
   const currentSlide = slides[activeIndex];
   const previousSlide = previousIndex === null ? null : slides[previousIndex];
-  const isAnimating = previousIndex !== null;
 
   const getCardClassName = (phase) => {
     if (phase === 'active') {
@@ -511,248 +416,9 @@ export default function ConstruccionTechnologyModule() {
     return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
   };
 
-  const renderSlideContent = (slide, extraClassName) => {
-    if (!slide) return null;
-
-    const isMobile = viewportWidth > 0 && viewportWidth <= 480;
-    const isNarrowMobile = viewportWidth > 0 && viewportWidth <= 360;
-    const style = slide.styleVars ? { ...slide.styleVars } : {};
-
-    if (isMobile) {
-      const mobileImageWidth =
-        slide.id === 'sirena'
-          ? isNarrowMobile
-            ? '140px'
-            : '150px'
-          : isNarrowMobile
-            ? '180px'
-            : '200px';
-
-      style['--tech-card-padding'] = '26px 24px 22px';
-      style['--tech-card-align-items'] = 'center';
-      style['--tech-card-title-width'] = '100%';
-      style['--tech-card-title-height'] = 'auto';
-      style['--tech-card-title-min-height'] = '0px';
-      style['--tech-card-title-margin'] = '0';
-      style['--tech-card-text-width'] = '100%';
-      style['--tech-card-text-margin'] = '16px 0 0';
-      style['--tech-card-image-width'] = mobileImageWidth;
-      style['--tech-card-image-height'] = 'auto';
-      style['--tech-card-image-margin-top'] = '18px';
-      style['--tech-card-image-margin-left'] = '0px';
-      style['--tech-card-text-align'] = 'center';
-      style['--tech-card-title-align'] = 'center';
-      style['--tech-card-image-scale'] = '0.95';
-    }
-
-    const shouldRenderMainText = isMobile ? slide.art?.type !== 'overlay' : slide.art?.type !== 'overlay' && slide.art?.type !== 'connectivity';
-    const artScale = isNarrowMobile ? 0.74 : isMobile ? 0.82 : 1;
-
-    return (
-      <div className={`${styles.techCard} ${extraClassName}`} style={style}>
-        <p className={styles.techCardTitle}>{slide.title}</p>
-        {shouldRenderMainText ? <p className={styles.techCardText}>{slide.text}</p> : null}
-        {slide.art?.type === 'image' ? (
-          <div className={styles.techCardImageWrap}>
-            <Image src={slide.art.src} alt="" className={styles.techCardImage} width={slide.art.width} height={slide.art.height} />
-          </div>
-        ) : null}
-        {slide.art?.type === 'absolute' ? (
-          isMobile ? (
-            <div className={styles.techCardImageWrap}>
-              <Image
-                src={slide.art.src}
-                alt=""
-                className={styles.techCardImage}
-                width={slide.art.width}
-                height={slide.art.height}
-                style={{ transform: `rotate(${slide.art.rotate}deg) scale(var(--tech-card-image-scale, 0.92))` }}
-              />
-            </div>
-          ) : (
-            <Image
-              src={slide.art.src}
-              alt=""
-              className={styles.techCardAbsoluteImage}
-              width={slide.art.width}
-              height={slide.art.height}
-              style={{
-                top: `${slide.art.top}px`,
-                left: `${slide.art.left}px`,
-                transform: `rotate(${slide.art.rotate}deg)`
-              }}
-            />
-          )
-        ) : null}
-        {slide.art?.type === 'overlay' ? (
-          <div
-            className={styles.techCardOverlay}
-            style={{
-              width: `${slide.art.wrapperWidth}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            <p
-              className={styles.techCardOverlayText}
-              style={{
-                top: `${slide.art.text.top}px`,
-                right: `${slide.art.text.right}px`,
-                width: `${slide.art.text.width}px`
-              }}
-            >
-              {slide.text}
-            </p>
-            <Image src={slide.art.image.src} alt="" className={styles.techCardOverlayImage} width={slide.art.image.width} height={slide.art.image.height} />
-          </div>
-        ) : null}
-        {slide.art?.type === 'connectivity' ? (
-          <div
-            className={styles.techCardConnectivityWrap}
-            style={{
-              width: `${slide.art.wrapperWidth}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: isMobile ? '32px' : slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            {!isMobile ? (
-              <p
-                className={styles.techCardConnectivityText}
-                style={{
-                  top: `${slide.art.text.top}px`,
-                  right: `${slide.art.text.right}px`,
-                  width: `${slide.art.text.width}px`
-                }}
-              >
-                {slide.text}
-              </p>
-            ) : null}
-            <div className={styles.techCardConnectivityImage} style={{ '--connectivity-bg': `url('${slide.art.backgroundSrc}')` }} aria-hidden="true">
-              <div className={styles.techCardConnectivityBar} />
-            </div>
-          </div>
-        ) : null}
-        {slide.art?.type === 'sirena' ? (
-          <div
-            className={styles.techCardSirena}
-            style={{
-              '--sirena-bg': `url('${slide.art.backgroundSrc}')`,
-              '--sirena-pad-top': `${slide.art.wrapperPadding.top}px`,
-              '--sirena-pad-right': `${slide.art.wrapperPadding.right}px`,
-              '--sirena-pad-bottom': `${slide.art.wrapperPadding.bottom}px`,
-              '--sirena-pad-left': `${slide.art.wrapperPadding.left}px`,
-              '--sirena-margin-x': `${slide.art.wrapperMarginX}px`,
-              height: `${slide.art.wrapperHeight}px`,
-              marginTop: slide.art.wrapperMarginTop ? `${slide.art.wrapperMarginTop}px` : undefined,
-              transform: isMobile ? `scale(${artScale})` : undefined,
-              transformOrigin: isMobile ? 'top center' : undefined
-            }}
-          >
-            <Image src={slide.art.iconSrc} alt="" className={styles.techCardSirenaIcon} width={slide.art.iconWidth} height={slide.art.iconHeight} />
-          </div>
-        ) : null}
-      </div>
-    );
-  };
-
-  useEffect(() => {
-    if (!isEditMode) return;
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-
-    const missing = points.filter((point) => !(pointPositions[activeTabId] ?? {})[point.id]);
-    if (missing.length === 0) return;
-
-    const raf = window.requestAnimationFrame(() => {
-      const houseRect = houseEl.getBoundingClientRect();
-      const scale = getHouseScale(activeTabId, houseEl);
-      const measured = missing.reduce((acc, point) => {
-        const el = pointRefs.current[point.id];
-        if (!el) return acc;
-        const rect = el.getBoundingClientRect();
-        acc[point.id] = {
-          top: Math.round((rect.top - houseRect.top) / scale.y),
-          left: Math.round((rect.left - houseRect.left) / scale.x)
-        };
-        return acc;
-      }, {});
-
-      setPointPositions((prev) => ({
-        ...prev,
-        [activeTabId]: {
-          ...(prev[activeTabId] ?? {}),
-          ...measured
-        }
-      }));
-    });
-
-    return () => window.cancelAnimationFrame(raf);
-  }, [activeTabId, getHouseScale, isEditMode, pointPositions, points]);
-
-  const handlePointPointerDown = (pointId, event) => {
-    if (!isEditMode) return;
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-    const current = positionsForTab[pointId];
-    if (!current) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const target = event.currentTarget;
-    target.setPointerCapture(event.pointerId);
-    dragRef.current = {
-      pointId,
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      startTop: current.top,
-      startLeft: current.left
-    };
-    setActivePointId(pointId);
-  };
-
-  const handlePointPointerMove = (event) => {
-    if (!isEditMode) return;
-    const drag = dragRef.current;
-    if (!drag) return;
-    if (drag.pointerId !== event.pointerId) return;
-    const houseEl = houseRef.current;
-    if (!houseEl) return;
-
-    const scale = getHouseScale(activeTabId, houseEl);
-    const nextTop = drag.startTop + (event.clientY - drag.startY) / scale.y;
-    const nextLeft = drag.startLeft + (event.clientX - drag.startX) / scale.x;
-
-    const maxTop = HOUSE_BASE_HEIGHT - POINT_SIZE;
-    const maxLeft = HOUSE_BASE_WIDTH - POINT_SIZE;
-
-    const clampedTop = Math.min(Math.max(0, nextTop), maxTop);
-    const clampedLeft = Math.min(Math.max(0, nextLeft), maxLeft);
-
-    setPointPositions((prev) => ({
-      ...prev,
-      [activeTabId]: {
-        ...(prev[activeTabId] ?? {}),
-        [drag.pointId]: {
-          top: Math.round(clampedTop),
-          left: Math.round(clampedLeft)
-        }
-      }
-    }));
-  };
-
-  const handlePointPointerUp = (event) => {
-    if (!isEditMode) return;
-    const drag = dragRef.current;
-    if (!drag) return;
-    if (drag.pointerId !== event.pointerId) return;
-    dragRef.current = null;
-  };
+  const renderSlideContent = (slide, extraClassName) => (
+    <TechCard slide={slide} className={extraClassName} />
+  );
 
   const handlePointClick = (pointId) => {
     setActivePointId(pointId);
@@ -764,33 +430,8 @@ export default function ConstruccionTechnologyModule() {
   const handleTabClick = (tabId) => {
     if (tabId === activeTabId) return;
     setActiveTabId(tabId);
-    setPreviousIndex(null);
-    setActiveIndex(0);
-    setDirection('next');
+    resetTo(0);
     setActivePointId(tabId === TAB_IDS.CONECTIVIDAD ? 'app' : tabId === TAB_IDS.INTERIOR ? 'sensor' : 'camaras');
-  };
-
-  const handleCopyJson = async () => {
-    const payload = {
-      positions: mergePositions(DEFAULT_EDITOR_CONFIG.positions, pointPositions),
-      mapping: mergeMapping(DEFAULT_EDITOR_CONFIG.mapping, pointToSlide)
-    };
-    const json = JSON.stringify(payload, null, 2);
-    try {
-      await navigator.clipboard.writeText(json);
-    } catch {
-      return;
-    }
-  };
-
-  const handleReset = () => {
-    setPointPositions(DEFAULT_EDITOR_CONFIG.positions);
-    setPointToSlide(DEFAULT_EDITOR_CONFIG.mapping);
-    try {
-      window.localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      return;
-    }
   };
 
   return (
@@ -869,7 +510,7 @@ export default function ConstruccionTechnologyModule() {
             <Image src="/image/mq09ahtz-s5clq9f.png" alt="" width={30} height={18} />
           </button>
 
-          <div className={styles.techCardViewport} ref={viewportRef} aria-live="polite">
+          <div className={styles.techCardViewport} aria-live="polite">
             {previousSlide ? renderSlideContent(previousSlide, getCardClassName('previous')) : null}
             {renderSlideContent(currentSlide, getCardClassName('active'))}
           </div>

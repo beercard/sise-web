@@ -4,7 +4,7 @@ import styles from './HomeSeoContent.module.scss';
 
 export default function HomeSeoContent() {
   return (
-    <section className={styles.section} aria-label="Seguridad electronica y monitoreo en el NEA">
+    <section className={styles.section} aria-label="Seguridad electrónica y monitoreo en el NEA">
       <div className={styles.inner}>
         <div className={styles.copyBlock}>
           <h2 className={styles.title}>Seguridad electrónica y monitoreo en todo el NEA</h2>

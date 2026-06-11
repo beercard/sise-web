@@ -9,7 +9,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Seguridad para el campo',
   description:
-    'Seguridad electronica para el campo con monitoreo rural, videovigilancia, conectividad y control remoto de establecimientos agropecuarios.',
+    'Seguridad electrónica para el campo con monitoreo rural, videovigilancia, conectividad y control remoto de establecimientos agropecuarios.',
   path: '/agro'
 });
 
