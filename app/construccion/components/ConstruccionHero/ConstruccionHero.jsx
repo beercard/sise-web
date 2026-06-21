@@ -10,7 +10,7 @@ export default function ConstruccionHero() {
   return (
     <section className={styles.hero} aria-label="SISE Urbano - Construcción y Obras">
       <div className={styles.heroMedia}>
-        <Image src="/image/mq11fkmb-be8tqg4.webp" alt="" className={styles.heroImage} fill priority sizes="100vw" />
+        <Image src="/image/mq11fkmb-be8tqg4.webp" alt="Videovigilancia y cámaras de seguridad en una obra en construcción" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <Image src="/image/mq11fkmb-q59ieul.png" alt="SISE Urbano" className={styles.heroKicker} width={704} height={95} priority />

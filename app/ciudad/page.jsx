@@ -1,10 +1,10 @@
-import Link from 'next/link';
-
 import CiudadHero from './components/CiudadHero/CiudadHero';
 import CiudadTechnologyModule from './components/CiudadTechnologyModule/CiudadTechnologyModule';
 
 import Cotizador from '../components/Cotizador/Cotizador';
+import FaqSection from '../components/FaqSection/FaqSection';
 import {
+  buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildLocalAreas,
   buildPageMetadata,
@@ -19,82 +19,45 @@ export const metadata = buildPageMetadata({
   description:
     'Soluciones de seguridad para municipios y ciudades con videovigilancia, conectividad y herramientas para la prevención del delito.',
   path: '/ciudad',
+  image: '/image/og-ciudad.jpg',
   keywords: [
     'seguridad para ciudades',
     'videovigilancia urbana',
     'monitoreo del espacio público',
     'seguridad municipal',
     'seguridad urbana en Chaco',
-    'videovigilancia para municipios'
+    'videovigilancia para municipios',
+    'videovigilancia urbana en Corrientes',
+    'seguridad municipal en el NEA',
+    'centro de monitoreo urbano'
   ]
 });
 
-const ciudadAuthorityItems = [
-  {
-    eyebrow: 'Escalable',
-    title: 'Proyectos por etapas y prioridades',
-    text: 'Diseñamos implementaciones que pueden comenzar por accesos, espacios públicos o edificios estratégicos y crecer según el plan del municipio.'
-  },
-  {
-    eyebrow: 'En tiempo real',
-    title: 'Monitoreo y control operativo',
-    text: 'Integramos videovigilancia, alertas y herramientas de supervisión para mejorar la lectura del territorio y la capacidad de respuesta.'
-  },
-  {
-    eyebrow: 'Resistencia, Chaco',
-    title: 'Base técnica para proyectos locales',
-    text: 'Acompañamos iniciativas urbanas desde nuestra sede en Resistencia con una mirada práctica sobre despliegue, continuidad y gestión de recursos.'
-  }
-];
-
-const ciudadInternalLinks = [
-  {
-    href: '/edificios',
-    title: 'Edificios y consorcios',
-    text: 'Soluciones aplicables a halls, ingresos, cocheras y administración de accesos en edificios públicos o residenciales.'
-  },
-  {
-    href: '/comercio',
-    title: 'Corredores comerciales',
-    text: 'Tecnología para entornos con alta circulación, aperturas frecuentes y necesidad de control operativo.'
-  },
-  {
-    href: '/industria',
-    title: 'Áreas industriales y logísticas',
-    text: 'Protección de perímetros, ingresos, activos y movimientos en polos productivos o parques industriales.'
-  },
-  {
-    href: '/contacto',
-    title: 'Asesoramiento institucional',
-    text: 'Analizamos necesidades, alcance y prioridades para ordenar una estrategia de seguridad urbana a medida.'
-  }
-];
-
 const ciudadFaqs = [
   {
-    question: '¿Qué tipo de soluciones puede implementar un municipio con SISE?',
+    question: '¿Qué soluciones de seguridad puede implementar un municipio?',
     answer:
-      'SISE puede desarrollar propuestas de videovigilancia urbana, monitoreo del espacio público, control de accesos y esquemas de supervisión para puntos críticos según el objetivo del proyecto.'
+      'Un municipio puede implementar videovigilancia urbana, monitoreo del espacio público, control de accesos, puntos y paradas seguras, GPS institucional y herramientas de supervisión, integrados a un centro de monitoreo para mejorar la prevención del delito.'
   },
   {
-    question: '¿Se puede empezar con una etapa inicial y ampliar el sistema después?',
+    question: '¿Se puede empezar por una etapa e ir ampliando el sistema?',
     answer:
-      'Sí. Una estrategia por etapas permite priorizar zonas, accesos o edificios clave y escalar la infraestructura a medida que evolucionan las necesidades operativas.'
+      'Sí. Diseñamos proyectos escalables que pueden iniciar por accesos, avenidas o puntos críticos y crecer por etapas según las prioridades y el presupuesto del municipio.'
   },
   {
-    question: '¿Las soluciones se adaptan a plazas, avenidas, barrios y edificios públicos?',
+    question: '¿Cómo funciona un centro de monitoreo urbano?',
     answer:
-      'Sí. Cada entorno urbano tiene requerimientos distintos, por eso el diseño contempla circulación, visibilidad, puntos de control y necesidades de supervisión específicas.'
+      'El centro de monitoreo concentra las cámaras y alertas de la ciudad en tiempo real, permitiendo seguir eventos, evaluar incidencias y coordinar la respuesta entre las áreas responsables de la seguridad.'
   },
   {
-    question: '¿Cómo ayuda la videovigilancia a mejorar la gestión del espacio público?',
+    question: '¿La videovigilancia urbana ayuda a prevenir el delito y gestionar el espacio público?',
     answer:
-      'La videovigilancia aporta información en tiempo real para seguimiento de eventos, evaluación de incidencias y mejor coordinación entre las áreas responsables de la seguridad.'
+      'Sí. Aporta información en tiempo real para la prevención del delito, la lectura del territorio y la gestión del espacio público, mejorando la capacidad de respuesta y la coordinación operativa.'
   },
   {
-    question: '¿SISE puede asesorar proyectos para municipios de Chaco?',
+    question: '¿SISE trabaja con municipios de Chaco y el NEA?',
     answer:
-      'Sí. Desde la base operativa en Resistencia, Chaco, SISE brinda asesoramiento técnico y comercial para evaluar alcances, prioridades y soluciones de seguridad urbana.'
+      'Sí. Desde nuestra base en Resistencia brindamos asesoramiento técnico y comercial a municipios y organismos del Chaco y la región del NEA para desarrollar proyectos de seguridad urbana a medida.'
   }
 ];
 
@@ -107,6 +70,7 @@ const ciudadStructuredData = {
       description:
         'Soluciones de seguridad para municipios y ciudades con videovigilancia, conectividad y herramientas para la prevención del delito.'
     }),
+    buildBreadcrumbSchema({ path: '/ciudad', name: 'Ciudad' }),
     buildServiceSchema({
       path: '/ciudad',
       name: 'Videovigilancia urbana y seguridad para ciudades',
@@ -116,10 +80,7 @@ const ciudadStructuredData = {
       audience: 'Municipios, gobiernos y organismos públicos',
       areaServed: buildLocalAreas()
     }),
-    buildFAQPageSchema({
-      path: '/ciudad',
-      questions: ciudadFaqs
-    })
+    buildFAQPageSchema({ path: '/ciudad', questions: ciudadFaqs })
   ]
 };
 
@@ -134,82 +95,15 @@ export default function CiudadPage() {
       <CiudadHero />
       <CiudadTechnologyModule />
 
-      <section className={styles.authoritySection} aria-label="Autoridad y experiencia en seguridad urbana">
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionHeading}>
-            <p className={styles.sectionEyebrow}>AUTORIDAD INSTITUCIONAL</p>
-            <h2 className={styles.sectionTitle}>Seguridad urbana pensada para gestión, control y escalabilidad</h2>
-            <p className={styles.sectionText}>
-              Una estrategia para ciudades no se limita a instalar cámaras. Requiere
-              lectura del territorio, prioridades claras, infraestructura confiable y una
-              ejecución ordenada. Desde Resistencia, Chaco, acompañamos proyectos con foco
-              en prevención y capacidad operativa.
-            </p>
-          </div>
-
-          <div className={styles.authorityGrid}>
-            {ciudadAuthorityItems.map((item) => (
-              <article key={item.title} className={styles.authorityCard}>
-                <p className={styles.authorityCardEyebrow}>{item.eyebrow}</p>
-                <h3 className={styles.authorityCardTitle}>{item.title}</h3>
-                <p className={styles.authorityCardText}>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.contextSection} aria-label="Enlaces internos relacionados">
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionHeading}>
-            <p className={styles.sectionEyebrow}>ENLAZADO CONTEXTUAL</p>
-            <h2 className={styles.sectionTitle}>Conectá la estrategia urbana con otros entornos críticos</h2>
-            <p className={styles.sectionText}>
-              Los proyectos municipales suelen involucrar edificios públicos, zonas
-              comerciales, accesos logísticos y espacios de alta circulación. Si querés
-              ampliar el análisis, también podés revisar soluciones para{' '}
-              <Link href="/hogar">hogares</Link> o volver a la{' '}
-              <Link href="/">visión general de SISE</Link>.
-            </p>
-          </div>
-
-          <div className={styles.contextGrid}>
-            {ciudadInternalLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={styles.contextCard}>
-                <span className={styles.contextCardTitle}>{item.title}</span>
-                <span className={styles.contextCardText}>{item.text}</span>
-                <span className={styles.contextCardLink}>Explorar página</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.faqSection} aria-label="Preguntas frecuentes sobre seguridad urbana">
-        <div className={styles.sectionInner}>
-          <div className={styles.sectionHeading}>
-            <p className={styles.sectionEyebrow}>FAQS</p>
-            <h2 className={styles.sectionTitle}>Preguntas frecuentes sobre videovigilancia urbana</h2>
-            <p className={styles.sectionText}>
-              Este bloque responde dudas habituales de municipios y organismos que buscan
-              ordenar una estrategia de seguridad para el espacio público.
-            </p>
-          </div>
-
-          <div className={styles.faqList}>
-            {ciudadFaqs.map((item, index) => (
-              <details key={item.question} className={styles.faqItem} open={index === 0}>
-                <summary className={styles.faqQuestion}>{item.question}</summary>
-                <p className={styles.faqAnswer}>{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
         <Cotizador />
       </section>
+
+      <FaqSection
+        intro="Reunimos las consultas más frecuentes de municipios y organismos sobre videovigilancia urbana, monitoreo del espacio público y prevención del delito."
+        faqs={ciudadFaqs}
+        ariaLabel="Preguntas frecuentes sobre seguridad para ciudades"
+      />
     </div>
   );
 }

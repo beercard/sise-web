@@ -1,4 +1,11 @@
 .hero {
+  /* Mismo eje de contenido que HomeSeoContent y "Nuestros Pilares": el título
+     se ancla al borde izquierdo de una columna de 1187px centrada (≈x366 en un
+     canvas de 1920), alineado a la izquierda en todos los breakpoints para
+     quedar en la misma vertical que los títulos de las secciones siguientes. */
+  --col-width: 1187px;
+  --pad-x: clamp(16px, 4vw, 24px);
+  --content-left: max(var(--pad-x), calc((100% - var(--col-width)) / 2));
   position: relative;
   width: 100%;
   height: 800px;
@@ -50,8 +57,8 @@
 .heroTitle {
   position: absolute;
   top: 470px;
-  left: 366px;
-  width: 1080px;
+  left: var(--content-left);
+  width: min(944px, calc(100% - 2 * var(--pad-x)));
   height: auto;
   line-height: 52px;
   letter-spacing: 0;
@@ -134,8 +141,6 @@
 
   .heroTitle {
     top: 418px;
-    left: 48px;
-    width: min(1080px, calc(100% - 96px));
   }
 }
 
@@ -164,7 +169,6 @@
 
   .heroTitle {
     top: 372px;
-    width: min(960px, calc(100% - 96px));
   }
 }
 
@@ -221,10 +225,6 @@
 
   .heroTitle {
     top: 300px;
-    left: 50%;
-    width: min(640px, calc(100% - 48px));
-    transform: translateX(-50%);
-    text-align: center;
   }
 }
 
@@ -241,12 +241,8 @@
   }
 
   .heroTitle {
-    left: 50%;
-    width: min(420px, calc(100% - 40px));
-    top: clamp(220px, 52vh, 300px);
+    top: clamp(210px, 50vh, 300px);
     bottom: auto;
-    transform: translateX(-50%);
-    text-align: center;
   }
 
   .heroBreak {
@@ -282,11 +278,8 @@
   }
 
   .heroTitle {
-    left: 50%;
-    width: min(360px, calc(100% - 32px));
-    top: clamp(200px, 50vh, 260px);
+    top: clamp(190px, 48vh, 260px);
     bottom: auto;
-    transform: translateX(-50%);
   }
 
   .heroTitle,

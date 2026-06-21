@@ -534,6 +534,30 @@
   text-decoration: underline;
 }
 
+.footerCredit {
+  margin: 28px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+  color: var(--sise-white);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  opacity: 0.7;
+}
+
+.footerCreditLink {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footerCreditLink:hover {
+  text-decoration: underline;
+}
+
 .footerDividerSmall {
   background: var(--sise-white);
   width: 1px;

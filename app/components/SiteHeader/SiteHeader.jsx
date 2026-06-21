@@ -12,7 +12,7 @@ export default function SiteHeader() {
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const [isDesktop, setIsDesktop] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return window.matchMedia('(min-width: 961px)').matches;
+    return window.matchMedia('(min-width: 1201px)').matches;
   });
 
   const navItems = useMemo(
@@ -75,7 +75,7 @@ export default function SiteHeader() {
   }, [isOpen]);
 
   useEffect(() => {
-    const media = window.matchMedia('(min-width: 961px)');
+    const media = window.matchMedia('(min-width: 1201px)');
     const onChange = (event) => {
       setIsDesktop(event.matches);
       if (!event.matches) return;

@@ -13,24 +13,50 @@ import WhyChooseSise from './components/WhyChooseSise/WhyChooseSise';
 
 import styles from './page.module.scss';
 
+const PAGE_TITLE = 'Alarmas monitoreadas y seguridad electrónica 24/7';
+const PAGE_DESCRIPTION =
+  'Alarmas monitoreadas, cámaras de videovigilancia, control de accesos y central de monitoreo profesional 24/7 para hogares, comercios, industrias, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.';
+
 export const metadata = buildPageMetadata({
-  title: 'Soluciones de seguridad electrónica para hogares, empresas y ciudades',
-  description:
-    'Alarmas monitoreadas, cámaras, videovigilancia, control de accesos y monitoreo 24/7 para hogares, empresas, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.',
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   path: '/',
   keywords: [
     'alarmas monitoreadas',
-    'seguridad electrónica',
-    'cámaras de seguridad',
+    'sistema de alarma para casa',
+    'alarmas monitoreadas para casas y negocios',
+    'monitoreo de alarmas 24/7',
+    'central de monitoreo de alarmas',
+    'cámaras de seguridad monitoreadas',
+    'videovigilancia',
     'control de accesos',
-    'monitoreo 24/7',
-    'seguridad electrónica en el NEA',
-    'alarmas en Resistencia',
-    'seguridad electrónica en Chaco'
+    'seguridad electrónica en Resistencia',
+    'alarmas monitoreadas en Chaco',
+    'seguridad electrónica en el NEA'
   ]
 });
 
 const homeFaqs = [
+  {
+    question: '¿Qué es una alarma monitoreada y cómo funciona?',
+    answer:
+      'Una alarma monitoreada está conectada las 24 horas a nuestra central de monitoreo. Ante cualquier evento, sensores y cámaras envían una alerta inmediata que nuestros operadores verifican y, si corresponde, coordinan el envío de asistencia y de las fuerzas de seguridad al instante.'
+  },
+  {
+    question: '¿Cuál es el beneficio de una alarma monitoreada frente a una común?',
+    answer:
+      'Porque una sirena sonando no detiene a nadie ni garantiza asistencia. Con el monitoreo, si el perímetro o el interior se vulnera, nuestra central recibe la alerta, verifica el evento y coordina el envío inmediato de las fuerzas de seguridad.'
+  },
+  {
+    question: '¿Cuánto cuesta instalar una alarma monitoreada?',
+    answer:
+      'Nuestros presupuestos son a medida y adaptados a cada cliente. Realizamos un relevamiento técnico sin cargo para ofrecerte soluciones confiables y una cotización personalizada, asegurando que inviertas exactamente en lo que necesitás.'
+  },
+  {
+    question: '¿Puedo controlar la alarma desde mi celular?',
+    answer:
+      'Sí. Como empresa ágil y tecnológica, te damos el control total. Podés gestionar tu seguridad y recibir notificaciones en tiempo real desde la app, estés donde estés.'
+  },
   {
     question: '¿Cómo funciona el Cerco Eléctrico?',
     answer:
@@ -40,21 +66,6 @@ const homeFaqs = [
     question: '¿El Cerco Eléctrico es monitoreado?',
     answer:
       'Por sí solo, el cerco funciona con una sirena local de alta potencia. Para que tu perímetro esté vigilado 24/7, se le suma nuestro servicio de alarma monitoreada. Al integrarlos, cualquier intento de intrusión o corte envía una alerta inmediata a nuestro Centro de Operaciones para actuar al instante.'
-  },
-  {
-    question: '¿Puedo controlar la Alarma desde mi celular?',
-    answer:
-      'Sí. Como empresa ágil y tecnológica, te damos el control total. Podés gestionar tu seguridad y recibir notificaciones en tiempo real desde la app, estés donde estés.'
-  },
-  {
-    question: '¿Cuánto cuesta instalar una Alarma?',
-    answer:
-      'Nuestros presupuestos son a medida y adaptados a cada cliente. Realizamos un relevamiento técnico sin cargo para ofrecerte soluciones confiables y una cotización personalizada, asegurando que inviertas exactamente en lo que necesitás.'
-  },
-  {
-    question: '¿Cuál es el beneficio de una Alarma Monitoreada frente a una común?',
-    answer:
-      'Porque una sirena sonando no detiene a nadie ni garantiza asistencia. Con el monitoreo, si el perímetro o el interior se vulnera, nuestra central recibe la alerta, verifica el evento y coordina el envío inmediato de las fuerzas de seguridad.'
   }
 ];
 
@@ -63,9 +74,8 @@ const homeStructuredData = {
   '@graph': [
     buildWebPageSchema({
       path: '/',
-      title: 'Soluciones de seguridad electrónica para hogares, empresas y ciudades',
-      description:
-        'Alarmas monitoreadas, cámaras, videovigilancia, control de accesos y monitoreo 24/7 para hogares, empresas, edificios, campo y ciudades en Resistencia, Chaco y todo el NEA.'
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION
     }),
     buildServiceSchema({
       path: '/',

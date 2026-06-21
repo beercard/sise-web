@@ -283,7 +283,7 @@ export default function CiudadTechnologyModule() {
             <div className={styles.house} ref={houseRef} aria-label="Mapa interactivo">
               <Image
                 src="/image/mq1invd0-czaywzp.webp"
-                alt=""
+                alt="Plano interactivo de videovigilancia urbana con cámaras y puntos de monitoreo"
                 className={styles.houseImage}
                 width={HOUSE_BASE_WIDTH}
                 height={HOUSE_BASE_HEIGHT}

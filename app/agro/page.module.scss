@@ -6,7 +6,7 @@
 .hero {
   width: 100%;
   background: var(--sise-white);
-  --hero-group-width: 1140px;
+  --hero-group-width: 1187px;
   --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
@@ -71,7 +71,7 @@
   padding: 68px var(--hero-pad-x) 89px;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: clamp(24px, 3vw, 64px);
   height: 100%;
 }
@@ -778,6 +778,19 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .techBody {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .techCardGroup {
+    margin-top: 0;
+    flex: 0 0 auto;
+  }
+}
+
 @media (max-width: 960px) {
   .heroMedia {
     height: 640px;
@@ -818,6 +831,10 @@
   .heroBody {
     width: 100%;
     text-align: center;
+  }
+
+  .heroSectionTitle {
+    font-size: 24px;
   }
 
   .heroDivider {
@@ -1172,6 +1189,19 @@
     margin-top: 0;
   }
 
+  .heroText {
+    align-items: flex-start;
+    width: min(760px, 100%);
+  }
+
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+
   .heroBottomInner {
     flex-direction: column;
     align-items: flex-start;
@@ -1313,6 +1343,8 @@
 }
 
 /* Ritmo del bloque de texto del hero igual a /hogar (desktop). */
-.heroLead {
-  margin: 36px 0 0;
+@media (min-width: 1201px) {
+  .heroLead {
+    margin: 36px 0 0;
+  }
 }

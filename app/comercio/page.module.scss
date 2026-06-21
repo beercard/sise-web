@@ -6,7 +6,7 @@
 .hero {
   width: 100%;
   background: var(--sise-white);
-  --hero-group-width: 1140px;
+  --hero-group-width: 1187px;
   --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
@@ -76,7 +76,7 @@
   padding: 68px var(--hero-pad-x) 96px;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: clamp(24px, 3vw, 64px);
   height: 100%;
 }
@@ -952,6 +952,10 @@
     width: 100%;
     height: auto;
     text-align: center;
+  }
+
+  .heroSectionTitle {
+    font-size: 24px;
   }
 
   .heroText {

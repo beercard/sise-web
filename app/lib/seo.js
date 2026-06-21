@@ -19,6 +19,15 @@ export const siteConfig = {
     postalCode: '3500',
     addressCountry: 'AR'
   },
+  geo: {
+    latitude: -27.451,
+    longitude: -58.9867
+  },
+  // Reseñas reales de la ficha de Google Business de SISE Argentina.
+  aggregateRating: {
+    ratingValue: 4.6,
+    reviewCount: 90
+  },
   sameAs: [
     'https://www.instagram.com/sise.argentina',
     'https://www.facebook.com/sise.argentina',
@@ -38,7 +47,12 @@ export const seoRoutes = [
   { path: '/ciudad', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/historia', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/rse', changeFrequency: 'monthly', priority: 0.6 },
-  { path: '/contacto', changeFrequency: 'monthly', priority: 0.8 }
+  { path: '/contacto', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/legales', changeFrequency: 'yearly', priority: 0.2 },
+  { path: '/privacidad', changeFrequency: 'yearly', priority: 0.2 },
+  { path: '/cookies', changeFrequency: 'yearly', priority: 0.2 },
+  { path: '/arrepentimiento', changeFrequency: 'yearly', priority: 0.3 },
+  { path: '/baja', changeFrequency: 'yearly', priority: 0.3 }
 ];
 
 export function buildPageMetadata({
@@ -68,6 +82,8 @@ export function buildPageMetadata({
       images: [
         {
           url: image,
+          width: 1200,
+          height: 630,
           alt: `${siteConfig.name} - ${title ?? 'Seguridad electrónica'}`
         }
       ]
@@ -99,12 +115,12 @@ export function buildLocalAreas(extraAreas = []) {
   ];
 }
 
-export function buildWebPageSchema({ path = '/', title, description }) {
+export function buildWebPageSchema({ path = '/', title, description, type = 'WebPage' }) {
   const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
   const url = `${siteConfig.siteUrl}${canonicalPath}`;
 
   return {
-    '@type': 'WebPage',
+    '@type': type,
     '@id': `${url}#webpage`,
     url,
     name: title,
@@ -115,7 +131,36 @@ export function buildWebPageSchema({ path = '/', title, description }) {
     },
     about: {
       '@id': `${siteConfig.siteUrl}/#organization`
+    },
+    breadcrumb: {
+      '@id': `${url}#breadcrumb`
     }
+  };
+}
+
+/**
+ * Migas de pan para Search (rich result de breadcrumb). Siempre arranca en
+ * Inicio y agrega el tramo actual; admite niveles intermedios opcionales.
+ */
+export function buildBreadcrumbSchema({ path = '/', name, parents = [] }) {
+  const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
+  const url = `${siteConfig.siteUrl}${canonicalPath}`;
+
+  const trail = [
+    { name: 'Inicio', item: `${siteConfig.siteUrl}/` },
+    ...parents,
+    { name, item: url }
+  ];
+
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumb`,
+    itemListElement: trail.map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.name,
+      item: entry.item
+    }))
   };
 }
 

@@ -213,6 +213,7 @@ function InitiativeCard({ item, isActive, onActivate, direction }) {
               src={item.image}
               alt={item.title.replace('\n', ' ')}
               fill
+              sizes="(max-width: 768px) 90vw, 400px"
               className={styles.previewImage}
             />
           </div>
@@ -246,6 +247,7 @@ function InitiativeCard({ item, isActive, onActivate, direction }) {
               src={item.image}
               alt={item.title.replace('\n', ' ')}
               fill
+              sizes="(max-width: 768px) 100vw, 640px"
               className={styles.initiativeImage}
             />
           </div>

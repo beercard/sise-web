@@ -1,0 +1,134 @@
+/*
+ * Página 404 con identidad SISE: fondo azul institucional, logo del águila,
+ * mensaje claro y accesos rápidos a las soluciones. Responsive completo.
+ */
+.wrap {
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--sise-blue);
+  padding: clamp(56px, 9vw, 110px) clamp(16px, 4vw, 24px);
+}
+
+.inner {
+  width: min(680px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  height: auto;
+  width: clamp(96px, 14vw, 132px);
+  margin-bottom: clamp(20px, 4vw, 34px);
+}
+
+.code {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: clamp(72px, 16vw, 132px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 2px;
+}
+
+.title {
+  margin: 12px 0 0;
+  color: #ffffff;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: clamp(26px, 5vw, 44px);
+  font-weight: 600;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.text {
+  margin: 16px 0 0;
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: clamp(16px, 2.4vw, 19px);
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.actions {
+  margin-top: clamp(26px, 4vw, 36px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 184px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.primary {
+  background: #ffffff;
+  color: var(--sise-blue);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+}
+
+.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.quickLinks {
+  margin-top: clamp(30px, 5vw, 44px);
+  padding-top: clamp(20px, 3vw, 28px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+}
+
+.quickLink {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.quickLink:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .primary,
+  .secondary {
+    width: 100%;
+  }
+}

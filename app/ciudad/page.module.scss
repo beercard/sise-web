@@ -891,6 +891,19 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .techBody {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .techCardGroup {
+    margin-top: 0;
+    flex: 0 0 auto;
+  }
+}
+
 @media (max-width: 960px) {
   .heroMedia {
     height: 640px;
@@ -1279,7 +1292,7 @@
    el bloque inferior con el carrusel en la misma posición que el resto
    de las verticales. Va al final del archivo para ganar la cascada. */
 .hero {
-  --hero-group-width: 1140px;
+  --hero-group-width: 1187px;
   --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
@@ -1360,6 +1373,19 @@
 
   .heroCarousel {
     margin-top: 0;
+  }
+
+  .heroText {
+    align-items: flex-start;
+    width: min(760px, 100%);
+  }
+
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    width: 100%;
+    height: auto;
+    text-align: left;
   }
 
   .heroBottomInner {

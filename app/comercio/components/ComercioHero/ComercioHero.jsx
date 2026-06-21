@@ -12,7 +12,7 @@ export default function ComercioHero() {
       <div className={styles.heroMedia}>
         <Image
           src="/image/mpvuunzj-eolvy7n.webp"
-          alt=""
+          alt="Cámaras de seguridad y alarma monitoreada en un comercio"
           className={styles.heroImage}
           fill
           priority
@@ -22,7 +22,7 @@ export default function ComercioHero() {
 
         <Image
           src="/image/mpvuunzj-tkfn7dr.png"
-          alt=""
+          alt="SISE Comercio"
           className={styles.heroKicker}
           width={416}
           height={64}

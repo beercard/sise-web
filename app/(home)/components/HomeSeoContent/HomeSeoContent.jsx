@@ -4,10 +4,12 @@ import styles from './HomeSeoContent.module.scss';
 
 export default function HomeSeoContent() {
   return (
-    <section className={styles.section} aria-label="Seguridad electrónica y monitoreo en el NEA">
+    <section className={styles.section} aria-label="Alarmas monitoreadas y seguridad electrónica en el NEA">
       <div className={styles.inner}>
         <div className={styles.copyBlock}>
-          <h2 className={styles.title}>Seguridad electrónica y monitoreo en todo el NEA</h2>
+          <h2 className={styles.title}>
+            Alarmas monitoreadas y seguridad electrónica en todo el NEA
+          </h2>
           <p className={styles.text}>
             <span className={styles.textRegular}>Nacimos en </span>
             <Link href="/contacto" className={`${styles.textStrong} ${styles.inlineLink}`}>

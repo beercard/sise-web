@@ -10,7 +10,7 @@ import styles from './TechCard.module.scss';
  *  - `art.backgroundSrc`: composición con fondo (sirena/conectividad/gps),
  *    con `svgSrc`/`iconSrc` como insignia y `overlaySrc` como detalle.
  */
-function ArtContent({ art }) {
+function ArtContent({ art, fallbackAlt = '' }) {
   if (!art) return null;
 
   const mainSrc = art.src ?? art.image?.src;
@@ -18,7 +18,7 @@ function ArtContent({ art }) {
     return (
       <Image
         src={mainSrc}
-        alt=""
+        alt={art.alt ?? fallbackAlt}
         className={styles.artImage}
         width={art.width ?? art.image?.width ?? 220}
         height={art.height ?? art.image?.height ?? 170}
@@ -70,7 +70,7 @@ export default function TechCard({ slide, className = '' }) {
       <p className={styles.title}>{slide.title}</p>
       {slide.text ? <p className={styles.text}>{slide.text}</p> : null}
       <div className={styles.artStage}>
-        <ArtContent art={slide.art} />
+        <ArtContent art={slide.art} fallbackAlt={slide.title} />
       </div>
     </div>
   );

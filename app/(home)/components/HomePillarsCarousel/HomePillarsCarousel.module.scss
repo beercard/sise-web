@@ -1,37 +1,49 @@
+/*
+ * Carrusel "Nuestros Pilares". Contenedor centrado de ancho máximo (igual
+ * que el resto de las secciones del home) con tipografía fluida. El carrusel
+ * mantiene la composición de 3 tarjetas (preview · activa · preview) que
+ * asoman a los lados en desktop y colapsa a una sola tarjeta con flechas en
+ * mobile. Antes el módulo quedaba corrido a la izquierda (indent fijo de
+ * 366px) y la tarjeta activa descentrada; ahora todo queda centrado y escala
+ * de forma uniforme en cada breakpoint.
+ */
 .section {
-  --content-start: 366px;
+  /* Mismo eje de contenido (columna 1187 centrada) y mismo padding lateral
+     que HomeSeoContent y el título del hero, para que el encabezado quede
+     alineado verticalmente con ellos. El carrusel conserva su ancho mayor. */
+  --col-width: 1187px;
+  --pad-x: clamp(16px, 4vw, 24px);
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  padding: 44px 24px 0 var(--content-start);
+  justify-content: center;
+  padding: clamp(34px, 4.6vw, 44px) var(--pad-x) 0;
   background: var(--sise-white);
   overflow: hidden;
 }
 
 .inner {
-  width: min(1628px, calc(100% - 390px));
+  width: min(1628px, 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .header {
-  width: min(1188px, 100%);
-  margin: 0;
-  margin-right: auto;
+  width: min(var(--col-width), 100%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: clamp(8px, 1vw, 12px);
 }
 
 .title {
   margin: 0;
-  width: min(690px, 100%);
+  width: 100%;
+  max-width: 690px;
   color: var(--sise-blue);
-  font-size: 48px;
+  font-size: clamp(30px, 3.4vw, 48px);
   font-weight: 600;
-  line-height: 48px;
+  line-height: 1;
   letter-spacing: 0;
 }
 
@@ -39,16 +51,17 @@
   margin: 0;
   width: min(868px, 100%);
   color: #000000;
-  font-size: 24px;
+  font-size: clamp(17px, 1.6vw, 24px);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 1.4;
   letter-spacing: 0;
+  text-wrap: pretty;
 }
 
 .carousel {
   width: min(1628px, 100%);
   min-height: 262px;
-  margin-top: 36px;
+  margin-top: clamp(24px, 2.6vw, 36px);
   display: grid;
   grid-template-columns: 463px 30px 578px 30px 464px;
   align-items: center;
@@ -196,56 +209,35 @@
 }
 
 @media (max-width: 1366px) {
-  .section {
-    --content-start: 48px;
-    padding-left: var(--content-start);
-    padding-right: 48px;
-  }
-
-  .inner {
-    width: min(1628px, 100%);
-  }
-
   .carousel {
     width: min(1280px, 100%);
-    grid-template-columns: 320px 30px minmax(0, 578px) 30px 320px;
+    grid-template-columns: 320px 30px 578px 30px 320px;
     column-gap: 18px;
   }
 }
 
 @media (max-width: 960px) {
-  .section {
-    --content-start: 24px;
-    padding-top: 34px;
-    padding-left: var(--content-start);
-    padding-right: 24px;
-  }
-
   .inner {
     align-items: center;
   }
 
   .header {
     width: 100%;
-    align-items: center;
-    text-align: center;
-    margin-right: 0;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .title {
     width: 100%;
-    font-size: 40px;
-    line-height: 40px;
+    max-width: none;
   }
 
   .subtitle {
     width: 100%;
-    font-size: 20px;
-    line-height: 28px;
+    max-width: none;
   }
 
   .carousel {
-    margin-top: 24px;
     min-height: 0;
     grid-template-columns: 32px minmax(0, 1fr) 32px;
     gap: 12px;
@@ -290,23 +282,8 @@
 }
 
 @media (max-width: 600px) {
-  .section {
-    --content-start: 20px;
-    padding: 28px 20px 0 var(--content-start);
-  }
-
   .header {
     gap: 8px;
-  }
-
-  .title {
-    font-size: 32px;
-    line-height: 36px;
-  }
-
-  .subtitle {
-    font-size: 18px;
-    line-height: 24px;
   }
 
   .card {
@@ -329,12 +306,6 @@
 }
 
 @media (max-width: 480px) {
-  .section {
-    --content-start: 16px;
-    padding-left: var(--content-start);
-    padding-right: 16px;
-  }
-
   .carousel {
     grid-template-columns: 28px minmax(0, 1fr) 28px;
     gap: 8px;

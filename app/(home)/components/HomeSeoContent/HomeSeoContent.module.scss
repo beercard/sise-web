@@ -1,40 +1,54 @@
+/*
+ * Bloque SEO bajo el hero. Diseño Figma (desktop): columna de contenido de
+ * 1187px centrada (borde izquierdo ≈ x366 en un canvas de 1920) con el título
+ * y el párrafo alineados a la izquierda. El mismo eje izquierdo lo comparten
+ * el título del hero y el encabezado de "Nuestros Pilares", para que los tres
+ * módulos queden alineados verticalmente. La tipografía escala con clamp()
+ * llegando exactamente a los valores de Figma en desktop (título 48px,
+ * párrafo 24px) y reduciéndose de forma uniforme en breakpoints menores.
+ */
 .section {
+  --col-width: 1187px;
+  --pad-x: clamp(16px, 4vw, 24px);
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  padding: 72px 24px 0 366px;
+  justify-content: center;
+  padding: clamp(36px, 5vw, 72px) var(--pad-x) 0;
   background: var(--sise-white);
 }
 
 .inner {
-  width: min(1187px, calc(100% - 390px));
+  width: min(var(--col-width), 100%);
 }
 
 .copyBlock {
-  width: min(1187px, 100%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 15px;
+  gap: clamp(12px, 1.4vw, 16px);
 }
 
 .title {
   margin: 0;
+  /* Ocupa el ancho del párrafo (columna 1187) y la fuente se ajusta para que
+     el título entre en UNA sola línea en desktop/tablet; recién envuelve en
+     pantallas chicas. */
+  width: 100%;
   color: var(--sise-blue);
-  width: min(1065px, 100%);
-  font-size: 48px;
+  font-size: clamp(26px, 3vw, 44px);
   font-weight: 600;
-  line-height: 39px;
+  line-height: 1.08;
   letter-spacing: 0;
-  white-space: nowrap;
+  text-wrap: pretty;
 }
 
 .text {
   margin: 0;
+  width: 100%;
   color: #000000;
-  font-size: 24px;
+  font-size: clamp(17px, 1.55vw, 24px);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 1.4;
   letter-spacing: 0;
   text-wrap: pretty;
 }
@@ -62,72 +76,4 @@
   outline: 2px solid rgba(0, 64, 140, 0.42);
   outline-offset: 3px;
   border-radius: 2px;
-}
-
-@media (max-width: 1366px) {
-  .section {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
-  .inner {
-    width: min(1187px, 100%);
-  }
-}
-
-@media (max-width: 960px) {
-  .section {
-    padding-top: 48px;
-  }
-
-  .copyBlock {
-    gap: 14px;
-  }
-
-  .title {
-    width: 100%;
-    font-size: 40px;
-    line-height: 1.04;
-    white-space: normal;
-  }
-
-  .text {
-    font-size: 20px;
-    line-height: 28px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-
-@media (max-width: 600px) {
-  .section {
-    padding: 32px 20px 0;
-  }
-
-  .copyBlock {
-    align-items: center;
-    text-align: center;
-  }
-
-  .title {
-    font-size: 32px;
-    line-height: 36px;
-  }
-
-  .text {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 }

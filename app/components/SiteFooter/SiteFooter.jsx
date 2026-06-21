@@ -154,21 +154,20 @@ export default function SiteFooter() {
           <div className={styles.footerBottomRow}>
             <Link
               className={styles.footerBottomLinkArrepentimiento}
-              href="#arrepentimiento"
-              id="arrepentimiento"
+              href="/arrepentimiento"
             >
               Arrepentimiento de Compra/Revocación
             </Link>
             <div className={styles.footerBottomDivider} aria-hidden="true" />
-            <Link className={styles.footerBottomLinkBaja} href="#baja" id="baja">
+            <Link className={styles.footerBottomLinkBaja} href="/baja">
               Solicitar Baja de Servicio
             </Link>
             <div className={styles.footerBottomDivider} aria-hidden="true" />
-            <Link className={styles.footerBottomLinkLegales} href="#legales" id="legales">
+            <Link className={styles.footerBottomLinkLegales} href="/legales">
               Legales
             </Link>
             <div className={styles.footerBottomDivider} aria-hidden="true" />
-            <Link className={styles.footerBottomLinkCookies} href="#cookies" id="cookies">
+            <Link className={styles.footerBottomLinkCookies} href="/cookies">
               Gestión de Cookies
             </Link>
           </div>
@@ -214,20 +213,32 @@ export default function SiteFooter() {
           </div>
 
           <div className={styles.footerMobileLinks} aria-label="Links legales">
-            <Link className={styles.footerSmallLink} href="#baja">
+            <Link className={styles.footerSmallLink} href="/baja">
               Solicitar Baja de Servicio
             </Link>
-            <Link className={styles.footerSmallLink} href="#legales">
+            <Link className={styles.footerSmallLink} href="/legales">
               Legales
             </Link>
-            <Link className={styles.footerSmallLink} href="#cookies">
+            <Link className={styles.footerSmallLink} href="/cookies">
               Gestión de Cookies
             </Link>
-            <Link className={styles.footerSmallLink} href="#arrepentimiento">
+            <Link className={styles.footerSmallLink} href="/arrepentimiento">
               Arrepentimiento de Compra/Revocación
             </Link>
           </div>
         </div>
+
+        <p className={styles.footerCredit}>
+          Diseño y desarrollo:{' '}
+          <a
+            className={styles.footerCreditLink}
+            href="https://vektra.digital"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Vektra Digital
+          </a>
+        </p>
       </div>
     </footer>
   );

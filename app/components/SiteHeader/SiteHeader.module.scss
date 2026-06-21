@@ -400,45 +400,37 @@
   height: 18px;
 }
 
-@media (max-width: 1366px) {
+/* Banda intermedia: la nav horizontal con 7 ítems necesita ~1340px para
+   entrar con su espaciado de diseño. Entre 1201 y 1366px comprimimos gaps,
+   paddings y anchos de submenú lo justo para que entre sin desbordar,
+   manteniendo la misma disposición. Por debajo de 1200px pasa a hamburguesa. */
+@media (min-width: 1201px) and (max-width: 1366px) {
   .inner {
-    padding-right: clamp(16px, 4vw, 120px);
     padding-left: 16px;
-  }
-
-  .recurso {
-    margin-left: 0;
+    padding-right: 24px;
+    gap: clamp(10px, 1.4vw, 28px);
   }
 
   .nav {
-    margin-left: 0;
-    padding-right: 0;
-    max-width: none;
+    --nav-gap: clamp(14px, 1.3vw, 30px);
+    --nav-subpad: clamp(14px, 1.2vw, 32px);
+    --nav-pad-x: clamp(8px, 1vw, 16px);
   }
 
-  .navItem:not(:first-child) {
-    padding-left: var(--nav-gap);
+  .navItemempresas .navLinkGroup {
+    width: clamp(148px, 11.6vw, 196px);
   }
 
-  .navItem:not(:first-child)::before {
-    left: calc(var(--nav-gap) / 2);
+  .navItemurbano .navLinkGroup {
+    width: clamp(132px, 10.4vw, 176px);
   }
 
-  .navLink {
-    font-size: var(--nav-font);
-  }
-
-  .navLinkRow {
-    padding: 0 var(--nav-pad-x);
-  }
-
-  .navItemWithSubmenu .navLinkRow {
-    padding-left: var(--nav-subpad);
-    padding-right: var(--nav-subpad);
+  .navItemnosotros .navLinkGroup {
+    width: clamp(152px, 12vw, 200px);
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1200px) {
   .header {
     position: sticky;
     top: 0;

@@ -14,11 +14,20 @@ const leagueSpartan = League_Spartan({
   display: 'swap'
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: siteConfig.themeColor
+};
+
 export const metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: siteConfig.defaultTitle,
   description: siteConfig.description,
   applicationName: siteConfig.name,
+  authors: [{ name: 'Vektra Digital', url: 'https://vektra.digital' }],
+  creator: 'Vektra Digital',
+  publisher: siteConfig.legalName,
   alternates: {
     canonical: '/'
   },
@@ -33,11 +42,6 @@ export const metadata = {
       'max-video-preview': -1
     }
   },
-  icons: {
-    icon: siteConfig.icon,
-    shortcut: siteConfig.icon,
-    apple: siteConfig.icon
-  },
   openGraph: {
     title: siteConfig.defaultTitle,
     description: siteConfig.description,
@@ -48,6 +52,8 @@ export const metadata = {
     images: [
       {
         url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
         alt: `${siteConfig.name} - Seguridad electrónica`
       }
     ]
@@ -65,18 +71,77 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
+        '@type': ['Organization', 'LocalBusiness'],
         '@id': `${siteConfig.siteUrl}/#organization`,
         name: siteConfig.legalName,
+        alternateName: siteConfig.name,
+        description: siteConfig.description,
+        slogan: 'Seguridad electrónica y monitoreo de alarmas 24/7 en todo el NEA',
         url: siteConfig.siteUrl,
         logo: `${siteConfig.siteUrl}${siteConfig.icon}`,
+        image: `${siteConfig.siteUrl}${siteConfig.ogImage}`,
         email: siteConfig.email,
         telephone: siteConfig.phone,
+        priceRange: '$$',
+        currenciesAccepted: 'ARS',
+        knowsAbout: [
+          'Alarmas monitoreadas',
+          'Monitoreo de alarmas 24/7',
+          'Seguridad electrónica',
+          'Videovigilancia y cámaras de seguridad',
+          'Control de accesos',
+          'Cerco eléctrico y protección perimetral',
+          'Seguridad rural',
+          'Seguridad urbana y videovigilancia para municipios'
+        ],
         sameAs: siteConfig.sameAs,
         address: {
           '@type': 'PostalAddress',
           ...siteConfig.address
         },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: siteConfig.geo.latitude,
+          longitude: siteConfig.geo.longitude
+        },
+        ...(siteConfig.aggregateRating
+          ? {
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: siteConfig.aggregateRating.ratingValue,
+                reviewCount: siteConfig.aggregateRating.reviewCount,
+                bestRating: 5,
+                worstRating: 1
+              }
+            }
+          : {}),
+        areaServed: [
+          { '@type': 'City', name: 'Resistencia' },
+          { '@type': 'City', name: 'Corrientes' },
+          { '@type': 'City', name: 'Formosa' },
+          { '@type': 'City', name: 'Posadas' },
+          { '@type': 'AdministrativeArea', name: 'Chaco' },
+          { '@type': 'AdministrativeArea', name: 'Corrientes' },
+          { '@type': 'AdministrativeArea', name: 'Formosa' },
+          { '@type': 'AdministrativeArea', name: 'Misiones' },
+          { '@type': 'Place', name: 'NEA - Nordeste Argentino' }
+        ],
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: [
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday',
+              'Sunday'
+            ],
+            opens: '00:00',
+            closes: '23:59'
+          }
+        ],
         contactPoint: [
           {
             '@type': 'ContactPoint',

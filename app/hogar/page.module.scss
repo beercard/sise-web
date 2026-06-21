@@ -6,7 +6,7 @@
 .hero {
   width: 100%;
   background: var(--sise-white);
-  --hero-group-width: 1140px;
+  --hero-group-width: 1187px;
   --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
@@ -77,7 +77,7 @@
   padding: 77px var(--hero-pad-x) 98px;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: clamp(24px, 3vw, 64px);
   height: 100%;
 }
@@ -1052,7 +1052,7 @@
   }
 
   .house {
-    width: min(735px, 100%);
+    width: min(735px, 55vw);
   }
 
   .techCardGroup {

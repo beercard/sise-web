@@ -1,19 +1,48 @@
 import RseHero from './components/RseHero/RseHero';
 import RseInitiativesCarousel from './components/RseInitiativesCarousel/RseInitiativesCarousel';
 
-import { buildPageMetadata } from '../lib/seo';
+import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema } from '../lib/seo';
 import styles from './page.module.scss';
 
+const PAGE_TITLE = 'Responsabilidad social empresarial';
+const PAGE_DESCRIPTION =
+  'Conocé las acciones de responsabilidad social empresarial de SISE Argentina: compromiso con la comunidad, la inclusión, el deporte, la educación y el ambiente en el NEA.';
+
 export const metadata = buildPageMetadata({
-  title: 'Responsabilidad social empresarial',
-  description:
-    'Conoce las acciones de responsabilidad social empresarial de SISE Argentina en comunidad, inclusión, deporte, educación y ambiente.',
-  path: '/rse'
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  path: '/rse',
+  image: '/image/og-rse.jpg',
+  keywords: [
+    'responsabilidad social empresarial SISE',
+    'RSE seguridad electrónica',
+    'compromiso con la comunidad en el Chaco',
+    'inclusión y deporte en Resistencia',
+    'empresa comprometida con el NEA',
+    'acciones sociales empresa de seguridad'
+  ]
 });
+
+const rseStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    buildWebPageSchema({
+      path: '/rse',
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      type: 'AboutPage'
+    }),
+    buildBreadcrumbSchema({ path: '/rse', name: 'Responsabilidad social' })
+  ]
+};
 
 export default function RsePage() {
   return (
     <div className={styles.rse}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(rseStructuredData) }}
+      />
       <RseHero />
       <RseInitiativesCarousel />
     </div>

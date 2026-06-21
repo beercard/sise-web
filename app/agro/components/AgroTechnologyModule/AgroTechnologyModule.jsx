@@ -432,7 +432,7 @@ export default function AgroTechnologyModule() {
               <div className={styles.house} ref={houseRef}>
                 <Image
                   src={effectiveMapSrc}
-                  alt=""
+                  alt="Plano interactivo de seguridad para el campo con cámaras y sensores"
                   className={styles.houseImage}
                   width={HOUSE_BASE_WIDTH}
                   height={HOUSE_BASE_HEIGHT}

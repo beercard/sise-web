@@ -3,6 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "Sitio web de SISE Argentina — seguridad electrónica y monitoreo de alarmas en el NEA.",
+  "author": "Vektra Digital (https://vektra.digital)",
   "scripts": {
     "dev": "next dev --webpack",
     "dev:turbo": "next dev --turbo",
@@ -10,7 +12,8 @@
     "start": "next start",
     "lint": "eslint .",
     "setup:githooks": "node scripts/setup-githooks.mjs",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "generate:og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "next": "^16.2.6",

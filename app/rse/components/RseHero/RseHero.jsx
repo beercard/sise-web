@@ -11,6 +11,7 @@ export default function RseHero() {
           alt=""
           fill
           priority
+          sizes="100vw"
           className={styles.heroImage}
         />
         <div className={styles.heroOverlay} />
