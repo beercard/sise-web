@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 
 import styles from './HomePillarsCarousel.module.scss';
 
 const pillars = [
   {
     title: 'Soluciones a tu medida',
+    image: '/image/pillar-soluciones.webp',
     bodyWidth: 477,
     titleWidth: 438,
     previewBodyWidth: 389,
@@ -26,6 +28,7 @@ const pillars = [
   },
   {
     title: 'Soporte técnico local',
+    image: '/image/pillar-soporte.webp',
     bodyWidth: 518,
     titleWidth: 438,
     previewBodyWidth: 416,
@@ -45,6 +48,7 @@ const pillars = [
   },
   {
     title: 'Prevención como prioridad',
+    image: '/image/pillar-prevencion.webp',
     bodyWidth: 485,
     titleWidth: 438,
     previewBodyWidth: 389,
@@ -144,6 +148,22 @@ export default function HomePillarsCarousel() {
           >
             <h3 className={styles.cardTitle}>{visibleItems.active.title}</h3>
             <p className={styles.cardText}>{visibleItems.active.text}</p>
+
+            {/* Al pasar el cursor la tarjeta se completa con su foto y el
+                mismo contenido en blanco (Figma: Group 220 / Mask group). */}
+            <div className={styles.cardOverlay} aria-hidden="true">
+              <Image
+                src={visibleItems.active.image}
+                alt=""
+                className={styles.cardOverlayImage}
+                fill
+                sizes="(max-width: 960px) 100vw, 578px"
+              />
+              <div className={styles.cardOverlayContent}>
+                <h3 className={styles.cardOverlayTitle}>{visibleItems.active.title}</h3>
+                <p className={styles.cardOverlayText}>{visibleItems.active.text}</p>
+              </div>
+            </div>
           </article>
 
           <button

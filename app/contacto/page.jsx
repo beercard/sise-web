@@ -10,7 +10,7 @@ import styles from './page.module.scss';
 
 const PAGE_TITLE = 'Contacto y atención 24 horas';
 const PAGE_DESCRIPTION =
-  'Contactá a SISE Argentina por teléfono, WhatsApp o correo y recibí asesoramiento comercial y técnico en seguridad electrónica y monitoreo de alarmas en Resistencia, Chaco y el NEA.';
+  'Contactá a SISE Argentina por teléfono, WhatsApp o correo. Asesoramiento en seguridad electrónica y alarmas en Resistencia, Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,

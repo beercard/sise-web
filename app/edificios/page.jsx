@@ -14,7 +14,7 @@ import {
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'SISE Urbano: seguridad para edificios y consorcios';
+const PAGE_TITLE = 'Seguridad para edificios y consorcios';
 const PAGE_DESCRIPTION =
   'Seguridad para edificios, consorcios y entornos urbanos con control de accesos, videovigilancia y monitoreo centralizado.';
 

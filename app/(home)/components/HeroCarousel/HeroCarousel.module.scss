@@ -107,6 +107,14 @@
   cursor: pointer;
   padding: 0;
   transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Área táctil ampliada (~26px) sin alterar el tamaño visual del punto. */
+.dot::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
 }
 
 .dot:hover {

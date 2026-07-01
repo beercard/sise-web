@@ -6,7 +6,7 @@ import styles from './page.module.scss';
 
 const PAGE_TITLE = 'Responsabilidad social empresarial';
 const PAGE_DESCRIPTION =
-  'Conocé las acciones de responsabilidad social empresarial de SISE Argentina: compromiso con la comunidad, la inclusión, el deporte, la educación y el ambiente en el NEA.';
+  'Acciones de responsabilidad social de SISE Argentina: comunidad, inclusión, deporte, educación y ambiente en el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,

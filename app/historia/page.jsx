@@ -7,7 +7,7 @@ import styles from './page.module.scss';
 
 const PAGE_TITLE = 'Historia y trayectoria';
 const PAGE_DESCRIPTION =
-  'Conocé la historia de SISE Argentina: más de 15 años de trayectoria, reconocimientos y experiencia en seguridad electrónica y monitoreo de alarmas en Resistencia, Chaco y el NEA.';
+  'Conocé la historia de SISE Argentina: más de 15 años de trayectoria en seguridad electrónica y monitoreo de alarmas en Resistencia y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,

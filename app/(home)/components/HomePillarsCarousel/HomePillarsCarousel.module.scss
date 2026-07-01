@@ -157,6 +157,67 @@
   opacity: 1;
   filter: none;
   box-shadow: 0 20px 48px rgba(0, 64, 140, 0.08);
+  overflow: hidden;
+}
+
+/*
+ * Overlay al hover (Figma: Group 220 / Mask group): la tarjeta se completa
+ * con su fotografía y el mismo título + texto en blanco. Solo se activa en
+ * dispositivos con puntero (hover real); en touch no interfiere.
+ */
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 7px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cardOverlayImage {
+  object-fit: cover;
+}
+
+.cardOverlayContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 50px;
+  /* Velo sutil para garantizar la legibilidad del texto blanco sobre la foto. */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+.cardOverlayTitle {
+  margin: 0;
+  width: min(var(--title-width, 438px), 100%);
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.cardOverlayText {
+  margin: 0;
+  width: min(var(--body-width, 477px), 100%);
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+@media (hover: hover) {
+  .activeCard:hover .cardOverlay {
+    opacity: 1;
+  }
 }
 
 .arrowButton {
@@ -299,6 +360,23 @@
 
   .cardText {
     margin-top: 18px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .cardOverlayContent {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+
+  .cardOverlayTitle {
+    width: 100%;
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .cardOverlayText {
     width: 100%;
     font-size: 16px;
     line-height: 20px;
