@@ -832,6 +832,12 @@
     order: 6;
   }
 
+  /* El crédito va al final de todo en mobile, debajo de los links legales. */
+  .footerCredit {
+    order: 7;
+    width: 100%;
+  }
+
   .footerTopRow {
     flex-direction: column;
     align-items: center;

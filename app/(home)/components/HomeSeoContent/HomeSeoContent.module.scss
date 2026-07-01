@@ -77,3 +77,17 @@
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* En mobile/tablet el resto de las secciones (cotizador, FAQs, heros de las
+   verticales) centran su contenido; este bloque acompaña esa lectura. El
+   desktop conserva la alineación izquierda del Figma. */
+@media (max-width: 960px) {
+  .copyBlock {
+    align-items: center;
+  }
+
+  .title,
+  .text {
+    text-align: center;
+  }
+}
