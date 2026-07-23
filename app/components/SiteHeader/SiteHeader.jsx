@@ -57,6 +57,11 @@ export default function SiteHeader() {
     setOpenSubmenu(null);
   }, []);
 
+  const toggleMenu = useCallback(() => {
+    setOpenSubmenu(null);
+    setIsOpen((current) => !current);
+  }, []);
+
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === 'Escape') closeMenu();
@@ -88,8 +93,8 @@ export default function SiteHeader() {
   }, []);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
+    <header className={`${styles.header} ${isOpen ? styles.headerOpen : ''}`}>
+      <div className={`${styles.inner} ${isOpen ? styles.innerOpen : ''}`}>
         <Link href="/" aria-label="SISE">
           <Image
             src="/image/mpr0za9r-avr9t9i.png"
@@ -118,7 +123,7 @@ export default function SiteHeader() {
           aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={isOpen}
           aria-controls={navId}
-          onClick={() => setIsOpen((v) => !v)}
+          onClick={toggleMenu}
         >
           <span className={styles.menuButtonIcon} aria-hidden="true" />
         </button>

@@ -14,30 +14,32 @@
   position: relative;
   overflow: hidden;
   min-height: 1295px;
-  padding-top: 165px;
-  padding-left: clamp(16px, 6vw, 200px);
-  padding-right: clamp(16px, 6vw, 200px);
+  padding-top: 147px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .title {
   margin: 0 auto;
-  width: min(592px, 100%);
+  width: 592px;
   text-align: center;
-  line-height: clamp(44px, 4.3vw, 52px);
+  line-height: 52px;
   letter-spacing: 0;
   color: var(--sise-white);
-  font-size: clamp(44px, 5.2vw, 64px);
+  font-size: 64px;
   font-weight: 700;
 }
 
 .cards {
-  margin-top: 54px;
-  width: 100%;
+  margin-top: 53px;
+  width: min(1188px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: stretch;
-  justify-content: center;
-  gap: 38px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0;
+  flex-wrap: nowrap;
 }
 
 .card,
@@ -362,8 +364,12 @@
   right: auto;
   transform: translateX(-50%);
   opacity: 0.4;
-  width: min(1934px, 100%);
+  width: 1934px;
   height: 142px;
+  background-image: url('/image/mpr027zv-e2to3ki.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1934px 142px;
 }
 
 .bandStrip1 {
@@ -396,6 +402,10 @@
 }
 
 .categoriesMobile {
+  display: none;
+}
+
+.categoriesMobileColumn {
   display: none;
 }
 
@@ -505,11 +515,16 @@
   .inner {
     min-height: auto;
     padding-top: 136px;
+    padding-left: 24px;
+    padding-right: 24px;
     padding-bottom: 96px;
   }
 
   .cards {
+    width: 100%;
     gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .bandStrip1,
@@ -616,23 +631,48 @@
 
 @media (max-width: 600px) {
   .inner {
-    padding-top: 96px;
-    padding-bottom: 56px;
-    padding-left: 16px;
-    padding-right: 16px;
+    width: min(402px, 100%);
+    min-height: auto;
+    padding-top: 57px;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
   }
 
   .cards {
-    margin-top: 32px;
+    margin-top: 34px;
+    gap: 0;
+  }
+
+  .title {
+    width: 229px;
+    line-height: 19px;
+    font-size: 24px;
   }
 
   .card,
   .cardAlt,
   .cardAlt2 {
-    width: min(360px, 100%);
-    min-height: auto;
-    padding: 24px 20px;
+    width: 169px;
+    height: 172px;
+    min-height: 172px;
+    border-radius: 4px;
     align-items: center;
+    padding: 0;
+    position: relative;
+  }
+
+  .card {
+    margin-top: 0;
+  }
+
+  .cardAlt {
+    margin-top: 31px;
+  }
+
+  .cardAlt2 {
+    margin-top: 42px;
   }
 
   .cardIconAlt,
@@ -641,41 +681,146 @@
   }
 
   .cardIconWrap {
-    min-height: 82px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-height: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
   }
 
-  .cardTitle,
+  .cardFront {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    align-items: center;
+  }
+
+  .card .cardIconWrap {
+    top: 24px;
+  }
+
+  .cardAlt .cardIconWrap,
+  .cardAlt2 .cardIconWrap {
+    top: 13px;
+  }
+
+  .cardIcon {
+    width: 40px;
+    height: 35px;
+  }
+
+  .cardIconAlt {
+    width: 20px;
+    height: 41px;
+  }
+
+  .cardIconAlt2 {
+    width: 34px;
+    height: 41px;
+  }
+
+  .cardTitle {
+    position: absolute;
+    top: 69px;
+    left: 50%;
+    margin-top: 0;
+    transform: translateX(-50%);
+    width: 124px;
+    min-height: 12px;
+    font-size: 14px;
+    line-height: 11px;
+  }
+
   .cardTitleAlt,
   .cardTitleAlt2 {
-    width: 100%;
-    height: auto;
-    margin-top: 18px;
-    font-size: 26px;
-    line-height: 28px;
+    position: absolute;
+    top: 59px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 118px;
+    min-height: 23px;
+    font-size: 14px;
+    line-height: 11px;
+  }
+
+  .cardTitleAlt {
+    margin-top: 0;
+  }
+
+  .cardTitleAlt2 {
+    margin-top: 0;
   }
 
   .cardText,
   .cardTextAlt,
   .cardTextAlt2 {
-    width: 100%;
-    height: auto;
-    margin-top: 10px;
     margin-left: 0;
-    font-size: 18px;
-    line-height: 22px;
+    height: 39px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
-  .infoButton,
+  .cardText {
+    position: absolute;
+    top: 86px;
+    left: 50%;
+    margin-top: 0;
+    transform: translateX(-50%);
+    width: 169px;
+  }
+
+  .cardTextAlt {
+    position: absolute;
+    top: 86px;
+    left: 50%;
+    margin-top: 0;
+    transform: translateX(-50%);
+    width: 130px;
+  }
+
+  .cardTextAlt2 {
+    position: absolute;
+    top: 86px;
+    left: 50%;
+    margin-top: 0;
+    transform: translateX(-50%);
+    width: 144px;
+  }
+
+  .infoButton {
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 12px;
+    margin: 0;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 10px;
+    padding-top: 2px;
+    align-self: center;
+  }
+
   .closeButton {
-    margin-top: 16px;
-    font-size: 18px;
+    width: 46px;
+    height: 12px;
+    margin-top: 7px;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 10px;
+    padding-top: 2px;
+    align-self: center;
   }
 
   .modalPanel,
   .modalPanelAlt,
   .modalPanelAlt2 {
     width: 100%;
-    padding: 34px 20px 22px;
+    padding: 16px 10px 12px;
+    border-radius: 4px;
   }
 
   .modalText,
@@ -683,34 +828,59 @@
   .modalTextAlt2 {
     width: 100%;
     min-height: auto;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
   .modalPanel .closeButton,
   .modalPanelAlt .closeButton,
   .modalPanelAlt2 .closeButton {
-    margin-top: 24px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .categoriesMobile {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-    touch-action: pan-x;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: 16px;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    scrollbar-width: none;
+    display: none;
   }
 
-  .categoriesMobile::-webkit-scrollbar {
-    display: none;
+  .categoriesMobileColumn {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 84px;
+    padding-top: 64px;
+    padding-bottom: 73px;
+    min-height: auto;
+  }
+
+  .mobilePattern {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .mobilePatternStrip {
+    position: absolute;
+    left: 50%;
+    width: 752px;
+    height: 55px;
+    transform: translateX(-50%);
+    background-image: url('/image/mpr027zv-e2to3ki.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 752px 55px;
+    opacity: 0.4;
+  }
+
+  .mobileCategoryStack {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
 }
 
@@ -757,7 +927,7 @@
 }
 
 .categoryCardUrbanoMobile {
-  background: #4a45b3;
+  background: #250f7f;
 }
 
 .categoryCardAgroMobile {
@@ -793,6 +963,14 @@
   object-fit: contain;
 }
 
+.categoryLogoHogarMobileImage,
+.categoryLogoEmpresasMobileImage,
+.categoryLogoAgroMobileImage,
+.categoryLogoCiudadMobileImage {
+  width: 92px;
+  height: 40px;
+}
+
 .categoryUrbanoTop {
   object-position: center top;
 }
@@ -807,49 +985,47 @@
   .categoryCardUrbanoMobile,
   .categoryCardAgroMobile,
   .categoryCardCiudadMobile {
-    flex: 0 0 220px;
-    height: 248px;
-    scroll-snap-align: start;
+    flex: 0 0 169px;
+    width: 169px;
+    height: 188px;
+    min-height: 188px;
+    border-radius: 7px;
+    scroll-snap-align: unset;
   }
 
   .categoryImageWrap {
-    height: 176px;
+    height: 147px;
   }
 
-  .categoryLogoFill {
-    width: 92px;
-    height: 40px;
+  .categoryLogoWrap {
+    flex: 0 0 41px;
+    min-height: 41px;
+  }
+
+  .categoryLogoHogarMobileImage {
+    width: 71px;
+    height: 31px;
+  }
+
+  .categoryLogoEmpresasMobileImage {
+    width: 69px;
+    height: 30px;
+  }
+
+  .categoryLogoAgroMobileImage {
+    width: 70px;
+    height: 33px;
+  }
+
+  .categoryLogoCiudadMobileImage {
+    width: 67px;
+    height: 32px;
   }
 }
 
 @media (max-width: 480px) {
   .inner {
-    padding-top: 84px;
-    padding-bottom: 48px;
-  }
-
-  .title {
-    line-height: 36px;
-    font-size: 36px;
-  }
-
-  .categoriesMobile {
-    margin-top: 40px;
-    padding-left: 12px;
-    padding-right: 12px;
-    scroll-padding-left: 12px;
-  }
-
-  .categoryCardHogarMobile,
-  .categoryCardEmpresasMobile,
-  .categoryCardUrbanoMobile,
-  .categoryCardAgroMobile,
-  .categoryCardCiudadMobile {
-    flex-basis: 208px;
-    height: 236px;
-  }
-
-  .categoryImageWrap {
-    height: 168px;
+    padding-top: 57px;
+    padding-bottom: 0;
   }
 }

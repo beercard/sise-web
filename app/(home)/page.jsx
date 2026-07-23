@@ -38,26 +38,6 @@ export const metadata = buildPageMetadata({
 
 const homeFaqs = [
   {
-    question: '¿Qué es una alarma monitoreada y cómo funciona?',
-    answer:
-      'Una alarma monitoreada está conectada las 24 horas a nuestra central de monitoreo. Ante cualquier evento, sensores y cámaras envían una alerta inmediata que nuestros operadores verifican y, si corresponde, coordinan el envío de asistencia y de las fuerzas de seguridad al instante.'
-  },
-  {
-    question: '¿Cuál es el beneficio de una alarma monitoreada frente a una común?',
-    answer:
-      'Porque una sirena sonando no detiene a nadie ni garantiza asistencia. Con el monitoreo, si el perímetro o el interior se vulnera, nuestra central recibe la alerta, verifica el evento y coordina el envío inmediato de las fuerzas de seguridad.'
-  },
-  {
-    question: '¿Cuánto cuesta instalar una alarma monitoreada?',
-    answer:
-      'Nuestros presupuestos son a medida y adaptados a cada cliente. Realizamos un relevamiento técnico sin cargo para ofrecerte soluciones confiables y una cotización personalizada, asegurando que inviertas exactamente en lo que necesitás.'
-  },
-  {
-    question: '¿Puedo controlar la alarma desde mi celular?',
-    answer:
-      'Sí. Como empresa ágil y tecnológica, te damos el control total. Podés gestionar tu seguridad y recibir notificaciones en tiempo real desde la app, estés donde estés.'
-  },
-  {
     question: '¿Cómo funciona el Cerco Eléctrico?',
     answer:
       'Funciona emitiendo pulsos de repulsión que alejan al intruso de forma inmediata, pero es un sistema 100% seguro y homologado que no es letal ni daña la salud de personas o animales. Es tecnología diseñada para ser accesible y humana.'
@@ -66,6 +46,21 @@ const homeFaqs = [
     question: '¿El Cerco Eléctrico es monitoreado?',
     answer:
       'Por sí solo, el cerco funciona con una sirena local de alta potencia. Para que tu perímetro esté vigilado 24/7, se le suma nuestro servicio de alarma monitoreada. Al integrarlos, cualquier intento de intrusión o corte envía una alerta inmediata a nuestro Centro de Operaciones para actuar al instante.'
+  },
+  {
+    question: '¿Puedo controlar la Alarma desde mi celular?',
+    answer:
+      'Sí. Como empresa ágil y tecnológica, te damos el control total. Podés gestionar tu seguridad y recibir notificaciones en tiempo real desde la app, estés donde estés.'
+  },
+  {
+    question: '¿Cuánto cuesta instalar una Alarma?',
+    answer:
+      'Nuestros presupuestos son a medida y adaptados a cada cliente. Realizamos un relevamiento técnico sin cargo para ofrecerte soluciones confiables y una cotización personalizada, asegurando que inviertas exactamente en lo que necesitás.'
+  },
+  {
+    question: '¿Cuál es el beneficio de una Alarma Monitoreada frente a una común?',
+    answer:
+      'Porque una sirena sonando no detiene a nadie ni garantiza asistencia. Con el monitoreo, si el perímetro o el interior se vulnera, nuestra central recibe la alerta, verifica el evento y coordina el envío inmediato de las fuerzas de seguridad.'
   }
 ];
 
@@ -123,10 +118,16 @@ export default function HomePage() {
           </div>
 
           <div className={styles.faqList}>
-            {homeFaqs.map((item) => (
-              <details key={item.question} className={styles.faqItem}>
+            {homeFaqs.map((item, index) => (
+              <details
+                key={item.question}
+                className={styles.faqItem}
+                open={index === 1}
+              >
                 <summary className={styles.faqQuestion}>{item.question}</summary>
-                <p className={styles.faqAnswer}>{item.answer}</p>
+                <div className={styles.faqAnswerWrap}>
+                  <p className={styles.faqAnswer}>{item.answer}</p>
+                </div>
               </details>
             ))}
           </div>

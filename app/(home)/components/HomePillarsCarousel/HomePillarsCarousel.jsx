@@ -8,11 +8,30 @@ import styles from './HomePillarsCarousel.module.scss';
 const pillars = [
   {
     title: 'Soluciones a tu medida',
-    image: '/image/pillar-soluciones.webp',
+    mobileTitle: (
+      <>
+        Soluciones a
+        <br />
+        tu medida
+      </>
+    ),
+    icon: '/image/pillar-soluciones.svg',
+    mobileIcon: '/image/pillar-soluciones-mobile.svg',
+    iconWidth: 60,
+    iconHeight: 56,
+    mobileIconWidth: 44,
+    mobileIconHeight: 41,
     bodyWidth: 477,
     titleWidth: 438,
     previewBodyWidth: 389,
     previewTitleWidth: 351,
+    mobileBodyWidth: 156,
+    mobileTitleWidth: 168,
+    paddingX: 47,
+    paddingTop: 43,
+    paddingBottom: 29,
+    titleGap: 14,
+    textGap: 13,
     text: (
       <>
         <span className={styles.textRegular}>Armamos la </span>
@@ -28,11 +47,24 @@ const pillars = [
   },
   {
     title: 'Soporte técnico local',
-    image: '/image/pillar-soporte.webp',
+    mobileTitle: 'Soporte técnico local',
+    icon: '/image/pillar-soporte.svg',
+    mobileIcon: '/image/pillar-soporte-mobile.svg',
+    iconWidth: 38,
+    iconHeight: 54,
+    mobileIconWidth: 28,
+    mobileIconHeight: 40,
     bodyWidth: 518,
     titleWidth: 438,
     previewBodyWidth: 416,
     previewTitleWidth: 352,
+    mobileBodyWidth: 149,
+    mobileTitleWidth: 168,
+    paddingX: 26,
+    paddingTop: 44,
+    paddingBottom: 29,
+    titleGap: 15,
+    textGap: 13,
     text: (
       <>
         <span className={styles.textRegular}>Nuestra base técnica comercial está </span>
@@ -48,11 +80,30 @@ const pillars = [
   },
   {
     title: 'Prevención como prioridad',
-    image: '/image/pillar-prevencion.webp',
+    mobileTitle: (
+      <>
+        Prevención como
+        <br />
+        prioridad
+      </>
+    ),
+    icon: '/image/pillar-prevencion.svg',
+    mobileIcon: '/image/pillar-prevencion-mobile.svg',
+    iconWidth: 59,
+    iconHeight: 56,
+    mobileIconWidth: 47,
+    mobileIconHeight: 41,
     bodyWidth: 485,
     titleWidth: 438,
     previewBodyWidth: 389,
     previewTitleWidth: 351,
+    mobileBodyWidth: 156,
+    mobileTitleWidth: 168,
+    paddingX: 47,
+    paddingTop: 43,
+    paddingBottom: 29,
+    titleGap: 14,
+    textGap: 13,
     text: (
       <>
         <span className={styles.textRegular}>
@@ -69,6 +120,24 @@ const pillars = [
 
 function mod(index, length) {
   return (index + length) % length;
+}
+
+function getCardStyle(pillar, preview = false) {
+  return {
+    '--body-width': `${preview ? pillar.previewBodyWidth : pillar.bodyWidth}px`,
+    '--title-width': `${preview ? pillar.previewTitleWidth : pillar.titleWidth}px`,
+    '--icon-width': `${pillar.iconWidth}px`,
+    '--icon-height': `${pillar.iconHeight}px`,
+    '--mobile-body-width': `${pillar.mobileBodyWidth ?? pillar.bodyWidth}px`,
+    '--mobile-title-width': `${pillar.mobileTitleWidth ?? pillar.titleWidth}px`,
+    '--mobile-icon-width': `${pillar.mobileIconWidth ?? pillar.iconWidth}px`,
+    '--mobile-icon-height': `${pillar.mobileIconHeight ?? pillar.iconHeight}px`,
+    '--card-pad-x': `${pillar.paddingX}px`,
+    '--card-pad-top': `${pillar.paddingTop}px`,
+    '--card-pad-bottom': `${pillar.paddingBottom}px`,
+    '--title-gap': `${pillar.titleGap}px`,
+    '--text-gap': `${pillar.textGap}px`
+  };
 }
 
 export default function HomePillarsCarousel() {
@@ -121,12 +190,28 @@ export default function HomePillarsCarousel() {
           <article
             className={`${styles.card} ${styles.previewCard} ${styles.previewLeft}`}
             aria-hidden="true"
-            style={{
-              '--body-width': `${visibleItems.previous.previewBodyWidth}px`,
-              '--title-width': `${visibleItems.previous.previewTitleWidth}px`
-            }}
+            style={getCardStyle(visibleItems.previous, true)}
           >
-            <h3 className={styles.cardTitle}>{visibleItems.previous.title}</h3>
+            <div className={styles.cardIcon}>
+              <Image
+                src={visibleItems.previous.icon}
+                alt=""
+                width={visibleItems.previous.iconWidth}
+                height={visibleItems.previous.iconHeight}
+                className={`${styles.cardIconImage} ${styles.cardIconDesktop}`}
+              />
+              <Image
+                src={visibleItems.previous.mobileIcon}
+                alt=""
+                width={visibleItems.previous.mobileIconWidth}
+                height={visibleItems.previous.mobileIconHeight}
+                className={`${styles.cardIconImage} ${styles.cardIconMobile}`}
+              />
+            </div>
+            <h3 className={styles.cardTitle}>
+              <span className={styles.cardTitleDesktop}>{visibleItems.previous.title}</span>
+              <span className={styles.cardTitleMobile}>{visibleItems.previous.mobileTitle}</span>
+            </h3>
             <p className={styles.cardText}>{visibleItems.previous.text}</p>
           </article>
 
@@ -141,29 +226,29 @@ export default function HomePillarsCarousel() {
 
           <article
             className={`${styles.card} ${styles.activeCard}`}
-            style={{
-              '--body-width': `${visibleItems.active.bodyWidth}px`,
-              '--title-width': `${visibleItems.active.titleWidth}px`
-            }}
+            style={getCardStyle(visibleItems.active)}
           >
-            <h3 className={styles.cardTitle}>{visibleItems.active.title}</h3>
-            <p className={styles.cardText}>{visibleItems.active.text}</p>
-
-            {/* Al pasar el cursor la tarjeta se completa con su foto y el
-                mismo contenido en blanco (Figma: Group 220 / Mask group). */}
-            <div className={styles.cardOverlay} aria-hidden="true">
+            <div className={styles.cardIcon}>
               <Image
-                src={visibleItems.active.image}
+                src={visibleItems.active.icon}
                 alt=""
-                className={styles.cardOverlayImage}
-                fill
-                sizes="(max-width: 960px) 100vw, 578px"
+                width={visibleItems.active.iconWidth}
+                height={visibleItems.active.iconHeight}
+                className={`${styles.cardIconImage} ${styles.cardIconDesktop}`}
               />
-              <div className={styles.cardOverlayContent}>
-                <h3 className={styles.cardOverlayTitle}>{visibleItems.active.title}</h3>
-                <p className={styles.cardOverlayText}>{visibleItems.active.text}</p>
-              </div>
+              <Image
+                src={visibleItems.active.mobileIcon}
+                alt=""
+                width={visibleItems.active.mobileIconWidth}
+                height={visibleItems.active.mobileIconHeight}
+                className={`${styles.cardIconImage} ${styles.cardIconMobile}`}
+              />
             </div>
+            <h3 className={styles.cardTitle}>
+              <span className={styles.cardTitleDesktop}>{visibleItems.active.title}</span>
+              <span className={styles.cardTitleMobile}>{visibleItems.active.mobileTitle}</span>
+            </h3>
+            <p className={styles.cardText}>{visibleItems.active.text}</p>
           </article>
 
           <button
@@ -178,12 +263,28 @@ export default function HomePillarsCarousel() {
           <article
             className={`${styles.card} ${styles.previewCard} ${styles.previewRight}`}
             aria-hidden="true"
-            style={{
-              '--body-width': `${visibleItems.next.previewBodyWidth}px`,
-              '--title-width': `${visibleItems.next.previewTitleWidth}px`
-            }}
+            style={getCardStyle(visibleItems.next, true)}
           >
-            <h3 className={styles.cardTitle}>{visibleItems.next.title}</h3>
+            <div className={styles.cardIcon}>
+              <Image
+                src={visibleItems.next.icon}
+                alt=""
+                width={visibleItems.next.iconWidth}
+                height={visibleItems.next.iconHeight}
+                className={`${styles.cardIconImage} ${styles.cardIconDesktop}`}
+              />
+              <Image
+                src={visibleItems.next.mobileIcon}
+                alt=""
+                width={visibleItems.next.mobileIconWidth}
+                height={visibleItems.next.mobileIconHeight}
+                className={`${styles.cardIconImage} ${styles.cardIconMobile}`}
+              />
+            </div>
+            <h3 className={styles.cardTitle}>
+              <span className={styles.cardTitleDesktop}>{visibleItems.next.title}</span>
+              <span className={styles.cardTitleMobile}>{visibleItems.next.mobileTitle}</span>
+            </h3>
             <p className={styles.cardText}>{visibleItems.next.text}</p>
           </article>
         </div>

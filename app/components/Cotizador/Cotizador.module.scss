@@ -42,7 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 52px;
+  margin-top: 28px;
 }
 
 .kicker {
@@ -150,7 +150,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 52px;
+  margin-top: 28px;
 }
 
 .fields {
@@ -305,21 +305,31 @@
     padding-right: 16px;
   }
 
+  .header {
+    width: min(354px, 100%);
+  }
+
   .title {
-    width: 100%;
-    font-size: 36px;
-    line-height: 36px;
+    width: min(198px, 100%);
+    font-size: 24px;
+    line-height: 19px;
   }
 
   .subtitle {
     margin-top: 10px;
-    font-size: 18px;
-    line-height: 22px;
+    width: min(354px, 100%);
+    font-size: 20px;
+    line-height: 16px;
   }
 
   .stepBox,
   .formBox {
+    width: min(354px, 100%);
     margin-top: 28px;
+  }
+
+  .stepBoxPropertyType {
+    margin-top: 14px;
   }
 
   .option {
@@ -327,6 +337,38 @@
     max-width: 360px;
     font-size: 20px;
     padding: 14px 16px;
+  }
+
+  .kicker {
+    width: 100%;
+    font-size: 14px;
+    line-height: 11px;
+  }
+
+  .question {
+    margin-top: 7px;
+    width: 100%;
+    font-size: 18px;
+    line-height: 15px;
+  }
+
+  .optionsPropertyType {
+    width: 169px;
+    margin-top: 11px;
+    gap: 10px;
+  }
+
+  .optionsPropertyType .option {
+    width: 169px;
+    max-width: none;
+    min-height: 20px;
+    border-radius: 4px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 11px;
   }
 
   .backButton,

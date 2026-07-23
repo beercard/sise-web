@@ -133,6 +133,7 @@ export default function Cotizador({ showHeader = false }) {
   );
 
   const activeStep = steps[step];
+  const isPropertyTypeStep = step === STEP.PROPERTY_TYPE;
   const canGoBack = step > STEP.PROPERTY_TYPE && step < STEP.THANK_YOU;
 
   const goBack = () => {
@@ -332,11 +333,21 @@ export default function Cotizador({ showHeader = false }) {
         </div>
       ) : null}
 
-      <div className={styles.stepBox}>
+      <div
+        className={
+          isPropertyTypeStep ? `${styles.stepBox} ${styles.stepBoxPropertyType}` : styles.stepBox
+        }
+      >
         <p className={styles.kicker}>{activeStep?.kicker}</p>
         <p className={styles.question}>{activeStep?.question}</p>
 
-        <div className={styles.options} role="group" aria-label={activeStep?.kicker}>
+        <div
+          className={
+            isPropertyTypeStep ? `${styles.options} ${styles.optionsPropertyType}` : styles.options
+          }
+          role="group"
+          aria-label={activeStep?.kicker}
+        >
           {activeStep?.options.map((option) => (
             <button
               key={option}
