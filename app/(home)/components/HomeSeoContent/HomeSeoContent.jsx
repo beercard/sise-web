@@ -9,7 +9,7 @@ export default function HomeSeoContent() {
         <div className={styles.desktopLayout}>
           <div className={styles.desktopImageWrap}>
             <Image
-              src="/image/home-seo-desktop.png"
+              src="/image/home-seo-desktop.webp"
               alt="Frente de la sucursal SISE Argentina"
               width={456}
               height={439}
@@ -70,7 +70,7 @@ export default function HomeSeoContent() {
 
             <div className={styles.mobileImageWrap}>
               <Image
-                src="/image/home-seo-mobile.png"
+                src="/image/home-seo-mobile.webp"
                 alt="Frente de la sucursal SISE Argentina"
                 width={169}
                 height={102}
