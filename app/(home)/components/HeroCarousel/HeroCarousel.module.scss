@@ -140,6 +140,25 @@
   }
 }
 
+@media (max-width: 1100px) and (min-width: 961px) {
+  .hero {
+    --hero-shell-width: 920px;
+    --hero-title-width: 680px;
+    --hero-title-font-size: clamp(40px, 4vw, 46px);
+    --hero-title-line-height: clamp(36px, 3.6vw, 42px);
+    height: 620px;
+  }
+
+  .heroMedia {
+    height: 620px;
+    background-position: 61% center;
+  }
+
+  .heroTitle {
+    top: 352px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     height: 560px;

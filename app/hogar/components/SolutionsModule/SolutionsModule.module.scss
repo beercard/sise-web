@@ -523,6 +523,46 @@
   }
 }
 
+@media (max-width: 1100px) and (min-width: 961px) {
+  .intro {
+    width: calc(100% - 64px);
+    padding-top: 40px;
+    gap: 24px;
+  }
+
+  .lead {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .punch {
+    font-size: 32px;
+    line-height: 34px;
+  }
+
+  .body {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .gridArea {
+    margin-top: 36px;
+  }
+
+  .heading {
+    width: calc(100% - 64px);
+    margin-bottom: 28px;
+    font-size: 34px;
+    line-height: 36px;
+  }
+
+  .grid {
+    width: calc(100% - 64px);
+    grid-template-columns: repeat(2, var(--solutions-card-width));
+    gap: 24px;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: var(--solutions-card-width);

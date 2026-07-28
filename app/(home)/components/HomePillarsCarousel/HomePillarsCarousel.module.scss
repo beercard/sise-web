@@ -296,6 +296,64 @@
   }
 }
 
+@media (max-width: 1100px) and (min-width: 961px) {
+  .section {
+    padding-top: 56px;
+  }
+
+  .inner {
+    width: min(920px, 100%);
+  }
+
+  .header {
+    width: min(920px, 100%);
+    align-items: center;
+    text-align: center;
+  }
+
+  .title {
+    max-width: 760px;
+    font-size: 34px;
+    line-height: 36px;
+  }
+
+  .subtitle {
+    width: min(760px, 100%);
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .carousel {
+    width: min(760px, 100%);
+    min-height: 0;
+    grid-template-columns: 30px minmax(0, 1fr) 30px;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .previewCard {
+    display: none;
+  }
+
+  .card {
+    width: 100%;
+    min-height: 248px;
+    padding: 36px 30px 30px;
+  }
+
+  .activeCard {
+    grid-column: 2;
+  }
+
+  .arrowButtonPrev {
+    grid-column: 1;
+  }
+
+  .arrowButtonNext {
+    grid-column: 3;
+  }
+}
+
 @media (max-width: 960px) {
   .inner {
     align-items: center;

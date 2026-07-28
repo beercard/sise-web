@@ -31,8 +31,9 @@
 }
 
 .header {
-  width: 100%;
-  max-width: var(--cotizador-header-width);
+  width: fit-content;
+  max-width: min(var(--cotizador-header-width), 100%);
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,10 +42,9 @@
 
 .title {
   margin: 0;
-  width: max-content;
-  max-width: 100%;
-  margin-inline: auto;
-  display: block;
+  width: fit-content;
+  max-width: min(var(--cotizador-title-width), 100%);
+  display: inline-block;
   text-align: center;
   line-height: var(--cotizador-title-line-height);
   letter-spacing: 0;
@@ -55,10 +55,9 @@
 
 .subtitle {
   margin: 12px 0 0;
-  width: max-content;
+  width: fit-content;
   max-width: 100%;
-  margin-inline: auto;
-  display: block;
+  display: inline-block;
   text-align: center;
   line-height: var(--cotizador-subtitle-line-height);
   letter-spacing: 0;
@@ -567,6 +566,11 @@
     padding-right: clamp(24px, 9vw, 160px);
   }
 
+  .header {
+    width: fit-content;
+    max-width: min(var(--cotizador-header-width), 100%);
+  }
+
   .containerFixedStep {
     min-height: 540px;
     padding-top: 36px;
@@ -594,6 +598,26 @@
   .title,
   .subtitle {
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 961px) {
+  .container {
+    --cotizador-header-width: 780px;
+    --cotizador-title-width: 780px;
+    --cotizador-title-font-size: clamp(40px, 4.1vw, 50px);
+    --cotizador-title-line-height: clamp(36px, 3.6vw, 44px);
+    --cotizador-subtitle-font-size: clamp(22px, 2vw, 28px);
+    --cotizador-subtitle-line-height: clamp(20px, 1.8vw, 24px);
+    --cotizador-question-font-size: clamp(22px, 2vw, 28px);
+    --cotizador-question-line-height: clamp(20px, 1.8vw, 24px);
+    padding-left: clamp(20px, 5vw, 60px);
+    padding-right: clamp(20px, 5vw, 60px);
+  }
+
+  .stepBox,
+  .formBox {
+    width: min(780px, 100%);
   }
 }
 
