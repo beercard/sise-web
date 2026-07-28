@@ -10,7 +10,6 @@ import {
   useTechEditor
 } from '../../../lib/hooks';
 
-import TechCard from '../../../components/TechCard/TechCard';
 
 import styles from '../../page.module.scss';
 
@@ -70,7 +69,7 @@ export default function TechnologyModule() {
               '--tech-card-padding': '42px 83px 22px',
               '--tech-card-image-width': '215px',
               '--tech-card-image-height': '154px',
-              '--tech-card-image-margin': '24px 0 0'
+              '--tech-card-image-margin': '0 auto'
             },
             art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
           },
@@ -93,6 +92,11 @@ export default function TechnologyModule() {
               '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0 7px',
+              '--tech-card-text-width': '265px',
+              '--tech-card-text-max-width': '265px',
+              // Sin esto el stage centra la ilustración y el margen izquierdo
+              // se suma al centrado, corriéndola ~28px a la derecha.
+              '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
               '--tech-card-image-margin': '14px 0 0 60px'
@@ -107,6 +111,7 @@ export default function TechnologyModule() {
               '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '139px',
               '--tech-card-image-height': '147px',
               '--tech-card-image-margin': '9px 0 0 68px'
@@ -120,6 +125,8 @@ export default function TechnologyModule() {
               '--tech-card-padding': '48px 83px 44px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-text-width': '273px',
+              '--tech-card-text-max-width': '273px',
               '--tech-card-sirena-margin-top': '14px'
             },
             art: {
@@ -162,7 +169,12 @@ export default function TechnologyModule() {
             text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
             styleVars: {
               '--tech-card-padding': '35px 83px 189px',
-              '--tech-card-text-margin': '11px 0 0'
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '216px',
+              '--tech-card-text-max-width': '216px',
+              // El default de max-height (176px) recortaba la ilustración,
+              // que en el diseño mide 188px de alto.
+              '--tech-card-image-max-height': '188px'
             },
             art: {
               type: 'absolute',
@@ -201,6 +213,7 @@ export default function TechnologyModule() {
               '--tech-card-align-items': 'flex-start',
               '--tech-card-text-margin': '13px 0 0 15px',
               '--tech-card-text-width': '246px',
+              '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '219px',
               '--tech-card-image-height': '156px',
               '--tech-card-image-margin': '9px 0 0 27px'
@@ -213,7 +226,11 @@ export default function TechnologyModule() {
             styleVars: {
               '--tech-card-padding': '35px 83px 46px',
               '--tech-card-text-margin': '16px 0 0',
-              '--tech-card-text-width': '211px',
+              // Figma marca 211px, pero con la fuente del navegador ese ancho
+              // parte el texto en 4 líneas (72px) en vez de 3 (59px) y empuja
+              // la ilustración 13px. 216px es el mínimo que respeta el diseño.
+              '--tech-card-text-width': '216px',
+              '--tech-card-text-max-width': '216px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
               '--tech-card-image-margin': '21px 0 0'
@@ -244,7 +261,10 @@ export default function TechnologyModule() {
               wrapperHeight: 172,
               wrapperMarginTop: 74,
               imageTop: 14,
-              text: { top: -57, right: -55, width: 292 }
+              // Figma marca 292px, pero con la fuente del navegador ese ancho
+              // parte el texto en 4 líneas (80px) en vez de 3 (59px) y lo
+              // solapa con la ilustración. 296px mantiene las 3 del diseño.
+              text: { top: -57, right: -55, width: 296 }
             }
           }
         ]
@@ -380,16 +400,156 @@ export default function TechnologyModule() {
     return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
   };
 
-  const renderSlideContent = (slide, extraClassName) => (
-    <TechCard slide={slide} className={extraClassName} />
-  );
+  /**
+   * Las tarjetas de /hogar siguen un diseño propio (Figma): card de 442×357
+   * con geometría específica por slide, definida en `styleVars`, y cinco
+   * tipos de arte. Por eso no usan el TechCard genérico de las otras
+   * verticales.
+   */
+  const renderArt = (art, title) => {
+    if (!art) return null;
+
+    if (art.type === 'overlay') {
+      return (
+        <div
+          className={styles.techCardOverlay}
+          style={{
+            width: art.wrapperWidth,
+            height: art.wrapperHeight,
+            marginTop: art.wrapperMarginTop
+          }}
+        >
+          <Image
+            className={styles.techCardOverlayImage}
+            src={art.image.src}
+            alt={art.alt ?? title}
+            width={art.image.width}
+            height={art.image.height}
+          />
+          {art.text ? (
+            <p
+              className={styles.techCardOverlayText}
+              style={{ top: art.text.top, right: art.text.right, width: art.text.width }}
+            >
+              {art.textContent}
+            </p>
+          ) : null}
+        </div>
+      );
+    }
+
+    if (art.type === 'absolute') {
+      return (
+        <Image
+          className={styles.techCardAbsoluteImage}
+          src={art.src}
+          alt={art.alt ?? title}
+          width={art.width}
+          height={art.height}
+          style={{
+            position: 'absolute',
+            top: art.top,
+            left: art.left,
+            // `width/height: auto` del CSS colapsa la imagen al posicionarla
+            // en absoluto: hay que fijar el tamaño del diseño.
+            width: art.width,
+            height: art.height,
+            transform: art.rotate ? `rotate(${art.rotate}deg)` : undefined
+          }}
+        />
+      );
+    }
+
+    if (art.type === 'sirena') {
+      return (
+        <div
+          className={styles.techCardSirenaFrame}
+          style={{ '--sirena-bg': `url('${art.backgroundSrc}')` }}
+        >
+          <Image
+            className={styles.techCardSirenaSvg}
+            src={art.svgSrc}
+            alt=""
+            width={69}
+            height={24}
+          />
+        </div>
+      );
+    }
+
+    if (art.type === 'connectivity') {
+      return (
+        <div
+          className={styles.techCardConnectivityWrap}
+          style={{
+            width: art.wrapperWidth,
+            height: art.wrapperHeight,
+            marginTop: art.wrapperMarginTop
+          }}
+        >
+          <div
+            className={styles.techCardConnectivityImage}
+            style={{ '--connectivity-bg': `url('${art.backgroundSrc}')` }}
+          >
+            <span className={styles.techCardConnectivityBar} aria-hidden="true" />
+          </div>
+          {art.text ? (
+            <p
+              className={styles.techCardConnectivityText}
+              style={{ top: art.text.top, right: art.text.right, width: art.text.width }}
+            >
+              {art.textContent}
+            </p>
+          ) : null}
+        </div>
+      );
+    }
+
+    return (
+      <Image
+        className={styles.techCardImage}
+        src={art.src}
+        alt={art.alt ?? title}
+        width={art.width}
+        height={art.height}
+      />
+    );
+  };
+
+  const renderSlideContent = (slide, extraClassName) => {
+    // En los tipos `overlay` y `connectivity` el texto va dentro del arte.
+    const textInsideArt = slide.art?.type === 'overlay' || slide.art?.type === 'connectivity';
+    const art = textInsideArt ? { ...slide.art, textContent: slide.text } : slide.art;
+
+    // El arte `absolute` se posiciona con coordenadas de la card, así que va
+    // como hijo directo: dentro del stage (position: relative) las tomaría
+    // desde ahí y quedaría corrido por el padding.
+    const isAbsoluteArt = slide.art?.type === 'absolute';
+
+    return (
+      <div
+        className={`${styles.techCard} ${extraClassName}`.trim()}
+        style={slide.styleVars}
+      >
+        <p className={styles.techCardTitle}>{slide.title}</p>
+        {slide.text && !textInsideArt ? (
+          <p className={styles.techCardText}>{slide.text}</p>
+        ) : null}
+        {isAbsoluteArt ? (
+          renderArt(art, slide.title)
+        ) : (
+          <div className={styles.techCardArtStage}>{renderArt(art, slide.title)}</div>
+        )}
+      </div>
+    );
+  };
 
   return (
-    <section className={styles.technology} aria-label="Tecnología inteligente">
+    <section className={styles.technology} aria-label="Tecnología del hogar">
       <h2 className={styles.technologyTitle}>
         <span className={styles.technologyTitleStrong}>Tu hogar seguro en cada rincón</span>
         <br />
-        <span className={styles.technologyTitleLight}>con tecnología inteligente</span>
+        <span className={styles.technologyTitleLight}>con tecnología de vanguardia.</span>
       </h2>
 
       <div className={styles.tabs} role="tablist" aria-label="Categorías">

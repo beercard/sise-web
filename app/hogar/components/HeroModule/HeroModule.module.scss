@@ -1,0 +1,162 @@
+.hero {
+  width: 100%;
+  background: #ffffff;
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  background: #00408c;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.5;
+}
+
+.gradient {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1108px;
+  height: 800px;
+  background-image: linear-gradient(
+    90deg,
+    #2177a5 0%,
+    rgba(33, 119, 165, 0.5) 49.52%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  left: max(24px, calc((100vw - 1187px) / 2));
+  top: 360px;
+  width: 700px;
+  color: #ffffff;
+}
+
+.logo {
+  display: block;
+  width: 334px;
+  height: 60px;
+}
+
+.title {
+  margin: 16px 0 0;
+  width: 700px;
+  height: 102px;
+  line-height: 52px;
+  font-size: 64px;
+  letter-spacing: 0;
+}
+
+.titleLight {
+  font-weight: 400;
+}
+
+.titleStrong {
+  font-weight: 700;
+}
+
+@media (max-width: 1440px) {
+  .media {
+    height: 680px;
+  }
+
+  .content {
+    left: max(56px, calc((100vw - 1080px) / 2));
+    top: 320px;
+    width: 580px;
+  }
+
+  .title {
+    width: 100%;
+    height: auto;
+    font-size: 50px;
+    line-height: 44px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .media {
+    height: 620px;
+  }
+
+  .gradient {
+    width: min(860px, 72vw);
+  }
+
+  .content {
+    left: 40px;
+    top: 292px;
+    width: min(520px, calc(100% - 80px));
+  }
+
+  .logo {
+    width: 290px;
+  }
+
+  .title {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    font-size: 44px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 960px) {
+  .media {
+    height: 591px;
+  }
+
+  .image {
+    object-position: 62% center;
+  }
+
+  .gradient {
+    width: 100%;
+    background: linear-gradient(90deg, rgba(33, 119, 165, 0.94) 0%, rgba(33, 119, 165, 0.75) 38%, rgba(33, 119, 165, 0.18) 100%);
+  }
+
+  .content {
+    left: 24px;
+    top: auto;
+    bottom: 106px;
+    width: min(360px, calc(100% - 48px));
+  }
+
+  .logo {
+    width: 236px;
+  }
+
+  .title {
+    margin-top: 12px;
+    width: 100%;
+    height: auto;
+    font-size: 36px;
+    line-height: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    bottom: 92px;
+    width: min(320px, calc(100% - 48px));
+  }
+
+  .logo {
+    width: 208px;
+    height: auto;
+  }
+
+  .title {
+    width: 100%;
+    height: auto;
+    font-size: 32px;
+    line-height: 32px;
+  }
+}
