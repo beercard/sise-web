@@ -13,6 +13,10 @@
      alineado verticalmente con ellos. El carrusel conserva su ancho mayor. */
   --col-width: 1187px;
   --pad-x: clamp(16px, 4vw, 24px);
+  --pillars-preview-col: 464px;
+  --pillars-active-col: 578px;
+  --pillars-arrow-col: 30px;
+  --pillars-carousel-gap: 32px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -63,10 +67,15 @@
   min-height: 262px;
   margin-top: 32px;
   display: grid;
-  grid-template-columns: 463px 30px 578px 30px 464px;
+  grid-template-columns:
+    var(--pillars-preview-col)
+    var(--pillars-arrow-col)
+    var(--pillars-active-col)
+    var(--pillars-arrow-col)
+    var(--pillars-preview-col);
   align-items: center;
   justify-content: center;
-  column-gap: 32px;
+  column-gap: var(--pillars-carousel-gap);
 }
 
 .card {
@@ -241,8 +250,11 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='18' viewBox='0 0 30 18' fill='none'%3E%3Cpath d='M3 2L13 9L3 16' stroke='%23D9D9D9' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1440px) {
   .section {
+    --pillars-preview-col: clamp(280px, 23vw, 360px);
+    --pillars-active-col: clamp(500px, 40vw, 578px);
+    --pillars-carousel-gap: clamp(18px, 1.8vw, 24px);
     padding-top: 64px;
   }
 
@@ -258,8 +270,29 @@
 
   .carousel {
     width: min(1280px, 100%);
-    grid-template-columns: 320px 30px 578px 30px 320px;
-    column-gap: 18px;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 961px) {
+  .section {
+    --pillars-preview-col: 220px;
+    --pillars-active-col: minmax(0, 520px);
+    --pillars-carousel-gap: 16px;
+  }
+
+  .title {
+    font-size: 38px;
+    line-height: 40px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .carousel {
+    width: min(1080px, 100%);
+    margin-top: 28px;
   }
 }
 

@@ -134,7 +134,27 @@ export default function Cotizador({ showHeader = false }) {
 
   const activeStep = steps[step];
   const isPropertyTypeStep = step === STEP.PROPERTY_TYPE;
+  const isExperienceStep = step === STEP.EXPERIENCE;
+  const isAccessStep = step === STEP.ACCESS;
+  const isContactDetailsStep = step === STEP.CONTACT_DETAILS;
   const canGoBack = step > STEP.PROPERTY_TYPE && step < STEP.THANK_YOU;
+  const containerClassName = isContactDetailsStep
+    ? `${styles.container} ${styles.containerFormStep}`
+    : `${styles.container} ${styles.containerFixedStep}`;
+  const headerMarkup = (
+    <div className={styles.header}>
+      <h2 className={styles.title}>
+        <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
+        <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
+      </h2>
+      {showHeader ? (
+        <p className={styles.subtitle}>
+          <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
+          <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
+        </p>
+      ) : null}
+    </div>
+  );
 
   const goBack = () => {
     setStepError('');
@@ -202,19 +222,8 @@ export default function Cotizador({ showHeader = false }) {
 
   if (step === STEP.THANK_YOU) {
     return (
-      <div className={styles.container} id="cotizador-online">
-        {showHeader ? (
-          <div className={styles.header}>
-            <p className={styles.subtitle}>
-              <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
-              <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
-            </p>
-            <h2 className={styles.title}>
-              <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
-              <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
-            </h2>
-          </div>
-        ) : null}
+      <div className={`${styles.container} ${styles.containerFixedStep}`} id="cotizador-online">
+        {headerMarkup}
 
         <div className={styles.thanksBox}>
           <p className={styles.thanksTitle}>¡Muchas gracias!</p>
@@ -231,19 +240,8 @@ export default function Cotizador({ showHeader = false }) {
     const summary = buildSummary(answers);
 
     return (
-      <div className={styles.container} id="cotizador-online">
-        {showHeader ? (
-          <div className={styles.header}>
-            <p className={styles.subtitle}>
-              <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
-              <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
-            </p>
-            <h2 className={styles.title}>
-              <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
-              <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
-            </h2>
-          </div>
-        ) : null}
+      <div className={containerClassName} id="cotizador-online">
+        {headerMarkup}
 
         <form className={styles.formBox} onSubmit={onSubmit} noValidate>
           <p className={styles.kicker}>Datos de contacto</p>
@@ -344,19 +342,8 @@ export default function Cotizador({ showHeader = false }) {
   }
 
   return (
-    <div className={styles.container} id="cotizador-online">
-      {showHeader ? (
-        <div className={styles.header}>
-          <p className={styles.subtitle}>
-            <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
-            <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
-          </p>
-          <h2 className={styles.title}>
-            <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
-            <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
-          </h2>
-        </div>
-      ) : null}
+    <div className={containerClassName} id="cotizador-online">
+      {headerMarkup}
 
       <div
         className={
@@ -368,7 +355,14 @@ export default function Cotizador({ showHeader = false }) {
 
         <div
           className={
-            isPropertyTypeStep ? `${styles.options} ${styles.optionsPropertyType}` : styles.options
+            [
+              styles.options,
+              isPropertyTypeStep ? styles.optionsPropertyType : '',
+              isExperienceStep ? styles.optionsExperience : '',
+              isAccessStep ? styles.optionsAccess : ''
+            ]
+              .filter(Boolean)
+              .join(' ')
           }
           role="group"
           aria-label={activeStep?.kicker}
@@ -377,9 +371,17 @@ export default function Cotizador({ showHeader = false }) {
             <button
               key={option}
               className={
-                activeStep?.multi && Array.isArray(answers.access) && answers.access.includes(option)
-                  ? `${styles.option} ${styles.optionSelected}`
-                  : styles.option
+                [
+                  styles.option,
+                  activeStep?.multi && Array.isArray(answers.access) && answers.access.includes(option)
+                    ? styles.optionSelected
+                    : '',
+                  isExperienceStep ? styles.optionExperience : '',
+                  isAccessStep ? styles.optionAccess : '',
+                  isAccessStep && option === 'Puertas secundarias' ? styles.optionNoWrap : ''
+                ]
+                  .filter(Boolean)
+                  .join(' ')
               }
               type="button"
               onClick={() => activeStep.onSelect(option)}

@@ -1,10 +1,25 @@
 .section {
+  --solutions-content-width: 1187px;
+  --solutions-intro-gap: 27px;
   --solutions-card-width: 211px;
   --solutions-card-height: 261px;
   --solutions-grid-gap: 33px;
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
   --solutions-title-width: calc(var(--solutions-card-width) - 8px);
   --solutions-body-width: calc(var(--solutions-card-width) - 31px);
+  --solutions-card-title-top: 36px;
+  --solutions-card-title-min-height: 39px;
+  --solutions-card-title-font-size: 20px;
+  --solutions-card-title-line-height: 20px;
+  --solutions-card-body-top: 94px;
+  --solutions-card-body-font-size: 16px;
+  --solutions-card-body-line-height: 16px;
+  --solutions-alarmas-body-top: 112px;
+  --solutions-cctv-body-top: 117px;
+  --solutions-cerco-body-top: 117px;
+  --solutions-barrio-body-top: 120px;
+  --solutions-desocupadas-title-top: 36px;
+  --solutions-desocupadas-body-top: 119px;
   position: relative;
   width: 100%;
   background: #2177a5;
@@ -22,10 +37,13 @@
 .intro {
   position: absolute;
   z-index: 2;
-  left: max(24px, calc((100vw - 1187px) / 2));
+  left: 50%;
   top: 84px;
-  width: min(1187px, calc(100% - 48px));
-  display: flex;
+  transform: translateX(-50%);
+  width: min(var(--solutions-content-width), calc(100% - 48px));
+  display: grid;
+  grid-template-columns: minmax(0, 578px) minmax(0, 582px);
+  gap: var(--solutions-intro-gap);
   justify-content: space-between;
   align-items: start;
 }
@@ -122,13 +140,15 @@
   position: absolute;
   z-index: 2;
   top: 51px;
-  left: max(24px, calc((100vw - 1187px) / 2));
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
-  width: 578px;
+  width: min(var(--solutions-content-width), calc(100% - 48px));
   height: 46px;
   line-height: 46px;
   font-size: 48px;
   font-weight: 600;
+  text-align: left;
 }
 
 .grid {
@@ -151,18 +171,18 @@
 .cardTitle {
   margin: 0;
   position: absolute;
-  top: 36px;
+  top: var(--solutions-card-title-top);
   left: 50%;
   transform: translateX(-50%);
   width: var(--solutions-title-width);
-  min-height: 39px;
+  min-height: var(--solutions-card-title-min-height);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: 20px;
+  line-height: var(--solutions-card-title-line-height);
   letter-spacing: 0.05em;
-  font-size: 20px;
+  font-size: var(--solutions-card-title-font-size);
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
@@ -180,13 +200,13 @@
 
 .cardBody {
   position: absolute;
-  top: 94px;
+  top: var(--solutions-card-body-top);
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
   width: var(--solutions-body-width);
-  line-height: 16px;
-  font-size: 16px;
+  line-height: var(--solutions-card-body-line-height);
+  font-size: var(--solutions-card-body-font-size);
   font-weight: 400;
   text-align: center;
   color: #000000;
@@ -199,7 +219,7 @@
 }
 
 .alarmas .cardBody {
-  top: 112px;
+  top: var(--solutions-alarmas-body-top);
   width: var(--solutions-body-width);
   min-height: 111px;
 }
@@ -210,7 +230,7 @@
 }
 
 .cctv .cardBody {
-  top: 117px;
+  top: var(--solutions-cctv-body-top);
   width: var(--solutions-body-width);
   min-height: 95px;
 }
@@ -221,7 +241,7 @@
 }
 
 .cerco .cardBody {
-  top: 117px;
+  top: var(--solutions-cerco-body-top);
   width: var(--solutions-body-width);
   min-height: 95px;
 }
@@ -232,40 +252,136 @@
 }
 
 .barrio .cardBody {
-  top: 120px;
+  top: var(--solutions-barrio-body-top);
   width: var(--solutions-body-width);
   min-height: 79px;
 }
 
 .desocupadas .cardTitle {
-  top: 36px;
+  top: var(--solutions-desocupadas-title-top);
   width: var(--solutions-title-width);
   min-height: 59px;
 }
 
 .desocupadas .cardBody {
-  top: 119px;
+  top: var(--solutions-desocupadas-body-top);
   width: var(--solutions-body-width);
   min-height: 63px;
 }
 
 @media (max-width: 1440px) {
   .section {
-    --solutions-card-width: clamp(188px, 14vw, 211px);
-    --solutions-grid-gap: clamp(10px, 1.25vw, 20px);
+    --solutions-content-width: 1080px;
+    --solutions-intro-gap: clamp(20px, 2vw, 28px);
+    --solutions-card-width: clamp(184px, 14vw, 211px);
+    --solutions-card-height: clamp(238px, 18vw, 261px);
+    --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
     --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
     --solutions-body-width: calc(var(--solutions-card-width) - 31px);
+    --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
+    --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
+    --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
+    --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
+    --solutions-card-body-top: clamp(76px, 6vw, 94px);
+    --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
+    --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
+    --solutions-alarmas-body-top: clamp(92px, 7.2vw, 112px);
+    --solutions-cctv-body-top: clamp(96px, 7.5vw, 117px);
+    --solutions-cerco-body-top: clamp(96px, 7.5vw, 117px);
+    --solutions-barrio-body-top: clamp(100px, 7.8vw, 120px);
+    --solutions-desocupadas-title-top: clamp(30px, 2.4vw, 36px);
+    --solutions-desocupadas-body-top: clamp(99px, 7.8vw, 119px);
   }
 
-  .intro,
+  .intro {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .copyMain,
+  .lead,
+  .punch,
+  .body {
+    width: 100%;
+  }
+
+  .lead {
+    height: auto;
+    font-size: clamp(26px, 2.05vw, 32px);
+    line-height: clamp(26px, 2.05vw, 30px);
+  }
+
+  .punch {
+    height: auto;
+    margin-top: clamp(20px, 1.9vw, 28px);
+    font-size: clamp(38px, 3.25vw, 48px);
+    line-height: clamp(33px, 2.7vw, 39px);
+  }
+
+  .body {
+    height: auto;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: clamp(19px, 1.55vw, 22px);
+  }
+
   .heading {
-    left: max(24px, calc((100vw - 1080px) / 2));
-    width: min(1080px, calc(100% - 48px));
+    height: auto;
+    font-size: clamp(40px, 3.2vw, 48px);
+    line-height: clamp(40px, 3.2vw, 46px);
   }
 
   .grid {
     justify-content: center;
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 1201px) {
+  .section {
+    --solutions-content-width: 980px;
+    --solutions-intro-gap: 24px;
+    --solutions-card-width: 180px;
+    --solutions-card-height: 234px;
+    --solutions-grid-gap: 16px;
+    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
+    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
+    --solutions-body-width: calc(var(--solutions-card-width) - 28px);
+    --solutions-card-title-top: 28px;
+    --solutions-card-title-min-height: 34px;
+    --solutions-card-title-font-size: 16px;
+    --solutions-card-title-line-height: 16px;
+    --solutions-card-body-top: 74px;
+    --solutions-card-body-font-size: 13px;
+    --solutions-card-body-line-height: 13px;
+    --solutions-alarmas-body-top: 90px;
+    --solutions-cctv-body-top: 94px;
+    --solutions-cerco-body-top: 94px;
+    --solutions-barrio-body-top: 96px;
+    --solutions-desocupadas-title-top: 28px;
+    --solutions-desocupadas-body-top: 95px;
+  }
+
+  .intro {
+    top: 76px;
+  }
+
+  .heading {
+    top: 58px;
+  }
+
+  .lead {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .punch {
+    margin-top: 18px;
+    font-size: 34px;
+    line-height: 34px;
+  }
+
+  .body {
+    font-size: 16px;
+    line-height: 19px;
   }
 }
 
@@ -286,10 +402,12 @@
     position: relative;
     top: auto;
     left: auto;
+    transform: none;
     width: calc(100% - 80px);
     margin: 0 auto;
     padding-top: 48px;
     flex-direction: column;
+    display: flex;
     gap: 32px;
   }
 
@@ -318,8 +436,10 @@
     position: relative;
     top: auto;
     left: auto;
+    transform: none;
     width: calc(100% - 80px);
     margin: 0 auto 32px;
+    text-align: center;
   }
 
   .grid {

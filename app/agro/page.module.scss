@@ -437,14 +437,17 @@
 }
 
 .techCardGroup {
+  /* El alto lo define la card (aspect-ratio 442/357). */
+  height: auto;
   margin-top: 54px;
   width: min(520px, 100%);
   min-width: 0;
-  height: 357px;
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex: 0 1 520px;
+  grid-template-columns: 30px minmax(0, 442px) 30px;
+  column-gap: 9px;
 }
 
 .techCardArrow {
@@ -476,12 +479,13 @@
 }
 
 .techCardViewport {
-  width: min(460px, calc(100% - 60px));
+  width: min(442px, 100%);
   height: auto;
-  aspect-ratio: 460 / 376;
+  aspect-ratio: 442 / 357;
   position: relative;
   flex: 0 0 auto;
   overflow: hidden;
+  justify-self: center;
 }
 
 .techCard {

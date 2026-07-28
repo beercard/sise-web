@@ -1,4 +1,9 @@
 .hero {
+  --hero-shell-width: 1188px;
+  --hero-shell-pad: max(24px, calc((100vw - var(--hero-shell-width)) / 2));
+  --hero-title-width: 944px;
+  --hero-title-font-size: 64px;
+  --hero-title-line-height: 52px;
   position: relative;
   width: 100%;
   height: 800px;
@@ -36,13 +41,13 @@
 .heroTitle {
   position: absolute;
   top: 470px;
-  left: max(24px, calc(50% - 594px));
-  width: 944px;
-  height: 102px;
-  line-height: 52px;
+  left: var(--hero-shell-pad);
+  width: min(var(--hero-title-width), calc(100% - (var(--hero-shell-pad) * 2)));
+  height: auto;
+  line-height: var(--hero-title-line-height);
   letter-spacing: 0;
   color: #ffffff;
-  font-size: 64px;
+  font-size: var(--hero-title-font-size);
   margin: 0;
   z-index: 1;
 }
@@ -53,23 +58,27 @@
 }
 
 .heroTitleRegular {
-  line-height: 52px;
+  line-height: var(--hero-title-line-height);
   letter-spacing: 0;
   color: #ffffff;
-  font-size: 64px;
+  font-size: var(--hero-title-font-size);
   font-weight: 400;
 }
 
 .heroTitleBold {
-  line-height: 52px;
+  line-height: var(--hero-title-line-height);
   letter-spacing: 0;
   color: #ffffff;
-  font-size: 64px;
+  font-size: var(--hero-title-font-size);
   font-weight: 700;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1440px) {
   .hero {
+    --hero-shell-width: 1080px;
+    --hero-title-width: 860px;
+    --hero-title-font-size: clamp(50px, 4vw, 60px);
+    --hero-title-line-height: clamp(44px, 3.6vw, 52px);
     height: 720px;
   }
 
@@ -84,26 +93,21 @@
      todos los anchos. Fijarlo por breakpoint desalineaba el hero del resto. */
   .heroTitle {
     top: 418px;
-    width: auto;
-    height: auto;
   }
 }
 
 @media (max-width: 1200px) {
   .hero {
+    --hero-shell-width: 980px;
+    --hero-title-width: 760px;
+    --hero-title-font-size: clamp(42px, 4.2vw, 56px);
+    --hero-title-line-height: clamp(38px, 3.7vw, 48px);
     height: 680px;
   }
 
   .heroMedia {
     height: 680px;
     background-position: 58% center;
-  }
-
-  .heroTitle,
-  .heroTitleRegular,
-  .heroTitleBold {
-    font-size: 56px;
-    line-height: 48px;
   }
 
   .heroTitle {
@@ -113,6 +117,9 @@
 
 @media (max-width: 1024px) {
   .hero {
+    --hero-title-width: 680px;
+    --hero-title-font-size: 42px;
+    --hero-title-line-height: 40px;
     height: 620px;
   }
 
@@ -123,17 +130,8 @@
     background-position: 63% center;
   }
 
-  .heroTitle,
-  .heroTitleRegular,
-  .heroTitleBold {
-    font-size: 42px;
-    line-height: 40px;
-  }
-
   .heroTitle {
     top: 364px;
-    width: auto;
-    height: auto;
   }
 
   .heroLine {

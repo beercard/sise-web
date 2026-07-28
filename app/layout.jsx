@@ -5,6 +5,7 @@ import { League_Spartan } from 'next/font/google';
 import { siteConfig } from './lib/seo';
 import SiteFooter from './components/SiteFooter/SiteFooter';
 import SiteHeader from './components/SiteHeader/SiteHeader';
+import WhatsAppFloatingButton from './components/WhatsAppFloatingButton/WhatsAppFloatingButton';
 
 import styles from './layout.module.scss';
 
@@ -177,6 +178,7 @@ export default function RootLayout({ children }) {
           <SiteHeader />
           <main className={styles.main}>{children}</main>
           <SiteFooter />
+          <WhatsAppFloatingButton />
         </div>
       </body>
     </html>

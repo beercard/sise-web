@@ -272,22 +272,30 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 46px;
+  --tech-tabs-width: 944px;
+  --tech-tab-font-size: 20px;
+  --tech-group-width: 1320px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: clamp(24px, 3vw, 64px);
+  --tech-house-max-width: 735px;
   /* Mismo aire arriba y abajo: sin el padding inferior el plano quedaba
      pegado a la sección siguiente. */
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
 .technologyTitle {
   margin: 0 auto;
-  width: 944px;
-  height: 132px;
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
   text-align: center;
-  line-height: 46px;
+  line-height: var(--tech-title-line-height);
   color: #000000;
-  font-size: 48px;
+  font-size: var(--tech-title-font-size);
 }
 
 .technologyTitleStrong {
@@ -300,7 +308,7 @@
 
 .tabs {
   margin-top: 4px;
-  width: min(944px, 100%);
+  width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
   padding: 0 16px;
@@ -318,7 +326,7 @@
   line-height: 19px;
   letter-spacing: 1px;
   color: #2177a5;
-  font-size: 20px;
+  font-size: var(--tech-tab-font-size);
   font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
@@ -377,11 +385,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(24px, 3vw, 64px);
+  gap: var(--tech-row-gap);
 }
 
 .house {
-  width: min(735px, 55vw);
+  width: min(var(--tech-house-max-width), 55vw);
   max-width: 100%;
   height: auto;
   aspect-ratio: 735 / 527;
@@ -556,7 +564,7 @@
 /* Figma: grupo de 520px = flecha 30 + gap 9 + card 442 + gap 9 + flecha 30. */
 .techCardGroup {
   margin-top: 55px;
-  width: min(520px, 100%);
+  width: min(var(--tech-card-group-width), 100%);
   min-width: 0;
   height: 357px;
   display: grid;
@@ -976,7 +984,19 @@
   margin-top: 0;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1440px) {
+  .technology {
+    --tech-title-width: 860px;
+    --tech-title-font-size: clamp(40px, 3.4vw, 48px);
+    --tech-title-line-height: clamp(40px, 3.2vw, 46px);
+    --tech-tabs-width: 860px;
+    --tech-tab-font-size: clamp(17px, 1.45vw, 20px);
+    --tech-group-width: 1180px;
+    --tech-card-group-width: 500px;
+    --tech-row-gap: clamp(20px, 2.4vw, 40px);
+    --tech-house-max-width: 660px;
+  }
+
   .heroMedia {
     height: 720px;
   }
@@ -1010,6 +1030,24 @@
   .technologyRow {
     padding-left: var(--tech-pad-x);
     padding-right: var(--tech-pad-x);
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 1201px) {
+  .technology {
+    --tech-title-width: 780px;
+    --tech-title-font-size: 36px;
+    --tech-title-line-height: 38px;
+    --tech-tabs-width: 780px;
+    --tech-tab-font-size: 16px;
+    --tech-group-width: 1040px;
+    --tech-card-group-width: 460px;
+    --tech-row-gap: 24px;
+    --tech-house-max-width: 560px;
+  }
+
+  .tabs {
+    padding: 0 8px;
   }
 }
 
@@ -1080,12 +1118,12 @@
   }
 
   .house {
-    width: min(735px, 55vw);
+    width: min(var(--tech-house-max-width), 55vw);
   }
 
   .techCardGroup {
     margin-top: 0;
-    width: min(520px, 100%);
+    width: min(var(--tech-card-group-width), 100%);
   }
 }
 

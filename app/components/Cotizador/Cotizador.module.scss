@@ -1,4 +1,12 @@
 .container {
+  --cotizador-header-width: 944px;
+  --cotizador-title-width: 944px;
+  --cotizador-title-font-size: 64px;
+  --cotizador-title-line-height: 52px;
+  --cotizador-subtitle-font-size: 32px;
+  --cotizador-subtitle-line-height: 26px;
+  --cotizador-question-font-size: 32px;
+  --cotizador-question-line-height: 26px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -6,39 +14,56 @@
   justify-content: center;
   background: var(--sise-gray);
   margin-top: 0;
-  min-height: 760px;
   box-sizing: border-box;
-  padding: 48px clamp(16px, 26.8vw, 514px) 52px;
+  padding-left: clamp(16px, 26.8vw, 514px);
+  padding-right: clamp(16px, 26.8vw, 514px);
+}
+
+.containerFixedStep {
+  min-height: 559px;
+  padding-top: 102px;
+}
+
+.containerFormStep {
+  min-height: 760px;
+  padding-top: 48px;
+  padding-bottom: 52px;
 }
 
 .header {
-  width: min(944px, 100%);
+  width: 100%;
+  max-width: var(--cotizador-header-width);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .title {
-  order: 1;
   margin: 0;
-  width: min(889px, 100%);
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  display: block;
   text-align: center;
-  line-height: 80.65%;
+  line-height: var(--cotizador-title-line-height);
   letter-spacing: 0;
   color: var(--sise-blue);
-  font-size: 64px;
+  font-size: var(--cotizador-title-font-size);
   font-weight: 700;
 }
 
 .subtitle {
-  order: 2;
   margin: 12px 0 0;
-  width: min(944px, 100%);
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  display: block;
   text-align: center;
-  line-height: 80.65%;
+  line-height: var(--cotizador-subtitle-line-height);
   letter-spacing: 0;
-  color: var(--sise-blue);
-  font-size: 32px;
+  color: #000000;
+  font-size: var(--cotizador-subtitle-font-size);
   font-weight: 400;
 }
 
@@ -53,8 +78,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 28px;
-  min-height: 520px;
+  margin-top: 34px;
+  min-height: 410px;
 }
 
 .kicker {
@@ -63,18 +88,18 @@
   text-align: center;
   line-height: 16px;
   letter-spacing: 0;
-  color: var(--sise-blue);
-  font-size: clamp(16px, 1.2vw, 20px);
+  color: #000000;
+  font-size: 20px;
 }
 
 .question {
-  margin: 17px 0 0;
+  margin: 12px 0 0;
   width: 100%;
   text-align: center;
-  line-height: clamp(26px, 2.2vw, 32px);
+  line-height: var(--cotizador-question-line-height);
   letter-spacing: 0;
-  color: var(--sise-blue);
-  font-size: clamp(22px, 2.4vw, 32px);
+  color: #000000;
+  font-size: var(--cotizador-question-font-size);
   font-weight: 700;
 }
 
@@ -82,7 +107,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 18px;
   gap: 14px;
   width: 100%;
 }
@@ -92,15 +117,43 @@
   border-radius: 10px;
   background: var(--sise-white);
   width: min(212px, 100%);
-  min-height: 40px;
-  padding: 10px 14px;
+  height: 40px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   line-height: 19px;
   letter-spacing: 0;
-  color: var(--sise-blue);
+  color: #000000;
   font-size: 24px;
   cursor: pointer;
   transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.optionsExperience {
+  margin-top: 20px;
+}
+
+.optionExperience {
+  min-height: 56px;
+  height: auto;
+  padding-top: 16px;
+  padding-bottom: 17px;
+  line-height: 24px;
+}
+
+.optionsAccess {
+  width: min(260px, 100%);
+}
+
+.optionAccess {
+  width: min(236px, 100%);
+}
+
+.optionNoWrap {
+  white-space: nowrap;
 }
 
 .optionSelected {
@@ -127,7 +180,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 12px;
+  margin-top: 18px;
+  min-height: 42px;
 }
 
 .backButton {
@@ -162,9 +216,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 28px;
-  min-height: 520px;
+  justify-content: flex-start;
+  margin-top: 22px;
+  min-height: 0;
 }
 
 .fields {
@@ -185,7 +239,7 @@
 .fieldLabel {
   line-height: 16px;
   letter-spacing: 0;
-  color: var(--sise-blue);
+  color: #000000;
   font-size: 20px;
 }
 
@@ -196,7 +250,7 @@
   background: var(--sise-white);
   padding: 10px 14px;
   font-size: 18px;
-  color: var(--sise-blue);
+  color: #000000;
 }
 
 .input::placeholder {
@@ -218,7 +272,7 @@
 
 .summaryTitle {
   margin: 0;
-  color: var(--sise-blue);
+  color: #000000;
   font-size: 20px;
   font-weight: 600;
 }
@@ -229,7 +283,7 @@
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.6);
   padding: 14px;
-  color: var(--sise-blue);
+  color: #000000;
   font-size: 16px;
   line-height: 20px;
   white-space: pre-wrap;
@@ -241,6 +295,7 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 24px;
+  min-height: 42px;
 }
 
 .sendButton {
@@ -308,7 +363,7 @@
   text-align: center;
   line-height: 26px;
   letter-spacing: 0;
-  color: var(--sise-blue);
+  color: #000000;
   font-size: 32px;
   font-weight: 700;
 }
@@ -319,38 +374,42 @@
   text-align: center;
   line-height: 16px;
   letter-spacing: 0;
-  color: var(--sise-blue);
+  color: #000000;
   font-size: 20px;
 }
 
 @media (max-width: 960px) {
   .container {
-    justify-content: flex-start;
     min-height: auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    justify-content: flex-start;
     padding-left: 16px;
     padding-right: 16px;
   }
 
+  .containerFixedStep,
+  .containerFormStep {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    min-height: auto;
+  }
+
   .header {
     width: min(362px, 100%);
+    max-width: none;
   }
 
   .title {
-    order: 1;
     margin-top: 0;
     width: min(362px, 100%);
     font-size: 24px;
-    line-height: 80.65%;
+    line-height: 24px;
   }
 
   .subtitle {
-    order: 2;
     margin-top: 9px;
     width: min(354px, 100%);
     font-size: 20px;
-    line-height: 80.65%;
+    line-height: 20px;
   }
 
   .desktopCopy {
@@ -380,7 +439,7 @@
     margin-top: 7px;
     width: 100%;
     font-size: 18px;
-    line-height: 15px;
+    line-height: 20px;
   }
 
   .options,
@@ -401,9 +460,21 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    line-height: 80.65%;
+    line-height: 14px;
     white-space: normal;
     word-break: break-word;
+  }
+
+  .optionsAccess {
+    width: 192px;
+  }
+
+  .optionAccess {
+    width: 192px;
+  }
+
+  .optionNoWrap {
+    white-space: nowrap;
   }
 
   .backButton,
@@ -482,8 +553,66 @@
   }
 }
 
+@media (max-width: 1440px) and (min-width: 961px) {
+  .container {
+    --cotizador-header-width: 900px;
+    --cotizador-title-width: 900px;
+    --cotizador-title-font-size: clamp(48px, 4.1vw, 60px);
+    --cotizador-title-line-height: clamp(42px, 3.5vw, 52px);
+    --cotizador-subtitle-font-size: clamp(26px, 2.1vw, 32px);
+    --cotizador-subtitle-line-height: clamp(22px, 1.8vw, 26px);
+    --cotizador-question-font-size: clamp(26px, 2.1vw, 32px);
+    --cotizador-question-line-height: clamp(22px, 1.8vw, 26px);
+    padding-left: clamp(24px, 9vw, 160px);
+    padding-right: clamp(24px, 9vw, 160px);
+  }
+
+  .containerFixedStep {
+    min-height: 540px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .containerFormStep {
+    min-height: 700px;
+    padding-top: 42px;
+    padding-bottom: 46px;
+  }
+
+  .stepBox,
+  .formBox {
+    width: min(840px, 100%);
+  }
+
+  .stepBox {
+    margin-top: 30px;
+    min-height: 390px;
+  }
+
+  .kicker,
+  .question,
+  .title,
+  .subtitle {
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1800px) {
+  .container {
+    padding-left: max(24px, calc((100vw - 944px) / 2));
+    padding-right: max(24px, calc((100vw - 944px) / 2));
+  }
+}
+
 @media (min-width: 961px) {
   .mobileCopy {
     display: none;
+  }
+
+  .title,
+  .subtitle,
+  .kicker,
+  .question {
+    white-space: nowrap;
   }
 }
