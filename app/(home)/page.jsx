@@ -96,15 +96,25 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeStructuredData) }}
       />
 
-      <HeroCarousel />
-      <HomeSeoContent />
-      <HomePillarsCarousel />
+      <div className={styles.heroBlock}>
+        <HeroCarousel />
+      </div>
 
-      <section className={styles.quote} aria-label="Cotizador">
+      <div className={styles.seoBlock}>
+        <HomeSeoContent />
+      </div>
+
+      <div className={styles.pillarsBlock}>
+        <HomePillarsCarousel />
+      </div>
+
+      <section className={`${styles.quote} ${styles.quoteBlock}`} aria-label="Cotizador">
         <Cotizador showHeader />
       </section>
 
-      <WhyChooseSise />
+      <div className={styles.whyChooseBlock}>
+        <WhyChooseSise />
+      </div>
 
       <section className={styles.faqSection} aria-label="Preguntas frecuentes">
         <div className={styles.faqInner}>
@@ -122,7 +132,6 @@ export default function HomePage() {
               <details
                 key={item.question}
                 className={styles.faqItem}
-                open={index === 1}
               >
                 <summary className={styles.faqQuestion}>{item.question}</summary>
                 <div className={styles.faqAnswerWrap}>

@@ -17,14 +17,14 @@
 }
 
 .heroGradient {
+  /* Mismo degradé del diseño (azul sólido a la izquierda → 50% al centro →
+     transparente a la derecha) pero cubriendo SIEMPRE el 100% del hero.
+     Antes era una caja de medidas fijas rotada -90° con translates por
+     breakpoint, y quedaba desfasada (no acompañaba el alto/ancho del hero). */
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 800px;
-  height: 1108px;
-  transform: translate(154px, -154px) rotate(-90deg);
+  inset: 0;
   background-image: linear-gradient(
-    180deg,
+    90deg,
     #00408c 0%,
     #00408c80 50%,
     #ffffff00 100%
@@ -79,15 +79,11 @@
     background-position: center center;
   }
 
-  .heroGradient {
-    width: 720px;
-    height: 980px;
-    transform: translate(110px, -126px) rotate(-90deg);
-  }
-
+  /* `left` se hereda de la regla base: max(24px, calc(50% - 594px)), que
+     coincide con el borde izquierdo de la columna de contenido (1188px) en
+     todos los anchos. Fijarlo por breakpoint desalineaba el hero del resto. */
   .heroTitle {
     top: 418px;
-    left: 160px;
     width: auto;
     height: auto;
   }
@@ -103,12 +99,6 @@
     background-position: 58% center;
   }
 
-  .heroGradient {
-    width: 660px;
-    height: 900px;
-    transform: translate(72px, -120px) rotate(-90deg);
-  }
-
   .heroTitle,
   .heroTitleRegular,
   .heroTitleBold {
@@ -118,7 +108,6 @@
 
   .heroTitle {
     top: 372px;
-    left: 112px;
   }
 }
 
@@ -134,13 +123,6 @@
     background-position: 63% center;
   }
 
-  .heroGradient {
-    width: 620px;
-    height: 860px;
-    top: 0;
-    transform: translate(24px, -118px) rotate(-90deg);
-  }
-
   .heroTitle,
   .heroTitleRegular,
   .heroTitleBold {
@@ -150,7 +132,6 @@
 
   .heroTitle {
     top: 364px;
-    left: 64px;
     width: auto;
     height: auto;
   }
@@ -171,12 +152,6 @@
     background-position: 66% center;
   }
 
-  .heroGradient {
-    width: 560px;
-    height: 760px;
-    transform: translate(-8px, -96px) rotate(-90deg);
-  }
-
   .heroTitle,
   .heroTitleRegular,
   .heroTitleBold {
@@ -186,7 +161,7 @@
 
   .heroTitle {
     top: 332px;
-    left: 32px;
+    left: 24px;
     width: auto;
   }
 }
@@ -198,18 +173,12 @@
 
   .heroMedia {
     top: 0;
-    width: 402px;
-    height: 591px;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('/image/home-hero-mobile.webp');
     background-position: center top;
     background-size: cover;
-  }
-
-  .heroGradient {
-    width: 591px;
-    height: 402px;
-    top: 0;
-    transform: translate(-94px, 94px) rotate(-90deg);
   }
 
   .heroTitle,
@@ -220,21 +189,65 @@
   }
 
   .heroTitle {
-    top: 335px;
-    left: calc(50% - 175px);
-    width: 259px;
-    height: 77px;
-    max-width: none;
+    top: auto;
+    bottom: 179px;
+    /* Mismo eje que el resto de las secciones en mobile: columna de 354px
+       centrada (la del FAQ), con piso de 24px en pantallas angostas. */
+    left: max(24px, calc(50% - 177px));
+    width: min(259px, calc(100% - 52px));
+    height: auto;
+    max-width: 259px;
   }
 
   .heroLine {
-    display: inline;
+    display: block;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 960px) and (min-width: 601px) {
+  .hero {
+    height: 620px;
+  }
+
+  .heroMedia {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/image/home-hero-mobile.webp');
+    background-position: center top;
+    background-size: cover;
+  }
+
+  .heroTitle,
+  .heroTitleRegular,
+  .heroTitleBold {
+    font-size: 32px;
+    line-height: 34px;
+  }
+
+  .heroTitle {
+    top: auto;
+    bottom: 148px;
+    /* Mismo eje que las secciones en tablet: columna mobile de 354px
+       centrada, con piso de 24px. */
+    left: max(24px, calc(50% - 177px));
+    width: min(390px, calc(100% - 48px));
+    height: auto;
+    max-width: 390px;
+  }
+
+  .heroLine {
+    display: block;
     white-space: normal;
   }
 }
 
 @media (max-width: 480px) {
+  /* `left` sigue heredando el eje de la columna mobile (regla de ≤600px);
+     acá solo se ajusta el ancho del título. */
   .heroTitle {
-    left: 24px;
+    width: min(259px, calc(100% - 48px));
   }
 }

@@ -53,45 +53,47 @@ export default function HomeSeoContent() {
         </div>
 
         <div className={styles.mobileLayout}>
-          <h2 className={styles.mobileTitle}>Seguridad electrónica y monitoreo en todo el NEA</h2>
-
-          <div className={styles.mobileTopRow}>
-            <p className={styles.mobileIntro}>
-              <span className={styles.textRegular}>Nacimos en </span>
-              <span className={styles.textStrong}>Resistencia</span>
-              <span className={styles.textRegular}> hace </span>
-              <span className={styles.textStrong}>más de 15 años</span>
-              <span className={styles.textRegular}>
-                {' '}
-                y hoy diseñamos los sistemas de seguridad electrónica más completos de la
-                región.
-              </span>
-            </p>
-
+          <div className={styles.mobileFeature}>
             <div className={styles.mobileImageWrap}>
               <Image
                 src="/image/home-seo-mobile.webp"
                 alt="Frente de la sucursal SISE Argentina"
-                width={169}
-                height={102}
+                width={560}
+                height={338}
                 className={styles.mobileImage}
               />
             </div>
+
+            <div className={styles.mobileOverlay}>
+              <h2 className={styles.mobileTitle}>Seguridad electrónica y monitoreo en todo el NEA</h2>
+
+              <p className={styles.mobileIntro}>
+                <span className={styles.textRegular}>Nacimos en </span>
+                <span className={styles.textStrong}>Resistencia</span>
+                <span className={styles.textRegular}> hace </span>
+                <span className={styles.textStrong}>más de 15 años</span>
+                <span className={styles.textRegular}>
+                  {' '}
+                  y hoy diseñamos los sistemas de seguridad electrónica más completos de la
+                  región.
+                </span>
+              </p>
+
+              <p className={`${styles.mobileParagraph} ${styles.mobileParagraphFirst}`}>
+                <span className={styles.textRegular}>No importa si necesitás una </span>
+                <span className={styles.textStrong}>alarma monitoreada</span>
+                <span className={styles.textRegular}> para tu casa, </span>
+                <span className={styles.textStrong}>control de accesos</span>
+                <span className={styles.textRegular}> para tu empresa, cámaras de </span>
+                <span className={styles.textStrong}>videovigilancia</span>
+                <span className={styles.textRegular}> para un consorcio o </span>
+                <span className={styles.textStrong}>tecnología autónoma </span>
+                <span className={styles.textRegular}>para el sector agropecuario.</span>
+              </p>
+            </div>
           </div>
 
-          <p className={styles.mobileParagraph}>
-            <span className={styles.textRegular}>No importa si necesitás una </span>
-            <span className={styles.textStrong}>alarma monitoreada</span>
-            <span className={styles.textRegular}> para tu casa, </span>
-            <span className={styles.textStrong}>control de accesos</span>
-            <span className={styles.textRegular}> para tu empresa, cámaras de </span>
-            <span className={styles.textStrong}>videovigilancia</span>
-            <span className={styles.textRegular}> para un consorcio o </span>
-            <span className={styles.textStrong}>tecnología autónoma </span>
-            <span className={styles.textRegular}>para el sector agropecuario.</span>
-          </p>
-
-          <p className={styles.mobileParagraph}>
+          <p className={`${styles.mobileParagraph} ${styles.mobileParagraphLast}`}>
             <span className={styles.textRegular}>
               Integramos equipos de última generación con nuestro propio
             </span>

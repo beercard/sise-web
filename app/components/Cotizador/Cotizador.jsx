@@ -205,8 +205,14 @@ export default function Cotizador({ showHeader = false }) {
       <div className={styles.container} id="cotizador-online">
         {showHeader ? (
           <div className={styles.header}>
-            <h2 className={styles.title}>Cotizá tu alarma</h2>
-            <p className={styles.subtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
+            <p className={styles.subtitle}>
+              <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
+              <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
+            </p>
+            <h2 className={styles.title}>
+              <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
+              <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
+            </h2>
           </div>
         ) : null}
 
@@ -228,8 +234,14 @@ export default function Cotizador({ showHeader = false }) {
       <div className={styles.container} id="cotizador-online">
         {showHeader ? (
           <div className={styles.header}>
-            <h2 className={styles.title}>Cotizá tu alarma</h2>
-            <p className={styles.subtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
+            <p className={styles.subtitle}>
+              <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
+              <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
+            </p>
+            <h2 className={styles.title}>
+              <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
+              <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
+            </h2>
           </div>
         ) : null}
 
@@ -318,7 +330,14 @@ export default function Cotizador({ showHeader = false }) {
             </button>
           </div>
 
-          {submitError ? <p className={styles.error}>{submitError}</p> : null}
+          <p
+            className={
+              submitError ? `${styles.error} ${styles.errorVisible}` : `${styles.error} ${styles.errorHidden}`
+            }
+            aria-live="polite"
+          >
+            {submitError || '\u00A0'}
+          </p>
         </form>
       </div>
     );
@@ -328,8 +347,14 @@ export default function Cotizador({ showHeader = false }) {
     <div className={styles.container} id="cotizador-online">
       {showHeader ? (
         <div className={styles.header}>
-          <h2 className={styles.title}>Cotizá tu alarma</h2>
-          <p className={styles.subtitle}>COTIZADOR ONLINE – SOLO ALARMAS</p>
+          <p className={styles.subtitle}>
+            <span className={styles.desktopCopy}>COTIZADOR ONLINE</span>
+            <span className={styles.mobileCopy}>COTIZADOR ONLINE</span>
+          </p>
+          <h2 className={styles.title}>
+            <span className={styles.desktopCopy}>Cotizá tu sistema de seguridad</span>
+            <span className={styles.mobileCopy}>Cotizá tu sistema de seguridad</span>
+          </h2>
         </div>
       ) : null}
 
@@ -399,7 +424,14 @@ export default function Cotizador({ showHeader = false }) {
           </div>
         )}
 
-        {stepError ? <p className={styles.error}>{stepError}</p> : null}
+        <p
+          className={
+            stepError ? `${styles.error} ${styles.errorVisible}` : `${styles.error} ${styles.errorHidden}`
+          }
+          aria-live="polite"
+        >
+          {stepError || '\u00A0'}
+        </p>
       </div>
     </div>
   );

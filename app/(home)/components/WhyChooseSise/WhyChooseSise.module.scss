@@ -629,7 +629,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   .inner {
     width: min(402px, 100%);
     min-height: auto;
@@ -979,7 +979,7 @@
   object-position: center bottom;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   .categoryCardHogarMobile,
   .categoryCardEmpresasMobile,
   .categoryCardUrbanoMobile,

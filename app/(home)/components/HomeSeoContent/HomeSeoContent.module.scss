@@ -71,7 +71,9 @@
 
 @media (max-width: 1280px) {
   .inner {
-    width: min(1100px, calc(100% - 48px));
+    /* Misma columna que Pilares/FAQ (1188 / 100%−48) para que el borde
+       izquierdo de todas las secciones quede alineado en 961–1280px. */
+    width: min(1188px, calc(100% - 48px));
   }
 
   .desktopLayout {
@@ -111,7 +113,7 @@
 
 @media (max-width: 1100px) {
   .inner {
-    width: min(980px, calc(100% - 40px));
+    width: min(1188px, calc(100% - 48px));
     padding-top: 44px;
   }
 
@@ -146,6 +148,10 @@
 }
 
 @media (max-width: 960px) {
+  .section {
+    overflow: hidden;
+  }
+
   .inner {
     width: min(402px, calc(100% - 32px));
     padding: 37px 0 0;
@@ -156,59 +162,111 @@
   }
 
   .mobileLayout {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobileFeature {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    height: 338px;
+  }
+
+  .mobileFeature::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.72);
+    z-index: 1;
+  }
+
+  .mobileOverlay {
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* El feature es full-bleed con 100vw, que en desktop incluye el ancho de
+       la barra de scroll; el margen de 16px evita que el texto quede cortado
+       en pantallas muy angostas (320px). */
+    width: min(354px, calc(100% - 16px));
+    height: 338px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 39px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .mobileTitle {
     margin: 0;
-    width: 197px;
-    min-height: 42px;
+    width: min(274px, 100%);
+    min-height: 47px;
     color: var(--sise-blue);
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 600;
-    line-height: 20px;
+    line-height: 110%;
     letter-spacing: 0;
-  }
-
-  .mobileTopRow {
-    margin-top: 7px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
+    text-align: center;
   }
 
   .mobileIntro {
-    margin: 0;
-    width: 169px;
-    min-height: 96px;
+    margin: 23px 0 0;
+    width: min(300px, 100%);
+    min-height: 65px;
     color: #000000;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 140%;
     letter-spacing: 0;
+    text-align: center;
   }
 
   .mobileImageWrap {
-    flex: 0 0 169px;
-    width: 169px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 338px;
+    overflow: hidden;
   }
 
   .mobileImage {
-    display: block;
-    width: 169px;
-    height: 102px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* Cubre siempre el ancho completo del feature: en pantallas de 561 a
+       960px la foto seguía fija en 560px y quedaban franjas blancas a los
+       costados. */
+    width: max(100%, 560px);
+    height: 338px;
+    transform: translateX(-50%);
     object-fit: cover;
   }
 
   .mobileParagraph {
-    margin: 15px 0 0;
-    width: 354px;
     color: #000000;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 140%;
     letter-spacing: 0;
+    text-align: center;
+  }
+
+  .mobileParagraphFirst {
+    margin: 19px 0 0;
+    width: min(315px, 100%);
+    min-height: 103px;
+  }
+
+  .mobileParagraphLast {
+    margin: 35px 0 0;
+    width: min(354px, 100%);
+    min-height: 0;
   }
 }
 
@@ -222,25 +280,10 @@
   .inner {
     width: calc(100% - 32px);
     padding-top: 32px;
+    padding-bottom: 0;
   }
 
-  .mobileTitle {
-    width: min(197px, 100%);
-  }
-
-  .mobileTopRow {
-    gap: 10px;
-  }
-
-  .mobileIntro {
-    width: min(169px, calc(100% - 179px));
-  }
-
-  .mobileImageWrap {
-    flex-basis: 169px;
-  }
-
-  .mobileParagraph {
-    width: 100%;
+  .mobileFeature {
+    width: 100vw;
   }
 }

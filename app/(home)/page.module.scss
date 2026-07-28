@@ -6,6 +6,14 @@
   width: 100%;
 }
 
+.heroBlock,
+.seoBlock,
+.pillarsBlock,
+.whyChooseBlock,
+.quoteBlock {
+  width: 100%;
+}
+
 .main {
   width: 100%;
 }
@@ -378,7 +386,57 @@
   font-size: clamp(18px, 3.2vw, 32px);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 960px) {
+  .heroBlock {
+    order: 1;
+  }
+
+  .pillarsBlock {
+    order: 2;
+  }
+
+  .whyChooseBlock {
+    order: 3;
+  }
+
+  .seoBlock {
+    order: 4;
+  }
+
+  .quoteBlock {
+    order: 5;
+  }
+
+  .faqSection {
+    order: 6;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroBlock {
+    order: 1;
+  }
+
+  .pillarsBlock {
+    order: 2;
+  }
+
+  .whyChooseBlock {
+    order: 3;
+  }
+
+  .seoBlock {
+    order: 4;
+  }
+
+  .quoteBlock {
+    order: 5;
+  }
+
+  .faqSection {
+    order: 6;
+  }
+
   .seoIntro {
     padding: 28px 16px 0;
   }
@@ -440,18 +498,19 @@
   }
 
   .faqSection {
+    padding-top: 32px;
     padding-left: 24px;
     padding-right: 24px;
   }
 
   .faqInner {
-    width: 354px;
+    width: min(354px, 100%);
   }
 
   .faqIntro {
-    width: 354px;
-    font-size: 14px;
-    line-height: 20px;
+    width: min(329px, 100%);
+    font-size: 16px;
+    line-height: 140%;
   }
 
   .authorityGrid,
@@ -472,23 +531,23 @@
 
   .faqList {
     margin-top: 16px;
-    gap: 12px;
+    gap: 10px;
   }
 
   .faqItem {
-    min-height: 31px;
+    min-height: 35px;
     border-radius: 8px;
   }
 
   .faqQuestion {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 18px;
-    min-height: 31px;
-    padding: 8px 14px 9px;
+    grid-template-columns: minmax(0, 1fr) 19px;
+    min-height: 35px;
+    padding: 10px 13px 10px 14px;
     gap: 8px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    line-height: 14px;
+    line-height: 80.65%;
     align-items: center;
     justify-content: initial;
     text-align: left;
@@ -499,46 +558,38 @@
   }
 
   .faqItem[open] .faqQuestion {
-    min-height: 21px;
-    padding: 13px 14px 0;
-    line-height: 11px;
+    min-height: 35px;
+    padding: 10px 13px 0 14px;
+    line-height: 80.65%;
   }
 
   .faqAnswer {
-    width: auto;
-    padding: 0 13px 0 14px;
-    font-size: 10px;
-    line-height: 14px;
+    width: min(320px, 100%);
+    padding: 0 17px 0;
+    font-size: 12px;
+    line-height: 140%;
     text-align: left;
   }
 
   .faqQuestion::after {
-    width: 18px;
-    height: 10px;
-    background-size: 18px 10px;
+    width: 19px;
+    height: 11px;
+    background-size: 19px 11px;
     justify-self: end;
     margin-top: 0;
     align-self: center;
   }
 
   .faqItem[open] {
-    min-height: 100px;
+    min-height: 126px;
   }
 
   .faqItem[open] .faqAnswer {
-    padding: 10px 13px 13px 14px;
-  }
-
-  .faqItem:last-child {
-    min-height: 45px;
+    padding: 14px 17px 11px;
   }
 
   .faqItem:last-child .faqQuestion {
-    min-height: 45px;
-    padding-top: 9px;
-    padding-bottom: 8px;
-    line-height: 14px;
-    align-items: center;
+    line-height: 100%;
   }
 
   .quoteTitle {
@@ -555,11 +606,11 @@
 }
 
 @media (max-width: 960px) and (min-width: 601px) {
-  /* Encabezado del FAQ centrado también en tablet, igual que el resto de las
-     secciones del sitio en mobile/tablet. */
+  /* Mismo encabezado que en mobile (diseño actual: alineado a la izquierda),
+     para que no haya salto de alineación al cruzar los 600px. */
   .faqHeader {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .authorityGrid,
@@ -621,43 +672,43 @@
   }
 
   .faqIntro {
-    width: 354px;
-    font-size: 14px;
-    line-height: 20px;
+    width: min(329px, 100%);
+    font-size: 16px;
+    line-height: 140%;
   }
 
   .faqItem {
-    min-height: 31px;
+    min-height: 35px;
     border-radius: 8px;
   }
 
   .faqList {
     margin-top: 16px;
-    gap: 12px;
+    gap: 10px;
   }
 
   .faqItem,
   .faqItem[open] {
-    min-height: 31px;
+    min-height: 35px;
   }
 
   .faqQuestion {
-    grid-template-columns: minmax(0, 1fr) 18px;
-    min-height: 31px;
-    padding: 8px 14px 9px;
+    grid-template-columns: minmax(0, 1fr) 19px;
+    min-height: 35px;
+    padding: 10px 13px 10px 14px;
     gap: 8px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    line-height: 14px;
+    line-height: 80.65%;
     align-items: center;
     justify-content: initial;
     text-align: left;
   }
 
   .faqItem[open] .faqQuestion {
-    min-height: 21px;
-    padding: 13px 14px 0;
-    line-height: 11px;
+    min-height: 35px;
+    padding: 10px 13px 0 14px;
+    line-height: 80.65%;
   }
 
   .faqQuestion::before {
@@ -665,40 +716,32 @@
   }
 
   .faqQuestion::after {
-    width: 18px;
-    height: 10px;
-    background-size: 18px 10px;
+    width: 19px;
+    height: 11px;
+    background-size: 19px 11px;
     margin-top: 0;
     align-self: center;
     justify-self: end;
   }
 
   .faqAnswer {
-    width: auto;
-    padding: 0 13px 0 14px;
-    font-size: 10px;
-    line-height: 14px;
+    width: min(320px, 100%);
+    padding: 0 17px 0;
+    font-size: 12px;
+    line-height: 140%;
     text-align: left;
   }
 
   .faqItem[open] {
-    min-height: 100px;
+    min-height: 126px;
   }
 
   .faqItem[open] .faqAnswer {
-    padding: 10px 13px 13px 14px;
-  }
-
-  .faqItem:last-child {
-    min-height: 45px;
+    padding: 14px 17px 11px;
   }
 
   .faqItem:last-child .faqQuestion {
-    min-height: 45px;
-    padding-top: 9px;
-    padding-bottom: 8px;
-    line-height: 14px;
-    align-items: center;
+    line-height: 100%;
   }
 }
 

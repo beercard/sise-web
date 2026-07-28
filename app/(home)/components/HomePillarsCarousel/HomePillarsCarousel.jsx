@@ -58,7 +58,7 @@ const pillars = [
     titleWidth: 438,
     previewBodyWidth: 416,
     previewTitleWidth: 352,
-    mobileBodyWidth: 149,
+    mobileBodyWidth: 160,
     mobileTitleWidth: 168,
     paddingX: 26,
     paddingTop: 44,

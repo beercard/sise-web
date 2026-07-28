@@ -430,77 +430,153 @@
   }
 }
 
+/* Menú mobile/tablet unificado: mismo diseño (barra de 64px + dropdown de
+   filas sólidas centradas) en todo el rango con hamburguesa (≤1200px). */
 @media (max-width: 1200px) {
   .header {
     position: sticky;
     top: 0;
     z-index: 300;
+    background: #00408c;
+  }
+
+  .headerOpen,
+  .innerOpen {
+    background: #0857b5;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   }
 
   .inner {
-    padding-right: 0;
+    width: 100%;
+    max-width: none;
+    height: 64px;
     padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+    gap: 0;
+    justify-content: flex-start;
     align-items: center;
   }
 
+  .aguila {
+    display: none;
+  }
+
   .recurso {
-    margin-left: 12px;
+    position: absolute;
+    left: 26px;
+    top: 11px;
+    margin: 0;
+    width: 73px;
+    height: 43px;
   }
 
   .menuButton {
-    display: block;
-    margin-top: 0;
-    align-self: center;
     display: flex;
+    position: absolute;
+    right: 31px;
+    top: 22px;
+    margin: 0;
+    width: 31px;
+    height: 20px;
+    padding: 0;
+    border-radius: 0;
     align-items: center;
     justify-content: center;
   }
 
+  .menuButton:focus-visible {
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .menuButtonIcon {
+    width: 31px;
+    height: 2px;
+    margin: 0;
+  }
+
+  .menuButtonIcon::before,
+  .menuButtonIcon::after {
+    width: 31px;
+    height: 2px;
+  }
+
+  .menuButtonIcon::before {
+    top: -9px;
+  }
+
+  .menuButtonIcon::after {
+    top: 9px;
+  }
+
+  .menuButtonOpen .menuButtonIcon {
+    background: transparent;
+  }
+
+  .menuButtonOpen .menuButtonIcon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .menuButtonOpen .menuButtonIcon::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
   .nav {
-    position: fixed;
-    top: 80px;
+    position: absolute;
+    top: 64px;
     left: 0;
-    right: 0;
-    bottom: 0;
+    right: auto;
+    bottom: auto;
     transform: none;
     height: auto;
     width: 100%;
     max-width: none;
     margin-left: 0;
-    justify-content: flex-end;
-    background: rgba(1, 19, 45, 0.56);
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    overflow: hidden;
+    justify-content: flex-start;
+    background: transparent;
+    backdrop-filter: none;
+    overflow: visible;
   }
 
-  .navOpen {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
+  /* El estado abierto/cerrado lo controla exclusivamente la lista con
+     `display`. El contenedor .nav queda siempre presente pero con altura 0
+     cuando la lista está oculta, así no tapa nada ni depende de que el
+     toggle de opacidad gane la cascada. */
   .navList {
     display: none;
   }
 
-  .navListOpen {
+  .navList.navListOpen {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
-    padding: 18px 16px calc(32px + env(safe-area-inset-bottom, 0px));
-    height: 100%;
+    gap: 0;
+    padding: 0;
+    height: auto;
+    max-height: calc(100dvh - 64px);
     overflow-y: auto;
     overscroll-behavior: contain;
-    width: min(392px, 100%);
-    margin-left: auto;
-    background: linear-gradient(180deg, #0b4a98 0%, #003f8c 100%);
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: -20px 0 36px rgba(0, 0, 0, 0.32);
+    width: 100%;
+    margin: 0 auto;
+    background: transparent;
+    border-left: 0;
+    box-shadow: none;
+  }
+
+  .navListOpen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    pointer-events: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    z-index: 4;
   }
 
   .navItemFirst,
@@ -554,255 +630,8 @@
     height: auto;
   }
 
-  .submenuToggle {
-    display: block;
-    margin-top: 0;
-    padding: 0;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .submenuToggleIcon {
-    border-left-width: 7px;
-    border-right-width: 7px;
-    border-top-width: 8px;
-    margin-top: 0;
-    transition: transform 0.2s ease;
-  }
-
-  .submenuToggle[aria-expanded='true'] .submenuToggleIcon {
-    transform: rotate(180deg);
-  }
-
-  .submenu {
-    position: static;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 100%;
-    max-width: none;
-    background: rgba(1, 23, 56, 0.34);
-    box-shadow: none;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    margin-top: 10px;
-    display: none;
-    height: auto;
-    padding: 8px;
-  }
-
-  .submenuOpen {
-    display: flex;
-  }
-
-  .submenuItem {
-    background: transparent;
-    border-radius: 12px;
-    height: 46px;
-    justify-content: flex-start;
-    padding: 0 14px;
-    font-size: 15px;
-    letter-spacing: 0.7px;
-  }
-
-  .submenuempresas .submenuItem,
-  .submenuurbano .submenuItem,
-  .submenunosotros .submenuItem {
-    justify-content: flex-start;
-    padding: 0 14px;
-    text-align: left;
-    font-size: 15px;
-    letter-spacing: 0.7px;
-    line-height: 1.1;
-  }
-
-  .submenu::after {
-    display: none;
-  }
-
-  .navLinkRow {
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    justify-content: flex-start;
-    padding: 0 16px;
-    min-height: 58px;
-    height: auto;
-    gap: 12px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .navItemWithSubmenu .navLinkRow {
-    justify-content: space-between;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .navLinkRowActive {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.1) 100%);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .navItemWithSubmenu .navLinkRow:hover {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.1) 100%);
-  }
-
-  .navLink {
-    justify-content: flex-start;
-    font-size: 17px;
-    flex: 1 1 auto;
-    letter-spacing: 0.8px;
-  }
-
-  .aguila {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .header {
-    background: #00408c;
-  }
-
-  .headerOpen,
-  .innerOpen {
-    background: #0857b5;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .inner {
-    width: min(402px, 100%);
-    height: 64px;
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0 auto;
-    gap: 0;
-    justify-content: flex-start;
-  }
-
-  .aguila {
-    display: none;
-  }
-
-  .recurso {
-    position: absolute;
-    left: 26px;
-    top: 11px;
-    margin: 0;
-    width: 73px;
-    height: 43px;
-  }
-
-  .menuButton {
-    display: block;
-    position: absolute;
-    left: auto;
-    right: 51px;
-    top: 10px;
-    margin: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 0;
-  }
-
-  .menuButton:focus-visible {
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  .menuButtonIcon {
-    width: 31px;
-    height: 2px;
-    margin: 0;
-  }
-
-  .menuButtonIcon::before,
-  .menuButtonIcon::after {
-    width: 31px;
-    height: 2px;
-  }
-
-  .menuButtonIcon::before {
-    top: -9px;
-  }
-
-  .menuButtonIcon::after {
-    top: 9px;
-  }
-
-  .menuButtonOpen .menuButtonIcon {
-    background: transparent;
-  }
-
-  .menuButtonOpen .menuButtonIcon::before {
-    top: 0;
-    transform: rotate(45deg);
-  }
-
-  .menuButtonOpen .menuButtonIcon::after {
-    top: 0;
-    transform: rotate(-45deg);
-  }
-
-  .nav {
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: auto;
-    bottom: auto;
-    height: auto;
-    width: 100%;
-    justify-content: flex-start;
-    background: transparent;
-    backdrop-filter: none;
-    overflow: visible;
-  }
-
-  .navListOpen {
-    position: relative;
-    width: min(402px, 100%);
-    height: auto;
-    max-height: calc(100dvh - 64px);
-    gap: 0;
-    padding: 0;
-    margin: 0 auto;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    background: transparent;
-    border-left: 0;
-    box-shadow: none;
-  }
-
-  .navListOpen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    pointer-events: none;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-    z-index: 4;
-  }
-
-  .navItemFirst,
-  .navItem {
-    width: 100%;
-  }
-
-  .navItemBody {
-    width: 100%;
-  }
-
-  .navLinkGroup {
-    width: 100%;
-  }
-
+  /* Filas sólidas a ancho completo, centradas, sin flecha: el submenú se
+     despliega tocando la fila (mismo patrón en mobile y tablet). */
   .navLinkRow {
     position: relative;
     z-index: 1;
@@ -817,12 +646,7 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   }
 
-  .navItemFirst .navLinkRow {
-    box-shadow:
-      0 -4px 4px rgba(0, 0, 0, 0.1),
-      0 4px 4px rgba(0, 0, 0, 0.1);
-  }
-
+  .navItemFirst .navLinkRow,
   .navItem + .navItem .navLinkRow {
     box-shadow:
       0 -4px 4px rgba(0, 0, 0, 0.1),
@@ -855,13 +679,29 @@
   }
 
   .submenu {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
     width: 100%;
+    max-width: none;
     margin-top: 0;
     padding: 0;
     border: 0;
     border-radius: 0;
     background: transparent;
     box-shadow: none;
+    display: none;
+    height: auto;
+  }
+
+  .submenu::after {
+    display: none;
+  }
+
+  .submenuOpen {
+    display: flex;
+    flex-direction: column;
   }
 
   .submenuItem {
@@ -898,10 +738,5 @@
 
   .submenuItem:hover {
     background: #013778;
-  }
-
-  .submenuOpen {
-    display: flex;
-    flex-direction: column;
   }
 }

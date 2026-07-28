@@ -333,45 +333,45 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   .section {
-    padding-top: 29px;
-    padding-bottom: 0;
+    padding-top: 57px;
+    padding-bottom: 57px;
     padding-left: 0;
     padding-right: 0;
   }
 
   .inner {
     width: min(402px, calc(100% - 32px));
-    align-items: stretch;
+    align-items: center;
   }
 
   .header {
     width: 100%;
-    align-items: flex-start;
-    gap: 1px;
-    text-align: left;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
   }
 
   .title {
     width: 188px;
     max-width: none;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 24px;
+    line-height: 24px;
     text-wrap: unset;
   }
 
   .subtitle {
-    width: 354px;
+    width: 230px;
     max-width: none;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 16px;
     text-wrap: unset;
   }
 
   .carousel {
     width: 100%;
-    min-height: 216px;
+    min-height: 231px;
     margin-top: 14px;
     display: grid;
     grid-template-columns: 26px 201px 26px;
@@ -383,8 +383,8 @@
 
   .card {
     width: 201px;
-    min-height: 216px;
-    padding: 25px 17px 30px 16px;
+    min-height: 231px;
+    padding: 21px 17px 21px 16px;
   }
 
   .previewCard {
@@ -398,7 +398,7 @@
   }
 
   .cardTitle {
-    margin-top: 11px;
+    margin-top: 12px;
     width: min(var(--mobile-title-width, 168px), 100%);
     font-size: 18px;
     line-height: 15px;
@@ -420,18 +420,18 @@
   }
 
   .cardText {
-    margin-top: 10px;
-    width: min(var(--mobile-body-width, 156px), 100%);
-    font-size: 12px;
-    line-height: 12px;
+    margin-top: 5px;
+    width: min(var(--mobile-body-width, 160px), 100%);
+    font-size: 14px;
+    line-height: 14px;
     text-wrap: unset;
   }
 
   .arrowButton {
     width: 26px;
     height: 16px;
-    align-self: start;
-    margin-top: 100px;
+    align-self: center;
+    margin-top: 0;
   }
 
   .arrowLeft,
@@ -459,10 +459,10 @@
   }
 
   .subtitle {
-    width: 100%;
+    width: min(230px, 100%);
   }
 
   .arrowButton {
-    margin-top: 100px;
+    margin-top: 0;
   }
 }
