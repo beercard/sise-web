@@ -1,7 +1,6 @@
 import CiudadHero from './components/CiudadHero/CiudadHero';
 import CiudadTechnologyModule from './components/CiudadTechnologyModule/CiudadTechnologyModule';
 
-import Cotizador from '../components/Cotizador/Cotizador';
 import FaqSection from '../components/FaqSection/FaqSection';
 import {
   buildBreadcrumbSchema,
@@ -94,10 +93,6 @@ export default function CiudadPage() {
 
       <CiudadHero />
       <CiudadTechnologyModule />
-
-      <section className={styles.cotizadorWrap} aria-label="Cotizador online">
-        <Cotizador />
-      </section>
 
       <FaqSection
         intro="Reunimos las consultas más frecuentes de municipios y organismos sobre videovigilancia urbana, monitoreo del espacio público y prevención del delito."

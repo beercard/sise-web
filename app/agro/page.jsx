@@ -95,7 +95,7 @@ export default function AgroPage() {
       <AgroHero />
       <AgroTechnologyModule />
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
-        <Cotizador />
+        <Cotizador variant="agro" />
       </section>
 
       <FaqSection

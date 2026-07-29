@@ -100,7 +100,7 @@ export default function ConstruccionPage() {
       <ConstruccionHero />
       <ConstruccionTechnologyModule />
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
-        <Cotizador />
+        <Cotizador variant="spaces" />
       </section>
 
       <FaqSection

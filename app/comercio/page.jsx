@@ -66,7 +66,7 @@ export default function ComercioPage() {
       <ComercioTechnologyModule />
       <ComercioSolutionsModule />
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
-        <Cotizador />
+        <Cotizador variant="enterprise" />
       </section>
     </div>
   );

@@ -29,11 +29,38 @@ const initialAnswers = {
   email: ''
 };
 
-function buildSummary(answers) {
+const FIRST_STEP_CONFIG = {
+  residential: {
+    kicker: 'Tipo de propiedad',
+    question: '¿Dónde querés instalar la alarma?',
+    options: ['Casa', 'Comercio', 'Departamento', 'Oficina'],
+    summaryLabel: 'Tipo de propiedad'
+  },
+  enterprise: {
+    kicker: 'Tipo de propiedad',
+    question: '¿Qué tipo de empresa querés proteger?',
+    options: ['Oficina', 'Local comercial', 'Depósito', 'Industria / Planta', 'Institución'],
+    summaryLabel: 'Tipo de empresa'
+  },
+  spaces: {
+    kicker: 'Tipo de propiedad',
+    question: '¿Qué tipo de espacio querés proteger?',
+    options: ['Consorcio/Edificio', 'Empresa logística', 'Barrio privado', 'Obras en Construcción'],
+    summaryLabel: 'Tipo de espacio'
+  },
+  agro: {
+    kicker: 'Tipo de propiedad',
+    question: '¿Qué buscas proteger?',
+    options: ['Campo', 'Maquinaria', 'Galpón', 'Ganado'],
+    summaryLabel: 'Qué buscás proteger'
+  }
+};
+
+function buildSummary(answers, propertyLabel) {
   const accessValue = Array.isArray(answers.access) ? answers.access.join(', ') : answers.access;
 
   return [
-    ['Tipo de propiedad', answers.propertyType],
+    [propertyLabel, answers.propertyType],
     ['Experiencia previa', answers.experience],
     ['Nivel de riesgo', answers.risk],
     ['Tamaño del lugar', answers.placeSize],
@@ -49,20 +76,21 @@ function buildSummary(answers) {
     .join('\n');
 }
 
-export default function Cotizador({ showHeader = false }) {
+export default function Cotizador({ showHeader = false, variant = 'residential' }) {
   const [step, setStep] = useState(STEP.PROPERTY_TYPE);
   const [answers, setAnswers] = useState(initialAnswers);
   const [website, setWebsite] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [stepError, setStepError] = useState('');
+  const firstStep = FIRST_STEP_CONFIG[variant] ?? FIRST_STEP_CONFIG.residential;
 
   const steps = useMemo(
     () => [
       {
-        kicker: 'Tipo de propiedad',
-        question: '¿Dónde querés instalar la alarma?',
-        options: ['Casa', 'Comercio', 'Departamento', 'Oficina'],
+        kicker: firstStep.kicker,
+        question: firstStep.question,
+        options: firstStep.options,
         onSelect: (value) => {
           setAnswers((prev) => ({ ...prev, propertyType: value }));
           setStep(STEP.EXPERIENCE);
@@ -129,7 +157,7 @@ export default function Cotizador({ showHeader = false }) {
         }
       }
     ],
-    []
+    [firstStep]
   );
 
   const activeStep = steps[step];
@@ -237,7 +265,7 @@ export default function Cotizador({ showHeader = false }) {
   }
 
   if (step === STEP.CONTACT_DETAILS) {
-    const summary = buildSummary(answers);
+    const summary = buildSummary(answers, firstStep.summaryLabel);
 
     return (
       <div className={containerClassName} id="cotizador-online">

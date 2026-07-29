@@ -100,7 +100,7 @@ export default function IndustriaPage() {
       <IndustriaHero />
       <IndustriaTechnologyModule />
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
-        <Cotizador />
+        <Cotizador variant="enterprise" />
       </section>
 
       <FaqSection
