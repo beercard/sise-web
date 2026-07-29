@@ -1,6 +1,10 @@
 .section {
+  --solutions-total-height: 775px;
+  --solutions-grid-height: 458px;
+  --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
   --solutions-content-width: 1196px;
   --solutions-intro-gap: 44px;
+  --solutions-copy-gap: 22px;
   --solutions-card-width: 211px;
   --solutions-card-height: 261px;
   --solutions-grid-gap: 33px;
@@ -29,22 +33,35 @@
 .canvas {
   position: relative;
   width: min(1920px, 100%);
-  height: 775px;
+  height: var(--solutions-total-height);
   margin: 0 auto;
 }
 
-.intro {
+.copyBlock {
   position: absolute;
   z-index: 2;
-  top: 56px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
+  height: var(--solutions-copy-height);
   width: min(var(--solutions-content-width), calc(100% - 48px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 578px) minmax(0, 574px);
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--solutions-intro-gap);
   align-items: start;
+}
+
+.copyMain {
+  width: 578px;
+  max-width: 100%;
 }
 
 .lead,
@@ -55,7 +72,7 @@
 }
 
 .lead {
-  width: 578px;
+  width: 100%;
   min-height: 59px;
   line-height: 30px;
   font-size: 32px;
@@ -70,8 +87,9 @@
 }
 
 .body {
-  width: 574px;
+  width: 100%;
   min-height: 44px;
+  margin-top: 4px;
   line-height: 20px;
   font-size: 20px;
 }
@@ -85,24 +103,22 @@
 }
 
 .punch {
-  position: absolute;
-  z-index: 2;
-  top: 140px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(var(--solutions-content-width), calc(100% - 48px));
+  position: relative;
+  margin-top: var(--solutions-copy-gap);
+  width: calc(100% - 4px);
   min-height: 82px;
-  line-height: 39px;
+  margin-left: 4px;
+  line-height: 38.712px;
   font-size: 48px;
   font-weight: 600;
 }
 
 .gridArea {
   position: absolute;
-  top: 321px;
+  top: var(--solutions-copy-height);
   left: 0;
   width: 100%;
-  height: 454px;
+  height: var(--solutions-grid-height);
 }
 
 .watermark {
@@ -253,8 +269,12 @@
 
 @media (max-width: 1440px) {
   .section {
+    --solutions-total-height: 752px;
+    --solutions-grid-height: 448px;
+    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
     --solutions-content-width: 1080px;
     --solutions-intro-gap: clamp(20px, 2vw, 32px);
+    --solutions-copy-gap: clamp(18px, 1.5vw, 22px);
     --solutions-card-width: clamp(184px, 14vw, 211px);
     --solutions-card-height: clamp(238px, 18vw, 261px);
     --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
@@ -275,13 +295,12 @@
     --solutions-rastreo-body-top: clamp(96px, 7.9vw, 112px);
   }
 
-  .canvas {
-    height: 752px;
+  .intro {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
-  .intro {
-    top: 50px;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  .copyMain {
+    width: 100%;
   }
 
   .lead {
@@ -299,10 +318,11 @@
   }
 
   .punch {
-    top: 132px;
     min-height: 0;
     font-size: clamp(38px, 3.2vw, 48px);
     line-height: clamp(33px, 2.7vw, 39px);
+    margin-left: 0;
+    width: 100%;
   }
 
   .heading {
@@ -312,8 +332,8 @@
   }
 
   .gridArea {
-    top: 304px;
-    height: 448px;
+    top: var(--solutions-copy-height);
+    height: var(--solutions-grid-height);
   }
 
   .watermarkRow {
@@ -323,8 +343,12 @@
 
 @media (max-width: 1280px) and (min-width: 1201px) {
   .section {
+    --solutions-total-height: 712px;
+    --solutions-grid-height: 426px;
+    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
     --solutions-content-width: 980px;
     --solutions-intro-gap: 24px;
+    --solutions-copy-gap: 18px;
     --solutions-card-width: 180px;
     --solutions-card-height: 234px;
     --solutions-grid-gap: 16px;
@@ -345,20 +369,8 @@
     --solutions-rastreo-body-top: 88px;
   }
 
-  .canvas {
-    height: 712px;
-  }
-
-  .intro {
-    top: 46px;
-  }
-
-  .punch {
-    top: 124px;
-  }
-
   .gridArea {
-    top: 286px;
+    top: var(--solutions-copy-height);
   }
 
   .heading {
@@ -372,25 +384,31 @@
     padding-bottom: 64px;
   }
 
-  .intro {
+  .copyBlock {
     position: relative;
     top: auto;
     left: auto;
     transform: none;
+    height: auto;
     width: calc(100% - 80px);
     margin: 0 auto;
-    padding-top: 48px;
+    justify-content: flex-start;
+  }
+
+  .intro {
+    position: relative;
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
+  .copyMain {
+    width: 100%;
+  }
+
   .punch {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 22px auto 0;
+    width: 100%;
+    margin-top: var(--solutions-copy-gap);
+    margin-left: 0;
     min-height: 0;
   }
 
@@ -433,9 +451,14 @@
   }
 
   .intro {
-    width: calc(100% - 32px);
-    padding-top: 28px;
+    width: 100%;
     gap: 18px;
+  }
+
+  .copyBlock {
+    height: auto;
+    width: calc(100% - 32px);
+    justify-content: flex-start;
   }
 
   .lead {

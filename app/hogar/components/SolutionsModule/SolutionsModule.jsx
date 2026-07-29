@@ -39,35 +39,37 @@ export default function SolutionsModule() {
   return (
     <section className={styles.section} aria-label="Soluciones para el hogar">
       <div className={styles.canvas}>
-        <div className={styles.intro}>
-          <div className={styles.copyMain}>
-            <p className={styles.lead}>
-              <span className={styles.leadLight}>La seguridad de tu hogar no es solo tecnología, </span>
-              <span className={styles.leadStrong}>es la paz de tu familia.</span>
-            </p>
-            <p className={styles.punch}>Con SISE, no solo alertamos: actuamos.</p>
-          </div>
+        <div className={styles.copyBlock}>
+          <div className={styles.intro}>
+            <div className={styles.copyMain}>
+              <p className={styles.lead}>
+                <span className={styles.leadLight}>La seguridad de tu hogar no es solo tecnología, </span>
+                <span className={styles.leadStrong}>es la paz de tu familia.</span>
+              </p>
+              <p className={styles.punch}>Con SISE, no solo alertamos: actuamos.</p>
+            </div>
 
-          <p className={styles.body}>
-            <span className={styles.bodyLight}>Desarrollamos </span>
-            <span className={styles.bodyStrong}>soluciones confiables</span>
-            <span className={styles.bodyLight}>
-              {' '}
-              que protegen tu hogar antes, durante y después de cualquier intrusión.
-              <br />
-              <br />
-              Nuestro sistema combina{' '}
-            </span>
-            <span className={styles.bodyStrong}>tecnología avanzada</span>
-            <span className={styles.bodyLight}> con </span>
-            <span className={styles.bodyStrong}>monitoreo profesional 24/7</span>
-            <span className={styles.bodyLight}> y </span>
-            <span className={styles.bodyStrong}>control total desde tu celular</span>
-            <span className={styles.bodyLight}>
-              , para que puedas trabajar, viajar o descansar con la certeza de que un equipo experto
-              cuida lo que más querés en todo momento.
-            </span>
-          </p>
+            <p className={styles.body}>
+              <span className={styles.bodyLight}>Desarrollamos </span>
+              <span className={styles.bodyStrong}>soluciones confiables</span>
+              <span className={styles.bodyLight}>
+                {' '}
+                que protegen tu hogar antes, durante y después de cualquier intrusión.
+                <br />
+                <br />
+                Nuestro sistema combina{' '}
+              </span>
+              <span className={styles.bodyStrong}>tecnología avanzada</span>
+              <span className={styles.bodyLight}> con </span>
+              <span className={styles.bodyStrong}>monitoreo profesional 24/7</span>
+              <span className={styles.bodyLight}> y </span>
+              <span className={styles.bodyStrong}>control total desde tu celular</span>
+              <span className={styles.bodyLight}>
+                , para que puedas trabajar, viajar o descansar con la certeza de que un equipo experto
+                cuida lo que más querés en todo momento.
+              </span>
+            </p>
+          </div>
         </div>
 
         <div className={styles.gridArea}>

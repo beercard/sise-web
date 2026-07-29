@@ -39,29 +39,33 @@ export default function ComercioSolutionsModule() {
   return (
     <section className={styles.section} aria-label="Soluciones para comercios">
       <div className={styles.canvas}>
-        <div className={styles.intro}>
-          <p className={styles.lead}>
-            <span className={styles.leadLight}>En los comercios, la seguridad impacta directamente en </span>
-            <span className={styles.leadStrong}>el resultado del negocio</span>
-            <span className={styles.leadLight}>.</span>
-          </p>
+        <div className={styles.copyBlock}>
+          <div className={styles.intro}>
+            <div className={styles.copyMain}>
+              <p className={styles.lead}>
+                <span className={styles.leadLight}>En los comercios, la seguridad impacta directamente en </span>
+                <span className={styles.leadStrong}>el resultado del negocio</span>
+                <span className={styles.leadLight}>.</span>
+              </p>
+            </div>
 
-          <p className={styles.body}>
-            <span className={styles.bodyLight}>En SISE ofrecemos soluciones orientadas a </span>
-            <span className={styles.bodyStrong}>prevenir pérdidas</span>
-            <span className={styles.bodyLight}>, </span>
-            <span className={styles.bodyStrong}>reducir riesgos</span>
-            <span className={styles.bodyLight}> y </span>
-            <span className={styles.bodyStrong}>garantizar la continuidad operativa</span>
-            <span className={styles.bodyLight}>.</span>
+            <p className={styles.body}>
+              <span className={styles.bodyLight}>En SISE ofrecemos soluciones orientadas a </span>
+              <span className={styles.bodyStrong}>prevenir pérdidas</span>
+              <span className={styles.bodyLight}>, </span>
+              <span className={styles.bodyStrong}>reducir riesgos</span>
+              <span className={styles.bodyLight}> y </span>
+              <span className={styles.bodyStrong}>garantizar la continuidad operativa</span>
+              <span className={styles.bodyLight}>.</span>
+            </p>
+          </div>
+
+          <p className={styles.punch}>
+            No se trata sólo de evitar robos,
+            <br />
+            sino de cuidar tu inversión todos los días.
           </p>
         </div>
-
-        <p className={styles.punch}>
-          No se trata sólo de evitar robos,
-          <br />
-          sino de cuidar tu inversión todos los días.
-        </p>
 
         <div className={styles.gridArea}>
           <div className={styles.watermark} aria-hidden="true">

@@ -1,4 +1,7 @@
 .section {
+  --solutions-total-height: 775px;
+  --solutions-grid-height: 458px;
+  --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
   --solutions-content-width: 1187px;
   --solutions-intro-gap: 27px;
   --solutions-card-width: 211px;
@@ -30,21 +33,29 @@
 .canvas {
   position: relative;
   width: min(1920px, 100%);
-  height: 775px;
+  height: var(--solutions-total-height);
   margin: 0 auto;
 }
 
-.intro {
+.copyBlock {
   position: absolute;
   z-index: 2;
+  top: 0;
   left: 50%;
-  top: 84px;
   transform: translateX(-50%);
+  height: var(--solutions-copy-height);
   width: min(var(--solutions-content-width), calc(100% - 48px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 578px) minmax(0, 582px);
   gap: var(--solutions-intro-gap);
-  justify-content: space-between;
+  justify-content: center;
   align-items: start;
 }
 
@@ -95,10 +106,10 @@
 
 .gridArea {
   position: absolute;
-  top: 323px;
+  top: var(--solutions-copy-height);
   left: 0;
   width: 100%;
-  height: 454px;
+  height: var(--solutions-grid-height);
 }
 
 .watermark {
@@ -271,6 +282,9 @@
 
 @media (max-width: 1440px) {
   .section {
+    --solutions-total-height: 752px;
+    --solutions-grid-height: 448px;
+    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
     --solutions-content-width: 1080px;
     --solutions-intro-gap: clamp(20px, 2vw, 28px);
     --solutions-card-width: clamp(184px, 14vw, 211px);
@@ -337,6 +351,9 @@
 
 @media (max-width: 1280px) and (min-width: 1201px) {
   .section {
+    --solutions-total-height: 712px;
+    --solutions-grid-height: 426px;
+    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
     --solutions-content-width: 980px;
     --solutions-intro-gap: 24px;
     --solutions-card-width: 180px;
@@ -358,10 +375,6 @@
     --solutions-barrio-body-top: 96px;
     --solutions-desocupadas-title-top: 28px;
     --solutions-desocupadas-body-top: 95px;
-  }
-
-  .intro {
-    top: 76px;
   }
 
   .heading {
@@ -398,16 +411,25 @@
     padding-bottom: 64px;
   }
 
+  .copyBlock {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    height: auto;
+    width: calc(100% - 80px);
+    margin: 0 auto;
+    justify-content: flex-start;
+  }
+
   .intro {
     position: relative;
     top: auto;
     left: auto;
     transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto;
     padding-top: 48px;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     gap: 32px;
   }
 
@@ -469,9 +491,13 @@
   }
 
   .intro {
-    width: calc(100% - 32px);
+    width: 100%;
     padding-top: 28px;
     gap: 18px;
+  }
+
+  .copyBlock {
+    width: calc(100% - 32px);
   }
 
   .lead {
@@ -525,9 +551,13 @@
 
 @media (max-width: 1100px) and (min-width: 961px) {
   .intro {
-    width: calc(100% - 64px);
+    width: 100%;
     padding-top: 40px;
     gap: 24px;
+  }
+
+  .copyBlock {
+    width: calc(100% - 64px);
   }
 
   .lead {
