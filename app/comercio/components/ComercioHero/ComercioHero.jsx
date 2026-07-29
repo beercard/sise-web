@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 
-import ComercioMonitoreoCarousel from '../ComercioMonitoreoCarousel/ComercioMonitoreoCarousel';
-
 import styles from '../../page.module.scss';
 
 export default function ComercioHero() {
@@ -20,41 +18,25 @@ export default function ComercioHero() {
         />
         <div className={styles.heroGradient} aria-hidden="true" />
 
-        <Image
-          src="/image/mpvuunzj-tkfn7dr.png"
-          alt="SISE Comercio"
-          className={styles.heroKicker}
-          width={416}
-          height={64}
-          priority
-        />
+        <div className={styles.heroCopy}>
+          <Image
+            src="/image/mpvuunzj-tkfn7dr.png"
+            alt="SISE Comercio"
+            className={styles.heroKicker}
+            width={416}
+            height={64}
+            priority
+          />
 
-        <h1 className={styles.heroTitle}>
-          <span className={styles.heroTitleLight}>Seguridad que protege </span>
-          <span className={styles.heroTitleStrong}>tu rentabilidad</span>
-        </h1>
-      </div>
-
-      <div className={styles.heroBottom} aria-label="Información">
-        <div className={styles.heroBottomInner}>
-          <div className={styles.heroText}>
-            <p className={styles.heroSectionTitle}>COMERCIOS</p>
-            <div className={styles.heroDivider} aria-hidden="true" />
-            <p className={styles.heroLead}>
-              En comercios y negocios, la seguridad impacta directo en la continuidad y la
-              rentabilidad.
-            </p>
-            <p className={styles.heroBody}>
-              Implementamos alarmas monitoreadas, cámaras y control de accesos para locales, oficinas y depósitos, reduciendo riesgos en aperturas, cierres y operación diaria.
-            </p>
-            <p className={styles.heroPunch}>
-              No se trata sólo de evitar robos,
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroTitleLight}>
+              Seguridad que protege
               <br />
-              sino de cuidar tu inversión todos los días.
-            </p>
-          </div>
+            </span>
+            <span className={styles.heroTitleStrong}>tu rentabilidad</span>
+          </h1>
 
-          <ComercioMonitoreoCarousel />
+          <p className={styles.heroCategory}>COMERCIOS</p>
         </div>
       </div>
     </section>

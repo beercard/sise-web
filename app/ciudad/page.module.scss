@@ -1552,3 +1552,75 @@
   height: auto;
   margin-top: 53px;
 }
+
+/* Hero de ciudad alineado al mismo sistema visual del resto de verticales. */
+.heroImage {
+  object-position: center;
+}
+
+.heroOverlayPrimary {
+  display: none;
+}
+
+.heroOverlaySecondary {
+  inset: 0 auto 0 0;
+  width: 800px;
+  height: 100%;
+  rotate: 0deg;
+  opacity: 1;
+  background-image: linear-gradient(90deg, #597a9c 0%, rgba(89, 122, 156, 0.5) 49.52%, rgba(255, 255, 255, 0) 100%);
+}
+
+.heroCopy {
+  top: 360px;
+  left: var(--hero-content-left);
+  width: min(610px, calc(100% - (var(--hero-content-left) * 2)));
+}
+
+.heroCityLogo {
+  width: 325px;
+  height: auto;
+}
+
+.heroTitle {
+  margin-top: 17px;
+  width: 610px;
+  min-height: 102px;
+  line-height: 51px;
+  font-size: 64px;
+}
+
+@media (max-width: 1366px) {
+  .heroOverlaySecondary { width: min(720px, 56%); }
+  .heroCopy { top: 312px; width: min(620px, calc(100% - (var(--hero-content-left) * 2))); }
+  .heroTitle { width: 100%; font-size: 56px; line-height: 48px; }
+}
+
+@media (max-width: 1200px) {
+  .heroOverlaySecondary { width: min(620px, 58%); }
+  .heroCopy { top: 286px; width: min(560px, calc(100% - 64px)); }
+  .heroCityLogo { width: 300px; }
+  .heroTitle { width: 100%; min-height: 88px; font-size: 50px; line-height: 44px; }
+}
+
+@media (max-width: 960px) {
+  .heroOverlaySecondary {
+    inset: 0;
+    width: 100%;
+    background-image: linear-gradient(180deg, rgba(89, 122, 156, 0.92) 0%, rgba(89, 122, 156, 0.72) 52%, rgba(89, 122, 156, 0) 100%);
+  }
+  .heroCopy { left: 16px; top: 320px; width: calc(100% - 32px); }
+  .heroCityLogo { width: 260px; }
+  .heroTitle { margin-top: 16px; width: 100%; min-height: 0; font-size: 44px; line-height: 44px; }
+}
+
+@media (max-width: 600px) {
+  .heroCopy { top: 280px; }
+  .heroTitle { font-size: 36px; line-height: 34px; }
+}
+
+@media (max-width: 480px) {
+  .heroCopy { top: 240px; }
+  .heroCityLogo { width: 224px; }
+  .heroTitle { font-size: 32px; line-height: 30px; }
+}

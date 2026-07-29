@@ -13,19 +13,21 @@ export default function ConstruccionHero() {
         <Image src="/image/mq11fkmb-be8tqg4.webp" alt="Videovigilancia y cámaras de seguridad en una obra en construcción" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
-        <Image src="/image/mq11fkmb-q59ieul.png" alt="SISE Urbano" className={styles.heroKicker} width={704} height={95} priority />
+        <div className={styles.heroCopy}>
+          <Image src="/image/mq11fkmb-q59ieul.png" alt="SISE Urbano" className={styles.heroKicker} width={704} height={95} priority />
 
-        <h1 className={styles.heroTitle}>
-          <span className={styles.heroTitleLight}>Protección desde </span>
-          <span className={styles.heroTitleStrong}>el primer día</span>
-        </h1>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroTitleLight}>Protección desde </span>
+            <span className={styles.heroTitleStrong}>el primer día</span>
+          </h1>
+
+          <p className={styles.heroCategory}>CONSTRUCCIÓN Y OBRAS</p>
+        </div>
       </div>
 
       <div className={styles.heroBottom} aria-label="Construcción y Obras">
         <div className={styles.heroBottomInner}>
           <div className={styles.heroText}>
-            <p className={styles.heroSectionTitle}>CONSTRUCCIÓN Y OBRAS</p>
-            <div className={styles.heroDivider} aria-hidden="true" />
             <p className={styles.heroLead}>Seguridad activa para obras y obradores</p>
             <p className={styles.heroBody}>
               Protegemos materiales, herramientas, maquinaria y accesos con videovigilancia,

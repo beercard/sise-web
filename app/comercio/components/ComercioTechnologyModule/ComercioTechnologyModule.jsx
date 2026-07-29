@@ -409,7 +409,7 @@ export default function ComercioTechnologyModule() {
       <h2 className={styles.technologyTitle}>
         <span className={styles.technologyTitleStrong}>Seguridad total para tu negocio,</span>
         <br />
-        <span className={styles.technologyTitleLight}>en todo momento</span>
+        <span className={styles.technologyTitleLight}>en todo momento.</span>
       </h2>
 
       <div className={styles.tabs} role="tablist" aria-label="Categorías">

@@ -57,7 +57,7 @@
 }
 
 .heroTitleLight {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .heroTitleStrong {
@@ -493,7 +493,8 @@
   height: auto;
   margin-top: 53px;
   width: min(520px, 100%);
-  min-width: 0;
+  min-width: 0;
+
   display: grid;
   align-items: center;
   justify-content: center;
@@ -1523,4 +1524,373 @@
     margin-right: auto;
     text-align: center;
   }
+}
+
+/* Estructura de comercio alineada a la secuencia de /hogar:
+   Hero -> Technology -> Solutions -> Cotizador, manteniendo intacto
+   el módulo de mapa y sus posiciones. */
+.heroMedia {
+  height: 800px;
+  background: #00408c;
+}
+
+.heroImage {
+  object-position: center;
+  opacity: 0.9;
+}
+
+.heroGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 100%;
+  transform: none;
+  background-image: linear-gradient(90deg, #06234c 0%, rgba(6, 35, 76, 0.5) 49.52%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.heroKicker {
+  top: 360px;
+  left: var(--hero-content-left);
+  width: 416px;
+  height: auto;
+}
+
+.heroTitle {
+  top: 440px;
+  left: var(--hero-content-left);
+  width: 610px;
+  height: auto;
+  font-size: 64px;
+  line-height: 51px;
+}
+
+.heroCategory {
+  position: absolute;
+  top: 564px;
+  left: var(--hero-content-left);
+  width: 578px;
+  margin: 0;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.technology {
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 46px;
+  --tech-title-tabs-gap: clamp(26px, 2vw, 34px);
+  --tech-tabs-width: 944px;
+  --tech-tab-font-size: 20px;
+  --tech-group-width: 1320px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: clamp(24px, 3vw, 64px);
+  --tech-house-max-width: 735px;
+  padding-top: 72px;
+  padding-bottom: 86px;
+  --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
+}
+
+.technologyTitle {
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
+  font-size: var(--tech-title-font-size);
+  line-height: var(--tech-title-line-height);
+}
+
+.tabs {
+  margin-top: var(--tech-title-tabs-gap);
+  width: min(var(--tech-tabs-width), calc(100% - 48px));
+  padding: 0 16px;
+}
+
+.tab {
+  font-size: var(--tech-tab-font-size);
+}
+
+.technologyRow {
+  margin-top: 30px;
+  gap: var(--tech-row-gap);
+}
+
+.house {
+  width: min(var(--tech-house-max-width), 55vw);
+}
+
+.techCardGroup {
+  margin-top: 55px;
+  width: min(var(--tech-card-group-width), 100%);
+}
+
+.cotizadorWrap {
+  margin-top: 0;
+}
+
+@media (max-width: 1440px) and (min-width: 961px) {
+  .heroMedia {
+    height: clamp(680px, 56vw, 800px);
+  }
+
+  .heroKicker {
+    top: clamp(300px, 24vw, 360px);
+    width: clamp(352px, 28vw, 416px);
+  }
+
+  .heroTitle {
+    top: clamp(372px, 30vw, 440px);
+    width: min(610px, calc(100% - (var(--hero-content-left) * 2)));
+    font-size: clamp(52px, 4.45vw, 64px);
+    line-height: clamp(42px, 3.6vw, 51px);
+  }
+
+  .heroCategory {
+    top: clamp(476px, 38vw, 564px);
+    width: min(578px, calc(100% - (var(--hero-content-left) * 2)));
+    font-size: clamp(28px, 2.2vw, 32px);
+    line-height: clamp(26px, 2vw, 30px);
+  }
+
+  .technology {
+    --tech-title-width: 860px;
+    --tech-title-font-size: clamp(40px, 3.35vw, 48px);
+    --tech-title-line-height: clamp(40px, 3.1vw, 46px);
+    --tech-title-tabs-gap: clamp(24px, 2vw, 32px);
+    --tech-tabs-width: 860px;
+    --tech-tab-font-size: clamp(17px, 1.45vw, 20px);
+    --tech-group-width: 1180px;
+    --tech-card-group-width: 500px;
+    --tech-row-gap: clamp(20px, 2.4vw, 40px);
+    --tech-house-max-width: 660px;
+    padding-top: clamp(58px, 4.4vw, 72px);
+    padding-bottom: clamp(70px, 5.8vw, 86px);
+  }
+
+  .techCardGroup {
+    margin-top: 46px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .heroMedia {
+    height: 660px;
+  }
+
+  .heroKicker {
+    top: 286px;
+    left: var(--hero-content-left);
+    width: 320px;
+  }
+
+  .heroTitle {
+    top: 356px;
+    left: var(--hero-content-left);
+    width: min(500px, calc(100% - 64px));
+    font-size: 42px;
+    line-height: 40px;
+  }
+
+  .heroCategory {
+    top: 470px;
+    left: var(--hero-content-left);
+    width: min(500px, calc(100% - 64px));
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .technology {
+    --tech-title-width: 780px;
+    --tech-title-font-size: 36px;
+    --tech-title-line-height: 38px;
+    --tech-title-tabs-gap: 24px;
+    --tech-tabs-width: 780px;
+    --tech-tab-font-size: 16px;
+    --tech-group-width: 1040px;
+    --tech-card-group-width: 460px;
+    --tech-row-gap: 24px;
+    --tech-house-max-width: 560px;
+    padding-top: 56px;
+    padding-bottom: 64px;
+  }
+
+  .tabs {
+    padding: 0 8px;
+  }
+
+  .techCardGroup {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroMedia {
+    height: 640px;
+  }
+
+  .heroKicker {
+    left: 16px;
+    top: 320px;
+    width: min(320px, calc(100% - 32px));
+  }
+
+  .heroTitle {
+    left: 16px;
+    top: 384px;
+    width: calc(100% - 32px);
+    font-size: 44px;
+    line-height: 42px;
+  }
+
+  .heroCategory {
+    left: 16px;
+    top: 490px;
+    width: calc(100% - 32px);
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .technology {
+    padding-top: 40px;
+  }
+}
+
+/* Hero unificado en verticales: geometría fija para recurso, título y subtítulo. */
+.heroMedia {
+  height: 800px;
+  background: #00408c;
+}
+
+.heroImage {
+  object-position: center;
+  opacity: 0.9;
+}
+
+.heroGradient {
+  inset: 0 auto 0 0;
+  width: 800px;
+  height: 100%;
+  transform: none;
+  background-image: linear-gradient(90deg, #06234c 0%, rgba(6, 35, 76, 0.5) 49.52%, rgba(255, 255, 255, 0) 100%);
+}
+
+.heroCopy {
+  position: absolute;
+  top: 360px;
+  left: var(--hero-content-left);
+  width: min(610px, calc(100% - (var(--hero-content-left) * 2)));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heroKicker {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 416px;
+  height: auto;
+}
+
+.heroTitle {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  min-height: 102px;
+  margin: 16px 0 0;
+  line-height: 51px;
+  font-size: 64px;
+}
+
+.heroTitleLight {
+  display: block;
+  white-space: nowrap;
+}
+
+.heroTitleStrong {
+  display: block;
+}
+
+.heroCategory {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  margin: 22px 0 0;
+  font-size: 32px;
+  line-height: 30px;
+}
+
+@media (max-width: 1366px) {
+  .heroMedia { height: 720px; }
+  .heroGradient { width: min(720px, 56%); }
+  .heroCopy { top: 312px; }
+  .heroKicker { width: 374px; }
+  .heroTitle { min-height: 96px; font-size: 56px; line-height: 48px; }
+  .heroCategory { margin-top: 18px; font-size: 28px; line-height: 28px; }
+}
+
+@media (max-width: 1200px) {
+  .heroMedia { height: 660px; }
+  .heroGradient { width: min(620px, 58%); }
+  .heroCopy {
+    top: 286px;
+    width: min(560px, calc(100% - 64px));
+  }
+  .heroKicker { width: 316px; }
+  .heroTitle {
+    min-height: 88px;
+    font-size: 50px;
+    line-height: 44px;
+  }
+  .heroCategory {
+    margin-top: 16px;
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroGradient {
+    inset: 0;
+    width: 100%;
+    background-image: linear-gradient(180deg, rgba(6, 35, 76, 0.92) 0%, rgba(6, 35, 76, 0.72) 52%, rgba(6, 35, 76, 0) 100%);
+  }
+  .heroCopy {
+    left: 16px;
+    top: 320px;
+    width: calc(100% - 32px);
+  }
+  .heroKicker { width: min(295px, calc(100% - 32px)); }
+  .heroTitle {
+    min-height: 0;
+    font-size: 44px;
+    line-height: 44px;
+  }
+  .heroTitleLight {
+    white-space: normal;
+  }
+  .heroCategory {
+    margin-top: 14px;
+    font-size: 24px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroMedia { height: 580px; }
+  .heroCopy { top: 280px; }
+  .heroTitle { font-size: 36px; line-height: 34px; }
+  .heroCategory { font-size: 22px; line-height: 24px; }
+}
+
+@media (max-width: 480px) {
+  .heroMedia { height: 520px; }
+  .heroCopy { top: 240px; }
+  .heroKicker { width: min(253px, calc(100% - 32px)); }
+  .heroTitle { margin-top: 14px; font-size: 32px; line-height: 30px; }
+  .heroCategory { margin-top: 12px; font-size: 20px; line-height: 22px; }
 }

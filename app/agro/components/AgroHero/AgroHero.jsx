@@ -13,19 +13,21 @@ export default function AgroHero() {
         <Image src="/image/mq1fh69q-uknmp86.webp" alt="Cámaras de seguridad y monitoreo rural en un campo" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
-        <Image src="/image/mq1fh69q-07xoj3d.png" alt="SISE Agro" className={styles.heroKicker} width={560} height={93} priority />
+        <div className={styles.heroCopy}>
+          <Image src="/image/mq1fh69q-07xoj3d.png" alt="SISE Agro" className={styles.heroKicker} width={560} height={93} priority />
 
-        <h1 className={styles.heroTitle}>
-          <span className={styles.heroTitleLight}>Seguridad sin límites, </span>
-          <span className={styles.heroTitleStrong}>adaptada al campo.</span>
-        </h1>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroTitleLight}>Seguridad sin límites, </span>
+            <span className={styles.heroTitleStrong}>adaptada al campo.</span>
+          </h1>
+
+          <p className={styles.heroCategory}>SEGURIDAD RURAL</p>
+        </div>
       </div>
 
       <div className={styles.heroBottom} aria-label="Servicios destacados">
         <div className={styles.heroBottomInner}>
           <div className={styles.heroText}>
-            <p className={styles.heroSectionTitle}>SEGURIDAD RURAL</p>
-            <div className={styles.heroDivider} aria-hidden="true" />
             <p className={styles.heroLead}>Monitoreo remoto para establecimientos agropecuarios</p>
             <p className={styles.heroBody}>
               Protegemos tranqueras, galpones, silobolsas, maquinaria y cascos de estancia con

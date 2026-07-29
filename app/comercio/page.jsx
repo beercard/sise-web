@@ -1,11 +1,10 @@
 import ComercioHero from './components/ComercioHero/ComercioHero';
+import ComercioSolutionsModule from './components/ComercioSolutionsModule/ComercioSolutionsModule';
 import ComercioTechnologyModule from './components/ComercioTechnologyModule/ComercioTechnologyModule';
 
 import Cotizador from '../components/Cotizador/Cotizador';
-import FaqSection from '../components/FaqSection/FaqSection';
 import {
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -38,39 +37,6 @@ export const metadata = buildPageMetadata({
   ]
 });
 
-const comercioFaqs = [
-  {
-    question: '¿Qué sistema de seguridad conviene para un comercio o local?',
-    answer:
-      'Para un comercio recomendamos combinar alarma monitoreada, cámaras de videovigilancia, control de accesos y, según el rubro, cortina de humo antirrobo. El diseño se adapta al tamaño del local, el flujo de clientes y los horarios de apertura y cierre.'
-  },
-  {
-    question: '¿Cómo ayuda el control de accesos y fichaje del personal?',
-    answer:
-      'El control de accesos gestiona el ingreso del personal mediante tarjetas, biometría o reconocimiento facial, y permite registrar horarios y presencia. Así mejorás el control interno y sabés quién entra y sale en cada momento.'
-  },
-  {
-    question: '¿Qué es la cortina de humo y cómo protege ante un robo?',
-    answer:
-      'La cortina de humo libera una niebla densa e inofensiva ante una intrusión, reduciendo la visibilidad en segundos y neutralizando el accionar del delincuente antes de que pueda llevarse mercadería o dinero.'
-  },
-  {
-    question: '¿Puedo monitorear varias sucursales desde un solo lugar?',
-    answer:
-      'Sí. Integramos las cámaras y alarmas de todos tus locales en una misma plataforma, con acceso remoto desde el celular y supervisión centralizada desde nuestro centro de monitoreo.'
-  },
-  {
-    question: '¿El monitoreo de cámaras es en tiempo real y queda grabado?',
-    answer:
-      'Sí. Las cámaras permiten ver en vivo lo que sucede en el comercio y guardan grabaciones para revisar cualquier incidente, respaldar reclamos o aportar pruebas ante un hecho.'
-  },
-  {
-    question: '¿Dónde instalan sistemas de seguridad para comercios?',
-    answer:
-      'Brindamos instalación y monitoreo de comercios en Resistencia, toda la provincia del Chaco y la región del NEA, con asesoramiento comercial y soporte técnico local.'
-  }
-];
-
 const comercioStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -84,8 +50,7 @@ const comercioStructuredData = {
       serviceType: 'Seguridad electrónica para comercios',
       audience: 'Comercios, locales y oficinas',
       areaServed: buildLocalAreas()
-    }),
-    buildFAQPageSchema({ path: '/comercio', questions: comercioFaqs })
+    })
   ]
 };
 
@@ -99,15 +64,10 @@ export default function ComercioPage() {
 
       <ComercioHero />
       <ComercioTechnologyModule />
+      <ComercioSolutionsModule />
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
         <Cotizador />
       </section>
-
-      <FaqSection
-        intro="Resolvemos las dudas más habituales sobre seguridad para comercios y locales: alarmas, cámaras, control de accesos, cortina de humo y monitoreo profesional 24/7."
-        faqs={comercioFaqs}
-        ariaLabel="Preguntas frecuentes sobre seguridad para comercios"
-      />
     </div>
   );
 }

@@ -13,19 +13,21 @@ export default function IndustriaHero() {
         <Image src="/image/mq017wn8-mlb5tmm.webp" alt="Videovigilancia y seguridad electrónica en una planta industrial" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
-        <Image src="/image/mq017wn8-l2f7mev.png" alt="SISE Empresas e Industrias" className={styles.heroKicker} width={416} height={64} priority />
+        <div className={styles.heroCopy}>
+          <Image src="/image/mq017wn8-l2f7mev.png" alt="SISE Empresas e Industrias" className={styles.heroKicker} width={416} height={64} priority />
 
-        <h1 className={styles.heroTitle}>
-          <span className={styles.heroTitleLight}>Protección para </span>
-          <span className={styles.heroTitleStrong}>operaciones críticas</span>
-        </h1>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroTitleLight}>Protección para </span>
+            <span className={styles.heroTitleStrong}>operaciones críticas</span>
+          </h1>
+
+          <p className={styles.heroCategory}>EMPRESAS E INDUSTRIAS</p>
+        </div>
       </div>
 
       <div className={styles.heroBottom} aria-label="Información">
         <div className={styles.heroBottomInner}>
           <div className={styles.heroText}>
-            <p className={styles.heroSectionTitle}>EMPRESAS E INDUSTRIAS</p>
-            <div className={styles.heroDivider} aria-hidden="true" />
             <p className={styles.heroLead}>
               <span className={styles.heroLeadLight}>
                 Diseñamos soluciones robustas y personalizadas para proteger activos, perímetros,

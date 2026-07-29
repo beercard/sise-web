@@ -13,22 +13,24 @@ export default function EdificiosHero() {
         <Image src="/image/mq077jvc-gz2p9c8.webp" alt="Cámaras de seguridad y control de accesos en un edificio" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
-        <Image src="/image/mq077jvc-gg9xdtl.png" alt="SISE Urbano" className={styles.heroKicker} width={352} height={63} priority />
+        <div className={styles.heroCopy}>
+          <Image src="/image/mq077jvc-gg9xdtl.png" alt="SISE Urbano" className={styles.heroKicker} width={352} height={63} priority />
 
-        <h1 className={styles.heroTitle}>
-          <span className={styles.heroTitleLight}>
-            Más seguridad,
-            <br />
-          </span>
-          <span className={styles.heroTitleStrong}>menor costo operativo.</span>
-        </h1>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroTitleLight}>
+              Más seguridad,
+              <br />
+            </span>
+            <span className={styles.heroTitleStrong}>menor costo operativo.</span>
+          </h1>
+
+          <p className={styles.heroCategory}>EDIFICIOS Y CONSORCIOS</p>
+        </div>
       </div>
 
       <div className={styles.heroBottom} aria-label="Edificios y consorcios">
         <div className={styles.heroBottomInner}>
           <div className={styles.heroText}>
-            <p className={styles.heroSectionTitle}>EDIFICIOS Y CONSORCIOS</p>
-            <div className={styles.heroDivider} aria-hidden="true" />
             <p className={styles.heroLead}>
               Más seguridad,
               <br />
