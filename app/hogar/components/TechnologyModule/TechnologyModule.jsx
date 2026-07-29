@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
+  getPointPercentPosition,
   getDirection,
   useAreaScale,
   useSlideTransition,
@@ -297,7 +298,7 @@ export default function TechnologyModule() {
     resetTo
   } = useSlideTransition({ length: slides.length });
 
-  const { scale: houseScale, getScale } = useAreaScale({
+  const { getScale } = useAreaScale({
     baseSizes: HOUSE_BASE_SIZES,
     activeAreaId: activeTabId,
     areaRef: houseRef
@@ -589,12 +590,7 @@ export default function TechnologyModule() {
           {points.map((point, index) => {
             const isActive = point.id === activePointId;
             const position = positionsForTab[point.id];
-            const scaledPosition = position
-              ? {
-                  top: Math.round(position.top * houseScale.y),
-                  left: Math.round(position.left * houseScale.x)
-                }
-              : null;
+            const pointStyle = getPointPercentPosition(position, HOUSE_BASE_SIZES[activeTabId]);
             return (
               <button
                 key={point.id}
@@ -608,9 +604,7 @@ export default function TechnologyModule() {
                 } ${position ? styles.pointAbsolute : ''}`}
                 aria-label={point.label}
                 aria-pressed={isActive}
-                style={
-                  scaledPosition ? { top: `${scaledPosition.top}px`, left: `${scaledPosition.left}px` } : undefined
-                }
+                style={pointStyle ?? undefined}
                 onClick={() => handleSelectPoint(point.id)}
                 onPointerDown={(event) => handlePointPointerDown(point.id, event)}
               >

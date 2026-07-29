@@ -3,7 +3,12 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useAreaScale, useSlideTransition, useTechEditor } from '../../../lib/hooks';
+import {
+  getPointPercentPosition,
+  useAreaScale,
+  useSlideTransition,
+  useTechEditor
+} from '../../../lib/hooks';
 
 import TechCard from '../../../components/TechCard/TechCard';
 
@@ -365,7 +370,7 @@ export default function EdificiosTechnologyModule() {
     resetTo
   } = useSlideTransition({ length: slides.length });
 
-  const { scale: houseScale, getScale } = useAreaScale({
+  const { getScale } = useAreaScale({
     baseSizes: HOUSE_BASE_SIZES,
     activeAreaId: activeTabId,
     areaRef: houseRef
@@ -517,10 +522,7 @@ export default function EdificiosTechnologyModule() {
             if (!pos) return null;
 
             const isActive = point.id === activePointId;
-            const scaledPosition = {
-              top: Math.round(pos.top * houseScale.y),
-              left: Math.round(pos.left * houseScale.x)
-            };
+            const pointStyle = getPointPercentPosition(pos, HOUSE_BASE_SIZES[activeTabId]);
 
             return (
               <button
@@ -530,10 +532,7 @@ export default function EdificiosTechnologyModule() {
                 }}
                 type="button"
                 className={`${styles.pointButton} ${isActive ? styles.pointActive : ''} ${isEditMode ? styles.pointEdit : ''}`}
-                style={{
-                  top: `${scaledPosition.top}px`,
-                  left: `${scaledPosition.left}px`
-                }}
+                style={pointStyle ?? undefined}
                 onClick={() => handlePointClick(point.id)}
                 onPointerDown={(event) => handlePointPointerDown(point.id, event)}
                 aria-label={point.label}

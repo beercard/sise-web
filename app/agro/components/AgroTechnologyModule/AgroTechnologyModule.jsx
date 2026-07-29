@@ -3,7 +3,12 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useAreaScale, useSlideTransition, useTechEditor } from '../../../lib/hooks';
+import {
+  getPointPercentPosition,
+  useAreaScale,
+  useSlideTransition,
+  useTechEditor
+} from '../../../lib/hooks';
 
 import TechCard from '../../../components/TechCard/TechCard';
 
@@ -286,7 +291,7 @@ export default function AgroTechnologyModule() {
     resetTo
   } = useSlideTransition({ length: slides.length });
 
-  const { scale: houseScale, getScale } = useAreaScale({
+  const { getScale } = useAreaScale({
     baseSizes: HOUSE_BASE_SIZES,
     activeAreaId: activeTabId,
     areaRef: houseRef
@@ -444,8 +449,7 @@ export default function AgroTechnologyModule() {
                 {(points ?? []).map((point) => {
                   const pos = positionsForTab?.[point.id];
                   if (!pos) return null;
-                  const left = pos.left * houseScale.x;
-                  const top = pos.top * houseScale.y;
+                  const pointStyle = getPointPercentPosition(pos, HOUSE_BASE_SIZES[activeTabId]);
 
                   return (
                     <button
@@ -454,7 +458,7 @@ export default function AgroTechnologyModule() {
                       className={`${styles.pointButton} ${activePointId === point.id ? styles.pointActive : ''} ${
                         isEditMode ? styles.pointEdit : ''
                       }`}
-                      style={{ left: `${left}px`, top: `${top}px` }}
+                      style={pointStyle ?? undefined}
                       aria-label={point.label}
                       onClick={() => setActivePointId(point.id)}
                       onPointerDown={(event) => handlePointPointerDown(point.id, event)}

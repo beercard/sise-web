@@ -124,8 +124,31 @@ export const mergeSections = (base, override) => {
 };
 
 /**
+ * Posición de un punto expresada en porcentaje del plano.
+ *
+ * Los puntos se guardan en las coordenadas del diseño (el tamaño base de la
+ * ilustración). Antes se convertían a px multiplicando por la escala medida en
+ * el cliente, pero esa escala solo existe después de hidratar: el HTML del
+ * servidor ubicaba los puntos en las coordenadas crudas (p. ej. left: 1577px
+ * sobre un plano de 704px), lo que desbordaba la página en horizontal hasta
+ * que cargaba el JS. En porcentaje el resultado es idéntico y ya es correcto
+ * en el primer render.
+ */
+export const getPointPercentPosition = (position, base) => {
+  if (!position) return null;
+  if (!base?.width || !base?.height) {
+    return { top: `${position.top}px`, left: `${position.left}px` };
+  }
+  return {
+    top: `${(position.top / base.height) * 100}%`,
+    left: `${(position.left / base.width) * 100}%`
+  };
+};
+
+/**
  * Escala del plano (ilustración) respecto de su tamaño base de diseño,
- * recalculada ante cambios de tamaño.
+ * recalculada ante cambios de tamaño. La usa el editor de puntos (?edit=1)
+ * para convertir el arrastre en px a coordenadas del diseño.
  */
 export function useAreaScale({ baseSizes, activeAreaId, areaRef }) {
   const [scale, setScale] = useState({ x: 1, y: 1 });
@@ -164,7 +187,7 @@ export function useAreaScale({ baseSizes, activeAreaId, areaRef }) {
       window.cancelAnimationFrame(raf);
       if (resizeObserver) resizeObserver.disconnect();
     };
-  }, [activeAreaId, areaRef, getScale]);
+  }, [activeAreaId, areaRef, getScale, baseSizes]);
 
   return { scale, getScale };
 }
