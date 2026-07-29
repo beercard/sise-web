@@ -844,6 +844,12 @@
   display: block;
 }
 
+/* Ilustración de la sirena exclusiva del diseño mobile: en desktop manda el
+   marco (.techCardSirenaFrame). El breakpoint de 600px invierte el par. */
+.techCardSirenaMobile {
+  display: none;
+}
+
 .techCardConnectivityWrap {
   position: relative;
   margin: auto;
@@ -1394,6 +1400,11 @@
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    /* .technologyRow pasa a columna acá, así que el `flex: 0 1 520px` de la
+       regla base dejaba de ser ancho y se aplicaba como alto, dejando aire
+       muerto debajo de la card. */
+    flex: 0 0 auto;
+    height: auto;
   }
 
   .techCardViewport {
@@ -1479,31 +1490,343 @@
     line-height: 26px;
   }
 
+  /* ── Título, tabs y mapa en mobile (diseño de Figma) ───────────────────
+     El frame mobile es de 402px: los tabs viven en la columna de 354 (de
+     x=24 a x=378, el mismo eje que el resto del sitio) y el mapa va a sangre
+     completa. */
+
+  /* Menos aire vertical que en desktop (86) y tablet (72): en mobile el
+     bloque ya ocupa casi toda la pantalla. */
+  .technology {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
   .technologyTitle {
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 24px;
+    line-height: 26.4px;
   }
 
-  .techCardTitle {
-    font-size: 32px;
-    line-height: 32px;
+  .technologyTitleStrong {
+    font-weight: 700;
   }
 
-  .techCardText {
-    font-size: 18px;
-    line-height: 22px;
+  .technologyTitleLight {
+    font-weight: 500;
+  }
+
+  /* Los tabs vuelven al estilo del diseño (texto + subrayado). En tablet se
+     habían convertido en pastillas con scroll horizontal, que no es lo que
+     pide el mobile. */
+  .tabs {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .tab,
+  .tabActive {
+    /* 107px es la medida del diseño, pero con `0 0` tres tabs suman 321 y
+       desbordaban por debajo de ~370px de ancho; así pueden encogerse. */
+    flex: 0 1 107px;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    height: 31px;
+    background: transparent;
+    color: #2177a5;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 13.3px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+
+  /* Las reglas base fijan 254/229/153 por posición y ganan por especificidad. */
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: 107px;
+  }
+
+  .tabActive::after {
+    display: block;
+    top: 29px;
+    left: 0;
+    /* Acompaña al tab si se encoge (a 107px en los anchos del diseño). */
+    width: 100%;
+    height: 2px;
+  }
+
+  /* El mapa va a sangre: compensa el padding lateral de la fila. */
+  /* El mapa va a sangre: compensa el padding lateral de la fila.
+
+     Los tres planos tienen la misma proporción real (2465×1695 y 1469×1009,
+     ambos ≈1.454), pero perimetral declaraba 735/527 (1.395) y con
+     `background-size: 100% 100%` estiraba el plano un 4.3% en vertical. Eso
+     hacía que el mapa cambiara de alto al pasar de tab y que los puntos
+     cayeran más abajo que en el diseño. Con la proporción real los tres tabs
+     miden igual y los puntos —que están en % del contenedor, y el fondo
+     siempre lo llena— caen sobre el mismo lugar del plano. */
+  .house,
+  .housePerimetral,
+  .houseInterior,
+  .houseConectividad {
+    width: calc(100% + 32px);
+    max-width: none;
+    height: auto;
+    aspect-ratio: 735 / 505;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
+  .technologyRow {
+    margin-top: 27px;
+    gap: 28px;
+  }
+
+  /* Puntos de 15px (23 el activo), con el mismo escalonado de círculos del
+     diseño: aro al 20%, punto sólido al 58% y centro blanco al 27%. */
+  .ellipse1,
+  .ellipse12,
+  .ellipse13,
+  .ellipse14,
+  .ellipse15 {
+    padding: 3.16px;
+    background: rgba(33, 119, 165, 0.2);
+  }
+
+  .ellipse2 {
+    padding: 2.3px;
+  }
+
+  .ellipse3 {
+    width: 4.09px;
+    height: 4.09px;
+  }
+
+  /* Al pasar de 28 a 15px el punto se ancla por su esquina, así que sin este
+     margen su centro se corría 6.5px arriba y a la izquierda. */
+  .pointAbsolute {
+    margin: 6.5px 0 0 6.5px !important;
+  }
+
+  .pointButton.pointActive {
+    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
+    transform: scale(1.533);
+    background: rgba(33, 119, 165, 0.8);
+  }
+
+  /* Card de tecnología en mobile — Figma "Component 4" (nodo 5003:455).
+     El grupo mide 265x256: flechas de 15x23 a los costados, 17px de aire y
+     una card de 201x256. A diferencia del desktop, acá el título y el texto
+     van centrados. Las medidas internas salen de los offsets del diseño:
+     título en y=33, texto en y=78 e ilustración en y=140. */
+  .techCardGroup {
+    width: min(265px, calc(100% - 24px));
+    max-width: none;
+    grid-template-columns: 15px minmax(0, 1fr) 15px;
+    gap: 17px;
+  }
+
+  .techArrow,
+  .techArrowSpacer {
+    width: 15px;
+    height: 23px;
   }
 
   .techCardViewport {
-    height: 376px;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 201 / 256;
   }
 
   .techCard {
-    height: 376px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    border-radius: 22px;
+    padding: 33px 20px 12px !important;
+  }
+
+  /* Las tres bandas del diseño: título 33→69 (36), texto 78→134 (56) y arte
+     140→244 (104). Cada bloque centra su contenido dentro de su banda, así el
+     título de una línea cae en y=42 y el de dos en y=33 sin reglas por slide. */
+  .techCardTitle {
+    width: min(187px, 100%) !important;
+    /* `height` también sale de un var por slide (la conectividad lo fija en
+       63px), así que hay que neutralizarlo o el riel del texto se corre. */
+    height: auto !important;
+    min-height: 36px !important;
+    margin: 0 auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 100%;
+    text-align: center;
+  }
+
+  /* El ancho del texto lo fija cada slide, porque el diseño lo usa para decidir
+     dónde corta cada línea. El `top` se corrige con `position: relative`, que no
+     afecta al flujo, así el riel del arte sigue anclado en 140. */
+  .techCardText {
+    position: relative;
+    top: var(--tech-card-mobile-text-offset, 0px);
+    width: var(--tech-card-mobile-text-width, 160px) !important;
+    /* Sin `none` el ancho quedaría topeado en los 161px del área de contenido,
+       y hay una slide que necesita 163 para respetar las líneas del diseño. */
+    max-width: none !important;
+    min-height: 56px !important;
+    margin: 9px auto 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 100%;
+    text-align: center;
   }
 
   .techCardArtStage {
-    margin-top: 16px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    /* En el sensor y en la conectividad el texto se dibuja dentro del arte, así
+       que no ocupa lugar en el flujo y la banda subía 65px. Esas dos slides
+       reponen ese espacio con `--tech-card-mobile-stage-margin-top`. */
+    margin-top: var(--tech-card-mobile-stage-margin-top, 6px);
+    min-height: 0;
+    height: 104px;
+  }
+
+  /* Cada ilustración conserva su alto de diseño (`--tech-card-mobile-art-height`)
+     y queda centrada en la banda de 104: de ahí salen los tops del diseño
+     (104→140, 76→154, 93→146, 101→140). */
+  /* La ilustración va centrada en la banda de arte (140→244), que es de dónde
+     salen los tops del diseño. Donde el diseño se corrió unos px respecto de
+     ese centrado, `--tech-card-mobile-art-offset` lo repone. */
+  .techCardImage {
+    width: auto !important;
+    height: var(--tech-card-mobile-art-height, 104px) !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    margin: var(--tech-card-mobile-art-offset, 0px) auto 0 !important;
+  }
+
+  /* En mobile el diseño reemplaza el marco de la sirena (fondo + SVG encima,
+     armado para la card de desktop) por una ilustración plana de 57×93. */
+  .techCardSirenaFrame {
+    display: none;
+  }
+
+  .techCardSirenaMobile {
+    display: block;
+    width: auto;
+    height: var(--tech-card-mobile-art-height, 93px);
+    /* El PNG exportado (783×1024) trae aire a los costados; el nodo de Figma lo
+       encuadra en 100/163 anclado abajo, que es lo que reproduce el recorte. */
+    aspect-ratio: 100 / 163;
+    max-width: 100%;
+    margin: var(--tech-card-mobile-art-offset, 0px) auto 0;
+    object-fit: cover;
+    object-position: bottom;
+  }
+
+  /* Las slides con arte "absolute" se posicionan con coordenadas inline
+     pensadas para la card de desktop, así que en mobile quedaban hasta 120px
+     fuera. Acá vuelven al flujo normal y toman el alto del diseño mobile,
+     centradas en la banda de arte igual que el resto. El teclado mide 117×109
+     y el mando 140×135, pero ese 135 es el bounding box ya rotado 16°: sin
+     rotar son 108, que es el valor cargado. */
+  .techCardAbsoluteImage {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    height: var(--tech-card-mobile-art-height, 104px) !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: var(--tech-card-mobile-art-offset, 0px) auto 0 !important;
+  }
+
+  /* El wrapper del arte trae width/height/marginTop inline con las medidas de
+     desktop, así que en mobile hace falta !important para reencuadrarlo.
+     El sensor mide 125×117 en el diseño mobile. */
+  .techCardOverlay {
+    width: auto !important;
+    height: var(--tech-card-mobile-art-height, 104px) !important;
+    max-width: 100% !important;
+    margin: var(--tech-card-mobile-art-offset, 0px) auto 0 !important;
+  }
+
+  .techCardOverlayImage {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* La conectividad es una ilustración compuesta (celular + barra azul) de
+     183×172 en desktop. El diseño mobile la lleva a 123×106 con la barra en
+     68×9, así que se aplica ese factor (0.671) al padding y a la barra. */
+  .techCardConnectivityWrap {
+    width: auto !important;
+    height: var(--tech-card-mobile-art-height, 106px) !important;
+    margin: var(--tech-card-mobile-art-offset, 0px) auto 0 !important;
+  }
+
+  .techCardConnectivityImage {
+    width: 123px;
+    height: 106px;
+    margin: 0 auto;
+    padding: 26px 26px 70px 29px;
+  }
+
+  .techCardConnectivityBar {
+    width: 68px !important;
+    height: 9px !important;
+  }
+
+  /* En la slide del sensor y en la de conectividad el texto de la card se
+     dibuja dentro de la ilustración, con anchos de desktop (273 y 296), y en
+     mobile se salía por los dos costados. Sacándole el `position: relative` al
+     contenedor del arte, el texto vuelve a posicionarse contra la card y se lo
+     ubica en el mismo lugar que en el resto de las slides (y=78). */
+  /* El stage también es `position: relative`, así que sin esto el texto se
+     posicionaba contra él y caía en 140 + 78 = 218, encima de la ilustración.
+     Con los tres en `static`, el 78px vuelve a medirse desde la card. */
+  .techCardArtStage,
+  .techCardOverlay,
+  .techCardConnectivityWrap {
+    position: static;
+  }
+
+  .techCardOverlayText,
+  .techCardConnectivityText {
+    top: calc(78px + var(--tech-card-mobile-text-offset, 0px)) !important;
+    right: auto !important;
+    /* Centrado dentro de la card (201) para el ancho que fije cada slide. */
+    left: calc((201px - var(--tech-card-mobile-text-width, 160px)) / 2) !important;
+    width: var(--tech-card-mobile-text-width, 160px) !important;
+    margin: 0;
+    /* En desktop estos dos textos van en azul sobre la ilustración; el diseño
+       mobile los pide negros, igual que el texto del resto de las cards. */
+    color: #000000;
+    font-size: 14px;
+    line-height: 100%;
+    text-align: center;
   }
 }
 
@@ -1520,13 +1843,13 @@
     width: 240px;
   }
 
-  .heroImage {
-    object-position: 73% center;
-  }
-
   .heroTitle {
     font-size: 32px;
     line-height: 30px;
+  }
+
+  .heroImage {
+    object-position: 73% center;
   }
 
   .heroBottomInner {
@@ -1552,49 +1875,11 @@
     line-height: 19px;
   }
 
-  .technologyTitle {
-    font-size: 28px;
-    line-height: 30px;
-  }
-
-  .techArrow {
-    width: 24px;
-    height: 24px;
-  }
-
-  .techCardViewport {
-    width: min(420px, calc(100% - 48px));
-    height: 366px;
-  }
-
-  .techCard {
-    height: 366px;
-  }
+  /* La card ya quedó fijada al diseño mobile de Figma en el breakpoint de
+     600px (grupo de 265 y flechas de 15x23), así que acá no se toca. */
 }
 
 @media (max-width: 360px) {
-  .technologyTitle {
-    font-size: 26px;
-    line-height: 28px;
-  }
-
-  .techCardTitle {
-    font-size: 28px;
-    line-height: 28px;
-  }
-
-  .techCardText {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .techCardOverlayText,
-  .techCardConnectivityText {
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  .techCardImage {
-    max-height: 130px;
-  }
+  /* El texto de estas dos slides ya quedó alineado al diseño mobile en el
+     breakpoint de 600px, junto con el del resto de las cards. */
 }

@@ -7,13 +7,9 @@ export default function HeroCarousel() {
       <div className={styles.heroGradient} aria-hidden="true" />
 
       <h1 className={styles.heroTitle}>
-        <span className={styles.heroLine}>
-          <span className={styles.heroTitleRegular}>Soluciones en seguridad electrónica&nbsp;</span>
-        </span>
-        <span className={styles.heroLine}>
-          <span className={styles.heroTitleBold}>accesible, moderna y humana</span>
-          <span className={styles.heroTitleRegular}>.</span>
-        </span>
+        <span className={styles.heroTitleRegular}>Soluciones en seguridad electrónica </span>
+        <span className={styles.heroTitleBold}>accesible, moderna y humana</span>
+        <span className={styles.heroTitleRegular}>.</span>
       </h1>
     </section>
   );

@@ -1,0 +1,146 @@
+.section {
+  width: 100%;
+  background: var(--sise-blue);
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  width: min(1920px, 100%);
+  margin: 0 auto;
+  min-height: 1021px;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-image: url('/image/mpr027zv-e2to3ki.png');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 2059px 152px;
+  opacity: 0.3;
+}
+
+.title {
+  position: absolute;
+  z-index: 1;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(1190px, calc(100% - 48px));
+  color: var(--sise-white);
+  text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 52px;
+  letter-spacing: 0;
+}
+
+.mediaFrame {
+  position: absolute;
+  z-index: 1;
+  top: 233px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1195px, calc(100% - 48px));
+  aspect-ratio: 1195 / 669;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+@media (max-width: 1440px) and (min-width: 601px) {
+  .inner {
+    min-height: 860px;
+  }
+
+  .title {
+    top: 122px;
+    width: min(1040px, calc(100% - 48px));
+    font-size: clamp(50px, 4.2vw, 60px);
+    line-height: clamp(44px, 3.8vw, 50px);
+  }
+
+  .mediaFrame {
+    top: 200px;
+    width: min(1080px, calc(100% - 48px));
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 601px) {
+  .inner {
+    min-height: 760px;
+  }
+
+  .title {
+    top: 102px;
+    width: min(860px, calc(100% - 48px));
+    font-size: 38px;
+    line-height: 36px;
+  }
+
+  .mediaFrame {
+    top: 168px;
+    width: min(980px, calc(100% - 48px));
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 601px) {
+  .title {
+    top: 92px;
+    width: min(760px, calc(100% - 48px));
+    font-size: 34px;
+    line-height: 34px;
+  }
+
+  .mediaFrame {
+    top: 152px;
+    width: min(920px, calc(100% - 48px));
+  }
+}
+
+@media (max-width: 600px) {
+  .inner {
+    min-height: 397px;
+    padding: 40px 24px 44px;
+  }
+
+  .patternStrip {
+    display: none;
+  }
+
+  .pattern {
+    background-size: 752px 55px;
+    background-repeat: repeat-y;
+    background-position: center top;
+  }
+
+  .title {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 0 auto;
+    width: min(312px, 100%);
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .mediaFrame {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: min(354px, 100%);
+    margin-top: 22px;
+  }
+}

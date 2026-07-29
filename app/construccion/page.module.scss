@@ -443,7 +443,8 @@
   height: auto;
   margin-top: 54px;
   width: min(520px, 100%);
-  min-width: 0;
+  min-width: 0;
+
   display: grid;
   align-items: center;
   justify-content: center;
@@ -987,6 +988,11 @@
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    /* .technologyRow pasa a columna acá, así que el `flex: 0 1 520px` de la
+       regla base dejaba de ser ancho y se aplicaba como alto, dejando aire
+       muerto debajo de la card. */
+    flex: 0 0 auto;
+    height: auto;
   }
 
   .techCardViewport {
@@ -1058,10 +1064,6 @@
     line-height: 22px;
   }
 
-  .techCardViewport,
-  .techCard {
-    height: 376px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1088,10 +1090,6 @@
     line-height: 30px;
   }
 
-  .techCardViewport,
-  .techCard {
-    height: 366px;
-  }
 }
 
 @media (max-width: 360px) {
@@ -1115,10 +1113,6 @@
     line-height: 20px;
   }
 
-  .techCardViewport,
-  .techCard {
-    height: 366px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1456,4 +1450,35 @@
   .heroKicker { width: min(253px, calc(100% - 32px)); }
   .heroTitle { margin-top: 14px; font-size: 32px; line-height: 30px; }
   .heroCategory { margin-top: 12px; font-size: 20px; line-height: 22px; }
+}
+
+
+/* ── Card mobile (diseño de Figma) ───────────────────────────────────────
+   Va al final del archivo a propósito: más arriba hay reglas de
+   `.techCardGroup` sin media query que, por orden de fuente, le ganaban al
+   bloque mobile y devolvían el grupo a su ancho de desktop. */
+@media (max-width: 600px) {
+  /* Card mobile del diseño de Figma: grupo de 265×256, card de 201×256 y
+     flechas de 15×23. Es el mismo encuadre en todas las verticales y todos
+     los tabs; lo único que cambia por página es el mapa. Las medidas internas
+     (título, texto, ilustración) viven en TechCard.module.scss. */
+  .techCardGroup {
+    width: min(265px, calc(100% - 24px));
+    max-width: none;
+    grid-template-columns: 15px minmax(0, 1fr) 15px;
+    gap: 17px;
+  }
+
+  .techArrow,
+  .techArrowSpacer {
+    width: 15px;
+    height: 23px;
+  }
+
+  .techCardViewport {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 201 / 256;
+  }
 }

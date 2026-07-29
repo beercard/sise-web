@@ -1,7 +1,4 @@
-import HeroCarousel from './components/HeroCarousel/HeroCarousel';
 import Cotizador from '../components/Cotizador/Cotizador';
-import HomePillarsCarousel from './components/HomePillarsCarousel/HomePillarsCarousel';
-import HomeSeoContent from './components/HomeSeoContent/HomeSeoContent';
 import {
   buildFAQPageSchema,
   buildLocalAreas,
@@ -9,6 +6,9 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import HeroCarousel from './components/HeroCarousel/HeroCarousel';
+import HomeLiveBridge from './components/HomeLiveBridge/HomeLiveBridge';
+import HomeSeoContent from './components/HomeSeoContent/HomeSeoContent';
 import WhyChooseSise from './components/WhyChooseSise/WhyChooseSise';
 
 import styles from './page.module.scss';
@@ -100,20 +100,20 @@ export default function HomePage() {
         <HeroCarousel />
       </div>
 
-      <div className={styles.seoBlock}>
-        <HomeSeoContent />
+      <div className={styles.whyChooseBlock}>
+        <WhyChooseSise />
       </div>
 
-      <div className={styles.pillarsBlock}>
-        <HomePillarsCarousel />
-      </div>
-
-      <section className={`${styles.quote} ${styles.quoteBlock}`} aria-label="Cotizador">
+      <section className={styles.quoteBlock} aria-label="Cotizador online">
         <Cotizador showHeader />
       </section>
 
-      <div className={styles.whyChooseBlock}>
-        <WhyChooseSise />
+      <div className={styles.liveBridgeBlock}>
+        <HomeLiveBridge />
+      </div>
+
+      <div className={styles.seoBlock}>
+        <HomeSeoContent />
       </div>
 
       <section className={styles.faqSection} aria-label="Preguntas frecuentes">
@@ -128,11 +128,8 @@ export default function HomePage() {
           </div>
 
           <div className={styles.faqList}>
-            {homeFaqs.map((item, index) => (
-              <details
-                key={item.question}
-                className={styles.faqItem}
-              >
+            {homeFaqs.map((item) => (
+              <details key={item.question} className={styles.faqItem}>
                 <summary className={styles.faqQuestion}>{item.question}</summary>
                 <div className={styles.faqAnswerWrap}>
                   <p className={styles.faqAnswer}>{item.answer}</p>

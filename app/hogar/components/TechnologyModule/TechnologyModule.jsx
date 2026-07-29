@@ -70,7 +70,10 @@ export default function TechnologyModule() {
               '--tech-card-padding': '42px 83px 22px',
               '--tech-card-image-width': '215px',
               '--tech-card-image-height': '154px',
-              '--tech-card-image-margin': '0 auto'
+              '--tech-card-image-margin': '0 auto',
+              // Alto de la ilustración en mobile (Figma): va centrada en la banda
+              // de arte de 104px, así que define sola su posición vertical.
+              '--tech-card-mobile-art-height': '104px'
             },
             art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
           },
@@ -81,7 +84,8 @@ export default function TechnologyModule() {
               '--tech-card-padding': '42px 83px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-image-margin': '17px 0 0'
+              '--tech-card-image-margin': '17px 0 0',
+              '--tech-card-mobile-art-height': '76px'
             },
             art: { type: 'image', src: '/image/mpuk8l58-7ujlops.png', width: 192, height: 117 }
           },
@@ -100,7 +104,8 @@ export default function TechnologyModule() {
               '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
-              '--tech-card-image-margin': '14px 0 0 60px'
+              '--tech-card-image-margin': '14px 0 0 60px',
+              '--tech-card-mobile-art-height': '93px'
             },
             art: { type: 'image', src: '/image/mpuk98wo-z2d321o.png', width: 160, height: 160 }
           },
@@ -115,7 +120,10 @@ export default function TechnologyModule() {
               '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '139px',
               '--tech-card-image-height': '147px',
-              '--tech-card-image-margin': '9px 0 0 68px'
+              '--tech-card-image-margin': '9px 0 0 68px',
+              '--tech-card-mobile-art-height': '101px',
+              // Figma lo deja en 140; centrado daría 142.
+              '--tech-card-mobile-art-offset': '-2px'
             },
             art: { type: 'image', src: '/image/mpul2hzn-fvb6ziy.png', width: 139, height: 147 }
           },
@@ -128,12 +136,18 @@ export default function TechnologyModule() {
               '--tech-card-text-margin': '12px 0 0',
               '--tech-card-text-width': '273px',
               '--tech-card-text-max-width': '273px',
-              '--tech-card-sirena-margin-top': '14px'
+              '--tech-card-sirena-margin-top': '14px',
+              '--tech-card-mobile-art-height': '93px'
             },
             art: {
               type: 'sirena',
               backgroundSrc: '/image/mpul3d3a-hllgx9l.webp',
-              svgSrc: '/image/mpul3d39-q38k68v.svg'
+              svgSrc: '/image/mpul3d39-q38k68v.svg',
+              // En mobile el diseño usa una ilustración plana (57×93) en lugar
+              // del marco con el fondo y el SVG encima que se usa en desktop.
+              mobileSrc: '/image/sirena-mobile-hogar.png',
+              mobileWidth: 783,
+              mobileHeight: 1024
             }
           }
         ]
@@ -154,7 +168,13 @@ export default function TechnologyModule() {
             title: 'Sensor de movimiento',
             text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
             styleVars: {
-              '--tech-card-padding': '35px 83px 13px'
+              '--tech-card-padding': '35px 83px 13px',
+              '--tech-card-mobile-art-height': '117px',
+              '--tech-card-mobile-art-offset': '3px',
+              '--tech-card-mobile-text-width': '146px',
+              // El texto va dentro del arte, así que no ocupa lugar en el
+              // flujo: 6 + 56 + 9 = 71 repone el riel de la banda de arte.
+              '--tech-card-mobile-stage-margin-top': '71px'
             },
             art: {
               type: 'overlay',
@@ -175,7 +195,11 @@ export default function TechnologyModule() {
               '--tech-card-text-max-width': '216px',
               // El default de max-height (176px) recortaba la ilustración,
               // que en el diseño mide 188px de alto.
-              '--tech-card-image-max-height': '188px'
+              '--tech-card-image-max-height': '188px',
+              '--tech-card-mobile-art-height': '109px',
+              // Figma lo deja en 141; centrado daría 134.
+              '--tech-card-mobile-art-offset': '7px',
+              '--tech-card-mobile-text-width': '119px'
             },
             art: {
               type: 'absolute',
@@ -194,7 +218,12 @@ export default function TechnologyModule() {
               '--tech-card-padding': '48px 83px 220px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '19px 0 0',
-              '--tech-card-text-width': '216px'
+              '--tech-card-text-width': '216px',
+              // Figma da 140×135, pero es el bounding box ya rotado 16°. Sin
+              // rotar equivale a 108 de alto (115×108), que es lo que se aplica.
+              '--tech-card-mobile-art-height': '108px',
+              '--tech-card-mobile-text-width': '109px',
+              '--tech-card-mobile-text-offset': '4px'
             },
             art: {
               type: 'absolute',
@@ -217,7 +246,13 @@ export default function TechnologyModule() {
               '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '219px',
               '--tech-card-image-height': '156px',
-              '--tech-card-image-margin': '9px 0 0 27px'
+              '--tech-card-image-margin': '9px 0 0 27px',
+              '--tech-card-mobile-art-height': '107px',
+              // Figma marca 161px, pero con la fuente del navegador ese ancho parte
+              // el texto en 4 líneas en vez de 3. 163px es el mínimo que
+              // respeta el diseño.
+              '--tech-card-mobile-text-width': '163px',
+              '--tech-card-mobile-text-offset': '4px'
             },
             art: { type: 'image', src: '/image/mpul9o4z-m9vtkfc.png', width: 219, height: 156 }
           },
@@ -234,7 +269,9 @@ export default function TechnologyModule() {
               '--tech-card-text-max-width': '216px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-image-margin': '21px 0 0'
+              '--tech-card-image-margin': '21px 0 0',
+              '--tech-card-mobile-art-height': '76px',
+              '--tech-card-mobile-text-width': '146px'
             },
             art: { type: 'image', src: '/image/mpula57w-bujdbk3.png', width: 192, height: 117 }
           }
@@ -253,7 +290,12 @@ export default function TechnologyModule() {
               '--tech-card-padding': '42px 120px 20px 121px',
               '--tech-card-title-min-height': '63px',
               '--tech-card-title-width': '201px',
-              '--tech-card-title-height': '63px'
+              '--tech-card-title-height': '63px',
+              '--tech-card-mobile-art-height': '106px',
+              '--tech-card-mobile-art-offset': '-2px',
+              '--tech-card-mobile-text-width': '160px',
+              '--tech-card-mobile-text-offset': '-1px',
+              '--tech-card-mobile-stage-margin-top': '71px'
             },
             art: {
               type: 'connectivity',
@@ -463,18 +505,31 @@ export default function TechnologyModule() {
 
     if (art.type === 'sirena') {
       return (
-        <div
-          className={styles.techCardSirenaFrame}
-          style={{ '--sirena-bg': `url('${art.backgroundSrc}')` }}
-        >
-          <Image
-            className={styles.techCardSirenaSvg}
-            src={art.svgSrc}
-            alt=""
-            width={69}
-            height={24}
-          />
-        </div>
+        <>
+          <div
+            className={styles.techCardSirenaFrame}
+            style={{ '--sirena-bg': `url('${art.backgroundSrc}')` }}
+          >
+            <Image
+              className={styles.techCardSirenaSvg}
+              src={art.svgSrc}
+              alt=""
+              width={69}
+              height={24}
+            />
+          </div>
+          {/* El diseño mobile trae su propia ilustración de la sirena; el CSS
+              muestra una u otra según el breakpoint. */}
+          {art.mobileSrc ? (
+            <Image
+              className={styles.techCardSirenaMobile}
+              src={art.mobileSrc}
+              alt={art.alt ?? title}
+              width={art.mobileWidth}
+              height={art.mobileHeight}
+            />
+          ) : null}
+        </>
       );
     }
 

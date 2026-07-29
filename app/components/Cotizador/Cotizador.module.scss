@@ -31,7 +31,9 @@
 }
 
 .header {
-  width: min(var(--cotizador-header-width), 100%);
+  width: 100%;
+  max-width: var(--cotizador-header-width);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -42,6 +44,9 @@
 .title {
   margin: 0;
   width: 100%;
+  max-width: var(--cotizador-title-width);
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   line-height: var(--cotizador-title-line-height);
   letter-spacing: 0;
@@ -53,6 +58,9 @@
 .subtitle {
   margin: 12px 0 0;
   width: 100%;
+  max-width: var(--cotizador-title-width);
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   line-height: var(--cotizador-subtitle-line-height);
   letter-spacing: 0;
@@ -97,6 +105,10 @@
   font-weight: 700;
 }
 
+.questionMultiline {
+  white-space: normal;
+}
+
 .options {
   display: flex;
   flex-direction: column;
@@ -136,6 +148,20 @@
   padding-top: 16px;
   padding-bottom: 17px;
   line-height: 24px;
+}
+
+.optionsEnterprise {
+  width: min(320px, 100%);
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.optionEnterprise {
+  width: min(320px, 100%);
+  min-height: 56px;
+  height: auto;
+  padding: 14px 18px;
+  line-height: 22px;
 }
 
 .optionsAccess {
@@ -372,7 +398,7 @@
   font-size: 20px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 600px) {
   .container {
     min-height: auto;
     justify-content: flex-start;
@@ -380,10 +406,15 @@
     padding-right: 16px;
   }
 
-  .containerFixedStep,
+  .containerFixedStep {
+    padding-top: 53px;
+    padding-bottom: 44px;
+    min-height: auto;
+  }
+
   .containerFormStep {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 46px;
+    padding-bottom: 48px;
     min-height: auto;
   }
 
@@ -395,15 +426,23 @@
   .title {
     margin-top: 0;
     width: 100%;
+    min-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 24px;
-    line-height: 24px;
+    line-height: 19.36px;
   }
 
   .subtitle {
-    margin-top: 9px;
-    width: 100%;
+    margin-top: 11px;
+    width: min(354px, 100%);
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 20px;
-    line-height: 20px;
+    line-height: 16.13px;
   }
 
   .desktopCopy {
@@ -414,57 +453,87 @@
   .formBox,
   .thanksBox {
     width: min(354px, 100%);
+    align-items: center;
     justify-content: flex-start;
-    margin-top: 16px;
+    margin-top: 14px;
     min-height: auto;
   }
 
   .stepBoxPropertyType {
-    margin-top: 20px;
+    margin-top: 14px;
   }
 
   .kicker {
     width: 100%;
+    min-height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
-    line-height: 11px;
+    line-height: 11.29px;
   }
 
   .question {
-    margin-top: 7px;
+    margin-top: 8px;
     width: 100%;
     font-size: 18px;
-    line-height: 20px;
+    line-height: 14.52px;
+  }
+
+  .questionMultiline {
+    width: 100%;
   }
 
   .options,
   .optionsPropertyType {
     width: 169px;
-    margin-top: 11px;
-    gap: 10px;
+    margin-top: 14px;
+    gap: 8px;
   }
 
   .option,
   .optionsPropertyType .option {
     width: 169px;
     max-width: none;
-    min-height: 20px;
+    min-height: 30px;
+    height: auto;
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 7px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 18px;
+    line-height: 14.52px;
     white-space: normal;
     word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .optionsEnterprise {
+    width: 169px;
+    margin-top: 14px;
+    gap: 8px;
+  }
+
+  .optionEnterprise {
+    width: 169px;
+    min-height: 30px;
+    height: auto;
+    padding: 7px 8px;
+    font-size: 18px;
+    line-height: 14.52px;
   }
 
   .optionsAccess {
-    width: 192px;
+    width: 169px;
   }
 
   .optionAccess {
-    width: 192px;
+    width: 169px;
+    min-height: 30px;
+    height: auto;
+    padding-top: 7px;
+    padding-bottom: 7px;
   }
 
   .optionNoWrap {
@@ -477,12 +546,13 @@
   }
 
   .fieldLabel {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 11.29px;
   }
 
   .fields {
-    margin-top: 14px;
-    gap: 10px;
+    margin-top: 18px;
+    gap: 12px;
   }
 
   .field {
@@ -490,7 +560,7 @@
   }
 
   .summary {
-    margin-top: 14px;
+    margin-top: 18px;
   }
 
   .summaryTitle {
@@ -509,7 +579,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 20px;
     padding-top: 0;
   }
 
@@ -518,7 +588,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 20px;
     padding-top: 0;
   }
 
@@ -531,12 +601,15 @@
   }
 
   .input {
-    font-size: 14px;
-    padding: 9px 14px;
+    min-height: 30px;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 14.52px;
+    padding: 7px 12px;
   }
 
   .error {
-    margin-top: 10px;
+    margin-top: 14px;
     min-height: 16px;
     font-size: 14px;
   }
@@ -547,7 +620,7 @@
   }
 }
 
-@media (max-width: 1440px) and (min-width: 961px) {
+@media (max-width: 1440px) and (min-width: 601px) {
   .container {
     --cotizador-header-width: min(900px, calc(100vw - 72px));
     --cotizador-title-width: min(900px, calc(100vw - 72px));
@@ -562,7 +635,7 @@
   }
 
   .header {
-    width: min(var(--cotizador-header-width), 100%);
+    max-width: var(--cotizador-header-width);
   }
 
   .containerFixedStep {
@@ -593,9 +666,13 @@
   .subtitle {
     white-space: nowrap;
   }
+
+  .questionMultiline {
+    white-space: normal;
+  }
 }
 
-@media (max-width: 1100px) and (min-width: 961px) {
+@media (max-width: 1100px) and (min-width: 601px) {
   .container {
     --cotizador-header-width: min(860px, calc(100vw - 40px));
     --cotizador-title-width: min(860px, calc(100vw - 40px));
@@ -622,7 +699,7 @@
   }
 }
 
-@media (min-width: 961px) {
+@media (min-width: 601px) {
   .mobileCopy {
     display: none;
   }
@@ -632,5 +709,9 @@
   .kicker,
   .question {
     white-space: nowrap;
+  }
+
+  .questionMultiline {
+    white-space: normal;
   }
 }

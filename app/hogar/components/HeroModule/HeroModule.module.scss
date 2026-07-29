@@ -142,21 +142,58 @@
   }
 }
 
+/*
+ * Hero mobile — diseño de Figma, frame de 402×591.
+ * Logo de 191×35 en y=360 y título de 343 de ancho en y=403, ambos sobre el
+ * eje de 24px de la columna mobile.
+ */
 @media (max-width: 600px) {
+  .media {
+    height: 591px;
+  }
+
+  /* En el diseño el degradé es una caja de 928×402 rotada -90° con origen en
+     su esquina superior izquierda. Al rotarla cubre todo el hero y su `180deg`
+     local queda horizontal, de izquierda a derecha; se escribe así
+     directamente para que acompañe cualquier alto y ancho. */
+  .gradient {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      90deg,
+      #2177a5 0%,
+      rgba(33, 119, 165, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
   .content {
-    bottom: 92px;
-    width: min(320px, calc(100% - 48px));
+    left: 24px;
+    top: 360px;
+    bottom: auto;
+    width: min(354px, calc(100% - 48px));
   }
 
   .logo {
-    width: 208px;
-    height: auto;
+    width: 191px;
+    height: 35px;
   }
 
   .title {
-    width: 100%;
+    /* El logo termina en y=395 y el título arranca en y=403. */
+    margin: 8px 0 0 2px;
+    width: min(343px, 100%);
     height: auto;
     font-size: 32px;
     line-height: 32px;
+  }
+
+  .titleLight {
+    font-weight: 400;
+  }
+
+  .titleStrong {
+    font-weight: 600;
   }
 }

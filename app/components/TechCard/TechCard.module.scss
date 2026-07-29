@@ -131,51 +131,53 @@
   }
 }
 
-@media (max-width: 480px) {
+/*
+ * Diseño mobile tomado de Figma ("Component 4", nodo 5003:455): card de
+ * 201×256 con el título en y=33, el texto en y=78 y la ilustración en y=140.
+ *
+ * Los min-height fijan esos tres rieles para que todas las cards —de todas
+ * las verticales y todos los tabs— queden alineadas entre sí, sin importar
+ * cuántas líneas ocupe cada título o cada texto. La suma da los 256 exactos:
+ * 33 + 36 + 9 + 56 + 6 + 104 + 12.
+ */
+@media (max-width: 600px) {
   .card {
-    padding: 20px 18px 16px;
+    padding: 33px 20px 12px;
   }
 
   .title {
-    min-height: 52px;
-    font-size: 24px;
+    max-width: 187px;
+    min-height: 36px;
+    font-size: 18px;
     line-height: 100%;
   }
 
   .text {
-    margin-top: 8px;
-    font-size: 15px;
-    line-height: 100%;
-  }
-
-  .artStage {
-    margin-top: 10px;
-  }
-
-  .artImage,
-  .frame {
-    max-width: min(100%, 190px);
-  }
-}
-
-@media (max-width: 360px) {
-  .card {
-    padding: 16px 14px 14px;
-  }
-
-  .title {
-    min-height: 46px;
-    font-size: 21px;
-    line-height: 100%;
-  }
-
-  .text {
+    margin-top: 9px;
+    max-width: 160px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
     line-height: 100%;
   }
 
+  /* Banda de arte de 104px (140→244). Cada ilustración conserva su alto de
+     diseño y queda centrada dentro de la banda: de ahí salen solos los tops
+     del diseño (un arte de 104 cae en 140, uno de 76 en 154, uno de 93 en
+     146), sin necesidad de una regla por slide. */
+  .artStage {
+    flex: 0 0 auto;
+    margin-top: 6px;
+    height: 104px;
+  }
+
   .artImage,
   .frame {
-    max-width: min(100%, 165px);
+    width: auto;
+    height: var(--tech-card-mobile-art-height, auto);
+    max-width: min(100%, 146px);
+    max-height: 104px;
   }
 }

@@ -36,22 +36,9 @@ const infoCards = [
     ),
     modalText: (
       <>
-        <span className={styles.revealLine}>Nuestro equipo no espera</span>
-        <span className={styles.revealLine}>a que pase lo peor.</span>
-        <span className={styles.revealLine}>Si detectamos un intento</span>
-        <span className={styles.revealLine}>
-          de intrusión, <strong>activamos los</strong>
-        </span>
-        <span className={styles.revealLine}>
-          <strong>protocolos de respuesta al</strong>
-        </span>
-        <span className={styles.revealLine}>
-          <strong>instante</strong>, te avisamos y
-        </span>
-        <span className={styles.revealLine}>enviamos asistencia antes</span>
-        <span className={styles.revealLine}>
-          <strong>de que la situación escale.</strong>
-        </span>
+        Nuestro equipo no espera a que pase lo peor. Si detectamos un intento de
+        intrusión, <strong>activamos los protocolos de respuesta al instante</strong>, te
+        avisamos y enviamos asistencia <strong>antes de que la situación escale.</strong>
       </>
     )
   },
@@ -75,22 +62,9 @@ const infoCards = [
     ),
     modalText: (
       <>
-        <span className={styles.revealLine}>Olvidate de sistemas</span>
-        <span className={styles.revealLine}>complejos. Desde cámaras</span>
-        <span className={styles.revealLine}>inteligentes hasta la</span>
-        <span className={styles.revealLine}>
-          <strong>Cámara Campo con</strong>
-        </span>
-        <span className={styles.revealLine}>
-          <strong>energía solar</strong>, todo lo
-        </span>
-        <span className={styles.revealLine}>gestionás de forma intuitiva</span>
-        <span className={styles.revealLine}>
-          con el <strong>control desde tu</strong>
-        </span>
-        <span className={styles.revealLine}>
-          <strong>celular</strong> estés donde estés.
-        </span>
+        Olvidate de sistemas complejos. Desde cámaras inteligentes hasta la{' '}
+        <strong>Cámara Campo con energía solar</strong>, todo lo gestionás de forma
+        intuitiva con el <strong>control desde tu celular</strong> estés donde estés.
       </>
     )
   },
@@ -121,22 +95,10 @@ const infoCards = [
     ),
     modalText: (
       <>
-        <span className={styles.revealLine}>Somos de Resistencia.</span>
-        <span className={styles.revealLine}>Con nuestra base</span>
-        <span className={styles.revealLine}>
-          operativa local y <strong>más de</strong>
-        </span>
-        <span className={styles.revealLine}>
-          <strong>15 años de trayectoria</strong>, te
-        </span>
-        <span className={styles.revealLine}>garantizamos soporte</span>
-        <span className={styles.revealLine}>
-          técnico cercano y <strong>personas</strong>
-        </span>
-        <span className={styles.revealLine}>
-          <strong>reales</strong> listas para asistirte
-        </span>
-        <span className={styles.revealLine}>cuando más lo necesitás.</span>
+        Somos de Resistencia. Con nuestra base operativa local y{' '}
+        <strong>más de 15 años de trayectoria</strong>, te garantizamos soporte técnico
+        cercano y <strong>personas reales</strong> listas para asistirte cuando más lo
+        necesitás.
       </>
     )
   }
@@ -220,190 +182,195 @@ export default function WhyChooseSise() {
         <div className={styles.bandStrip3} aria-hidden="true" />
         <div className={styles.bandStrip4} aria-hidden="true" />
 
-        <div className={styles.categoriesDesktop}>
-          <Link className={styles.categoryCardHogar} href={categoryLinks.hogar}>
-            <Image
-              src="/image/mpr027zv-o3zo3d3.webp"
-              alt=""
-              className={styles.categoryTopImage}
-              width={256}
-              height={222}
-            />
-            <Image
-              src="/image/mpr027zv-y10zsrg.png"
-              alt="SISE Hogar"
-              className={styles.categoryLogoHogar}
-              width={107}
-              height={47}
-            />
-          </Link>
+        <div className={styles.categoriesSection}>
+          <h3 className={`${styles.categoryHeading} ${styles.categoryHeadingDesktop}`}>
+            Desarrollamos soluciones a medida
+          </h3>
 
-          <Link className={styles.categoryCardEmpresas} href={categoryLinks.empresas}>
-            <Image
-              src="/image/mpr027zv-j0j5y64.webp"
-              alt=""
-              className={styles.categoryTopImage}
-              width={256}
-              height={222}
-            />
-            <Image
-              src="/image/mpr027zv-8dc81fc.png"
-              alt="SISE Empresas"
-              className={styles.categoryLogoEmpresas}
-              width={104}
-              height={45}
-            />
-          </Link>
-
-          <Link className={styles.categoryCardUrbano} href={categoryLinks.urbano}>
-            <Image src="/image/mpr027zp-xpul2cf.webp" alt="SISE Urbano" width={256} height={285} />
-          </Link>
-
-          <Link className={styles.categoryCardAgro} href={categoryLinks.agro}>
-            <Image
-              src="/image/mpr027zv-n7crbeg.webp"
-              alt=""
-              className={styles.categoryTopImageAgro}
-              width={256}
-              height={221}
-            />
-            <Image
-              src="/image/mpr027zv-qr7hyq4.png"
-              alt="SISE Agro"
-              className={styles.categoryLogoAgro}
-              width={106}
-              height={50}
-            />
-          </Link>
-
-          <Link className={styles.categoryCardCiudad} href={categoryLinks.ciudad}>
-            <Image
-              src="/image/mpr027zv-zs0bqjf.webp"
-              alt=""
-              className={styles.categoryTopImage}
-              width={256}
-              height={222}
-            />
-            <Image
-              src="/image/mpr027zv-vzj6kyz.png"
-              alt="SISE Ciudad"
-              className={styles.categoryLogoCiudad}
-              width={102}
-              height={49}
-            />
-          </Link>
-        </div>
-
-        <div className={styles.categoriesMobile}>
-          <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
-            <div className={styles.categoryImageWrap}>
+          <div className={styles.categoriesDesktop}>
+            <Link className={styles.categoryCardHogar} href={categoryLinks.hogar}>
               <Image
                 src="/image/mpr027zv-o3zo3d3.webp"
                 alt=""
-                fill
-                sizes="220px"
-                className={styles.categoryImageFill}
+                className={styles.categoryTopImage}
+                width={256}
+                height={222}
               />
-            </div>
-            <div className={styles.categoryLogoWrap}>
               <Image
                 src="/image/mpr027zv-y10zsrg.png"
                 alt="SISE Hogar"
-                width={92}
-                height={40}
-                className={`${styles.categoryLogoFill} ${styles.categoryLogoHogarMobileImage}`}
+                className={styles.categoryLogoHogar}
+                width={107}
+                height={47}
               />
-            </div>
-          </Link>
+            </Link>
 
-          <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
-            <div className={styles.categoryImageWrap}>
+            <Link className={styles.categoryCardEmpresas} href={categoryLinks.empresas}>
               <Image
                 src="/image/mpr027zv-j0j5y64.webp"
                 alt=""
-                fill
-                sizes="220px"
-                className={styles.categoryImageFill}
+                className={styles.categoryTopImage}
+                width={256}
+                height={222}
               />
-            </div>
-            <div className={styles.categoryLogoWrap}>
               <Image
                 src="/image/mpr027zv-8dc81fc.png"
                 alt="SISE Empresas"
-                width={92}
-                height={40}
-                className={`${styles.categoryLogoFill} ${styles.categoryLogoEmpresasMobileImage}`}
+                className={styles.categoryLogoEmpresas}
+                width={104}
+                height={45}
               />
-            </div>
-          </Link>
+            </Link>
 
-          <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
-            <div className={styles.categoryImageWrap}>
-              <Image
-                src="/image/mpr027zp-xpul2cf.webp"
-                alt="SISE Urbano"
-                fill
-                sizes="220px"
-                className={`${styles.categoryImageFill} ${styles.categoryUrbanoTop}`}
-              />
-            </div>
-            <div className={styles.categoryLogoWrap}>
-              <Image
-                src="/image/mpr027zp-xpul2cf.webp"
-                alt=""
-                fill
-                sizes="220px"
-                className={`${styles.categoryImageFill} ${styles.categoryUrbanoBottom}`}
-              />
-            </div>
-          </Link>
+            <Link className={styles.categoryCardUrbano} href={categoryLinks.urbano}>
+              <Image src="/image/mpr027zp-xpul2cf.webp" alt="SISE Urbano" width={256} height={285} />
+            </Link>
 
-          <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
-            <div className={styles.categoryImageWrap}>
+            <Link className={styles.categoryCardAgro} href={categoryLinks.agro}>
               <Image
                 src="/image/mpr027zv-n7crbeg.webp"
                 alt=""
-                fill
-                sizes="220px"
-                className={styles.categoryImageFill}
+                className={styles.categoryTopImageAgro}
+                width={256}
+                height={221}
               />
-            </div>
-            <div className={styles.categoryLogoWrap}>
               <Image
                 src="/image/mpr027zv-qr7hyq4.png"
                 alt="SISE Agro"
-                width={92}
-                height={40}
-                className={`${styles.categoryLogoFill} ${styles.categoryLogoAgroMobileImage}`}
+                className={styles.categoryLogoAgro}
+                width={106}
+                height={50}
               />
-            </div>
-          </Link>
+            </Link>
 
-          <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
-            <div className={styles.categoryImageWrap}>
+            <Link className={styles.categoryCardCiudad} href={categoryLinks.ciudad}>
               <Image
                 src="/image/mpr027zv-zs0bqjf.webp"
                 alt=""
-                fill
-                sizes="220px"
-                className={styles.categoryImageFill}
+                className={styles.categoryTopImage}
+                width={256}
+                height={222}
               />
-            </div>
-            <div className={styles.categoryLogoWrap}>
               <Image
                 src="/image/mpr027zv-vzj6kyz.png"
                 alt="SISE Ciudad"
-                width={92}
-                height={40}
-                className={`${styles.categoryLogoFill} ${styles.categoryLogoCiudadMobileImage}`}
+                className={styles.categoryLogoCiudad}
+                width={102}
+                height={49}
               />
-            </div>
-          </Link>
-        </div>
+            </Link>
+          </div>
 
-        <div className={styles.categoriesMobileColumn}>
+          <div className={styles.categoriesMobile}>
+            <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
+              <div className={styles.categoryImageWrap}>
+                <Image
+                  src="/image/mpr027zv-o3zo3d3.webp"
+                  alt=""
+                  fill
+                  sizes="220px"
+                  className={styles.categoryImageFill}
+                />
+              </div>
+              <div className={styles.categoryLogoWrap}>
+                <Image
+                  src="/image/mpr027zv-y10zsrg.png"
+                  alt="SISE Hogar"
+                  width={92}
+                  height={40}
+                  className={`${styles.categoryLogoFill} ${styles.categoryLogoHogarMobileImage}`}
+                />
+              </div>
+            </Link>
+
+            <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
+              <div className={styles.categoryImageWrap}>
+                <Image
+                  src="/image/mpr027zv-j0j5y64.webp"
+                  alt=""
+                  fill
+                  sizes="220px"
+                  className={styles.categoryImageFill}
+                />
+              </div>
+              <div className={styles.categoryLogoWrap}>
+                <Image
+                  src="/image/mpr027zv-8dc81fc.png"
+                  alt="SISE Empresas"
+                  width={92}
+                  height={40}
+                  className={`${styles.categoryLogoFill} ${styles.categoryLogoEmpresasMobileImage}`}
+                />
+              </div>
+            </Link>
+
+            <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
+              <div className={styles.categoryImageWrap}>
+                <Image
+                  src="/image/mpr027zp-xpul2cf.webp"
+                  alt="SISE Urbano"
+                  fill
+                  sizes="220px"
+                  className={`${styles.categoryImageFill} ${styles.categoryUrbanoTop}`}
+                />
+              </div>
+              <div className={styles.categoryLogoWrap}>
+                <Image
+                  src="/image/mpr027zp-xpul2cf.webp"
+                  alt=""
+                  fill
+                  sizes="220px"
+                  className={`${styles.categoryImageFill} ${styles.categoryUrbanoBottom}`}
+                />
+              </div>
+            </Link>
+
+            <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
+              <div className={styles.categoryImageWrap}>
+                <Image
+                  src="/image/mpr027zv-n7crbeg.webp"
+                  alt=""
+                  fill
+                  sizes="220px"
+                  className={styles.categoryImageFill}
+                />
+              </div>
+              <div className={styles.categoryLogoWrap}>
+                <Image
+                  src="/image/mpr027zv-qr7hyq4.png"
+                  alt="SISE Agro"
+                  width={92}
+                  height={40}
+                  className={`${styles.categoryLogoFill} ${styles.categoryLogoAgroMobileImage}`}
+                />
+              </div>
+            </Link>
+
+            <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
+              <div className={styles.categoryImageWrap}>
+                <Image
+                  src="/image/mpr027zv-zs0bqjf.webp"
+                  alt=""
+                  fill
+                  sizes="220px"
+                  className={styles.categoryImageFill}
+                />
+              </div>
+              <div className={styles.categoryLogoWrap}>
+                <Image
+                  src="/image/mpr027zv-vzj6kyz.png"
+                  alt="SISE Ciudad"
+                  width={92}
+                  height={40}
+                  className={`${styles.categoryLogoFill} ${styles.categoryLogoCiudadMobileImage}`}
+                />
+              </div>
+            </Link>
+          </div>
+
+          <div className={styles.categoriesMobileColumn}>
           <div className={styles.mobilePattern} aria-hidden="true">
-            {Array.from({ length: 21 }).map((_, index) => (
+            {Array.from({ length: 24 }).map((_, index) => (
               <span
                 key={`mobile-strip-${index}`}
                 className={styles.mobilePatternStrip}
@@ -411,6 +378,10 @@ export default function WhyChooseSise() {
               />
             ))}
           </div>
+
+          <h3 className={`${styles.categoryHeading} ${styles.categoryHeadingMobile}`}>
+            Desarrollamos soluciones a medida
+          </h3>
 
           <div className={styles.mobileCategoryStack}>
             <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
@@ -518,6 +489,7 @@ export default function WhyChooseSise() {
               </div>
             </Link>
           </div>
+        </div>
         </div>
       </div>
     </section>

@@ -64,23 +64,42 @@ function safeList(value) {
   return safeText(value);
 }
 
-function buildEmailText(answers) {
+function safeMultilineText(value) {
+  if (typeof value !== 'string') return '';
+
+  return value
+    .split(/\r?\n/)
+    .map((line) => safeText(line))
+    .filter(Boolean)
+    .join('\n');
+}
+
+function buildFallbackEmailText(answers) {
   const lines = [
     ['Tipo de propiedad', answers?.propertyType],
-    ['Experiencia previa', answers?.experience],
-    ['Nivel de riesgo', answers?.risk],
-    ['Tamaño del lugar', answers?.placeSize],
-    ['Cantidad de ambientes', answers?.rooms],
-    ['Accesos a proteger', safeList(answers?.access)],
+    ['Paso 2', answers?.step2],
+    ['Paso 3', answers?.step3],
+    ['Paso 4', answers?.step4],
+    ['Paso 5', answers?.step5],
+    ['Paso 6', safeList(answers?.step6)],
+    ['Paso 7', safeList(answers?.step7)],
     ['Tipo de contacto', answers?.contactType],
     ['Nombre', answers?.name],
     ['Teléfono', answers?.phone],
-    ['Email', answers?.email]
+    ['Email', answers?.email],
+    ['Ciudad', answers?.city]
   ]
     .map(([label, value]) => `${label}: ${typeof value === 'string' || typeof value === 'number' ? safeText(value) : safeList(value)}`)
     .join('\n');
 
-  return `Nuevo cotizador online\n\n${lines}\n`;
+  return lines;
+}
+
+function buildEmailText(answers, summary) {
+  const normalizedSummary = safeMultilineText(summary);
+  const content = normalizedSummary || buildFallbackEmailText(answers);
+
+  return `Nuevo cotizador online\n\n${content}\n`;
 }
 
 let cachedTransporter = null;
@@ -119,6 +138,8 @@ export async function POST(request) {
 
     const payload = await request.json().catch(() => null);
     const answers = payload?.answers;
+    const summary = payload?.summary;
+    const variant = safeText(payload?.variant);
 
     if (!answers || typeof answers !== 'object') {
       return Response.json({ error: 'Solicitud inválida.' }, { status: 400 });
@@ -132,6 +153,7 @@ export async function POST(request) {
     const name = safeText(answers.name);
     const phone = safeText(answers.phone);
     const email = safeText(answers.email);
+    const city = safeText(answers.city);
 
     if (!name || !phone || !email) {
       return Response.json(
@@ -144,6 +166,10 @@ export async function POST(request) {
       return Response.json({ error: 'Ingresá un email válido.' }, { status: 400 });
     }
 
+    if (['enterprise', 'spaces', 'agro'].includes(variant) && !city) {
+      return Response.json({ error: 'Falta la ciudad.' }, { status: 400 });
+    }
+
     const to = requiredEnv('SALES_EMAIL_TO');
     const from = process.env.SALES_EMAIL_FROM || requiredEnv('SMTP_USER');
 
@@ -151,7 +177,7 @@ export async function POST(request) {
       from,
       to,
       subject: `Cotizador online - ${name}`,
-      text: buildEmailText(answers),
+      text: buildEmailText(answers, summary),
       replyTo: email
     });
 

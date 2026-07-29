@@ -1,59 +1,50 @@
 .section {
   width: 100%;
   background: var(--sise-white);
+  padding: 64px 0;
 }
 
 .inner {
-  width: min(1188px, calc(100% - 32px));
+  position: relative;
+  width: min(1018px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 56px 0 0;
-}
-
-.desktopLayout {
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
-  min-height: 439px;
-}
-
-.desktopImageWrap {
-  flex: 0 0 456px;
-  width: 456px;
-  padding-top: 0;
-}
-
-.desktopImage {
-  display: block;
-  width: 456px;
-  height: 439px;
-  object-fit: cover;
-}
-
-.desktopCopy {
-  flex: 0 0 700px;
-  width: 700px;
-  padding-top: 12px;
+  min-height: 592px;
 }
 
 .title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
-  width: 578px;
-  height: 99px;
+  width: min(1018px, 100%);
   color: var(--sise-blue);
+  text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: 48px;
   font-weight: 600;
   line-height: 48px;
   letter-spacing: 0;
 }
 
-.desktopText {
-  margin: 21px 0 0;
-  width: 700px;
-  min-height: 305px;
+.titleMobile,
+.copyMobile {
+  display: none;
+}
+
+.copy {
+  position: absolute;
+  top: 137px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(700px, 100%);
   color: #000000;
+  text-align: center;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-weight: 400;
-  line-height: 34px;
+  line-height: 33.6px;
   letter-spacing: 0;
 }
 
@@ -65,225 +56,179 @@
   font-weight: 600;
 }
 
-.mobileLayout {
-  display: none;
+.cta {
+  position: absolute;
+  top: 552px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 334px;
+  height: 40px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: var(--sise-blue);
+  border: 2px solid #00408c;
+  color: var(--sise-white);
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 19.36px;
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-@media (max-width: 1280px) {
+.cta:hover {
+  box-shadow: 0 12px 22px rgba(0, 64, 140, 0.18);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--sise-blue);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1440px) and (min-width: 601px) {
+  .section {
+    padding: 56px 0;
+  }
+
   .inner {
-    /* Misma columna que Pilares/FAQ (1188 / 100%−48) para que el borde
-       izquierdo de todas las secciones quede alineado en 961–1280px. */
-    width: min(1188px, calc(100% - 48px));
-  }
-
-  .desktopLayout {
-    gap: 24px;
-  }
-
-  .desktopImageWrap {
-    flex-basis: 420px;
-    width: 420px;
-  }
-
-  .desktopImage {
-    width: 420px;
-    height: auto;
-  }
-
-  .desktopCopy {
-    flex: 1 1 auto;
-    width: auto;
-    padding-top: 4px;
+    width: min(940px, calc(100% - 48px));
+    min-height: 560px;
   }
 
   .title {
-    width: min(560px, 100%);
-    height: auto;
-    font-size: 42px;
-    line-height: 42px;
+    width: min(940px, 100%);
+    font-size: clamp(40px, 3.2vw, 48px);
+    line-height: clamp(40px, 3.2vw, 48px);
   }
 
-  .desktopText {
-    width: 100%;
-    min-height: 0;
-    font-size: 22px;
-    line-height: 31px;
+  .copy {
+    top: 128px;
+    width: min(680px, 100%);
+    font-size: clamp(21px, 1.6vw, 24px);
+    line-height: clamp(29px, 2.2vw, 33.6px);
+  }
+
+  .cta {
+    top: 522px;
   }
 }
 
-@media (max-width: 1100px) {
-  .inner {
-    width: min(1188px, calc(100% - 48px));
-    padding-top: 44px;
-  }
-
-  .desktopLayout {
-    gap: 20px;
-  }
-
-  .desktopImageWrap {
-    flex-basis: 360px;
-    width: 360px;
-  }
-
-  .desktopImage {
-    width: 360px;
-  }
-
-  .desktopCopy {
-    padding-top: 0;
+@media (max-width: 1200px) and (min-width: 601px) {
+  .section {
+    padding: 52px 0;
   }
 
   .title {
-    width: min(470px, 100%);
-    font-size: 36px;
-    line-height: 38px;
+    width: min(820px, 100%);
+    font-size: 38px;
+    line-height: 36px;
   }
 
-  .desktopText {
-    margin-top: 16px;
-    font-size: 19px;
+  .copy {
+    top: 120px;
+    width: min(620px, 100%);
+    font-size: 20px;
     line-height: 28px;
   }
+
+  .cta {
+    top: 500px;
+    width: 300px;
+    font-size: 22px;
+  }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) and (min-width: 601px) {
   .section {
-    overflow: hidden;
+    padding: 48px 0;
   }
 
-  .inner {
-    width: min(402px, calc(100% - 32px));
-    padding: 37px 0 0;
+  .title {
+    width: min(760px, 100%);
+    font-size: 34px;
+    line-height: 34px;
   }
 
-  .desktopLayout {
-    display: none;
+  .copy {
+    top: 112px;
+    width: min(580px, 100%);
+    font-size: 18px;
+    line-height: 25px;
   }
 
-  .mobileLayout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .mobileFeature {
-    position: relative;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    height: 338px;
-  }
-
-  .mobileFeature::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.72);
-    z-index: 1;
-  }
-
-  .mobileOverlay {
-    position: relative;
-    z-index: 2;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* El feature es full-bleed con 100vw, que en desktop incluye el ancho de
-       la barra de scroll; el margen de 16px evita que el texto quede cortado
-       en pantallas muy angostas (320px). */
-    width: min(354px, calc(100% - 16px));
-    height: 338px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 39px;
-    padding-bottom: 20px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .mobileTitle {
-    margin: 0;
-    width: min(274px, 100%);
-    min-height: 47px;
-    color: var(--sise-blue);
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 110%;
-    letter-spacing: 0;
-    text-align: center;
-  }
-
-  .mobileIntro {
-    margin: 23px 0 0;
-    width: min(300px, 100%);
-    min-height: 65px;
-    color: #000000;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 140%;
-    letter-spacing: 0;
-    text-align: center;
-  }
-
-  .mobileImageWrap {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 338px;
-    overflow: hidden;
-  }
-
-  .mobileImage {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    /* Cubre siempre el ancho completo del feature: en pantallas de 561 a
-       960px la foto seguía fija en 560px y quedaban franjas blancas a los
-       costados. */
-    width: max(100%, 560px);
-    height: 338px;
-    transform: translateX(-50%);
-    object-fit: cover;
-  }
-
-  .mobileParagraph {
-    color: #000000;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 140%;
-    letter-spacing: 0;
-    text-align: center;
-  }
-
-  .mobileParagraphFirst {
-    margin: 19px 0 0;
-    width: min(315px, 100%);
-    min-height: 103px;
-  }
-
-  .mobileParagraphLast {
-    margin: 35px 0 0;
-    width: min(354px, 100%);
-    min-height: 0;
+  .cta {
+    top: 468px;
+    width: 280px;
+    height: 38px;
+    font-size: 18px;
+    line-height: 18px;
   }
 }
 
 @media (max-width: 600px) {
-  .inner {
-    width: min(402px, calc(100% - 32px));
-  }
-}
-
-@media (max-width: 480px) {
-  .inner {
-    width: calc(100% - 32px);
-    padding-top: 32px;
-    padding-bottom: 0;
+  .section {
+    padding: 37px 0 42px;
   }
 
-  .mobileFeature {
-    width: 100vw;
+  .inner {
+    width: min(298px, calc(100% - 40px));
+    min-height: 374px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titleDesktop,
+  .copyDesktop {
+    display: none;
+  }
+
+  .titleMobile,
+  .copyMobile {
+    display: block;
+  }
+
+  .title {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 298px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 26.4px;
+  }
+
+  .copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 262px;
+    margin-top: 22px;
+    font-size: 18px;
+    line-height: 25.2px;
+  }
+
+  .cta {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-top: 26px;
+    width: 199px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 2px;
+    border-width: 1px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 14.52px;
   }
 }
