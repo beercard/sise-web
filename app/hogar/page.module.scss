@@ -275,6 +275,7 @@
   --tech-title-width: 944px;
   --tech-title-font-size: 48px;
   --tech-title-line-height: 46px;
+  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
   --tech-tabs-width: 944px;
   --tech-tab-font-size: 20px;
   --tech-group-width: 1320px;
@@ -307,7 +308,7 @@
 }
 
 .tabs {
-  margin-top: 18px;
+  margin-top: var(--tech-title-tabs-gap);
   width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
@@ -487,6 +488,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transform-origin: center;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    filter 0.2s ease;
 }
 
 .pointEdit {
@@ -507,7 +514,11 @@
 
 .pointButton.pointActive {
   background: rgba(33, 119, 165, 0.75);
-  transform: scale(1.04);
+  filter:
+    drop-shadow(0 0 20px rgba(33, 119, 165, 0.4))
+    drop-shadow(0 0 41.4px rgba(33, 119, 165, 0.75));
+  transform: scale(1.36);
+  z-index: 2;
 }
 
 .ellipse2 {
@@ -989,6 +1000,7 @@
     --tech-title-width: 860px;
     --tech-title-font-size: clamp(40px, 3.4vw, 48px);
     --tech-title-line-height: clamp(40px, 3.2vw, 46px);
+    --tech-title-tabs-gap: clamp(22px, 2vw, 28px);
     --tech-tabs-width: 860px;
     --tech-tab-font-size: clamp(17px, 1.45vw, 20px);
     --tech-group-width: 1180px;
@@ -1038,6 +1050,7 @@
     --tech-title-width: 780px;
     --tech-title-font-size: 36px;
     --tech-title-line-height: 38px;
+    --tech-title-tabs-gap: 24px;
     --tech-tabs-width: 780px;
     --tech-tab-font-size: 16px;
     --tech-group-width: 1040px;
@@ -1148,6 +1161,7 @@
     --tech-title-width: 720px;
     --tech-title-font-size: 34px;
     --tech-title-line-height: 36px;
+    --tech-title-tabs-gap: 22px;
     --tech-tabs-width: 720px;
     --tech-tab-font-size: 15px;
     --tech-group-width: 920px;
@@ -1161,7 +1175,6 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 22px;
     padding: 0 24px;
   }
 
@@ -1318,7 +1331,7 @@
     flex-direction: row;
     justify-content: flex-start;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 18px;
     padding: 0 16px;
     overflow-x: auto;
     scrollbar-width: none;

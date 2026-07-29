@@ -402,6 +402,11 @@
   border: 0;
   padding: 6px;
   cursor: pointer;
+  transform-origin: center;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    filter 0.2s ease;
 }
 
 .ellipse2 {
@@ -422,7 +427,11 @@
 
 .pointActive {
   background: rgba(37, 15, 127, 0.75);
-  transform: scale(1.04);
+  filter:
+    drop-shadow(0 0 20px rgba(37, 15, 127, 0.4))
+    drop-shadow(0 0 41.4px rgba(37, 15, 127, 0.75));
+  transform: scale(1.36);
+  z-index: 2;
 }
 
 .pointEdit {
@@ -438,7 +447,8 @@
   height: auto;
   margin-top: 54px;
   width: min(520px, 100%);
-  min-width: 0;
+  min-width: 0;
+
   display: grid;
   align-items: center;
   justify-content: center;
