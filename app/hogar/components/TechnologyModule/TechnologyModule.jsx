@@ -145,7 +145,8 @@ export default function TechnologyModule() {
               svgSrc: '/image/mpul3d39-q38k68v.svg',
               // En mobile el diseño usa una ilustración plana (57×93) en lugar
               // del marco con el fondo y el SVG encima que se usa en desktop.
-              mobileSrc: '/image/sirena-mobile-hogar.png',
+              // Misma ilustracion que usa comercio en desktop, compartida.
+              mobileSrc: '/image/sirena-exterior.webp',
               mobileWidth: 783,
               mobileHeight: 1024
             }

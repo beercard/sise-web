@@ -115,13 +115,19 @@ export default function ComercioTechnologyModule() {
               '--tech-card-text-margin': '12px 0 0',
               // Figma: texto de 273, que centrado en la card de 442 cae en x=85.
               '--tech-card-text-width': '273px',
+              '--tech-card-image-width': '91px',
+              '--tech-card-image-height': '149px',
+              // La foto es 783x1024 y el marco del diseño 91x149: recorta, no
+              // contiene, anclando al pie como en el nodo de Figma.
+              '--tech-card-image-fixed-width': '91px',
+              '--tech-card-image-fixed-height': '149px',
+              '--tech-card-image-fit': 'cover',
+              '--tech-card-image-position': 'bottom',
               '--tech-card-art-margin-top': '14px'
             },
-            art: {
-              type: 'sirena',
-              backgroundSrc: '/image/mpvxw8ti-vltd01s.webp',
-              svgSrc: '/image/mpvxw8th-x7vq0vb.svg'
-            }
+            // El diseño reemplaza el marco compuesto (fondo + insignia) por una
+            // sola ilustracion de 91x149.
+            art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
           }
         ]
       },
@@ -283,10 +289,17 @@ export default function ComercioTechnologyModule() {
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
             styleVars: {
-              '--tech-card-padding': '42px 120px 20px 121px',
+              // El texto mide 292 en el diseño, pero con la fuente del navegador
+              // parte una linea de mas: 293 es el minimo que respeta las 3.
+              '--tech-card-padding': '42px 74px 20px',
               '--tech-card-title-min-height': '63px',
               '--tech-card-title-width': '201px',
-              '--tech-card-title-height': '63px'
+              '--tech-card-title-height': '63px',
+              '--tech-card-text-margin': '17px 0 0',
+              '--tech-card-text-width': '293px',
+              '--tech-card-frame-width': '183px',
+              '--tech-card-frame-height': '158px',
+              '--tech-card-frame-max-width': '183px'
             },
             art: {
               type: 'connectivity',

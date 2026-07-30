@@ -67,11 +67,15 @@
 }
 
 .artImage {
-  width: auto;
-  height: auto;
+  /* Por defecto la ilustracion se contiene dentro del hueco. Cuando el diseno
+     la recorta -- el marco es mas angosto que la foto -- se fijan alto y ancho
+     y se pasa a `cover` con el anclaje que corresponda. */
+  width: var(--tech-card-image-fixed-width, auto);
+  height: var(--tech-card-image-fixed-height, auto);
   max-width: min(100%, var(--tech-card-image-width, 230px));
   max-height: var(--tech-card-image-height, 100%);
-  object-fit: contain;
+  object-fit: var(--tech-card-image-fit, contain);
+  object-position: var(--tech-card-image-position, center);
   display: block;
   transform: scale(var(--tech-card-image-scale, 1));
   transform-origin: center;
@@ -80,9 +84,9 @@
 /* Composiciones con imagen de fondo (sirena, conectividad, gps) */
 .frame {
   position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 230px;
+  width: var(--tech-card-frame-width, 100%);
+  height: var(--tech-card-frame-height, 100%);
+  max-width: var(--tech-card-frame-max-width, 230px);
   display: flex;
   align-items: center;
   justify-content: center;
