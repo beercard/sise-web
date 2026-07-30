@@ -270,10 +270,18 @@ export default function IndustriaTechnologyModule() {
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
             styleVars: {
-              '--tech-card-padding': '42px 120px 20px 121px',
-              '--tech-card-title-min-height': '63px',
+              '--tech-card-padding': '42px 74px 20px',
+              '--tech-card-align-items': 'center',
               '--tech-card-title-width': '201px',
-              '--tech-card-title-height': '63px'
+              '--tech-card-title-height': '63px',
+              '--tech-card-title-min-height': '63px',
+              // El texto mide 292 en el diseño, pero con la fuente del navegador ese
+              // ancho parte una linea de mas: 293 es el minimo que respeta las 3.
+              '--tech-card-text-width': '293px',
+              '--tech-card-text-margin': '17px 0 0',
+              '--tech-card-frame-width': '183px',
+              '--tech-card-frame-height': '158px',
+              '--tech-card-frame-max-width': '183px'
             },
             art: {
               type: 'connectivity',
