@@ -197,6 +197,10 @@
   font-weight: 600;
 }
 
+.cardMobileContent {
+  display: none;
+}
+
 /* Boton "+ info" del diseño de Figma (nodo 5002:463): 90x40, borde de 2px y
    radio de 10, con el texto en 24px bold. */
 .infoButton {
@@ -762,6 +766,14 @@
 }
 
 @media (max-width: 600px) {
+  .cardDesktopContentWithMobile {
+    display: none;
+  }
+
+  .cardMobileContent {
+    display: inline;
+  }
+
   .inner {
     width: min(402px, 100%);
     min-height: auto;
@@ -788,9 +800,10 @@
   }
 
   .title {
-    width: 229px;
-    line-height: 19px;
-    font-size: 24px;
+    width: 100%;
+    max-width: 100%;
+    line-height: 25.81px;
+    font-size: 32px;
   }
 
   .card,
@@ -808,16 +821,28 @@
   .card {
     order: 2;
     margin-top: 31px;
+    width: 201px;
+    height: 264px;
+    min-height: 264px;
+    border-radius: 10px;
   }
 
   .cardAlt {
     order: 1;
     margin-top: 0;
+    width: 201px;
+    height: 264px;
+    min-height: 264px;
+    border-radius: 10px;
   }
 
   .cardAlt2 {
     order: 3;
     margin-top: 42px;
+    width: 201px;
+    height: 264px;
+    min-height: 264px;
+    border-radius: 10px;
   }
 
   .cardIconAlt,
@@ -843,41 +868,42 @@
   }
 
   .card .cardIconWrap {
-    top: 24px;
+    top: 41px;
   }
 
   .cardAlt .cardIconWrap {
-    top: 13px;
+    top: 22px;
   }
 
   .cardAlt2 .cardIconWrap {
-    top: 15px;
+    top: 27px;
   }
 
   .cardIcon {
-    width: 41px;
-    height: 35px;
+    width: 49px;
+    height: 42px;
   }
 
   .cardIconAlt {
-    width: 26px;
-    height: 54px;
+    width: 30px;
+    height: 62px;
   }
 
   .cardIconAlt2 {
-    width: 35px;
-    height: 41px;
+    width: 36px;
+    height: 42px;
   }
 
   .cardTitle {
     position: absolute;
-    top: 72px;
+    top: 93px;
     left: 50%;
     margin-top: 0;
     transform: translateX(-50%);
-    width: 134px;
-    min-height: 32px;
+    width: 183px;
+    min-height: 17px;
     font-size: 20px;
+    font-weight: 700;
     line-height: 16.13px;
   }
 
@@ -895,14 +921,21 @@
 
   .cardTitleAlt {
     margin-top: 0;
+    top: 94px;
+    width: 162px;
+    min-height: 33px;
+    font-size: 20px;
+    font-weight: 700;
     line-height: 16.4px;
   }
 
   .cardTitleAlt2 {
     margin-top: 0;
-    top: 67px;
+    top: 79px;
     width: 164px;
     min-height: 33px;
+    font-weight: 700;
+    line-height: 16.13px;
   }
 
   .cardText,
@@ -916,30 +949,54 @@
 
   .cardText {
     position: absolute;
-    top: 108px;
+    top: 116px;
     left: 50%;
     margin-top: 0;
     transform: translateX(-50%);
-    width: 153px;
+    width: 185px;
+    min-height: 72px;
   }
 
   .cardTextAlt {
     position: absolute;
-    top: 141px;
+    top: 137px;
     left: 50%;
     margin-top: 0;
     transform: translateX(-50%);
-    width: 149px;
+    width: 170px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .cardAlt .infoButton {
+    top: 222px;
+    width: 80px;
+    height: 30px;
+    border: 2px solid #00408c;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 14.52px;
   }
 
   .cardTextAlt2 {
     position: absolute;
-    top: 108px;
+    top: 122px;
     left: 50%;
     margin-top: 0;
     transform: translateX(-50%);
-    width: 143px;
-    min-height: 108px;
+    width: 173px;
+    min-height: 72px;
+  }
+
+  .cardAlt2 .infoButton {
+    width: 80px;
+    border: 2px solid #00408c;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 14.52px;
   }
 
   .infoButton {
@@ -959,6 +1016,15 @@
     padding-top: 0;
     align-self: center;
     transition: none;
+  }
+
+  .card .infoButton {
+    width: 80px;
+    border: 2px solid #00408c;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 14.52px;
   }
 
   .infoButton:hover {
@@ -1036,6 +1102,102 @@
   .modalPanelAlt2 .closeButton {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .cardAlt .modalPanelAlt {
+    padding: 0;
+    border-radius: 10px;
+  }
+
+  .cardAlt .modalTextAlt {
+    position: absolute;
+    top: 46px;
+    left: 50%;
+    width: 169px;
+    min-height: 149px;
+    transform: translateX(-50%);
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .cardAlt .modalTextAlt strong {
+    font-weight: 700;
+  }
+
+  .card .modalPanel {
+    padding: 0;
+    border-radius: 10px;
+  }
+
+  .card .modalText {
+    position: absolute;
+    top: 39px;
+    left: 50%;
+    width: 164px;
+    min-height: 159px;
+    transform: translateX(-50%);
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .card .modalText strong {
+    font-weight: 700;
+  }
+
+  .card .closeButton {
+    bottom: 11px;
+    width: 80px;
+    height: 30px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 14.52px;
+    color: #00408c;
+  }
+
+  .cardAlt .closeButton {
+    bottom: 12px;
+    width: 80px;
+    height: 30px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 14.52px;
+    color: #00408c;
+  }
+
+  .cardAlt2 .modalPanelAlt2 {
+    padding: 0;
+    border-radius: 10px;
+  }
+
+  .cardAlt2 .modalTextAlt2 {
+    position: absolute;
+    top: 39px;
+    left: 50%;
+    width: 163px;
+    min-height: 159px;
+    transform: translateX(-50%);
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .cardAlt2 .modalTextAlt2 strong {
+    font-weight: 700;
+  }
+
+  .cardAlt2 .closeButton {
+    bottom: 11px;
+    width: 80px;
+    height: 30px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 14.52px;
+    color: #00408c;
   }
 
   .closeButton:hover {

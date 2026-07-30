@@ -25,6 +25,7 @@ const infoCards = [
     iconHeight: 61,
     titleClassName: 'cardTitle',
     title: 'Monitoreo 24/7 real',
+    mobileTitle: 'Monitoreo 24/7',
     textClassName: 'cardText',
     revealPanelClassName: 'modalPanel',
     revealTextClassName: 'modalText',
@@ -34,11 +35,26 @@ const infoCards = [
         prevenir, no solo registrar.
       </>
     ),
+    mobileText: (
+      <>
+        Operadores especialistas supervisan <strong>en tiempo real</strong> para
+        prevenir, no solo registrar.
+      </>
+    ),
     modalText: (
       <>
         Nuestro equipo no espera a que pase lo peor. Si detectamos un intento de
         intrusión, <strong>activamos los protocolos de respuesta al instante</strong>, te
         avisamos y enviamos asistencia <strong>antes de que la situación escale.</strong>
+      </>
+    ),
+    mobileModalText: (
+      <>
+        Nuestro equipo no espera a que pase lo peor.
+        <br />
+        Si detectamos un intento de intrusión,{' '}
+        <strong>activamos los protocolos de respuesta al instante</strong>, te avisamos
+        y enviamos asistencia <strong>antes de que la situación escale</strong>.
       </>
     )
   },
@@ -150,8 +166,30 @@ export default function WhyChooseSise() {
                     height={card.iconHeight}
                   />
                 </div>
-                <h3 className={styles[card.titleClassName]}>{card.title}</h3>
-                <p className={styles[card.textClassName]}>{card.text}</p>
+                <h3 className={styles[card.titleClassName]}>
+                  <span
+                    className={`${styles.cardDesktopContent} ${
+                      card.mobileTitle ? styles.cardDesktopContentWithMobile : ''
+                    }`}
+                  >
+                    {card.title}
+                  </span>
+                  {card.mobileTitle ? (
+                    <span className={styles.cardMobileContent}>{card.mobileTitle}</span>
+                  ) : null}
+                </h3>
+                <p className={styles[card.textClassName]}>
+                  <span
+                    className={`${styles.cardDesktopContent} ${
+                      card.mobileText ? styles.cardDesktopContentWithMobile : ''
+                    }`}
+                  >
+                    {card.text}
+                  </span>
+                  {card.mobileText ? (
+                    <span className={styles.cardMobileContent}>{card.mobileText}</span>
+                  ) : null}
+                </p>
                 <button
                   type="button"
                   className={styles.infoButton}
@@ -168,7 +206,18 @@ export default function WhyChooseSise() {
                 }`}
                 aria-hidden={activeCard !== card.id}
               >
-                <p className={styles[card.revealTextClassName]}>{card.modalText}</p>
+                <p className={styles[card.revealTextClassName]}>
+                  <span
+                    className={`${styles.cardDesktopContent} ${
+                      card.mobileModalText ? styles.cardDesktopContentWithMobile : ''
+                    }`}
+                  >
+                    {card.modalText}
+                  </span>
+                  {card.mobileModalText ? (
+                    <span className={styles.cardMobileContent}>{card.mobileModalText}</span>
+                  ) : null}
+                </p>
                 <button
                   type="button"
                   className={styles.closeButton}

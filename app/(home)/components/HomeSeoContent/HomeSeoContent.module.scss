@@ -66,7 +66,7 @@
   justify-content: center;
   width: 334px;
   height: 40px;
-  padding: 0 24px;
+  padding: 3px 0 0;
   box-sizing: border-box;
   border-radius: 10px;
   background: var(--sise-blue);
@@ -74,9 +74,10 @@
   color: var(--sise-white);
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 19.36px;
   letter-spacing: 0;
+  text-align: center;
   text-decoration: none;
   transition: box-shadow 0.2s ease, background-color 0.2s ease;
 }
@@ -165,6 +166,7 @@
     top: 468px;
     width: 280px;
     height: 38px;
+    padding-top: 2px;
     font-size: 18px;
     line-height: 18px;
   }
@@ -222,13 +224,13 @@
     left: auto;
     transform: none;
     margin-top: 26px;
-    width: 199px;
+    width: 230px;
     height: 30px;
-    padding: 0 8px;
-    border-radius: 2px;
-    border-width: 1px;
+    padding: 2px 0 0;
+    border-radius: 8px;
+    border-width: 2px;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 14.52px;
   }
 }

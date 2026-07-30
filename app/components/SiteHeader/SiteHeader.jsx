@@ -131,10 +131,14 @@ export default function SiteHeader() {
         <nav
           className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}
           aria-label="Navegación principal"
-          onClick={(event) => {
-            if (event.target === event.currentTarget) closeMenu();
-          }}
         >
+          <button
+            type="button"
+            className={styles.navBackdrop}
+            aria-label="Cerrar menú"
+            onClick={closeMenu}
+            tabIndex={isOpen ? 0 : -1}
+          />
           <ul id={navId} className={`${styles.navList} ${isOpen ? styles.navListOpen : ''}`}>
             {navItems.map((item, index) => {
               const hasSubmenu = Boolean(item.submenu?.length);
@@ -158,27 +162,14 @@ export default function SiteHeader() {
                         {item.label}
                       </button>
                     ) : (
-                      <Link className={`${styles.navLink} ${item.className}`} href={item.href} onClick={closeMenu}>
+                      <Link
+                        className={`${styles.navLink} ${item.className}`}
+                        href={item.href}
+                        onClick={closeMenu}
+                      >
                         {item.label}
                       </Link>
                     )}
-
-                    {hasSubmenu ? (
-                      <button
-                        type="button"
-                        className={styles.submenuToggle}
-                        aria-label={`${isSubmenuOpen ? 'Cerrar' : 'Abrir'} submenú de ${item.label}`}
-                        aria-expanded={isSubmenuOpen}
-                        aria-controls={submenuId}
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                          setOpenSubmenu((current) => (current === item.href ? null : item.href));
-                        }}
-                      >
-                        <span className={styles.submenuToggleIcon} aria-hidden="true" />
-                      </button>
-                    ) : null}
                   </div>
 
                   {hasSubmenu ? (
@@ -190,13 +181,15 @@ export default function SiteHeader() {
                       role="menu"
                       aria-label={`Submenú de ${item.label}`}
                     >
-                      {item.submenu.map((subitem) => (
-                        <Fragment key={`${subitem.href}-${subitem.label}`}>
-                          <Link className={styles.submenuItem} href={subitem.href} onClick={closeMenu} role="menuitem">
-                            {subitem.label}
-                          </Link>
-                        </Fragment>
-                      ))}
+                      <div className={styles.submenuInner}>
+                        {item.submenu.map((subitem) => (
+                          <Fragment key={`${subitem.href}-${subitem.label}`}>
+                            <Link className={styles.submenuItem} href={subitem.href} onClick={closeMenu} role="menuitem">
+                              {subitem.label}
+                            </Link>
+                          </Fragment>
+                        ))}
+                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -225,6 +218,7 @@ export default function SiteHeader() {
             })}
           </ul>
         </nav>
+
       </div>
     </header>
   );
