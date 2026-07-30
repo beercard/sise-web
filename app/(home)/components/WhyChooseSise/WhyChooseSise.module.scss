@@ -276,12 +276,16 @@
   padding: 64px 54px 29px;
 }
 
+/* Reverso de Tecnologia (Figma 3210:457): texto de 232 en y=67 y el boton a
+   26 del piso. */
 .modalPanelAlt {
-  padding: 60px 50px 23px;
+  padding: 67px 50px 26px;
 }
 
+/* Reverso de Respuesta rapida (Figma 3210:455): mismo encuadre que Monitoreo,
+   texto de 224 en y=64 y el boton a 29 del piso. */
 .modalPanelAlt2 {
-  padding: 60px 55px 23px 54px;
+  padding: 64px 54px 29px;
 }
 
 .modalText {
@@ -299,28 +303,28 @@
 
 .modalTextAlt {
   margin: 0;
-  width: 242px;
-  min-height: 156px;
+  width: 232px;
+  min-height: 0;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   color: #ffffff;
   text-align: center;
   font-size: 20px;
   line-height: 20px;
   letter-spacing: 0;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .modalTextAlt2 {
   margin: 0;
-  width: 244px;
-  min-height: 163px;
+  width: 224px;
+  min-height: 0;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   color: #ffffff;
   text-align: center;
   font-size: 20px;
   line-height: 20px;
   letter-spacing: 0;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .modalText strong,
@@ -333,32 +337,14 @@
   display: block;
 }
 
-/* El boton se ancla al piso en vez de al texto: nuestro texto renderiza 160 de
-   alto contra los 174.87 del diseño, asi que fijarlo al texto dejaba 52px de
-   aire abajo en vez de los 29 del Figma. Anclado abajo, esa diferencia la
-   absorbe la separacion con el texto y el encuadre queda igual. */
-.modalPanel .closeButton {
-  margin-top: auto;
-}
-
-.modalPanelAlt2 .closeButton {
-  margin-top: 35px;
-}
-
-.modalPanelAlt .closeButton {
-  margin-top: 42px;
-}
-
+/* Los botones se anclan al piso en vez de al texto: nuestro texto renderiza mas
+   corto que el del diseño (el interlineado se calcula distinto), asi que fijarlo
+   al texto dejaba aire de mas abajo. Anclado al piso, esa diferencia la absorbe
+   la separacion con el texto y el encuadre queda igual al Figma. */
 .modalPanel .closeButton,
 .modalPanelAlt .closeButton,
 .modalPanelAlt2 .closeButton {
-  margin-left: 73px;
-  margin-right: 73px;
-}
-
-.modalPanelAlt .closeButton {
-  margin-left: 77px;
-  margin-right: 77px;
+  margin-top: auto;
 }
 
 /* Boton "Cerrar" del diseño: 90x40 con radio 10, igual que el de "+ info". */
