@@ -217,7 +217,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  /* "+ info" no tiene descendentes (tinta descendente de 1px contra los 5 que
+     reserva la fuente), asi que centrar la caja de linea deja el texto 5.4px
+     mas arriba de lo que se ve como centrado. El padding superior compensa la
+     mitad de esa diferencia y lo baja a su centro optico. */
+  padding: 5.4px 10px 0;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
