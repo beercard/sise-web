@@ -14,4 +14,10 @@ yarn-error.log
 .figma
 .vercel
 tmp
+.tmp
+
+# Salidas de test y logs de depuracion
+test-results
+playwright-report
+debug.log
 
