@@ -270,10 +270,17 @@ export default function AgroTechnologyModule() {
             '--tech-card-text-margin': '17px 0 0',
             '--tech-card-frame-width': '183px',
             '--tech-card-frame-height': '158px',
-            '--tech-card-frame-max-width': '183px'
+            '--tech-card-frame-max-width': '183px',
+            // La ilustracion va recortada al 151.77% de alto y en escala de
+            // grises, como en el diseño (nodo 2205:669).
+            '--tech-card-frame-bg-position': '0 -1px',
+            '--tech-card-frame-bg-size': '100% 151.77%',
+            '--tech-card-frame-filter': 'grayscale(1)',
+            '--tech-card-frame-bar-color': '#065558'
           },
           art: {
             type: 'connectivity',
+            bar: true,
             backgroundSrc: '/image/mq1gn9bk-jxd0t66.webp',
             wrapperWidth: 183,
             wrapperHeight: 158,

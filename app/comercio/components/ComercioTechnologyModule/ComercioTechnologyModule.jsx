@@ -299,10 +299,17 @@ export default function ComercioTechnologyModule() {
               '--tech-card-text-width': '293px',
               '--tech-card-frame-width': '183px',
               '--tech-card-frame-height': '158px',
-              '--tech-card-frame-max-width': '183px'
+              '--tech-card-frame-max-width': '183px',
+              // La ilustracion va recortada al 151.77% de alto y en escala de
+              // grises, como en el diseño (nodo 2205:669).
+              '--tech-card-frame-bg-position': '0 -1px',
+              '--tech-card-frame-bg-size': '100% 151.77%',
+              '--tech-card-frame-filter': 'grayscale(1)',
+              '--tech-card-frame-bar-color': '#06234c'
             },
             art: {
               type: 'connectivity',
+              bar: true,
               backgroundSrc: '/image/mpvy051r-8qcdbbi.webp',
               wrapperWidth: 183,
               wrapperHeight: 158,

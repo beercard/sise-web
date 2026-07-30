@@ -350,10 +350,17 @@ export default function EdificiosTechnologyModule() {
           '--tech-card-text-margin': '17px 0 0',
           '--tech-card-frame-width': '183px',
           '--tech-card-frame-height': '158px',
-          '--tech-card-frame-max-width': '183px'
+          '--tech-card-frame-max-width': '183px',
+          // La ilustracion va recortada al 151.77% de alto y en escala de
+          // grises, como en el diseño (nodo 2205:669).
+          '--tech-card-frame-bg-position': '0 -1px',
+          '--tech-card-frame-bg-size': '100% 151.77%',
+          '--tech-card-frame-filter': 'grayscale(1)',
+          '--tech-card-frame-bar-color': '#250f7f'
         },
         art: {
           type: 'connectivity',
+          bar: true,
           backgroundSrc: '/image/mq09bjsp-72d3sht.webp',
           wrapperWidth: 183,
           wrapperHeight: 158,

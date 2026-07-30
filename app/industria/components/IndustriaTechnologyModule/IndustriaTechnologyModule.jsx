@@ -281,10 +281,17 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-text-margin': '17px 0 0',
               '--tech-card-frame-width': '183px',
               '--tech-card-frame-height': '158px',
-              '--tech-card-frame-max-width': '183px'
+              '--tech-card-frame-max-width': '183px',
+              // La ilustracion va recortada al 151.77% de alto y en escala de
+              // grises, como en el diseño (nodo 2205:669).
+              '--tech-card-frame-bg-position': '0 -1px',
+              '--tech-card-frame-bg-size': '100% 151.77%',
+              '--tech-card-frame-filter': 'grayscale(1)',
+              '--tech-card-frame-bar-color': '#06234c'
             },
             art: {
               type: 'connectivity',
+              bar: true,
               backgroundSrc: '/image/mq03yufq-43ve40h.webp',
               wrapperWidth: 183,
               wrapperHeight: 158,

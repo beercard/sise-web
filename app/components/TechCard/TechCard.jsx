@@ -49,6 +49,9 @@ function ArtContent({ art, fallbackAlt = '' }) {
           style={{ '--frame-bg': `url('${art.backgroundSrc}')` }}
           aria-hidden="true"
         />
+        {/* Banda de color sobre la ilustración (la conectividad la usa para la
+            cabecera de la app en la pantalla del celular). */}
+        {art.bar ? <span className={styles.frameBar} aria-hidden="true" /> : null}
         {badgeSrc ? (
           <Image
             src={badgeSrc}

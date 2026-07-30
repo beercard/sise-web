@@ -95,7 +95,22 @@
 .frameBg {
   position: absolute;
   inset: 0;
-  background: var(--frame-bg) center / contain no-repeat;
+  background-image: var(--frame-bg);
+  background-position: var(--tech-card-frame-bg-position, center);
+  background-size: var(--tech-card-frame-bg-size, contain);
+  background-repeat: no-repeat;
+  /* La conectividad va en escala de grises, como en el diseño. */
+  filter: var(--tech-card-frame-filter, none);
+}
+
+/* Banda de color sobre la ilustracion (la cabecera de la app en el celular). */
+.frameBar {
+  position: absolute;
+  top: var(--tech-card-frame-bar-top, 39px);
+  left: var(--tech-card-frame-bar-left, 43px);
+  width: var(--tech-card-frame-bar-width, 101px);
+  height: var(--tech-card-frame-bar-height, 14px);
+  background: var(--tech-card-frame-bar-color, #00408c);
 }
 
 .frameBadge {
