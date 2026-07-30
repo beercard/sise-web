@@ -11,7 +11,7 @@ const comercioSolutions = [
   },
   {
     key: 'cctv',
-    title: ['CCTV /', 'VIDEOVIGILANCIA'],
+    title: ['CCTV / VIDEOVIGILANCIA'],
     body:
       'Supervisión constante de áreas críticas del negocio, con registro de eventos para control y análisis.'
   },
@@ -23,7 +23,7 @@ const comercioSolutions = [
   },
   {
     key: 'acceso',
-    title: ['CONTROL DE', 'ACCESO Y FICHAJE'],
+    title: ['CONTROL DE ACCESO Y FICHAJE'],
     body:
       'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.'
   },

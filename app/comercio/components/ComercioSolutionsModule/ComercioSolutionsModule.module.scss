@@ -3,26 +3,26 @@
   --solutions-grid-height: 458px;
   --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
   --solutions-content-width: 1196px;
-  --solutions-intro-gap: 44px;
-  --solutions-copy-gap: 22px;
+  --solutions-intro-gap: 31px;
+  --solutions-copy-gap: 36px;
   --solutions-card-width: 211px;
   --solutions-card-height: 261px;
   --solutions-grid-gap: 33px;
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
   --solutions-title-width: 203px;
-  --solutions-card-title-top: 36px;
+  --solutions-card-title-top: 54px;
   --solutions-card-title-min-height: 39px;
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 112px;
+  --solutions-card-body-top: 122px;
   --solutions-card-body-font-size: 16px;
   --solutions-card-body-line-height: 16px;
   --solutions-card-body-width: 180px;
-  --solutions-alarmas-body-top: 112px;
-  --solutions-cctv-body-top: 112px;
-  --solutions-humo-body-top: 112px;
-  --solutions-acceso-body-top: 112px;
-  --solutions-rastreo-body-top: 112px;
+  --solutions-alarmas-body-top: 122px;
+  --solutions-cctv-body-top: 130px;
+  --solutions-humo-body-top: 123px;
+  --solutions-acceso-body-top: 114px;
+  --solutions-rastreo-body-top: 114px;
   position: relative;
   width: 100%;
   background: #06234c;
@@ -40,21 +40,21 @@
 .copyBlock {
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: 88px;
   left: 50%;
   transform: translateX(-50%);
-  height: var(--solutions-copy-height);
+  height: calc(var(--solutions-copy-height) - 88px);
   width: min(var(--solutions-content-width), calc(100% - 48px));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .intro {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 578px) minmax(0, 574px);
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--solutions-intro-gap);
   align-items: start;
 }
@@ -74,12 +74,12 @@
 .lead {
   width: 100%;
   min-height: 59px;
-  line-height: 30px;
+  line-height: 30.4px;
   font-size: 32px;
 }
 
 .leadLight {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .leadStrong {
@@ -89,13 +89,13 @@
 .body {
   width: 100%;
   min-height: 44px;
-  margin-top: 4px;
+  margin-top: 5px;
   line-height: 20px;
   font-size: 20px;
 }
 
 .bodyLight {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .bodyStrong {
@@ -105,9 +105,9 @@
 .punch {
   position: relative;
   margin-top: var(--solutions-copy-gap);
-  width: calc(100% - 4px);
+  width: 100%;
   min-height: 82px;
-  margin-left: 4px;
+  margin-left: 0;
   line-height: 38.712px;
   font-size: 48px;
   font-weight: 600;
@@ -166,7 +166,7 @@
   margin: 0;
   width: min(var(--solutions-content-width), calc(100% - 48px));
   min-height: 37px;
-  line-height: 46px;
+  line-height: 45.6px;
   font-size: 48px;
   font-weight: 600;
   text-align: left;
@@ -238,10 +238,20 @@
   min-height: 79px;
 }
 
+.cctv .cardTitle {
+  width: 203px;
+  min-height: 39px;
+}
+
 .cctv .cardBody {
   top: var(--solutions-cctv-body-top);
   width: 180px;
   min-height: 63px;
+}
+
+.humo .cardTitle {
+  width: 212px;
+  min-height: 39px;
 }
 
 .humo .cardBody {
@@ -273,26 +283,26 @@
     --solutions-grid-height: 448px;
     --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
     --solutions-content-width: 1080px;
-    --solutions-intro-gap: clamp(20px, 2vw, 32px);
-    --solutions-copy-gap: clamp(18px, 1.5vw, 22px);
+    --solutions-intro-gap: clamp(18px, 1.8vw, 31px);
+    --solutions-copy-gap: clamp(24px, 2vw, 36px);
     --solutions-card-width: clamp(184px, 14vw, 211px);
     --solutions-card-height: clamp(238px, 18vw, 261px);
     --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
     --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
+    --solutions-card-title-top: clamp(40px, 3vw, 54px);
     --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
     --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
     --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
-    --solutions-card-body-top: clamp(94px, 7.8vw, 112px);
+    --solutions-card-body-top: clamp(102px, 8.7vw, 122px);
     --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
     --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
     --solutions-card-body-width: clamp(156px, 12vw, 180px);
-    --solutions-alarmas-body-top: clamp(94px, 7.8vw, 112px);
-    --solutions-cctv-body-top: clamp(96px, 7.9vw, 112px);
-    --solutions-humo-body-top: clamp(96px, 7.9vw, 112px);
-    --solutions-acceso-body-top: clamp(96px, 7.9vw, 112px);
-    --solutions-rastreo-body-top: clamp(96px, 7.9vw, 112px);
+    --solutions-alarmas-body-top: clamp(102px, 8.7vw, 122px);
+    --solutions-cctv-body-top: clamp(108px, 9vw, 130px);
+    --solutions-humo-body-top: clamp(104px, 8.8vw, 123px);
+    --solutions-acceso-body-top: clamp(98px, 8.2vw, 114px);
+    --solutions-rastreo-body-top: clamp(98px, 8.2vw, 114px);
   }
 
   .intro {
@@ -321,7 +331,6 @@
     min-height: 0;
     font-size: clamp(38px, 3.2vw, 48px);
     line-height: clamp(33px, 2.7vw, 39px);
-    margin-left: 0;
     width: 100%;
   }
 

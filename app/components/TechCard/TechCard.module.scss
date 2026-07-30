@@ -14,39 +14,43 @@
   background: #d9d9d9;
   /* Mismas medidas que el diseño de /hogar: card de 442×357 con columna de
      contenido de 276px (442 − 83 × 2). */
-  padding: 42px 83px 22px;
+  padding: var(--tech-card-padding, 42px 83px 22px);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: var(--tech-card-align-items, center);
   justify-content: flex-start;
   text-align: center;
 }
 
 .title {
-  margin: 0;
-  width: 100%;
-  max-width: 276px;
-  min-height: 63px;
+  margin: var(--tech-card-title-margin, 0);
+  width: min(100%, var(--tech-card-title-width, 276px));
+  max-width: 100%;
+  min-height: var(--tech-card-title-min-height, 63px);
+  height: var(--tech-card-title-height, auto);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000000;
+  text-align: var(--tech-card-title-align, center);
+  color: var(--tech-card-title-color, #000000);
   font-size: 32px;
   font-weight: 600;
-  line-height: 100%;
+  line-height: var(--tech-card-title-line-height, 32px);
   letter-spacing: 0;
   text-wrap: balance;
 }
 
 .text {
-  margin: 17px 0 0;
-  width: 100%;
-  max-width: 276px;
-  min-height: 59px;
-  color: #000000;
+  margin: var(--tech-card-text-margin, 17px 0 0);
+  width: min(100%, var(--tech-card-text-width, 276px));
+  max-width: 100%;
+  min-height: var(--tech-card-text-min-height, 59px);
+  height: var(--tech-card-text-height, auto);
+  text-align: var(--tech-card-text-align, center);
+  color: var(--tech-card-text-color, #000000);
   font-size: 20px;
   font-weight: 400;
-  line-height: 100%;
+  line-height: var(--tech-card-text-line-height, 20px);
   letter-spacing: 0;
   text-wrap: pretty;
 }
@@ -55,19 +59,22 @@
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
-  margin-top: 0;
+  margin-top: var(--tech-card-art-margin-top, 0);
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: var(--tech-card-image-align-self, center);
 }
 
 .artImage {
   width: auto;
   height: auto;
-  max-width: min(100%, 230px);
-  max-height: 100%;
+  max-width: min(100%, var(--tech-card-image-width, 230px));
+  max-height: var(--tech-card-image-height, 100%);
   object-fit: contain;
   display: block;
+  transform: scale(var(--tech-card-image-scale, 1));
+  transform-origin: center;
 }
 
 /* Composiciones con imagen de fondo (sirena, conectividad, gps) */

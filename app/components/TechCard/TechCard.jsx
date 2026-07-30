@@ -66,7 +66,7 @@ export default function TechCard({ slide, className = '' }) {
   if (!slide) return null;
 
   return (
-    <div className={`${styles.card} ${className}`.trim()}>
+    <div className={`${styles.card} ${className}`.trim()} style={slide.styleVars}>
       <p className={styles.title}>{slide.title}</p>
       {slide.text ? <p className={styles.text}>{slide.text}</p> : null}
       <div className={styles.artStage}>

@@ -15,14 +15,14 @@ import TechCard from '../../../components/TechCard/TechCard';
 
 import styles from '../../page.module.scss';
 
-const STORAGE_KEY = 'sise-comercio-tech-editor-v1';
+const STORAGE_KEY = 'sise-comercio-tech-editor-v3';
 
 const DEFAULT_POSITIONS = {
   perimetral: {
-    camaras: { top: 196, left: 670 },
-    magneticos: { top: 344, left: 524 },
-    cartel: { top: 271, left: 662 },
-    sirena: { top: 234, left: 664 }
+    camaras: { top: 190, left: 670 },
+    magneticos: { top: 334, left: 524 },
+    cartel: { top: 263, left: 662 },
+    sirena: { top: 227, left: 664 }
   },
   interior: {
     sensor: { top: 98, left: 206 },
@@ -45,7 +45,7 @@ const TAB_IDS = {
 };
 
 const HOUSE_BASE_SIZES = {
-  perimetral: { width: 735, height: 527 },
+  perimetral: { width: 735, height: 511 },
   interior: { width: 735, height: 511 },
   conectividad: { width: 735, height: 511 }
 };
@@ -58,20 +58,21 @@ export default function ComercioTechnologyModule() {
         label: 'PROTECCIÓN PERIMETRAL',
         houseClassName: styles.housePerimetral,
         points: [
-          { id: 'camaras', label: 'Cámaras de vigilancia' },
-          { id: 'magneticos', label: 'Magnéticos' },
-          { id: 'cartel', label: 'Cartel disuasivo' },
-          { id: 'sirena', label: 'Sirena exterior' }
+          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0 },
+          { id: 'magneticos', label: 'Magnéticos', slideIndex: 1 },
+          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 2 },
+          { id: 'sirena', label: 'Sirena exterior', slideIndex: 3 }
         ],
         slides: [
           {
             title: 'Cámaras de vigilancia',
             text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
             styleVars: {
-              '--tech-card-padding': '42px 83px',
+              '--tech-card-title-line-height': '32px',
+              '--tech-card-text-line-height': '20px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-image-margin-top': '17px'
+              '--tech-card-art-margin-top': '17px'
             },
             art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
           },
@@ -80,12 +81,11 @@ export default function ComercioTechnologyModule() {
             text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
             styleVars: {
               '--tech-card-padding': '48px 84px 33px 82px',
-              '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0 7px',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
-              '--tech-card-image-margin-top': '14px'
+              '--tech-card-art-margin-top': '14px'
             },
             art: { type: 'image', src: '/image/mpvxvi4u-1mah6ht.png', width: 160, height: 160 }
           },
@@ -94,12 +94,11 @@ export default function ComercioTechnologyModule() {
             text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
             styleVars: {
               '--tech-card-padding': '48px 82px 51px 84px',
-              '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
               '--tech-card-image-width': '139px',
               '--tech-card-image-height': '147px',
-              '--tech-card-image-margin-top': '9px'
+              '--tech-card-art-margin-top': '9px'
             },
             art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
           },
@@ -110,7 +109,7 @@ export default function ComercioTechnologyModule() {
               '--tech-card-padding': '48px 83px 44px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
-              '--tech-card-sirena-margin-top': '14px'
+              '--tech-card-art-margin-top': '14px'
             },
             art: {
               type: 'sirena',
@@ -125,13 +124,13 @@ export default function ComercioTechnologyModule() {
         label: 'PROTECCIÓN INTERIOR',
         houseClassName: styles.houseInterior,
         points: [
-          { id: 'sensor', label: 'Sensor de movimiento' },
-          { id: 'teclado', label: 'Teclado de configuración' },
-          { id: 'mando', label: 'Mando a distancia' },
-          { id: 'central', label: 'Central con comunicador' },
-          { id: 'camara', label: 'Cámara inteligente interior' },
-          { id: 'humo', label: 'Cortina de humo' },
-          { id: 'acceso', label: 'Control de acceso' }
+          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 0 },
+          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 1 },
+          { id: 'mando', label: 'Mando a distancia', slideIndex: 2 },
+          { id: 'central', label: 'Central con comunicador', slideIndex: 3 },
+          { id: 'camara', label: 'Cámara inteligente interior', slideIndex: 4 },
+          { id: 'humo', label: 'Cortina de humo', slideIndex: 5 },
+          { id: 'acceso', label: 'Control de acceso', slideIndex: 6 }
         ],
         slides: [
           {
@@ -247,7 +246,7 @@ export default function ComercioTechnologyModule() {
         id: TAB_IDS.CONECTIVIDAD,
         label: 'CONECTIVIDAD',
         houseClassName: styles.houseConectividad,
-        points: [{ id: 'app', label: 'Control desde el celular' }],
+        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0 }],
         slides: [
           {
             title: 'Control desde el celular',
@@ -307,7 +306,7 @@ export default function ComercioTechnologyModule() {
   const defaultPointToSlide = useMemo(() => {
     return tabs.reduce((acc, tab) => {
       acc[tab.id] = tab.points.reduce((map, point, idx) => {
-        map[point.id] = Math.min(idx, tab.slides.length - 1);
+        map[point.id] = Math.min(point.slideIndex ?? idx, tab.slides.length - 1);
         return map;
       }, {});
       return acc;
