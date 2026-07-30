@@ -274,13 +274,13 @@
   margin: 0 auto;
   --tech-title-width: 944px;
   --tech-title-font-size: 48px;
-  --tech-title-line-height: 46px;
+  --tech-title-line-height: 45.6px;
   --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
   --tech-tabs-width: 944px;
   --tech-tab-font-size: 20px;
-  --tech-group-width: 1320px;
+  --tech-group-width: 1255px;
   --tech-card-group-width: 520px;
-  --tech-row-gap: clamp(24px, 3vw, 64px);
+  --tech-row-gap: 0px;
   --tech-house-max-width: 735px;
   /* Mismo aire arriba y abajo: sin el padding inferior el plano quedaba
      pegado a la sección siguiente. */
@@ -300,7 +300,7 @@
 }
 
 .technologyTitleStrong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .technologyTitleLight {
@@ -312,7 +312,7 @@
   width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
-  padding: 0 16px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -519,11 +519,11 @@
 }
 
 .pointButton.pointActive {
-  background: rgba(33, 119, 165, 0.75);
+  background: rgba(33, 119, 165, 0.8);
   filter:
     drop-shadow(0 0 20px rgba(33, 119, 165, 0.4))
     drop-shadow(0 0 41.4px rgba(33, 119, 165, 0.75));
-  transform: scale(1.36);
+  transform: scale(1.4);
   z-index: 2;
 }
 
@@ -533,14 +533,14 @@
   align-items: center;
   border-radius: 50%;
   background: #2177a5;
-  padding: 4px;
+  padding: 4.595px;
 }
 
 .ellipse3 {
   border-radius: 50%;
   background: #ffffff;
-  width: 8px;
-  height: 8px;
+  width: 8.18px;
+  height: 8.18px;
 }
 
 .ellipse1,
@@ -551,8 +551,8 @@
   display: flex;
   align-items: center;
   border-radius: 50%;
-  background: rgba(33, 119, 165, 0.5);
-  padding: 6px;
+  background: rgba(33, 119, 165, 0.2);
+  padding: 6.315px;
 }
 
 .ellipse1 {
@@ -580,7 +580,7 @@
 
 /* Figma: grupo de 520px = flecha 30 + gap 9 + card 442 + gap 9 + flecha 30. */
 .techCardGroup {
-  margin-top: 55px;
+  margin-top: 57px;
   width: min(var(--tech-card-group-width), 100%);
   min-width: 0;
   height: 357px;

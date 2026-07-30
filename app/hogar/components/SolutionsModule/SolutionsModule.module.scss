@@ -10,19 +10,19 @@
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
   --solutions-title-width: calc(var(--solutions-card-width) - 8px);
   --solutions-body-width: calc(var(--solutions-card-width) - 31px);
-  --solutions-card-title-top: 36px;
+  --solutions-card-title-top: 50px;
   --solutions-card-title-min-height: 39px;
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 94px;
+  --solutions-card-body-top: 110px;
   --solutions-card-body-font-size: 16px;
   --solutions-card-body-line-height: 16px;
-  --solutions-alarmas-body-top: 112px;
-  --solutions-cctv-body-top: 117px;
-  --solutions-cerco-body-top: 117px;
-  --solutions-barrio-body-top: 120px;
-  --solutions-desocupadas-title-top: 36px;
-  --solutions-desocupadas-body-top: 119px;
+  --solutions-alarmas-body-top: 106px;
+  --solutions-cctv-body-top: 114px;
+  --solutions-cerco-body-top: 114px;
+  --solutions-barrio-body-top: 117px;
+  --solutions-desocupadas-title-top: 40px;
+  --solutions-desocupadas-body-top: 131px;
   position: relative;
   width: 100%;
   background: #2177a5;
@@ -35,6 +35,7 @@
   width: min(1920px, 100%);
   height: var(--solutions-total-height);
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .copyBlock {
@@ -67,12 +68,12 @@
   margin: 0;
   width: 578px;
   height: 59px;
-  line-height: 30px;
+  line-height: 30.4px;
   font-size: 32px;
 }
 
 .leadLight {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .leadStrong {
@@ -83,7 +84,7 @@
   margin: 28px 0 0;
   width: 578px;
   height: 82px;
-  line-height: 39px;
+  line-height: 38.71px;
   font-size: 48px;
   font-weight: 600;
 }
@@ -97,7 +98,7 @@
 }
 
 .bodyLight {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .bodyStrong {
@@ -110,6 +111,7 @@
   left: 0;
   width: 100%;
   height: var(--solutions-grid-height);
+  overflow: hidden;
 }
 
 .watermark {
@@ -150,13 +152,13 @@
 .heading {
   position: absolute;
   z-index: 2;
-  top: 51px;
+  top: 55px;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
   width: min(var(--solutions-content-width), calc(100% - 48px));
-  height: 46px;
-  line-height: 46px;
+  height: 37px;
+  line-height: 45.6px;
   font-size: 48px;
   font-weight: 600;
   text-align: left;
@@ -165,7 +167,7 @@
 .grid {
   position: absolute;
   z-index: 2;
-  top: 113px;
+  top: 117px;
   left: 50%;
   transform: translateX(-50%);
   width: var(--solutions-grid-width);
@@ -198,6 +200,7 @@
   text-align: center;
   text-transform: uppercase;
   color: #2177a5;
+  text-wrap: balance;
 }
 
 .card {
@@ -238,6 +241,7 @@
 .cctv .cardTitle {
   width: var(--solutions-title-width);
   min-height: 39px;
+  top: 50px;
 }
 
 .cctv .cardBody {
@@ -247,8 +251,12 @@
 }
 
 .cerco .cardTitle {
-  width: calc(var(--solutions-card-width) + 1px);
+  width: 212px;
   min-height: 39px;
+  top: 50px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-wrap: balance;
 }
 
 .cerco .cardBody {
@@ -258,8 +266,9 @@
 }
 
 .barrio .cardTitle {
-  width: calc(var(--solutions-card-width) - 32px);
+  width: 179px;
   min-height: 39px;
+  top: 50px;
 }
 
 .barrio .cardBody {
@@ -293,19 +302,19 @@
     --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
     --solutions-body-width: calc(var(--solutions-card-width) - 31px);
-    --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
+    --solutions-card-title-top: clamp(38px, 3vw, 50px);
     --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
     --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
     --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
-    --solutions-card-body-top: clamp(76px, 6vw, 94px);
+    --solutions-card-body-top: clamp(92px, 7.5vw, 110px);
     --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
     --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
-    --solutions-alarmas-body-top: clamp(92px, 7.2vw, 112px);
-    --solutions-cctv-body-top: clamp(96px, 7.5vw, 117px);
-    --solutions-cerco-body-top: clamp(96px, 7.5vw, 117px);
-    --solutions-barrio-body-top: clamp(100px, 7.8vw, 120px);
-    --solutions-desocupadas-title-top: clamp(30px, 2.4vw, 36px);
-    --solutions-desocupadas-body-top: clamp(99px, 7.8vw, 119px);
+    --solutions-alarmas-body-top: clamp(94px, 7.5vw, 106px);
+    --solutions-cctv-body-top: clamp(102px, 8vw, 114px);
+    --solutions-cerco-body-top: clamp(102px, 8vw, 114px);
+    --solutions-barrio-body-top: clamp(105px, 8.2vw, 117px);
+    --solutions-desocupadas-title-top: clamp(32px, 2.7vw, 40px);
+    --solutions-desocupadas-body-top: clamp(111px, 8.8vw, 131px);
   }
 
   .intro {
@@ -322,14 +331,14 @@
   .lead {
     height: auto;
     font-size: clamp(26px, 2.05vw, 32px);
-    line-height: clamp(26px, 2.05vw, 30px);
+    line-height: clamp(26px, 2.1vw, 30.4px);
   }
 
   .punch {
     height: auto;
     margin-top: clamp(20px, 1.9vw, 28px);
     font-size: clamp(38px, 3.25vw, 48px);
-    line-height: clamp(33px, 2.7vw, 39px);
+    line-height: clamp(33px, 2.7vw, 38.71px);
   }
 
   .body {
@@ -341,7 +350,7 @@
   .heading {
     height: auto;
     font-size: clamp(40px, 3.2vw, 48px);
-    line-height: clamp(40px, 3.2vw, 46px);
+    line-height: clamp(40px, 3.2vw, 45.6px);
   }
 
   .grid {
@@ -362,34 +371,34 @@
     --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
     --solutions-body-width: calc(var(--solutions-card-width) - 28px);
-    --solutions-card-title-top: 28px;
+    --solutions-card-title-top: 36px;
     --solutions-card-title-min-height: 34px;
     --solutions-card-title-font-size: 16px;
     --solutions-card-title-line-height: 16px;
-    --solutions-card-body-top: 74px;
+    --solutions-card-body-top: 88px;
     --solutions-card-body-font-size: 13px;
     --solutions-card-body-line-height: 13px;
-    --solutions-alarmas-body-top: 90px;
-    --solutions-cctv-body-top: 94px;
-    --solutions-cerco-body-top: 94px;
-    --solutions-barrio-body-top: 96px;
-    --solutions-desocupadas-title-top: 28px;
-    --solutions-desocupadas-body-top: 95px;
+    --solutions-alarmas-body-top: 87px;
+    --solutions-cctv-body-top: 95px;
+    --solutions-cerco-body-top: 95px;
+    --solutions-barrio-body-top: 98px;
+    --solutions-desocupadas-title-top: 31px;
+    --solutions-desocupadas-body-top: 108px;
   }
 
   .heading {
-    top: 58px;
+    top: 56px;
   }
 
   .lead {
     font-size: 24px;
-    line-height: 26px;
+    line-height: 26.5px;
   }
 
   .punch {
     margin-top: 18px;
     font-size: 34px;
-    line-height: 34px;
+    line-height: 31px;
   }
 
   .body {

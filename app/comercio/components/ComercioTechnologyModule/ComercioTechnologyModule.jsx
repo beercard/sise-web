@@ -72,7 +72,9 @@ export default function ComercioTechnologyModule() {
               '--tech-card-text-line-height': '20px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-art-margin-top': '17px'
+              // Figma: la ilustración arranca en y=198. El arte va centrado en el
+              // stage, asi que el margen lo corre la mitad: de 17 a -6 baja 11.
+              '--tech-card-art-margin-top': '-6px'
             },
             art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
           },
@@ -82,7 +84,9 @@ export default function ComercioTechnologyModule() {
             styleVars: {
               '--tech-card-padding': '48px 84px 33px 82px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '12px 0 0 7px',
+              '--tech-card-text-margin': '12px 0 0',
+              // Figma: texto de 265, que centrado en la card de 442 cae en x=89.
+              '--tech-card-text-width': '265px',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
               '--tech-card-art-margin-top': '14px'
@@ -109,6 +113,8 @@ export default function ComercioTechnologyModule() {
               '--tech-card-padding': '48px 83px 44px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
+              // Figma: texto de 273, que centrado en la card de 442 cae en x=85.
+              '--tech-card-text-width': '273px',
               '--tech-card-art-margin-top': '14px'
             },
             art: {
@@ -137,7 +143,11 @@ export default function ComercioTechnologyModule() {
             title: 'Sensor de movimiento',
             text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
             styleVars: {
-              '--tech-card-padding': '35px 83px 13px'
+              '--tech-card-padding': '35px 83px 13px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '273px',
+              '--tech-card-image-width': '193px',
+              '--tech-card-image-height': '180px'
             },
             art: {
               type: 'overlay',
@@ -152,8 +162,17 @@ export default function ComercioTechnologyModule() {
             title: 'Teclado de configuración',
             text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
             styleVars: {
-              '--tech-card-padding': '35px 83px 189px',
-              '--tech-card-text-margin': '11px 0 0'
+              // 189px de padding inferior venian del layout viejo, donde el arte
+              // iba posicionado en absoluto: aca aplastaban el stage y la
+              // ilustracion no se veia.
+              '--tech-card-padding': '35px 83px 12px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '216px',
+              '--tech-card-image-width': '201px',
+              '--tech-card-image-height': '188px',
+              // El arte va centrado en el stage, asi que el margen lo corre la
+              // mitad: -12 lo sube 6 y lo deja en y=157.
+              '--tech-card-art-margin-top': '-12px'
             },
             art: {
               type: 'absolute',
@@ -169,10 +188,15 @@ export default function ComercioTechnologyModule() {
             title: 'Mando a distancia',
             text: 'Activá o desactivá tu sistema con comodidad.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 220px',
+              // Mismo caso que el teclado: 220px de padding inferior dejaban el
+              // stage sin alto.
+              '--tech-card-padding': '48px 83px 13px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '19px 0 0',
-              '--tech-card-text-width': '216px'
+              '--tech-card-text-margin': '21px 0 0',
+              '--tech-card-text-width': '216px',
+              '--tech-card-image-width': '174px',
+              '--tech-card-image-height': '163px',
+              '--tech-card-art-margin-top': '-22px'
             },
             art: {
               type: 'absolute',
@@ -193,8 +217,7 @@ export default function ComercioTechnologyModule() {
               '--tech-card-text-margin': '13px 0 0 15px',
               '--tech-card-text-width': '246px',
               '--tech-card-image-width': '219px',
-              '--tech-card-image-height': '156px',
-              '--tech-card-image-margin-top': '9px'
+              '--tech-card-image-height': '156px'
             },
             art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
           },
@@ -207,8 +230,7 @@ export default function ComercioTechnologyModule() {
               '--tech-card-text-margin': '16px 0 0',
               '--tech-card-text-width': '211px',
               '--tech-card-image-width': '192px',
-              '--tech-card-image-height': '117px',
-              '--tech-card-image-margin-top': '21px'
+              '--tech-card-image-height': '117px'
             },
             art: { type: 'image', src: '/image/mpx7jr8n-q2uypmy.png', width: 192, height: 117 }
           },
@@ -216,11 +238,14 @@ export default function ComercioTechnologyModule() {
             title: 'Cortina de humo',
             text: 'Sistema que libera una niebla densa ante intrusiones, reduciendo la visibilidad y neutralizando el accionar del delincuente.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 22px',
+              // El texto mide 357 en el diseño y no entra con 83 de padding:
+              // (442 - 357) / 2 = 42.
+              '--tech-card-padding': '48px 42px 22px',
               '--tech-card-title-min-height': '39px',
+              '--tech-card-text-margin': '4px 0 0',
+              '--tech-card-text-width': '357px',
               '--tech-card-image-width': '262px',
               '--tech-card-image-height': '187px',
-              '--tech-card-image-margin-top': '34px',
               '--tech-card-image-align-self': 'center'
             },
             art: { type: 'image', src: '/image/mpvxyq6j-i5v6nap.png', width: 262, height: 187 }
@@ -229,13 +254,14 @@ export default function ComercioTechnologyModule() {
             title: 'Control de acceso',
             text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 22px',
+              // El texto mide 354: (442 - 354) / 2 = 44 de padding lateral.
+              '--tech-card-padding': '48px 44px 22px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '14px 0 0',
+              '--tech-card-title-width': '240px',
+              '--tech-card-text-margin': '-17px 0 0',
               '--tech-card-text-width': '354px',
               '--tech-card-image-width': '94px',
               '--tech-card-image-height': '176px',
-              '--tech-card-image-margin-top': '12px',
               '--tech-card-image-align-self': 'center'
             },
             art: { type: 'image', src: '/image/mpvxz539-e73c1z1.png', width: 94, height: 176 }

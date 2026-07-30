@@ -22,6 +22,9 @@ function ArtContent({ art, fallbackAlt = '' }) {
         className={styles.artImage}
         width={art.width ?? art.image?.width ?? 220}
         height={art.height ?? art.image?.height ?? 170}
+        /* Algunas ilustraciones vienen rotadas del diseño (p. ej. el mando a
+           distancia, a 16°). Sin esto la rotación se perdía. */
+        style={art.rotate ? { transform: `rotate(${art.rotate}deg)` } : undefined}
       />
     );
   }

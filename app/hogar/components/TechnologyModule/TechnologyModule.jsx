@@ -14,15 +14,15 @@ import {
 
 import styles from '../../page.module.scss';
 
-const STORAGE_KEY = 'sise-tech-editor-v1';
+const STORAGE_KEY = 'sise-tech-editor-v2';
 
 const DEFAULT_POSITIONS = {
   perimetral: {
-    cerco: { top: 245, left: 53 },
-    camaras: { top: 215, left: 150 },
-    magneticos: { top: 289, left: 195 },
-    cartel: { top: 238, left: 618 },
-    sirena: { top: 259, left: 222 }
+    cerco: { top: 243, left: 230 },
+    camaras: { top: 272, left: 202 },
+    magneticos: { top: 208, left: 161 },
+    cartel: { top: 228, left: 74 },
+    sirena: { top: 236, left: 614 }
   },
   interior: {
     sensor: { top: 121, left: 408 },
@@ -43,7 +43,7 @@ const TAB_IDS = {
 };
 
 const HOUSE_BASE_SIZES = {
-  perimetral: { width: 735, height: 527 },
+  perimetral: { width: 735, height: 505 },
   interior: { width: 735, height: 505 },
   conectividad: { width: 735, height: 505 }
 };
@@ -374,6 +374,7 @@ export default function TechnologyModule() {
     activeAreaId: activeTabId,
     points,
     areaRef: houseRef,
+    pointSize: 30,
     getScale,
     onPointGrabbed: setActivePointId
   });

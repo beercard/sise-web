@@ -11,25 +11,25 @@ const hogarSolutions = [
   },
   {
     key: 'cctv',
-    title: ['CCTV /', 'VIDEOVIGILANCIA'],
+    title: ['CCTV / VIDEOVIGILANCIA'],
     body:
       'Cámaras con acceso remoto que permiten ver en tiempo real lo que sucede en tu hogar y contar con grabaciones ante cualquier incidente.'
   },
   {
     key: 'cerco',
-    title: ['CERCO ELÉCTRICO /', 'MONITOREADO'],
+    title: ['Cerco\u00A0eléctrico/', 'monitoreado'],
     body:
       'Protección perimetral que disuade y detecta intrusiones antes de que ocurran. Puede integrarse al monitoreo de alarmas para alertas inmediatas.'
   },
   {
     key: 'barrio',
-    title: ['SISTEMA DE', 'BARRIO SEGURO'],
+    title: ['SISTEMA DE BARRIO SEGURO'],
     body:
       'Solución colaborativa que integra cámaras conectadas a un monitoreo centralizado para mayor cobertura y prevención.'
   },
   {
     key: 'desocupadas',
-    title: ['MONITOREO DE', 'PROPIEDADES', 'DESOCUPADAS'],
+    title: ['MONITOREO DE', 'PROPIEDADES DESOCUPADAS'],
     body:
       'Protección para casas en venta, alquiler o terrenos, evitando intrusiones, vandalismo u ocupaciones.'
   }
@@ -64,9 +64,10 @@ export default function SolutionsModule() {
               <span className={styles.bodyStrong}>monitoreo profesional 24/7</span>
               <span className={styles.bodyLight}> y </span>
               <span className={styles.bodyStrong}>control total desde tu celular</span>
+              <span className={styles.bodyLight}>, para que puedas trabajar, viajar o descansar con la certeza de que </span>
+              <span className={styles.bodyStrong}>un equipo experto cuida lo que más querés en todo momento</span>
               <span className={styles.bodyLight}>
-                , para que puedas trabajar, viajar o descansar con la certeza de que un equipo experto
-                cuida lo que más querés en todo momento.
+                .
               </span>
             </p>
           </div>
