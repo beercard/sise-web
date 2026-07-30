@@ -21,3 +21,6 @@ test-results
 playwright-report
 debug.log
 
+# Capturas temporales de verificacion
+.tmp-*.png
+why-tech-mobile.png
