@@ -303,7 +303,10 @@
 
 .modalTextAlt {
   margin: 0;
-  width: 232px;
+  /* Figma marca 232px, pero con la fuente del navegador ese ancho parte el
+     texto en 9 lineas en vez de 8. 236px es el minimo que respeta el corte del
+     diseño. */
+  width: 236px;
   min-height: 0;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   color: #ffffff;
@@ -316,7 +319,9 @@
 
 .modalTextAlt2 {
   margin: 0;
-  width: 224px;
+  /* Figma marca 224px, pero con la fuente del navegador ese ancho parte el
+     texto en 9 lineas en vez de 8. 226px es el minimo que respeta el corte. */
+  width: 226px;
   min-height: 0;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   color: #ffffff;
