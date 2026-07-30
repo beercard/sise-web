@@ -2,15 +2,21 @@
 
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import puenteImage from '../../../../.figma/image/ms6v59ky-vd0rezk.png';
-import girasolesImage from '../../../../.figma/image/ms6urfwf-45aaugg.png';
-import lamarcaImage from '../../../../.figma/image/ms6urfwf-q65k0a6.png';
-import utnImage from '../../../../.figma/image/ms6v59l9-0ubsc71.png';
-import iaccoImage from '../../../../.figma/image/ms6v5bki-qah081x.png';
-import sixtyImage from '../../../../.figma/image/ms6v59l5-8bq4anf.png';
-import golfImage from '../../../../.figma/image/ms6v59l2-4rr3h6x.png';
 
 import styles from '../../page.module.scss';
+
+/*
+ * Las ilustraciones viven en /public como el resto de las imagenes del sitio.
+ * Antes se importaban desde `.figma/`, que esta en .gitignore: existian en
+ * local pero no en el repo, asi que el build de CI fallaba con module not found.
+ */
+const puenteImage = '/image/rse-puente.webp';
+const girasolesImage = '/image/rse-girasoles.webp';
+const lamarcaImage = '/image/rse-lamarca.webp';
+const utnImage = '/image/rse-utn.webp';
+const iaccoImage = '/image/rse-iacco.webp';
+const sixtyImage = '/image/rse-sixty.webp';
+const golfImage = '/image/rse-golf.webp';
 
 const DESKTOP_CARDS = [
   {
