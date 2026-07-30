@@ -32,7 +32,17 @@ function ArtContent({ art, fallbackAlt = '' }) {
   if (art.backgroundSrc) {
     const badgeSrc = art.svgSrc ?? art.iconSrc;
     return (
-      <div className={styles.frame}>
+      <div
+        className={styles.frame}
+        style={{
+          '--frame-bg': `url('${art.backgroundSrc}')`,
+          width: art.wrapperWidth,
+          height: art.wrapperHeight,
+          marginTop: art.wrapperMarginTop,
+          marginLeft: art.wrapperMarginLeft,
+          marginRight: art.wrapperMarginRight
+        }}
+      >
         {/* El overlay va detrás del fondo: se ve a través de la ventana
             transparente del marco (p. ej. la cámara en la pantalla del GPS). */}
         {art.overlaySrc ? (
@@ -42,16 +52,34 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={styles.frameOverlay}
             width={art.overlayWidth ?? 143}
             height={art.overlayHeight ?? 143}
+            style={{
+              top: art.overlayTop,
+              right: art.overlayRight,
+              bottom: art.overlayBottom,
+              left: art.overlayLeft,
+              transform: art.overlayTransform,
+              maxWidth: art.overlayMaxWidth,
+              maxHeight: art.overlayMaxHeight
+            }}
           />
         ) : null}
-        <div
-          className={styles.frameBg}
-          style={{ '--frame-bg': `url('${art.backgroundSrc}')` }}
-          aria-hidden="true"
-        />
+        <div className={styles.frameBg} aria-hidden="true" />
         {/* Banda de color sobre la ilustración (la conectividad la usa para la
             cabecera de la app en la pantalla del celular). */}
         {art.bar ? <span className={styles.frameBar} aria-hidden="true" /> : null}
+        {art.badgeBlock ? (
+          <span
+            className={styles.frameBadgeBlock}
+            aria-hidden="true"
+            style={{
+              width: art.badgeBlock.width,
+              height: art.badgeBlock.height,
+              top: art.badgeBlock.top,
+              left: art.badgeBlock.left,
+              background: art.badgeBlock.background
+            }}
+          />
+        ) : null}
         {badgeSrc ? (
           <Image
             src={badgeSrc}
@@ -59,6 +87,15 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={styles.frameBadge}
             width={art.iconWidth ?? 69}
             height={art.iconHeight ?? 24}
+          />
+        ) : null}
+        {art.cornerSrc ? (
+          <Image
+            src={art.cornerSrc}
+            alt=""
+            className={styles.frameCorner}
+            width={art.cornerWidth ?? 18}
+            height={art.cornerHeight ?? 11}
           />
         ) : null}
       </div>
@@ -77,6 +114,20 @@ export default function TechCard({ slide, className = '' }) {
       {slide.text ? <p className={styles.text}>{slide.text}</p> : null}
       <div className={styles.artStage}>
         <ArtContent art={slide.art} fallbackAlt={slide.title} />
+        {slide.art?.accent ? (
+          <span
+            className={styles.artAccent}
+            aria-hidden="true"
+            style={{
+              width: slide.art.accent.width,
+              height: slide.art.accent.height,
+              top: slide.art.accent.top,
+              left: slide.art.accent.left,
+              background: slide.art.accent.background,
+              transform: slide.art.accent.rotate ? `rotate(${slide.art.accent.rotate}deg)` : undefined
+            }}
+          />
+        ) : null}
       </div>
     </div>
   );

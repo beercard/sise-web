@@ -1,27 +1,12 @@
-/*
- * Módulo de soluciones — misma estructura y geometría que /hogar y /comercio.
- * Lo único propio de esta página es el color de marca y el contenido.
- */
 .section {
-  --solutions-total-height: 775px;
-  --solutions-grid-height: 458px;
-  --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
+  --solutions-total-height: 673px;
+  --solutions-copy-height: 215px;
+  --solutions-grid-height: calc(var(--solutions-total-height) - var(--solutions-copy-height));
   --solutions-content-width: 1196px;
-  --solutions-intro-gap: 44px;
-  --solutions-copy-gap: 22px;
+  --solutions-grid-width: 1187px;
   --solutions-card-width: 211px;
   --solutions-card-height: 261px;
   --solutions-grid-gap: 33px;
-  --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-  --solutions-title-width: 203px;
-  --solutions-card-title-top: 36px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-title-font-size: 20px;
-  --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 112px;
-  --solutions-card-body-font-size: 16px;
-  --solutions-card-body-line-height: 16px;
-  --solutions-card-body-width: 180px;
   position: relative;
   width: 100%;
   background: #06234c;
@@ -39,77 +24,33 @@
 .copyBlock {
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: 88px;
   left: 50%;
   transform: translateX(-50%);
-  height: var(--solutions-copy-height);
   width: min(var(--solutions-content-width), calc(100% - 48px));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.intro {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 578px) minmax(0, 574px);
-  justify-content: center;
-  gap: var(--solutions-intro-gap);
-  align-items: start;
-}
-
-.copyMain {
-  width: 578px;
-  max-width: 100%;
 }
 
 .lead,
-.body,
-.punch,
-.heading {
+.heading,
+.cardTitle,
+.cardBody {
   margin: 0;
 }
 
 .lead {
-  width: 100%;
-  min-height: 59px;
-  line-height: 30px;
+  width: 1027px;
+  max-width: 100%;
+  min-height: 69px;
+  line-height: 30.4px;
   font-size: 32px;
 }
 
 .leadLight {
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .leadStrong {
-  font-weight: 600;
-}
-
-.body {
-  width: 100%;
-  min-height: 44px;
-  margin-top: 4px;
-  line-height: 20px;
-  font-size: 20px;
-}
-
-.bodyLight {
-  font-weight: 300;
-}
-
-.bodyStrong {
-  font-weight: 600;
-}
-
-.punch {
-  position: relative;
-  margin-top: var(--solutions-copy-gap);
-  width: calc(100% - 4px);
-  min-height: 82px;
-  margin-left: 4px;
-  line-height: 38.712px;
-  font-size: 48px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .gridArea {
@@ -123,7 +64,6 @@
 .watermark {
   position: absolute;
   inset: 0;
-  top: 0;
   left: 50%;
   width: 2059px;
   transform: translateX(calc(-50% + 12.5px));
@@ -135,7 +75,6 @@
 }
 
 .watermarkRow {
-  margin: 0;
   height: 151px;
   background-repeat: no-repeat;
   background-position: center;
@@ -162,10 +101,9 @@
   top: 51px;
   left: 50%;
   transform: translateX(-50%);
-  margin: 0;
   width: min(var(--solutions-content-width), calc(100% - 48px));
   min-height: 37px;
-  line-height: 46px;
+  line-height: 45.6px;
   font-size: 48px;
   font-weight: 600;
   text-align: left;
@@ -197,144 +135,160 @@
 
 .cardTitle {
   position: absolute;
-  top: var(--solutions-card-title-top);
   left: 50%;
   transform: translateX(-50%);
-  width: var(--solutions-title-width);
-  min-height: var(--solutions-card-title-min-height);
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: var(--solutions-card-title-line-height);
-  letter-spacing: 0.05em;
-  font-size: var(--solutions-card-title-font-size);
-  font-weight: 700;
   text-align: center;
   text-transform: uppercase;
   color: #06234c;
+  letter-spacing: 0.05em;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.cardTitle span {
+  display: block;
 }
 
 .cardBody {
   position: absolute;
-  top: var(--solutions-card-body-top);
   left: 50%;
   transform: translateX(-50%);
-  margin: 0;
-  width: var(--solutions-card-body-width);
-  line-height: var(--solutions-card-body-line-height);
-  font-size: var(--solutions-card-body-font-size);
-  font-weight: 400;
   text-align: center;
   color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
   text-wrap: pretty;
 }
 
+.cardGroup:first-child .cardTitle {
+  top: 72px;
+  width: 203px;
+  min-height: 39px;
+}
 
+.cardGroup:first-child .cardBody {
+  top: 134px;
+  width: 180px;
+  min-height: 47px;
+}
 
+.cardGroup:nth-child(2) .cardTitle {
+  top: 72px;
+  width: 203px;
+  min-height: 39px;
+}
 
+.cardGroup:nth-child(2) .cardBody {
+  top: 134px;
+  width: 180px;
+  min-height: 47px;
+}
 
+.cardGroup:nth-child(3) .cardTitle {
+  top: 86px;
+  width: 212px;
+  min-height: 15px;
+}
 
+.cardGroup:nth-child(3) .cardBody {
+  top: 142px;
+  width: 180px;
+  min-height: 31px;
+}
+
+.cardGroup:nth-child(4) .cardTitle {
+  top: 72px;
+  width: 211px;
+  min-height: 39px;
+}
+
+.cardGroup:nth-child(4) .cardBody {
+  top: 134px;
+  width: 199px;
+  min-height: 47px;
+}
+
+.cardGroup:nth-child(5) .cardTitle {
+  top: 82px;
+  width: 203px;
+  min-height: 19px;
+}
+
+.cardGroup:nth-child(5) .cardBody {
+  top: 126px;
+  width: 149px;
+  min-height: 63px;
+}
 
 @media (max-width: 1440px) {
   .section {
-    --solutions-total-height: 752px;
-    --solutions-grid-height: 448px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
+    --solutions-total-height: 640px;
+    --solutions-copy-height: 205px;
     --solutions-content-width: 1080px;
-    --solutions-intro-gap: clamp(20px, 2vw, 32px);
-    --solutions-copy-gap: clamp(18px, 1.5vw, 22px);
-    --solutions-card-width: clamp(184px, 14vw, 211px);
-    --solutions-card-height: clamp(238px, 18vw, 261px);
-    --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
-    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
-    --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
-    --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
-    --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
-    --solutions-card-body-top: clamp(94px, 7.8vw, 112px);
-    --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
-    --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
-    --solutions-card-body-width: clamp(156px, 12vw, 180px);
-  }
-
-  .intro {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .copyMain {
-    width: 100%;
+    --solutions-grid-width: 1080px;
+    --solutions-card-width: 188px;
+    --solutions-card-height: 246px;
+    --solutions-grid-gap: 22px;
   }
 
   .lead {
-    width: 100%;
-    min-height: 0;
+    width: 920px;
     font-size: clamp(26px, 2.1vw, 32px);
-    line-height: clamp(26px, 2vw, 30px);
-  }
-
-  .body {
-    width: 100%;
-    min-height: 0;
-    font-size: clamp(17px, 1.42vw, 20px);
-    line-height: clamp(18px, 1.42vw, 20px);
-  }
-
-  .punch {
-    min-height: 0;
-    font-size: clamp(38px, 3.2vw, 48px);
-    line-height: clamp(33px, 2.7vw, 39px);
-    margin-left: 0;
-    width: 100%;
+    line-height: clamp(26px, 2vw, 30.4px);
   }
 
   .heading {
-    top: 47px;
-    font-size: clamp(40px, 3.2vw, 48px);
-    line-height: clamp(40px, 3.2vw, 46px);
+    top: 44px;
+    font-size: clamp(40px, 3.1vw, 48px);
+    line-height: clamp(40px, 3vw, 45.6px);
   }
 
-  .gridArea {
-    top: var(--solutions-copy-height);
-    height: var(--solutions-grid-height);
+  .grid {
+    top: 104px;
   }
 
-  .watermarkRow {
-    height: clamp(124px, 10.5vw, 151px);
+  .cardTitle {
+    font-size: clamp(16px, 1.28vw, 20px);
+    line-height: clamp(16px, 1.28vw, 20px);
+  }
+
+  .cardBody {
+    font-size: clamp(13px, 0.98vw, 16px);
+    line-height: clamp(13px, 0.98vw, 16px);
   }
 }
 
 @media (max-width: 1280px) and (min-width: 1201px) {
   .section {
-    --solutions-total-height: 712px;
-    --solutions-grid-height: 426px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
+    --solutions-total-height: 610px;
+    --solutions-copy-height: 188px;
     --solutions-content-width: 980px;
-    --solutions-intro-gap: 24px;
-    --solutions-copy-gap: 18px;
+    --solutions-grid-width: 980px;
     --solutions-card-width: 180px;
     --solutions-card-height: 234px;
-    --solutions-grid-gap: 16px;
-    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: 28px;
-    --solutions-card-title-min-height: 34px;
-    --solutions-card-title-font-size: 16px;
-    --solutions-card-title-line-height: 16px;
-    --solutions-card-body-top: 86px;
-    --solutions-card-body-font-size: 13px;
-    --solutions-card-body-line-height: 13px;
-    --solutions-card-body-width: 154px;
+    --solutions-grid-gap: 20px;
   }
 
-  .gridArea {
-    top: var(--solutions-copy-height);
+  .copyBlock {
+    top: 76px;
+  }
+
+  .lead {
+    width: 860px;
   }
 
   .heading {
-    top: 44px;
+    top: 40px;
+  }
+
+  .grid {
+    top: 96px;
   }
 }
 
@@ -349,27 +303,14 @@
     top: auto;
     left: auto;
     transform: none;
-    height: auto;
     width: calc(100% - 80px);
     margin: 0 auto;
-    justify-content: flex-start;
+    padding-top: 64px;
   }
 
-  .intro {
-    position: relative;
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .copyMain {
+  .lead {
     width: 100%;
-  }
-
-  .punch {
-    width: 100%;
-    margin-top: var(--solutions-copy-gap);
-    margin-left: 0;
-    min-height: 0;
+    text-align: center;
   }
 
   .gridArea {
@@ -378,7 +319,7 @@
     left: auto;
     width: 100%;
     height: auto;
-    margin-top: 38px;
+    margin-top: 36px;
   }
 
   .heading {
@@ -388,57 +329,26 @@
     transform: none;
     width: calc(100% - 80px);
     margin: 0 auto 32px;
-    min-height: 0;
     text-align: center;
   }
 
   .grid {
     top: auto;
     width: calc(100% - 80px);
-    grid-template-columns: repeat(3, var(--solutions-card-width));
+    grid-template-columns: repeat(3, minmax(0, var(--solutions-card-width)));
     justify-content: center;
-    gap: var(--solutions-grid-gap);
-  }
-
-  .watermark {
-    top: 22px;
   }
 }
 
 @media (max-width: 960px) {
-  .section {
-    --solutions-grid-gap: 24px;
-  }
-
-  .intro {
-    width: 100%;
-    gap: 18px;
-  }
-
   .copyBlock {
-    height: auto;
     width: calc(100% - 32px);
-    justify-content: flex-start;
+    padding-top: 48px;
   }
 
   .lead {
     font-size: 18px;
     line-height: 24px;
-    text-align: center;
-  }
-
-  .body {
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-  }
-
-  .punch {
-    width: calc(100% - 32px);
-    margin-top: 18px;
-    font-size: 28px;
-    line-height: 32px;
-    text-align: center;
   }
 
   .heading {
@@ -446,11 +356,6 @@
     margin-bottom: 24px;
     font-size: 36px;
     line-height: 38px;
-    text-align: center;
-  }
-
-  .gridArea {
-    margin-top: 24px;
   }
 
   .grid {
@@ -460,7 +365,6 @@
   }
 
   .watermark {
-    top: 18px;
     width: 1300px;
     transform: translateX(-50%);
   }

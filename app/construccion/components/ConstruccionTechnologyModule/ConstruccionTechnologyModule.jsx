@@ -97,19 +97,13 @@ export default function ConstruccionTechnologyModule() {
           title: 'Cámaras de vigilancia',
           text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
           styleVars: {
-            '--tech-card-padding': '42px 83px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '276px',
-            '--tech-card-text-margin': '17px 0 0',
+            '--tech-card-title-line-height': '32px',
+            '--tech-card-text-line-height': '20px',
             '--tech-card-image-width': '192px',
             '--tech-card-image-height': '117px',
-            '--tech-card-image-margin-top': '17px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-art-margin-top': '-6px'
           },
-          art: { type: 'image', src: '/image/mq1driuo-mdt8itt.png', width: 192, height: 117 }
+          art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
         },
         {
           id: 'magneticos',
@@ -117,19 +111,14 @@ export default function ConstruccionTechnologyModule() {
           text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
           styleVars: {
             '--tech-card-padding': '48px 84px 33px 82px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-title-align': 'center',
-            '--tech-card-text-width': '265px',
             '--tech-card-text-margin': '12px 0 0 7px',
+            '--tech-card-text-width': '265px',
             '--tech-card-image-width': '160px',
             '--tech-card-image-height': '160px',
-            '--tech-card-image-margin-top': '14px',
-            '--tech-card-image-margin-left': '60px'
+            '--tech-card-art-margin-top': '14px'
           },
-          art: { type: 'image', src: '/image/mq1dqza1-fsdhqjv.png', width: 160, height: 160 }
+          art: { type: 'image', src: '/image/mpvxvi4u-1mah6ht.png', width: 160, height: 160 }
         },
         {
           id: 'cartel',
@@ -137,44 +126,33 @@ export default function ConstruccionTechnologyModule() {
           text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
           styleVars: {
             '--tech-card-padding': '48px 82px 51px 84px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-title-align': 'center',
-            '--tech-card-text-width': '276px',
             '--tech-card-text-margin': '12px 0 0',
+            '--tech-card-text-width': '276px',
             '--tech-card-image-width': '139px',
             '--tech-card-image-height': '147px',
-            '--tech-card-image-margin-top': '9px',
-            '--tech-card-image-margin-left': '68px'
+            '--tech-card-art-margin-top': '9px'
           },
-          art: { type: 'image', src: '/image/mq1dqzf0-mv5n48y.png', width: 139, height: 147 }
+          art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
         },
         {
           id: 'sirena',
           title: 'Sirena exterior',
           text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
           styleVars: {
-            '--tech-card-padding': '51px 83px 44px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
+            '--tech-card-padding': '48px 83px 44px',
             '--tech-card-title-min-height': '31px',
+            '--tech-card-text-margin': '12px 0 0',
             '--tech-card-text-width': '273px',
-            '--tech-card-text-margin': '9px 0 0'
+            '--tech-card-image-width': '91px',
+            '--tech-card-image-height': '149px',
+            '--tech-card-image-fixed-width': '91px',
+            '--tech-card-image-fixed-height': '149px',
+            '--tech-card-image-fit': 'cover',
+            '--tech-card-image-position': 'bottom',
+            '--tech-card-art-margin-top': '14px'
           },
-          art: {
-            type: 'sirena',
-            backgroundSrc: '/image/mq1dqzd1-o05u1lj.webp',
-            wrapperHeight: 149,
-            wrapperMarginX: 93,
-            wrapperPadding: { top: 123, right: 4, bottom: 2, left: 18 },
-            wrapperMarginTop: 14,
-            iconSrc: '/image/mq1dqzcz-lidi66k.svg',
-            iconWidth: 69,
-            iconHeight: 24
-          }
+          art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
         },
         {
           id: 'cerco',
@@ -190,10 +168,9 @@ export default function ConstruccionTechnologyModule() {
             '--tech-card-text-margin': '17px 0 0',
             '--tech-card-image-width': '215px',
             '--tech-card-image-height': '154px',
-            '--tech-card-image-margin-top': '0px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-art-margin-top': '0px'
           },
-          art: { type: 'image', src: '/image/mq1dqz72-657hfaz.png', width: 215, height: 154 }
+          art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
         }
       ];
     }
@@ -205,19 +182,13 @@ export default function ConstruccionTechnologyModule() {
           title: 'Cámaras de vigilancia',
           text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
           styleVars: {
-            '--tech-card-padding': '42px 83px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '276px',
-            '--tech-card-text-margin': '17px 0 0',
+            '--tech-card-title-line-height': '32px',
+            '--tech-card-text-line-height': '20px',
             '--tech-card-image-width': '192px',
             '--tech-card-image-height': '117px',
-            '--tech-card-image-margin-top': '17px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-art-margin-top': '-6px'
           },
-          art: { type: 'image', src: '/image/mq1driuo-mdt8itt.png', width: 192, height: 117 }
+          art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
         },
         {
           id: 'sensor',
@@ -225,10 +196,10 @@ export default function ConstruccionTechnologyModule() {
           text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
           styleVars: {
             '--tech-card-padding': '35px 83px 13px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px'
+            '--tech-card-text-margin': '11px 0 0',
+            '--tech-card-text-width': '273px',
+            '--tech-card-image-width': '193px',
+            '--tech-card-image-height': '180px'
           },
           art: {
             type: 'overlay',
@@ -236,7 +207,7 @@ export default function ConstruccionTechnologyModule() {
             wrapperHeight: 180,
             wrapperMarginTop: 66,
             text: { top: -55, right: -40, width: 273 },
-            image: { src: '/image/mq1driz4-hstdnwi.png', width: 193, height: 180 }
+            image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180 }
           }
         },
         {
@@ -244,31 +215,29 @@ export default function ConstruccionTechnologyModule() {
           title: 'Teclado de configuración',
           text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
           styleVars: {
-            '--tech-card-padding': '35px 83px 189px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
+            '--tech-card-padding': '35px 83px 12px',
+            '--tech-card-text-margin': '11px 0 0',
             '--tech-card-text-width': '216px',
-            '--tech-card-text-margin': '11px 0 0'
+            '--tech-card-image-width': '201px',
+            '--tech-card-image-height': '188px',
+            '--tech-card-art-margin-top': '-12px'
           },
-          art: { type: 'absolute', src: '/image/mq1drj2l-9aihuby.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+          art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
         },
         {
           id: 'mando',
           title: 'Mando a distancia',
           text: 'Activá o desactivá tu sistema con comodidad.',
           styleVars: {
-            '--tech-card-padding': '48px 83px 225px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
+            '--tech-card-padding': '48px 83px 13px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-title-align': 'center',
             '--tech-card-text-width': '216px',
-            '--tech-card-text-margin': '14px 0 0 29px'
+            '--tech-card-text-margin': '21px 0 0',
+            '--tech-card-image-width': '174px',
+            '--tech-card-image-height': '163px',
+            '--tech-card-art-margin-top': '-22px'
           },
-          art: { type: 'absolute', src: '/image/mq1drizh-fn9qlh1.png', width: 186, height: 174, top: 150, left: 127, rotate: 16 }
+          art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
         },
         {
           id: 'central',
@@ -277,18 +246,12 @@ export default function ConstruccionTechnologyModule() {
           styleVars: {
             '--tech-card-padding': '35px 83px 22px',
             '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-title-align': 'center',
             '--tech-card-text-width': '246px',
             '--tech-card-text-margin': '13px 0 0 15px',
             '--tech-card-image-width': '219px',
-            '--tech-card-image-height': '156px',
-            '--tech-card-image-margin-top': '9px',
-            '--tech-card-image-margin-left': '27px'
+            '--tech-card-image-height': '156px'
           },
-          art: { type: 'image', src: '/image/mq1drixh-479vyth.png', width: 219, height: 156 }
+          art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
         }
       ];
     }

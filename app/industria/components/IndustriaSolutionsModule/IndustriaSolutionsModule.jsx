@@ -4,34 +4,34 @@ const WATERMARK_ROWS = ['row-1', 'row-2', 'row-3'];
 
 const solutions = [
   {
-    key: 'perimetral',
-    title: ['PROTECCIÓN', 'PERIMETRAL'],
+    key: 'alarmas',
+    title: ['MONITOREO', 'DE ALARMAS'],
     body:
-      'Cerco eléctrico, sensores y cartelería disuasiva integrados al monitoreo para detener cualquier intrusión antes de que ingrese al predio.'
+      'Protección integral de instalaciones con respuesta inmediata ante eventos.'
   },
   {
     key: 'cctv',
-    title: ['CCTV /', 'VIDEOVIGILANCIA'],
+    title: ['CCTV / VIDEOVIGILANCIA'],
     body:
-      'Cámaras con acceso remoto para supervisar la planta en tiempo real y contar con registro ante cualquier incidente.'
+      'Supervisión de procesos productivos, perímetros y áreas sensibles.'
+  },
+  {
+    key: 'cerco',
+    title: ['CERCO ELÉCTRICO'],
+    body:
+      'Defensa perimetral activa para prevenir intrusiones.'
   },
   {
     key: 'accesos',
-    title: ['CONTROL DE', 'ACCESOS'],
+    title: ['CONTROL DE ACCESO'],
     body:
-      'Ingreso por niveles de autorización con tarjetas, biometría o reconocimiento facial, con registro de horarios y movimientos.'
-  },
-  {
-    key: 'monitoreo',
-    title: ['MONITOREO', '24/7'],
-    body:
-      'Supervisión permanente desde nuestro centro: ante un evento verificamos la alerta y coordinamos la respuesta inmediata.'
+      'Gestión de ingresos por niveles de autorización, mejorando el control interno.'
   },
   {
     key: 'gps',
-    title: ['GPS', 'CORPORATIVO'],
+    title: ['GPS CORPORATIVO'],
     body:
-      'Seguimiento de flota en tiempo real para detectar desvíos, optimizar recorridos y reducir riesgos en la logística.'
+      'Monitoreo de flota en tiempo real para optimizar operaciones y reducir riesgos.'
   }
 ];
 
@@ -40,30 +40,11 @@ export default function IndustriaSolutionsModule() {
     <section className={styles.section} aria-label="Soluciones para industrias y empresas">
       <div className={styles.canvas}>
         <div className={styles.copyBlock}>
-          <div className={styles.intro}>
-            <div className={styles.copyMain}>
-              <p className={styles.lead}>
-                <span className={styles.leadLight}>En la industria, la seguridad sostiene </span>
-                <span className={styles.leadStrong}>la continuidad operativa</span>
-                <span className={styles.leadLight}>.</span>
-              </p>
-            </div>
-
-            <p className={styles.body}>
-              <span className={styles.bodyLight}>En SISE integramos soluciones para </span>
-              <span className={styles.bodyStrong}>proteger activos</span>
-              <span className={styles.bodyLight}>, </span>
-              <span className={styles.bodyStrong}>ordenar los accesos</span>
-              <span className={styles.bodyLight}> y </span>
-              <span className={styles.bodyStrong}>operar sin interrupciones</span>
-              <span className={styles.bodyLight}>.</span>
-            </p>
-          </div>
-
-          <p className={styles.punch}>
-            No se trata sólo de vigilar el predio,
-            <br />
-            sino de que la planta nunca deje de producir.
+          <p className={styles.lead}>
+            <span className={styles.leadLight}>
+              Diseñamos soluciones robustas y personalizadas para proteger activos, procesos y logística,
+            </span>
+            <span className={styles.leadStrong}> garantizando la continuidad del negocio.</span>
           </p>
         </div>
 

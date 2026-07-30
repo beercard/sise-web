@@ -267,7 +267,7 @@
      quedaba pegado a la sección siguiente. */
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1320px;
+  --tech-group-width: 1284px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
@@ -276,21 +276,21 @@
   width: 944px;
   height: 91px;
   text-align: center;
-  line-height: 46px;
+  line-height: 45.6px;
   color: #000000;
   font-size: 48px;
 }
 
 .technologyTitleStrong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .technologyTitleLight {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .tabs {
-  margin-top: 45px;
+  margin-top: 58px;
   width: min(944px, 100%);
   margin-left: auto;
   margin-right: auto;
@@ -358,7 +358,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(24px, 3vw, 64px);
+  gap: clamp(24px, 1.6vw, 29px);
   margin-top: 31px;
   padding-top: 0;
   padding-bottom: 0;
@@ -395,15 +395,15 @@
 
 .pointButton {
   position: absolute;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #250f7f80;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 0;
-  padding: 6px;
+  padding: 6.51px;
   cursor: pointer;
   transform-origin: center;
   transition:
@@ -418,22 +418,20 @@
   align-items: center;
   border-radius: 50%;
   background: #250f7f;
-  padding: 4px;
+  padding: 4.34px;
 }
 
 .ellipse3 {
   border-radius: 50%;
   background: #ffffff;
-  width: 8px;
-  height: 8px;
+  width: 8.18px;
+  height: 8.18px;
 }
 
 .pointActive {
-  background: rgba(37, 15, 127, 0.75);
-  filter:
-    drop-shadow(0 0 20px rgba(37, 15, 127, 0.4))
-    drop-shadow(0 0 41.4px rgba(37, 15, 127, 0.75));
-  transform: scale(1.36);
+  background: rgba(37, 15, 127, 0.8);
+  filter: drop-shadow(0 0 4px rgba(37, 15, 127, 0.5));
+  transform: scale(1.4);
   z-index: 2;
 }
 
@@ -1310,7 +1308,7 @@
   position: absolute;
   top: 360px;
   left: var(--hero-content-left);
-  width: min(610px, calc(100% - (var(--hero-content-left) * 2)));
+  width: min(668px, calc(100% - (var(--hero-content-left) * 2)));
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1320,7 +1318,7 @@
   position: relative;
   top: auto;
   left: auto;
-  width: min(416px, 100%);
+  width: min(352px, 100%);
   height: auto;
 }
 
@@ -1330,8 +1328,8 @@
   left: auto;
   width: 100%;
   min-height: 102px;
-  margin: 16px 0 0;
-  line-height: 51px;
+  margin: 17px 0 0;
+  line-height: 51.62px;
   font-size: 64px;
 }
 
@@ -1343,26 +1341,27 @@
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
-  margin: 22px 0 0;
+  width: min(456px, 100%);
+  margin: 29px 0 0;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 30.4px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1366px) {
   .heroGradient { width: min(720px, 56%); }
   .heroCopy { top: 312px; }
-  .heroKicker { width: 374px; }
+  .heroKicker { width: 320px; }
   .heroTitle { min-height: 96px; font-size: 56px; line-height: 48px; }
   .heroCategory { margin-top: 18px; font-size: 28px; line-height: 28px; }
 }
 
 @media (max-width: 1200px) {
   .heroGradient { width: min(620px, 58%); }
-  .heroCopy { top: 286px; width: min(560px, calc(100% - 64px)); }
+  .heroCopy { top: 286px; width: min(620px, calc(100% - 64px)); }
   .heroKicker { width: 316px; }
   .heroTitle {
     min-height: 88px;

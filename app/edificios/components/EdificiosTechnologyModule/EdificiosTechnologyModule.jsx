@@ -20,18 +20,18 @@ const TAB_IDS = {
   CONECTIVIDAD: 'conectividad'
 };
 
-const STORAGE_KEY = 'sise-edificios-tech-editor-v1';
+const STORAGE_KEY = 'sise-edificios-tech-editor-v2';
 const HOUSE_BASE_WIDTH = 735;
 const HOUSE_BASE_HEIGHT = 511;
 
 const DEFAULT_POSITIONS = {
   perimetral: {
-    camaras: { top: 253, left: 42 },
-    sirena: { top: 312, left: 176 },
-    cartel: { top: 347, left: 179 },
-    cerco: { top: 224, left: 599 },
-    guardia: { top: 393, left: 291 },
-    magneticos: { top: 388, left: 242 }
+    camaras: { top: 359, left: 178 },
+    sirena: { top: 347, left: 179 },
+    cartel: { top: 387, left: 293 },
+    cerco: { top: 233, left: 631 },
+    guardia: { top: 256, left: 38 },
+    magneticos: { top: 397, left: 243 }
   },
   interior: {
     camaras: { top: 101, left: 456 },
@@ -101,38 +101,32 @@ export default function EdificiosTechnologyModule() {
           title: 'Cámaras de vigilancia',
           text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
           styleVars: {
-            '--tech-card-padding': '42px 83px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '276px',
-            '--tech-card-text-margin': '17px 0 0',
+            '--tech-card-title-line-height': '32px',
+            '--tech-card-text-line-height': '20px',
             '--tech-card-image-width': '192px',
             '--tech-card-image-height': '117px',
-            '--tech-card-image-margin-top': '17px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-art-margin-top': '-6px'
           },
-          art: { type: 'image', src: '/image/mq09axh2-e65lf39.png', width: 192, height: 117 }
+          art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
         },
         {
           id: 'sirena',
           title: 'Sirena exterior',
           text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
           styleVars: {
-            '--tech-card-padding': '51px 83px 44px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
+            '--tech-card-padding': '48px 83px 44px',
             '--tech-card-title-min-height': '31px',
+            '--tech-card-text-margin': '12px 0 0',
             '--tech-card-text-width': '273px',
-            '--tech-card-text-margin': '9px 0 0',
-            '--tech-card-image-width': '170px',
-            '--tech-card-image-height': '222px',
-            '--tech-card-image-margin-top': '14px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-image-width': '91px',
+            '--tech-card-image-height': '149px',
+            '--tech-card-image-fixed-width': '91px',
+            '--tech-card-image-fixed-height': '149px',
+            '--tech-card-image-fit': 'cover',
+            '--tech-card-image-position': 'bottom',
+            '--tech-card-art-margin-top': '14px'
           },
-          art: { type: 'image', src: '/image/mq09ahxs-unrgqg3.webp', width: 1792, height: 2344 }
+          art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
         },
         {
           id: 'cartel',
@@ -140,18 +134,13 @@ export default function EdificiosTechnologyModule() {
           text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
           styleVars: {
             '--tech-card-padding': '48px 82px 51px 84px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-text-width': '276px',
             '--tech-card-text-margin': '12px 0 0',
             '--tech-card-image-width': '139px',
             '--tech-card-image-height': '147px',
-            '--tech-card-image-margin-top': '9px',
-            '--tech-card-image-margin-left': '68px'
+            '--tech-card-art-margin-top': '9px'
           },
-          art: { type: 'image', src: '/image/mq09ahvp-5d8eibi.png', width: 139, height: 147 }
+          art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
         },
         {
           id: 'cerco',
@@ -167,16 +156,16 @@ export default function EdificiosTechnologyModule() {
             '--tech-card-text-margin': '17px 0 0',
             '--tech-card-image-width': '215px',
             '--tech-card-image-height': '154px',
-            '--tech-card-image-margin-top': '0px'
+            '--tech-card-art-margin-top': '0px'
           },
-          art: { type: 'image', src: '/image/mq09ahw1-cbrpavb.png', width: 215, height: 154 }
+          art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
         },
         {
           id: 'guardia',
           title: 'Guardia Virtual',
           text: 'Supervisión remota 24/7 de accesos y espacios comunes, con intervención ante eventos y asistencia en tiempo real.',
           styleVars: {
-            '--tech-card-padding': '51px 51px 25px 52px',
+            '--tech-card-padding': '51px 51px 18px 52px',
             '--tech-card-align-items': 'center',
             '--tech-card-title-width': '276px',
             '--tech-card-title-height': '36px',
@@ -185,7 +174,7 @@ export default function EdificiosTechnologyModule() {
             '--tech-card-text-margin': '4px 0 0',
             '--tech-card-image-width': '198px',
             '--tech-card-image-height': '174px',
-            '--tech-card-image-margin-top': '8px'
+            '--tech-card-art-margin-top': '8px'
           },
           art: { type: 'image', src: '/image/mq09ajcr-z6zrehs.png', width: 198, height: 174 }
         },
@@ -195,18 +184,14 @@ export default function EdificiosTechnologyModule() {
           text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
           styleVars: {
             '--tech-card-padding': '48px 84px 33px 82px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-text-width': '265px',
             '--tech-card-text-margin': '12px 0 0 7px',
+            '--tech-card-text-width': '265px',
             '--tech-card-image-width': '160px',
             '--tech-card-image-height': '160px',
-            '--tech-card-image-margin-top': '14px',
-            '--tech-card-image-margin-left': '60px'
+            '--tech-card-art-margin-top': '14px'
           },
-          art: { type: 'image', src: '/image/mq09ahu0-cab0z2u.png', width: 160, height: 160 }
+          art: { type: 'image', src: '/image/mpvxvi4u-1mah6ht.png', width: 160, height: 160 }
         }
       ];
     }
@@ -218,19 +203,13 @@ export default function EdificiosTechnologyModule() {
           title: 'Cámaras de vigilancia',
           text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
           styleVars: {
-            '--tech-card-padding': '42px 83px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '276px',
-            '--tech-card-text-margin': '17px 0 0',
+            '--tech-card-title-line-height': '32px',
+            '--tech-card-text-line-height': '20px',
             '--tech-card-image-width': '192px',
             '--tech-card-image-height': '117px',
-            '--tech-card-image-margin-top': '17px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-art-margin-top': '-6px'
           },
-          art: { type: 'image', src: '/image/mq09axh2-e65lf39.png', width: 192, height: 117 }
+          art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
         },
         {
           id: 'sensor',
@@ -238,14 +217,10 @@ export default function EdificiosTechnologyModule() {
           text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
           styleVars: {
             '--tech-card-padding': '35px 83px 13px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
+            '--tech-card-text-margin': '11px 0 0',
             '--tech-card-text-width': '273px',
-            '--tech-card-text-margin': '0',
-            '--tech-card-text-align': 'center',
-            '--tech-card-title-align': 'center'
+            '--tech-card-image-width': '193px',
+            '--tech-card-image-height': '180px'
           },
           art: {
             type: 'overlay',
@@ -253,7 +228,7 @@ export default function EdificiosTechnologyModule() {
             wrapperHeight: 180,
             wrapperMarginTop: 66,
             text: { top: -55, right: -40, width: 273 },
-            image: { src: '/image/mq09axhz-nt3qf7b.png', width: 193, height: 180 }
+            image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180 }
           }
         },
         {
@@ -261,34 +236,28 @@ export default function EdificiosTechnologyModule() {
           title: 'Teclado de configuración',
           text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
           styleVars: {
-            '--tech-card-padding': '35px 83px 189px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '216px',
+            '--tech-card-padding': '35px 83px 12px',
             '--tech-card-text-margin': '11px 0 0',
             '--tech-card-image-width': '201px',
-            '--tech-card-image-height': '188px'
+            '--tech-card-image-height': '188px',
+            '--tech-card-text-width': '216px',
+            '--tech-card-art-margin-top': '-12px'
           },
-          art: { type: 'absolute', src: '/image/mq09axid-v1t0aln.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+          art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
         },
         {
           id: 'mando',
           title: 'Mando a distancia',
           text: 'Activá o desactivá tu sistema con comodidad.',
           styleVars: {
-            '--tech-card-padding': '48px 83px 227px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
-            '--tech-card-title-min-height': '31px',
+            '--tech-card-padding': '48px 83px 13px',
             '--tech-card-text-width': '216px',
-            '--tech-card-text-margin': '12px 0 0',
-            '--tech-card-image-width': '182px',
-            '--tech-card-image-height': '171px'
+            '--tech-card-text-margin': '21px 0 0',
+            '--tech-card-image-width': '174px',
+            '--tech-card-image-height': '163px',
+            '--tech-card-art-margin-top': '-22px'
           },
-          art: { type: 'absolute', src: '/image/mq09axi1-1audbxc.png', width: 182, height: 171, top: 151, left: 129, rotate: 16 }
+          art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
         },
         {
           id: 'central',
@@ -297,38 +266,29 @@ export default function EdificiosTechnologyModule() {
           styleVars: {
             '--tech-card-padding': '35px 83px 22px',
             '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-title-margin': '0 0 0 15px',
             '--tech-card-text-width': '246px',
             '--tech-card-text-margin': '13px 0 0 15px',
             '--tech-card-image-width': '219px',
-            '--tech-card-image-height': '156px',
-            '--tech-card-image-margin-top': '9px',
-            '--tech-card-image-margin-left': '27px'
+            '--tech-card-image-height': '156px'
           },
-          art: { type: 'image', src: '/image/mq09axgw-cxhoysf.png', width: 219, height: 156 }
+          art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
         },
         {
           id: 'acceso',
           title: 'Control de acceso',
           text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
           styleVars: {
-            '--tech-card-padding': '48px 36px 19px 52px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '354px',
-            '--tech-card-title-height': '32px',
-            '--tech-card-title-min-height': '32px',
-            '--tech-card-title-margin': '0 0 0 49px',
-            '--tech-card-text-width': '354px',
+            '--tech-card-padding': '48px 43px 22px',
+            '--tech-card-title-width': '241px',
+            '--tech-card-title-min-height': '31px',
+            '--tech-card-text-width': '355px',
             '--tech-card-text-margin': '11px 0 0',
-            '--tech-card-image-width': '80px',
-            '--tech-card-image-height': '150px',
-            '--tech-card-image-margin-top': '12px',
-            '--tech-card-image-margin-left': '122px'
+            '--tech-card-art-margin-top': '14px',
+            '--tech-card-image-width': '94px',
+            '--tech-card-image-height': '176px',
+            '--tech-card-image-align-self': 'center'
           },
-          art: { type: 'image', src: '/image/mq09axhx-kxafozd.png', width: 50, height: 150 }
+          art: { type: 'image', src: '/image/mpvxz539-e73c1z1.png', width: 94, height: 176 }
         }
       ];
     }
@@ -492,11 +452,11 @@ export default function EdificiosTechnologyModule() {
   };
 
   return (
-    <section className={styles.technology} aria-label="Seguridad total para tu edificio">
+    <section className={styles.technology} aria-label="Seguridad y eficiencia operativa para tu consorcio">
       <h2 className={styles.technologyTitle}>
-        <span className={styles.technologyTitleStrong}>Seguridad total para tu negocio,</span>
+        <span className={styles.technologyTitleStrong}>Seguridad y eficiencia operativa</span>
         <br />
-        <span className={styles.technologyTitleLight}>en todo momento</span>
+        <span className={styles.technologyTitleLight}>para tu consorcio.</span>
       </h2>
 
       <div className={styles.tabs} role="tablist" aria-label="Categorías">

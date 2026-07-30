@@ -57,7 +57,7 @@ export default function CiudadTechnologyModule() {
         text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
         styleVars: {
           '--tech-card-padding': '42px 83px 27px',
-          '--tech-card-align-items': 'flex-start',
+          '--tech-card-align-items': 'center',
           '--tech-card-title-width': '276px',
           '--tech-card-title-height': '63px',
           '--tech-card-title-min-height': '63px',
@@ -65,8 +65,7 @@ export default function CiudadTechnologyModule() {
           '--tech-card-text-margin': '17px 0 0',
           '--tech-card-image-width': '143px',
           '--tech-card-image-height': '143px',
-          '--tech-card-image-margin-top': '6px',
-          '--tech-card-image-margin-left': '65px'
+          '--tech-card-art-margin-top': '6px'
         },
         art: { type: 'image', src: '/image/mq1kcwk1-m8n3v94.png', width: 143, height: 143 }
       },
@@ -75,16 +74,24 @@ export default function CiudadTechnologyModule() {
         title: 'Puntos Seguros',
         text: 'Espacios equipados y monitoreados que permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
         styleVars: {
-          '--tech-card-padding': '42px 28px 18px 27px',
+          '--tech-card-padding': '42px 20px 18px',
           '--tech-card-align-items': 'center',
           '--tech-card-title-width': '276px',
           '--tech-card-title-height': '31px',
           '--tech-card-title-min-height': '31px',
-          '--tech-card-text-width': '387px',
+          '--tech-card-text-width': '402px',
+          '--tech-card-text-height': '59px',
+          '--tech-card-text-min-height': '59px',
           '--tech-card-text-margin': '8px 0 0',
+          '--tech-card-text-wrap': 'pretty',
+          '--tech-card-overflow-wrap': 'break-word',
+          '--tech-card-word-break': 'normal',
+          '--tech-card-art-justify-content': 'center',
           '--tech-card-image-width': '126px',
           '--tech-card-image-height': '188px',
-          '--tech-card-image-margin-top': '11px'
+          '--tech-card-image-fixed-width': '126px',
+          '--tech-card-image-fixed-height': '188px',
+          '--tech-card-art-margin-top': '11px'
         },
         art: { type: 'image', src: '/image/mq1ip4u2-z1dsbza.png', width: 126, height: 188 }
       },
@@ -100,9 +107,12 @@ export default function CiudadTechnologyModule() {
           '--tech-card-title-min-height': '31px',
           '--tech-card-text-width': '276px',
           '--tech-card-text-margin': '8px 0 0',
+          '--tech-card-art-justify-content': 'center',
           '--tech-card-image-width': '103px',
           '--tech-card-image-height': '187px',
-          '--tech-card-image-margin-top': '11px'
+          '--tech-card-image-fixed-width': '103px',
+          '--tech-card-image-fixed-height': '187px',
+          '--tech-card-art-margin-top': '11px'
         },
         art: { type: 'image', src: '/image/mq1ip4zv-p0t8sua.png', width: 103, height: 187 }
       },
@@ -120,13 +130,23 @@ export default function CiudadTechnologyModule() {
           '--tech-card-title-margin': '0 0 0 42px',
           '--tech-card-text-width': '359px',
           '--tech-card-text-margin': '12px 0 0',
-          '--tech-card-text-align': 'center'
+          '--tech-card-text-align': 'center',
+          '--tech-card-frame-width': '244px',
+          '--tech-card-frame-height': '212px',
+          '--tech-card-frame-max-width': '244px',
+          '--tech-card-frame-bg-size': '100% 148%',
+          '--tech-card-frame-bg-position': 'center top'
         },
         art: {
           type: 'gps',
           overlaySrc: '/image/mq1ip585-5gdqo05.png',
           overlayWidth: 143,
           overlayHeight: 143,
+          overlayTop: '46%',
+          overlayLeft: '50%',
+          overlayTransform: 'translate(-50%, -50%)',
+          overlayMaxWidth: '143px',
+          overlayMaxHeight: '143px',
           backgroundSrc: '/image/mq1ip585-5mj0wb5.webp',
           cornerSrc: '/image/mq1ip584-5xtsqf8.svg',
           cornerWidth: 18,

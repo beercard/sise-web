@@ -11,6 +11,8 @@ import {
   useTechEditor
 } from '../../../lib/hooks';
 
+import TechCard from '../../../components/TechCard/TechCard';
+
 
 import styles from '../../page.module.scss';
 
@@ -68,12 +70,15 @@ export default function TechnologyModule() {
             text: 'Primera barrera de seguridad que protege tu propiedad y disuade ingresos no autorizados.',
             styleVars: {
               '--tech-card-padding': '42px 83px 22px',
+              '--tech-card-align-items': 'center',
+              '--tech-card-title-width': '276px',
+              '--tech-card-title-height': '63px',
+              '--tech-card-title-min-height': '63px',
+              '--tech-card-text-width': '276px',
+              '--tech-card-text-margin': '17px 0 0',
               '--tech-card-image-width': '215px',
               '--tech-card-image-height': '154px',
-              '--tech-card-image-margin': '0 auto',
-              // Alto de la ilustración en mobile (Figma): va centrada en la banda
-              // de arte de 104px, así que define sola su posición vertical.
-              '--tech-card-mobile-art-height': '104px'
+              '--tech-card-art-margin-top': '0px'
             },
             art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
           },
@@ -81,51 +86,40 @@ export default function TechnologyModule() {
             title: 'Cámaras de vigilancia',
             text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
             styleVars: {
-              '--tech-card-padding': '42px 83px',
+              '--tech-card-title-line-height': '32px',
+              '--tech-card-text-line-height': '20px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-image-margin': '17px 0 0',
-              '--tech-card-mobile-art-height': '76px'
+              '--tech-card-art-margin-top': '-6px'
             },
-            art: { type: 'image', src: '/image/mpuk8l58-7ujlops.png', width: 192, height: 117 }
+            art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
           },
           {
             title: 'Magnéticos',
             text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
             styleVars: {
               '--tech-card-padding': '48px 84px 33px 82px',
-              '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0 7px',
               '--tech-card-text-width': '265px',
-              '--tech-card-text-max-width': '265px',
-              // Sin esto el stage centra la ilustración y el margen izquierdo
-              // se suma al centrado, corriéndola ~28px a la derecha.
-              '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
-              '--tech-card-image-margin': '14px 0 0 60px',
-              '--tech-card-mobile-art-height': '93px'
+              '--tech-card-art-margin-top': '14px'
             },
-            art: { type: 'image', src: '/image/mpuk98wo-z2d321o.png', width: 160, height: 160 }
+            art: { type: 'image', src: '/image/mpvxvi4u-1mah6ht.png', width: 160, height: 160 }
           },
           {
             title: 'Cartel disuasivo',
             text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
             styleVars: {
               '--tech-card-padding': '48px 82px 51px 84px',
-              '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
-              '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '139px',
               '--tech-card-image-height': '147px',
-              '--tech-card-image-margin': '9px 0 0 68px',
-              '--tech-card-mobile-art-height': '101px',
-              // Figma lo deja en 140; centrado daría 142.
-              '--tech-card-mobile-art-offset': '-2px'
+              '--tech-card-art-margin-top': '9px'
             },
-            art: { type: 'image', src: '/image/mpul2hzn-fvb6ziy.png', width: 139, height: 147 }
+            art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
           },
           {
             title: 'Sirena exterior',
@@ -135,21 +129,15 @@ export default function TechnologyModule() {
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
               '--tech-card-text-width': '273px',
-              '--tech-card-text-max-width': '273px',
-              '--tech-card-sirena-margin-top': '14px',
-              '--tech-card-mobile-art-height': '93px'
+              '--tech-card-image-width': '91px',
+              '--tech-card-image-height': '149px',
+              '--tech-card-image-fixed-width': '91px',
+              '--tech-card-image-fixed-height': '149px',
+              '--tech-card-image-fit': 'cover',
+              '--tech-card-image-position': 'bottom',
+              '--tech-card-art-margin-top': '14px'
             },
-            art: {
-              type: 'sirena',
-              backgroundSrc: '/image/mpul3d3a-hllgx9l.webp',
-              svgSrc: '/image/mpul3d39-q38k68v.svg',
-              // En mobile el diseño usa una ilustración plana (57×93) en lugar
-              // del marco con el fondo y el SVG encima que se usa en desktop.
-              // Misma ilustracion que usa comercio en desktop, compartida.
-              mobileSrc: '/image/sirena-exterior.webp',
-              mobileWidth: 783,
-              mobileHeight: 1024
-            }
+            art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
           }
         ]
       },
@@ -170,12 +158,10 @@ export default function TechnologyModule() {
             text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
             styleVars: {
               '--tech-card-padding': '35px 83px 13px',
-              '--tech-card-mobile-art-height': '117px',
-              '--tech-card-mobile-art-offset': '3px',
-              '--tech-card-mobile-text-width': '146px',
-              // El texto va dentro del arte, así que no ocupa lugar en el
-              // flujo: 6 + 56 + 9 = 71 repone el riel de la banda de arte.
-              '--tech-card-mobile-stage-margin-top': '71px'
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '273px',
+              '--tech-card-image-width': '193px',
+              '--tech-card-image-height': '180px'
             },
             art: {
               type: 'overlay',
@@ -190,21 +176,16 @@ export default function TechnologyModule() {
             title: 'Teclado de configuración',
             text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
             styleVars: {
-              '--tech-card-padding': '35px 83px 189px',
+              '--tech-card-padding': '35px 83px 12px',
               '--tech-card-text-margin': '11px 0 0',
               '--tech-card-text-width': '216px',
-              '--tech-card-text-max-width': '216px',
-              // El default de max-height (176px) recortaba la ilustración,
-              // que en el diseño mide 188px de alto.
-              '--tech-card-image-max-height': '188px',
-              '--tech-card-mobile-art-height': '109px',
-              // Figma lo deja en 141; centrado daría 134.
-              '--tech-card-mobile-art-offset': '7px',
-              '--tech-card-mobile-text-width': '119px'
+              '--tech-card-image-width': '201px',
+              '--tech-card-image-height': '188px',
+              '--tech-card-art-margin-top': '-12px'
             },
             art: {
               type: 'absolute',
-              src: '/image/mpul7gfa-5619l3v.webp',
+              src: '/image/mpvxxyfe-psjzek1.webp',
               width: 201,
               height: 188,
               top: 157,
@@ -216,23 +197,21 @@ export default function TechnologyModule() {
             title: 'Mando a distancia',
             text: 'Activá o desactivá tu sistema con comodidad.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 220px',
+              '--tech-card-padding': '48px 83px 13px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '19px 0 0',
+              '--tech-card-text-margin': '21px 0 0',
               '--tech-card-text-width': '216px',
-              // Figma da 140×135, pero es el bounding box ya rotado 16°. Sin
-              // rotar equivale a 108 de alto (115×108), que es lo que se aplica.
-              '--tech-card-mobile-art-height': '108px',
-              '--tech-card-mobile-text-width': '109px',
-              '--tech-card-mobile-text-offset': '4px'
+              '--tech-card-image-width': '174px',
+              '--tech-card-image-height': '163px',
+              '--tech-card-art-margin-top': '-22px'
             },
             art: {
               type: 'absolute',
-              src: '/image/mpul934z-n4p35pf.png',
-              width: 175,
-              height: 164,
-              top: 154,
-              left: 132,
+              src: '/image/mpvxy7bq-mohx126.png',
+              width: 174,
+              height: 163,
+              top: 159,
+              left: 131,
               rotate: 16
             }
           },
@@ -244,37 +223,25 @@ export default function TechnologyModule() {
               '--tech-card-align-items': 'flex-start',
               '--tech-card-text-margin': '13px 0 0 15px',
               '--tech-card-text-width': '246px',
-              '--tech-card-art-stage-align-items': 'flex-start',
               '--tech-card-image-width': '219px',
               '--tech-card-image-height': '156px',
-              '--tech-card-image-margin': '9px 0 0 27px',
-              '--tech-card-mobile-art-height': '107px',
-              // Figma marca 161px, pero con la fuente del navegador ese ancho parte
-              // el texto en 4 líneas en vez de 3. 163px es el mínimo que
-              // respeta el diseño.
-              '--tech-card-mobile-text-width': '163px',
-              '--tech-card-mobile-text-offset': '4px'
+              '--tech-card-art-margin-top': '9px'
             },
-            art: { type: 'image', src: '/image/mpul9o4z-m9vtkfc.png', width: 219, height: 156 }
+            art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
           },
           {
             title: 'Cámara inteligente interior',
             text: 'Monitoreo interno en vivo con alertas inteligentes desde tu celular.',
             styleVars: {
               '--tech-card-padding': '35px 83px 46px',
+              '--tech-card-title-min-height': '63px',
               '--tech-card-text-margin': '16px 0 0',
-              // Figma marca 211px, pero con la fuente del navegador ese ancho
-              // parte el texto en 4 líneas (72px) en vez de 3 (59px) y empuja
-              // la ilustración 13px. 216px es el mínimo que respeta el diseño.
-              '--tech-card-text-width': '216px',
-              '--tech-card-text-max-width': '216px',
+              '--tech-card-text-width': '211px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-image-margin': '21px 0 0',
-              '--tech-card-mobile-art-height': '76px',
-              '--tech-card-mobile-text-width': '146px'
+              '--tech-card-art-margin-top': '-6px'
             },
-            art: { type: 'image', src: '/image/mpula57w-bujdbk3.png', width: 192, height: 117 }
+            art: { type: 'image', src: '/image/mpx7jr8n-q2uypmy.png', width: 192, height: 117 }
           }
         ]
       },
@@ -288,27 +255,29 @@ export default function TechnologyModule() {
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
             styleVars: {
-              '--tech-card-padding': '42px 120px 20px 121px',
+              '--tech-card-padding': '42px 74px 20px',
               '--tech-card-title-min-height': '63px',
               '--tech-card-title-width': '201px',
               '--tech-card-title-height': '63px',
-              '--tech-card-mobile-art-height': '106px',
-              '--tech-card-mobile-art-offset': '-2px',
-              '--tech-card-mobile-text-width': '160px',
-              '--tech-card-mobile-text-offset': '-1px',
-              '--tech-card-mobile-stage-margin-top': '71px'
+              '--tech-card-text-margin': '17px 0 0',
+              '--tech-card-text-width': '293px',
+              '--tech-card-frame-width': '183px',
+              '--tech-card-frame-height': '158px',
+              '--tech-card-frame-max-width': '183px',
+              '--tech-card-frame-bg-position': '0 -1px',
+              '--tech-card-frame-bg-size': '100% 151.77%',
+              '--tech-card-frame-filter': 'grayscale(1)',
+              '--tech-card-frame-bar-color': '#06234c'
             },
             art: {
               type: 'connectivity',
-              backgroundSrc: '/image/mpulc23z-ua6f137.webp',
+              bar: true,
+              backgroundSrc: '/image/mpvy051r-8qcdbbi.webp',
               wrapperWidth: 183,
-              wrapperHeight: 172,
+              wrapperHeight: 158,
               wrapperMarginTop: 74,
-              imageTop: 14,
-              // Figma marca 292px, pero con la fuente del navegador ese ancho
-              // parte el texto en 4 líneas (80px) en vez de 3 (59px) y lo
-              // solapa con la ilustración. 296px mantiene las 3 del diseño.
-              text: { top: -57, right: -55, width: 296 }
+              imageTop: 0,
+              text: { top: -57, right: -55, width: 292 }
             }
           }
         ]
@@ -445,162 +414,9 @@ export default function TechnologyModule() {
     return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
   };
 
-  /**
-   * Las tarjetas de /hogar siguen un diseño propio (Figma): card de 442×357
-   * con geometría específica por slide, definida en `styleVars`, y cinco
-   * tipos de arte. Por eso no usan el TechCard genérico de las otras
-   * verticales.
-   */
-  const renderArt = (art, title) => {
-    if (!art) return null;
-
-    if (art.type === 'overlay') {
-      return (
-        <div
-          className={styles.techCardOverlay}
-          style={{
-            width: art.wrapperWidth,
-            height: art.wrapperHeight,
-            marginTop: art.wrapperMarginTop
-          }}
-        >
-          <Image
-            className={styles.techCardOverlayImage}
-            src={art.image.src}
-            alt={art.alt ?? title}
-            width={art.image.width}
-            height={art.image.height}
-          />
-          {art.text ? (
-            <p
-              className={styles.techCardOverlayText}
-              style={{ top: art.text.top, right: art.text.right, width: art.text.width }}
-            >
-              {art.textContent}
-            </p>
-          ) : null}
-        </div>
-      );
-    }
-
-    if (art.type === 'absolute') {
-      return (
-        <Image
-          className={styles.techCardAbsoluteImage}
-          src={art.src}
-          alt={art.alt ?? title}
-          width={art.width}
-          height={art.height}
-          style={{
-            position: 'absolute',
-            top: art.top,
-            left: art.left,
-            // `width/height: auto` del CSS colapsa la imagen al posicionarla
-            // en absoluto: hay que fijar el tamaño del diseño.
-            width: art.width,
-            height: art.height,
-            transform: art.rotate ? `rotate(${art.rotate}deg)` : undefined
-          }}
-        />
-      );
-    }
-
-    if (art.type === 'sirena') {
-      return (
-        <>
-          <div
-            className={styles.techCardSirenaFrame}
-            style={{ '--sirena-bg': `url('${art.backgroundSrc}')` }}
-          >
-            <Image
-              className={styles.techCardSirenaSvg}
-              src={art.svgSrc}
-              alt=""
-              width={69}
-              height={24}
-            />
-          </div>
-          {/* El diseño mobile trae su propia ilustración de la sirena; el CSS
-              muestra una u otra según el breakpoint. */}
-          {art.mobileSrc ? (
-            <Image
-              className={styles.techCardSirenaMobile}
-              src={art.mobileSrc}
-              alt={art.alt ?? title}
-              width={art.mobileWidth}
-              height={art.mobileHeight}
-            />
-          ) : null}
-        </>
-      );
-    }
-
-    if (art.type === 'connectivity') {
-      return (
-        <div
-          className={styles.techCardConnectivityWrap}
-          style={{
-            width: art.wrapperWidth,
-            height: art.wrapperHeight,
-            marginTop: art.wrapperMarginTop
-          }}
-        >
-          <div
-            className={styles.techCardConnectivityImage}
-            style={{ '--connectivity-bg': `url('${art.backgroundSrc}')` }}
-          >
-            <span className={styles.techCardConnectivityBar} aria-hidden="true" />
-          </div>
-          {art.text ? (
-            <p
-              className={styles.techCardConnectivityText}
-              style={{ top: art.text.top, right: art.text.right, width: art.text.width }}
-            >
-              {art.textContent}
-            </p>
-          ) : null}
-        </div>
-      );
-    }
-
-    return (
-      <Image
-        className={styles.techCardImage}
-        src={art.src}
-        alt={art.alt ?? title}
-        width={art.width}
-        height={art.height}
-      />
-    );
-  };
-
-  const renderSlideContent = (slide, extraClassName) => {
-    // En los tipos `overlay` y `connectivity` el texto va dentro del arte.
-    const textInsideArt = slide.art?.type === 'overlay' || slide.art?.type === 'connectivity';
-    const art = textInsideArt ? { ...slide.art, textContent: slide.text } : slide.art;
-
-    // El arte `absolute` se posiciona con coordenadas de la card, así que va
-    // como hijo directo: dentro del stage (position: relative) las tomaría
-    // desde ahí y quedaría corrido por el padding.
-    const isAbsoluteArt = slide.art?.type === 'absolute';
-
-    return (
-      <div
-        className={`${styles.techCard} ${extraClassName}`.trim()}
-        style={slide.styleVars}
-      >
-        <p className={styles.techCardTitle}>{slide.title}</p>
-        {slide.text && !textInsideArt ? (
-          <p className={styles.techCardText}>{slide.text}</p>
-        ) : null}
-        {isAbsoluteArt ? (
-          renderArt(art, slide.title)
-        ) : (
-          <div className={styles.techCardArtStage}>{renderArt(art, slide.title)}</div>
-        )}
-      </div>
-    );
-  };
+  const renderSlideContent = (slide, extraClassName) => (
+    <TechCard slide={slide} className={extraClassName} />
+  );
 
   return (
     <section className={styles.technology} aria-label="Tecnología del hogar">

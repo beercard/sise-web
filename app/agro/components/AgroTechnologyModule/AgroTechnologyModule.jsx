@@ -105,8 +105,7 @@ export default function AgroTechnologyModule() {
         '--tech-card-text-margin': '12px 0 0',
         '--tech-card-image-width': '214px',
         '--tech-card-image-height': '160px',
-        '--tech-card-image-margin-top': '14px',
-        '--tech-card-image-margin-left': '0px'
+        '--tech-card-art-margin-top': '14px'
       },
       art: { type: 'image', src: '/image/mq1fh69q-ch04lu8.webp', width: 214, height: 160 }
     };
@@ -120,32 +119,33 @@ export default function AgroTechnologyModule() {
           text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
           styleVars: {
             '--tech-card-padding': '48px 82px 51px 84px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-title-align': 'center',
-            '--tech-card-text-width': '276px',
             '--tech-card-text-margin': '12px 0 0',
+            '--tech-card-text-width': '276px',
             '--tech-card-image-width': '139px',
             '--tech-card-image-height': '147px',
-            '--tech-card-image-margin-top': '9px',
-            '--tech-card-image-margin-left': '68px'
+            '--tech-card-art-margin-top': '9px'
           },
-          art: { type: 'image', src: '/image/mq1gm7ls-z6pi85x.png', width: 139, height: 147 }
+          art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
         },
         {
           id: 'gps',
           title: 'GPS para maquinarias y vehículos',
           text: 'Seguimiento y control de flota para optimizar recursos y prevenir pérdidas.',
           styleVars: {
-            '--tech-card-padding': '43px 61px 203px 60px',
+            '--tech-card-padding': '43px 61px 20px 60px',
             '--tech-card-align-items': 'center',
             '--tech-card-title-width': '313px',
             '--tech-card-title-height': '63px',
             '--tech-card-title-min-height': '63px',
             '--tech-card-text-width': '321px',
-            '--tech-card-text-margin': '9px 0 0'
+            '--tech-card-text-margin': '9px 0 0',
+            '--tech-card-art-justify-content': 'center',
+            '--tech-card-frame-width': '221px',
+            '--tech-card-frame-height': '187px',
+            '--tech-card-frame-max-width': '221px',
+            '--tech-card-frame-bg-size': '100% 148%',
+            '--tech-card-frame-bg-position': 'center top'
           },
           art: { type: 'gps', backgroundSrc: '/image/mq1gm8sq-6kvccdt.webp', wrapperWidth: 221, wrapperHeight: 187, wrapperMarginTop: 32 }
         },
@@ -154,25 +154,19 @@ export default function AgroTechnologyModule() {
           title: 'Sirena exterior',
           text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
           styleVars: {
-            '--tech-card-padding': '51px 83px 44px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
+            '--tech-card-padding': '48px 83px 44px',
             '--tech-card-title-min-height': '31px',
+            '--tech-card-text-margin': '12px 0 0',
             '--tech-card-text-width': '273px',
-            '--tech-card-text-margin': '9px 0 0'
+            '--tech-card-image-width': '91px',
+            '--tech-card-image-height': '149px',
+            '--tech-card-image-fixed-width': '91px',
+            '--tech-card-image-fixed-height': '149px',
+            '--tech-card-image-fit': 'cover',
+            '--tech-card-image-position': 'bottom',
+            '--tech-card-art-margin-top': '14px'
           },
-          art: {
-            type: 'sirena',
-            backgroundSrc: '/image/mq1gm7lv-xdsoke2.webp',
-            wrapperHeight: 149,
-            wrapperMarginX: 93,
-            wrapperPadding: { top: 123, right: 4, bottom: 2, left: 18 },
-            wrapperMarginTop: 14,
-            iconSrc: '/image/mq1gm7lu-2zhcm9y.svg',
-            iconWidth: 69,
-            iconHeight: 24
-          }
+          art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
         }
       ];
     }
@@ -184,19 +178,13 @@ export default function AgroTechnologyModule() {
           title: 'Cámaras de vigilancia',
           text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
           styleVars: {
-            '--tech-card-padding': '42px 83px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '276px',
-            '--tech-card-text-margin': '17px 0 0',
+            '--tech-card-title-line-height': '32px',
+            '--tech-card-text-line-height': '20px',
             '--tech-card-image-width': '192px',
             '--tech-card-image-height': '117px',
-            '--tech-card-image-margin-top': '17px',
-            '--tech-card-image-margin-left': '0px'
+            '--tech-card-art-margin-top': '-6px'
           },
-          art: { type: 'image', src: '/image/mq1gmtu2-xhnipxz.png', width: 192, height: 117 }
+          art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
         },
         {
           id: 'sensor',
@@ -204,10 +192,10 @@ export default function AgroTechnologyModule() {
           text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
           styleVars: {
             '--tech-card-padding': '35px 83px 13px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px'
+            '--tech-card-text-margin': '11px 0 0',
+            '--tech-card-text-width': '273px',
+            '--tech-card-image-width': '193px',
+            '--tech-card-image-height': '180px'
           },
           art: {
             type: 'overlay',
@@ -215,7 +203,7 @@ export default function AgroTechnologyModule() {
             wrapperHeight: 180,
             wrapperMarginTop: 66,
             text: { top: -55, right: -40, width: 273 },
-            image: { src: '/image/mq1gmtvw-yhlqlci.png', width: 193, height: 180 }
+            image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180 }
           }
         },
         {
@@ -223,31 +211,29 @@ export default function AgroTechnologyModule() {
           title: 'Teclado de configuración',
           text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
           styleVars: {
-            '--tech-card-padding': '35px 83px 189px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
+            '--tech-card-padding': '35px 83px 12px',
+            '--tech-card-text-margin': '11px 0 0',
             '--tech-card-text-width': '216px',
-            '--tech-card-text-margin': '11px 0 0'
+            '--tech-card-image-width': '201px',
+            '--tech-card-image-height': '188px',
+            '--tech-card-art-margin-top': '-12px'
           },
-          art: { type: 'absolute', src: '/image/mq1gmu17-f1qjeh4.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+          art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
         },
         {
           id: 'mando',
           title: 'Mando a distancia',
           text: 'Activá o desactivá tu sistema con comodidad.',
           styleVars: {
-            '--tech-card-padding': '48px 83px 225px',
-            '--tech-card-align-items': 'flex-start',
-            '--tech-card-title-width': '276px',
-            '--tech-card-title-height': '31px',
+            '--tech-card-padding': '48px 83px 13px',
             '--tech-card-title-min-height': '31px',
-            '--tech-card-title-align': 'center',
             '--tech-card-text-width': '216px',
-            '--tech-card-text-margin': '14px 0 0 29px'
+            '--tech-card-text-margin': '21px 0 0',
+            '--tech-card-image-width': '174px',
+            '--tech-card-image-height': '163px',
+            '--tech-card-art-margin-top': '-22px'
           },
-          art: { type: 'absolute', src: '/image/mq1gmu3k-q9hvwgd.png', width: 168, height: 157, top: 150, left: 136, rotate: 16 }
+          art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
         }
       ];
     }

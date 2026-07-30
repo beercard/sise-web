@@ -16,15 +16,15 @@ import TechCard from '../../../components/TechCard/TechCard';
 import styles from '../../page.module.scss';
 
 const STORAGE_KEY_V1 = 'sise-industria-tech-editor-v1';
-const STORAGE_KEY = 'sise-industria-tech-editor-v2';
+const STORAGE_KEY = 'sise-industria-tech-editor-v3';
 
 const DEFAULT_POSITIONS = {
   perimetral: {
-    sirena: { top: 216, left: 653 },
-    cartel: { top: 253, left: 652 },
-    cerco: { top: 217, left: 604 },
-    camara: { top: 180, left: 654 },
-    magneticos: { top: 329, left: 519 }
+    camara: { top: 168, left: 653 },
+    sirena: { top: 201, left: 653 },
+    cartel: { top: 234, left: 653 },
+    cerco: { top: 217, left: 598 },
+    magneticos: { top: 324, left: 520 }
   },
   interior: {
     camaras: { top: 35, left: 348 },
@@ -74,13 +74,42 @@ export default function IndustriaTechnologyModule() {
         label: 'PROTECCIÓN PERIMETRAL',
         houseClassName: styles.housePerimetral,
         points: [
-          { id: 'sirena', label: 'Sirena exterior' },
-          { id: 'cartel', label: 'Cartel disuasivo' },
-          { id: 'cerco', label: 'Cerco eléctrico perimetral' },
-          { id: 'camara', label: 'Cámara de vigilancia' },
-          { id: 'magneticos', label: 'Magnéticos' }
+          { id: 'cerco', label: 'Cerco eléctrico perimetral', slideIndex: 0 },
+          { id: 'camara', label: 'Cámaras de vigilancia', slideIndex: 1 },
+          { id: 'sirena', label: 'Sirena exterior', slideIndex: 2 },
+          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 3 },
+          { id: 'magneticos', label: 'Magnéticos', slideIndex: 4 }
         ],
         slides: [
+          {
+            title: 'Cerco eléctrico perimetral',
+            text: 'Primera barrera de seguridad que protege tu propiedad y disuade ingresos no autorizados.',
+            styleVars: {
+              '--tech-card-padding': '42px 83px 22px',
+              '--tech-card-align-items': 'center',
+              '--tech-card-title-width': '276px',
+              '--tech-card-title-height': '63px',
+              '--tech-card-title-min-height': '63px',
+              '--tech-card-text-width': '276px',
+              '--tech-card-text-margin': '17px 0 0',
+              '--tech-card-image-width': '215px',
+              '--tech-card-image-height': '154px',
+              '--tech-card-art-margin-top': '0px'
+            },
+            art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
+          },
+          {
+            title: 'Cámaras de vigilancia',
+            text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
+            styleVars: {
+              '--tech-card-title-line-height': '32px',
+              '--tech-card-text-line-height': '20px',
+              '--tech-card-image-width': '192px',
+              '--tech-card-image-height': '117px',
+              '--tech-card-art-margin-top': '-6px'
+            },
+            art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
+          },
           {
             title: 'Sirena exterior',
             text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
@@ -88,70 +117,43 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-padding': '48px 83px 44px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-text-width': '273px',
               '--tech-card-image-width': '91px',
               '--tech-card-image-height': '149px',
-              '--tech-card-image-margin-top': '14px'
+              '--tech-card-image-fixed-width': '91px',
+              '--tech-card-image-fixed-height': '149px',
+              '--tech-card-image-fit': 'cover',
+              '--tech-card-image-position': 'bottom',
+              '--tech-card-art-margin-top': '14px'
             },
-            art: { type: 'image', src: '/image/mq03xkl6-skhb6yd.png', width: 91, height: 149 }
+            art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
           },
           {
             title: 'Cartel disuasivo',
             text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
             styleVars: {
               '--tech-card-padding': '48px 82px 51px 84px',
-              '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
               '--tech-card-image-width': '139px',
               '--tech-card-image-height': '147px',
-              '--tech-card-image-margin-top': '9px'
+              '--tech-card-art-margin-top': '9px'
             },
-            art: { type: 'image', src: '/image/mq03xjh8-plelivg.png', width: 139, height: 147 }
-          },
-          {
-            title: 'Cerco eléctrico perimetral',
-            text: 'Primera barrera de seguridad que protege tu propiedad y disuade ingresos no autorizados.',
-            styleVars: {
-              '--tech-card-padding': '42px 83px 22px',
-              '--tech-card-title-min-height': '63px',
-              '--tech-card-text-margin': '17px 0 0',
-              '--tech-card-text-width': '276px',
-              '--tech-card-image-width': '215px',
-              '--tech-card-image-height': '154px',
-              '--tech-card-image-margin-top': '17px'
-            },
-            art: { type: 'image', src: '/image/mq03xjbb-002rji3.png', width: 215, height: 154 }
-          },
-          {
-            title: 'Cámaras de vigilancia',
-            text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
-            styleVars: {
-              '--tech-card-padding': '42px 83px',
-              '--tech-card-title-min-height': '63px',
-              '--tech-card-text-margin': '17px 0 0',
-              '--tech-card-text-width': '276px',
-              '--tech-card-image-width': '192px',
-              '--tech-card-image-height': '117px',
-              '--tech-card-image-margin-top': '17px'
-            },
-            art: { type: 'image', src: '/image/mq05hjl0-n277hkp.png', width: 192, height: 117 }
+            art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
           },
           {
             title: 'Magnéticos',
             text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
             styleVars: {
               '--tech-card-padding': '48px 84px 33px 82px',
-              '--tech-card-align-items': 'flex-start',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0 7px',
+              '--tech-card-text-width': '265px',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
-              '--tech-card-image-margin-top': '14px',
-              '--tech-card-image-align-self': 'flex-start',
-              '--tech-card-image-margin-left': '60px',
-              '--tech-card-image-margin-right': '0px'
+              '--tech-card-art-margin-top': '14px'
             },
-            art: { type: 'image', src: '/image/mq05vpvq-v3g8fj6.png', width: 160, height: 160 }
+            art: { type: 'image', src: '/image/mpvxvi4u-1mah6ht.png', width: 160, height: 160 }
           }
         ]
       },
@@ -160,38 +162,43 @@ export default function IndustriaTechnologyModule() {
         label: 'PROTECCIÓN INTERIOR',
         houseClassName: styles.houseInterior,
         points: [
-          { id: 'camaras', label: 'Cámaras de vigilancia' },
-          { id: 'sensor', label: 'Sensor de movimiento' },
-          { id: 'teclado', label: 'Teclado de configuración' },
-          { id: 'mando', label: 'Mando a distancia' },
-          { id: 'central', label: 'Central con comunicador' },
-          { id: 'humo', label: 'Cortina de Humo' },
-          { id: 'acceso', label: 'Control de acceso' }
+          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0 },
+          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 1 },
+          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 2 },
+          { id: 'mando', label: 'Mando a distancia', slideIndex: 3 },
+          { id: 'central', label: 'Central con comunicador', slideIndex: 4 },
+          { id: 'humo', label: 'Cortina de Humo', slideIndex: 5 },
+          { id: 'acceso', label: 'Control de acceso', slideIndex: 6 }
         ],
         slides: [
           {
             title: 'Cámaras de vigilancia',
             text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
             styleVars: {
-              '--tech-card-padding': '42px 83px',
+              '--tech-card-title-line-height': '32px',
+              '--tech-card-text-line-height': '20px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-image-margin-top': '17px'
+              '--tech-card-art-margin-top': '-6px'
             },
-            art: { type: 'image', src: '/image/mq03yfq7-j0avktf.png', width: 192, height: 117 }
+            art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
           },
           {
             title: 'Sensor de movimiento',
             text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
             styleVars: {
-              '--tech-card-padding': '35px 83px 13px'
+              '--tech-card-padding': '35px 83px 13px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '273px',
+              '--tech-card-image-width': '193px',
+              '--tech-card-image-height': '180px'
             },
             art: {
               type: 'overlay',
               wrapperWidth: 193,
               wrapperHeight: 180,
               wrapperMarginTop: 66,
-              image: { src: '/image/mq03yfoc-45vkxv8.png', width: 193, height: 180, top: 0, left: 0 },
+              image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180, top: 0, left: 0 },
               text: { top: -55, right: -40, width: 273 }
             }
           },
@@ -199,21 +206,28 @@ export default function IndustriaTechnologyModule() {
             title: 'Teclado de configuración',
             text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
             styleVars: {
-              '--tech-card-padding': '35px 83px 189px',
-              '--tech-card-text-margin': '11px 0 0'
+              '--tech-card-padding': '35px 83px 12px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '216px',
+              '--tech-card-image-width': '201px',
+              '--tech-card-image-height': '188px',
+              '--tech-card-art-margin-top': '-12px'
             },
-            art: { type: 'absolute', src: '/image/mq03yfq4-1tlcwks.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+            art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
           },
           {
             title: 'Mando a distancia',
             text: 'Activá o desactivá tu sistema con comodidad.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 220px',
+              '--tech-card-padding': '48px 83px 13px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '19px 0 0',
-              '--tech-card-text-width': '216px'
+              '--tech-card-text-margin': '21px 0 0',
+              '--tech-card-text-width': '216px',
+              '--tech-card-image-width': '174px',
+              '--tech-card-image-height': '163px',
+              '--tech-card-art-margin-top': '-22px'
             },
-            art: { type: 'absolute', src: '/image/mq03yfq8-wjis0b0.png', width: 188, height: 176, top: 148, left: 127, rotate: 16 }
+            art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
           },
           {
             title: 'Central con comunicador',
@@ -224,21 +238,24 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-text-margin': '13px 0 0 15px',
               '--tech-card-text-width': '246px',
               '--tech-card-image-width': '219px',
-              '--tech-card-image-height': '156px',
-              '--tech-card-image-margin-top': '9px'
+              '--tech-card-image-height': '156px'
             },
-            art: { type: 'image', src: '/image/mq03ygqw-3ws6cms.png', width: 219, height: 156 }
+            art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
           },
           {
             title: 'Cortina de Humo',
             text: 'Sistema que libera una niebla densa ante intrusiones, reduciendo la visibilidad y neutralizando el accionar del delincuente.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 22px',
+              '--tech-card-padding': '48px 40px 22px',
+              '--tech-card-align-items': 'center',
+              '--tech-card-title-width': '276px',
+              '--tech-card-title-height': '39px',
               '--tech-card-title-min-height': '39px',
+              '--tech-card-text-width': '357px',
+              '--tech-card-text-margin': '4px 0 0',
               '--tech-card-image-width': '262px',
               '--tech-card-image-height': '187px',
-              '--tech-card-image-margin-top': '34px',
-              '--tech-card-image-align-self': 'center'
+              '--tech-card-art-margin-top': '-2px'
             },
             art: { type: 'image', src: '/image/mq03yfo9-10k9gi5.png', width: 262, height: 187 }
           },
@@ -246,17 +263,17 @@ export default function IndustriaTechnologyModule() {
             title: 'Control de acceso',
             text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
             styleVars: {
-              '--tech-card-padding': '48px 83px 22px',
+              '--tech-card-padding': '48px 43px 22px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-title-margin': '0 0 0 49px',
-              '--tech-card-text-margin': '14px 0 0',
-              '--tech-card-text-width': '354px',
+              '--tech-card-title-width': '241px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '355px',
+              '--tech-card-art-margin-top': '14px',
               '--tech-card-image-width': '94px',
               '--tech-card-image-height': '176px',
-              '--tech-card-image-margin-top': '12px',
               '--tech-card-image-align-self': 'center'
             },
-            art: { type: 'image', src: '/image/mq03ygqv-k75t2cf.png', width: 94, height: 176 }
+            art: { type: 'image', src: '/image/mpvxz539-e73c1z1.png', width: 94, height: 176 }
           }
         ]
       },
@@ -264,7 +281,7 @@ export default function IndustriaTechnologyModule() {
         id: TAB_IDS.CONECTIVIDAD,
         label: 'CONECTIVIDAD',
         houseClassName: styles.houseConectividad,
-        points: [{ id: 'app', label: 'Control desde el celular' }],
+        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0 }],
         slides: [
           {
             title: 'Control desde el celular',
@@ -339,7 +356,7 @@ export default function IndustriaTechnologyModule() {
   const defaultPointToSlide = useMemo(() => {
     return tabs.reduce((acc, tab) => {
       acc[tab.id] = tab.points.reduce((map, point, idx) => {
-        map[point.id] = Math.min(idx, tab.slides.length - 1);
+        map[point.id] = Math.min(point.slideIndex ?? idx, tab.slides.length - 1);
         return map;
       }, {});
       return acc;
@@ -448,11 +465,11 @@ export default function IndustriaTechnologyModule() {
   };
 
   return (
-    <section className={styles.technology} aria-label="Seguridad total para tu negocio">
+    <section className={styles.technology} aria-label="Seguridad a gran escala y continuidad sin interrupciones">
       <h2 className={styles.technologyTitle}>
-        <span className={styles.technologyTitleStrong}>Seguridad total para tu negocio,</span>
+        <span className={styles.technologyTitleLight}>Seguridad a gran escala y</span>
         <br />
-        <span className={styles.technologyTitleLight}>en todo momento</span>
+        <span className={styles.technologyTitleStrong}>continuidad sin interrupciones.</span>
       </h2>
 
       <div className={styles.tabs} role="tablist" aria-label="Categorías">

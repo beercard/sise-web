@@ -263,7 +263,7 @@
      quedaba pegado a la sección siguiente. */
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1320px;
+  --tech-group-width: 1317px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
@@ -272,21 +272,21 @@
   width: 944px;
   height: 91px;
   text-align: center;
-  line-height: 46px;
+  line-height: 45.6px;
   color: #000000;
   font-size: 48px;
 }
 
 .technologyTitleStrong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .technologyTitleLight {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .tabs {
-  margin-top: 45px;
+  margin-top: 49px;
   width: min(944px, 100%);
   margin-left: auto;
   margin-right: auto;
@@ -354,8 +354,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(24px, 3vw, 64px);
-  margin-top: 32px;
+  gap: 62px;
+  margin-top: 37px;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: var(--tech-pad-x);
@@ -396,9 +396,9 @@
   margin: 0;
   cursor: pointer;
   background: rgba(6, 35, 76, 0.5);
-  padding: 6px;
-  width: 28px;
-  height: 28px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   border-radius: 50%;
@@ -413,17 +413,19 @@
 .ellipse2 {
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 50%;
   background: #06234c;
-  padding: 4px;
-  flex-grow: 1;
+  width: 17.37px;
+  height: 17.37px;
+  flex: 0 0 auto;
 }
 
 .ellipse3 {
   border-radius: 50%;
   background: #ffffff;
-  width: 8px;
-  height: 8px;
+  width: 8.18px;
+  height: 8.18px;
 }
 
 .pointEdit {
@@ -441,12 +443,22 @@
 }
 
 .pointActive {
-  background: rgba(6, 35, 76, 0.75);
-  filter:
-    drop-shadow(0 0 20px rgba(6, 35, 76, 0.4))
-    drop-shadow(0 0 41.4px rgba(6, 35, 76, 0.75));
-  transform: scale(1.36);
+  width: 42px;
+  height: 42px;
+  background: rgba(6, 35, 76, 0.8);
+  filter: drop-shadow(0 0 41.4px rgba(6, 35, 76, 0.8));
+  transform: none;
   z-index: 2;
+}
+
+.pointActive .ellipse2 {
+  width: 24.31px;
+  height: 24.31px;
+}
+
+.pointActive .ellipse3 {
+  width: 11.45px;
+  height: 11.45px;
 }
 
 .techCardGroup {
@@ -817,7 +829,7 @@
 }
 
 .cotizadorWrap {
-  margin-top: 57px;
+  margin-top: 0;
 }
 
 @media (max-width: 1366px) {
@@ -1441,25 +1453,31 @@
   width: 100%;
   min-height: 102px;
   margin: 16px 0 0;
-  line-height: 51px;
+  line-height: 51.2px;
   font-size: 64px;
 }
 
 .heroTitleLight {
-  display: inline;
+  display: block;
+  font-weight: 400;
 }
 
 .heroCategory {
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
+  width: min(416px, 100%);
   margin: 22px 0 0;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 30.4px;
+}
+
+.heroTitleStrong {
+  display: block;
+  font-weight: 700;
 }
 
 @media (max-width: 1366px) {
@@ -1467,7 +1485,7 @@
   .heroCopy { top: 312px; }
   .heroKicker { width: 374px; }
   .heroTitle { min-height: 96px; font-size: 56px; line-height: 48px; }
-  .heroCategory { margin-top: 18px; font-size: 28px; line-height: 28px; }
+  .heroCategory { width: min(416px, 100%); margin-top: 18px; font-size: 28px; line-height: 28px; }
 }
 
 @media (max-width: 1200px) {
@@ -1480,6 +1498,7 @@
     line-height: 44px;
   }
   .heroCategory {
+    width: min(416px, 100%);
     margin-top: 16px;
     font-size: 28px;
     line-height: 28px;
