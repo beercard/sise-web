@@ -197,19 +197,22 @@
   font-weight: 600;
 }
 
+/* Boton "+ info" del diseño de Figma (nodo 5002:463): 90x40, borde de 2px y
+   radio de 10, con el texto en 24px bold. */
 .infoButton {
   margin: auto auto 0;
   margin-top: 14px;
-  min-width: 82px;
+  width: 90px;
   height: 40px;
   border: 2px solid #00408c;
-  border-radius: 4px;
+  border-radius: 10px;
   background: #0857b5;
   color: var(--sise-white);
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 19px;
+  font-size: 24px;
+  font-weight: 700;
+  /* Figma: leading 0.807 sobre 24px. */
+  line-height: 19.4px;
   letter-spacing: 0;
   display: flex;
   align-items: center;
