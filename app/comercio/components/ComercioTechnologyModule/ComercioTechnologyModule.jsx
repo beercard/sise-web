@@ -254,12 +254,17 @@ export default function ComercioTechnologyModule() {
             title: 'Control de acceso',
             text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
             styleVars: {
-              // El texto mide 354: (442 - 354) / 2 = 44 de padding lateral.
-              '--tech-card-padding': '48px 44px 22px',
+              // Figma marca titulo de 240 y texto de 354, pero con la fuente del
+              // navegador cada uno necesita 1px mas para no partir una linea de
+              // mas. El padding lateral baja a 43 para que entre el texto de 355.
+              '--tech-card-padding': '48px 43px 22px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-title-width': '240px',
-              '--tech-card-text-margin': '-17px 0 0',
-              '--tech-card-text-width': '354px',
+              '--tech-card-title-width': '241px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '355px',
+              // Al pasar el titulo a una linea el stage crecio y la ilustracion
+              // subio: +14 la devuelve a y=162 (el arte va centrado, corre la mitad).
+              '--tech-card-art-margin-top': '14px',
               '--tech-card-image-width': '94px',
               '--tech-card-image-height': '176px',
               '--tech-card-image-align-self': 'center'
