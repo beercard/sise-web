@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 
-import CiudadMonitoreoCarousel from '../CiudadMonitoreoCarousel/CiudadMonitoreoCarousel';
-
 import styles from '../../page.module.scss';
 
 export default function CiudadHero() {
@@ -27,17 +25,6 @@ export default function CiudadHero() {
             <span className={styles.heroTitleLight}>Tecnología aplicada a&nbsp;</span>
             <span className={styles.heroTitleStrong}>la seguridad urbana.</span>
           </h1>
-        </div>
-      </div>
-
-      <div className={styles.heroBottom}>
-        <div className={styles.heroBottomInner}>
-          <p className={styles.heroBody}>
-            Desarrollamos soluciones de videovigilancia urbana, monitoreo del espacio público y
-            herramientas para municipios, gobiernos y organismos que buscan prevenir el delito y
-            actuar con información en tiempo real.
-          </p>
-          <CiudadMonitoreoCarousel />
         </div>
       </div>
     </section>

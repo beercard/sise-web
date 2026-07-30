@@ -12,17 +12,31 @@ export default function HistoriaHero() {
           fill
           priority
           sizes="100vw"
-          className={styles.heroImage}
+          className={`${styles.heroImage} ${styles.heroImageDesktop}`}
+        />
+        <Image
+          src="/image/SISE HISTORIA MOBILE.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={`${styles.heroImage} ${styles.heroImageMobile}`}
         />
         <div className={styles.heroOverlay} />
       </div>
 
       <div className={styles.heroCopy}>
-        <h1 className={styles.heroTitle}>
+        <h1 className={`${styles.heroTitle} ${styles.heroTitleDesktop}`}>
           Tecnología, compromiso
           <br />y respaldo real
         </h1>
-        <p className={styles.heroSubtitle}>
+        <h1 className={`${styles.heroTitle} ${styles.heroTitleMobile}`}>
+          Tecnología,
+          <br />
+          compromiso
+          <br />y respaldo real.
+        </h1>
+        <p className={`${styles.heroSubtitle} ${styles.heroSubtitleDesktop}`}>
           <span className={styles.heroSubtitleRegular}>
             En SISE Argentina contamos con&nbsp;
           </span>
@@ -36,8 +50,19 @@ export default function HistoriaHero() {
             comunidad.
           </span>
         </p>
+        <p className={`${styles.heroSubtitle} ${styles.heroSubtitleMobile}`}>
+          <span className={styles.heroSubtitleRegular}>En SISE Argentina contamos con </span>
+          <span className={styles.heroSubtitleStrong}>
+            más de
+            <br />
+            15 años de experiencia en seguridad electrónica y monitoreo
+          </span>
+          <span className={styles.heroSubtitleRegular}>
+            , desarrollando soluciones que integran tecnología, prevención y compromiso con la
+            comunidad.
+          </span>
+        </p>
       </div>
     </section>
   );
 }
-

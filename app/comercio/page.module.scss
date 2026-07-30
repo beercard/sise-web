@@ -398,7 +398,11 @@
   width: min(735px, 55vw);
   max-width: 100%;
   height: auto;
-  aspect-ratio: 735 / 527;
+  /* Proporción real de los tres planos (2486×1728 y 1470×1022, ambos 1.4384).
+     Antes acá decía 735/527 (1.3947): como el plano se pinta con
+     `background-size: 100% 100%`, perimetral se estiraba un 3% en vertical y
+     el mapa saltaba 16px de alto al cambiar de tab. */
+  aspect-ratio: 735 / 511;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -926,6 +930,14 @@
   .techCardGroup {
     margin-top: 0;
   }
+
+  /* La fila pasa a columna acá, así que el `flex: 0 1 520px` de la regla base
+     deja de ser ancho y se aplica como alto, dejando ~163px de aire muerto
+     debajo de la card. */
+  .techCardGroup {
+    flex: 0 0 auto;
+    height: auto;
+  }
 }
 
 @media (max-width: 960px) {
@@ -1077,14 +1089,11 @@
     gap: 24px;
   }
 
-  .house {
-    width: min(735px, 100%);
-    height: auto;
-    aspect-ratio: 735 / 527;
-  }
-
+  /* Misma proporción real que en desktop para los tres tabs. */
+  .house,
   .houseInterior,
   .houseConectividad {
+    width: min(735px, 100%);
     height: auto;
     aspect-ratio: 735 / 511;
   }
@@ -1583,7 +1592,8 @@
   --tech-card-group-width: 520px;
   --tech-row-gap: clamp(24px, 3vw, 64px);
   --tech-house-max-width: 735px;
-  padding-top: 72px;
+  /* Mismo aire que el resto de las verticales. */
+  padding-top: 86px;
   padding-bottom: 86px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
@@ -1647,20 +1657,9 @@
     line-height: clamp(26px, 2vw, 30px);
   }
 
-  .technology {
-    --tech-title-width: 860px;
-    --tech-title-font-size: clamp(40px, 3.35vw, 48px);
-    --tech-title-line-height: clamp(40px, 3.1vw, 46px);
-    --tech-title-tabs-gap: clamp(24px, 2vw, 32px);
-    --tech-tabs-width: 860px;
-    --tech-tab-font-size: clamp(17px, 1.45vw, 20px);
-    --tech-group-width: 1180px;
-    --tech-card-group-width: 500px;
-    --tech-row-gap: clamp(20px, 2.4vw, 40px);
-    --tech-house-max-width: 660px;
-    padding-top: clamp(58px, 4.4vw, 72px);
-    padding-bottom: clamp(70px, 5.8vw, 86px);
-  }
+  /* Las medidas del módulo se mantienen (columna 944, mapa 735, grupo 520 y
+     card 442×357): el mapa ya se adapta con `min(735px, 55vw)`, así que entra
+     sin desbordar hasta los 1201px. */
 
   .techCardGroup {
     margin-top: 46px;
@@ -1694,20 +1693,11 @@
     line-height: 28px;
   }
 
-  .technology {
-    --tech-title-width: 780px;
-    --tech-title-font-size: 36px;
-    --tech-title-line-height: 38px;
-    --tech-title-tabs-gap: 24px;
-    --tech-tabs-width: 780px;
-    --tech-tab-font-size: 16px;
-    --tech-group-width: 1040px;
-    --tech-card-group-width: 460px;
-    --tech-row-gap: 24px;
-    --tech-house-max-width: 560px;
-    padding-top: 56px;
-    padding-bottom: 64px;
-  }
+  /* Las medidas del módulo (columna 944, mapa 735, grupo 520 y card 442×357)
+     se mantienen: el mapa ya se adapta solo con `min(735px, 55vw)`, así que el
+     bloque entra sin desbordar hasta los 1201px. Antes acá se encogía todo y
+     la card bajaba a 407, rompiendo la uniformidad con el resto de las
+     verticales y con el diseño. */
 
   .tabs {
     padding: 0 8px;
@@ -1916,5 +1906,187 @@
     max-width: none;
     height: auto;
     aspect-ratio: 201 / 256;
+  }
+}
+
+/* ── Hero y módulo de mapa en mobile ─────────────────────────────────────
+   Misma geometría que el diseño mobile de /hogar —hero de 591 con el degradé
+   cubriéndolo entero, logo de 191 en y=360 y título de 32/32 en y=403; tabs de
+   107 en la columna de 354 con subrayado, mapa a sangre y puntos de 15— con el
+   color, las fotos y los textos propios de esta página.
+
+   Va al final del archivo porque más arriba hay reglas sin media query que,
+   por orden de fuente, le ganarían al bloque mobile. */
+@media (max-width: 600px) {
+  /* ── Hero ── */
+  .heroMedia {
+    height: 591px;
+  }
+
+  .heroGradient {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      90deg,
+      #06234c 0%,
+      rgba(6, 35, 76, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .heroCopy {
+    left: 24px;
+    top: 360px;
+    bottom: auto;
+    width: min(354px, calc(100% - 48px));
+  }
+
+  .heroKicker {
+    width: 191px;
+    height: auto;
+  }
+
+  .heroTitle {
+    /* El logo termina en y=395 y el título arranca en y=403. */
+    margin: 8px 0 0 2px;
+    width: min(343px, 100%);
+    min-height: 0;
+    height: auto;
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .heroTitleLight {
+    font-weight: 400;
+  }
+
+  .heroTitleStrong {
+    font-weight: 600;
+  }
+
+  .heroCategory {
+    margin: 12px 0 0;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  /* ── Módulo de tecnología ── */
+  .technology {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .technologyTitle {
+    font-size: 24px;
+    line-height: 26.4px;
+  }
+
+  .technologyTitleStrong {
+    font-weight: 700;
+  }
+
+  .technologyTitleLight {
+    font-weight: 500;
+  }
+
+  /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
+     habían convertido en pastillas con scroll horizontal. */
+  .tabs {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .tab,
+  .tabActive {
+    /* 107px es la medida del diseño, pero tres tabs suman 321 y desbordarían
+       por debajo de ~370px de ancho; así pueden encogerse. */
+    flex: 0 1 107px;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    height: 31px;
+    background: transparent;
+    color: #06234c;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 13.3px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: 107px;
+  }
+
+  .tabActive::after {
+    display: block;
+    top: 29px;
+    left: 0;
+    /* Acompaña al tab si se encoge. */
+    width: 100%;
+    height: 2px;
+    background: #06234c;
+  }
+
+  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
+  .technologyRow,
+  .techBody {
+    margin-top: 27px;
+    gap: 28px;
+  }
+
+  /* Mapa a sangre: compensa el padding lateral de la fila (24px).
+     Además unifica la proporción con la real de las imágenes (1.4384): 
+     perimetral declaraba 735/527 y estiraba el plano un 3%. */
+  .house,
+  .housePerimetral,
+  .houseInterior,
+  .houseConectividad {
+    width: calc(100% + 48px);
+    max-width: none;
+    height: auto;
+    aspect-ratio: 735 / 511;
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
+     58% y centro blanco al 27%. */
+  .pointButton {
+    width: 15px;
+    height: 15px;
+    padding: 3.16px;
+    background: rgba(6, 35, 76, 0.2);
+    /* El punto se ancla por su esquina, así que al pasar de 28 a 15px su
+       centro se corría 6.5px arriba y a la izquierda. */
+    margin: 6.5px 0 0 6.5px;
+  }
+
+  .ellipse2 {
+    padding: 2.3px;
+  }
+
+  .ellipse3 {
+    width: 4.09px;
+    height: 4.09px;
+  }
+
+  .pointButton.pointActive {
+    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
+    transform: scale(1.533);
+    background: rgba(6, 35, 76, 0.8);
   }
 }

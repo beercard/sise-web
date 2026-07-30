@@ -1,10 +1,10 @@
 import CiudadHero from './components/CiudadHero/CiudadHero';
 import CiudadTechnologyModule from './components/CiudadTechnologyModule/CiudadTechnologyModule';
+import CiudadSolutionsModule from './components/CiudadSolutionsModule/CiudadSolutionsModule';
 
-import FaqSection from '../components/FaqSection/FaqSection';
+import Cotizador from '../components/Cotizador/Cotizador';
 import {
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -32,34 +32,6 @@ export const metadata = buildPageMetadata({
   ]
 });
 
-const ciudadFaqs = [
-  {
-    question: '¿Qué soluciones de seguridad puede implementar un municipio?',
-    answer:
-      'Un municipio puede implementar videovigilancia urbana, monitoreo del espacio público, control de accesos, puntos y paradas seguras, GPS institucional y herramientas de supervisión, integrados a un centro de monitoreo para mejorar la prevención del delito.'
-  },
-  {
-    question: '¿Se puede empezar por una etapa e ir ampliando el sistema?',
-    answer:
-      'Sí. Diseñamos proyectos escalables que pueden iniciar por accesos, avenidas o puntos críticos y crecer por etapas según las prioridades y el presupuesto del municipio.'
-  },
-  {
-    question: '¿Cómo funciona un centro de monitoreo urbano?',
-    answer:
-      'El centro de monitoreo concentra las cámaras y alertas de la ciudad en tiempo real, permitiendo seguir eventos, evaluar incidencias y coordinar la respuesta entre las áreas responsables de la seguridad.'
-  },
-  {
-    question: '¿La videovigilancia urbana ayuda a prevenir el delito y gestionar el espacio público?',
-    answer:
-      'Sí. Aporta información en tiempo real para la prevención del delito, la lectura del territorio y la gestión del espacio público, mejorando la capacidad de respuesta y la coordinación operativa.'
-  },
-  {
-    question: '¿SISE trabaja con municipios de Chaco y el NEA?',
-    answer:
-      'Sí. Desde nuestra base en Resistencia brindamos asesoramiento técnico y comercial a municipios y organismos del Chaco y la región del NEA para desarrollar proyectos de seguridad urbana a medida.'
-  }
-];
-
 const ciudadStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -78,8 +50,7 @@ const ciudadStructuredData = {
       serviceType: 'Seguridad urbana y videovigilancia',
       audience: 'Municipios, gobiernos y organismos públicos',
       areaServed: buildLocalAreas()
-    }),
-    buildFAQPageSchema({ path: '/ciudad', questions: ciudadFaqs })
+    })
   ]
 };
 
@@ -93,12 +64,10 @@ export default function CiudadPage() {
 
       <CiudadHero />
       <CiudadTechnologyModule />
-
-      <FaqSection
-        intro="Reunimos las consultas más frecuentes de municipios y organismos sobre videovigilancia urbana, monitoreo del espacio público y prevención del delito."
-        faqs={ciudadFaqs}
-        ariaLabel="Preguntas frecuentes sobre seguridad para ciudades"
-      />
+      <CiudadSolutionsModule />
+      <section className={styles.cotizadorWrap} aria-label="Cotizador online">
+        <Cotizador variant="spaces" />
+      </section>
     </div>
   );
 }

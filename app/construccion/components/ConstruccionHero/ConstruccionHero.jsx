@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 
-import ConstruccionMonitoreoCarousel from '../ConstruccionMonitoreoCarousel/ConstruccionMonitoreoCarousel';
-
 import styles from '../../page.module.scss';
 
 export default function ConstruccionHero() {
@@ -22,20 +20,6 @@ export default function ConstruccionHero() {
           </h1>
 
           <p className={styles.heroCategory}>CONSTRUCCIÓN Y OBRAS</p>
-        </div>
-      </div>
-
-      <div className={styles.heroBottom} aria-label="Construcción y Obras">
-        <div className={styles.heroBottomInner}>
-          <div className={styles.heroText}>
-            <p className={styles.heroLead}>Seguridad activa para obras y obradores</p>
-            <p className={styles.heroBody}>
-              Protegemos materiales, herramientas, maquinaria y accesos con videovigilancia,
-              monitoreo y control perimetral durante cada etapa del proyecto.
-            </p>
-          </div>
-
-          <ConstruccionMonitoreoCarousel />
         </div>
       </div>
     </section>

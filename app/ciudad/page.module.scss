@@ -243,7 +243,10 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
+  /* Mismo aire arriba y abajo que /hogar: sin el padding inferior el mapa
+     quedaba pegado a la sección siguiente. */
   padding-top: 86px;
+  padding-bottom: 86px;
   --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
@@ -914,6 +917,14 @@
   .techCardGroup {
     margin-top: 0;
     flex: 0 0 auto;
+  }
+
+  /* La fila pasa a columna acá, así que el `flex: 0 1 520px` de la regla base
+     deja de ser ancho y se aplica como alto, dejando ~163px de aire muerto
+     debajo de la card. */
+  .techCardGroup {
+    flex: 0 0 auto;
+    height: auto;
   }
 }
 
@@ -1647,5 +1658,181 @@
     max-width: none;
     height: auto;
     aspect-ratio: 201 / 256;
+  }
+}
+
+/* ── Hero y módulo de mapa en mobile ─────────────────────────────────────
+   Misma geometría que el diseño mobile de /hogar —hero de 591 con el degradé
+   cubriéndolo entero, logo de 191 en y=360 y título de 32/32 en y=403; tabs de
+   107 en la columna de 354 con subrayado, mapa a sangre y puntos de 15— con el
+   color, las fotos y los textos propios de esta página.
+
+   Va al final del archivo porque más arriba hay reglas sin media query que,
+   por orden de fuente, le ganarían al bloque mobile. */
+@media (max-width: 600px) {
+  /* ── Hero ── */
+  .heroMedia {
+    height: 591px;
+  }
+
+  /* El hero de ciudad ya usa el overlay secundario como degradé único (el
+     primario está oculto más arriba), así que acá se lo lleva a cubrir todo el
+     ancho, como en el diseño. */
+  .heroOverlaySecondary {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    rotate: none;
+    opacity: 1;
+    background-image: linear-gradient(
+      90deg,
+      #597a9c 0%,
+      rgba(89, 122, 156, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .heroCopy {
+    left: 24px;
+    top: 360px;
+    bottom: auto;
+    width: min(354px, calc(100% - 48px));
+  }
+
+  .heroCityLogo {
+    width: 191px;
+    height: auto;
+  }
+
+  .heroTitle {
+    /* El logo termina en y=395 y el título arranca en y=403. */
+    margin: 8px 0 0 2px;
+    width: min(343px, 100%);
+    min-height: 0;
+    height: auto;
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .heroTitleLight {
+    font-weight: 400;
+  }
+
+  .heroTitleStrong {
+    font-weight: 600;
+  }
+
+  /* ── Módulo de tecnología ── */
+  .technology {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .technologyTitle {
+    font-size: 24px;
+    line-height: 26.4px;
+  }
+
+  .technologyTitleStrong {
+    font-weight: 700;
+  }
+
+  .technologyTitleLight {
+    font-weight: 500;
+  }
+
+  /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
+     habían convertido en pastillas con scroll horizontal. */
+  .tabs {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .tab,
+  .tabActive {
+    /* 107px es la medida del diseño, pero tres tabs suman 321 y desbordarían
+       por debajo de ~370px de ancho; así pueden encogerse. */
+    flex: 0 1 107px;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    height: 31px;
+    background: transparent;
+    color: #597a9c;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 13.3px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: 107px;
+  }
+
+  /* Estas páginas pintan el subrayado con un <span>, no con ::after, y el
+     bloque de tablet lo escondía para las pastillas: hay que reponerlo. */
+  .tabUnderline,
+  .tabUnderlinePerimetral,
+  .tabUnderlineInterior,
+  .tabUnderlineConectividad {
+    display: block;
+    position: absolute;
+    top: 29px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #597a9c;
+  }
+
+  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
+  .technologyRow,
+  .techBody {
+    margin-top: 27px;
+    gap: 28px;
+  }
+
+  /* Mapa a sangre: compensa el padding lateral del contenedor (16px). */
+  .houseViewport {
+    width: calc(100% + 32px);
+    max-width: none;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
+     58% y centro blanco al 27%. */
+  .pointButton {
+    width: 15px;
+    height: 15px;
+    padding: 3.16px;
+    background: rgba(89, 122, 156, 0.2);
+  }
+
+  .ellipse2 {
+    padding: 2.3px;
+  }
+
+  .ellipse3 {
+    width: 4.09px;
+    height: 4.09px;
+  }
+
+  .pointButton.pointActive {
+    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
+    transform: translate(-50%, -50%) scale(1.533);
+    background: rgba(89, 122, 156, 0.8);
   }
 }

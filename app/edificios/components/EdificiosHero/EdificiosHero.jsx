@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 
-import EdificiosMonitoreoCarousel from '../EdificiosMonitoreoCarousel/EdificiosMonitoreoCarousel';
-
 import styles from '../../page.module.scss';
 
 export default function EdificiosHero() {
@@ -25,25 +23,6 @@ export default function EdificiosHero() {
           </h1>
 
           <p className={styles.heroCategory}>EDIFICIOS Y CONSORCIOS</p>
-        </div>
-      </div>
-
-      <div className={styles.heroBottom} aria-label="Edificios y consorcios">
-        <div className={styles.heroBottomInner}>
-          <div className={styles.heroText}>
-            <p className={styles.heroLead}>
-              Más seguridad,
-              <br />
-              menor costo operativo.
-            </p>
-            <p className={styles.heroBody}>
-              Implementamos control de accesos, videovigilancia y monitoreo para halls, portones,
-              garajes y espacios comunes, optimizando costos y brindando más control a consorcios
-              y residentes.
-            </p>
-          </div>
-
-          <EdificiosMonitoreoCarousel />
         </div>
       </div>
     </section>

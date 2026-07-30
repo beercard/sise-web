@@ -1,11 +1,10 @@
 import AgroHero from './components/AgroHero/AgroHero';
 import AgroTechnologyModule from './components/AgroTechnologyModule/AgroTechnologyModule';
+import AgroSolutionsModule from './components/AgroSolutionsModule/AgroSolutionsModule';
 
 import Cotizador from '../components/Cotizador/Cotizador';
-import FaqSection from '../components/FaqSection/FaqSection';
 import {
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -38,34 +37,6 @@ export const metadata = buildPageMetadata({
   ]
 });
 
-const agroFaqs = [
-  {
-    question: '¿Cómo se protege un campo o establecimiento rural alejado?',
-    answer:
-      'Integramos videovigilancia, monitoreo rural, conectividad y control remoto para proteger tranqueras, galpones, silobolsas, maquinaria y casco de estancia, incluso en establecimientos extensos o de difícil acceso.'
-  },
-  {
-    question: '¿Funciona la videovigilancia rural sin luz ni señal?',
-    answer:
-      'Sí. Utilizamos cámaras con energía solar y conectividad propia, pensadas para zonas rurales sin red eléctrica ni cobertura, de modo que el campo queda vigilado las 24 horas.'
-  },
-  {
-    question: '¿Pueden rastrear maquinaria, hacienda y activos con GPS?',
-    answer:
-      'Sí. Sumamos rastreo satelital y GPS para seguir la ubicación de maquinaria agrícola, vehículos y activos en tiempo real, detectar movimientos no autorizados y reaccionar a tiempo.'
-  },
-  {
-    question: '¿Cómo llega el monitoreo a zonas rurales del NEA y Chaco?',
-    answer:
-      'Diseñamos la conectividad de cada establecimiento según su ubicación, combinando distintas tecnologías para que las alertas lleguen a nuestra central de monitoreo aun en zonas alejadas del Chaco y el NEA.'
-  },
-  {
-    question: '¿Qué pasa ante un intento de intrusión en el campo?',
-    answer:
-      'Ante una alerta, nuestra central de monitoreo verifica el evento de inmediato y coordina la respuesta, dando aviso al productor y a las fuerzas de seguridad para actuar a tiempo.'
-  }
-];
-
 const agroStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -79,8 +50,7 @@ const agroStructuredData = {
       serviceType: 'Seguridad electrónica rural',
       audience: 'Productores y establecimientos agropecuarios',
       areaServed: buildLocalAreas()
-    }),
-    buildFAQPageSchema({ path: '/agro', questions: agroFaqs })
+    })
   ]
 };
 
@@ -94,15 +64,10 @@ export default function AgroPage() {
 
       <AgroHero />
       <AgroTechnologyModule />
+      <AgroSolutionsModule />
       <section className={styles.cotizadorWrap} aria-label="Cotizador online">
         <Cotizador variant="agro" />
       </section>
-
-      <FaqSection
-        intro="Respondemos las dudas más frecuentes sobre seguridad rural: videovigilancia para el campo, cámaras con energía solar, conectividad, GPS y monitoreo 24/7 de establecimientos agropecuarios."
-        faqs={agroFaqs}
-        ariaLabel="Preguntas frecuentes sobre seguridad para el campo"
-      />
     </div>
   );
 }

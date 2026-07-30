@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 
-import AgroMonitoreoCarousel from '../AgroMonitoreoCarousel/AgroMonitoreoCarousel';
-
 import styles from '../../page.module.scss';
 
 export default function AgroHero() {
@@ -22,21 +20,6 @@ export default function AgroHero() {
           </h1>
 
           <p className={styles.heroCategory}>SEGURIDAD RURAL</p>
-        </div>
-      </div>
-
-      <div className={styles.heroBottom} aria-label="Servicios destacados">
-        <div className={styles.heroBottomInner}>
-          <div className={styles.heroText}>
-            <p className={styles.heroLead}>Monitoreo remoto para establecimientos agropecuarios</p>
-            <p className={styles.heroBody}>
-              Protegemos tranqueras, galpones, silobolsas, maquinaria y cascos de estancia con
-              videovigilancia, conectividad y control desde el celular, aun en entornos extensos o
-              de difícil acceso.
-            </p>
-          </div>
-
-          <AgroMonitoreoCarousel />
         </div>
       </div>
     </section>

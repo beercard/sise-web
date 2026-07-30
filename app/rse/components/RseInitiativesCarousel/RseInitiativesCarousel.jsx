@@ -1,385 +1,334 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
+import puenteImage from '../../../../.figma/image/ms6v59ky-vd0rezk.png';
+import girasolesImage from '../../../../.figma/image/ms6urfwf-45aaugg.png';
+import lamarcaImage from '../../../../.figma/image/ms6urfwf-q65k0a6.png';
+import utnImage from '../../../../.figma/image/ms6v59l9-0ubsc71.png';
+import iaccoImage from '../../../../.figma/image/ms6v5bki-qah081x.png';
+import sixtyImage from '../../../../.figma/image/ms6v59l5-8bq4anf.png';
+import golfImage from '../../../../.figma/image/ms6v59l2-4rr3h6x.png';
 
 import styles from '../../page.module.scss';
 
-const AUTOPLAY_MS = 5500;
-
-const ITEMS = [
+const DESKTOP_CARDS = [
   {
-    id: 'group77',
-    title: 'Educación y formación\nde talento',
-    subtitle: 'Convenio con UEGP N.º 27 "Emilio Lamarca"',
-    introParts: [
-      { text: 'SISE mantiene un trabajo sostenido con esta institución educativa, brindando a estudiantes del último año la posibilidad de realizar ' },
-      { text: 'pasantías educativas', strong: true },
-      { text: ' en distintas áreas de la empresa.' }
+    id: 'puente',
+    title: 'Infraestructura Pública y Salud',
+    subtitleParts: [
+      { text: 'Videovigilancia en\n', weight: 'regular' },
+      { text: 'Puente General Belgrano', weight: 'strong' }
     ],
-    image: '/image/mq2uf58k-hkxy7zy.webp',
-    bodyLabel: 'Durante estas prácticas, los estudiantes:',
-    bullets: [
-      'Adquieren experiencia en un entorno laboral real',
-      'Conocen el funcionamiento de una organización',
-      'Fortalecen su formación integral'
+    mobileSubtitleParts: [
+      { text: 'Videovigilancia en\n', weight: 'regular' },
+      { text: 'Puente General Belgrano', weight: 'strong' }
     ],
-    closing:
-      'Este acuerdo refuerza el vínculo entre el ámbito educativo y el mundo del trabajo, acompañando a jóvenes en una etapa clave de su desarrollo.',
-    preview:
-      'Pasantías educativas para acercar a estudiantes al entorno laboral real y fortalecer su formación profesional.'
+    description:
+      'Aportamos tecnología estratégica para la implementación de sistemas de monitoreo en tiempo real y prevención vial en una de las conexiones más críticas\nde la región.',
+    image: puenteImage
   },
   {
-    id: 'group76',
-    title: 'Inclusión y\noportunidades laborales',
-    subtitle: 'Convenio de pasantías con Asociación Los Girasoles',
-    introParts: [
-      { text: 'Desde el año 2018, SISE Argentina impulsa la ' },
-      { text: 'inclusión laboral', strong: true },
-      { text: ' mediante un convenio con la Asociación Los Girasoles, organización dedicada a la integración social de jóvenes con capacidades diferentes.' }
+    id: 'girasoles',
+    title: 'Inclusión y Formación de Talento',
+    subtitleParts: [
+      { text: 'Convenio de pasantías con', weight: 'regular' },
+      { text: ' Asociación Los Girasoles', weight: 'strong' }
     ],
-    image: '/image/mq2twaum-f3eh90n.webp',
-    bodyLabel: 'En el marco de la Ley N.º 6.454 de pasantías profesionales, esta iniciativa promueve:',
-    bullets: [
-      'La inclusión laboral en entornos reales de trabajo',
-      'El desarrollo de habilidades y competencias',
-      'La integración progresiva al ámbito laboral',
-      'El fortalecimiento del vínculo entre empresa y organizaciones sociales'
-    ],
-    closing:
-      'A través de este programa, acompañamos el desarrollo individual respetando las capacidades y potencialidades de cada persona.',
-    preview:
-      'Un programa sostenido de inclusión laboral que promueve oportunidades reales, desarrollo personal e integración social.'
+    description:
+      'Integramos a jóvenes con capacidades diferentes en entornos reales de trabajo, respetando y desarrollando sus potencialidades individuales.',
+    image: girasolesImage
   },
   {
-    id: 'group78',
-    title: 'Educación y formación\nde talento',
-    subtitle: 'Convenio con Universidad Tecnológica Nacional (UTN)',
-    introParts: [
-      { text: 'En articulación con la UTN, SISE desarrolla un programa de ' },
-      { text: 'prácticas profesionales', strong: true },
-      { text: ' para estudiantes de Ingeniería Industrial.' }
+    id: 'lamarca',
+    title: 'Inclusión y Formación de Talento',
+    subtitleParts: [
+      { text: 'Convenio con\n', weight: 'regular' },
+      { text: 'UEGP Nº 27\n“Emilio Lamarca”', weight: 'strong' }
     ],
-    image: '/image/mq2uf59b-txvmh24.webp',
-    imageBackground: '/image/mq2uf59b-l9wq65i.webp',
-    bodyLabel: 'Esta iniciativa permite:',
-    bullets: [
-      'Aplicar conocimientos técnicos en contextos reales',
-      'Integrarse a áreas operativas y tecnológicas',
-      'Desarrollar competencias profesionales y trabajo en equipo'
+    mobileSubtitleParts: [
+      { text: 'Convenio con ', weight: 'regular' },
+      { text: 'UEGP Nº 27 “Emilio Lamarca”', weight: 'strong' }
     ],
-    closing:
-      'De esta manera, contribuimos a la formación de futuros profesionales, fomentando la innovación y el desarrollo del talento joven.',
-    preview:
-      'Prácticas profesionales con la UTN para integrar estudiantes a áreas operativas y tecnológicas de la empresa.'
+    description:
+      'Prácticas profesionales en un entorno corporativo real para estudiantes del último año. Potenciamos su formación técnica antes de su salida al mercado laboral.',
+    image: lamarcaImage
   },
   {
-    id: 'group74',
-    title: 'Infraestructura y\nseguridad pública',
-    subtitle: 'Videovigilancia en Puente General Belgrano',
-    introParts: [
-      { text: 'En el marco de su compromiso con la seguridad y el desarrollo de infraestructura estratégica, SISE Argentina participó en la implementación de sistemas de videovigilancia en el ' },
-      { text: 'Puente General Belgrano', strong: true },
-      { text: ', una de las principales conexiones viales de la región.' }
+    id: 'utn',
+    title: 'Inclusión y Formación de Talento',
+    subtitleParts: [
+      { text: 'Convenio con\n', weight: 'regular' },
+      { text: 'Universidad Tecnológica Nacional (UTN)', weight: 'strong' }
     ],
-    image: '/image/mq2uf593-wb2teak.webp',
-    bodyLabel: 'Esta acción contribuye a:',
-    bullets: [
-      'Fortalecer la seguridad en un punto clave de circulación',
-      'Mejorar la capacidad de monitoreo y respuesta ante incidentes',
-      'Aportar tecnología para la prevención y el control en espacios públicos'
+    mobileSubtitleParts: [
+      { text: 'Convenio con ', weight: 'regular' },
+      { text: 'Universidad Tecnológica Nacional (UTN)', weight: 'strong' }
     ],
-    closing:
-      'A través de este tipo de iniciativas, SISE acompaña proyectos que impactan directamente en la seguridad ciudadana y en la calidad de vida de la comunidad, integrando tecnología, prevención y compromiso social.',
-    preview:
-      'Tecnología aplicada al monitoreo de infraestructura estratégica con impacto directo en la seguridad vial y ciudadana.'
+    description:
+      'Integración de estudiantes de Ingeniería Industrial en nuestras áreas operativas. Aplican su formación académica directamente en proyectos tecnológicos de impacto.',
+    image: utnImage
   },
   {
-    id: 'group75',
-    title: 'Compromiso con la\ninfraestructura y la salud',
-    subtitle: 'Proyecto IACCO - Videovigilancia de obra',
-    introParts: [
-      { text: 'SISE participó en este proyecto mediante la instalación de sistemas de ' },
-      { text: 'videovigilancia para el monitoreo seguro', strong: true },
-      { text: ' de la obra.' }
+    id: 'iacco',
+    title: 'Infraestructura Pública y Salud',
+    subtitleParts: [
+      { text: 'Proyecto IACCO\n', weight: 'strong' },
+      { text: 'Videovigilancia\nde obra', weight: 'regular' }
     ],
-    image: '/image/mq2uf58w-3qr8qqp.webp',
-    bodyLabel: 'Nuestra contribución incluye:',
-    bullets: [
-      'Control y seguridad del predio',
-      'Transparencia en el desarrollo de la obra',
-      'Implementación futura de cámara timelapse para seguimiento del avance'
+    mobileSubtitleParts: [
+      { text: 'Proyecto IACCO\n', weight: 'strong' },
+      { text: 'Videovigilancia\nde obra', weight: 'regular' }
     ],
-    closing:
-      'Esta acción acompaña el desarrollo de una infraestructura clave para la salud regional, reafirmando nuestro compromiso con proyectos de alto impacto social.',
-    preview:
-      'Videovigilancia de obra para reforzar control del predio, seguimiento y transparencia en infraestructura de salud.'
+    description:
+      'Garantizamos la seguridad y la transparencia en obras de infraestructura sanitaria vital, mediante la instalación de sistemas de videovigilancia y control continuo del predio.',
+    image: iaccoImage
   },
   {
-    id: 'group79',
-    title: 'Compromiso ambiental\ny comunitario',
-    subtitle: 'Control de basurales a cielo abierto - Barrio Golf',
-    introParts: [
-      { text: 'Como parte de su política ambiental, SISE implementa sistemas de ' },
-      { text: 'videovigilancia con megáfono', strong: true },
-      { text: ' en zonas críticas de la ciudad.' }
+    id: 'sixty',
+    title: 'Compromiso Ambiental y Comunitario',
+    subtitleParts: [
+      { text: 'Ley de\nSponsorización Deportiva\n', weight: 'regular' },
+      { text: 'Club Sixty', weight: 'strong' }
     ],
-    image: '/image/mq2uf59f-1yduapg.webp',
-    bodyLabel: 'Esta acción tiene como objetivo:',
-    bullets: [
-      'Prevenir el arrojo indebido de residuos',
-      'Promover la concientización ambiental',
-      'Proteger los espacios públicos'
+    mobileSubtitleParts: [
+      { text: 'Ley de\nSponsorización Deportiva\n', weight: 'regular' },
+      { text: 'Club Sixty', weight: 'strong' }
     ],
-    closing:
-      'La iniciativa se desarrolla en conjunto con la Municipalidad de Resistencia y vecinos, fortaleciendo el trabajo colaborativo entre sector privado, Estado y comunidad.',
-    preview:
-      'Control ambiental con videovigilancia y megáfono para prevenir microbasurales y proteger espacios públicos.'
+    description:
+      'Acompañamos el desarrollo del deporte chaqueño mediante el patrocinio. Creemos en el deporte como una herramienta fundamental para la inclusión social y el desarrollo integral de los jóvenes.',
+    image: sixtyImage
   },
   {
-    id: 'group80',
-    title: 'Apoyo al deporte local',
-    subtitle: 'Ley de Sponsorización Deportiva - Club Sixty',
-    introParts: [
-      { text: 'En el marco de la Ley Provincial N.º 1772-S, SISE acompaña el desarrollo del deporte local mediante el patrocinio al ' },
-      { text: 'Club Sixty', strong: true },
-      { text: '.' }
+    id: 'golf',
+    title: 'Compromiso Ambiental y Comunitario',
+    subtitleParts: [
+      { text: 'Control de basurales\na cielo abierto\n', weight: 'strong' },
+      { text: 'Barrio Golf', weight: 'regular' }
     ],
-    image: '/image/mq2uf59k-knk1tya.webp',
-    bodyLabel: 'Este compromiso permite:',
-    bullets: [
-      'Fomentar la actividad deportiva',
-      'Promover la inclusión y participación social',
-      'Acompañar el desarrollo de jóvenes atletas',
-      'Fortalecer instituciones deportivas'
+    mobileSubtitleParts: [
+      { text: 'Control de basurales a cielo abierto\n', weight: 'strong' },
+      { text: 'Barrio Golf', weight: 'regular' }
     ],
-    closing:
-      'Además, esta articulación demuestra cómo el sector privado puede contribuir activamente al crecimiento del deporte comunitario.',
-    preview:
-      'Patrocinio deportivo para fortalecer instituciones locales y acompañar el desarrollo social y comunitario.'
+    description:
+      'Desplegamos sistemas de videovigilancia con audio disuasivo para prevenir la contaminación y proteger los espacios públicos en conjunto con los vecinos.',
+    image: golfImage
   }
 ];
 
 function wrapIndex(index) {
-  return (index + ITEMS.length) % ITEMS.length;
+  return (index + DESKTOP_CARDS.length) % DESKTOP_CARDS.length;
 }
 
-function renderRichText(parts, baseClassName, strongClassName) {
-  return parts.map((part, index) => (
-    <span key={`${part.text}-${index}`} className={part.strong ? strongClassName : baseClassName}>
-      {part.text}
+function TitleLines({ text }) {
+  const lines = text.split('\n');
+
+  return lines.map((line, index) => (
+    <span key={`${line}-${index}`}>
+      {line}
+      {index < lines.length - 1 ? <br /> : null}
     </span>
   ));
 }
 
-function InitiativeCard({ item, isActive, onActivate, direction }) {
-  const directionClassName =
-    direction === 'prev'
-      ? isActive
-        ? styles.carouselActiveFromPrev
-        : styles.carouselPreviewFromPrev
-      : isActive
-        ? styles.carouselActiveFromNext
-        : styles.carouselPreviewFromNext;
+function SubtitleParts({ parts }) {
+  return parts.map((part, index) => (
+    <span
+      key={`${part.weight}-${index}-${part.text}`}
+      className={part.weight === 'strong' ? styles.initiativeSubtitlePartStrong : styles.initiativeSubtitlePartRegular}
+    >
+      <TitleLines text={part.text} />
+    </span>
+  ));
+}
+
+function DescriptionLines({ text }) {
+  const lines = text.split('\n');
+
+  return lines.map((line, index) => (
+    <span key={`${line}-${index}`}>
+      {line}
+      {index < lines.length - 1 ? <br /> : null}
+    </span>
+  ));
+}
+
+function DesktopCard({ card }) {
+  const isFeature = card.slot === 'feature-left' || card.slot === 'feature-right';
+  const cardClassName =
+    card.id === 'puente'
+      ? styles.initiativeCardPuente
+      : card.id === 'iacco'
+        ? styles.initiativeCardIacco
+        : card.id === 'sixty'
+          ? styles.initiativeCardSixty
+          : card.id === 'golf'
+            ? styles.initiativeCardGolf
+      : card.id === 'utn'
+        ? styles.initiativeCardUtn
+        : card.id === 'lamarca'
+          ? styles.initiativeCardLamarca
+          : styles.initiativeCardGirasoles;
+  const slotClassName =
+    card.slot === 'preview-left'
+      ? styles.initiativeSlotPreviewLeft
+      : card.slot === 'preview-right'
+        ? styles.initiativeSlotPreviewRight
+        : '';
 
   return (
     <article
-      className={`${styles.initiativeCard} ${isActive ? styles.initiativeCardActive : styles.initiativeCardPreview} ${directionClassName}`}
-      aria-hidden={!isActive}
+      className={`${styles.initiativeCard} ${cardClassName} ${slotClassName} ${
+        isFeature ? styles.initiativeCardFeature : styles.initiativeCardPreview
+      }`}
     >
-      {!isActive ? (
-        <button
-          type="button"
-          className={styles.previewCardButton}
-          onClick={onActivate}
-          aria-label={`Ver ${item.title.replace('\n', ' ')}`}
-        >
-          <h3 className={styles.previewTitle}>
-            {item.title.split('\n').map((line) => (
-              <span key={line}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </h3>
+      <h3 className={isFeature ? styles.initiativeTitleFeature : styles.initiativeTitlePreview}>
+        <TitleLines text={card.title} />
+      </h3>
 
-          <p className={styles.previewSubtitle}>{item.subtitle}</p>
+      <div className={isFeature ? styles.initiativeImageBandFeature : styles.initiativeImageBandPreview}>
+        <Image
+          src={card.image}
+          alt={card.title}
+          fill
+          sizes={isFeature ? '(max-width: 1200px) 40vw, 455px' : '(max-width: 1200px) 30vw, 354px'}
+          className={styles.initiativeImage}
+        />
+      </div>
 
-          <div
-            className={styles.previewImageWrap}
-            style={item.imageBackground ? { backgroundImage: `url(${item.imageBackground})` } : undefined}
-          >
-            <Image
-              src={item.image}
-              alt={item.title.replace('\n', ' ')}
-              fill
-              sizes="(max-width: 768px) 90vw, 400px"
-              className={styles.previewImage}
-            />
-          </div>
+      <p className={isFeature ? styles.initiativeSubtitleFeature : styles.initiativeSubtitlePreview}>
+        <SubtitleParts parts={card.subtitleParts} />
+      </p>
 
-          <p className={styles.previewExcerpt}>{item.preview}</p>
-        </button>
-      ) : (
-        <>
-          <h2 className={styles.initiativeTitle}>
-            {item.title.split('\n').map((line) => (
-              <span key={line}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </h2>
-
-          <div className={styles.initiativeSubtitleBar}>
-            <p className={styles.initiativeSubtitle}>{item.subtitle}</p>
-          </div>
-
-          <p className={styles.initiativeIntro}>
-            {renderRichText(item.introParts, styles.initiativeIntroText, styles.initiativeIntroStrong)}
-          </p>
-
-          <div
-            className={styles.initiativeImageWrap}
-            style={item.imageBackground ? { backgroundImage: `url(${item.imageBackground})` } : undefined}
-          >
-            <Image
-              src={item.image}
-              alt={item.title.replace('\n', ' ')}
-              fill
-              sizes="(max-width: 768px) 100vw, 640px"
-              className={styles.initiativeImage}
-            />
-          </div>
-
-          <div className={styles.initiativeBody}>
-            <p className={styles.initiativeBodyLabel}>{item.bodyLabel}</p>
-            <ul className={styles.initiativeBodyList}>
-              {item.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
-            <p className={styles.initiativeClosing}>{item.closing}</p>
-          </div>
-        </>
-      )}
+      <p className={isFeature ? styles.initiativeDescriptionFeature : styles.initiativeDescriptionPreview}>
+        <DescriptionLines text={card.description} />
+      </p>
     </article>
   );
 }
 
 export default function RseInitiativesCarousel() {
-  const initialIndex = ITEMS.findIndex((item) => item.id === 'group76');
-  const [activeIndex, setActiveIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
-  const [direction, setDirection] = useState('next');
-  const [isPaused, setIsPaused] = useState(false);
-  const activeIndexRef = useRef(initialIndex === -1 ? 0 : initialIndex);
+  const [desktopIndex, setDesktopIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(1);
 
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  const changeSlide = useCallback((nextIndex, nextDirection) => {
-    setDirection(nextDirection);
-    setActiveIndex(nextIndex);
-  }, []);
-
-  useEffect(() => {
-    if (isPaused) return undefined;
-
-    const intervalId = window.setInterval(() => {
-      changeSlide(wrapIndex(activeIndexRef.current + 1), 'next');
-    }, AUTOPLAY_MS);
-
-    return () => window.clearInterval(intervalId);
-  }, [changeSlide, isPaused]);
-
-  const activeItem = ITEMS[activeIndex];
-  const leftItem = ITEMS[wrapIndex(activeIndex - 1)];
-  const rightItem = ITEMS[wrapIndex(activeIndex + 1)];
-
-  const orderedItems = useMemo(
+  const visibleCards = useMemo(
     () => [
-      { ...leftItem, placement: 'left' },
-      { ...activeItem, placement: 'center' },
-      { ...rightItem, placement: 'right' }
+      { ...DESKTOP_CARDS[wrapIndex(desktopIndex)], slot: 'preview-left' },
+      { ...DESKTOP_CARDS[wrapIndex(desktopIndex + 1)], slot: 'feature-left' },
+      { ...DESKTOP_CARDS[wrapIndex(desktopIndex + 2)], slot: 'feature-right' },
+      { ...DESKTOP_CARDS[wrapIndex(desktopIndex + 3)], slot: 'preview-right' }
     ],
-    [activeItem, leftItem, rightItem]
+    [desktopIndex]
   );
+  const mobileCard = DESKTOP_CARDS[wrapIndex(mobileIndex)];
+  const mobileSubtitleParts = mobileCard.mobileSubtitleParts ?? mobileCard.subtitleParts;
+  const mobileCardClassName =
+    mobileCard.id === 'puente'
+      ? styles.initiativeCardPuente
+      : mobileCard.id === 'iacco'
+        ? styles.initiativeCardIacco
+        : mobileCard.id === 'sixty'
+          ? styles.initiativeCardSixty
+          : mobileCard.id === 'golf'
+            ? styles.initiativeCardGolf
+            : mobileCard.id === 'utn'
+              ? styles.initiativeCardUtn
+              : mobileCard.id === 'lamarca'
+                ? styles.initiativeCardLamarca
+                : styles.initiativeCardGirasoles;
 
   return (
-    <section
-      className={styles.initiatives}
-      aria-label="Programas de RSE"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={() => setIsPaused(false)}
-      onKeyDown={(event) => {
-        if (event.key === 'ArrowLeft') changeSlide(wrapIndex(activeIndexRef.current - 1), 'prev');
-        if (event.key === 'ArrowRight') changeSlide(wrapIndex(activeIndexRef.current + 1), 'next');
-      }}
-      tabIndex={0}
-    >
+    <section className={styles.initiatives} aria-label="Programas de RSE">
       <div className={styles.initiativesInner}>
-        <div className={styles.carouselShell}>
+        <div className={styles.initiativesDesktopDeck}>
+          <DesktopCard key={visibleCards[0].id} card={visibleCards[0]} />
+
           <button
             type="button"
-            className={`${styles.carouselControl} ${styles.carouselControlLeft}`}
-            aria-label="Ver iniciativa anterior"
-            onClick={() => changeSlide(wrapIndex(activeIndexRef.current - 1), 'prev')}
+            className={`${styles.initiativeArrow} ${styles.initiativeArrowLeft}`}
+            aria-label="Ver cards anteriores"
+            onClick={() => setDesktopIndex((current) => wrapIndex(current - 1))}
           >
-            <span className={`${styles.carouselChevron} ${styles.carouselChevronLeft}`} aria-hidden="true" />
-          </button>
-
-          <div className={styles.cardsViewport}>
-            {orderedItems.map((item) => (
-              <InitiativeCard
-                key={`${item.id}-${item.placement}`}
-                item={item}
-                isActive={item.placement === 'center'}
-                direction={direction}
-                onActivate={() => {
-                  const nextIndex = ITEMS.findIndex((entry) => entry.id === item.id);
-                  const nextDirection = item.placement === 'left' ? 'prev' : 'next';
-                  changeSlide(nextIndex, nextDirection);
-                }}
+            <svg width="18" height="30" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.170425 13.991C0.285845 13.6771 0.480959 13.3856 0.755768 13.1166L13.397 0.739909C13.9008 0.246636 14.542 0 15.3206 0C16.0992 0 16.7405 0.246636 17.2443 0.739909C17.7481 1.23318 18 1.86099 18 2.62332C18 3.38565 17.7481 4.01345 17.2443 4.50673L6.52674 15L17.2443 25.4933C17.7481 25.9865 18 26.6143 18 27.3767C18 28.139 17.7481 28.7668 17.2443 29.2601C16.7405 29.7534 16.0992 30 15.3206 30C14.542 30 13.9008 29.7534 13.397 29.2601L0.755768 16.8834C0.480959 16.6143 0.285845 16.3229 0.170425 16.009C0.0550041 15.6951 -0.00178909 15.3587 4.19617e-05 15C0.00187492 14.6413 0.05867 14.3049 0.170425 13.991Z"
+                fill="#D9D9D9"
               />
-            ))}
-          </div>
+            </svg>
+          </button>
+
+          <DesktopCard key={visibleCards[1].id} card={visibleCards[1]} />
+          <DesktopCard key={visibleCards[2].id} card={visibleCards[2]} />
 
           <button
             type="button"
-            className={`${styles.carouselControl} ${styles.carouselControlRight}`}
-            aria-label="Ver iniciativa siguiente"
-            onClick={() => changeSlide(wrapIndex(activeIndexRef.current + 1), 'next')}
+            className={`${styles.initiativeArrow} ${styles.initiativeArrowRight}`}
+            aria-label="Ver cards siguientes"
+            onClick={() => setDesktopIndex((current) => wrapIndex(current + 1))}
           >
-            <span className={`${styles.carouselChevron} ${styles.carouselChevronRight}`} aria-hidden="true" />
+            <svg width="17" height="30" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.839 16.009C16.73 16.3229 16.5458 16.6144 16.2862 16.8834L4.34732 29.2601C3.87149 29.7534 3.26589 30 2.53053 30C1.79516 30 1.18956 29.7534 0.713738 29.2601C0.237912 28.7668 0 28.139 0 27.3767C0 26.6144 0.237912 25.9865 0.713738 25.4933L10.8359 15L0.713738 4.50673C0.237912 4.01346 0 3.38565 0 2.62332C0 1.86099 0.237912 1.23319 0.713738 0.739916C1.18956 0.246641 1.79516 0 2.53053 0C3.26589 0 3.87149 0.246641 4.34732 0.739916L16.2862 13.1166C16.5458 13.3857 16.73 13.6771 16.839 13.991C16.948 14.3049 17.0017 14.6413 17 15C16.9982 15.3587 16.9446 15.6951 16.839 16.009Z"
+                fill="#D9D9D9"
+              />
+            </svg>
           </button>
+
+          <DesktopCard key={visibleCards[3].id} card={visibleCards[3]} />
         </div>
 
-        <div className={styles.carouselFooter}>
-          <div className={styles.carouselCounter}>
-            <span>{String(activeIndex + 1).padStart(2, '0')}</span>
-            <span className={styles.carouselCounterDivider} />
-            <span>{String(ITEMS.length).padStart(2, '0')}</span>
-          </div>
-
-          <div className={styles.carouselDots} aria-label="Seleccionar iniciativa">
-            {ITEMS.map((item, index) => (
-              <button
-                key={item.id}
-                type="button"
-                className={`${styles.carouselDot} ${index === activeIndex ? styles.carouselDotActive : ''}`}
-                aria-label={`Ir a ${item.title.replace('\n', ' ')}`}
-                aria-pressed={index === activeIndex}
-                onClick={() => {
-                  const currentIndex = activeIndexRef.current;
-                  const nextDirection = index < currentIndex ? 'prev' : 'next';
-                  changeSlide(index, nextDirection);
-                }}
+        <div className={styles.initiativeSlideMobile} data-active-mobile-card={mobileCard.id}>
+          <button
+            type="button"
+            className={`${styles.initiativeMobileTab} ${styles.initiativeMobileTabLeft}`}
+            aria-label="Ver tarjeta anterior"
+            onClick={() => setMobileIndex((current) => wrapIndex(current - 1))}
+          >
+            <svg width="18" height="30" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M0.170425 13.991C0.285845 13.6771 0.480959 13.3856 0.755768 13.1166L13.397 0.739909C13.9008 0.246636 14.542 0 15.3206 0C16.0992 0 16.7405 0.246636 17.2443 0.739909C17.7481 1.23318 18 1.86099 18 2.62332C18 3.38565 17.7481 4.01345 17.2443 4.50673L6.52674 15L17.2443 25.4933C17.7481 25.9865 18 26.6143 18 27.3767C18 28.139 17.7481 28.7668 17.2443 29.2601C16.7405 29.7534 16.0992 30 15.3206 30C14.542 30 13.9008 29.7534 13.397 29.2601L0.755768 16.8834C0.480959 16.6143 0.285845 16.3229 0.170425 16.009C0.0550041 15.6951 -0.00178909 15.3587 4.19617e-05 15C0.00187492 14.6413 0.05867 14.3049 0.170425 13.991Z"
+                fill="currentColor"
               />
-            ))}
-          </div>
+            </svg>
+          </button>
+
+          <article key={mobileCard.id} className={`${styles.initiativeCardMobile} ${mobileCardClassName}`}>
+            <h3 className={styles.initiativeTitleMobile}>
+              <TitleLines text={mobileCard.title} />
+            </h3>
+
+            <div className={styles.initiativeImageBandMobile}>
+              <Image
+                src={mobileCard.image}
+                alt={mobileCard.title}
+                fill
+                sizes="262px"
+                className={styles.initiativeImage}
+              />
+            </div>
+
+            <p className={styles.initiativeSubtitleMobile}>
+              <SubtitleParts parts={mobileSubtitleParts} />
+            </p>
+
+            <p className={styles.initiativeDescriptionMobile}>
+              <DescriptionLines text={mobileCard.description} />
+            </p>
+          </article>
+
+          <button
+            type="button"
+            className={`${styles.initiativeMobileTab} ${styles.initiativeMobileTabRight}`}
+            aria-label="Ver tarjeta siguiente"
+            onClick={() => setMobileIndex((current) => wrapIndex(current + 1))}
+          >
+            <svg width="17" height="30" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M16.839 16.009C16.73 16.3229 16.5458 16.6144 16.2862 16.8834L4.34732 29.2601C3.87149 29.7534 3.26589 30 2.53053 30C1.79516 30 1.18956 29.7534 0.713738 29.2601C0.237912 28.7668 0 28.139 0 27.3767C0 26.6144 0.237912 25.9865 0.713738 25.4933L10.8359 15L0.713738 4.50673C0.237912 4.01346 0 3.38565 0 2.62332C0 1.86099 0.237912 1.23319 0.713738 0.739916C1.18956 0.246641 1.79516 0 2.53053 0C3.26589 0 3.87149 0.246641 4.34732 0.739916L16.2862 13.1166C16.5458 13.3857 16.73 13.6771 16.839 13.991C16.948 14.3049 17.0017 14.6413 17 15C16.9982 15.3587 16.9446 15.6951 16.839 16.009Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
