@@ -192,6 +192,21 @@
   display: none;
 }
 
+/* Entre 601 y 1279px las cards se apilan en dos columnas y el área crece de
+   ~450 a ~825px, así que las tres bandas cubrían menos de la mitad y la parte
+   de abajo quedaba sin trama. Acá sí entran las de relleno, con `flex-shrink`
+   anulado para que conserven sus 151px: lo que sobra lo recorta el `overflow`
+   del contenedor. */
+@media (min-width: 601px) and (max-width: 1279px) {
+  .watermarkRow {
+    flex-shrink: 0;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+}
+
 .heading {
   position: absolute;
   z-index: 2;
