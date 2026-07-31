@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import styles from './HeroModule.module.scss';
 
-const HERO_IMAGE_SRC = '/image/hero-hogar-sise.png';
+const HERO_IMAGE_SRC = '/image/hero-hogar-desktop.webp';
 const HERO_LOGO_SRC = '/image/mpudc5hr-7mihfr3.png';
 
 export default function HeroModule() {

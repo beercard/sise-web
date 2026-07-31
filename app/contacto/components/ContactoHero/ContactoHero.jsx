@@ -113,7 +113,7 @@ export default function ContactoHero() {
     <section className={styles.hero} aria-label="Contacto SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
         <Image
-          src="/image/CONTACTO DESKTOP.png"
+          src="/image/hero-contacto-desktop.webp"
           alt=""
           fill
           priority
@@ -121,7 +121,7 @@ export default function ContactoHero() {
           className={`${styles.heroImage} ${styles.heroImageDesktop}`}
         />
         <Image
-          src="/image/CONTACTO MOBILE.jpg"
+          src="/image/hero-contacto-mobile.webp"
           alt=""
           fill
           priority

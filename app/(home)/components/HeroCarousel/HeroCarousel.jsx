@@ -4,10 +4,23 @@ import { useEffect, useMemo, useState } from 'react';
 
 import styles from './HeroCarousel.module.scss';
 
-const HERO_SLIDES = Array.from({ length: 7 }, (_, index) => ({
-  id: `hero-slide-${index + 1}`,
-  desktopImage: '/image/home-hero-desktop.webp',
-  mobileImage: '/image/home-hero-mobile.webp',
+/*
+ * Un slide por vertical, con el mismo par de fotos que usa el hero de cada
+ * página de negocio: la de escritorio arriba de 960px y la vertical debajo,
+ * que es donde el módulo cambia de variable (ver HeroCarousel.module.scss).
+ * Hogar comparte las dos con el home, de ahí que repita los nombres.
+ */
+const HERO_SLIDES = [
+  { id: 'hogar', desktopImage: '/image/hero-hogar-desktop.webp', mobileImage: '/image/home-hero-mobile.webp' },
+  { id: 'comercio', desktopImage: '/image/mpvuunzj-eolvy7n.webp', mobileImage: '/image/hero-comercio-mobile.webp' },
+  { id: 'industria', desktopImage: '/image/hero-industria-desktop.webp', mobileImage: '/image/hero-industria-mobile.webp' },
+  { id: 'edificios', desktopImage: '/image/hero-edificios-desktop.webp', mobileImage: '/image/hero-edificios-mobile.webp' },
+  { id: 'construccion', desktopImage: '/image/mq11fkmb-be8tqg4.webp', mobileImage: '/image/hero-construccion-mobile.webp' },
+  { id: 'agro', desktopImage: '/image/mq1fh69q-uknmp86.webp', mobileImage: '/image/hero-agro-mobile.webp' },
+  { id: 'ciudad', desktopImage: '/image/mq1jm0cy-0248t30.webp', mobileImage: '/image/hero-ciudad-mobile.webp' }
+].map((slide) => ({
+  ...slide,
+  id: `hero-slide-${slide.id}`,
   titleLineOne: 'Soluciones en seguridad electrónica',
   titleBold: 'accesible, moderna y humana',
   titleRegularEnd: '.'
