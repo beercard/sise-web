@@ -97,10 +97,10 @@ export default function SiteHeader() {
       <div className={`${styles.inner} ${isOpen ? styles.innerOpen : ''}`}>
         <Link href="/" aria-label="SISE">
           <Image
-            src="/image/mpr0za9r-avr9t9i.png"
+            src="/image/header-aguila.svg"
             alt="SISE"
             className={styles.aguila}
-            width={136}
+            width={124}
             height={80}
             priority
           />
@@ -108,10 +108,10 @@ export default function SiteHeader() {
 
         <Link href="/" aria-label="SISE Argentina">
           <Image
-            src="/image/mpr0za7f-u0o57i4.png"
+            src="/image/header-logo.svg"
             alt="SISE Argentina"
             className={styles.recurso}
-            width={85}
+            width={86}
             height={50}
             priority
           />
