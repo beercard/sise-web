@@ -15,8 +15,13 @@
   background: var(--sise-gray);
   margin-top: 0;
   box-sizing: border-box;
-  padding-left: clamp(16px, 26.8vw, 514px);
-  padding-right: clamp(16px, 26.8vw, 514px);
+  /* Columna centrada de 944px. Antes esto era `clamp(16px, 26.8vw, 514px)` y
+     entre 1441 y 1799px dejaba el contenido en ~700px: como el título va con
+     `white-space: nowrap` y mide 868px, se desbordaba hacia la derecha y se
+     veía descentrado (se notaba, por ejemplo, con el zoom del navegador al
+     125%, que deja el viewport en ~1536px). */
+  padding-left: max(24px, calc((100vw - 944px) / 2));
+  padding-right: max(24px, calc((100vw - 944px) / 2));
 }
 
 .containerFixedStep {
@@ -689,13 +694,6 @@
   .stepBox,
   .formBox {
     width: min(860px, 100%);
-  }
-}
-
-@media (min-width: 1800px) {
-  .container {
-    padding-left: max(24px, calc((100vw - 944px) / 2));
-    padding-right: max(24px, calc((100vw - 944px) / 2));
   }
 }
 

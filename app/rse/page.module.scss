@@ -153,11 +153,13 @@
   margin-left: 32px;
 }
 
+/* Las previews son más bajas que las activas (464 vs 597). El deck ya las
+   centra con `align-items: center`; el `margin-top: 67px` que había antes se
+   sumaba a ese centrado y las dejaba con 100px arriba y 33px abajo. */
 .initiativeCardPreview {
   flex: 0 0 353.63px;
   width: 353.63px;
   min-height: 464px;
-  margin-top: 67px;
   border-radius: 38.86px;
   opacity: 0.4;
 }
