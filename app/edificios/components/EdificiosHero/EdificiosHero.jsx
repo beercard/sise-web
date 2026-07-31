@@ -8,7 +8,7 @@ export default function EdificiosHero() {
   return (
     <section className={styles.hero} aria-label="SISE Urbano - Edificios y Consorcios">
       <div className={styles.heroMedia}>
-        <Image src="/image/mq077jvc-gz2p9c8.webp" alt="Cámaras de seguridad y control de accesos en un edificio" className={styles.heroImage} fill priority sizes="100vw" />
+        <Image src="/image/hero-edificios-desktop.webp" alt="Cámaras de seguridad y control de accesos en un edificio" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <div className={styles.heroCopy}>

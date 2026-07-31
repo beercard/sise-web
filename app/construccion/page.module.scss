@@ -1504,8 +1504,19 @@
    por orden de fuente, le ganarían al bloque mobile. */
 @media (max-width: 600px) {
   /* ── Hero ── */
+  /* Mobile tiene su propia foto vertical. Va como background y el <Image> de
+     desktop se oculta: así el navegador descarga sólo la del breakpoint que
+     aplica, porque no pide los fondos de media queries que no se cumplen. */
   .heroMedia {
     height: 591px;
+    background-image: url('/image/hero-construccion-mobile.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .heroImage {
+    display: none;
   }
 
   .heroGradient {

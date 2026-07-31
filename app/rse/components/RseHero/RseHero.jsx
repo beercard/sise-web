@@ -7,7 +7,7 @@ export default function RseHero() {
     <section className={styles.hero} aria-label="Responsabilidad Social Empresarial">
       <div className={styles.heroMedia} aria-hidden="true">
         <Image
-          src="/image/RSE DESKTOP.jpg"
+          src="/image/hero-rse-desktop.webp"
           alt=""
           fill
           priority
@@ -15,7 +15,7 @@ export default function RseHero() {
           className={`${styles.heroImage} ${styles.heroImageDesktop}`}
         />
         <Image
-          src="/image/RSE MOBILE.jpg"
+          src="/image/hero-rse-mobile.webp"
           alt=""
           fill
           priority

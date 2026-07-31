@@ -8,7 +8,7 @@ export default function IndustriaHero() {
   return (
     <section className={styles.hero} aria-label="SISE Industria">
       <div className={styles.heroMedia}>
-        <Image src="/image/mq017wn8-mlb5tmm.webp" alt="Videovigilancia y seguridad electrónica en una planta industrial" className={styles.heroImage} fill priority sizes="100vw" />
+        <Image src="/image/hero-industria-desktop.webp" alt="Videovigilancia y seguridad electrónica en una planta industrial" className={styles.heroImage} fill priority sizes="100vw" />
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <div className={styles.heroCopy}>
