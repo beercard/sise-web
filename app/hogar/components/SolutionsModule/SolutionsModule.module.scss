@@ -64,12 +64,32 @@
   width: 578px;
 }
 
+/* `contents` y no `block`: el envoltorio desaparece del layout, así sus <p>
+   siguen siendo hijos directos de la grilla de `.intro` y de `.copyMain`,
+   igual que antes de partir el contenido en dos versiones. */
+.desktopOnly {
+  display: contents;
+}
+
+.mobileOnly {
+  display: none;
+}
+
 .lead {
   margin: 0;
   width: 578px;
   height: 59px;
   line-height: 30.4px;
   font-size: 32px;
+}
+
+.mobileLead {
+  margin: 0;
+  width: 231px;
+  text-align: center;
+  line-height: 19.36px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .leadLight {
@@ -105,6 +125,15 @@
   font-weight: 600;
 }
 
+.mobileBody {
+  margin: 0;
+  width: 296px;
+  text-align: center;
+  line-height: 19.8px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .gridArea {
   position: absolute;
   top: var(--solutions-copy-height);
@@ -138,15 +167,29 @@
 
 .watermarkRow:first-child {
   height: 152px;
+}
+
+/* Las tres bandas se alternan para poder repetir el patrón tantas filas como
+   haga falta. En desktop sólo se ven las tres primeras, así que el resultado
+   es el mismo de siempre: banda 1, 2 y 3. */
+.watermarkRow:nth-child(3n + 1) {
   background-image: url('/image/solutions-band-1.png');
 }
 
-.watermarkRow:nth-child(2) {
+.watermarkRow:nth-child(3n + 2) {
   background-image: url('/image/solutions-band-2.png');
 }
 
-.watermarkRow:nth-child(3) {
+.watermarkRow:nth-child(3n) {
   background-image: url('/image/solutions-band-3.png');
+}
+
+/* Sólo las tres primeras filas llevan banda; el resto son relleno que necesita
+   el lienzo alto de mobile. Fuera de mobile hay que ocultarlas: `.watermark` es
+   un flex vertical de alto fijo, así que las filas de más se reparten el
+   espacio y aplastaban las tres bandas de 151px a 17px. */
+.watermarkRow:nth-child(n + 4) {
+  display: none;
 }
 
 .heading {
@@ -203,6 +246,17 @@
   text-wrap: balance;
 }
 
+/* `.cardTitle` apila sus líneas con flex, así que el envoltorio va en
+   `display: contents` para no meterse en medio. El de mobile se oculta acá y
+   se invierten los dos en el bloque de 600px. */
+.desktopTitle {
+  display: contents;
+}
+
+.mobileTitle {
+  display: none;
+}
+
 .card {
   width: var(--solutions-card-width);
   height: var(--solutions-card-height);
@@ -225,6 +279,14 @@
   text-align: center;
   color: #000000;
   text-wrap: pretty;
+}
+
+.desktopBodyText {
+  display: inline;
+}
+
+.mobileBodyText {
+  display: none;
 }
 
 .alarmas .cardTitle {
@@ -603,12 +665,252 @@
 }
 
 @media (max-width: 600px) {
+  .section {
+    min-height: 1336px;
+  }
+
+  /* El lienzo del diseño mide 752 pero el marco del teléfono no está centrado
+     en él: va de x=183 a x=585, o sea 183 de margen a la izquierda y 167 a la
+     derecha. Centrar el lienzo dejaba todo el contenido 8px corrido a la
+     derecha, así que se corre esa mitad de diferencia para que lo que quede
+     centrado en la pantalla sea el marco y no el lienzo. */
+  .canvas {
+    width: 752px;
+    max-width: none;
+    height: 1336px;
+    padding-bottom: 0;
+    left: 50%;
+    transform: translateX(calc(-50% - 8px));
+    overflow: hidden;
+  }
+
+  /* Las bandas arrancan al ras del área de cards y la llenan enteras: en el
+     diseño van de y=312 a y=1336, que son los 1024px de `.gridArea`. */
+  .watermark {
+    top: 0;
+    left: 0;
+    width: 752px;
+    height: 100%;
+    transform: none;
+    gap: 2px;
+    opacity: 0.4;
+  }
+
+  .watermarkRow,
+  .watermarkRow:first-child {
+    height: 55px;
+  }
+
+  /* Acá sí entran las filas de relleno: el lienzo de mobile es mucho más alto. */
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+
+  .copyBlock {
+    position: absolute;
+    top: 0;
+    left: 183px;
+    transform: none;
+    width: 402px;
+    height: 312px;
+    margin: 0;
+  }
+
+  .intro {
+    width: 402px;
+    padding-top: 64px;
+    gap: 23px;
+    align-items: center;
+  }
+
+  .copyMain {
+    width: 231px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .desktopTitle {
+    display: none;
+  }
+
+  .mobileTitle {
+    display: contents;
+  }
+
+  .desktopBodyText {
+    display: none;
+  }
+
+  .mobileBodyText {
+    display: inline;
+  }
+
+  .gridArea {
+    position: absolute;
+    top: 312px;
+    left: 0;
+    width: 752px;
+    height: 1024px;
+    margin-top: 0;
+  }
+
+  .heading {
+    position: absolute;
+    top: 28px;
+    left: 184px;
+    width: 399px;
+    transform: none;
+    margin: 0;
+    font-size: 24px;
+    line-height: 22.8px;
+    text-align: center;
+  }
+
   .grid {
-    grid-template-columns: var(--solutions-card-width);
-    gap: var(--solutions-grid-gap);
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 752px;
+    height: 944px;
+    margin: 0;
+    transform: none;
+    display: block;
   }
 
   .cardGroup {
-    margin: 0 auto;
+    position: absolute;
+    left: 284px;
+    width: 201px;
+    margin: 0;
+  }
+
+  .card {
+    width: 201px;
+    height: 153px;
+  }
+
+  .cardTitle {
+    top: 38px;
+    width: 182px;
+    min-height: 35px;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .cardBody {
+    top: 83px;
+    width: 169px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .alarmas .cardTitle {
+    width: 182px;
+    top: 38px;
+  }
+
+  .alarmas {
+    top: 0;
+  }
+
+  .alarmas .cardBody {
+    top: 83px;
+    width: 169px;
+    min-height: 33px;
+    font-size: 18px;
+    line-height: 18px;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .cctv {
+    top: 183px;
+  }
+
+  .cctv .cardTitle {
+    width: 187px;
+    top: 39px;
+  }
+
+  /* En el diseño la caja mide 169, pero el navegador dibuja League Spartan un
+     poco más ancha que Figma y "tiempo" se caía a una tercera línea. Con 173
+     entran los dos renglones del diseño ("Mirá tu casa en tiempo / real desde
+     el celular.") y, como el texto va centrado, no se mueve de lugar. */
+  .cctv .cardBody {
+    top: 81px;
+    width: 173px;
+    min-height: 33px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .cerco {
+    top: 366px;
+  }
+
+  .cerco .card {
+    height: 164px;
+  }
+
+  .cerco .cardTitle {
+    width: 193px;
+    top: 39px;
+  }
+
+  .cerco .cardBody {
+    top: 84px;
+    width: 169px;
+  }
+
+  .barrio {
+    top: 560px;
+  }
+
+  .barrio .cardTitle {
+    width: 170px;
+    top: 37px;
+    min-height: 40px;
+  }
+
+  /* 173 en lugar de los 171 del diseño, por el mismo motivo: así quedan los
+     dos renglones "Cámaras vecinales con / monitoreo compartido." */
+  .barrio .cardBody {
+    top: 82px;
+    width: 173px;
+    min-height: 36px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .desocupadas {
+    top: 743px;
+  }
+
+  .desocupadas .card {
+    height: 171px;
+  }
+
+  .desocupadas .cardTitle {
+    top: 29px;
+    width: 201px;
+    min-height: 60px;
+  }
+
+  /* Ventana angosta: con menos de 164 "robos." se va a un cuarto renglón y con
+     168 o más sube "distancia". 165 deja los tres del diseño: "Prevención a /
+     distancia contra / usurpaciones y robos." */
+  .desocupadas .cardBody {
+    top: 94px;
+    width: 165px;
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 18px;
   }
 }

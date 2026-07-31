@@ -20,11 +20,11 @@ const STORAGE_KEY = 'sise-tech-editor-v2';
 
 const DEFAULT_POSITIONS = {
   perimetral: {
-    cerco: { top: 243, left: 230 },
-    camaras: { top: 272, left: 202 },
-    magneticos: { top: 208, left: 161 },
-    cartel: { top: 228, left: 74 },
-    sirena: { top: 236, left: 614 }
+    cerco: { top: 234, left: 72 },
+    camaras: { top: 199, left: 152 },
+    magneticos: { top: 269, left: 198 },
+    cartel: { top: 214, left: 611 },
+    sirena: { top: 241, left: 233 }
   },
   interior: {
     sensor: { top: 121, left: 408 },
@@ -423,7 +423,10 @@ export default function TechnologyModule() {
       <h2 className={styles.technologyTitle}>
         <span className={styles.technologyTitleStrong}>Tu hogar seguro en cada rincón</span>
         <br />
-        <span className={styles.technologyTitleLight}>con tecnología de vanguardia.</span>
+        <span className={styles.technologyTitleLight}>
+          con tecnología de vanguardia
+          <span className={styles.technologyTitleDesktopPeriod}>.</span>
+        </span>
       </h2>
 
       <div className={styles.tabs} role="tablist" aria-label="Categorías">

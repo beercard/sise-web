@@ -226,10 +226,16 @@
   }
 
   .titleLight {
+    display: inline;
     font-weight: 400;
   }
 
   .titleStrong {
+    display: inline;
     font-weight: 600;
+  }
+
+  .titleStrong::after {
+    content: '.';
   }
 }

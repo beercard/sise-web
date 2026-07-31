@@ -307,6 +307,10 @@
   font-weight: 500;
 }
 
+.technologyTitleDesktopPeriod {
+  display: inline;
+}
+
 .tabs {
   margin-top: var(--tech-title-tabs-gap);
   width: min(var(--tech-tabs-width), calc(100% - 48px));
@@ -1458,6 +1462,34 @@
   }
 }
 
+@media (max-width: 960px) and (min-width: 601px) {
+  .technologyTitle {
+    width: min(720px, calc(100% - 48px));
+    padding: 0;
+  }
+
+  .tabs {
+    width: min(720px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .tab {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: auto;
+  }
+}
+
 @media (max-width: 600px) {
   .heroMedia {
     height: 580px;
@@ -1509,6 +1541,10 @@
   }
 
   .technologyTitle {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
     font-size: 24px;
     line-height: 26.4px;
   }
@@ -1521,10 +1557,15 @@
     font-weight: 500;
   }
 
+  .technologyTitleDesktopPeriod {
+    display: none;
+  }
+
   /* Los tabs vuelven al estilo del diseño (texto + subrayado). En tablet se
      habían convertido en pastillas con scroll horizontal, que no es lo que
      pide el mobile. */
   .tabs {
+    margin-top: 36px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1597,8 +1638,8 @@
 
   /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
   .technologyRow {
-    margin-top: 27px;
-    gap: 28px;
+    margin-top: 5px;
+    gap: 19px;
   }
 
   /* Puntos de 15px (23 el activo), con el mismo escalonado de círculos del
@@ -1621,11 +1662,10 @@
     height: 4.09px;
   }
 
-  /* Al pasar de 28 a 15px el punto se ancla por su esquina, así que sin este
-     margen su centro se corría 6.5px arriba y a la izquierda. */
-  .pointAbsolute {
-    margin: 6.5px 0 0 6.5px !important;
-  }
+  /* Sin corrección de margen: el punto ya se achica en la misma proporción que
+     el mapa (28/735 en desktop contra 15/387 acá), así que su centro cae solo
+     en el mismo lugar. El margen de 6.5px que había antes lo corría 1.6% a la
+     derecha y 2.3% hacia abajo respecto de la posición de escritorio. */
 
   .pointButton.pointActive {
     /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */

@@ -411,9 +411,12 @@
     padding-right: 16px;
   }
 
+  /* Ritmo vertical del diseño mobile (nodo 5014:493), bloque de 402×340:
+     título en y=48 (40 de alto, dos renglones), kicker en 111, pregunta en
+     128, primera opción en 166 y la última cerrando en 301. */
   .containerFixedStep {
-    padding-top: 53px;
-    padding-bottom: 44px;
+    padding-top: 48px;
+    padding-bottom: 39px;
     min-height: auto;
   }
 
@@ -428,10 +431,13 @@
     max-width: none;
   }
 
+  /* 201 de ancho es lo que parte el título en los dos renglones del diseño
+     ("Cotizá tu sistema / de seguridad"): a lo ancho entra hasta 212 antes de
+     que suba el "de", y hace falta al menos 183 para el primer renglón. */
   .title {
     margin-top: 0;
-    width: 100%;
-    min-height: 21px;
+    width: min(201px, 100%);
+    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -460,12 +466,12 @@
     width: min(354px, 100%);
     align-items: center;
     justify-content: flex-start;
-    margin-top: 14px;
+    margin-top: 23px;
     min-height: auto;
   }
 
   .stepBoxPropertyType {
-    margin-top: 14px;
+    margin-top: 23px;
   }
 
   .kicker {
@@ -478,9 +484,11 @@
     line-height: 11.29px;
   }
 
+  /* El kicker mide 17 y la pregunta arranca justo debajo, sin separación. */
   .question {
-    margin-top: 8px;
+    margin-top: 0;
     width: 100%;
+    min-height: 16px;
     font-size: 18px;
     line-height: 14.52px;
   }
@@ -492,8 +500,8 @@
   .options,
   .optionsPropertyType {
     width: 169px;
-    margin-top: 14px;
-    gap: 8px;
+    margin-top: 22px;
+    gap: 5px;
   }
 
   .option,
@@ -516,8 +524,22 @@
 
   .optionsEnterprise {
     width: 169px;
-    margin-top: 14px;
-    gap: 8px;
+    margin-top: 22px;
+    gap: 5px;
+  }
+
+  /* En el primer paso no hay botón "Volver", así que esta fila queda vacía y
+     sólo aportaba 42px en blanco: el diseño cierra a los 340 justo debajo de
+     la última opción. Cuando el botón existe, la fila vuelve sola. */
+  .footerRow:not(:has(button)) {
+    display: none;
+  }
+
+  /* Lo mismo con el renglón reservado para el error: en pantallas chicas se
+     colapsa en vez de guardar el espacio. Los pasos que sí muestran errores
+     son los de selección múltiple, que usan `.actionsRow` y no esta fila. */
+  .errorHidden {
+    display: none;
   }
 
   .optionEnterprise {
