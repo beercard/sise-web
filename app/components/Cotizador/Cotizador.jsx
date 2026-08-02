@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
+import { trackFormStart, trackFormSubmit, useTrackSectionView } from '../../lib/analytics';
 import styles from './Cotizador.module.scss';
 
 const STEP = {
@@ -394,6 +395,8 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [stepError, setStepError] = useState('');
+  const sectionRef = useTrackSectionView(`cotizador_${variant}`);
+  const hasTrackedFormStart = useRef(false);
   const flowConfig = VARIANT_CONFIG[variant] ?? VARIANT_CONFIG.residential;
 
   const steps = useMemo(
@@ -474,12 +477,14 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
       const value = String(answers[fieldKey] ?? '').trim();
       if (!value) {
         setSubmitError(CONTACT_FIELD_CONFIG[fieldKey].validationMessage);
+        trackFormSubmit({ formName: 'cotizador', variant, status: 'validation_error' });
         return;
       }
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(answers.email.trim())) {
       setSubmitError('Ingresá un email válido.');
+      trackFormSubmit({ formName: 'cotizador', variant, status: 'validation_error' });
       return;
     }
 
@@ -499,17 +504,29 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
         throw new Error(data?.error || 'No se pudo enviar el formulario.');
       }
 
+      trackFormSubmit({ formName: 'cotizador', variant, status: 'success' });
       setStep(thankYouStep);
     } catch (error) {
+      trackFormSubmit({ formName: 'cotizador', variant, status: 'error' });
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el formulario.');
     } finally {
       setSubmitting(false);
     }
   };
 
+  const handleFormFocus = () => {
+    if (hasTrackedFormStart.current) return;
+    hasTrackedFormStart.current = true;
+    trackFormStart({ formName: 'cotizador', variant });
+  };
+
   if (step === thankYouStep) {
     return (
-      <div className={`${styles.container} ${styles.containerFixedStep}`} id="cotizador-online">
+      <div
+        ref={sectionRef}
+        className={`${styles.container} ${styles.containerFixedStep}`}
+        id="cotizador-online"
+      >
         {headerMarkup}
 
         <div className={styles.thanksBox}>
@@ -527,10 +544,10 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
     const summary = buildSummary(answers, flowConfig.summaryRows);
 
     return (
-      <div className={containerClassName} id="cotizador-online">
+      <div ref={sectionRef} className={containerClassName} id="cotizador-online">
         {headerMarkup}
 
-        <form className={styles.formBox} onSubmit={onSubmit} noValidate>
+        <form className={styles.formBox} onSubmit={onSubmit} onFocusCapture={handleFormFocus} noValidate>
           <p className={styles.kicker}>Datos de contacto</p>
 
           {/* Honeypot anti-spam: oculto para personas, los bots lo completan. */}
@@ -606,7 +623,7 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
   }
 
   return (
-    <div className={containerClassName} id="cotizador-online">
+    <div ref={sectionRef} className={containerClassName} id="cotizador-online">
       {headerMarkup}
 
       <div

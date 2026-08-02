@@ -1,8 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 
+import {
+  trackFormStart,
+  trackFormSubmit,
+  trackWhatsAppClick,
+  useTrackSectionView
+} from '../../../lib/analytics';
 import styles from '../../page.module.scss';
 
 const PHONE_NUMBER_DISPLAY = '0-800-222-5153';
@@ -62,6 +68,8 @@ export default function ContactoHero() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const sectionRef = useTrackSectionView('contacto_hero');
+  const hasTrackedFormStart = useRef(false);
 
   const onChange = (key) => (event) => {
     setForm((prev) => ({ ...prev, [key]: event.target.value }));
@@ -75,12 +83,14 @@ export default function ContactoHero() {
       const value = String(form[fieldKey] ?? '').trim();
       if (!value) {
         setSubmitError(FIELD_CONFIG[fieldKey].validationMessage);
+        trackFormSubmit({ formName: 'contacto', variant: 'contacto_hero', status: 'validation_error' });
         return;
       }
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) {
       setSubmitError('Ingresá un email válido.');
+      trackFormSubmit({ formName: 'contacto', variant: 'contacto_hero', status: 'validation_error' });
       return;
     }
 
@@ -99,18 +109,26 @@ export default function ContactoHero() {
         throw new Error(data?.error || 'No se pudo enviar el formulario.');
       }
 
+      trackFormSubmit({ formName: 'contacto', variant: 'contacto_hero', status: 'success' });
       setSubmitted(true);
       setForm(INITIAL_FORM);
       setWebsite('');
     } catch (error) {
+      trackFormSubmit({ formName: 'contacto', variant: 'contacto_hero', status: 'error' });
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el formulario.');
     } finally {
       setSubmitting(false);
     }
   };
 
+  const handleFormFocus = () => {
+    if (hasTrackedFormStart.current) return;
+    hasTrackedFormStart.current = true;
+    trackFormStart({ formName: 'contacto', variant: 'contacto_hero' });
+  };
+
   return (
-    <section className={styles.hero} aria-label="Contacto SISE Argentina">
+    <section ref={sectionRef} className={styles.hero} aria-label="Contacto SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
         <Image
           src="/image/hero-contacto-desktop.webp"
@@ -149,6 +167,7 @@ export default function ContactoHero() {
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackWhatsAppClick({ location: 'contacto_hero', label: 'contacto_whatsapp_link' })}
             >
               WhatsApp
             </a>
@@ -169,7 +188,7 @@ export default function ContactoHero() {
             </p>
           </div>
         ) : (
-          <form className={styles.form} onSubmit={onSubmit} noValidate>
+          <form className={styles.form} onSubmit={onSubmit} onFocusCapture={handleFormFocus} noValidate>
             <div style={{ display: 'none' }} aria-hidden="true">
               <label>
                 No completar este campo

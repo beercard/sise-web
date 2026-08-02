@@ -1,5 +1,7 @@
 'use client';
 
+import { trackWhatsAppClick } from '../../lib/analytics';
+
 import styles from './WhatsAppFloatingButton.module.scss';
 
 const WHATSAPP_URL =
@@ -13,6 +15,7 @@ export default function WhatsAppFloatingButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
+      onClick={() => trackWhatsAppClick({ location: 'floating_button', label: 'whatsapp_floating_button' })}
     >
       <span className={styles.icon} aria-hidden="true">
         <svg viewBox="0 0 24 24" role="presentation" focusable="false">

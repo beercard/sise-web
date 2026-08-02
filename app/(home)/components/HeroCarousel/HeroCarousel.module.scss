@@ -41,17 +41,22 @@
   top: 4px;
   width: 100%;
   height: 796px;
-  background-image: var(--hero-desktop-image);
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   transform: scale(1.035);
   transform-origin: center center;
   transition:
     transform 1.15s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, filter;
-  z-index: 0;
 }
 
 .heroGradient {
@@ -84,7 +89,7 @@
   z-index: 2;
 }
 
-.heroSlideActive .heroMedia {
+.heroSlideActive .heroImage {
   transform: scale(1);
 }
 
@@ -176,7 +181,10 @@
   .heroMedia {
     top: 0;
     height: 720px;
-    background-position: center center;
+  }
+
+  .heroImage {
+    object-position: center center;
   }
 
   /* `left` se hereda de la regla base: max(24px, calc(50% - 594px)), que
@@ -202,7 +210,10 @@
 
   .heroMedia {
     height: 680px;
-    background-position: 58% center;
+  }
+
+  .heroImage {
+    object-position: 58% center;
   }
 
   .heroTitle {
@@ -225,7 +236,10 @@
   .heroMedia {
     width: 100%;
     height: 620px;
-    background-position: 63% center;
+  }
+
+  .heroImage {
+    object-position: 63% center;
   }
 
   .heroTitle {
@@ -249,7 +263,10 @@
 
   .heroMedia {
     height: 620px;
-    background-position: 61% center;
+  }
+
+  .heroImage {
+    object-position: 61% center;
   }
 
   .heroTitle {
@@ -271,7 +288,10 @@
 
   .heroMedia {
     height: 560px;
-    background-position: 66% center;
+  }
+
+  .heroImage {
+    object-position: 66% center;
   }
 
   .heroTitle,
@@ -302,9 +322,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--hero-mobile-image);
-    background-position: center top;
-    background-size: cover;
+  }
+
+  .heroImage {
+    object-position: center top;
   }
 
   .heroGradient {
@@ -355,9 +376,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--hero-mobile-image);
-    background-position: center top;
-    background-size: cover;
+  }
+
+  .heroImage {
+    object-position: center top;
   }
 
   .heroTitle,

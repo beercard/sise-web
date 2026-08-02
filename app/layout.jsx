@@ -1,6 +1,7 @@
 import './globals.scss';
 
 import { League_Spartan } from 'next/font/google';
+import Script from 'next/script';
 
 import { siteConfig } from './lib/seo';
 import SiteFooter from './components/SiteFooter/SiteFooter';
@@ -66,6 +67,8 @@ export const metadata = {
     images: [siteConfig.ogImage]
   }
 };
+
+const GA_MEASUREMENT_ID = 'G-G1WY55DRWQ';
 
 export default function RootLayout({ children }) {
   const structuredData = {
@@ -170,6 +173,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={leagueSpartan.className} suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
