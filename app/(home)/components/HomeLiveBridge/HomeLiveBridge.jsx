@@ -11,7 +11,7 @@ export default function HomeLiveBridge() {
         <div className={styles.mediaFrame}>
           <iframe
             className={styles.media}
-            src="https://www.youtube-nocookie.com/embed/9KsX_kywp84?autoplay=1&mute=1&playsinline=1&rel=0"
+            src="https://www.youtube-nocookie.com/embed/6vRBMiKVkRE?autoplay=1&mute=1&playsinline=1&rel=0"
             title="Streaming en vivo del Puente General Belgrano"
             loading="lazy"
             referrerPolicy="strict-origin-when-cross-origin"
