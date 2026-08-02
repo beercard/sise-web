@@ -293,6 +293,11 @@
 }
 
 @media (max-width: 1200px) {
+  .section {
+    --solutions-card-width: 211px;
+    --solutions-grid-gap: 32px;
+  }
+
   .canvas {
     height: auto;
     padding-bottom: 64px;

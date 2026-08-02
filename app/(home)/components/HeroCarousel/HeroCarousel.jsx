@@ -33,6 +33,15 @@ export default function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const advanceSlide = () => {
+    if (slides.length <= 1) return;
+    setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length);
+  };
+
+  const goToSlide = (event, index) => {
+    event.stopPropagation();
+    setActiveIndex(index);
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -60,6 +69,7 @@ export default function HeroCarousel() {
     <section
       className={styles.hero}
       aria-label="Hero principal"
+      onClick={advanceSlide}
       onMouseEnter={() => setIsAutoplayPaused(true)}
       onMouseLeave={() => setIsAutoplayPaused(false)}
       onFocusCapture={() => setIsAutoplayPaused(true)}
@@ -114,7 +124,7 @@ export default function HeroCarousel() {
             className={`${styles.heroDot} ${index === activeIndex ? styles.heroDotActive : ''}`}
             aria-label={`Ir al slide ${index + 1}`}
             aria-pressed={index === activeIndex}
-            onClick={() => setActiveIndex(index)}
+            onClick={(event) => goToSlide(event, index)}
           />
         ))}
       </div>

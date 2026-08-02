@@ -35,8 +35,6 @@ export default function ComercioHero() {
             </span>
             <span className={styles.heroTitleStrong}>tu rentabilidad</span>
           </h1>
-
-          <p className={styles.heroCategory}>COMERCIOS</p>
         </div>
       </div>
     </section>

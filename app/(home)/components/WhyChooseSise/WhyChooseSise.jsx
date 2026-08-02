@@ -243,181 +243,74 @@ export default function WhyChooseSise() {
           <div className={styles.categoriesDesktop}>
             <Link className={styles.categoryCardHogar} href={categoryLinks.hogar}>
               <Image
-                src="/image/mpr027zv-o3zo3d3.webp"
-                alt=""
-                className={styles.categoryTopImage}
-                width={256}
-                height={222}
-              />
-              <Image
-                src="/image/mpr027zv-y10zsrg.png"
+                src="/image/sisehogar.webp"
                 alt="SISE Hogar"
-                className={styles.categoryLogoHogar}
-                width={107}
-                height={47}
+                fill
+                sizes="256px"
+                className={styles.categoryFullImage}
               />
             </Link>
 
             <Link className={styles.categoryCardEmpresas} href={categoryLinks.empresas}>
               <Image
-                src="/image/mpr027zv-j0j5y64.webp"
-                alt=""
-                className={styles.categoryTopImage}
-                width={256}
-                height={222}
-              />
-              <Image
-                src="/image/mpr027zv-8dc81fc.png"
+                src="/image/siseempresa.webp"
                 alt="SISE Empresas"
-                className={styles.categoryLogoEmpresas}
-                width={104}
-                height={45}
+                fill
+                sizes="256px"
+                className={styles.categoryFullImage}
               />
             </Link>
 
             <Link className={styles.categoryCardUrbano} href={categoryLinks.urbano}>
-              <Image src="/image/mpr027zp-xpul2cf.webp" alt="SISE Urbano" width={256} height={285} />
+              <Image
+                src="/image/siseurbano.webp"
+                alt="SISE Urbano"
+                fill
+                sizes="256px"
+                className={styles.categoryFullImage}
+              />
             </Link>
 
             <Link className={styles.categoryCardAgro} href={categoryLinks.agro}>
               <Image
-                src="/image/mpr027zv-n7crbeg.webp"
-                alt=""
-                className={styles.categoryTopImageAgro}
-                width={256}
-                height={221}
-              />
-              <Image
-                src="/image/mpr027zv-qr7hyq4.png"
+                src="/image/siseagro.webp"
                 alt="SISE Agro"
-                className={styles.categoryLogoAgro}
-                width={106}
-                height={50}
+                fill
+                sizes="256px"
+                className={styles.categoryFullImage}
               />
             </Link>
 
             <Link className={styles.categoryCardCiudad} href={categoryLinks.ciudad}>
               <Image
-                src="/image/mpr027zv-zs0bqjf.webp"
-                alt=""
-                className={styles.categoryTopImage}
-                width={256}
-                height={222}
-              />
-              <Image
-                src="/image/mpr027zv-vzj6kyz.png"
+                src="/image/siseciudad.webp"
                 alt="SISE Ciudad"
-                className={styles.categoryLogoCiudad}
-                width={102}
-                height={49}
+                fill
+                sizes="256px"
+                className={styles.categoryFullImage}
               />
             </Link>
           </div>
 
           <div className={styles.categoriesMobile}>
             <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-o3zo3d3.webp"
-                  alt=""
-                  fill
-                  sizes="220px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-y10zsrg.png"
-                  alt="SISE Hogar"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoHogarMobileImage}`}
-                />
-              </div>
+              <Image src="/image/sisehogar.webp" alt="SISE Hogar" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-j0j5y64.webp"
-                  alt=""
-                  fill
-                  sizes="220px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-8dc81fc.png"
-                  alt="SISE Empresas"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoEmpresasMobileImage}`}
-                />
-              </div>
+              <Image src="/image/siseempresa.webp" alt="SISE Empresas" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zp-xpul2cf.webp"
-                  alt="SISE Urbano"
-                  fill
-                  sizes="220px"
-                  className={`${styles.categoryImageFill} ${styles.categoryUrbanoTop}`}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zp-xpul2cf.webp"
-                  alt=""
-                  fill
-                  sizes="220px"
-                  className={`${styles.categoryImageFill} ${styles.categoryUrbanoBottom}`}
-                />
-              </div>
+              <Image src="/image/siseurbano.webp" alt="SISE Urbano" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-n7crbeg.webp"
-                  alt=""
-                  fill
-                  sizes="220px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-qr7hyq4.png"
-                  alt="SISE Agro"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoAgroMobileImage}`}
-                />
-              </div>
+              <Image src="/image/siseagro.webp" alt="SISE Agro" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-zs0bqjf.webp"
-                  alt=""
-                  fill
-                  sizes="220px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-vzj6kyz.png"
-                  alt="SISE Ciudad"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoCiudadMobileImage}`}
-                />
-              </div>
+              <Image src="/image/siseciudad.webp" alt="SISE Ciudad" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
           </div>
 
@@ -438,108 +331,23 @@ export default function WhyChooseSise() {
 
           <div className={styles.mobileCategoryStack}>
             <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-o3zo3d3.webp"
-                  alt=""
-                  fill
-                  sizes="169px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-y10zsrg.png"
-                  alt="SISE Hogar"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoHogarMobileImage}`}
-                />
-              </div>
+              <Image src="/image/sisehogar.webp" alt="SISE Hogar" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-j0j5y64.webp"
-                  alt=""
-                  fill
-                  sizes="169px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-8dc81fc.png"
-                  alt="SISE Empresas"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoEmpresasMobileImage}`}
-                />
-              </div>
+              <Image src="/image/siseempresa.webp" alt="SISE Empresas" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zp-xpul2cf.webp"
-                  alt="SISE Urbano"
-                  fill
-                  sizes="169px"
-                  className={`${styles.categoryImageFill} ${styles.categoryUrbanoTop}`}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zp-xpul2cf.webp"
-                  alt=""
-                  fill
-                  sizes="169px"
-                  className={`${styles.categoryImageFill} ${styles.categoryUrbanoBottom}`}
-                />
-              </div>
+              <Image src="/image/siseurbano.webp" alt="SISE Urbano" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-n7crbeg.webp"
-                  alt=""
-                  fill
-                  sizes="169px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-qr7hyq4.png"
-                  alt="SISE Agro"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoAgroMobileImage}`}
-                />
-              </div>
+              <Image src="/image/siseagro.webp" alt="SISE Agro" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
-              <div className={styles.categoryImageWrap}>
-                <Image
-                  src="/image/mpr027zv-zs0bqjf.webp"
-                  alt=""
-                  fill
-                  sizes="169px"
-                  className={styles.categoryImageFill}
-                />
-              </div>
-              <div className={styles.categoryLogoWrap}>
-                <Image
-                  src="/image/mpr027zv-vzj6kyz.png"
-                  alt="SISE Ciudad"
-                  width={92}
-                  height={40}
-                  className={`${styles.categoryLogoFill} ${styles.categoryLogoCiudadMobileImage}`}
-                />
-              </div>
+              <Image src="/image/siseciudad.webp" alt="SISE Ciudad" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
           </div>
         </div>
