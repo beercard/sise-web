@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Image from 'next/image';
 
 import {
   trackFormStart,
@@ -130,22 +129,17 @@ export default function ContactoHero() {
   return (
     <section ref={sectionRef} className={styles.hero} aria-label="Contacto SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
-        <Image
-          src="/image/hero-contacto-desktop.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`${styles.heroImage} ${styles.heroImageDesktop}`}
-        />
-        <Image
-          src="/image/hero-contacto-mobile.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`${styles.heroImage} ${styles.heroImageMobile}`}
-        />
+        <picture className={styles.heroPicture}>
+          <source srcSet="/image/hero-contacto-mobile.webp" media="(max-width: 600px)" />
+          <img
+            src="/image/hero-contacto-desktop.webp"
+            alt=""
+            className={styles.heroImage}
+            decoding="async"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
         <div className={styles.heroOverlay} />
       </div>
 

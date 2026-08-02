@@ -6,10 +6,6 @@
 }
 
 .inner {
-  /* `--header-gap` separa los tres bloques (águila, logo, nav).
-     `--header-logo-gap` es solo la separación águila → logo SISE: el diseño
-     (Figma 5003:460) la fija en 120px, pero eso solo entra en las pantallas
-     grandes, así que por defecto sigue al gap general. */
   --header-gap: clamp(10px, 1.6vw, 40px);
   --header-logo-gap: var(--header-gap);
   display: flex;
@@ -23,8 +19,6 @@
   position: relative;
 }
 
-/* Vectores del diseño (Figma 3214:863 y 3242:495). Las medidas respetan la
-   proporción nativa de cada SVG para que no se deformen: 124×80 y 86×50. */
 .aguila {
   width: 124px;
   height: 80px;
@@ -37,8 +31,6 @@
   height: 50px;
 }
 
-/* Separación águila → logo de 120px como en el diseño. Se aplica desde 1600px,
-   que es donde sobra ancho: por debajo el nav de 7 ítems se quedaría sin sitio. */
 @media (min-width: 1600px) {
   .inner {
     --header-logo-gap: 120px;
@@ -389,10 +381,6 @@
   width: clamp(176px, 11vw, 216px);
 }
 
-/* El grupo es más ancho que el rótulo porque su ancho define el del submenú.
-   El rótulo va centrado dentro de esa caja (igual que los ítems sin submenú y
-   que las filas del desplegable); anclarlo a la izquierda lo dejaba corrido
-   entre 6 y 13px, según el breakpoint. */
 .navItemWithSubmenu .navLinkRow {
   justify-content: center;
   padding-left: var(--nav-subpad);
@@ -440,14 +428,7 @@
   height: 18px;
 }
 
-/* Banda intermedia: la nav horizontal con 7 ítems necesita ~1340px para
-   entrar con su espaciado de diseño. Entre 1201 y 1366px comprimimos gaps,
-   paddings y anchos de submenú lo justo para que entre sin desbordar,
-   manteniendo la misma disposición. Por debajo de 1200px pasa a hamburguesa. */
 @media (min-width: 1201px) and (max-width: 1366px) {
-  /* El águila va pegada al borde de la pantalla como en el resto de los
-     breakpoints: acá tenía un padding-left de 16px que la despegaba (se veía
-     con el zoom del navegador al 150%, que deja el viewport en ~1280px). */
   .inner {
     --header-gap: clamp(10px, 1.4vw, 28px);
     padding-left: 0;
@@ -473,8 +454,6 @@
   }
 }
 
-/* Menú mobile/tablet unificado: mismo diseño (barra de 64px + dropdown de
-   filas sólidas centradas) en todo el rango con hamburguesa (≤1200px). */
 @media (max-width: 1200px) {
   .header {
     position: sticky;
@@ -505,7 +484,6 @@
     display: none;
   }
 
-  /* 43px de alto conservando la proporción 86/50 del vector. */
   .recurso {
     position: absolute;
     left: 26px;
@@ -597,10 +575,6 @@
     pointer-events: auto;
   }
 
-  /* El estado abierto/cerrado lo controla exclusivamente la lista con
-     `display`. El contenedor .nav queda siempre presente pero con altura 0
-     cuando la lista está oculta, así no tapa nada ni depende de que el
-     toggle de opacidad gane la cascada. */
   .navList {
     display: none;
   }
@@ -709,8 +683,6 @@
     height: auto;
   }
 
-  /* Filas sólidas a ancho completo, centradas, sin flecha: el submenú se
-     despliega tocando la fila (mismo patrón en mobile y tablet). */
   .navLinkRow {
     position: relative;
     z-index: 1;

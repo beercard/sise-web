@@ -53,7 +53,6 @@ const HOUSE_BASE_SIZES = {
 };
 
 export default function IndustriaTechnologyModule() {
-  // Migración v1 -> v2 del storage del editor, antes de que el hook lo lea.
   useState(() => {
     if (typeof window === 'undefined') return null;
     try {
@@ -292,15 +291,11 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-title-width': '201px',
               '--tech-card-title-height': '63px',
               '--tech-card-title-min-height': '63px',
-              // El texto mide 292 en el diseño, pero con la fuente del navegador ese
-              // ancho parte una linea de mas: 293 es el minimo que respeta las 3.
               '--tech-card-text-width': '293px',
               '--tech-card-text-margin': '17px 0 0',
               '--tech-card-frame-width': '183px',
               '--tech-card-frame-height': '158px',
               '--tech-card-frame-max-width': '183px',
-              // La ilustracion va recortada al 151.77% de alto y en escala de
-              // grises, como en el diseño (nodo 2205:669).
               '--tech-card-frame-bg-position': '0 -1px',
               '--tech-card-frame-bg-size': '100% 151.77%',
               '--tech-card-frame-filter': 'grayscale(1)',
@@ -454,12 +449,10 @@ export default function IndustriaTechnologyModule() {
     <TechCard slide={slide} className={extraClassName} />
   );
 
-  // Al resetear, descarta también la versión vieja del storage del editor.
   const handleResetEditor = () => {
     try {
       window.localStorage.removeItem(STORAGE_KEY_V1);
     } catch {
-      // continuar con el reset estándar
     }
     handleResetEditorConfig();
   };

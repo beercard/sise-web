@@ -1,8 +1,3 @@
-/*
- * Genera imágenes Open Graph (1200x630) por página con la identidad de SISE:
- * fondo azul institucional, águila, marca y el título de la sección. Salida
- * en public/image/og-<key>.jpg. Reejecutable: `node scripts/generate-og.mjs`.
- */
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import sharp from 'sharp';
@@ -38,7 +33,6 @@ function escapeXml(value) {
   );
 }
 
-// Word-wrap simple por cantidad de caracteres, máximo 3 líneas.
 function wrap(text, maxChars = 22, maxLines = 3) {
   const words = text.split(' ');
   const lines = [];

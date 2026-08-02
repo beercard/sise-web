@@ -80,9 +80,6 @@
   width: 100%;
   min-height: 82px;
   display: flex;
-  /* Los tres iconos miden distinto (61, 82 y 62 de alto) dentro de esta banda
-     de 82. Con `flex-start` arrancaban todos en 0 y los dos mas bajos quedaban
-     visualmente mas arriba; centrandolos, los tres leen alineados. */
   align-items: center;
   justify-content: center;
 }
@@ -201,8 +198,6 @@
   display: none;
 }
 
-/* Boton "+ info" del diseño de Figma (nodo 5002:463): 90x40, borde de 2px y
-   radio de 10, con el texto en 24px bold. */
 .infoButton {
   margin: auto auto 0;
   margin-top: 14px;
@@ -215,16 +210,11 @@
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-weight: 700;
-  /* Figma: leading 0.807 sobre 24px. */
   line-height: 19.4px;
   letter-spacing: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* "+ info" no tiene descendentes (tinta descendente de 1px contra los 5 que
-     reserva la fuente), asi que centrar la caja de linea deja el texto 5.4px
-     mas arriba de lo que se ve como centrado. El padding superior compensa la
-     mitad de esa diferencia y lo baja a su centro optico. */
   padding: 5.4px 10px 0;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -273,21 +263,14 @@
   transform: translateY(0);
 }
 
-/* Reverso de la card de Monitoreo (Figma 3210:456): panel de 332x324 con el
-   texto de 224 arrancando en y=64 -- de ahi el padding lateral de 54 -- y el
-   boton terminando a 29 del piso. */
 .modalPanel {
   padding: 64px 54px 29px;
 }
 
-/* Reverso de Tecnologia (Figma 3210:457): texto de 232 en y=67 y el boton a
-   26 del piso. */
 .modalPanelAlt {
   padding: 67px 50px 26px;
 }
 
-/* Reverso de Respuesta rapida (Figma 3210:455): mismo encuadre que Monitoreo,
-   texto de 224 en y=64 y el boton a 29 del piso. */
 .modalPanelAlt2 {
   padding: 64px 54px 29px;
 }
@@ -307,9 +290,6 @@
 
 .modalTextAlt {
   margin: 0;
-  /* Figma marca 232px, pero con la fuente del navegador ese ancho parte el
-     texto en 9 lineas en vez de 8. 236px es el minimo que respeta el corte del
-     diseño. */
   width: 236px;
   min-height: 0;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -323,8 +303,6 @@
 
 .modalTextAlt2 {
   margin: 0;
-  /* Figma marca 224px, pero con la fuente del navegador ese ancho parte el
-     texto en 9 lineas en vez de 8. 226px es el minimo que respeta el corte. */
   width: 226px;
   min-height: 0;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -346,17 +324,12 @@
   display: block;
 }
 
-/* Los botones se anclan al piso en vez de al texto: nuestro texto renderiza mas
-   corto que el del diseño (el interlineado se calcula distinto), asi que fijarlo
-   al texto dejaba aire de mas abajo. Anclado al piso, esa diferencia la absorbe
-   la separacion con el texto y el encuadre queda igual al Figma. */
 .modalPanel .closeButton,
 .modalPanelAlt .closeButton,
 .modalPanelAlt2 .closeButton {
   margin-top: auto;
 }
 
-/* Boton "Cerrar" del diseño: 90x40 con radio 10, igual que el de "+ info". */
 .closeButton {
   width: 90px;
   height: 40px;
@@ -372,7 +345,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* "Cerrar" tampoco tiene descendentes: se compensa el hueco como en "+ info". */
   padding: 3px 0 0;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -681,9 +653,6 @@
     margin: 0 auto 38px;
   }
 
-  /* Carrusel horizontal de categorías unificado para todo el rango mobile/
-     tablet (≤960): evita el "orphan" de la 5ª tarjeta que dejaba el wrap
-     2-2-1 y mantiene un único patrón coherente con scroll por gestos. */
   .categoriesMobile {
     display: flex;
     width: 100%;

@@ -1,15 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from './HeroCarousel.module.scss';
 
-/*
- * Un slide por vertical, con el mismo par de fotos que usa el hero de cada
- * página de negocio: la de escritorio arriba de 960px y la vertical debajo,
- * que es donde el módulo cambia de variable (ver HeroCarousel.module.scss).
- * Hogar comparte las dos con el home, de ahí que repita los nombres.
- */
 const HERO_SLIDES = [
   { id: 'hogar', desktopImage: '/image/hero-hogar-desktop.webp', mobileImage: '/image/home-hero-mobile.webp' },
   { id: 'comercio', desktopImage: '/image/mpvuunzj-eolvy7n.webp', mobileImage: '/image/hero-comercio-mobile.webp' },
@@ -29,13 +23,30 @@ const HERO_SLIDES = [
 const AUTOPLAY_DELAY = 5000;
 const TRANSITION_MS = 720;
 
+const IMAGE_OPTIMIZER_QUALITY = 75;
+
+const buildOptimizedImageUrl = (src, width) => {
+  const url = encodeURIComponent(src);
+  return `/_next/image?url=${url}&w=${width}&q=${IMAGE_OPTIMIZER_QUALITY}`;
+};
+
+const buildSrcSet = (src, widths) =>
+  widths.map((width) => `${buildOptimizedImageUrl(src, width)} ${width}w`).join(', ');
+
 export default function HeroCarousel() {
   const slides = useMemo(() => HERO_SLIDES, []);
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(null);
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const heroRef = useRef(null);
   const transitionTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    el.classList.add(styles.heroReady);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -43,7 +54,7 @@ export default function HeroCarousel() {
     };
   }, []);
 
-  const setSlide = (nextIndex) => {
+  const setSlide = useCallback((nextIndex) => {
     if (nextIndex === activeIndex) return;
     if (transitionTimeoutRef.current) window.clearTimeout(transitionTimeoutRef.current);
     setPreviousIndex(activeIndex);
@@ -52,7 +63,7 @@ export default function HeroCarousel() {
       setPreviousIndex(null);
       transitionTimeoutRef.current = null;
     }, TRANSITION_MS);
-  };
+  }, [activeIndex]);
 
   const advanceSlide = () => {
     if (slides.length <= 1) return;
@@ -84,10 +95,37 @@ export default function HeroCarousel() {
     }, AUTOPLAY_DELAY);
 
     return () => window.clearInterval(intervalId);
-  }, [activeIndex, isAutoplayPaused, prefersReducedMotion, slides.length]);
+  }, [activeIndex, isAutoplayPaused, prefersReducedMotion, setSlide, slides.length]);
+
+  useEffect(() => {
+    const nextIndex = (activeIndex + 1) % slides.length;
+    const nextSlide = slides[nextIndex];
+    if (!nextSlide) return undefined;
+
+    const preload = () => {
+      const desktopPreload = new Image();
+      desktopPreload.decoding = 'async';
+      desktopPreload.src = buildOptimizedImageUrl(nextSlide.desktopImage, 1200);
+
+      const mobilePreload = new Image();
+      mobilePreload.decoding = 'async';
+      mobilePreload.src = buildOptimizedImageUrl(nextSlide.mobileImage, 828);
+    };
+
+    if (typeof window === 'undefined') return undefined;
+
+    if (window.requestIdleCallback) {
+      const idleId = window.requestIdleCallback(preload, { timeout: 2000 });
+      return () => window.cancelIdleCallback?.(idleId);
+    }
+
+    const timeoutId = window.setTimeout(preload, 900);
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, slides]);
 
   return (
     <section
+      ref={heroRef}
       className={styles.hero}
       aria-label="Hero principal"
       onClick={advanceSlide}
@@ -102,10 +140,8 @@ export default function HeroCarousel() {
       <div className={styles.heroViewport}>
         {slides.map((slide, index) => {
           const TitleTag = index === activeIndex ? 'h1' : 'p';
-          const prefetchIndex = (activeIndex + 1) % slides.length;
-          const shouldRenderMedia =
-            index === activeIndex || index === previousIndex || index === prefetchIndex;
-          const isPriority = index === 0;
+          const shouldRenderMedia = index === activeIndex || index === previousIndex;
+          const isPriority = index === 0 && activeIndex === 0;
 
           return (
             <article
@@ -114,11 +150,17 @@ export default function HeroCarousel() {
               aria-hidden={index !== activeIndex}
             >
               {shouldRenderMedia ? (
-                <picture className={styles.heroMedia} aria-hidden="true">
-                  <source srcSet={slide.mobileImage} media="(max-width: 960px)" />
+                <picture className={styles.heroMedia}>
+                  <source
+                    srcSet={buildSrcSet(slide.mobileImage, [384, 640, 828])}
+                    sizes="(max-width: 600px) 412px, (max-width: 960px) 720px, 952px"
+                    media="(max-width: 960px)"
+                  />
                   <img
                     className={styles.heroImage}
-                    src={slide.desktopImage}
+                    src={buildOptimizedImageUrl(slide.desktopImage, 1200)}
+                    srcSet={buildSrcSet(slide.desktopImage, [960, 1080, 1200, 1920])}
+                    sizes="(min-width: 961px) 952px, 100vw"
                     alt=""
                     decoding="async"
                     loading={isPriority ? 'eager' : 'lazy'}

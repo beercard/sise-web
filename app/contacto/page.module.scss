@@ -15,17 +15,18 @@
   inset: 0;
 }
 
-.heroImage {
-  object-fit: cover;
-}
-
-.heroImageDesktop {
+.heroPicture {
+  position: absolute;
+  inset: 0;
   display: block;
-  object-position: center top;
 }
 
-.heroImageMobile {
-  display: none;
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .heroOverlay {
@@ -315,7 +316,7 @@
     min-height: 900px;
   }
 
-  .heroImageDesktop {
+  .heroImage {
     object-position: 60% center;
   }
 
@@ -359,7 +360,7 @@
     min-height: 820px;
   }
 
-  .heroImageDesktop {
+  .heroImage {
     object-position: 64% center;
   }
 
@@ -391,12 +392,7 @@
     overflow: hidden;
   }
 
-  .heroImageDesktop {
-    display: none;
-  }
-
-  .heroImageMobile {
-    display: block;
+  .heroImage {
     object-position: center top;
   }
 

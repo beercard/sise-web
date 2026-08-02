@@ -213,7 +213,6 @@ export default function CiudadTechnologyModule() {
     return reverse;
   }, [mappingForTab]);
 
-  // Dirección por camino más corto dentro del anillo de slides.
   const getDirection = useCallback(
     (fromIndex, toIndex) => {
       if (slides.length <= 1) return 'next';
@@ -314,7 +313,6 @@ export default function CiudadTechnologyModule() {
                 height={HOUSE_BASE_HEIGHT}
                 sizes="(max-width: 960px) 100vw, 980px"
                 style={{ width: '100%', height: 'auto' }}
-                priority
               />
 
               {(points ?? []).map((point) => {

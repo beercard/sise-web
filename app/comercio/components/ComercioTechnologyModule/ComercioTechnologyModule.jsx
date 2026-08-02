@@ -72,8 +72,6 @@ export default function ComercioTechnologyModule() {
               '--tech-card-text-line-height': '20px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              // Figma: la ilustración arranca en y=198. El arte va centrado en el
-              // stage, asi que el margen lo corre la mitad: de 17 a -6 baja 11.
               '--tech-card-art-margin-top': '-6px'
             },
             art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
@@ -85,7 +83,6 @@ export default function ComercioTechnologyModule() {
               '--tech-card-padding': '48px 84px 33px 82px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
-              // Figma: texto de 265, que centrado en la card de 442 cae en x=89.
               '--tech-card-text-width': '265px',
               '--tech-card-image-width': '160px',
               '--tech-card-image-height': '160px',
@@ -113,20 +110,15 @@ export default function ComercioTechnologyModule() {
               '--tech-card-padding': '48px 83px 44px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '12px 0 0',
-              // Figma: texto de 273, que centrado en la card de 442 cae en x=85.
               '--tech-card-text-width': '273px',
               '--tech-card-image-width': '91px',
               '--tech-card-image-height': '149px',
-              // La foto es 783x1024 y el marco del diseño 91x149: recorta, no
-              // contiene, anclando al pie como en el nodo de Figma.
               '--tech-card-image-fixed-width': '91px',
               '--tech-card-image-fixed-height': '149px',
               '--tech-card-image-fit': 'cover',
               '--tech-card-image-position': 'bottom',
               '--tech-card-art-margin-top': '14px'
             },
-            // El diseño reemplaza el marco compuesto (fondo + insignia) por una
-            // sola ilustracion de 91x149.
             art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
           }
         ]
@@ -168,16 +160,11 @@ export default function ComercioTechnologyModule() {
             title: 'Teclado de configuración',
             text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
             styleVars: {
-              // 189px de padding inferior venian del layout viejo, donde el arte
-              // iba posicionado en absoluto: aca aplastaban el stage y la
-              // ilustracion no se veia.
               '--tech-card-padding': '35px 83px 12px',
               '--tech-card-text-margin': '11px 0 0',
               '--tech-card-text-width': '216px',
               '--tech-card-image-width': '201px',
               '--tech-card-image-height': '188px',
-              // El arte va centrado en el stage, asi que el margen lo corre la
-              // mitad: -12 lo sube 6 y lo deja en y=157.
               '--tech-card-art-margin-top': '-12px'
             },
             art: {
@@ -194,8 +181,6 @@ export default function ComercioTechnologyModule() {
             title: 'Mando a distancia',
             text: 'Activá o desactivá tu sistema con comodidad.',
             styleVars: {
-              // Mismo caso que el teclado: 220px de padding inferior dejaban el
-              // stage sin alto.
               '--tech-card-padding': '48px 83px 13px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-text-margin': '21px 0 0',
@@ -244,8 +229,6 @@ export default function ComercioTechnologyModule() {
             title: 'Cortina de humo',
             text: 'Sistema que libera una niebla densa ante intrusiones, reduciendo la visibilidad y neutralizando el accionar del delincuente.',
             styleVars: {
-              // El texto mide 357 en el diseño y no entra con 83 de padding:
-              // (442 - 357) / 2 = 42.
               '--tech-card-padding': '48px 42px 22px',
               '--tech-card-title-min-height': '39px',
               '--tech-card-text-margin': '4px 0 0',
@@ -260,16 +243,11 @@ export default function ComercioTechnologyModule() {
             title: 'Control de acceso',
             text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
             styleVars: {
-              // Figma marca titulo de 240 y texto de 354, pero con la fuente del
-              // navegador cada uno necesita 1px mas para no partir una linea de
-              // mas. El padding lateral baja a 43 para que entre el texto de 355.
               '--tech-card-padding': '48px 43px 22px',
               '--tech-card-title-min-height': '31px',
               '--tech-card-title-width': '241px',
               '--tech-card-text-margin': '11px 0 0',
               '--tech-card-text-width': '355px',
-              // Al pasar el titulo a una linea el stage crecio y la ilustracion
-              // subio: +14 la devuelve a y=162 (el arte va centrado, corre la mitad).
               '--tech-card-art-margin-top': '14px',
               '--tech-card-image-width': '94px',
               '--tech-card-image-height': '176px',
@@ -289,8 +267,6 @@ export default function ComercioTechnologyModule() {
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
             styleVars: {
-              // El texto mide 292 en el diseño, pero con la fuente del navegador
-              // parte una linea de mas: 293 es el minimo que respeta las 3.
               '--tech-card-padding': '42px 74px 20px',
               '--tech-card-title-min-height': '63px',
               '--tech-card-title-width': '201px',
@@ -300,8 +276,6 @@ export default function ComercioTechnologyModule() {
               '--tech-card-frame-width': '183px',
               '--tech-card-frame-height': '158px',
               '--tech-card-frame-max-width': '183px',
-              // La ilustracion va recortada al 151.77% de alto y en escala de
-              // grises, como en el diseño (nodo 2205:669).
               '--tech-card-frame-bg-position': '0 -1px',
               '--tech-card-frame-bg-size': '100% 151.77%',
               '--tech-card-frame-filter': 'grayscale(1)',

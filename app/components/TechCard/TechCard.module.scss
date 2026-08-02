@@ -1,9 +1,3 @@
-/*
- * Tarjeta unificada del módulo "technology" (mapa + tabs) de todas las
- * verticales. Estructura fija: título / texto / arte. El arte ocupa el
- * espacio restante y la imagen se contiene dentro (object-fit), por lo que
- * nunca puede pisar al texto en ningún breakpoint.
- */
 .card {
   position: absolute;
   inset: 0;
@@ -12,8 +6,6 @@
   overflow: hidden;
   border-radius: 22px;
   background: #d9d9d9;
-  /* Mismas medidas que el diseño de /hogar: card de 442×357 con columna de
-     contenido de 276px (442 − 83 × 2). */
   padding: var(--tech-card-padding, 42px 83px 22px);
   display: flex;
   flex-direction: column;
@@ -70,9 +62,6 @@
 }
 
 .artImage {
-  /* Por defecto la ilustracion se contiene dentro del hueco. Cuando el diseno
-     la recorta -- el marco es mas angosto que la foto -- se fijan alto y ancho
-     y se pasa a `cover` con el anclaje que corresponda. */
   width: var(--tech-card-image-fixed-width, auto);
   height: var(--tech-card-image-fixed-height, auto);
   max-width: min(100%, var(--tech-card-image-width, 230px));
@@ -88,7 +77,6 @@
   transform-origin: center;
 }
 
-/* Composiciones con imagen de fondo (sirena, conectividad, gps) */
 .frame {
   position: relative;
   width: var(--tech-card-frame-width, 100%);
@@ -106,11 +94,9 @@
   background-position: var(--tech-card-frame-bg-position, center);
   background-size: var(--tech-card-frame-bg-size, contain);
   background-repeat: no-repeat;
-  /* La conectividad va en escala de grises, como en el diseño. */
   filter: var(--tech-card-frame-filter, none);
 }
 
-/* Banda de color sobre la ilustracion (la cabecera de la app en el celular). */
 .frameBar {
   position: absolute;
   top: var(--tech-card-frame-bar-top, 39px);
@@ -147,7 +133,6 @@
   height: auto;
 }
 
-/* Detrás del fondo: asoma por la ventana transparente del marco. */
 .frameOverlay {
   position: absolute;
   top: 55%;
@@ -187,15 +172,6 @@
   }
 }
 
-/*
- * Diseño mobile tomado de Figma ("Component 4", nodo 5003:455): card de
- * 201×256 con el título en y=33, el texto en y=78 y la ilustración en y=140.
- *
- * Los min-height fijan esos tres rieles para que todas las cards —de todas
- * las verticales y todos los tabs— queden alineadas entre sí, sin importar
- * cuántas líneas ocupe cada título o cada texto. La suma da los 256 exactos:
- * 33 + 36 + 9 + 56 + 6 + 104 + 12.
- */
 @media (max-width: 600px) {
   .card {
     padding: 33px 20px 12px;
@@ -219,10 +195,6 @@
     line-height: 100%;
   }
 
-  /* Banda de arte de 104px (140→244). Cada ilustración conserva su alto de
-     diseño y queda centrada dentro de la banda: de ahí salen solos los tops
-     del diseño (un arte de 104 cae en 140, uno de 76 en 154, uno de 93 en
-     146), sin necesidad de una regla por slide. */
   .artStage {
     flex: 0 0 auto;
     margin-top: 6px;

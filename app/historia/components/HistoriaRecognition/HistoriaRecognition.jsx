@@ -7,7 +7,7 @@ import styles from '../../page.module.scss';
 
 const slides = [
   {
-    src: '/image/mq2q87jo-3o2yg7o.webp',
+    src: '/image/mq2q87jo-iv7vjn2.webp',
     alt: 'Premios CASEL 2024'
   },
   {

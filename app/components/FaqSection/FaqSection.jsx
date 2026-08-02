@@ -1,11 +1,5 @@
 import styles from './FaqSection.module.scss';
 
-/**
- * Sección de Preguntas Frecuentes reutilizable, con el mismo diseño que el
- * módulo FAQ del home (tarjetas grises plegables con chevron). El contenido
- * de cada vertical se pasa por props; el schema FAQPage se arma en la página
- * con buildFAQPageSchema para mantener una única fuente de verdad.
- */
 export default function FaqSection({
   title = 'Preguntas frecuentes',
   intro,

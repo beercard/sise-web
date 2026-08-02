@@ -18,17 +18,18 @@
   inset: 0;
 }
 
-.heroImage {
-  object-fit: cover;
-}
-
-.heroImageDesktop {
+.heroPicture {
+  position: absolute;
+  inset: 0;
   display: block;
-  object-position: center 78%;
 }
 
-.heroImageMobile {
-  display: none;
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 78%;
 }
 
 .heroOverlay {
@@ -1002,12 +1003,7 @@
     overflow: hidden;
   }
 
-  .heroImageDesktop {
-    display: none;
-  }
-
-  .heroImageMobile {
-    display: block;
+  .heroImage {
     object-position: center top;
   }
 

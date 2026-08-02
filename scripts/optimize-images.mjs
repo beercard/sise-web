@@ -1,16 +1,3 @@
-/**
- * Optimiza los assets de public/image sin alterar el diseño:
- *  1. Elimina imágenes no referenciadas por el código.
- *  2. Convierte los PNG pesados (>100 KB) a WebP (calidad 85) y reescribe
- *     las referencias en app/ (.jsx, .js, .scss).
- *  3. Redimensiona a un máximo de 2560 px de ancho (los exports de Figma
- *     vienen a 2x/3x, muy por encima de lo que se renderiza).
- *
- * Excepciones: el ícono del sitio y la imagen Open Graph se mantienen en PNG
- * (compatibilidad con manifest y previews de redes sociales).
- *
- * Uso: node scripts/optimize-images.mjs [--dry-run]
- */
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,7 +12,6 @@ const MAX_WIDTH = 2560;
 const CONVERT_THRESHOLD = 100 * 1024;
 const WEBP_QUALITY = 85;
 
-// No convertir: ícono (manifest exige PNG) y OG dedicada.
 const KEEP_AS_PNG = new Set(['mpr0za9r-avr9t9i.png', 'og-home.jpg']);
 
 async function collectCodeFiles(dir) {
@@ -57,7 +43,6 @@ async function main() {
 
   const diskFiles = await fs.readdir(IMAGE_DIR);
 
-  // 1. Huérfanas
   let orphanBytes = 0;
   let orphanCount = 0;
   for (const file of diskFiles) {
@@ -69,7 +54,6 @@ async function main() {
   }
   console.log(`Huérfanas eliminadas: ${orphanCount} (${(orphanBytes / 1024 / 1024).toFixed(1)} MB)`);
 
-  // 2. Conversión a WebP
   const renames = new Map();
   let savedBytes = 0;
 
@@ -106,7 +90,6 @@ async function main() {
 
   console.log(`Convertidas a WebP: ${renames.size} (ahorro ${(savedBytes / 1024 / 1024).toFixed(1)} MB)`);
 
-  // 3. Reescritura de referencias
   let touchedFiles = 0;
   for (const [file, original] of contents.entries()) {
     let updated = original;

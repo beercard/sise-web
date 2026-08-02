@@ -1,27 +1,20 @@
-import Image from 'next/image';
-
 import styles from '../../page.module.scss';
 
 export default function RseHero() {
   return (
     <section className={styles.hero} aria-label="Responsabilidad Social Empresarial">
       <div className={styles.heroMedia} aria-hidden="true">
-        <Image
-          src="/image/hero-rse-desktop.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`${styles.heroImage} ${styles.heroImageDesktop}`}
-        />
-        <Image
-          src="/image/hero-rse-mobile.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`${styles.heroImage} ${styles.heroImageMobile}`}
-        />
+        <picture className={styles.heroPicture}>
+          <source srcSet="/image/hero-rse-mobile.webp" media="(max-width: 600px)" />
+          <img
+            src="/image/hero-rse-desktop.webp"
+            alt=""
+            className={styles.heroImage}
+            decoding="async"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
         <div className={styles.heroOverlay} />
       </div>
 

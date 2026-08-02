@@ -1,16 +1,4 @@
-/*
- * Carrusel "Nuestros Pilares". Contenedor centrado de ancho máximo (igual
- * que el resto de las secciones del home) con tipografía fluida. El carrusel
- * mantiene la composición de 3 tarjetas (preview · activa · preview) que
- * asoman a los lados en desktop y colapsa a una sola tarjeta con flechas en
- * mobile. Antes el módulo quedaba corrido a la izquierda (indent fijo de
- * 366px) y la tarjeta activa descentrada; ahora todo queda centrado y escala
- * de forma uniforme en cada breakpoint.
- */
 .section {
-  /* Mismo eje de contenido (columna 1187 centrada) y mismo padding lateral
-     que HomeSeoContent y el título del hero, para que el encabezado quede
-     alineado verticalmente con ellos. El carrusel conserva su ancho mayor. */
   --col-width: 1187px;
   --pad-x: clamp(16px, 4vw, 24px);
   --pillars-preview-col: 464px;

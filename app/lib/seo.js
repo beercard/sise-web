@@ -23,7 +23,6 @@ export const siteConfig = {
     latitude: -27.451,
     longitude: -58.9867
   },
-  // Reseñas reales de la ficha de Google Business de SISE Argentina.
   aggregateRating: {
     ratingValue: 4.6,
     reviewCount: 90
@@ -138,10 +137,6 @@ export function buildWebPageSchema({ path = '/', title, description, type = 'Web
   };
 }
 
-/**
- * Migas de pan para Search (rich result de breadcrumb). Siempre arranca en
- * Inicio y agrega el tramo actual; admite niveles intermedios opcionales.
- */
 export function buildBreadcrumbSchema({ path = '/', name, parents = [] }) {
   const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
   const url = `${siteConfig.siteUrl}${canonicalPath}`;

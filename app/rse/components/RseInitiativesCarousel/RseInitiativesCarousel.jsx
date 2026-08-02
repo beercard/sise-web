@@ -5,11 +5,6 @@ import Image from 'next/image';
 
 import styles from '../../page.module.scss';
 
-/*
- * Las ilustraciones viven en /public como el resto de las imagenes del sitio.
- * Antes se importaban desde `.figma/`, que esta en .gitignore: existian en
- * local pero no en el repo, asi que el build de CI fallaba con module not found.
- */
 const puenteImage = '/image/rse-puente.webp';
 const girasolesImage = '/image/rse-girasoles.webp';
 const lamarcaImage = '/image/rse-lamarca.webp';

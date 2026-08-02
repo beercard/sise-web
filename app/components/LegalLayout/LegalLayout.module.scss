@@ -1,8 +1,3 @@
-/*
- * Páginas legales — diseño SISE: contenedor centrado, azul institucional en
- * títulos, tipografía League Spartan y cuerpo de texto legible. Responsive
- * completo (desktop → mobile).
- */
 .legal {
   width: 100%;
   display: flex;
@@ -81,7 +76,6 @@
   font-weight: 400;
 }
 
-/* Cuerpo del documento legal */
 .prose {
   color: #1a1a1a;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -141,7 +135,6 @@
   margin: 32px 0;
 }
 
-/* Bloque destacado para datos de la empresa / contacto */
 .prose .dataBox,
 .dataBox {
   margin: 24px 0;

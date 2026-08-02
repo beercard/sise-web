@@ -1,4 +1,4 @@
-import Cotizador from '../components/Cotizador/Cotizador';
+import CotizadorLazy from '../components/Cotizador/CotizadorLazy';
 import {
   buildFAQPageSchema,
   buildLocalAreas,
@@ -105,7 +105,7 @@ export default function HomePage() {
       </div>
 
       <section className={styles.quoteBlock} aria-label="Cotizador online">
-        <Cotizador showHeader />
+        <CotizadorLazy showHeader />
       </section>
 
       <div className={styles.liveBridgeBlock}>

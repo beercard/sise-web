@@ -2,14 +2,6 @@ import Image from 'next/image';
 
 import styles from './TechCard.module.scss';
 
-/**
- * Tarjeta unificada para los módulos "technology" de todas las verticales.
- * Normaliza título, texto y arte en una misma grilla, sin posicionamientos
- * absolutos por slide. El arte se resuelve según los datos disponibles:
- *  - `art.src` o `art.image.src`: imagen contenida en el escenario.
- *  - `art.backgroundSrc`: composición con fondo (sirena/conectividad/gps),
- *    con `svgSrc`/`iconSrc` como insignia y `overlaySrc` como detalle.
- */
 function ArtContent({ art, fallbackAlt = '' }) {
   if (!art) return null;
 
@@ -22,8 +14,6 @@ function ArtContent({ art, fallbackAlt = '' }) {
         className={styles.artImage}
         width={art.width ?? art.image?.width ?? 220}
         height={art.height ?? art.image?.height ?? 170}
-        /* Algunas ilustraciones vienen rotadas del diseño (p. ej. el mando a
-           distancia, a 16°). Sin esto la rotación se perdía. */
         style={art.rotate ? { transform: `rotate(${art.rotate}deg)` } : undefined}
       />
     );
@@ -43,8 +33,6 @@ function ArtContent({ art, fallbackAlt = '' }) {
           marginRight: art.wrapperMarginRight
         }}
       >
-        {/* El overlay va detrás del fondo: se ve a través de la ventana
-            transparente del marco (p. ej. la cámara en la pantalla del GPS). */}
         {art.overlaySrc ? (
           <Image
             src={art.overlaySrc}
@@ -64,8 +52,6 @@ function ArtContent({ art, fallbackAlt = '' }) {
           />
         ) : null}
         <div className={styles.frameBg} aria-hidden="true" />
-        {/* Banda de color sobre la ilustración (la conectividad la usa para la
-            cabecera de la app en la pantalla del celular). */}
         {art.bar ? <span className={styles.frameBar} aria-hidden="true" /> : null}
         {art.badgeBlock ? (
           <span

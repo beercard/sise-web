@@ -1,27 +1,20 @@
-import Image from 'next/image';
-
 import styles from '../../page.module.scss';
 
 export default function HistoriaHero() {
   return (
     <section className={styles.hero} aria-label="Historia SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
-        <Image
-          src="/image/mq2q87jo-iv7vjn2.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`${styles.heroImage} ${styles.heroImageDesktop}`}
-        />
-        <Image
-          src="/image/SISE HISTORIA MOBILE.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={`${styles.heroImage} ${styles.heroImageMobile}`}
-        />
+        <picture className={styles.heroPicture}>
+          <source srcSet="/image/SISE HISTORIA MOBILE.png" media="(max-width: 600px)" />
+          <img
+            src="/image/mq2q87jo-iv7vjn2.webp"
+            alt=""
+            className={styles.heroImage}
+            decoding="async"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
         <div className={styles.heroOverlay} />
       </div>
 

@@ -79,7 +79,6 @@ const infoCards = [
     modalText: (
       <>
         Olvidate de sistemas complejos. Desde cámaras inteligentes hasta la{' '}
-        {/* En el diseño la coma entra dentro de la negrita. */}
         <strong>Cámara Campo con energía solar,</strong> todo lo gestionás de forma
         intuitiva con el <strong>control desde tu celular</strong> estés donde estés.
       </>
@@ -112,7 +111,6 @@ const infoCards = [
     ),
     modalText: (
       <>
-        {/* El diseño corta la linea despues de "Somos de Resistencia.". */}
         Somos de Resistencia.
         <br />
         Con nuestra base operativa local y{' '}

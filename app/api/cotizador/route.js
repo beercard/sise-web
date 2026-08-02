@@ -6,7 +6,6 @@ const MAX_FIELD_LENGTH = 200;
 const MAX_LIST_ITEMS = 10;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-// Límite de envíos por IP (en memoria, por instancia).
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const rateLimitHits = new Map();
@@ -145,7 +144,6 @@ export async function POST(request) {
       return Response.json({ error: 'Solicitud inválida.' }, { status: 400 });
     }
 
-    // Honeypot: los bots completan el campo oculto; respondemos ok sin enviar.
     if (safeText(payload?.website)) {
       return Response.json({ ok: true });
     }

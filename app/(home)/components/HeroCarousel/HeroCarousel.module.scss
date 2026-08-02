@@ -23,10 +23,14 @@
   inset: 0;
   opacity: 0;
   visibility: hidden;
+  transition: none;
+  pointer-events: none;
+}
+
+.heroReady .heroSlide {
   transition:
     opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
     visibility 0.72s linear;
-  pointer-events: none;
 }
 
 .heroSlideActive {
@@ -41,6 +45,7 @@
   top: 4px;
   width: 100%;
   height: 796px;
+  display: block;
   overflow: hidden;
   z-index: 0;
 }
@@ -53,17 +58,17 @@
   object-position: center top;
   transform: scale(1.035);
   transform-origin: center center;
-  transition:
-    transform 1.15s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: none;
   will-change: transform, filter;
 }
 
+.heroReady .heroImage {
+  transition:
+    transform 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .heroGradient {
-  /* Mismo degradé del diseño (azul sólido a la izquierda → 50% al centro →
-     transparente a la derecha) pero cubriendo SIEMPRE el 100% del hero.
-     Antes era una caja de medidas fijas rotada -90° con translates por
-     breakpoint, y quedaba desfasada (no acompañaba el alto/ancho del hero). */
   position: absolute;
   inset: 0;
   background-image: linear-gradient(
@@ -83,10 +88,14 @@
   height: 100%;
   opacity: 0;
   transform: translateY(18px);
+  transition: none;
+  z-index: 2;
+}
+
+.heroReady .heroContent {
   transition:
     opacity 0.52s ease,
     transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 2;
 }
 
 .heroSlideActive .heroImage {
@@ -187,9 +196,6 @@
     object-position: center center;
   }
 
-  /* `left` se hereda de la regla base: max(24px, calc(50% - 594px)), que
-     coincide con el borde izquierdo de la columna de contenido (1188px) en
-     todos los anchos. Fijarlo por breakpoint desalineaba el hero del resto. */
   .heroTitle {
     top: 418px;
   }
@@ -402,8 +408,6 @@
   .heroTitle {
     top: auto;
     bottom: 148px;
-    /* Mismo eje que las secciones en tablet: columna mobile de 354px
-       centrada, con piso de 24px. */
     left: max(24px, calc(50% - 177px));
     width: min(390px, calc(100% - 48px));
     height: auto;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 import styles from './HomeLiveBridge.module.scss';
 
@@ -36,12 +37,13 @@ export default function HomeLiveBridge() {
               onClick={() => setIsPlayerReady(true)}
               aria-label="Reproducir streaming en vivo"
             >
-              <img
+              <Image
                 className={styles.posterImage}
                 src={YOUTUBE_THUMB_URL}
                 alt=""
-                loading="lazy"
-                decoding="async"
+                fill
+                sizes="(max-width: 600px) 354px, (max-width: 960px) 720px, 802px"
+                unoptimized
               />
               <span className={styles.posterOverlay} aria-hidden="true" />
               <span className={styles.playIcon} aria-hidden="true">

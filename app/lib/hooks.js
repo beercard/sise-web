@@ -1,11 +1,5 @@
 'use client';
 
-/**
- * Hooks y utilidades compartidos por los módulos interactivos de cada vertical
- * (TechnologyModule y MonitoreoCarousel). Concentran la lógica de transición
- * de slides, autoplay y el editor de puntos (?edit=1) que antes estaba
- * duplicada en cada página.
- */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export const getDirection = (currentIndex, nextIndex) => {
@@ -13,10 +7,6 @@ export const getDirection = (currentIndex, nextIndex) => {
   return nextIndex > currentIndex ? 'next' : 'prev';
 };
 
-/**
- * Transición de slides con animación de salida/entrada.
- * Devuelve el estado del carrusel y los controles para avanzar.
- */
 export function useSlideTransition({ length = 0, animationMs = 420 } = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(null);
@@ -84,7 +74,6 @@ export function useSlideTransition({ length = 0, animationMs = 420 } = {}) {
   };
 }
 
-/** Avance automático del carrusel, respetando prefers-reduced-motion. */
 export function useAutoplay({ paused = false, length = 0, intervalMs, advance }) {
   useEffect(() => {
     const prefersReducedMotion =
@@ -97,7 +86,6 @@ export function useAutoplay({ paused = false, length = 0, intervalMs, advance })
   }, [paused, length, intervalMs, advance]);
 }
 
-/** Ancho del viewport, actualizado en resize (0 durante SSR). */
 export function useViewportWidth() {
   const [viewportWidth, setViewportWidth] = useState(() =>
     typeof window === 'undefined' ? 0 : window.innerWidth
@@ -113,7 +101,6 @@ export function useViewportWidth() {
   return viewportWidth;
 }
 
-/** Deep-merge por área de posiciones/mapeos guardados sobre los defaults. */
 export const mergeSections = (base, override) => {
   const next = { ...base };
   if (!override) return next;
@@ -123,17 +110,6 @@ export const mergeSections = (base, override) => {
   return next;
 };
 
-/**
- * Posición de un punto expresada en porcentaje del plano.
- *
- * Los puntos se guardan en las coordenadas del diseño (el tamaño base de la
- * ilustración). Antes se convertían a px multiplicando por la escala medida en
- * el cliente, pero esa escala solo existe después de hidratar: el HTML del
- * servidor ubicaba los puntos en las coordenadas crudas (p. ej. left: 1577px
- * sobre un plano de 704px), lo que desbordaba la página en horizontal hasta
- * que cargaba el JS. En porcentaje el resultado es idéntico y ya es correcto
- * en el primer render.
- */
 export const getPointPercentPosition = (position, base) => {
   if (!position) return null;
   if (!base?.width || !base?.height) {
@@ -145,11 +121,6 @@ export const getPointPercentPosition = (position, base) => {
   };
 };
 
-/**
- * Escala del plano (ilustración) respecto de su tamaño base de diseño,
- * recalculada ante cambios de tamaño. La usa el editor de puntos (?edit=1)
- * para convertir el arrastre en px a coordenadas del diseño.
- */
 export function useAreaScale({ baseSizes, activeAreaId, areaRef }) {
   const [scale, setScale] = useState({ x: 1, y: 1 });
 
@@ -194,12 +165,6 @@ export function useAreaScale({ baseSizes, activeAreaId, areaRef }) {
 
 const FALLBACK_SCALE = { x: 1, y: 1 };
 
-/**
- * Editor de puntos para desarrollo (?edit=1): carga/persistencia en
- * localStorage, medición de posiciones, drag & drop y acciones de
- * copiar/resetear la configuración. En modo normal solo expone las
- * posiciones default.
- */
 export function useTechEditor({
   storageKey,
   defaultPositions,
@@ -253,7 +218,6 @@ export function useTechEditor({
     [activeAreaId, defaultPositions, pointPositions]
   );
 
-  // Mide los puntos sin posición definida (solo en modo edición).
   useEffect(() => {
     if (!isEditMode) return undefined;
     const missing = points.filter((point) => !(pointPositions[activeAreaId] ?? {})[point.id]);

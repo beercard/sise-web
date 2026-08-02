@@ -2,13 +2,6 @@ import Link from 'next/link';
 
 import styles from './LegalLayout.module.scss';
 
-/**
- * Estructura compartida para las páginas legales (términos, privacidad,
- * cookies, arrepentimiento y baja). Mantiene la identidad visual de SISE
- * (azul institucional, League Spartan) y un cuerpo de texto legible.
- * El contenido se pasa como children y se estiliza con descendientes de
- * `.prose` (h2, p, ul, a, strong).
- */
 export default function LegalLayout({ title, intro, updatedAt, children }) {
   return (
     <div className={styles.legal}>

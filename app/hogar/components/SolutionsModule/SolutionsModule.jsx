@@ -1,10 +1,5 @@
 import styles from './SolutionsModule.module.scss';
 
-/*
- * 18 bandas: es lo que pide el diseño mobile (nodo 5013:470), donde llenan
- * justo el área de las cards — 18 × 55px + 17 separaciones de 2px = 1024px.
- * En el resto de los breakpoints sólo se ven las tres primeras.
- */
 const WATERMARK_ROWS = Array.from({ length: 18 }, () => 'SISE SISE SISE SISE SISE');
 
 const hogarSolutions = [

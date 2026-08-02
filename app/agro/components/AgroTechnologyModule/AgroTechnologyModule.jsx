@@ -250,15 +250,11 @@ export default function AgroTechnologyModule() {
             '--tech-card-title-width': '201px',
             '--tech-card-title-height': '63px',
             '--tech-card-title-min-height': '63px',
-            // El texto mide 292 en el diseño, pero con la fuente del navegador ese
-            // ancho parte una linea de mas: 293 es el minimo que respeta las 3.
             '--tech-card-text-width': '293px',
             '--tech-card-text-margin': '17px 0 0',
             '--tech-card-frame-width': '183px',
             '--tech-card-frame-height': '158px',
             '--tech-card-frame-max-width': '183px',
-            // La ilustracion va recortada al 151.77% de alto y en escala de
-            // grises, como en el diseño (nodo 2205:669).
             '--tech-card-frame-bg-position': '0 -1px',
             '--tech-card-frame-bg-size': '100% 151.77%',
             '--tech-card-frame-filter': 'grayscale(1)',
@@ -336,7 +332,6 @@ export default function AgroTechnologyModule() {
     return reverse;
   }, [mappingForTab]);
 
-  // Dirección por camino más corto dentro del anillo de slides.
   const getDirection = useCallback(
     (fromIndex, toIndex) => {
       if (slides.length <= 1) return 'next';
@@ -441,7 +436,6 @@ export default function AgroTechnologyModule() {
                   height={HOUSE_BASE_HEIGHT}
                   sizes="(max-width: 960px) 100vw, 735px"
                   style={{ width: '100%', height: 'auto' }}
-                  priority={activeTabId === TAB_IDS.PERIMETRAL}
                 />
 
                 {(points ?? []).map((point) => {
