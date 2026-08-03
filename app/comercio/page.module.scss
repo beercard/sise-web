@@ -1580,7 +1580,11 @@
   line-height: 51px;
 }
 
+/* Fuera de mobile el hero no lleva la bajada de categoría: se sacó del diseño
+   de escritorio. El bloque de 600px la vuelve a mostrar, que es donde el
+   diseño (nodo 5016:499) sí la pide. */
 .heroCategory {
+  display: none;
   position: absolute;
   top: 564px;
   left: var(--hero-content-left);
@@ -1962,26 +1966,30 @@
     );
   }
 
+  /* Hero mobile — Figma "Component 9" (nodo 5016:499), frame de 402×591.
+     El logo va en y=363 (241×37), el título en y=403 (325 de ancho) y la
+     bajada de categoría en y=476. Todo sobre el eje de 24px de la columna. */
   .heroCopy {
     left: 24px;
-    top: 360px;
+    top: 363px;
     bottom: auto;
     width: min(354px, calc(100% - 48px));
   }
 
   .heroKicker {
-    width: 191px;
-    height: auto;
+    width: 241px;
+    height: 37px;
   }
 
   .heroTitle {
-    /* El logo termina en y=395 y el título arranca en y=403. */
-    margin: 8px 0 0 2px;
-    width: min(343px, 100%);
+    /* El logo termina en y=400 y el título arranca en y=403, 1px corrido a la
+       derecha del eje. Dos renglones de 30.4px dan los 61 de alto. */
+    margin: 3px 0 0 1px;
+    width: min(325px, 100%);
     min-height: 0;
     height: auto;
     font-size: 32px;
-    line-height: 32px;
+    line-height: 30.4px;
   }
 
   .heroTitleLight {
@@ -1992,10 +2000,21 @@
     font-weight: 600;
   }
 
+  /* El diseño mobile cierra el título con punto; el de escritorio no. */
+  .heroTitleStrong::after {
+    content: '.';
+  }
+
+  /* Vuelve a aparecer sólo acá: 20px en negrita, arrancando en y=476. */
   .heroCategory {
+    display: block;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(354px, 100%);
     margin: 12px 0 0;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: 20px;
+    line-height: 19px;
   }
 
   /* ── Módulo de tecnología ── */

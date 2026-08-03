@@ -35,6 +35,10 @@ export default function ComercioHero() {
             </span>
             <span className={styles.heroTitleStrong}>tu rentabilidad</span>
           </h1>
+
+          {/* Sólo lo muestra el diseño mobile (nodo 5016:499); del resto de los
+              breakpoints se sacó a propósito, así que el CSS lo oculta. */}
+          <p className={styles.heroCategory}>COMERCIOS</p>
         </div>
       </div>
     </section>
