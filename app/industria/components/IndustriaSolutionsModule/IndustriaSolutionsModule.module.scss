@@ -82,17 +82,65 @@
   user-select: none;
 }
 
+/* `.cardTitle` apila sus líneas con `.cardTitle span { display: block }`, así
+   que los envoltorios se escriben con esa misma especificidad o más: si no,
+   esa regla les gana y las dos versiones se dibujan una debajo de la otra.
+   El de escritorio va en `contents` para no meterse en medio y el de mobile
+   se oculta; en el bloque de 600px se invierten. */
+.cardTitle .desktopTitle {
+  display: contents;
+}
+
+.cardTitle .mobileTitle {
+  display: none;
+}
+
+.desktopBodyText {
+  display: inline;
+}
+
+.mobileBodyText {
+  display: none;
+}
+
 .watermarkRow:first-child {
   height: 152px;
+}
+
+/* Las tres bandas se alternan para poder repetir el patrón tantas filas como
+   haga falta. Fuera de mobile sólo se ven las tres primeras, así que el
+   resultado es el mismo de siempre: banda 1, 2 y 3. */
+.watermarkRow:nth-child(3n + 1) {
   background-image: url('/image/solutions-band-1.png');
 }
 
-.watermarkRow:nth-child(2) {
+.watermarkRow:nth-child(3n + 2) {
   background-image: url('/image/solutions-band-2.png');
 }
 
-.watermarkRow:nth-child(3) {
+.watermarkRow:nth-child(3n) {
   background-image: url('/image/solutions-band-3.png');
+}
+
+/* Las de relleno sólo hacen falta donde el área de cards es más alta que las
+   tres bandas: `.watermark` es un flex vertical de alto fijo, así que si se
+   muestran todas se reparten el espacio y aplastan el patrón. */
+.watermarkRow:nth-child(n + 4) {
+  display: none;
+}
+
+/* Entre 601 y 1279px las cards se apilan y el área crece, así que las tres
+   bandas dejaban media sección sin trama. Acá sí entran las de relleno, con
+   `flex-shrink` anulado para que conserven sus 151px: lo que sobra lo recorta
+   el `overflow` del contenedor. */
+@media (min-width: 601px) and (max-width: 1279px) {
+  .watermarkRow {
+    flex-shrink: 0;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
 }
 
 .heading {
@@ -379,12 +427,248 @@
   }
 }
 
+/*
+ * Módulo de soluciones mobile — Figma "Component 15" (nodo 5026:465).
+ * Lienzo de 752×1195 con el marco del teléfono en x=183: el copy ocupa los
+ * primeros 171px y el área de cards los 1024 restantes.
+ */
 @media (max-width: 600px) {
+  .section {
+    min-height: 1195px;
+  }
+
+  /* El marco del teléfono no está centrado en el lienzo de 752 (va de x=183 a
+     585), así que se corre esa mitad de diferencia para que lo centrado en
+     pantalla sea el marco y no el lienzo. */
+  .canvas {
+    width: 752px;
+    max-width: none;
+    height: 1195px;
+    left: 50%;
+    transform: translateX(calc(-50% - 8px));
+    overflow: hidden;
+  }
+
+  /* El párrafo arranca en y=53 y mide 294 de ancho. */
+  .copyBlock {
+    position: absolute;
+    top: 0;
+    left: 183px;
+    transform: none;
+    width: 402px;
+    height: 171px;
+    margin: 0;
+    padding: 53px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lead {
+    width: 294px;
+    max-width: 100%;
+    min-height: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 17.1px;
+  }
+
+  .leadLight {
+    font-weight: 400;
+  }
+
+  .leadStrong {
+    font-weight: 600;
+  }
+
+  .cardTitle .desktopTitle {
+    display: none;
+  }
+
+  .cardTitle .mobileTitle {
+    display: contents;
+  }
+
+  .desktopBodyText {
+    display: none;
+  }
+
+  .mobileBodyText {
+    display: inline;
+  }
+
+  /* 18 bandas de 55px con 2px de separación llenan exactamente los 1024. */
+  .gridArea {
+    position: absolute;
+    top: 171px;
+    left: 0;
+    width: 752px;
+    height: 1024px;
+    margin-top: 0;
+  }
+
+  .watermark {
+    top: 0;
+    left: 0;
+    width: 752px;
+    height: 100%;
+    transform: none;
+    gap: 2px;
+  }
+
+  .watermarkRow,
+  .watermarkRow:first-child {
+    height: 55px;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+
+  .heading {
+    position: absolute;
+    top: 32px;
+    left: 184px;
+    width: 399px;
+    transform: none;
+    margin: 0;
+    min-height: 0;
+    font-size: 24px;
+    line-height: 22.8px;
+    text-align: center;
+  }
+
+  /* Las cards arrancan en y=90 y alternan alturas de 145 y 164, siempre con
+     30px de separación. */
   .grid {
-    grid-template-columns: var(--solutions-card-width);
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 752px;
+    height: 883px;
+    margin: 0;
+    transform: none;
+    display: block;
+    grid-template-columns: none;
+    gap: 0;
   }
 
   .cardGroup {
-    margin: 0 auto;
+    position: absolute;
+    left: 284px;
+    width: 201px;
+    margin: 0;
+  }
+
+  .card {
+    width: 201px;
+    border-radius: 22px;
+  }
+
+  .cardTitle {
+    width: 201px;
+    min-height: 35px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .cardBody {
+    width: 169px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .cardGroup:first-child {
+    top: 0;
+  }
+
+  .cardGroup:first-child .card {
+    height: 145px;
+  }
+
+  .cardGroup:first-child .cardTitle {
+    top: 35px;
+    width: 203px;
+  }
+
+  /* 169 en lugar de los 165 del diseño: el navegador dibuja League Spartan un
+     poco más ancha que Figma y "crítica." se caía a un tercer renglón. Como el
+     texto va centrado, no se mueve de lugar. */
+  .cardGroup:first-child .cardBody {
+    top: 80px;
+    width: 169px;
+  }
+
+  .cardGroup:nth-child(2) {
+    top: 175px;
+  }
+
+  .cardGroup:nth-child(2) .card {
+    height: 164px;
+  }
+
+  .cardGroup:nth-child(2) .cardTitle {
+    top: 33px;
+    width: 203px;
+  }
+
+  .cardGroup:nth-child(2) .cardBody {
+    top: 78px;
+    width: 158px;
+  }
+
+  .cardGroup:nth-child(3) {
+    top: 369px;
+  }
+
+  .cardGroup:nth-child(3) .card {
+    height: 145px;
+  }
+
+  .cardGroup:nth-child(3) .cardTitle {
+    top: 35px;
+    width: 169px;
+  }
+
+  .cardGroup:nth-child(3) .cardBody {
+    top: 80px;
+    width: 153px;
+  }
+
+  .cardGroup:nth-child(4) {
+    top: 544px;
+  }
+
+  .cardGroup:nth-child(4) .card {
+    height: 164px;
+  }
+
+  .cardGroup:nth-child(4) .cardTitle {
+    top: 33px;
+    width: 170px;
+  }
+
+  .cardGroup:nth-child(4) .cardBody {
+    top: 78px;
+    width: 169px;
+  }
+
+  .cardGroup:nth-child(5) {
+    top: 738px;
+  }
+
+  .cardGroup:nth-child(5) .card {
+    height: 145px;
+  }
+
+  .cardGroup:nth-child(5) .cardTitle {
+    top: 34px;
+    width: 201px;
+  }
+
+  .cardGroup:nth-child(5) .cardBody {
+    top: 79px;
+    width: 168px;
   }
 }

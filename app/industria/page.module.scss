@@ -1603,26 +1603,30 @@
     );
   }
 
+  /* Hero mobile — Figma "Component 12" (nodo 5026:459), frame de 402×591.
+     El logo va en y=363 (241×37), el título en y=403 (352 de ancho, dos
+     renglones de 25.6) y la bajada de categoría en y=476. */
   .heroCopy {
     left: 24px;
-    top: 360px;
+    top: 363px;
     bottom: auto;
     width: min(354px, calc(100% - 48px));
   }
 
   .heroKicker {
-    width: 191px;
-    height: auto;
+    width: 241px;
+    height: 37px;
   }
 
   .heroTitle {
-    /* El logo termina en y=395 y el título arranca en y=403. */
-    margin: 8px 0 0 2px;
-    width: min(343px, 100%);
+    /* El logo termina en y=400 y el título arranca en y=403, 2px corrido a la
+       derecha del eje de la columna. */
+    margin: 3px 0 0 2px;
+    width: min(352px, 100%);
     min-height: 0;
     height: auto;
     font-size: 32px;
-    line-height: 32px;
+    line-height: 25.6px;
   }
 
   .heroTitleLight {
@@ -1633,10 +1637,17 @@
     font-weight: 600;
   }
 
+  /* El diseño mobile cierra el título con punto; el de escritorio no. */
+  .heroTitleStrong::after {
+    content: '.';
+  }
+
+  /* El título cierra en y=454 y la categoría abre en y=476. */
   .heroCategory {
-    margin: 12px 0 0;
-    font-size: 18px;
-    line-height: 20px;
+    margin: 22px 0 0 2px;
+    width: min(354px, 100%);
+    font-size: 20px;
+    line-height: 19px;
   }
 
   /* ── Módulo de tecnología ── */
@@ -1645,7 +1656,12 @@
     padding-bottom: 48px;
   }
 
+  /* Módulo de mapa mobile — Figma "Component 13" (nodo 5026:460), columna de
+     366 dentro del frame de 402. El título va en y=0 (dos renglones), los tabs
+     en y=84, el mapa en y=140 y el grupo de la card en y=408.
+     Sin el padding lateral, que achicaba el ancho útil del título. */
   .technologyTitle {
+    padding: 0;
     font-size: 24px;
     line-height: 26.4px;
   }
@@ -1655,12 +1671,14 @@
   }
 
   .technologyTitleLight {
-    font-weight: 500;
+    font-weight: 400;
   }
 
   /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
      habían convertido en pastillas con scroll horizontal. */
+  /* El título cierra en y=53 y los tabs abren en y=84. */
   .tabs {
+    margin-top: 31px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1682,7 +1700,7 @@
     border: 0;
     border-radius: 0;
     padding: 0;
-    height: 31px;
+    height: 30px;
     background: transparent;
     color: #06234c;
     font-size: 14px;
@@ -1699,9 +1717,10 @@
     width: 107px;
   }
 
+  /* El subrayado va en y=112, o sea 28px por debajo del tope de los tabs. */
   .tabActive::after {
     display: block;
-    top: 29px;
+    top: 28px;
     left: 0;
     /* Acompaña al tab si se encoge. */
     width: 100%;
@@ -1709,49 +1728,50 @@
     background: #06234c;
   }
 
-  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
+  /* Los tabs cierran en y=114 y el mapa arranca en y=140; el mapa termina en
+     y=394 y el grupo de la card empieza en y=408. */
   .technologyRow,
   .techBody {
-    margin-top: 27px;
-    gap: 28px;
+    margin-top: 26px;
+    gap: 14px;
   }
 
-  /* Mapa a sangre: compensa el padding lateral de la fila (16px). */
+  /* El mapa no va a sangre: el diseño lo deja en 366 dentro del frame de 402. */
   .house,
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 32px);
+    width: min(366px, 100%);
     max-width: none;
     height: auto;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
-     58% y centro blanco al 27%. */
+  /* Puntos de 12px, la medida de este diseño, con el activo en 20. Se mantiene
+     el escalonado interno en proporción.
+     Sin corrección de margen: el punto ya se achica en la misma proporción que
+     el mapa, así que su centro cae solo donde corresponde. */
   .pointButton {
-    width: 15px;
-    height: 15px;
-    padding: 3.16px;
+    width: 12px;
+    height: 12px;
+    padding: 2.53px;
     background: rgba(6, 35, 76, 0.2);
-    /* El punto se ancla por su esquina, así que al pasar de 28 a 15px su
-       centro se corría 6.5px arriba y a la izquierda. */
-    margin: 6.5px 0 0 6.5px;
+    margin: 0;
   }
 
   .ellipse2 {
-    padding: 2.3px;
+    padding: 1.84px;
   }
 
   .ellipse3 {
-    width: 4.09px;
-    height: 4.09px;
+    width: 3.27px;
+    height: 3.27px;
   }
 
   .pointButton.pointActive {
-    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
-    transform: scale(1.533);
+    /* 20 / 12 = 1.667, el tamaño del punto activo en el diseño. */
+    transform: scale(1.667);
     background: rgba(6, 35, 76, 0.8);
   }
 }
