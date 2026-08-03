@@ -64,6 +64,41 @@
   max-width: 100%;
 }
 
+/* `contents` y no `block`: el envoltorio desaparece del layout, así sus <p>
+   siguen siendo hijos directos de la grilla de `.intro` y de `.copyBlock`,
+   igual que antes de partir el contenido en dos versiones. */
+.desktopOnly {
+  display: contents;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.mobileLead {
+  margin: 0;
+  width: 308px;
+  max-width: 100%;
+  text-align: center;
+  line-height: 19.37px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.mobileBody {
+  margin: 0;
+  width: 309px;
+  max-width: 100%;
+  text-align: center;
+  line-height: 19.8px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.mobileBodyStrong {
+  font-weight: 700;
+}
+
 .lead,
 .body,
 .punch,
@@ -146,15 +181,42 @@
 
 .watermarkRow:first-child {
   height: 152px;
+}
+
+/* Las tres bandas se alternan para poder repetir el patrón tantas filas como
+   haga falta. Fuera de mobile sólo se ven las tres primeras, así que el
+   resultado es el mismo de siempre: banda 1, 2 y 3. */
+.watermarkRow:nth-child(3n + 1) {
   background-image: url('/image/solutions-band-1.png');
 }
 
-.watermarkRow:nth-child(2) {
+.watermarkRow:nth-child(3n + 2) {
   background-image: url('/image/solutions-band-2.png');
 }
 
-.watermarkRow:nth-child(3) {
+.watermarkRow:nth-child(3n) {
   background-image: url('/image/solutions-band-3.png');
+}
+
+/* Las de relleno sólo hacen falta donde el área de cards es más alta que las
+   tres bandas: `.watermark` es un flex vertical de alto fijo, así que si se
+   muestran todas se reparten el espacio y aplastan el patrón. */
+.watermarkRow:nth-child(n + 4) {
+  display: none;
+}
+
+/* Entre 601 y 1279px las cards se apilan y el área crece, así que las tres
+   bandas cubrían menos de la mitad y la parte de abajo quedaba sin trama. Acá
+   sí entran las de relleno, con `flex-shrink` anulado para que conserven sus
+   151px: lo que sobra lo recorta el `overflow` del contenedor. */
+@media (min-width: 601px) and (max-width: 1279px) {
+  .watermarkRow {
+    flex-shrink: 0;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
 }
 
 .heading {
@@ -194,6 +256,25 @@
   position: relative;
   border-radius: 10px;
   background: #d9d9d9;
+}
+
+/* `.cardTitle` apila sus líneas con flex, así que el envoltorio va en
+   `display: contents` para no meterse en medio. El de mobile se oculta acá y
+   se invierten los dos en el bloque de 600px. */
+.desktopTitle {
+  display: contents;
+}
+
+.mobileTitle {
+  display: none;
+}
+
+.desktopBodyText {
+  display: inline;
+}
+
+.mobileBodyText {
+  display: none;
 }
 
 .cardTitle {
@@ -526,12 +607,223 @@
   }
 }
 
+/*
+ * Módulo de soluciones mobile — Figma "Component 11" (nodo 5016:503).
+ * Lienzo de 752×1329 con el marco del teléfono en x=183: el copy ocupa los
+ * primeros 248px y el área de cards los 1081 restantes.
+ */
 @media (max-width: 600px) {
+  .section {
+    min-height: 1329px;
+  }
+
+  /* El marco del teléfono no está centrado en el lienzo de 752 (va de x=183 a
+     585, o sea 183 de margen a la izquierda y 167 a la derecha). Se corre esa
+     mitad de diferencia para que lo centrado en pantalla sea el marco. */
+  .canvas {
+    width: 752px;
+    max-width: none;
+    height: 1329px;
+    left: 50%;
+    transform: translateX(calc(-50% - 8px));
+    overflow: hidden;
+  }
+
+  .copyBlock {
+    position: absolute;
+    top: 0;
+    left: 183px;
+    transform: none;
+    width: 402px;
+    height: 248px;
+    margin: 0;
+  }
+
+  /* Una sola columna centrada, en lugar de la grilla de dos que usa el
+     escritorio: el título arranca en y=50 y el párrafo en y=91. */
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 402px;
+    padding-top: 50px;
+    gap: 22px;
+  }
+
+  .copyMain {
+    width: 308px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .desktopTitle {
+    display: none;
+  }
+
+  .mobileTitle {
+    display: contents;
+  }
+
+  .desktopBodyText {
+    display: none;
+  }
+
+  .mobileBodyText {
+    display: inline;
+  }
+
+  /* 19 bandas de 55px con 2px de separación llenan exactamente los 1081. */
+  .gridArea {
+    position: absolute;
+    top: 248px;
+    left: 0;
+    width: 752px;
+    height: 1081px;
+    margin-top: 0;
+  }
+
+  .watermark {
+    top: 0;
+    left: 0;
+    width: 752px;
+    height: 100%;
+    transform: none;
+    gap: 2px;
+  }
+
+  .watermarkRow,
+  .watermarkRow:first-child {
+    height: 55px;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+
+  .heading {
+    position: absolute;
+    top: 32px;
+    left: 184px;
+    width: 399px;
+    transform: none;
+    margin: 0;
+    min-height: 0;
+    font-size: 24px;
+    line-height: 22.8px;
+    text-align: center;
+  }
+
+  /* Las cards arrancan en y=333 y van cada 194px. */
   .grid {
-    grid-template-columns: var(--solutions-card-width);
+    position: absolute;
+    top: 85px;
+    left: 0;
+    width: 752px;
+    height: 940px;
+    margin: 0;
+    transform: none;
+    display: block;
+    grid-template-columns: none;
+    gap: 0;
   }
 
   .cardGroup {
-    margin: 0 auto;
+    position: absolute;
+    left: 284px;
+    width: 201px;
+    margin: 0;
+  }
+
+  .card {
+    width: 201px;
+    height: 164px;
+    border-radius: 22px;
+  }
+
+  .cardTitle {
+    top: 37px;
+    width: 201px;
+    min-height: 35px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .cardBody {
+    top: 81px;
+    width: 169px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .alarmas {
+    top: 0;
+  }
+
+  /* El `top` va card por card porque la base lo fija con una variable propia
+     para cada una, y esas reglas le ganan a `.cardBody` a secas. */
+  .alarmas .cardTitle {
+    width: 203px;
+  }
+
+  .alarmas .cardBody {
+    top: 81px;
+  }
+
+  .cctv {
+    top: 194px;
+  }
+
+  .cctv .cardTitle {
+    top: 36px;
+  }
+
+  /* 165 en lugar de los 163 del diseño: el navegador dibuja League Spartan un
+     poco más ancha que Figma y "auditar" se caía a un cuarto renglón. Como el
+     texto va centrado, no se mueve de lugar. */
+  .cctv .cardBody {
+    top: 81px;
+    width: 165px;
+  }
+
+  .humo {
+    top: 388px;
+  }
+
+  .humo .cardBody {
+    top: 82px;
+    width: 119px;
+  }
+
+  .acceso {
+    top: 582px;
+  }
+
+  .acceso .cardTitle {
+    top: 36px;
+  }
+
+  .acceso .cardBody {
+    top: 81px;
+    width: 167px;
+  }
+
+  .rastreo {
+    top: 776px;
+  }
+
+  .rastreo .cardTitle {
+    width: 200px;
+  }
+
+  .rastreo .cardBody {
+    top: 82px;
+    width: 168px;
   }
 }
