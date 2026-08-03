@@ -1636,9 +1636,12 @@
   gap: var(--tech-row-gap);
 }
 
-.house {
-  width: min(var(--tech-house-max-width), 55vw);
-}
+/* Acá había un `.house { width: min(735px, 55vw) }` repetido: dice lo mismo que
+   la regla base de más arriba, pero al estar declarado después del bloque de
+   960px le ganaba por orden de fuente y lo anulaba. Con eso el mapa se quedaba
+   en 422px en tablet —contra los 735 del resto de las verticales— y los puntos,
+   que miden lo mismo en píxeles, pasaban de ocupar el 4.1% del plano al 7.1%.
+   Por eso se veían grandes sólo en comercio. */
 
 .techCardGroup {
   margin-top: 55px;

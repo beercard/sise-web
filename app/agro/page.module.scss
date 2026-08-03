@@ -965,6 +965,14 @@
     flex-direction: column;
   }
 
+  /* `.techBody` pasa a columna pero conserva `align-items: flex-start`, así que
+     esta columna se dimensiona por su contenido — y su contenido pide el 100%
+     de ella. Esa dependencia circular dejaba el mapa en 0x0 entre 601 y 960px.
+     Con el ancho explícito se corta. */
+  .techHouseColumn {
+    width: 100%;
+  }
+
   .houseViewport {
     width: 100%;
     display: flex;
