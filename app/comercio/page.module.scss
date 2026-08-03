@@ -2023,7 +2023,13 @@
     padding-bottom: 48px;
   }
 
+  /* Módulo de mapa mobile — Figma "Component 10" (nodo 5016:500), columna de
+     354. El título va en y=0 (dos renglones), los tabs en y=84, el mapa en
+     y=149 y el grupo de la card en y=408.
+     Sin el padding lateral: dejaba el contenido en 322px y "Seguridad total
+     para tu negocio," mide 341.8, así que se partía en un tercer renglón. */
   .technologyTitle {
+    padding: 0;
     font-size: 24px;
     line-height: 26.4px;
   }
@@ -2033,12 +2039,14 @@
   }
 
   .technologyTitleLight {
-    font-weight: 500;
+    font-weight: 400;
   }
 
   /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
      habían convertido en pastillas con scroll horizontal. */
+  /* El título cierra en y=51 y los tabs abren en y=84. */
   .tabs {
+    margin-top: 31px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -2060,7 +2068,7 @@
     border: 0;
     border-radius: 0;
     padding: 0;
-    height: 31px;
+    height: 30px;
     background: transparent;
     color: #06234c;
     font-size: 14px;
@@ -2077,9 +2085,10 @@
     width: 107px;
   }
 
+  /* El subrayado va en y=112, o sea 28px por debajo del tope de los tabs. */
   .tabActive::after {
     display: block;
-    top: 29px;
+    top: 28px;
     left: 0;
     /* Acompaña al tab si se encoge. */
     width: 100%;
@@ -2087,52 +2096,55 @@
     background: #06234c;
   }
 
-  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
+  /* Los tabs cierran en y=114 y el mapa arranca en y=149; el mapa termina en
+     y=393 y el grupo de la card empieza en y=408. */
   .technologyRow,
   .techBody {
-    margin-top: 27px;
-    gap: 28px;
+    margin-top: 35px;
+    gap: 15px;
   }
 
-  /* Mapa a sangre: compensa el padding lateral de la fila (24px).
-     Además unifica la proporción con la real de las imágenes (1.4384): 
-     perimetral declaraba 735/527 y estiraba el plano un 3%. */
+  /* A diferencia de hogar, acá el mapa no va a sangre: el diseño lo deja
+     dentro de la columna de 354. La proporción es la real de las imágenes
+     (1.4384); perimetral declaraba 735/527 y estiraba el plano un 3%. */
   .house,
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 48px);
+    width: 100%;
     max-width: none;
     height: auto;
     aspect-ratio: 735 / 511;
-    margin-left: -24px;
-    margin-right: -24px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
-     58% y centro blanco al 27%. */
+  /* Puntos de 12px, que es la medida del diseño de comercio (hogar los usa de
+     15). Se mantiene el escalonado en proporción: aro al 21%, punto sólido y
+     centro blanco al 27% del total.
+     Sin corrección de margen: el punto ya se achica en la misma proporción que
+     el mapa, así que su centro cae solo donde corresponde. El margen de 6.5px
+     que había antes lo corría hacia abajo y a la derecha. */
   .pointButton {
-    width: 15px;
-    height: 15px;
-    padding: 3.16px;
+    width: 12px;
+    height: 12px;
+    padding: 2.53px;
     background: rgba(6, 35, 76, 0.2);
-    /* El punto se ancla por su esquina, así que al pasar de 28 a 15px su
-       centro se corría 6.5px arriba y a la izquierda. */
-    margin: 6.5px 0 0 6.5px;
+    margin: 0;
   }
 
   .ellipse2 {
-    padding: 2.3px;
+    padding: 1.84px;
   }
 
   .ellipse3 {
-    width: 4.09px;
-    height: 4.09px;
+    width: 3.27px;
+    height: 3.27px;
   }
 
   .pointButton.pointActive {
-    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
-    transform: scale(1.533);
+    /* 20 / 12 = 1.667, el tamaño del punto activo en el diseño. */
+    transform: scale(1.667);
     background: rgba(6, 35, 76, 0.8);
   }
 }
