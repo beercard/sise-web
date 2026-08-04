@@ -1564,7 +1564,7 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    font-size: min(24px, 5.85vw);
+    font-size: clamp(22px, 5.85vw, 24px);
     line-height: 1.1;
   }
 
@@ -1619,8 +1619,6 @@
     background: #065558;
   }
 
-  /* Mismo padding en las siete verticales, para que la compensación del mapa a
-     sangre (-24px) lo cancele exacto y el plano llegue al borde sin desbordar. */
   .technologyRow {
     margin-top: 5px;
     gap: 19px;
@@ -1662,9 +1660,6 @@
     background: rgba(6, 85, 88, 0.8);
   }
 
-  /* Mismo caso que en ciudad: más arriba hay un `.techCardGroup { margin-top }`
-     sin media query que le ganaba a los resets por orden de fuente. La
-     separación con el mapa la da el `gap` de la fila. */
   .techCardGroup {
     width: min(265px, calc(100% - 24px));
     max-width: none;

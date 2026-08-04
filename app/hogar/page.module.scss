@@ -1545,7 +1545,7 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    font-size: min(24px, 5.85vw);
+    font-size: clamp(22px, 5.85vw, 24px);
     line-height: 1.1;
   }
 
@@ -1614,7 +1614,6 @@
     height: 2px;
   }
 
-  /* El mapa va a sangre: compensa el padding lateral de la fila. */
   /* El mapa va a sangre: compensa el padding lateral de la fila.
 
      Los tres planos tienen la misma proporción real (2465×1695 y 1469×1009,
@@ -1637,8 +1636,6 @@
   }
 
   /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
-  /* Mismo padding en las siete verticales, para que la compensación del mapa a
-     sangre (-24px) lo cancele exacto y el plano llegue al borde sin desbordar. */
   .technologyRow {
     margin-top: 5px;
     gap: 19px;

@@ -1674,7 +1674,7 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    font-size: min(24px, 5.85vw);
+    font-size: clamp(22px, 5.85vw, 24px);
     line-height: 1.1;
   }
 
@@ -1749,7 +1749,6 @@
     padding-right: 24px;
   }
 
-  /* El mapa no va a sangre: el diseño lo deja en 366 dentro del frame de 402. */
   .house,
   .housePerimetral,
   .houseInterior,

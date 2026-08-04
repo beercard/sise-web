@@ -72,9 +72,6 @@ export default function CiudadTechnologyModule() {
             id: 'puntosSeguros',
             title: 'Puntos Seguros',
             text: 'Espacios equipados y monitoreados que permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
-            /* Misma columna de 276px que el resto de las cards: antes el texto
-               iba en una caja de 402 con padding lateral de 20, así que sus
-               renglones se estiraban mucho más que los de las demás. */
             styleVars: {
               '--tech-card-padding': '42px 83px 18px',
               '--tech-card-align-items': 'center',
@@ -117,8 +114,6 @@ export default function CiudadTechnologyModule() {
             id: 'gpsInstitucional',
             title: 'GPS institucional',
             text: 'Control y seguimiento de flota pública, optimizando recursos y detectando desvíos.',
-            /* Igual que las demás: columna de 276px centrada, en lugar del
-               `flex-start` con el título corrido 42px a mano que tenía antes. */
             styleVars: {
               '--tech-card-padding': '42px 83px 19px',
               '--tech-card-align-items': 'center',
