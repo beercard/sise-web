@@ -72,19 +72,17 @@ export default function CiudadTechnologyModule() {
             id: 'puntosSeguros',
             title: 'Puntos Seguros',
             text: 'Espacios equipados y monitoreados que permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
+            /* Misma columna de 276px que el resto de las cards: antes el texto
+               iba en una caja de 402 con padding lateral de 20, así que sus
+               renglones se estiraban mucho más que los de las demás. */
             styleVars: {
-              '--tech-card-padding': '42px 20px 18px',
+              '--tech-card-padding': '42px 83px 18px',
               '--tech-card-align-items': 'center',
               '--tech-card-title-width': '276px',
               '--tech-card-title-height': '31px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-width': '402px',
-              '--tech-card-text-height': '59px',
-              '--tech-card-text-min-height': '59px',
+              '--tech-card-text-width': '276px',
               '--tech-card-text-margin': '8px 0 0',
-              '--tech-card-text-wrap': 'pretty',
-              '--tech-card-overflow-wrap': 'break-word',
-              '--tech-card-word-break': 'normal',
               '--tech-card-art-justify-content': 'center',
               '--tech-card-image-width': '126px',
               '--tech-card-image-height': '188px',
@@ -119,17 +117,16 @@ export default function CiudadTechnologyModule() {
             id: 'gpsInstitucional',
             title: 'GPS institucional',
             text: 'Control y seguimiento de flota pública, optimizando recursos y detectando desvíos.',
+            /* Igual que las demás: columna de 276px centrada, en lugar del
+               `flex-start` con el título corrido 42px a mano que tenía antes. */
             styleVars: {
-              '--tech-card-padding': '42px 42px 19px 41px',
-              '--tech-card-align-items': 'flex-start',
+              '--tech-card-padding': '42px 83px 19px',
+              '--tech-card-align-items': 'center',
               '--tech-card-title-width': '276px',
               '--tech-card-title-height': '31px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-title-align': 'center',
-              '--tech-card-title-margin': '0 0 0 42px',
-              '--tech-card-text-width': '359px',
+              '--tech-card-text-width': '276px',
               '--tech-card-text-margin': '12px 0 0',
-              '--tech-card-text-align': 'center',
               '--tech-card-frame-width': '244px',
               '--tech-card-frame-height': '212px',
               '--tech-card-frame-max-width': '244px',

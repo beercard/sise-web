@@ -1861,8 +1861,8 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    font-size: 24px;
-    line-height: 26.4px;
+    font-size: min(24px, 5.85vw);
+    line-height: 1.1;
   }
 
   .technologyTitleDesktop {
@@ -1922,18 +1922,22 @@
     background: #597a9c;
   }
 
+  /* Mismo padding en las siete verticales, para que la compensación del mapa a
+     sangre (-24px) lo cancele exacto y el plano llegue al borde sin desbordar. */
   .technologyRow {
     margin-top: 5px;
     gap: 19px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .house,
   .housePerimetral {
-    width: calc(100% + 32px);
+    width: calc(100% + 48px);
     max-width: none;
     height: auto;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -24px;
+    margin-right: -24px;
   }
 
   .ellipse1,
@@ -1959,11 +1963,16 @@
     background: rgba(89, 122, 156, 0.8);
   }
 
+  /* Más arriba hay un `.techCardGroup { margin-top: 53px }` sin media query
+     que, por orden de fuente, le ganaba a los resets y también se aplicaba
+     acá: el carrusel quedaba a 72px del mapa en vez de los 19 del resto de
+     las verticales. La separación la da el `gap` de la fila. */
   .techCardGroup {
     width: min(265px, calc(100% - 24px));
     max-width: none;
     grid-template-columns: 15px minmax(0, 1fr) 15px;
     gap: 17px;
+    margin-top: 0;
   }
 
   .techArrow,

@@ -1564,8 +1564,8 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    font-size: 24px;
-    line-height: 26.4px;
+    font-size: min(24px, 5.85vw);
+    line-height: 1.1;
   }
 
   .technologyTitleDesktopPeriod {
@@ -1619,20 +1619,24 @@
     background: #065558;
   }
 
+  /* Mismo padding en las siete verticales, para que la compensación del mapa a
+     sangre (-24px) lo cancele exacto y el plano llegue al borde sin desbordar. */
   .technologyRow {
     margin-top: 5px;
     gap: 19px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .house,
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 32px);
+    width: calc(100% + 48px);
     max-width: none;
     height: auto;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -24px;
+    margin-right: -24px;
   }
 
   .ellipse1,
@@ -1658,11 +1662,15 @@
     background: rgba(6, 85, 88, 0.8);
   }
 
+  /* Mismo caso que en ciudad: más arriba hay un `.techCardGroup { margin-top }`
+     sin media query que le ganaba a los resets por orden de fuente. La
+     separación con el mapa la da el `gap` de la fila. */
   .techCardGroup {
     width: min(265px, calc(100% - 24px));
     max-width: none;
     grid-template-columns: 15px minmax(0, 1fr) 15px;
     gap: 17px;
+    margin-top: 0;
   }
 
   .techArrow,

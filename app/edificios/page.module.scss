@@ -1362,8 +1362,8 @@
   }
 
   .technologyTitle {
-    font-size: 24px;
-    line-height: 26.4px;
+    font-size: min(24px, 5.85vw);
+    line-height: 1.1;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1438,12 +1438,12 @@
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 32px);
+    width: calc(100% + 48px);
     max-width: none;
     height: auto;
     aspect-ratio: 735 / 511;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -24px;
+    margin-right: -24px;
   }
 
   .ellipse1,

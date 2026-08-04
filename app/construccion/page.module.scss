@@ -1627,8 +1627,12 @@
   }
 
   .technologyTitle {
-    font-size: 24px;
-    line-height: 26.4px;
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    font-size: min(24px, 5.85vw);
+    line-height: 1.1;
   }
 
   .technologyTitleStrong {
@@ -1642,6 +1646,7 @@
   /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
      habían convertido en pastillas con scroll horizontal. */
   .tabs {
+    margin-top: 36px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1693,17 +1698,19 @@
   .technologyRow {
     margin-top: 5px;
     gap: 19px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .house,
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 32px);
+    width: calc(100% + 48px);
     max-width: none;
     height: auto;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -24px;
+    margin-right: -24px;
   }
 
   .ellipse1,

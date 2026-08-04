@@ -1545,8 +1545,8 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    font-size: 24px;
-    line-height: 26.4px;
+    font-size: min(24px, 5.85vw);
+    line-height: 1.1;
   }
 
   .technologyTitleStrong {
@@ -1628,18 +1628,22 @@
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 32px);
+    width: calc(100% + 48px);
     max-width: none;
     height: auto;
     aspect-ratio: 735 / 505;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -24px;
+    margin-right: -24px;
   }
 
   /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
+  /* Mismo padding en las siete verticales, para que la compensación del mapa a
+     sangre (-24px) lo cancele exacto y el plano llegue al borde sin desbordar. */
   .technologyRow {
     margin-top: 5px;
     gap: 19px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   /* Puntos de 15px (23 el activo), con el mismo escalonado de círculos del
