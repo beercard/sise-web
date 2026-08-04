@@ -259,22 +259,29 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  /* Mismo aire arriba y abajo que /hogar: sin el padding inferior el mapa
-     quedaba pegado a la sección siguiente. */
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 45.6px;
+  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
+  --tech-tabs-width: 944px;
+  --tech-tab-font-size: 20px;
+  --tech-group-width: 1255px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: 0px;
+  --tech-house-max-width: 735px;
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1317px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
 .technologyTitle {
   margin: 0 auto;
-  width: 944px;
-  height: 91px;
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
   text-align: center;
-  line-height: 45.6px;
+  line-height: var(--tech-title-line-height);
   color: #000000;
-  font-size: 48px;
+  font-size: var(--tech-title-font-size);
 }
 
 .technologyTitleStrong {
@@ -282,14 +289,19 @@
 }
 
 .technologyTitleLight {
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.technologyTitleDesktopPeriod {
+  display: inline;
 }
 
 .tabs {
-  margin-top: 49px;
-  width: min(944px, 100%);
+  margin-top: var(--tech-title-tabs-gap);
+  width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -304,7 +316,7 @@
   line-height: 19px;
   letter-spacing: 1px;
   color: #06234c;
-  font-size: 20px;
+  font-size: var(--tech-tab-font-size);
   font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
@@ -354,8 +366,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 62px;
-  margin-top: 37px;
+  gap: var(--tech-row-gap);
+  margin-top: 30px;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: var(--tech-pad-x);
@@ -363,7 +375,7 @@
 }
 
 .house {
-  width: min(735px, 55vw);
+  width: min(var(--tech-house-max-width), 55vw);
   max-width: 100%;
   height: auto;
   aspect-ratio: 735 / 511;
@@ -372,6 +384,7 @@
   background-repeat: no-repeat;
   background-position: 0 0;
   position: relative;
+  flex: 0 0 auto;
 }
 
 .houseEdit {
@@ -391,17 +404,12 @@
 }
 
 .pointButton {
-  position: absolute;
   border: 0;
-  margin: 0;
-  cursor: pointer;
-  background: rgba(6, 35, 76, 0.5);
+  background: transparent;
   padding: 0;
-  width: 30px;
-  height: 30px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 50%;
   justify-content: center;
   transform-origin: center;
   transition:
@@ -412,13 +420,11 @@
 
 .ellipse2 {
   display: flex;
+  flex-grow: 1;
   align-items: center;
-  justify-content: center;
   border-radius: 50%;
   background: #06234c;
-  width: 17.37px;
-  height: 17.37px;
-  flex: 0 0 auto;
+  padding: 4.595px;
 }
 
 .ellipse3 {
@@ -429,6 +435,7 @@
 }
 
 .pointEdit {
+  position: absolute;
   margin: 0 !important;
   touch-action: none;
   cursor: grab;
@@ -439,33 +446,34 @@
 }
 
 .pointAbsolute {
+  position: absolute;
   margin: 0 !important;
 }
 
-.pointActive {
-  width: 42px;
-  height: 42px;
+.pointButton.pointActive {
   background: rgba(6, 35, 76, 0.8);
-  filter: drop-shadow(0 0 41.4px rgba(6, 35, 76, 0.8));
-  transform: none;
+  filter:
+    drop-shadow(0 0 20px rgba(6, 35, 76, 0.4))
+    drop-shadow(0 0 41.4px rgba(6, 35, 76, 0.75));
+  transform: scale(1.4);
   z-index: 2;
 }
 
-.pointActive .ellipse2 {
-  width: 24.31px;
-  height: 24.31px;
-}
-
-.pointActive .ellipse3 {
-  width: 11.45px;
-  height: 11.45px;
+.ellipse1,
+.ellipse12,
+.ellipse13,
+.ellipse14,
+.ellipse15 {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(6, 35, 76, 0.2);
+  padding: 6.315px;
 }
 
 .techCardGroup {
-  /* El alto lo define la card (aspect-ratio 442/357). */
-  height: auto;
-  margin-top: 53px;
-  width: min(520px, 100%);
+  margin-top: 57px;
+  width: min(var(--tech-card-group-width), 100%);
   min-width: 0;
 
   display: grid;
@@ -474,6 +482,7 @@
   flex: 0 1 520px;
   grid-template-columns: 30px minmax(0, 442px) 30px;
   column-gap: 9px;
+  height: 357px;
 }
 
 .techArrow {
@@ -731,7 +740,7 @@
     animation: none;
   }
 
-  .pointActive {
+  .pointButton.pointActive {
     transform: none;
   }
 }
@@ -1661,6 +1670,9 @@
      en y=84, el mapa en y=140 y el grupo de la card en y=408.
      Sin el padding lateral, que achicaba el ancho útil del título. */
   .technologyTitle {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
     font-size: 24px;
     line-height: 26.4px;
@@ -1671,14 +1683,14 @@
   }
 
   .technologyTitleLight {
-    font-weight: 400;
+    font-weight: 500;
   }
 
   /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
      habían convertido en pastillas con scroll horizontal. */
   /* El título cierra en y=53 y los tabs abren en y=84. */
   .tabs {
-    margin-top: 31px;
+    margin-top: 36px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1700,7 +1712,7 @@
     border: 0;
     border-radius: 0;
     padding: 0;
-    height: 30px;
+    height: 31px;
     background: transparent;
     color: #06234c;
     font-size: 14px;
@@ -1720,7 +1732,7 @@
   /* El subrayado va en y=112, o sea 28px por debajo del tope de los tabs. */
   .tabActive::after {
     display: block;
-    top: 28px;
+    top: 29px;
     left: 0;
     /* Acompaña al tab si se encoge. */
     width: 100%;
@@ -1730,10 +1742,9 @@
 
   /* Los tabs cierran en y=114 y el mapa arranca en y=140; el mapa termina en
      y=394 y el grupo de la card empieza en y=408. */
-  .technologyRow,
-  .techBody {
-    margin-top: 26px;
-    gap: 14px;
+  .technologyRow {
+    margin-top: 5px;
+    gap: 19px;
   }
 
   /* El mapa no va a sangre: el diseño lo deja en 366 dentro del frame de 402. */
@@ -1741,37 +1752,33 @@
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: min(366px, 100%);
+    width: calc(100% + 32px);
     max-width: none;
     height: auto;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
-  /* Puntos de 12px, la medida de este diseño, con el activo en 20. Se mantiene
-     el escalonado interno en proporción.
-     Sin corrección de margen: el punto ya se achica en la misma proporción que
-     el mapa, así que su centro cae solo donde corresponde. */
-  .pointButton {
-    width: 12px;
-    height: 12px;
-    padding: 2.53px;
+  .ellipse1,
+  .ellipse12,
+  .ellipse13,
+  .ellipse14,
+  .ellipse15 {
+    padding: 3.16px;
     background: rgba(6, 35, 76, 0.2);
-    margin: 0;
   }
 
   .ellipse2 {
-    padding: 1.84px;
+    padding: 2.3px;
   }
 
   .ellipse3 {
-    width: 3.27px;
-    height: 3.27px;
+    width: 4.09px;
+    height: 4.09px;
   }
 
   .pointButton.pointActive {
-    /* 20 / 12 = 1.667, el tamaño del punto activo en el diseño. */
-    transform: scale(1.667);
+    transform: scale(1.533);
     background: rgba(6, 35, 76, 0.8);
   }
 }

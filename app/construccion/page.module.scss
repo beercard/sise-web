@@ -259,37 +259,49 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  /* Mismo aire arriba y abajo que /hogar: sin el padding inferior el mapa
-     quedaba pegado a la sección siguiente. */
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 45.6px;
+  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
+  --tech-tabs-width: 944px;
+  --tech-tab-font-size: 20px;
+  --tech-group-width: 1255px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: 0px;
+  --tech-house-max-width: 735px;
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
 .technologyTitle {
   margin: 0 auto;
-  width: 944px;
-  height: 91px;
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
   text-align: center;
-  line-height: 46px;
+  line-height: var(--tech-title-line-height);
   color: #000000;
-  font-size: 48px;
+  font-size: var(--tech-title-font-size);
 }
 
 .technologyTitleStrong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .technologyTitleLight {
-  font-weight: 500;
+  font-weight: 400;
+}
+
+.technologyTitleDesktopPeriod {
+  display: inline;
 }
 
 .tabs {
-  margin-top: 45px;
-  width: min(944px, 100%);
+  margin-top: var(--tech-title-tabs-gap);
+  width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -304,7 +316,7 @@
   line-height: 19px;
   letter-spacing: 1px;
   color: #250f7f;
-  font-size: 20px;
+  font-size: var(--tech-tab-font-size);
   font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
@@ -351,11 +363,11 @@
 }
 
 .technologyRow {
+  margin-top: 30px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(24px, 3vw, 64px);
-  margin-top: 31px;
+  gap: var(--tech-row-gap);
   padding-top: 0;
   padding-bottom: 0;
   padding-left: var(--tech-pad-x);
@@ -363,7 +375,7 @@
 }
 
 .house {
-  width: min(735px, 55vw);
+  width: min(var(--tech-house-max-width), 55vw);
   max-width: 100%;
   height: auto;
   aspect-ratio: 2486 / 1728;
@@ -371,6 +383,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;
+  flex: 0 0 auto;
 }
 
 .housePerimetral {
@@ -390,22 +403,43 @@
 }
 
 .pointButton {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #250f7f80;
-  display: inline-flex;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border: 0;
-  padding: 6px;
-  cursor: pointer;
   transform-origin: center;
   transition:
     transform 0.2s ease,
     background-color 0.2s ease,
     filter 0.2s ease;
+}
+
+.pointEdit {
+  position: absolute;
+  margin: 0 !important;
+  touch-action: none;
+  cursor: grab;
+}
+
+.pointEdit:active {
+  cursor: grabbing;
+}
+
+.pointAbsolute {
+  position: absolute;
+  margin: 0 !important;
+}
+
+.pointButton.pointActive {
+  background: rgba(37, 15, 127, 0.8);
+  filter:
+    drop-shadow(0 0 20px rgba(37, 15, 127, 0.4))
+    drop-shadow(0 0 41.4px rgba(37, 15, 127, 0.75));
+  transform: scale(1.4);
+  z-index: 2;
 }
 
 .ellipse2 {
@@ -414,46 +448,39 @@
   align-items: center;
   border-radius: 50%;
   background: #250f7f;
-  padding: 4px;
+  padding: 4.595px;
 }
 
 .ellipse3 {
   border-radius: 50%;
   background: #ffffff;
-  width: 8px;
-  height: 8px;
+  width: 8.18px;
+  height: 8.18px;
 }
 
-.pointActive {
-  background: rgba(37, 15, 127, 0.75);
-  filter:
-    drop-shadow(0 0 20px rgba(37, 15, 127, 0.4))
-    drop-shadow(0 0 41.4px rgba(37, 15, 127, 0.75));
-  transform: scale(1.36);
-  z-index: 2;
-}
-
-.pointEdit {
-  cursor: grab;
-}
-
-.pointEdit:active {
-  cursor: grabbing;
+.ellipse1,
+.ellipse12,
+.ellipse13,
+.ellipse14,
+.ellipse15 {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(37, 15, 127, 0.2);
+  padding: 6.315px;
 }
 
 .techCardGroup {
-  /* El alto lo define la card (aspect-ratio 442/357). */
-  height: auto;
-  margin-top: 54px;
-  width: min(520px, 100%);
+  margin-top: 57px;
+  width: min(var(--tech-card-group-width), 100%);
   min-width: 0;
-
   display: grid;
   align-items: center;
   justify-content: center;
   flex: 0 1 520px;
   grid-template-columns: 30px minmax(0, 442px) 30px;
   column-gap: 9px;
+  height: 357px;
 }
 
 .techArrow {
@@ -474,6 +501,12 @@
 
 .techArrow:last-child img {
   transform: rotate(-90deg);
+}
+
+.techArrowSpacer {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
 }
 
 .techCardViewport {
@@ -650,6 +683,21 @@
 
 .techCardExitPrev {
   animation: techCardExitPrev 420ms ease both;
+}
+
+.tabFadeIn {
+  animation: tabFadeIn 420ms ease-out both;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes techCardFadeIn {
@@ -1127,12 +1175,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tabFadeIn,
   .techCardStatic,
   .techCardEnterNext,
   .techCardExitNext,
   .techCardEnterPrev,
   .techCardExitPrev {
     animation: none;
+  }
+
+  .pointActive {
+    transform: none;
   }
 }
 
@@ -1583,7 +1636,7 @@
   }
 
   .technologyTitleLight {
-    font-weight: 500;
+    font-weight: 400;
   }
 
   /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
@@ -1637,35 +1690,29 @@
     background: #250f7f;
   }
 
-  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
-  .technologyRow,
-  .techBody {
-    margin-top: 27px;
-    gap: 28px;
+  .technologyRow {
+    margin-top: 5px;
+    gap: 19px;
   }
 
-  /* Mapa a sangre: compensa el padding lateral de la fila (24px). */
   .house,
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 48px);
+    width: calc(100% + 32px);
     max-width: none;
     height: auto;
-    margin-left: -24px;
-    margin-right: -24px;
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
-  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
-     58% y centro blanco al 27%. */
-  .pointButton {
-    width: 15px;
-    height: 15px;
+  .ellipse1,
+  .ellipse12,
+  .ellipse13,
+  .ellipse14,
+  .ellipse15 {
     padding: 3.16px;
     background: rgba(37, 15, 127, 0.2);
-    /* El punto se ancla por su esquina, así que al pasar de 28 a 15px su
-       centro se corría 6.5px arriba y a la izquierda. */
-    margin: 6.5px 0 0 6.5px;
   }
 
   .ellipse2 {

@@ -6,7 +6,7 @@
 .hero {
   width: 100%;
   background: var(--sise-white);
-  --hero-group-width: 1187px;
+  --hero-group-width: 1180px;
   --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
@@ -22,17 +22,16 @@
 
 .heroImage {
   object-fit: cover;
+  z-index: 0;
 }
 
 .heroGradient {
+  display: block;
   position: absolute;
-  bottom: -156px;
-  left: 154px;
-  width: 800px;
-  height: 1108px;
-  transform: rotate(-90deg);
-  background-image: linear-gradient(180deg, #250f7f 0%, rgba(37, 15, 127, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  inset: 0;
+  background: linear-gradient(90deg, #250f7f 0%, rgba(37, 15, 127, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .heroKicker {
@@ -41,6 +40,7 @@
   left: var(--hero-content-left);
   width: 352px;
   height: 63px;
+  z-index: 2;
 }
 
 .heroTitle {
@@ -50,9 +50,10 @@
   width: 668px;
   height: 102px;
   margin: 0;
-  line-height: 52px;
+  line-height: 51.62px;
   color: #ffffff;
   font-size: 64px;
+  z-index: 2;
 }
 
 .heroTitleLight {
@@ -61,6 +62,22 @@
 
 .heroTitleStrong {
   font-weight: 700;
+}
+
+.heroCategory {
+  position: absolute;
+  top: 571px;
+  left: var(--hero-content-left);
+  width: 456px;
+  height: 37px;
+  margin: 0;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 30.4px;
+  text-transform: uppercase;
+  z-index: 2;
 }
 
 .heroBottom {
@@ -263,22 +280,29 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  /* Mismo aire arriba y abajo que /hogar: sin el padding inferior el mapa
-     quedaba pegado a la sección siguiente. */
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 45.6px;
+  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
+  --tech-tabs-width: 944px;
+  --tech-tab-font-size: 20px;
+  --tech-group-width: 1255px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: 0px;
+  --tech-house-max-width: 735px;
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1284px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
 .technologyTitle {
   margin: 0 auto;
-  width: 944px;
-  height: 91px;
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
   text-align: center;
-  line-height: 45.6px;
+  line-height: var(--tech-title-line-height);
   color: #000000;
-  font-size: 48px;
+  font-size: var(--tech-title-font-size);
 }
 
 .technologyTitleStrong {
@@ -286,14 +310,19 @@
 }
 
 .technologyTitleLight {
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.technologyTitleDesktopPeriod {
+  display: inline;
 }
 
 .tabs {
-  margin-top: 58px;
-  width: min(944px, 100%);
+  margin-top: var(--tech-title-tabs-gap);
+  width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -308,7 +337,7 @@
   line-height: 19px;
   letter-spacing: 1px;
   color: #250f7f;
-  font-size: 20px;
+  font-size: var(--tech-tab-font-size);
   font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
@@ -355,11 +384,11 @@
 }
 
 .technologyRow {
+  margin-top: 30px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(24px, 1.6vw, 29px);
-  margin-top: 31px;
+  gap: var(--tech-row-gap);
   padding-top: 0;
   padding-bottom: 0;
   padding-left: var(--tech-pad-x);
@@ -367,7 +396,7 @@
 }
 
 .house {
-  width: min(735px, 55vw);
+  width: min(var(--tech-house-max-width), 55vw);
   max-width: 100%;
   height: auto;
   aspect-ratio: 735 / 511;
@@ -375,18 +404,22 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;
+  flex: 0 0 auto;
 }
 
 .housePerimetral {
   background-image: url('/image/mq09axjo-pjgmncl.webp');
+  background-position: 0 0;
 }
 
 .houseInterior {
   background-image: url('/image/mq09axjo-pjgmncl.webp');
+  background-position: 0 0;
 }
 
 .houseConectividad {
   background-image: url('/image/mq09bjsw-f5gj1i8.webp');
+  background-position: 0 0;
 }
 
 .houseEdit {
@@ -394,22 +427,43 @@
 }
 
 .pointButton {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #250f7f80;
-  display: inline-flex;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border: 0;
-  padding: 6.51px;
-  cursor: pointer;
   transform-origin: center;
   transition:
     transform 0.2s ease,
     background-color 0.2s ease,
     filter 0.2s ease;
+}
+
+.pointEdit {
+  position: absolute;
+  margin: 0 !important;
+  touch-action: none;
+  cursor: grab;
+}
+
+.pointEdit:active {
+  cursor: grabbing;
+}
+
+.pointAbsolute {
+  position: absolute;
+  margin: 0 !important;
+}
+
+.pointButton.pointActive {
+  background: rgba(37, 15, 127, 0.8);
+  filter:
+    drop-shadow(0 0 20px rgba(37, 15, 127, 0.4))
+    drop-shadow(0 0 41.4px rgba(37, 15, 127, 0.75));
+  transform: scale(1.4);
+  z-index: 2;
 }
 
 .ellipse2 {
@@ -418,7 +472,7 @@
   align-items: center;
   border-radius: 50%;
   background: #250f7f;
-  padding: 4.34px;
+  padding: 4.595px;
 }
 
 .ellipse3 {
@@ -428,34 +482,29 @@
   height: 8.18px;
 }
 
-.pointActive {
-  background: rgba(37, 15, 127, 0.8);
-  filter: drop-shadow(0 0 4px rgba(37, 15, 127, 0.5));
-  transform: scale(1.4);
-  z-index: 2;
-}
-
-.pointEdit {
-  cursor: grab;
-}
-
-.pointEdit:active {
-  cursor: grabbing;
+.ellipse1,
+.ellipse12,
+.ellipse13,
+.ellipse14,
+.ellipse15 {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(37, 15, 127, 0.2);
+  padding: 6.315px;
 }
 
 .techCardGroup {
-  /* El alto lo define la card (aspect-ratio 442/357). */
-  height: auto;
-  margin-top: 54px;
-  width: min(520px, 100%);
+  margin-top: 57px;
+  width: min(var(--tech-card-group-width), 100%);
   min-width: 0;
-
   display: grid;
   align-items: center;
   justify-content: center;
   flex: 0 1 520px;
   grid-template-columns: 30px minmax(0, 442px) 30px;
   column-gap: 9px;
+  height: 357px;
 }
 
 .techArrow {
@@ -476,6 +525,12 @@
 
 .techArrow:last-child img {
   transform: rotate(-90deg);
+}
+
+.techArrowSpacer {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
 }
 
 .techCardViewport {
@@ -511,7 +566,7 @@
   min-height: var(--tech-card-title-min-height, 0px);
   text-align: var(--tech-card-title-align, center);
   line-height: 32px;
-  color: #00408c;
+  color: #000000;
   font-size: 32px;
   font-weight: 600;
   text-wrap: balance;
@@ -524,8 +579,8 @@
   height: auto;
   min-height: var(--tech-card-text-min-height, 0px);
   text-align: var(--tech-card-text-align, center);
-  line-height: 22px;
-  color: #00408c;
+  line-height: 20px;
+  color: #000000;
   font-size: 20px;
   text-wrap: pretty;
 }
@@ -567,6 +622,21 @@
 
 .techCardExitPrev {
   animation: techCardExitPrev 420ms ease both;
+}
+
+.tabFadeIn {
+  animation: tabFadeIn 420ms ease-out both;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes techCardFadeIn {
@@ -780,6 +850,79 @@
   }
 }
 
+@media (max-width: 1280px) and (min-width: 1201px) {
+  .technology {
+    --tech-title-width: 780px;
+    --tech-title-font-size: 36px;
+    --tech-title-line-height: 38px;
+    --tech-title-tabs-gap: 24px;
+    --tech-tabs-width: 780px;
+    --tech-tab-font-size: 16px;
+    --tech-group-width: 1040px;
+    --tech-card-group-width: 460px;
+    --tech-row-gap: 24px;
+    --tech-house-max-width: 560px;
+  }
+
+  .tabs {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 961px) {
+  .technology {
+    --tech-title-width: 720px;
+    --tech-title-font-size: 34px;
+    --tech-title-line-height: 36px;
+    --tech-title-tabs-gap: 22px;
+    --tech-tabs-width: 720px;
+    --tech-tab-font-size: 15px;
+    --tech-group-width: 920px;
+    --tech-card-group-width: 520px;
+    --tech-house-max-width: 620px;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .tabs {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 24px;
+  }
+
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: auto;
+  }
+
+  .tab {
+    border: 1px solid rgba(37, 15, 127, 0.35);
+    border-radius: 999px;
+    padding: 10px 16px;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .tabActive {
+    background: #250f7f;
+    color: #ffffff;
+  }
+
+  .tabActive::after {
+    display: none;
+  }
+
+  .technologyRow {
+    gap: 22px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 @media (max-width: 1200px) {
   .heroBottomInner {
     flex-direction: column;
@@ -904,7 +1047,7 @@
     flex-direction: row;
     justify-content: flex-start;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 18px;
     padding: 0 16px;
     overflow-x: auto;
     scrollbar-width: none;
@@ -1018,22 +1161,32 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 960px) and (min-width: 601px) {
   .technologyTitle {
-    font-size: 32px;
-    line-height: 32px;
+    width: min(720px, calc(100% - 48px));
+    padding: 0;
   }
 
-  .techCardTitle {
-    font-size: 32px;
-    line-height: 32px;
+  .tabs {
+    width: min(720px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+    overflow: visible;
   }
 
-  .techCardText {
-    font-size: 18px;
-    line-height: 22px;
+  .tab {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1078,331 +1231,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tabFadeIn,
+  .techCardEnterNext,
+  .techCardExitNext,
+  .techCardEnterPrev,
+  .techCardExitPrev,
   .heroCardEnterRight,
   .heroCardEnterLeft,
   .heroCardExitLeft,
   .heroCardExitRight {
     animation: none;
   }
-}
 
-
-/* ── Armonización con la referencia de /hogar (posición + tipografía) ────
-   Replica la escalera responsive del hero de hogar: altura del media,
-   anclaje del kicker/título y disposición del bloque inferior con el
-   carrusel. Va al final del archivo para ganar la cascada. */
-.heroMedia {
-  height: 800px;
-}
-
-.heroKicker {
-  top: 360px;
-  left: var(--hero-content-left);
-}
-
-.heroTitle {
-  top: 440px;
-  left: var(--hero-content-left);
-  width: min(700px, calc(100% - (var(--hero-content-left) * 2)));
-  height: auto;
-}
-
-.heroBottomInner {
-  padding: 77px var(--hero-pad-x) 98px;
-}
-
-@media (max-width: 1366px) {
-  .heroMedia {
-    height: 720px;
+  .pointActive {
+    transform: none;
   }
-
-  .heroKicker {
-    top: 312px;
-  }
-
-  .heroTitle {
-    top: 392px;
-    width: min(620px, calc(100% - (var(--hero-content-left) * 2)));
-    font-size: 56px;
-    line-height: 48px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .heroMedia {
-    height: 660px;
-  }
-
-  .heroKicker {
-    top: 286px;
-    width: 316px;
-    height: auto;
-  }
-
-  .heroTitle {
-    top: 356px;
-    width: min(560px, calc(100% - 64px));
-    font-size: 50px;
-    line-height: 44px;
-  }
-
-  .heroBottomInner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-    padding-top: 48px;
-    padding-bottom: 56px;
-    height: auto;
-  }
-}
-
-@media (max-width: 960px) {
-  .heroMedia {
-    height: 640px;
-  }
-
-  .heroKicker {
-    left: 16px;
-    top: 320px;
-    width: min(295px, calc(100% - 32px));
-    height: auto;
-  }
-
-  .heroTitle {
-    left: 16px;
-    top: 386px;
-    width: calc(100% - 32px);
-    font-size: 44px;
-    line-height: 44px;
-  }
-
-  .heroSectionTitle {
-    text-align: center;
-  }
-
-  .heroDivider {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: center;
-  }
-
-  .heroText {
-    align-items: center;
-  }
-
-  .heroLead {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .heroBody {
-    margin-top: 20px;
-    min-height: 0;
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .heroPunch {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .heroCardTitle {
-    font-size: 26px;
-    line-height: 28px;
-  }
-
-  .heroCardText {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .heroBottomInner {
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-    padding: 32px 16px 40px;
-  }
-}
-
-@media (max-width: 600px) {
-  .heroMedia {
-    height: 580px;
-  }
-
-  .heroKicker {
-    top: 280px;
-  }
-
-  .heroTitle {
-    top: 346px;
-    font-size: 36px;
-    line-height: 34px;
-  }
-
-  .heroLead,
-  .heroPunch {
-    font-size: 22px;
-    line-height: 26px;
-  }
-}
-
-@media (max-width: 480px) {
-  .heroMedia {
-    height: 520px;
-  }
-
-  .heroKicker {
-    top: 240px;
-    width: min(253px, calc(100% - 32px));
-  }
-
-  .heroTitle {
-    top: 300px;
-    font-size: 32px;
-    line-height: 30px;
-  }
-
-  .heroBottomInner {
-    padding: 28px 16px 36px;
-  }
-
-  .heroCardTitle {
-    font-size: 24px;
-    line-height: 26px;
-  }
-
-  .heroCardText {
-    font-size: 15px;
-    line-height: 19px;
-  }
-}
-
-/* Ritmo del bloque de texto del hero igual a /hogar (desktop). */
-@media (min-width: 1201px) {
-  .heroLead {
-    margin: 36px 0 0;
-  }
-}
-
-.heroImage {
-  object-position: center;
-}
-
-.heroGradient {
-  inset: 0 auto 0 0;
-  width: 800px;
-  height: 100%;
-  transform: none;
-  background-image: linear-gradient(90deg, #250f7f 0%, rgba(37, 15, 127, 0.5) 49.52%, rgba(255, 255, 255, 0) 100%);
-}
-
-.heroCopy {
-  position: absolute;
-  top: 360px;
-  left: var(--hero-content-left);
-  width: min(668px, calc(100% - (var(--hero-content-left) * 2)));
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.heroKicker {
-  position: relative;
-  top: auto;
-  left: auto;
-  width: min(352px, 100%);
-  height: auto;
-}
-
-.heroTitle {
-  position: relative;
-  top: auto;
-  left: auto;
-  width: 100%;
-  min-height: 102px;
-  margin: 17px 0 0;
-  line-height: 51.62px;
-  font-size: 64px;
-}
-
-.heroTitleLight {
-  display: block;
-}
-
-.heroCategory {
-  position: relative;
-  top: auto;
-  left: auto;
-  width: min(456px, 100%);
-  margin: 29px 0 0;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 30.4px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 1366px) {
-  .heroGradient { width: min(720px, 56%); }
-  .heroCopy { top: 312px; }
-  .heroKicker { width: 320px; }
-  .heroTitle { min-height: 96px; font-size: 56px; line-height: 48px; }
-  .heroCategory { margin-top: 18px; font-size: 28px; line-height: 28px; }
-}
-
-@media (max-width: 1200px) {
-  .heroGradient { width: min(620px, 58%); }
-  .heroCopy { top: 286px; width: min(620px, calc(100% - 64px)); }
-  .heroKicker { width: 316px; }
-  .heroTitle {
-    min-height: 88px;
-    font-size: 50px;
-    line-height: 44px;
-  }
-  .heroCategory {
-    margin-top: 16px;
-    font-size: 28px;
-    line-height: 28px;
-  }
-}
-
-@media (max-width: 960px) {
-  .heroGradient {
-    inset: 0;
-    width: 100%;
-    background-image: linear-gradient(180deg, rgba(37, 15, 127, 0.92) 0%, rgba(37, 15, 127, 0.72) 52%, rgba(37, 15, 127, 0) 100%);
-  }
-  .heroCopy { left: 16px; top: 320px; width: calc(100% - 32px); }
-  .heroKicker { width: min(295px, calc(100% - 32px)); }
-  .heroTitle {
-    min-height: 0;
-    font-size: 44px;
-    line-height: 44px;
-  }
-  .heroCategory { margin-top: 14px; font-size: 24px; line-height: 26px; }
-}
-
-@media (max-width: 600px) {
-  .heroCopy { top: 280px; }
-  .heroKicker { width: min(280px, calc(100% - 32px)); }
-  .heroTitle { font-size: 36px; line-height: 34px; }
-  .heroCategory { font-size: 22px; line-height: 24px; }
-}
-
-@media (max-width: 480px) {
-  .heroCopy { top: 240px; }
-  .heroKicker { width: min(253px, calc(100% - 32px)); }
-  .heroTitle { margin-top: 14px; font-size: 32px; line-height: 30px; }
-  .heroCategory { margin-top: 12px; font-size: 20px; line-height: 22px; }
 }
 
 
@@ -1446,12 +1289,9 @@
    por orden de fuente, le ganarían al bloque mobile. */
 @media (max-width: 600px) {
   /* ── Hero ── */
-  /* Mobile tiene su propia foto vertical. Va como background y el <Image> de
-     desktop se oculta: así el navegador descarga sólo la del breakpoint que
-     aplica, porque no pide los fondos de media queries que no se cumplen. */
   .heroMedia {
     height: 591px;
-    background-image: url('/image/hero-edificios-mobile.webp');
+    background-image: url('/image/EDIFICIOS HERO MOBILE.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1462,37 +1302,38 @@
   }
 
   .heroGradient {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-      90deg,
-      #250f7f 0%,
-      rgba(37, 15, 127, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
-
-  .heroCopy {
-    left: 24px;
-    top: 360px;
-    bottom: auto;
-    width: min(354px, calc(100% - 48px));
+    display: block;
+    position: absolute;
+    inset: auto;
+    left: 0;
+    top: 928.32px;
+    width: 928.32px;
+    height: 402px;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    background: linear-gradient(180deg, #250f7f 0%, rgba(37, 15, 127, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
   }
 
   .heroKicker {
-    width: 191px;
-    height: auto;
+    position: absolute;
+    left: 26px;
+    top: 362px;
+    width: 202px;
+    height: 37px;
+    z-index: 2;
   }
 
   .heroTitle {
-    /* El logo termina en y=395 y el título arranca en y=403. */
-    margin: 8px 0 0 2px;
-    width: min(343px, 100%);
-    min-height: 0;
-    height: auto;
+    position: absolute;
+    left: 26px;
+    top: 403px;
+    width: 352px;
+    height: 51px;
+    margin: 0;
     font-size: 32px;
-    line-height: 32px;
+    line-height: 25.6px;
+    z-index: 2;
   }
 
   .heroTitleLight {
@@ -1500,16 +1341,21 @@
   }
 
   .heroTitleStrong {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .heroCategory {
-    margin: 12px 0 0;
-    font-size: 18px;
-    line-height: 20px;
+    position: absolute;
+    left: 26px;
+    top: 476px;
+    width: 414px;
+    height: 23px;
+    margin: 0;
+    font-size: 20px;
+    line-height: 19px;
+    z-index: 2;
   }
 
-  /* ── Módulo de tecnología ── */
   .technology {
     padding-top: 48px;
     padding-bottom: 48px;
@@ -1518,6 +1364,10 @@
   .technologyTitle {
     font-size: 24px;
     line-height: 26.4px;
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
   }
 
   .technologyTitleStrong {
@@ -1528,9 +1378,12 @@
     font-weight: 500;
   }
 
-  /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
-     habían convertido en pastillas con scroll horizontal. */
+  .technologyTitleDesktopPeriod {
+    display: none;
+  }
+
   .tabs {
+    margin-top: 36px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1545,8 +1398,6 @@
 
   .tab,
   .tabActive {
-    /* 107px es la medida del diseño, pero tres tabs suman 321 y desbordarían
-       por debajo de ~370px de ancho; así pueden encogerse. */
     flex: 0 1 107px;
     min-width: 0;
     border: 0;
@@ -1573,41 +1424,35 @@
     display: block;
     top: 29px;
     left: 0;
-    /* Acompaña al tab si se encoge. */
     width: 100%;
     height: 2px;
     background: #250f7f;
   }
 
-  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
-  .technologyRow,
-  .techBody {
-    margin-top: 27px;
-    gap: 28px;
+  .technologyRow {
+    margin-top: 5px;
+    gap: 19px;
   }
 
-  /* Mapa a sangre: compensa el padding lateral de la fila (24px). */
   .house,
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: calc(100% + 48px);
+    width: calc(100% + 32px);
     max-width: none;
     height: auto;
-    margin-left: -24px;
-    margin-right: -24px;
+    aspect-ratio: 735 / 511;
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
-  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
-     58% y centro blanco al 27%. */
-  .pointButton {
-    width: 15px;
-    height: 15px;
+  .ellipse1,
+  .ellipse12,
+  .ellipse13,
+  .ellipse14,
+  .ellipse15 {
     padding: 3.16px;
     background: rgba(37, 15, 127, 0.2);
-    /* El punto se ancla por su esquina, así que al pasar de 28 a 15px su
-       centro se corría 6.5px arriba y a la izquierda. */
-    margin: 6.5px 0 0 6.5px;
   }
 
   .ellipse2 {
@@ -1620,7 +1465,6 @@
   }
 
   .pointButton.pointActive {
-    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
     transform: scale(1.533);
     background: rgba(37, 15, 127, 0.8);
   }

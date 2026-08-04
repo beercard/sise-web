@@ -269,41 +269,49 @@
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  /* Mismo aire arriba y abajo que /hogar: sin el padding inferior el mapa
-     quedaba pegado a la sección siguiente. */
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 45.6px;
+  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
+  --tech-tabs-width: 944px;
+  --tech-tab-font-size: 20px;
+  --tech-group-width: 1255px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: 0px;
+  --tech-house-max-width: 735px;
   padding-top: 86px;
   padding-bottom: 86px;
-  --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
-}
-
-.technologyInner {
-  width: 100%;
 }
 
 .technologyTitle {
   margin: 0 auto;
-  width: 944px;
-  height: 91px;
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
   text-align: center;
-  line-height: 46px;
+  line-height: var(--tech-title-line-height);
   color: #000000;
-  font-size: 48px;
+  font-size: var(--tech-title-font-size);
 }
 
 .technologyTitleStrong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .technologyTitleLight {
-  font-weight: 500;
+  font-weight: 400;
+}
+
+.technologyTitleDesktopPeriod {
+  display: inline;
 }
 
 .tabs {
-  margin-top: 45px;
-  width: min(944px, 100%);
+  margin-top: var(--tech-title-tabs-gap);
+  width: min(var(--tech-tabs-width), calc(100% - 48px));
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -318,7 +326,7 @@
   line-height: 19px;
   letter-spacing: 1px;
   color: #065558;
-  font-size: 20px;
+  font-size: var(--tech-tab-font-size);
   font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
@@ -339,7 +347,8 @@
   width: 153px;
 }
 
-.tabUnderline {
+.tabActive::after {
+  content: '';
   position: absolute;
   top: 20px;
   left: var(--tab-underline-left, 0px);
@@ -363,48 +372,52 @@
   --tab-underline-width: 147px;
 }
 
-.techBody {
+.technologyRow {
+  margin-top: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--tech-pad-x);
+  padding-right: var(--tech-pad-x);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(24px, 3vw, 64px);
-  margin-top: 31px;
-  padding-left: var(--tech-pad-x);
-  padding-right: var(--tech-pad-x);
-}
-
-.techHouseColumn {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.houseViewport {
-  width: min(735px, 55vw);
-  max-width: 100%;
+  gap: var(--tech-row-gap);
 }
 
 .house {
-  width: 100%;
+  width: min(var(--tech-house-max-width), 55vw);
+  max-width: 100%;
   height: auto;
   aspect-ratio: 2486 / 1728;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   position: relative;
+  flex: 0 0 auto;
 }
 
-.houseImage {
-  object-fit: contain;
+.housePerimetral {
+  background-image: url('/image/mq1fh69q-v0j7c7r.webp');
+}
+
+.houseInterior {
+  background-image: url('/image/mq1fh69q-v0j7c7r.webp');
+}
+
+.houseConectividad {
+  background-image: url('/image/mq1fh69q-v0j7c7r.webp');
+}
+
+.houseEdit {
+  touch-action: none;
 }
 
 .pointButton {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(6, 85, 88, 0.5);
   border: 0;
-  padding: 6px;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  transform: translate(-50%, -50%);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   transform-origin: center;
@@ -420,39 +433,57 @@
   align-items: center;
   border-radius: 50%;
   background: #065558;
-  padding: 4px;
+  padding: 4.595px;
 }
 
 .ellipse3 {
   border-radius: 50%;
   background: #ffffff;
-  width: 8px;
-  height: 8px;
-}
-
-.pointActive {
-  background: rgba(6, 85, 88, 0.75);
-  filter:
-    drop-shadow(0 0 20px rgba(6, 85, 88, 0.4))
-    drop-shadow(0 0 41.4px rgba(6, 85, 88, 0.75));
-  transform: translate(-50%, -50%) scale(1.36);
-  z-index: 2;
+  width: 8.18px;
+  height: 8.18px;
 }
 
 .pointEdit {
-  cursor: grab;
+  position: absolute;
+  margin: 0 !important;
   touch-action: none;
+  cursor: grab;
 }
 
 .pointEdit:active {
   cursor: grabbing;
 }
 
+.pointAbsolute {
+  position: absolute;
+  margin: 0 !important;
+  transform: translate(-50%, -50%);
+}
+
+.pointButton.pointActive {
+  background: rgba(6, 85, 88, 0.75);
+  filter:
+    drop-shadow(0 0 20px rgba(6, 85, 88, 0.4))
+    drop-shadow(0 0 41.4px rgba(6, 85, 88, 0.75));
+  transform: translate(-50%, -50%) scale(1.4);
+  z-index: 2;
+}
+
+.ellipse1,
+.ellipse12,
+.ellipse13,
+.ellipse14,
+.ellipse15 {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(6, 85, 88, 0.2);
+  padding: 6.315px;
+}
+
 .techCardGroup {
-  /* El alto lo define la card (aspect-ratio 442/357). */
-  height: auto;
-  margin-top: 54px;
-  width: min(520px, 100%);
+  margin-top: 57px;
+  width: min(var(--tech-card-group-width), 100%);
   min-width: 0;
   display: grid;
   align-items: center;
@@ -460,9 +491,10 @@
   flex: 0 1 520px;
   grid-template-columns: 30px minmax(0, 442px) 30px;
   column-gap: 9px;
+  height: 357px;
 }
 
-.techCardArrow {
+.techArrow {
   border: 0;
   padding: 0;
   background: transparent;
@@ -471,23 +503,22 @@
   justify-content: center;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
-.techCardArrow span {
+.techArrow img {
   display: block;
-  width: 30px;
-  height: 18px;
-  background: #065558;
-  clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 30%, 50% 90%, 0 30%);
-  opacity: 0.9;
-}
-
-.techCardArrowLeft span {
   transform: rotate(90deg);
 }
 
-.techCardArrowRight span {
+.techArrow:last-child img {
   transform: rotate(-90deg);
+}
+
+.techArrowSpacer {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
 }
 
 .techCardViewport {
@@ -496,8 +527,8 @@
   aspect-ratio: 442 / 357;
   position: relative;
   flex: 0 0 auto;
-  overflow: hidden;
   justify-self: center;
+  overflow: hidden;
 }
 
 .techCard {
@@ -794,27 +825,6 @@
   }
 }
 
-@media (max-width: 1200px) {
-  .techBody {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .techCardGroup {
-    margin-top: 0;
-    flex: 0 0 auto;
-  }
-
-  /* La fila pasa a columna acá, así que el `flex: 0 1 520px` de la regla base
-     deja de ser ancho y se aplica como alto, dejando ~163px de aire muerto
-     debajo de la card. */
-  .techCardGroup {
-    flex: 0 0 auto;
-    height: auto;
-  }
-}
-
 @media (max-width: 960px) {
   .heroMedia {
     height: 640px;
@@ -911,168 +921,6 @@
     font-size: 15px;
     line-height: 18px;
   }
-
-  .technology {
-    padding-top: 56px;
-  }
-
-  .technologyTitle {
-    width: 100%;
-    height: auto;
-    padding: 0 16px;
-    line-height: 36px;
-    font-size: 34px;
-  }
-
-  .tabs {
-    margin-top: 24px;
-    width: 100%;
-    padding: 0 16px;
-    gap: 10px;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tab {
-    border: 1px solid rgba(6, 85, 88, 0.35);
-    border-radius: 999px;
-    padding: 10px 14px;
-    height: auto;
-    line-height: 18px;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .tabUnderline {
-    display: none;
-  }
-
-  .tabActive {
-    background: #065558;
-    color: #ffffff;
-  }
-
-  .techBody {
-    margin-top: 22px;
-    padding: 0 16px;
-    flex-direction: column;
-  }
-
-  /* `.techBody` pasa a columna pero conserva `align-items: flex-start`, así que
-     esta columna se dimensiona por su contenido — y su contenido pide el 100%
-     de ella. Esa dependencia circular dejaba el mapa en 0x0 entre 601 y 960px.
-     Con el ancho explícito se corta. */
-  .techHouseColumn {
-    width: 100%;
-  }
-
-  .houseViewport {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .house {
-    width: min(735px, 100%);
-  }
-
-  .techCardGroup {
-    margin-top: 18px;
-    width: 100%;
-    height: auto;
-  }
-
-  .techCardGroup {
-    width: 100%;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: 24px minmax(0, 1fr) 24px;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    /* .technologyRow pasa a columna acá, así que el `flex: 0 1 520px` de la
-       regla base dejaba de ser ancho y se aplicaba como alto, dejando aire
-       muerto debajo de la card. */
-    flex: 0 0 auto;
-    height: auto;
-  }
-
-  .techCardViewport {
-    width: 100%;
-    max-width: 460px;
-    height: 396px;
-    justify-self: center;
-  }
-
-  .techCard {
-    width: 100%;
-    height: 396px;
-    padding: 28px 24px;
-  }
-
-  .techCardTitle,
-  .techCardText {
-    width: 100%;
-    height: auto;
-  }
-
-  .techCardTitle {
-    min-height: 0;
-    font-size: 32px;
-    line-height: 32px;
-  }
-
-  .techCardText {
-    margin-top: 12px;
-    font-size: 18px;
-    line-height: 22px;
-  }
-
-  .techCardImageWrap {
-    width: min(var(--tech-card-image-width, 220px), 70vw);
-    height: var(--tech-card-image-height, auto);
-    margin-top: var(--tech-card-image-margin-top, 14px);
-    margin-left: var(--tech-card-image-margin-left, 0px);
-    margin-right: var(--tech-card-image-margin-right, 0px);
-    transform: scale(var(--tech-card-image-scale, 1));
-    transform-origin: top center;
-  }
-
-  .techCardImage {
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 600px) {
-  .technologyTitle {
-    font-size: 32px;
-    line-height: 32px;
-  }
-
-  .techCardTitle {
-    font-size: 32px;
-    line-height: 32px;
-  }
-
-  .techCardText {
-    font-size: 18px;
-    line-height: 22px;
-  }
-
 }
 
 @media (max-width: 480px) {
@@ -1089,12 +937,6 @@
   .heroCardBox {
     padding: 24px 18px;
   }
-
-  .technologyTitle {
-    font-size: 28px;
-    line-height: 30px;
-  }
-
 }
 
 @media (max-width: 360px) {
@@ -1107,27 +949,6 @@
     font-size: 14px;
     line-height: 17px;
   }
-
-  .techCardTitle {
-    font-size: 28px;
-    line-height: 28px;
-  }
-
-  .techCardText {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .techCardOverlayText,
-  .techCardConnectivityText {
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  .techCardImage {
-    max-height: 130px;
-  }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1562,133 +1383,197 @@
   }
 }
 
-
-/* ── Card mobile (diseño de Figma) ───────────────────────────────────────
-   Va al final del archivo a propósito: más arriba hay reglas de
-   `.techCardGroup` sin media query que, por orden de fuente, le ganaban al
-   bloque mobile y devolvían el grupo a su ancho de desktop. */
-@media (max-width: 600px) {
-  /* Card mobile del diseño de Figma: grupo de 265×256, card de 201×256 y
-     flechas de 15×23. Es el mismo encuadre en todas las verticales y todos
-     los tabs; lo único que cambia por página es el mapa. Las medidas internas
-     (título, texto, ilustración) viven en TechCard.module.scss. */
-  .techCardGroup {
-    width: min(265px, calc(100% - 24px));
-    max-width: none;
-    grid-template-columns: 15px minmax(0, 1fr) 15px;
-    gap: 17px;
+@media (max-width: 1280px) and (min-width: 1201px) {
+  .technology {
+    --tech-title-width: 780px;
+    --tech-title-font-size: 36px;
+    --tech-title-line-height: 38px;
+    --tech-title-tabs-gap: 24px;
+    --tech-tabs-width: 780px;
+    --tech-tab-font-size: 16px;
+    --tech-group-width: 1040px;
+    --tech-card-group-width: 460px;
+    --tech-row-gap: 24px;
+    --tech-house-max-width: 560px;
   }
 
-  .techCardArrow,
-  .techCardArrowLeft,
-  .techCardArrowRight {
-    width: 15px;
-    height: 23px;
-  }
-
-  .techCardViewport {
-    width: 100%;
-    max-width: none;
-    height: auto;
-    aspect-ratio: 201 / 256;
+  .tabs {
+    padding: 0 8px;
   }
 }
 
-/* ── Hero y módulo de mapa en mobile ─────────────────────────────────────
-   Misma geometría que el diseño mobile de /hogar —hero de 591 con el degradé
-   cubriéndolo entero, logo de 191 en y=360 y título de 32/32 en y=403; tabs de
-   107 en la columna de 354 con subrayado, mapa a sangre y puntos de 15— con el
-   color, las fotos y los textos propios de esta página.
-
-   Va al final del archivo porque más arriba hay reglas sin media query que,
-   por orden de fuente, le ganarían al bloque mobile. */
-@media (max-width: 600px) {
-  /* ── Hero ── */
-  /* Mobile tiene su propia foto vertical. Va como background y el <Image> de
-     desktop se oculta: así el navegador descarga sólo la del breakpoint que
-     aplica, porque no pide los fondos de media queries que no se cumplen. */
-  .heroMedia {
-    height: 591px;
-    background-image: url('/image/hero-agro-mobile.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+@media (max-width: 1100px) and (min-width: 961px) {
+  .technology {
+    --tech-title-width: 720px;
+    --tech-title-font-size: 34px;
+    --tech-title-line-height: 36px;
+    --tech-title-tabs-gap: 22px;
+    --tech-tabs-width: 720px;
+    --tech-tab-font-size: 15px;
+    --tech-group-width: 920px;
+    --tech-card-group-width: 520px;
+    --tech-house-max-width: 620px;
+    padding-top: 72px;
+    padding-bottom: 72px;
   }
 
-  .heroImage {
+  .tabs {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 24px;
+  }
+
+  .tabs > :nth-child(1),
+  .tabs > :nth-child(2),
+  .tabs > :nth-child(3) {
+    width: auto;
+  }
+
+  .tab {
+    border: 1px solid rgba(6, 85, 88, 0.35);
+    border-radius: 999px;
+    padding: 10px 16px;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .tabActive {
+    background: #065558;
+    color: #ffffff;
+  }
+
+  .tabActive::after {
     display: none;
   }
 
-  .heroGradient {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-      90deg,
-      #065558 0%,
-      rgba(6, 85, 88, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
+  .technologyRow {
+    gap: 22px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .technologyRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
   }
 
-  .heroCopy {
-    left: 24px;
-    top: 360px;
-    bottom: auto;
-    width: min(354px, calc(100% - 48px));
+  .techCardGroup {
+    margin-top: 0;
+    width: min(var(--tech-card-group-width), 100%);
   }
 
-  .heroKicker {
-    width: 191px;
+  .techCardGroup {
+    flex: 0 0 auto;
     height: auto;
   }
+}
 
-  .heroTitle {
-    /* El logo termina en y=395 y el título arranca en y=403. */
-    margin: 8px 0 0 2px;
-    width: min(343px, 100%);
-    min-height: 0;
-    height: auto;
-    font-size: 32px;
-    line-height: 32px;
-  }
-
-  .heroTitleLight {
-    font-weight: 400;
-  }
-
-  .heroTitleStrong {
-    font-weight: 600;
-  }
-
-  .heroCategory {
-    margin: 12px 0 0;
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  /* ── Módulo de tecnología ── */
+@media (max-width: 960px) {
   .technology {
     padding-top: 48px;
     padding-bottom: 48px;
   }
 
   .technologyTitle {
+    width: calc(100% - 32px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    font-size: 34px;
+    line-height: 36px;
+  }
+
+  .tabs {
+    width: 100%;
+    padding: 0 16px;
+    gap: 10px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    border: 1px solid rgba(6, 85, 88, 0.35);
+    border-radius: 999px;
+    padding: 10px 14px;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .tabActive {
+    background: #065558;
+    color: #ffffff;
+  }
+
+  .tabActive::after {
+    display: none;
+  }
+
+  .technologyRow {
+    margin-top: 22px;
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 24px;
+  }
+
+  .house {
+    width: min(735px, 100%);
+  }
+
+  .techCardGroup {
+    margin-top: 18px;
+    width: 100%;
+    height: auto;
+    grid-template-columns: 24px minmax(0, 1fr) 24px;
+    column-gap: 12px;
+  }
+
+  .techArrow,
+  .techArrowSpacer {
+    width: 24px;
+    height: 24px;
+  }
+
+  .techCardViewport {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .technology {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .technologyTitle {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
     font-size: 24px;
     line-height: 26.4px;
   }
 
-  .technologyTitleStrong {
-    font-weight: 700;
+  .technologyTitleDesktopPeriod {
+    display: none;
   }
 
-  .technologyTitleLight {
-    font-weight: 500;
-  }
-
-  /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
-     habían convertido en pastillas con scroll horizontal. */
   .tabs {
+    margin-top: 36px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -1703,8 +1588,6 @@
 
   .tab,
   .tabActive {
-    /* 107px es la medida del diseño, pero tres tabs suman 321 y desbordarían
-       por debajo de ~370px de ancho; así pueden encogerse. */
     flex: 0 1 107px;
     min-width: 0;
     border: 0;
@@ -1727,14 +1610,8 @@
     width: 107px;
   }
 
-  /* Estas páginas pintan el subrayado con un <span>, no con ::after, y el
-     bloque de tablet lo escondía para las pastillas: hay que reponerlo. */
-  .tabUnderline,
-  .tabUnderlinePerimetral,
-  .tabUnderlineInterior,
-  .tabUnderlineConectividad {
+  .tabActive::after {
     display: block;
-    position: absolute;
     top: 29px;
     left: 0;
     width: 100%;
@@ -1742,26 +1619,27 @@
     background: #065558;
   }
 
-  /* En el diseño los tabs terminan en y=31 y el mapa arranca en y=58. */
-  .technologyRow,
-  .techBody {
-    margin-top: 27px;
-    gap: 28px;
+  .technologyRow {
+    margin-top: 5px;
+    gap: 19px;
   }
 
-  /* Mapa a sangre: compensa el padding lateral del contenedor (16px). */
-  .houseViewport {
+  .house,
+  .housePerimetral,
+  .houseInterior,
+  .houseConectividad {
     width: calc(100% + 32px);
     max-width: none;
+    height: auto;
     margin-left: -16px;
     margin-right: -16px;
   }
 
-  /* Puntos de 15px con el escalonado del diseño: aro al 20%, punto sólido al
-     58% y centro blanco al 27%. */
-  .pointButton {
-    width: 15px;
-    height: 15px;
+  .ellipse1,
+  .ellipse12,
+  .ellipse13,
+  .ellipse14,
+  .ellipse15 {
     padding: 3.16px;
     background: rgba(6, 85, 88, 0.2);
   }
@@ -1776,8 +1654,27 @@
   }
 
   .pointButton.pointActive {
-    /* 23 / 15 = 1.533, el tamaño del punto activo en el diseño. */
     transform: translate(-50%, -50%) scale(1.533);
     background: rgba(6, 85, 88, 0.8);
+  }
+
+  .techCardGroup {
+    width: min(265px, calc(100% - 24px));
+    max-width: none;
+    grid-template-columns: 15px minmax(0, 1fr) 15px;
+    gap: 17px;
+  }
+
+  .techArrow,
+  .techArrowSpacer {
+    width: 15px;
+    height: 23px;
+  }
+
+  .techCardViewport {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 201 / 256;
   }
 }

@@ -434,17 +434,12 @@
 }
 
 .pointButton {
-  position: absolute;
   border: 0;
-  margin: 0;
-  cursor: pointer;
-  background: rgba(6, 35, 76, 0.5);
+  background: transparent;
   padding: 0;
-  width: 30px;
-  height: 30px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 50%;
   justify-content: center;
   transform-origin: center;
   transition:
@@ -455,13 +450,11 @@
 
 .ellipse2 {
   display: flex;
+  flex-grow: 1;
   align-items: center;
-  justify-content: center;
   border-radius: 50%;
   background: #06234c;
-  width: 17.37px;
-  height: 17.37px;
-  flex: 0 0 auto;
+  padding: 4.595px;
 }
 
 .ellipse3 {
@@ -472,6 +465,7 @@
 }
 
 .pointEdit {
+  position: absolute;
   margin: 0 !important;
   touch-action: none;
   cursor: grab;
@@ -482,26 +476,29 @@
 }
 
 .pointAbsolute {
+  position: absolute;
   margin: 0 !important;
 }
 
-.pointActive {
-  width: 42px;
-  height: 42px;
+.pointButton.pointActive {
   background: rgba(6, 35, 76, 0.8);
-  filter: drop-shadow(0 0 41.4px rgba(6, 35, 76, 0.8));
-  transform: none;
+  filter:
+    drop-shadow(0 0 20px rgba(6, 35, 76, 0.4))
+    drop-shadow(0 0 41.4px rgba(6, 35, 76, 0.75));
+  transform: scale(1.4);
   z-index: 2;
 }
 
-.pointActive .ellipse2 {
-  width: 24.31px;
-  height: 24.31px;
-}
-
-.pointActive .ellipse3 {
-  width: 11.45px;
-  height: 11.45px;
+.ellipse1,
+.ellipse12,
+.ellipse13,
+.ellipse14,
+.ellipse15 {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(6, 35, 76, 0.2);
+  padding: 6.315px;
 }
 
 .techCardGroup {
@@ -791,7 +788,7 @@
     animation: none;
   }
 
-  .pointActive {
+  .pointButton.pointActive {
     transform: none;
   }
 }
@@ -1601,12 +1598,12 @@
   --tech-title-width: 944px;
   --tech-title-font-size: 48px;
   --tech-title-line-height: 45.6px;
-  --tech-title-tabs-gap: 53px;
+  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
   --tech-tabs-width: 944px;
   --tech-tab-font-size: 20px;
-  --tech-group-width: 1320px;
+  --tech-group-width: 1255px;
   --tech-card-group-width: 520px;
-  --tech-row-gap: 65px;
+  --tech-row-gap: 0px;
   --tech-house-max-width: 735px;
   /* Mismo aire que el resto de las verticales. */
   padding-top: 86px;
@@ -2032,6 +2029,9 @@
      Sin el padding lateral: dejaba el contenido en 322px y "Seguridad total
      para tu negocio," mide 341.8, así que se partía en un tercer renglón. */
   .technologyTitle {
+    width: min(354px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
     font-size: 24px;
     line-height: 26.4px;
@@ -2049,7 +2049,7 @@
      habían convertido en pastillas con scroll horizontal. */
   /* El título cierra en y=51 y los tabs abren en y=84. */
   .tabs {
-    margin-top: 31px;
+    margin-top: 36px;
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
     margin-right: auto;
@@ -2071,7 +2071,7 @@
     border: 0;
     border-radius: 0;
     padding: 0;
-    height: 30px;
+    height: 31px;
     background: transparent;
     color: #06234c;
     font-size: 14px;
@@ -2091,7 +2091,7 @@
   /* El subrayado va en y=112, o sea 28px por debajo del tope de los tabs. */
   .tabActive::after {
     display: block;
-    top: 28px;
+    top: 29px;
     left: 0;
     /* Acompaña al tab si se encoge. */
     width: 100%;
@@ -2101,10 +2101,9 @@
 
   /* Los tabs cierran en y=114 y el mapa arranca en y=149; el mapa termina en
      y=393 y el grupo de la card empieza en y=408. */
-  .technologyRow,
-  .techBody {
-    margin-top: 35px;
-    gap: 15px;
+  .technologyRow {
+    margin-top: 5px;
+    gap: 19px;
   }
 
   /* A diferencia de hogar, acá el mapa no va a sangre: el diseño lo deja
@@ -2114,40 +2113,34 @@
   .housePerimetral,
   .houseInterior,
   .houseConectividad {
-    width: 100%;
+    width: calc(100% + 32px);
     max-width: none;
     height: auto;
     aspect-ratio: 735 / 511;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
-  /* Puntos de 12px, que es la medida del diseño de comercio (hogar los usa de
-     15). Se mantiene el escalonado en proporción: aro al 21%, punto sólido y
-     centro blanco al 27% del total.
-     Sin corrección de margen: el punto ya se achica en la misma proporción que
-     el mapa, así que su centro cae solo donde corresponde. El margen de 6.5px
-     que había antes lo corría hacia abajo y a la derecha. */
-  .pointButton {
-    width: 12px;
-    height: 12px;
-    padding: 2.53px;
+  .ellipse1,
+  .ellipse12,
+  .ellipse13,
+  .ellipse14,
+  .ellipse15 {
+    padding: 3.16px;
     background: rgba(6, 35, 76, 0.2);
-    margin: 0;
   }
 
   .ellipse2 {
-    padding: 1.84px;
+    padding: 2.3px;
   }
 
   .ellipse3 {
-    width: 3.27px;
-    height: 3.27px;
+    width: 4.09px;
+    height: 4.09px;
   }
 
   .pointButton.pointActive {
-    /* 20 / 12 = 1.667, el tamaño del punto activo en el diseño. */
-    transform: scale(1.667);
+    transform: scale(1.533);
     background: rgba(6, 35, 76, 0.8);
   }
 }

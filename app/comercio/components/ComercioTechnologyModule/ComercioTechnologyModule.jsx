@@ -58,10 +58,10 @@ export default function ComercioTechnologyModule() {
         label: 'PROTECCIÓN PERIMETRAL',
         houseClassName: styles.housePerimetral,
         points: [
-          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0 },
-          { id: 'magneticos', label: 'Magnéticos', slideIndex: 1 },
-          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 2 },
-          { id: 'sirena', label: 'Sirena exterior', slideIndex: 3 }
+          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0, pointClassName: styles.ellipse1 },
+          { id: 'magneticos', label: 'Magnéticos', slideIndex: 1, pointClassName: styles.ellipse12 },
+          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 2, pointClassName: styles.ellipse13 },
+          { id: 'sirena', label: 'Sirena exterior', slideIndex: 3, pointClassName: styles.ellipse14 }
         ],
         slides: [
           {
@@ -128,13 +128,13 @@ export default function ComercioTechnologyModule() {
         label: 'PROTECCIÓN INTERIOR',
         houseClassName: styles.houseInterior,
         points: [
-          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 0 },
-          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 1 },
-          { id: 'mando', label: 'Mando a distancia', slideIndex: 2 },
-          { id: 'central', label: 'Central con comunicador', slideIndex: 3 },
-          { id: 'camara', label: 'Cámara inteligente interior', slideIndex: 4 },
-          { id: 'humo', label: 'Cortina de humo', slideIndex: 5 },
-          { id: 'acceso', label: 'Control de acceso', slideIndex: 6 }
+          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 0, pointClassName: styles.ellipse1 },
+          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 1, pointClassName: styles.ellipse12 },
+          { id: 'mando', label: 'Mando a distancia', slideIndex: 2, pointClassName: styles.ellipse13 },
+          { id: 'central', label: 'Central con comunicador', slideIndex: 3, pointClassName: styles.ellipse14 },
+          { id: 'camara', label: 'Cámara inteligente interior', slideIndex: 4, pointClassName: styles.ellipse15 },
+          { id: 'humo', label: 'Cortina de humo', slideIndex: 5, pointClassName: styles.ellipse12 },
+          { id: 'acceso', label: 'Control de acceso', slideIndex: 6, pointClassName: styles.ellipse13 }
         ],
         slides: [
           {
@@ -261,7 +261,7 @@ export default function ComercioTechnologyModule() {
         id: TAB_IDS.CONECTIVIDAD,
         label: 'CONECTIVIDAD',
         houseClassName: styles.houseConectividad,
-        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0 }],
+        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0, pointClassName: styles.ellipse13 }],
         slides: [
           {
             title: 'Control desde el celular',
@@ -356,6 +356,7 @@ export default function ComercioTechnologyModule() {
     activeAreaId: activeTabId,
     points,
     areaRef: houseRef,
+    pointSize: 30,
     getScale,
     onPointGrabbed: setActivePointId
   });
@@ -484,9 +485,9 @@ export default function ComercioTechnologyModule() {
                   if (!el) return;
                   pointRefs.current[point.id] = el;
                 }}
-                className={`${styles.pointButton} ${isActive ? styles.pointActive : ''} ${isEditMode ? styles.pointEdit : ''} ${
-                  position ? styles.pointAbsolute : ''
-                }`}
+                className={`${styles.pointButton} ${point.pointClassName} ${isActive ? styles.pointActive : ''} ${
+                  isEditMode ? styles.pointEdit : ''
+                } ${position ? styles.pointAbsolute : ''}`}
                 aria-label={point.label}
                 aria-pressed={isActive}
                 style={pointStyle ?? undefined}

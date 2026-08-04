@@ -1,10 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   getPointPercentPosition,
+  getDirection,
   useAreaScale,
   useSlideTransition,
   useTechEditor
@@ -23,11 +24,6 @@ const TAB_IDS = {
 const STORAGE_KEY = 'sise-agro-tech-editor-v2';
 const HOUSE_BASE_WIDTH = 2486;
 const HOUSE_BASE_HEIGHT = 1728;
-const FIRST_POINT_BY_TAB = {
-  perimetral: 'camaraCampo',
-  interior: 'camaras',
-  conectividad: 'app'
-};
 
 const DEFAULT_POSITIONS = {
   perimetral: {
@@ -56,230 +52,228 @@ const HOUSE_BASE_SIZES = {
 export default function AgroTechnologyModule() {
   const tabs = useMemo(
     () => [
-      { id: TAB_IDS.PERIMETRAL, label: 'PROTECCIÓN PERIMETRAL', underlineClassName: styles.tabUnderlinePerimetral },
-      { id: TAB_IDS.INTERIOR, label: 'PROTECCIÓN INTERIOR', underlineClassName: styles.tabUnderlineInterior },
-      { id: TAB_IDS.CONECTIVIDAD, label: 'CONECTIVIDAD', underlineClassName: styles.tabUnderlineConectividad }
+      {
+        id: TAB_IDS.PERIMETRAL,
+        label: 'PROTECCIÓN PERIMETRAL',
+        houseClassName: styles.housePerimetral,
+        points: [
+          { id: 'camaraCampo', label: 'Cámara Campo', pointClassName: styles.ellipse1 },
+          { id: 'cartel', label: 'Cartel disuasivo', pointClassName: styles.ellipse12 },
+          { id: 'gps', label: 'GPS para maquinarias y vehículos', pointClassName: styles.ellipse13 },
+          { id: 'sirena', label: 'Sirena exterior', pointClassName: styles.ellipse14 }
+        ],
+        slides: [
+          {
+            id: 'camaraCampo',
+            title: 'Cámara Campo',
+            text: 'Sistema autónomo con energía solar y conectividad integrada, ideal para campos sin internet ni electricidad.',
+            styleVars: {
+              '--tech-card-padding': '48px 68px 33px 67px',
+              '--tech-card-align-items': 'center',
+              '--tech-card-title-width': '219px',
+              '--tech-card-title-height': '31px',
+              '--tech-card-title-min-height': '31px',
+              '--tech-card-text-width': '307px',
+              '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-image-width': '214px',
+              '--tech-card-image-height': '160px',
+              '--tech-card-art-margin-top': '14px'
+            },
+            art: { type: 'image', src: '/image/mq1fh69q-ch04lu8.webp', width: 214, height: 160 }
+          },
+          {
+            id: 'cartel',
+            title: 'Cartel disuasivo',
+            text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
+            styleVars: {
+              '--tech-card-padding': '48px 82px 51px 84px',
+              '--tech-card-title-min-height': '31px',
+              '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-text-width': '276px',
+              '--tech-card-image-width': '139px',
+              '--tech-card-image-height': '147px',
+              '--tech-card-art-margin-top': '9px'
+            },
+            art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
+          },
+          {
+            id: 'gps',
+            title: 'GPS para maquinarias y vehículos',
+            text: 'Seguimiento y control de flota para optimizar recursos y prevenir pérdidas.',
+            styleVars: {
+              '--tech-card-padding': '43px 61px 20px 60px',
+              '--tech-card-align-items': 'center',
+              '--tech-card-title-width': '313px',
+              '--tech-card-title-height': '63px',
+              '--tech-card-title-min-height': '63px',
+              '--tech-card-text-width': '321px',
+              '--tech-card-text-margin': '9px 0 0',
+              '--tech-card-art-justify-content': 'center',
+              '--tech-card-frame-width': '221px',
+              '--tech-card-frame-height': '187px',
+              '--tech-card-frame-max-width': '221px',
+              '--tech-card-frame-bg-size': '100% 148%',
+              '--tech-card-frame-bg-position': 'center top'
+            },
+            art: { type: 'gps', backgroundSrc: '/image/mq1gm8sq-6kvccdt.webp', wrapperWidth: 221, wrapperHeight: 187, wrapperMarginTop: 32 }
+          },
+          {
+            id: 'sirena',
+            title: 'Sirena exterior',
+            text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
+            styleVars: {
+              '--tech-card-padding': '48px 83px 44px',
+              '--tech-card-title-min-height': '31px',
+              '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-text-width': '273px',
+              '--tech-card-image-width': '91px',
+              '--tech-card-image-height': '149px',
+              '--tech-card-image-fixed-width': '91px',
+              '--tech-card-image-fixed-height': '149px',
+              '--tech-card-image-fit': 'cover',
+              '--tech-card-image-position': 'bottom',
+              '--tech-card-art-margin-top': '14px'
+            },
+            art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
+          }
+        ]
+      },
+      {
+        id: TAB_IDS.INTERIOR,
+        label: 'PROTECCIÓN INTERIOR',
+        houseClassName: styles.houseInterior,
+        points: [
+          { id: 'camaras', label: 'Cámaras de vigilancia', pointClassName: styles.ellipse1 },
+          { id: 'sensor', label: 'Sensor de movimiento', pointClassName: styles.ellipse12 },
+          { id: 'teclado', label: 'Teclado de configuración', pointClassName: styles.ellipse13 },
+          { id: 'mando', label: 'Mando a distancia', pointClassName: styles.ellipse14 }
+        ],
+        slides: [
+          {
+            id: 'camaras',
+            title: 'Cámaras de vigilancia',
+            text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
+            styleVars: {
+              '--tech-card-title-line-height': '32px',
+              '--tech-card-text-line-height': '20px',
+              '--tech-card-image-width': '192px',
+              '--tech-card-image-height': '117px',
+              '--tech-card-art-margin-top': '-6px'
+            },
+            art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
+          },
+          {
+            id: 'sensor',
+            title: 'Sensor de movimiento',
+            text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
+            styleVars: {
+              '--tech-card-padding': '35px 83px 13px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '273px',
+              '--tech-card-image-width': '193px',
+              '--tech-card-image-height': '180px'
+            },
+            art: {
+              type: 'overlay',
+              wrapperWidth: 193,
+              wrapperHeight: 180,
+              wrapperMarginTop: 66,
+              text: { top: -55, right: -40, width: 273 },
+              image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180 }
+            }
+          },
+          {
+            id: 'teclado',
+            title: 'Teclado de configuración',
+            text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
+            styleVars: {
+              '--tech-card-padding': '35px 83px 12px',
+              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '216px',
+              '--tech-card-image-width': '201px',
+              '--tech-card-image-height': '188px',
+              '--tech-card-art-margin-top': '-12px'
+            },
+            art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
+          },
+          {
+            id: 'mando',
+            title: 'Mando a distancia',
+            text: 'Activá o desactivá tu sistema con comodidad.',
+            styleVars: {
+              '--tech-card-padding': '48px 83px 13px',
+              '--tech-card-title-min-height': '31px',
+              '--tech-card-text-width': '216px',
+              '--tech-card-text-margin': '21px 0 0',
+              '--tech-card-image-width': '174px',
+              '--tech-card-image-height': '163px',
+              '--tech-card-art-margin-top': '-22px'
+            },
+            art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
+          }
+        ]
+      },
+      {
+        id: TAB_IDS.CONECTIVIDAD,
+        label: 'CONECTIVIDAD',
+        houseClassName: styles.houseConectividad,
+        points: [{ id: 'app', label: 'Control desde el celular', pointClassName: styles.ellipse13 }],
+        slides: [
+          {
+            id: 'app',
+            title: 'Control desde el celular',
+            text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
+            styleVars: {
+              '--tech-card-padding': '42px 74px 20px',
+              '--tech-card-align-items': 'center',
+              '--tech-card-title-width': '201px',
+              '--tech-card-title-height': '63px',
+              '--tech-card-title-min-height': '63px',
+              '--tech-card-text-width': '293px',
+              '--tech-card-text-margin': '17px 0 0',
+              '--tech-card-frame-width': '183px',
+              '--tech-card-frame-height': '158px',
+              '--tech-card-frame-max-width': '183px',
+              '--tech-card-frame-bg-position': '0 -1px',
+              '--tech-card-frame-bg-size': '100% 151.77%',
+              '--tech-card-frame-filter': 'grayscale(1)',
+              '--tech-card-frame-bar-color': '#065558'
+            },
+            art: {
+              type: 'connectivity',
+              bar: true,
+              backgroundSrc: '/image/mq1gn9bk-jxd0t66.webp',
+              wrapperWidth: 183,
+              wrapperHeight: 158,
+              wrapperMarginTop: 74,
+              text: { top: -57, right: -55, width: 292 }
+            }
+          }
+        ]
+      }
     ],
     []
   );
 
   const [activeTabId, setActiveTabId] = useState(TAB_IDS.PERIMETRAL);
-  const [activePointId, setActivePointId] = useState('camaraCampo');
+  const [activePointId, setActivePointId] = useState(() => tabs[0]?.points?.[0]?.id ?? null);
+  const [tabNonce, setTabNonce] = useState(0);
 
   const houseRef = useRef(null);
 
-  const points = useMemo(() => {
-    if (activeTabId === TAB_IDS.PERIMETRAL) {
-      return [
-        { id: 'camaraCampo', label: 'Cámara Campo' },
-        { id: 'cartel', label: 'Cartel disuasivo' },
-        { id: 'gps', label: 'GPS para maquinarias y vehículos' },
-        { id: 'sirena', label: 'Sirena exterior' }
-      ];
-    }
+  const activeTab = useMemo(
+    () => tabs.find((tab) => tab.id === activeTabId) ?? tabs[0],
+    [activeTabId, tabs]
+  );
 
-    if (activeTabId === TAB_IDS.INTERIOR) {
-      return [
-        { id: 'camaras', label: 'Cámaras de vigilancia' },
-        { id: 'sensor', label: 'Sensor de movimiento' },
-        { id: 'teclado', label: 'Teclado de configuración' },
-        { id: 'mando', label: 'Mando a distancia' }
-      ];
-    }
-
-    return [{ id: 'app', label: 'Control desde el celular' }];
-  }, [activeTabId]);
-
-  const slides = useMemo(() => {
-    const camaraCampoSlide = {
-      id: 'camaraCampo',
-      title: 'Cámara Campo',
-      text: 'Sistema autónomo con energía solar y conectividad integrada, ideal para campos sin internet ni electricidad.',
-      styleVars: {
-        '--tech-card-padding': '48px 68px 33px 67px',
-        '--tech-card-align-items': 'center',
-        '--tech-card-title-width': '219px',
-        '--tech-card-title-height': '31px',
-        '--tech-card-title-min-height': '31px',
-        '--tech-card-text-width': '307px',
-        '--tech-card-text-margin': '12px 0 0',
-        '--tech-card-image-width': '214px',
-        '--tech-card-image-height': '160px',
-        '--tech-card-art-margin-top': '14px'
-      },
-      art: { type: 'image', src: '/image/mq1fh69q-ch04lu8.webp', width: 214, height: 160 }
-    };
-
-    if (activeTabId === TAB_IDS.PERIMETRAL) {
-      return [
-        camaraCampoSlide,
-        {
-          id: 'cartel',
-          title: 'Cartel disuasivo',
-          text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
-          styleVars: {
-            '--tech-card-padding': '48px 82px 51px 84px',
-            '--tech-card-title-min-height': '31px',
-            '--tech-card-text-margin': '12px 0 0',
-            '--tech-card-text-width': '276px',
-            '--tech-card-image-width': '139px',
-            '--tech-card-image-height': '147px',
-            '--tech-card-art-margin-top': '9px'
-          },
-          art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
-        },
-        {
-          id: 'gps',
-          title: 'GPS para maquinarias y vehículos',
-          text: 'Seguimiento y control de flota para optimizar recursos y prevenir pérdidas.',
-          styleVars: {
-            '--tech-card-padding': '43px 61px 20px 60px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '313px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '321px',
-            '--tech-card-text-margin': '9px 0 0',
-            '--tech-card-art-justify-content': 'center',
-            '--tech-card-frame-width': '221px',
-            '--tech-card-frame-height': '187px',
-            '--tech-card-frame-max-width': '221px',
-            '--tech-card-frame-bg-size': '100% 148%',
-            '--tech-card-frame-bg-position': 'center top'
-          },
-          art: { type: 'gps', backgroundSrc: '/image/mq1gm8sq-6kvccdt.webp', wrapperWidth: 221, wrapperHeight: 187, wrapperMarginTop: 32 }
-        },
-        {
-          id: 'sirena',
-          title: 'Sirena exterior',
-          text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
-          styleVars: {
-            '--tech-card-padding': '48px 83px 44px',
-            '--tech-card-title-min-height': '31px',
-            '--tech-card-text-margin': '12px 0 0',
-            '--tech-card-text-width': '273px',
-            '--tech-card-image-width': '91px',
-            '--tech-card-image-height': '149px',
-            '--tech-card-image-fixed-width': '91px',
-            '--tech-card-image-fixed-height': '149px',
-            '--tech-card-image-fit': 'cover',
-            '--tech-card-image-position': 'bottom',
-            '--tech-card-art-margin-top': '14px'
-          },
-          art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
-        }
-      ];
-    }
-
-    if (activeTabId === TAB_IDS.INTERIOR) {
-      return [
-        {
-          id: 'camaras',
-          title: 'Cámaras de vigilancia',
-          text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
-          styleVars: {
-            '--tech-card-title-line-height': '32px',
-            '--tech-card-text-line-height': '20px',
-            '--tech-card-image-width': '192px',
-            '--tech-card-image-height': '117px',
-            '--tech-card-art-margin-top': '-6px'
-          },
-          art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
-        },
-        {
-          id: 'sensor',
-          title: 'Sensor de movimiento',
-          text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
-          styleVars: {
-            '--tech-card-padding': '35px 83px 13px',
-            '--tech-card-text-margin': '11px 0 0',
-            '--tech-card-text-width': '273px',
-            '--tech-card-image-width': '193px',
-            '--tech-card-image-height': '180px'
-          },
-          art: {
-            type: 'overlay',
-            wrapperWidth: 193,
-            wrapperHeight: 180,
-            wrapperMarginTop: 66,
-            text: { top: -55, right: -40, width: 273 },
-            image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180 }
-          }
-        },
-        {
-          id: 'teclado',
-          title: 'Teclado de configuración',
-          text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
-          styleVars: {
-            '--tech-card-padding': '35px 83px 12px',
-            '--tech-card-text-margin': '11px 0 0',
-            '--tech-card-text-width': '216px',
-            '--tech-card-image-width': '201px',
-            '--tech-card-image-height': '188px',
-            '--tech-card-art-margin-top': '-12px'
-          },
-          art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
-        },
-        {
-          id: 'mando',
-          title: 'Mando a distancia',
-          text: 'Activá o desactivá tu sistema con comodidad.',
-          styleVars: {
-            '--tech-card-padding': '48px 83px 13px',
-            '--tech-card-title-min-height': '31px',
-            '--tech-card-text-width': '216px',
-            '--tech-card-text-margin': '21px 0 0',
-            '--tech-card-image-width': '174px',
-            '--tech-card-image-height': '163px',
-            '--tech-card-art-margin-top': '-22px'
-          },
-          art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
-        }
-      ];
-    }
-
-    if (activeTabId === TAB_IDS.CONECTIVIDAD) {
-      return [
-        {
-          id: 'app',
-          title: 'Control desde el celular',
-          text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
-          styleVars: {
-            '--tech-card-padding': '42px 74px 20px',
-            '--tech-card-align-items': 'center',
-            '--tech-card-title-width': '201px',
-            '--tech-card-title-height': '63px',
-            '--tech-card-title-min-height': '63px',
-            '--tech-card-text-width': '293px',
-            '--tech-card-text-margin': '17px 0 0',
-            '--tech-card-frame-width': '183px',
-            '--tech-card-frame-height': '158px',
-            '--tech-card-frame-max-width': '183px',
-            '--tech-card-frame-bg-position': '0 -1px',
-            '--tech-card-frame-bg-size': '100% 151.77%',
-            '--tech-card-frame-filter': 'grayscale(1)',
-            '--tech-card-frame-bar-color': '#065558'
-          },
-          art: {
-            type: 'connectivity',
-            bar: true,
-            backgroundSrc: '/image/mq1gn9bk-jxd0t66.webp',
-            wrapperWidth: 183,
-            wrapperHeight: 158,
-            wrapperMarginTop: 74,
-            text: { top: -57, right: -55, width: 292 }
-          }
-        }
-      ];
-    }
-
-    return [camaraCampoSlide];
-  }, [activeTabId]);
+  const slides = activeTab.slides;
+  const points = activeTab.points;
 
   const {
     activeIndex,
     previousIndex,
     direction,
+    isAnimating,
     activeIndexRef,
     startTransition,
     resetTo
@@ -291,6 +285,16 @@ export default function AgroTechnologyModule() {
     areaRef: houseRef
   });
 
+  const defaultPointToSlide = useMemo(() => {
+    return tabs.reduce((acc, tab) => {
+      acc[tab.id] = tab.points.reduce((map, point, idx) => {
+        map[point.id] = Math.min(idx, tab.slides.length - 1);
+        return map;
+      }, {});
+      return acc;
+    }, {});
+  }, [tabs]);
+
   const {
     isEditMode,
     pointToSlide,
@@ -299,48 +303,33 @@ export default function AgroTechnologyModule() {
     handlePointPointerDown,
     handlePointPointerMove,
     handlePointPointerUp,
+    handleMappingChange,
     handleCopyEditorConfig: handleCopyJson,
     handleResetEditorConfig: handleReset
   } = useTechEditor({
     storageKey: STORAGE_KEY,
     defaultPositions: DEFAULT_POSITIONS,
+    defaultMapping: defaultPointToSlide,
     activeAreaId: activeTabId,
     points,
     areaRef: houseRef,
+    pointSize: 30,
     getScale,
     onPointGrabbed: setActivePointId
   });
 
-  const mappingForTab = useMemo(() => {
-    const defaults = points.reduce((acc, point) => {
-      const idx = slides.findIndex((slide) => slide.id === point.id);
-      acc[point.id] = idx >= 0 ? idx : 0;
-      return acc;
-    }, {});
-
-    const overrides = pointToSlide[activeTabId] ?? {};
-    return { ...defaults, ...overrides };
-  }, [activeTabId, pointToSlide, points, slides]);
+  const mappingForTab = useMemo(
+    () => pointToSlide[activeTabId] ?? defaultPointToSlide[activeTabId] ?? {},
+    [activeTabId, defaultPointToSlide, pointToSlide]
+  );
 
   const reverseMappingForTab = useMemo(() => {
     const reverse = {};
-    Object.keys(mappingForTab).forEach((pointId) => {
-      const index = mappingForTab[pointId];
-      if (typeof index !== 'number') return;
-      reverse[index] = pointId;
+    Object.entries(mappingForTab).forEach(([pointId, slideIndex]) => {
+      if (reverse[slideIndex] == null) reverse[slideIndex] = pointId;
     });
     return reverse;
   }, [mappingForTab]);
-
-  const getDirection = useCallback(
-    (fromIndex, toIndex) => {
-      if (slides.length <= 1) return 'next';
-      const forward = (toIndex - fromIndex + slides.length) % slides.length;
-      const backward = (fromIndex - toIndex + slides.length) % slides.length;
-      return forward <= backward ? 'next' : 'prev';
-    },
-    [slides.length]
-  );
 
   useEffect(() => {
     if (!activePointId) return;
@@ -348,9 +337,16 @@ export default function AgroTechnologyModule() {
     if (mapped == null) return;
     if (mapped === activeIndexRef.current) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
-  }, [activePointId, activeIndexRef, getDirection, mappingForTab, startTransition]);
+  }, [activePointId, activeIndexRef, mappingForTab, startTransition]);
 
-  const goPrev = () => {
+  const handleSelectPoint = (pointId) => {
+    setActivePointId(pointId);
+    const mapped = mappingForTab[pointId];
+    if (mapped == null) return;
+    startTransition(mapped, getDirection(activeIndexRef.current, mapped));
+  };
+
+  const handlePrev = () => {
     const currentIndex = activeIndexRef.current;
     const nextIndex = (currentIndex - 1 + slides.length) % slides.length;
     startTransition(nextIndex, 'prev');
@@ -358,7 +354,7 @@ export default function AgroTechnologyModule() {
     if (nextPointId) setActivePointId(nextPointId);
   };
 
-  const goNext = () => {
+  const handleNext = () => {
     const currentIndex = activeIndexRef.current;
     const nextIndex = (currentIndex + 1) % slides.length;
     startTransition(nextIndex, 'next');
@@ -366,163 +362,140 @@ export default function AgroTechnologyModule() {
     if (nextPointId) setActivePointId(nextPointId);
   };
 
-  const currentSlide = slides[activeIndex] ?? slides[0];
-  const previousSlide = previousIndex == null ? null : slides[previousIndex];
-  const allowNav = slides.length > 1;
+  const handleTabChange = (tabId) => {
+    if (tabId === activeTabId) return;
+    setActiveTabId(tabId);
+    resetTo(0);
+    setTabNonce((nonce) => nonce + 1);
+    const firstPoint = tabs.find((tab) => tab.id === tabId)?.points?.[0];
+    setActivePointId(firstPoint?.id ?? null);
+  };
 
-  const effectiveMapSrc =
-    activeTabId === TAB_IDS.PERIMETRAL ? '/image/mq1fh69q-v0j7c7r.webp' : '/image/mq1fh69q-v0j7c7r.webp';
+  const currentSlide = slides[activeIndex];
+  const previousSlide = previousIndex === null ? null : slides[previousIndex];
 
-  const renderCard = (slide, state) => (
-    <TechCard
-      key={`${slide.id ?? slide.key}-${state}`}
-      slide={slide}
-      className={
-        state === 'enter'
-          ? direction === 'next'
-            ? styles.techCardEnterRight
-            : styles.techCardEnterLeft
-          : state === 'exit'
-            ? direction === 'next'
-              ? styles.techCardExitLeft
-              : styles.techCardExitRight
-            : ''
-      }
-    />
-  );
+  const getCardClassName = (phase) => {
+    if (phase === 'active') {
+      if (!isAnimating) return styles.techCardStatic;
+      return direction === 'next' ? styles.techCardEnterNext : styles.techCardEnterPrev;
+    }
+
+    return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
+  };
+
+  const renderSlideContent = (slide, extraClassName) => <TechCard slide={slide} className={extraClassName} />;
 
   return (
     <section className={styles.technology} aria-label="Tecnologías">
-      <div className={styles.technologyInner}>
-        <h2 className={styles.technologyTitle}>
-          <span className={styles.technologyTitleStrong}>Seguridad total </span>
-          <span className={styles.technologyTitleLight}>para tu negocio,</span>
-          <br />
-          <span className={styles.technologyTitleLight}>en todo momento</span>
-        </h2>
+      <h2 className={styles.technologyTitle}>
+        <span className={styles.technologyTitleStrong}>Seguridad autónoma y sin límites</span>
+        <br />
+        <span className={styles.technologyTitleLight}>para proteger todo tu campo.</span>
+      </h2>
 
-        <div className={styles.tabs} role="tablist" aria-label="Categorías de protección">
-          {tabs.map((tab) => {
-            const isActive = tab.id === activeTabId;
+      <div className={styles.tabs} role="tablist" aria-label="Categorías de protección">
+        {tabs.map((tab) => {
+          const isActive = tab.id === activeTabId;
+          const underlineClassName =
+            tab.id === TAB_IDS.PERIMETRAL
+              ? styles.tabUnderlinePerimetral
+              : tab.id === TAB_IDS.INTERIOR
+                ? styles.tabUnderlineInterior
+                : styles.tabUnderlineConectividad;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              className={`${styles.tab} ${isActive ? styles.tabActive : ''} ${isActive ? underlineClassName : ''}`}
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => handleTabChange(tab.id)}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className={styles.technologyRow} data-anim={tabNonce}>
+        <div
+          ref={houseRef}
+          className={`${styles.house} ${activeTab.houseClassName} ${isEditMode ? styles.houseEdit : ''}`}
+          aria-label="Plano agro"
+          onPointerMove={handlePointPointerMove}
+          onPointerUp={handlePointPointerUp}
+          onPointerCancel={handlePointPointerUp}
+        >
+          {points.map((point) => {
+            const isActive = point.id === activePointId;
+            const position = positionsForTab[point.id];
+            const pointStyle = getPointPercentPosition(position, HOUSE_BASE_SIZES[activeTabId]);
             return (
               <button
-                key={tab.id}
+                key={point.id}
                 type="button"
-                className={`${styles.tab} ${isActive ? styles.tabActive : ''}`}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => {
-                  resetTo(0);
-                  setActiveTabId(tab.id);
-                  setActivePointId(FIRST_POINT_BY_TAB[tab.id] ?? points[0]?.id ?? '');
+                ref={(el) => {
+                  if (!el) return;
+                  pointRefs.current[point.id] = el;
                 }}
+                className={`${styles.pointButton} ${point.pointClassName} ${isActive ? styles.pointActive : ''} ${
+                  isEditMode ? styles.pointEdit : ''
+                } ${position ? styles.pointAbsolute : ''}`}
+                aria-label={point.label}
+                aria-pressed={isActive}
+                style={pointStyle ?? undefined}
+                onClick={() => handleSelectPoint(point.id)}
+                onPointerDown={(event) => handlePointPointerDown(point.id, event)}
               >
-                {tab.label}
-                {isActive ? <span className={`${styles.tabUnderline} ${tab.underlineClassName ?? ''}`} /> : null}
+                <span className={styles.ellipse2} aria-hidden="true">
+                  <span className={styles.ellipse3} aria-hidden="true" />
+                </span>
               </button>
             );
           })}
         </div>
 
-        <div className={styles.techBody}>
-          <div className={styles.techHouseColumn}>
-            <div className={styles.houseViewport}>
-              <div className={styles.house} ref={houseRef}>
-                <Image
-                  src={effectiveMapSrc}
-                  alt="Plano interactivo de seguridad para el campo con cámaras y sensores"
-                  className={styles.houseImage}
-                  width={HOUSE_BASE_WIDTH}
-                  height={HOUSE_BASE_HEIGHT}
-                  sizes="(max-width: 960px) 100vw, 735px"
-                  style={{ width: '100%', height: 'auto' }}
-                />
+        <div className={styles.techCardGroup} aria-label="Detalle">
+          {slides.length > 1 ? (
+            <button type="button" className={styles.techArrow} aria-label="Anterior" onClick={handlePrev}>
+              <Image src="/image/mpudc5hg-jng7cpc.png" alt="" width={30} height={18} />
+            </button>
+          ) : (
+            <span className={styles.techArrowSpacer} aria-hidden="true" />
+          )}
 
-                {(points ?? []).map((point) => {
-                  const pos = positionsForTab?.[point.id];
-                  if (!pos) return null;
-                  const pointStyle = getPointPercentPosition(pos, HOUSE_BASE_SIZES[activeTabId]);
-
-                  return (
-                    <button
-                      key={point.id}
-                      type="button"
-                      className={`${styles.pointButton} ${activePointId === point.id ? styles.pointActive : ''} ${
-                        isEditMode ? styles.pointEdit : ''
-                      }`}
-                      style={pointStyle ?? undefined}
-                      aria-label={point.label}
-                      onClick={() => setActivePointId(point.id)}
-                      onPointerDown={(event) => handlePointPointerDown(point.id, event)}
-                      onPointerMove={handlePointPointerMove}
-                      onPointerUp={handlePointPointerUp}
-                      onPointerCancel={handlePointPointerUp}
-                      ref={(node) => {
-                        if (node) pointRefs.current[point.id] = node;
-                      }}
-                    >
-                      <span className={styles.ellipse2} aria-hidden="true">
-                        <span className={styles.ellipse3} aria-hidden="true" />
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {isEditMode ? (
-              <div className={styles.techEditor} aria-label="Editor de puntos">
-                <div className={styles.techEditorRow}>
-                  <button type="button" className={styles.techEditorButton} onClick={handleCopyJson}>
-                    Copiar JSON
-                  </button>
-                  <button type="button" className={styles.techEditorButtonSecondary} onClick={handleReset}>
-                    Reset
-                  </button>
-                </div>
-
-                <div className={styles.techEditorRow}>
-                  <span className={styles.techEditorHint}>Tab actual:</span>
-                  <span className={styles.techEditorHintStrong}>{activeTabId}</span>
-                </div>
-              </div>
-            ) : null}
+          <div className={`${styles.techCardViewport} ${styles.tabFadeIn}`} key={`${activeTabId}-${tabNonce}`}>
+            {previousSlide ? renderSlideContent(previousSlide, getCardClassName('previous')) : null}
+            {renderSlideContent(currentSlide, getCardClassName('active'))}
           </div>
 
-          <div className={styles.techCardGroup} aria-label="Detalle de tecnología">
-            {allowNav ? (
-              <button
-                type="button"
-                className={`${styles.techCardArrow} ${styles.techCardArrowLeft}`}
-                aria-label="Anterior"
-                onClick={goPrev}
-              >
-                <span aria-hidden="true" />
-              </button>
-            ) : (
-              <span className={styles.techCardArrow} aria-hidden="true" />
-            )}
-
-            <div className={styles.techCardViewport}>
-              {previousSlide ? renderCard(previousSlide, 'exit') : null}
-              {currentSlide ? renderCard(currentSlide, 'enter') : null}
-            </div>
-
-            {allowNav ? (
-              <button
-                type="button"
-                className={`${styles.techCardArrow} ${styles.techCardArrowRight}`}
-                aria-label="Siguiente"
-                onClick={goNext}
-              >
-                <span aria-hidden="true" />
-              </button>
-            ) : (
-              <span className={styles.techCardArrow} aria-hidden="true" />
-            )}
-          </div>
+          {slides.length > 1 ? (
+            <button type="button" className={styles.techArrow} aria-label="Siguiente" onClick={handleNext}>
+              <Image src="/image/mpudc5hg-5099gqg.png" alt="" width={30} height={17} />
+            </button>
+          ) : (
+            <span className={styles.techArrowSpacer} aria-hidden="true" />
+          )}
         </div>
       </div>
+
+      {isEditMode ? (
+        <div className={styles.techEditor} aria-label="Editor de puntos">
+          <div className={styles.techEditorRow}>
+            <button type="button" className={styles.techEditorButton} onClick={handleCopyJson}>
+              Copiar JSON
+            </button>
+            <button type="button" className={styles.techEditorButtonSecondary} onClick={handleReset}>
+              Reset
+            </button>
+          </div>
+
+          <div className={styles.techEditorRow}>
+            <span className={styles.techEditorHint}>Tab actual:</span>
+            <span className={styles.techEditorHintStrong}>{activeTabId}</span>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

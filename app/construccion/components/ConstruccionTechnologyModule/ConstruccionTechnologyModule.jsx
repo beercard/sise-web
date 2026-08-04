@@ -1,10 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   getPointPercentPosition,
+  getDirection,
   useAreaScale,
   useSlideTransition,
   useTechEditor
@@ -50,43 +51,50 @@ const HOUSE_BASE_SIZES = {
   conectividad: { width: HOUSE_BASE_WIDTH, height: HOUSE_BASE_HEIGHT }
 };
 
+const DEFAULT_POINT_TO_SLIDE = {
+  perimetral: { camaras: 0, magneticos: 1, cartel: 2, sirena: 3, cerco: 4 },
+  interior: { camaras: 0, sensor: 1, teclado: 2, mando: 3, central: 4 },
+  conectividad: { app: 0 }
+};
+
 export default function ConstruccionTechnologyModule() {
   const tabs = useMemo(
     () => [
-      { id: TAB_IDS.PERIMETRAL, label: 'PROTECCIÓN PERIMETRAL', underlineClassName: styles.tabUnderlinePerimetral },
-      { id: TAB_IDS.INTERIOR, label: 'PROTECCIÓN INTERIOR', underlineClassName: styles.tabUnderlineInterior },
-      { id: TAB_IDS.CONECTIVIDAD, label: 'CONECTIVIDAD', underlineClassName: styles.tabUnderlineConectividad }
+      { id: TAB_IDS.PERIMETRAL, label: 'PROTECCIÓN PERIMETRAL' },
+      { id: TAB_IDS.INTERIOR, label: 'PROTECCIÓN INTERIOR' },
+      { id: TAB_IDS.CONECTIVIDAD, label: 'CONECTIVIDAD' }
     ],
     []
   );
 
   const [activeTabId, setActiveTabId] = useState(TAB_IDS.PERIMETRAL);
   const [activePointId, setActivePointId] = useState('camaras');
+  const [tabNonce, setTabNonce] = useState(0);
 
   const houseRef = useRef(null);
 
   const points = useMemo(() => {
     if (activeTabId === TAB_IDS.PERIMETRAL) {
       return [
-        { id: 'camaras', label: 'Cámaras de vigilancia' },
-        { id: 'magneticos', label: 'Magnéticos' },
-        { id: 'cartel', label: 'Cartel disuasivo' },
-        { id: 'sirena', label: 'Sirena exterior' },
-        { id: 'cerco', label: 'Cerco eléctrico perimetral' }
+        { id: 'camaras', label: 'Cámaras de vigilancia', pointClassName: styles.ellipse1 },
+        { id: 'magneticos', label: 'Magnéticos', pointClassName: styles.ellipse12 },
+        { id: 'cartel', label: 'Cartel disuasivo', pointClassName: styles.ellipse13 },
+        { id: 'sirena', label: 'Sirena exterior', pointClassName: styles.ellipse14 },
+        { id: 'cerco', label: 'Cerco eléctrico perimetral', pointClassName: styles.ellipse15 }
       ];
     }
 
     if (activeTabId === TAB_IDS.INTERIOR) {
       return [
-        { id: 'camaras', label: 'Cámaras de vigilancia' },
-        { id: 'sensor', label: 'Sensor de movimiento' },
-        { id: 'teclado', label: 'Teclado de configuración' },
-        { id: 'mando', label: 'Mando a distancia' },
-        { id: 'central', label: 'Central con comunicador' }
+        { id: 'camaras', label: 'Cámaras de vigilancia', pointClassName: styles.ellipse1 },
+        { id: 'sensor', label: 'Sensor de movimiento', pointClassName: styles.ellipse12 },
+        { id: 'teclado', label: 'Teclado de configuración', pointClassName: styles.ellipse13 },
+        { id: 'mando', label: 'Mando a distancia', pointClassName: styles.ellipse14 },
+        { id: 'central', label: 'Central con comunicador', pointClassName: styles.ellipse15 }
       ];
     }
 
-    return [{ id: 'app', label: 'Control desde el celular' }];
+    return [{ id: 'app', label: 'Control desde el celular', pointClassName: styles.ellipse13 }];
   }, [activeTabId]);
 
   const slides = useMemo(() => {
@@ -309,51 +317,38 @@ export default function ConstruccionTechnologyModule() {
   const {
     isEditMode,
     pointToSlide,
-    setPointToSlide,
     positionsForArea: positionsForTab,
     pointRefs,
     handlePointPointerDown,
     handlePointPointerMove,
     handlePointPointerUp,
+    handleMappingChange,
     handleCopyEditorConfig: handleCopyJson,
     handleResetEditorConfig: handleReset
   } = useTechEditor({
     storageKey: STORAGE_KEY,
     defaultPositions: DEFAULT_POSITIONS,
+    defaultMapping: DEFAULT_POINT_TO_SLIDE,
     activeAreaId: activeTabId,
     points,
     areaRef: houseRef,
+    pointSize: 30,
     getScale,
     onPointGrabbed: setActivePointId
   });
 
-  const mappingForTab = useMemo(() => {
-    const defaults = points.reduce((acc, point) => {
-      const idx = slides.findIndex((slide) => slide.id === point.id);
-      acc[point.id] = idx >= 0 ? idx : 0;
-      return acc;
-    }, {});
-
-    const overrides = pointToSlide[activeTabId] ?? {};
-    return { ...defaults, ...overrides };
-  }, [activeTabId, pointToSlide, points, slides]);
+  const mappingForTab = useMemo(
+    () => pointToSlide[activeTabId] ?? DEFAULT_POINT_TO_SLIDE[activeTabId] ?? {},
+    [activeTabId, pointToSlide]
+  );
 
   const reverseMappingForTab = useMemo(() => {
     const reverse = {};
-    Object.keys(mappingForTab).forEach((pointId) => {
-      const index = mappingForTab[pointId];
-      if (typeof index !== 'number') return;
-      reverse[index] = pointId;
+    Object.entries(mappingForTab).forEach(([pointId, slideIndex]) => {
+      if (reverse[slideIndex] == null) reverse[slideIndex] = pointId;
     });
     return reverse;
   }, [mappingForTab]);
-
-  const getDirection = useCallback((fromIndex, toIndex) => {
-    if (slides.length <= 1) return 'next';
-    const forward = (toIndex - fromIndex + slides.length) % slides.length;
-    const backward = (fromIndex - toIndex + slides.length) % slides.length;
-    return forward <= backward ? 'next' : 'prev';
-  }, [slides.length]);
 
   useEffect(() => {
     if (!activePointId) return;
@@ -361,9 +356,9 @@ export default function ConstruccionTechnologyModule() {
     if (mapped == null) return;
     if (mapped === activeIndexRef.current) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
-  }, [activePointId, activeIndexRef, getDirection, mappingForTab, startTransition]);
+  }, [activePointId, activeIndexRef, mappingForTab, startTransition]);
 
-  const goPrev = () => {
+  const handlePrev = () => {
     const currentIndex = activeIndexRef.current;
     const nextIndex = (currentIndex - 1 + slides.length) % slides.length;
     startTransition(nextIndex, 'prev');
@@ -371,7 +366,7 @@ export default function ConstruccionTechnologyModule() {
     if (nextPointId) setActivePointId(nextPointId);
   };
 
-  const goNext = () => {
+  const handleNext = () => {
     const currentIndex = activeIndexRef.current;
     const nextIndex = (currentIndex + 1) % slides.length;
     startTransition(nextIndex, 'next');
@@ -395,39 +390,48 @@ export default function ConstruccionTechnologyModule() {
     <TechCard slide={slide} className={extraClassName} />
   );
 
-  const handlePointClick = (pointId) => {
+  const handleSelectPoint = (pointId) => {
     setActivePointId(pointId);
     const mapped = mappingForTab[pointId];
     if (mapped == null) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
   };
 
-  const handleTabClick = (tabId) => {
+  const handleTabChange = (tabId) => {
     if (tabId === activeTabId) return;
     setActiveTabId(tabId);
     resetTo(0);
-    setActivePointId(tabId === TAB_IDS.CONECTIVIDAD ? 'app' : tabId === TAB_IDS.INTERIOR ? 'sensor' : 'camaras');
+    setTabNonce((nonce) => nonce + 1);
+    const firstPoint =
+      tabId === TAB_IDS.CONECTIVIDAD ? 'app' : tabId === TAB_IDS.INTERIOR ? 'camaras' : 'camaras';
+    setActivePointId(firstPoint);
   };
 
   return (
-    <section className={styles.technology} aria-label="Seguridad total para tu negocio">
+    <section className={styles.technology} aria-label="Seguridad total para tu desarrollo">
       <h2 className={styles.technologyTitle}>
-        <span className={styles.technologyTitleStrong}>Seguridad total para tu negocio,</span>
+        <span className={styles.technologyTitleLight}>Seguridad total</span>
         <br />
-        <span className={styles.technologyTitleLight}>en todo momento</span>
+        <span className={styles.technologyTitleStrong}>para tu desarrollo.</span>
       </h2>
 
       <div className={styles.tabs} role="tablist" aria-label="Categorías">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTabId;
+          const underlineClassName =
+            tab.id === TAB_IDS.PERIMETRAL
+              ? styles.tabUnderlinePerimetral
+              : tab.id === TAB_IDS.INTERIOR
+                ? styles.tabUnderlineInterior
+                : styles.tabUnderlineConectividad;
           return (
             <button
               key={tab.id}
               type="button"
-              className={`${styles.tab} ${isActive ? styles.tabActive : ''} ${isActive ? tab.underlineClassName : ''}`}
+              className={`${styles.tab} ${isActive ? styles.tabActive : ''} ${isActive ? underlineClassName : ''}`}
               role="tab"
               aria-selected={isActive}
-              onClick={() => handleTabClick(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
             >
               {tab.label}
             </button>
@@ -435,7 +439,7 @@ export default function ConstruccionTechnologyModule() {
         })}
       </div>
 
-      <div className={styles.technologyRow}>
+      <div className={styles.technologyRow} data-anim={tabNonce}>
         <div
           className={`${styles.house} ${
             activeTabId === TAB_IDS.PERIMETRAL ? styles.housePerimetral : activeTabId === TAB_IDS.INTERIOR ? styles.houseInterior : styles.houseConectividad
@@ -460,9 +464,11 @@ export default function ConstruccionTechnologyModule() {
                   if (node) pointRefs.current[point.id] = node;
                 }}
                 type="button"
-                className={`${styles.pointButton} ${isActive ? styles.pointActive : ''} ${isEditMode ? styles.pointEdit : ''}`}
+                className={`${styles.pointButton} ${point.pointClassName} ${isActive ? styles.pointActive : ''} ${
+                  isEditMode ? styles.pointEdit : ''
+                } ${pos ? styles.pointAbsolute : ''}`}
                 style={pointStyle ?? undefined}
-                onClick={() => handlePointClick(point.id)}
+                onClick={() => handleSelectPoint(point.id)}
                 onPointerDown={(event) => handlePointPointerDown(point.id, event)}
                 aria-label={point.label}
               >
@@ -476,20 +482,20 @@ export default function ConstruccionTechnologyModule() {
 
         <div className={styles.techCardGroup} aria-label="Detalle de tecnología">
           {slides.length > 1 ? (
-            <button type="button" className={styles.techArrow} aria-label="Anterior" onClick={goPrev}>
+            <button type="button" className={styles.techArrow} aria-label="Anterior" onClick={handlePrev}>
               <Image src="/image/mq09ahtz-s5clq9f.png" alt="" width={30} height={18} />
             </button>
           ) : (
             <span className={styles.techArrowSpacer} aria-hidden="true" />
           )}
 
-          <div className={styles.techCardViewport} aria-live="polite">
+          <div className={`${styles.techCardViewport} ${styles.tabFadeIn}`} key={`${activeTabId}-${tabNonce}`} aria-live="polite">
             {previousSlide ? renderSlideContent(previousSlide, getCardClassName('previous')) : null}
             {renderSlideContent(currentSlide, getCardClassName('active'))}
           </div>
 
           {slides.length > 1 ? (
-            <button type="button" className={styles.techArrow} aria-label="Siguiente" onClick={goNext}>
+            <button type="button" className={styles.techArrow} aria-label="Siguiente" onClick={handleNext}>
               <Image src="/image/mq09ahtz-nh24f3r.png" alt="" width={30} height={17} />
             </button>
           ) : (
@@ -515,19 +521,7 @@ export default function ConstruccionTechnologyModule() {
                 <select
                   className={styles.techEditorSelect}
                   value={mappingForTab[point.id] ?? 0}
-                  onChange={(event) => {
-                    const value = Number(event.target.value);
-                    setPointToSlide((prev) => ({
-                      ...prev,
-                      [activeTabId]: {
-                        ...(prev[activeTabId] ?? {}),
-                        [point.id]: value
-                      }
-                    }));
-                    if (point.id === activePointId) {
-                      startTransition(value, getDirection(activeIndexRef.current, value));
-                    }
-                  }}
+                  onChange={(event) => handleMappingChange(point.id, Number(event.target.value))}
                 >
                   {slides.map((slide, index) => (
                     <option key={slide.id} value={index}>

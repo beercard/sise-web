@@ -73,11 +73,11 @@ export default function IndustriaTechnologyModule() {
         label: 'PROTECCIÓN PERIMETRAL',
         houseClassName: styles.housePerimetral,
         points: [
-          { id: 'cerco', label: 'Cerco eléctrico perimetral', slideIndex: 0 },
-          { id: 'camara', label: 'Cámaras de vigilancia', slideIndex: 1 },
-          { id: 'sirena', label: 'Sirena exterior', slideIndex: 2 },
-          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 3 },
-          { id: 'magneticos', label: 'Magnéticos', slideIndex: 4 }
+          { id: 'cerco', label: 'Cerco eléctrico perimetral', slideIndex: 0, pointClassName: styles.ellipse1 },
+          { id: 'camara', label: 'Cámaras de vigilancia', slideIndex: 1, pointClassName: styles.ellipse12 },
+          { id: 'sirena', label: 'Sirena exterior', slideIndex: 2, pointClassName: styles.ellipse13 },
+          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 3, pointClassName: styles.ellipse14 },
+          { id: 'magneticos', label: 'Magnéticos', slideIndex: 4, pointClassName: styles.ellipse15 }
         ],
         slides: [
           {
@@ -161,13 +161,13 @@ export default function IndustriaTechnologyModule() {
         label: 'PROTECCIÓN INTERIOR',
         houseClassName: styles.houseInterior,
         points: [
-          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0 },
-          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 1 },
-          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 2 },
-          { id: 'mando', label: 'Mando a distancia', slideIndex: 3 },
-          { id: 'central', label: 'Central con comunicador', slideIndex: 4 },
-          { id: 'humo', label: 'Cortina de Humo', slideIndex: 5 },
-          { id: 'acceso', label: 'Control de acceso', slideIndex: 6 }
+          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0, pointClassName: styles.ellipse1 },
+          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 1, pointClassName: styles.ellipse12 },
+          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 2, pointClassName: styles.ellipse13 },
+          { id: 'mando', label: 'Mando a distancia', slideIndex: 3, pointClassName: styles.ellipse14 },
+          { id: 'central', label: 'Central con comunicador', slideIndex: 4, pointClassName: styles.ellipse15 },
+          { id: 'humo', label: 'Cortina de Humo', slideIndex: 5, pointClassName: styles.ellipse12 },
+          { id: 'acceso', label: 'Control de acceso', slideIndex: 6, pointClassName: styles.ellipse13 }
         ],
         slides: [
           {
@@ -280,7 +280,7 @@ export default function IndustriaTechnologyModule() {
         id: TAB_IDS.CONECTIVIDAD,
         label: 'CONECTIVIDAD',
         houseClassName: styles.houseConectividad,
-        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0 }],
+        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0, pointClassName: styles.ellipse13 }],
         slides: [
           {
             title: 'Control desde el celular',
@@ -376,6 +376,7 @@ export default function IndustriaTechnologyModule() {
     activeAreaId: activeTabId,
     points,
     areaRef: houseRef,
+    pointSize: 30,
     getScale,
     onPointGrabbed: setActivePointId
   });
@@ -512,9 +513,9 @@ export default function IndustriaTechnologyModule() {
                   if (!el) return;
                   pointRefs.current[point.id] = el;
                 }}
-                className={`${styles.pointButton} ${isActive ? styles.pointActive : ''} ${isEditMode ? styles.pointEdit : ''} ${
-                  position ? styles.pointAbsolute : ''
-                }`}
+                className={`${styles.pointButton} ${point.pointClassName} ${isActive ? styles.pointActive : ''} ${
+                  isEditMode ? styles.pointEdit : ''
+                } ${position ? styles.pointAbsolute : ''}`}
                 aria-label={point.label}
                 aria-pressed={isActive}
                 style={pointStyle ?? undefined}
