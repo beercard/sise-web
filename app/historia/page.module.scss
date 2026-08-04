@@ -97,18 +97,77 @@
 }
 
 .recognition {
-  --recognition-pad-x: max(24px, calc((min(1920px, 100vw) - 1188px) / 2));
+  --recognition-pad-x: max(24px, calc((min(1920px, 100vw) - 1190px) / 2));
   padding-top: 74px;
   padding-bottom: 87px;
 }
 
 .recognitionInner {
-  width: min(1188px, calc(100% - (var(--recognition-pad-x) * 2)));
+  width: min(1190px, calc(100% - (var(--recognition-pad-x) * 2)));
   margin: 0 auto;
 }
 
+.recognitionDesktop {
+  display: none;
+}
+
+.recognitionDesktopLayout {
+  display: grid;
+  grid-template-columns: 580px 578px;
+  column-gap: 32px;
+  align-items: start;
+}
+
+.recognitionDesktopCopy {
+  position: relative;
+  width: 580px;
+  height: 490px;
+}
+
+.recognitionDesktopTitle {
+  position: absolute;
+  left: 2px;
+  top: 0;
+  width: 578px;
+  height: 110px;
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+
+.recognitionDesktopText {
+  position: absolute;
+  left: 0;
+  top: 143px;
+  width: 569px;
+  height: 347px;
+  color: #000000;
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+
+.recognitionDesktopFeature {
+  width: 578px;
+  margin-top: 29px;
+}
+
+.recognitionDesktopFeature .recognitionDots {
+  justify-content: center;
+  margin-top: 13px;
+}
+
+.recognitionResponsive {
+  display: block;
+}
+
 .recognitionTitle {
-  width: 1082px;
+  width: 578px;
   max-width: 100%;
   margin: 0;
   line-height: 48px;
@@ -119,6 +178,14 @@
 }
 
 .recognitionTitleBreakMobile {
+  display: none;
+}
+
+.recognitionTitleDesktop {
+  display: block;
+}
+
+.recognitionTitleMobile {
   display: none;
 }
 
@@ -134,15 +201,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 33px;
+  gap: 32px;
   width: 100%;
   margin-top: 31px;
 }
 
 .recognitionStory {
-  flex: 0 0 577px;
-  width: 577px;
-  min-height: 531px;
+  flex: 0 0 580px;
+  width: 580px;
+  min-height: 490px;
   padding-top: 0;
 }
 
@@ -160,8 +227,8 @@
   width: 100%;
   color: #000000;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
-  font-size: 32px;
-  line-height: 38.4px;
+  font-size: 24px;
+  line-height: 29px;
   letter-spacing: 0;
   text-wrap: pretty;
 }
@@ -177,7 +244,7 @@
 .recognitionFeature {
   flex: 0 0 578px;
   width: 578px;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .recognitionFeaturePanel {
@@ -224,6 +291,16 @@
   border-color: #000000;
 }
 
+@media (min-width: 1201px) {
+  .recognitionDesktop {
+    display: block;
+  }
+
+  .recognitionResponsive {
+    display: none;
+  }
+}
+
 @media (max-width: 1320px) {
   .recognitionInner {
     width: calc(100% - (var(--recognition-pad-x) * 2));
@@ -244,14 +321,14 @@
   }
 
   .recognitionStoryText {
-    font-size: 28px;
-    line-height: 33.6px;
+    font-size: 24px;
+    line-height: 29px;
   }
 
   .recognitionFeature {
     flex-basis: 518px;
     width: 518px;
-    margin-top: 18px;
+    margin-top: 0;
   }
 
   .recognitionFeaturePanel {
@@ -267,6 +344,15 @@
 
   .recognitionDots {
     margin-top: 18px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .recognitionDots {
+    justify-content: flex-start;
+    width: 90px;
+    margin-top: 13px;
+    margin-left: 244px;
   }
 }
 
@@ -634,6 +720,14 @@
     display: block;
   }
 
+  .recognitionTitleDesktop {
+    display: none;
+  }
+
+  .recognitionTitleMobile {
+    display: block;
+  }
+
   .recognitionTitleRegular {
     font-size: 24px;
     line-height: 26.4px;
@@ -945,7 +1039,7 @@
   }
 
   .heroImage {
-    object-position: center top;
+    object-position: center;
     opacity: 0.7;
   }
 
