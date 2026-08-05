@@ -177,13 +177,17 @@
 }
 
 /* Cada card tiene su propio ancho de cuerpo según cuántas palabras entran por
-   renglón; el top es el mismo para las cinco (--solutions-card-body-top). */
+   renglón; el top es el mismo para las cinco (--solutions-card-body-top). El
+   ancho no es el de la caja de texto en Figma (esos valores son un poco
+   angostos para League Spartan a 20px y hacen que el navegador meta una
+   línea de más): se amplió lo justo para que la línea más larga de cada
+   card entre sin romper el corte de renglón que muestra el diseño. */
 .puntos .cardBody {
-  width: 176px;
+  width: 180px;
 }
 
 .paradas .cardBody {
-  width: 183px;
+  width: 190px;
 }
 
 .urbana .cardBody {
@@ -195,7 +199,7 @@
 }
 
 .accesos .cardBody {
-  width: 169px;
+  width: 176px;
 }
 
 .heading {
