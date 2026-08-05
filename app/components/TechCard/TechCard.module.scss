@@ -99,10 +99,10 @@
 
 .frameBar {
   position: absolute;
-  top: var(--tech-card-frame-bar-top, 39px);
-  left: var(--tech-card-frame-bar-left, 43px);
-  width: var(--tech-card-frame-bar-width, 101px);
-  height: var(--tech-card-frame-bar-height, 14px);
+  top: var(--tech-card-frame-bar-top, 24.7%);
+  left: var(--tech-card-frame-bar-left, 23.5%);
+  width: var(--tech-card-frame-bar-width, 55.2%);
+  height: var(--tech-card-frame-bar-height, 8.9%);
   background: var(--tech-card-frame-bar-color, #00408c);
   mix-blend-mode: var(--tech-card-frame-bar-blend-mode, normal);
 }
@@ -201,9 +201,15 @@
     height: 104px;
   }
 
-  .artImage,
-  .frame {
+  .artImage {
     width: auto;
+    height: var(--tech-card-mobile-art-height, auto);
+    max-width: min(100%, 146px);
+    max-height: 104px;
+  }
+
+  .frame {
+    width: min(100%, 146px);
     height: var(--tech-card-mobile-art-height, auto);
     max-width: min(100%, 146px);
     max-height: 104px;

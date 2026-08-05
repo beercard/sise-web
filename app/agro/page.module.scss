@@ -816,7 +816,7 @@
 }
 
 .cotizadorWrap {
-  margin-top: 57px;
+  margin-top: 0;
 }
 
 @media (max-width: 1366px) {
@@ -831,8 +831,11 @@
   }
 
   .heroGradient {
+    inset: 0;
     width: 100%;
-    background-image: linear-gradient(180deg, rgba(6, 85, 88, 0.92) 0%, rgba(6, 85, 88, 0.72) 52%, rgba(6, 85, 88, 0) 100%);
+    height: 100%;
+    transform: none;
+    background-image: linear-gradient(90deg, #065558 0%, rgba(6, 85, 88, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
   }
 
   .heroKicker {
@@ -1218,11 +1221,15 @@
   align-items: flex-start;
 }
 
+/* Hero de escritorio — Figma "hero deskt" (nodo 5026:595), marco de 1920×800.
+   El logo va en y=360 (286×63), el título en y=440 (610 de ancho, dos renglones
+   de 51.6) y la bajada de categoría en y=571 (416 de ancho). Los tres van en
+   flujo dentro de `.heroCopy`, así que las posiciones salen de sus márgenes. */
 .heroKicker {
   position: relative;
   top: auto;
   left: auto;
-  width: min(416px, 100%);
+  width: min(286px, 100%);
   height: auto;
 }
 
@@ -1230,10 +1237,10 @@
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
-  min-height: 102px;
-  margin: 16px 0 0;
-  line-height: 51px;
+  width: min(610px, 100%);
+  min-height: 103px;
+  margin: 17px 0 0;
+  line-height: 51.6px;
   font-size: 64px;
 }
 
@@ -1245,13 +1252,13 @@
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
-  margin: 22px 0 0;
+  width: min(416px, 100%);
+  margin: 28px 0 0;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 30.4px;
 }
 
 @media (max-width: 1366px) {
@@ -1311,7 +1318,9 @@
   .heroGradient {
     inset: 0;
     width: 100%;
-    background-image: linear-gradient(180deg, rgba(6, 85, 88, 0.92) 0%, rgba(6, 85, 88, 0.72) 52%, rgba(6, 85, 88, 0) 100%);
+    height: 100%;
+    transform: none;
+    background-image: linear-gradient(90deg, #065558 0%, rgba(6, 85, 88, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
   }
 
   .heroCopy {
@@ -1554,6 +1563,63 @@
 }
 
 @media (max-width: 600px) {
+  /* Mobile tiene su propia foto vertical. Va como background y el <Image> de
+     escritorio se oculta: así el navegador descarga sólo la del breakpoint que
+     aplica, porque no pide los fondos de media queries que no se cumplen. */
+  .heroMedia {
+    height: 591px;
+    background-image: url('/image/hero-agro-mobile.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .heroImage {
+    display: none;
+  }
+
+  /* Hero mobile — Figma "hero mobile" (nodo 5026:596), marco de 402×591.
+     El logo va en y=362 (166×37), el título en y=403 (352 de ancho, dos
+     renglones de 25.6) y la bajada de categoría en y=476. Todo sobre el eje
+     de 26px de la columna. */
+  .heroCopy {
+    left: 26px;
+    top: 362px;
+    bottom: auto;
+    width: min(352px, calc(100% - 50px));
+  }
+
+  .heroKicker {
+    width: 166px;
+    height: 37px;
+  }
+
+  .heroTitle {
+    /* El logo termina en y=399 y el título arranca en y=403. */
+    margin: 4px 0 0;
+    width: min(352px, 100%);
+    min-height: 0;
+    height: auto;
+    font-size: 32px;
+    line-height: 25.6px;
+  }
+
+  .heroTitleLight {
+    font-weight: 400;
+  }
+
+  .heroTitleStrong {
+    font-weight: 600;
+  }
+
+  /* El título cierra en y=454 y la categoría abre en y=476. */
+  .heroCategory {
+    margin: 22px 0 0;
+    width: min(354px, 100%);
+    font-size: 20px;
+    line-height: 19px;
+  }
+
   .technology {
     padding-top: 48px;
     padding-bottom: 48px;

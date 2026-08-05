@@ -255,7 +255,7 @@
   height: 482px;
   border-radius: 22px;
   background: #d9d9d9;
-  padding: 29px 28px 28px 29px;
+  padding: 28.5px;
   overflow: hidden;
 }
 
@@ -263,8 +263,15 @@
   width: 521px;
   height: 425px;
   border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 55%;
+}
+
+@media (min-width: 1201px) {
+  .recognitionFeatureImage {
+    object-position: 50% 54%;
+  }
 }
 
 .recognitionDots {
@@ -334,7 +341,7 @@
   .recognitionFeaturePanel {
     width: 518px;
     height: 432px;
-    padding: 25px 25px 26px;
+    padding: 25.5px 25px;
   }
 
   .recognitionFeatureImage {
@@ -808,7 +815,7 @@
     width: 294px;
     height: 245px;
     border-radius: 22px;
-    padding: 15px 14px 14px 15px;
+    padding: 14.5px;
   }
 
   .recognitionFeatureImage {

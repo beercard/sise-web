@@ -85,7 +85,8 @@ export default function CiudadTechnologyModule() {
               '--tech-card-image-height': '188px',
               '--tech-card-image-fixed-width': '126px',
               '--tech-card-image-fixed-height': '188px',
-              '--tech-card-art-margin-top': '11px'
+              '--tech-card-art-margin-top': '11px',
+              '--tech-card-mobile-art-height': '88px'
             },
             art: { type: 'image', src: '/image/mq1ip4u2-z1dsbza.png', width: 126, height: 188 }
           },
@@ -126,7 +127,8 @@ export default function CiudadTechnologyModule() {
               '--tech-card-frame-height': '212px',
               '--tech-card-frame-max-width': '244px',
               '--tech-card-frame-bg-size': '100% 148%',
-              '--tech-card-frame-bg-position': 'center top'
+              '--tech-card-frame-bg-position': 'center top',
+              '--tech-card-mobile-art-height': '88px'
             },
             art: {
               type: 'gps',
@@ -136,8 +138,6 @@ export default function CiudadTechnologyModule() {
               overlayTop: '46%',
               overlayLeft: '50%',
               overlayTransform: 'translate(-50%, -50%)',
-              overlayMaxWidth: '143px',
-              overlayMaxHeight: '143px',
               backgroundSrc: '/image/mq1ip585-5mj0wb5.webp',
               cornerSrc: '/image/mq1ip584-5xtsqf8.svg',
               cornerWidth: 18,

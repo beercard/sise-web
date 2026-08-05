@@ -12,7 +12,7 @@ export default function AgroHero() {
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <div className={styles.heroCopy}>
-          <Image src="/image/mq1fh69q-07xoj3d.png" alt="SISE Agro" className={styles.heroKicker} width={560} height={93} priority />
+          <Image src="/image/mq1fh69q-07xoj3d.png" alt="SISE Agro" className={styles.heroKicker} width={572} height={126} priority />
 
           <h1 className={styles.heroTitle}>
             <span className={styles.heroTitleLight}>Seguridad sin límites, </span>

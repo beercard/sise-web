@@ -27,20 +27,20 @@ const HOUSE_BASE_HEIGHT = 511;
 
 const DEFAULT_POSITIONS = {
   perimetral: {
-    camaras: { top: 359, left: 178 },
-    sirena: { top: 347, left: 179 },
-    cartel: { top: 387, left: 293 },
-    cerco: { top: 233, left: 631 },
-    guardia: { top: 256, left: 38 },
-    magneticos: { top: 397, left: 243 }
+    camaras: { top: 256, left: 39 },
+    sirena: { top: 349, left: 180 },
+    cartel: { top: 314, left: 179 },
+    cerco: { top: 229, left: 633 },
+    guardia: { top: 391, left: 294 },
+    magneticos: { top: 396, left: 244 }
   },
   interior: {
     camaras: { top: 101, left: 456 },
     sensor: { top: 108, left: 520 },
     teclado: { top: 289, left: 371 },
     mando: { top: 378, left: 343 },
-    central: { top: 257, left: 371 },
-    acceso: { top: 327, left: 268 }
+    central: { top: 245, left: 371 },
+    acceso: { top: 321, left: 270 }
   },
   conectividad: {
     app: { top: 390, left: 333 }
