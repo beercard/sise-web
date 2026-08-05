@@ -83,8 +83,16 @@ export default function CiudadTechnologyModule() {
             title: 'Puntos Seguros',
             text: 'Espacios equipados y monitoreados que permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
             mobileTall: true,
-            /* Mobile (Figma 3182:469): texto más corto que el de escritorio. */
+            /* Mobile (Figma 3182:469): texto más corto que el de escritorio, con el mismo
+               corte de línea de Figma (mobileTextLines fija el salto para que el navegador
+               no agregue una línea extra por diferencias de métricas de fuente). */
             mobileText: 'Permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
+            mobileTextLines: [
+              'Permiten solicitar',
+              'asistencia ante',
+              'emergencias, conectados',
+              'al centro de monitoreo.'
+            ],
             styleVars: {
               '--tech-card-padding': '42px 83px 18px',
               '--tech-card-align-items': 'center',
@@ -101,7 +109,7 @@ export default function CiudadTechnologyModule() {
               '--tech-card-art-margin-top': '11px',
               '--tech-card-mobile-title-top': '38px',
               '--tech-card-mobile-text-top': '72px',
-              '--tech-card-mobile-text-width': '187px',
+              '--tech-card-mobile-text-width': '190px',
               '--tech-card-mobile-art-top': '152px',
               '--tech-card-mobile-art-width': '89px',
               '--tech-card-mobile-art-height': '133px'
@@ -113,8 +121,16 @@ export default function CiudadTechnologyModule() {
             title: 'Paradas Seguras',
             text: 'Infraestructura de seguridad en transporte público que mejora la protección de los usuarios.',
             mobileTall: true,
-            /* Mobile (Figma 3182:470): texto más corto que el de escritorio. */
+            /* Mobile (Figma 3182:470): texto más corto que el de escritorio, con el mismo
+               corte de línea de Figma (mobileTextLines fija el salto para que el navegador
+               no agregue una línea extra por diferencias de métricas de fuente). */
             mobileText: 'Infraestructura en transporte público que mejora la protección de los usuarios.',
+            mobileTextLines: [
+              'Infraestructura en',
+              'transporte público que',
+              'mejora la protección',
+              'de los usuarios.'
+            ],
             styleVars: {
               '--tech-card-padding': '42px 83px 19px',
               '--tech-card-align-items': 'center',
@@ -131,7 +147,7 @@ export default function CiudadTechnologyModule() {
               '--tech-card-art-margin-top': '11px',
               '--tech-card-mobile-title-top': '38px',
               '--tech-card-mobile-text-top': '72px',
-              '--tech-card-mobile-text-width': '169px',
+              '--tech-card-mobile-text-width': '172px',
               '--tech-card-mobile-art-top': '166px',
               '--tech-card-mobile-art-width': '63px',
               '--tech-card-mobile-art-height': '113px'

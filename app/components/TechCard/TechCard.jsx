@@ -116,7 +116,16 @@ export default function TechCard({ slide, className = '' }) {
       </p>
       {slide.text ? (
         <p className={styles.text}>
-          {slide.mobileText ? (
+          {slide.mobileTextLines ? (
+            <>
+              <span className={styles.desktopText}>{slide.text}</span>
+              <span className={styles.mobileText}>
+                {slide.mobileTextLines.flatMap((line, index) =>
+                  index === 0 ? [line] : [<br key={`text-br-${index}`} />, line]
+                )}
+              </span>
+            </>
+          ) : slide.mobileText ? (
             <>
               <span className={styles.desktopText}>{slide.text}</span>
               <span className={styles.mobileText}>{slide.mobileText}</span>
