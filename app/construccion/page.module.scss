@@ -815,8 +815,10 @@
   font-weight: 600;
 }
 
+/* Sin separación: el módulo de soluciones cierra contra el cotizador. Los 57px
+   que había acá dejaban ver el fondo blanco de la página como una barra. */
 .cotizadorWrap {
-  margin-top: 57px;
+  margin-top: 0;
 }
 
 @media (max-width: 1366px) {
