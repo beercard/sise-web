@@ -100,7 +100,20 @@ export default function TechCard({ slide, className = '' }) {
 
   return (
     <div className={cardClassName} style={slide.styleVars}>
-      <p className={styles.title}>{slide.title}</p>
+      <p className={styles.title}>
+        {slide.mobileTitleLines ? (
+          <>
+            <span className={styles.desktopText}>{slide.title}</span>
+            <span className={styles.mobileText}>
+              {slide.mobileTitleLines.flatMap((line, index) =>
+                index === 0 ? [line] : [<br key={`title-br-${index}`} />, line]
+              )}
+            </span>
+          </>
+        ) : (
+          slide.title
+        )}
+      </p>
       {slide.text ? (
         <p className={styles.text}>
           {slide.mobileText ? (

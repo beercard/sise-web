@@ -55,6 +55,8 @@ export default function CiudadTechnologyModule() {
             title: 'Cámaras de vigilancia',
             text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
             mobileTall: true,
+            /* Mobile (Figma 3151:2492): salto de línea manual "Cámaras" / "de vigilancia". */
+            mobileTitleLines: ['Cámaras', 'de vigilancia'],
             styleVars: {
               '--tech-card-padding': '42px 83px 27px',
               '--tech-card-align-items': 'center',
