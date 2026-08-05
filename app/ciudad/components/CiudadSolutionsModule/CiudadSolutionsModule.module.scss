@@ -2,10 +2,11 @@
  * Módulo de soluciones — misma estructura y geometría que /hogar y /comercio.
  * Lo único propio de esta página es el color de marca y el contenido.
  */
-/* Escritorio — Figma "soluciones desk" (nodo 5026:640), marco de 1920×686.
+/* Escritorio — Figma "Component 5" (nodo 5011:455), marco de 1920×686.
    El copy abre en y=91, "Soluciones:" en 284 y las cards en 360. El alto del
    área de cards se elige para que el encabezado, que va 51px por debajo de su
-   borde, caiga en 284. */
+   borde, caiga en 284. Título y cuerpo de las cards usan el mismo texto corto
+   y el mismo corte en dos líneas que mobile (ver componente). */
 .section {
   --solutions-total-height: 686px;
   --solutions-grid-height: 453px;
@@ -17,12 +18,12 @@
   --solutions-card-height: 261px;
   --solutions-grid-gap: 33px;
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-  --solutions-title-width: 203px;
-  --solutions-card-title-top: 56px;
+  --solutions-title-width: 200px;
+  --solutions-card-title-top: 68px;
   --solutions-card-title-min-height: 39px;
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 127px;
+  --solutions-card-body-top: 121px;
   --solutions-card-body-font-size: 16px;
   --solutions-card-body-line-height: 16px;
   --solutions-card-body-width: 180px;
@@ -31,6 +32,7 @@
   background: #597a9c;
   color: #ffffff;
   overflow: hidden;
+  margin-bottom: 30px;
 }
 
 .canvas {
@@ -67,8 +69,6 @@
 }
 
 .lead,
-.body,
-.punch,
 .heading {
   margin: 0;
 }
@@ -78,41 +78,7 @@
   min-height: 59px;
   line-height: 30px;
   font-size: 32px;
-}
-
-.leadLight {
-  font-weight: 300;
-}
-
-.leadStrong {
-  font-weight: 600;
-}
-
-.body {
-  width: 100%;
-  min-height: 44px;
-  margin-top: 4px;
-  line-height: 20px;
-  font-size: 20px;
-}
-
-.bodyLight {
-  font-weight: 300;
-}
-
-.bodyStrong {
-  font-weight: 600;
-}
-
-.punch {
-  position: relative;
-  margin-top: var(--solutions-copy-gap);
-  width: calc(100% - 4px);
-  min-height: 82px;
-  margin-left: 4px;
-  line-height: 38.712px;
-  font-size: 48px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .gridArea {
@@ -210,27 +176,10 @@
   font-weight: 700;
 }
 
-.cardTitle .desktopTitle {
-  display: contents;
-}
-
-.cardTitle .mobileTitle {
-  display: none;
-}
-
-.desktopBodyText {
-  display: inline;
-}
-
-.mobileBodyText {
-  display: none;
-}
-
-/* Cada card arranca su cuerpo a una altura distinta según cuántos renglones
-   ocupa su texto. */
+/* Cada card tiene su propio ancho de cuerpo según cuántas palabras entran por
+   renglón; el top es el mismo para las cinco (--solutions-card-body-top). */
 .puntos .cardBody {
-  top: 111px;
-  width: 178px;
+  width: 176px;
 }
 
 .paradas .cardBody {
@@ -238,16 +187,15 @@
 }
 
 .urbana .cardBody {
-  width: 199px;
+  width: 167px;
 }
 
 .gps .cardBody {
-  top: 137px;
-  width: 205px;
+  width: 179px;
 }
 
 .accesos .cardBody {
-  width: 152px;
+  width: 169px;
 }
 
 .heading {
@@ -327,10 +275,6 @@
 
 
 
-
-
-
-
 @media (max-width: 1440px) {
   .section {
     --solutions-total-height: 752px;
@@ -367,21 +311,6 @@
     min-height: 0;
     font-size: clamp(26px, 2.1vw, 32px);
     line-height: clamp(26px, 2vw, 30px);
-  }
-
-  .body {
-    width: 100%;
-    min-height: 0;
-    font-size: clamp(17px, 1.42vw, 20px);
-    line-height: clamp(18px, 1.42vw, 20px);
-  }
-
-  .punch {
-    min-height: 0;
-    font-size: clamp(38px, 3.2vw, 48px);
-    line-height: clamp(33px, 2.7vw, 39px);
-    margin-left: 0;
-    width: 100%;
   }
 
   .heading {
@@ -459,13 +388,6 @@
     width: 100%;
   }
 
-  .punch {
-    width: 100%;
-    margin-top: var(--solutions-copy-gap);
-    margin-left: 0;
-    min-height: 0;
-  }
-
   .gridArea {
     position: relative;
     top: auto;
@@ -521,20 +443,6 @@
     text-align: center;
   }
 
-  .body {
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-  }
-
-  .punch {
-    width: calc(100% - 32px);
-    margin-top: 18px;
-    font-size: 28px;
-    line-height: 32px;
-    text-align: center;
-  }
-
   .heading {
     width: calc(100% - 32px);
     margin-bottom: 24px;
@@ -565,7 +473,7 @@
 }
 
 /*
- * Mobile — Figma "soluciones mobile" (nodo 5026:645), lienzo de 752×1254 con
+ * Mobile — Figma "Component 6" (nodo 5011:457), lienzo de 752×1254 con
  * el marco del teléfono en x=183. El copy ocupa los primeros 173px y el área
  * de cards los 1081 restantes, que llenan 19 bandas de 55 con 2 de separación.
  * Los hijos se centran sobre el lienzo, que a su vez va centrado en pantalla.
@@ -614,22 +522,6 @@
 
   .mobileOnly {
     display: block;
-  }
-
-  .cardTitle .desktopTitle {
-    display: none;
-  }
-
-  .cardTitle .mobileTitle {
-    display: contents;
-  }
-
-  .desktopBodyText {
-    display: none;
-  }
-
-  .mobileBodyText {
-    display: inline;
   }
 
   .gridArea {

@@ -2,7 +2,6 @@ import CiudadHero from './components/CiudadHero/CiudadHero';
 import CiudadTechnologyModule from './components/CiudadTechnologyModule/CiudadTechnologyModule';
 import CiudadSolutionsModule from './components/CiudadSolutionsModule/CiudadSolutionsModule';
 
-import Cotizador from '../components/Cotizador/Cotizador';
 import {
   buildBreadcrumbSchema,
   buildLocalAreas,
@@ -65,9 +64,6 @@ export default function CiudadPage() {
       <CiudadHero />
       <CiudadTechnologyModule />
       <CiudadSolutionsModule />
-      <section className={styles.cotizadorWrap} aria-label="Cotizador online">
-        <Cotizador variant="spaces" />
-      </section>
     </div>
   );
 }
