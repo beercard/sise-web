@@ -4,49 +4,39 @@ const WATERMARK_ROWS = Array.from({ length: 19 }, (_, index) => `row-${index + 1
 
 const solutions = [
   {
-    key: 'obra',
-    title: ['VIDEOVIGILANCIA', 'DE OBRA'],
-    mobileTitle: ['VIDEOVIGILANCIA', 'DE OBRA'],
-    body:
-      'Cámaras con acceso remoto para ver el avance y contar con registro ante robos o incidentes en el predio.',
-    mobileBody:
-      'Cámaras con acceso remoto para ver el avance y contar con registro ante robos o incidentes en el predio.'
+    key: 'alarmas',
+    title: ['ALARMAS Y MONITOREO'],
+    mobileTitle: ['ALARMAS Y', 'MONITOREO'],
+    body: 'Protección fuera del horario laboral con supervisión permanente.',
+    mobileBody: 'Protección activa de materiales y obrador fuera del horario de trabajo.'
   },
   {
-    key: 'solares',
-    title: ['CÁMARAS SOLARES', 'AUTÓNOMAS'],
-    mobileTitle: ['CÁMARAS SOLARES', 'AUTÓNOMAS'],
-    body:
-      'Sistemas con energía solar y conectividad propia, ideales para obras sin luz ni señal en sus etapas iniciales.',
-    mobileBody:
-      'Sistemas con energía solar y conectividad propia, ideales para obras sin luz ni señal en sus etapas iniciales.'
+    key: 'cerco',
+    title: ['CERCO ELÉCTRICO'],
+    mobileTitle: ['CERCO', 'ELÉCTRICO'],
+    body: 'Cierre perimetral temporal para delimitar y proteger el predio.',
+    mobileBody: 'Cierre perimetral de alta tensión para blindar el predio desde el día uno.'
   },
   {
-    key: 'accesos',
-    title: ['CONTROL DE', 'ACCESOS'],
-    mobileTitle: ['CONTROL DE', 'ACCESOS'],
-    body:
-      'Ingreso ordenado de personal, contratistas y proveedores, con registro de movimientos y trazabilidad.',
-    mobileBody:
-      'Ingreso ordenado de personal, contratistas y proveedores, con registro de movimientos y trazabilidad.'
+    key: 'cctv',
+    title: ['CCTV / VIDEOVIGILANCIA'],
+    mobileTitle: ['CCTV /', 'VIDEOVIGILANCIA'],
+    body: 'Monitoreo de cámaras con enfoque preventivo y control remoto.',
+    mobileBody: 'Control preventivo del terreno y supervisión remota de la ejecución.'
   },
   {
-    key: 'monitoreo',
-    title: ['MONITOREO', 'PERIMETRAL 24/7'],
-    mobileTitle: ['MONITOREO', 'PERIMETRAL 24/7'],
-    body:
-      'Supervisión del perímetro las 24 horas: ante una alerta verificamos el evento y coordinamos la respuesta.',
-    mobileBody:
-      'Supervisión del perímetro las 24 horas: ante una alerta verificamos el evento y coordinamos la respuesta.'
+    key: 'acceso',
+    title: ['CONTROL DE ACCESO'],
+    mobileTitle: ['CONTROL', 'DE ACCESO'],
+    body: 'Registro y control de ingreso de personal y proveedores.',
+    mobileBody: 'Registro estricto de contratistas, obreros y proveedores.'
   },
   {
-    key: 'reubicable',
-    title: ['SISTEMA', 'REUBICABLE'],
-    body:
-      'Equipamiento escalable que se traslada al próximo proyecto cuando termina la etapa o la obra.',
-    mobileTitle: ['SISTEMA', 'REUBICABLE'],
-    mobileBody:
-      'Equipamiento escalable que se traslada al próximo proyecto cuando termina la etapa o la obra.'
+    key: 'timelapse',
+    title: ['TIMELAPSE DE OBRA'],
+    mobileTitle: ['TIMELAPSE', 'DE OBRA'],
+    body: 'Registro audiovisual del avance del proyecto para control y documentación.',
+    mobileBody: 'Documentación visual del avance del proyecto para control e inversores.'
   }
 ];
 
@@ -59,28 +49,27 @@ export default function ConstruccionSolutionsModule() {
             <div className={styles.copyMain}>
               <div className={styles.desktopOnly}>
                 <p className={styles.lead}>
-                  <span className={styles.leadLight}>Implementamos</span>
-                  <span className={styles.leadMedium}> </span>
-                  <span className={styles.leadStrong}>soluciones tecnológicas que mejoran la seguridad</span>
+                  <span className={styles.leadLight}>Brindamos </span>
+                  <span className={styles.leadStrong}>seguridad activa y monitoreo constante</span>
                   <span className={styles.leadLight}>
                     {' '}
-                    en espacios compartidos, optimizando costos y brindando mayor control a los residentes.
+                    en obras, previniendo robos, vandalismo e intrusiones durante todo el desarrollo.
                   </span>
                 </p>
               </div>
 
               <div className={styles.mobileOnly}>
                 <p className={styles.mobileLead}>
-                  Más seguridad,
+                  Protección desde
                   <br />
-                  menor costo operativo.
+                  el primer día.
                 </p>
                 <p className={styles.mobileBody}>
-                  <span className={styles.mobileBodyLight}>Implementamos </span>
-                  <span className={styles.mobileBodyStrong}>soluciones tecnológicas que mejoran la seguridad</span>
+                  <span className={styles.mobileBodyLight}>Brindamos </span>
+                  <span className={styles.mobileBodyStrong}>seguridad activa y monitoreo constante</span>
                   <span className={styles.mobileBodyLight}>
                     {' '}
-                    en espacios compartidos, optimizando costos y brindando mayor control a los residentes.
+                    en obras, previniendo robos, vandalismo e intrusiones durante todo el desarrollo.
                   </span>
                 </p>
               </div>

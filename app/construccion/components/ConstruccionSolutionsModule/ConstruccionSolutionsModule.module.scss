@@ -1,5 +1,8 @@
+/* Escritorio — Figma "soluciones desktop" (nodo 5026:552), marco de 1920×697.
+   El copy abre en y=96, "Soluciones:" en 294 y las cards en 356. Los dos
+   últimos salen solos del alto total menos el del área de cards. */
 .section {
-  --solutions-total-height: 676px;
+  --solutions-total-height: 697px;
   --solutions-grid-height: 454px;
   --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
   --solutions-content-width: 1187px;
@@ -8,11 +11,11 @@
   --solutions-grid-gap: 33px;
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
   --solutions-title-width: 203px;
-  --solutions-card-title-top: 70px;
+  --solutions-card-title-top: 66px;
   --solutions-card-title-min-height: 39px;
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 133px;
+  --solutions-card-body-top: 134px;
   --solutions-card-body-font-size: 16px;
   --solutions-card-body-line-height: 16px;
   --solutions-card-body-width: 180px;
@@ -33,10 +36,10 @@
 .copyBlock {
   position: absolute;
   z-index: 2;
-  top: 80px;
+  top: 96px;
   left: 50%;
   transform: translateX(-50%);
-  height: calc(var(--solutions-copy-height) - 80px);
+  height: calc(var(--solutions-copy-height) - 96px);
   width: min(var(--solutions-content-width), calc(100% - 48px));
   display: flex;
   flex-direction: column;
@@ -442,7 +445,7 @@
 
 @media (max-width: 600px) {
   .section {
-    min-height: 1393px;
+    min-height: 1303px;
     --solutions-card-width: 201px;
     --solutions-card-height: 164px;
     --solutions-grid-gap: 30px;
@@ -458,12 +461,49 @@
     --solutions-card-body-width: 189px;
   }
 
+  /* Cada card tiene su propio arranque de título y cuerpo: el diseño los
+     acomoda según cuántos renglones ocupa cada texto. */
+  .alarmas {
+    --solutions-title-width: 203px;
+    --solutions-card-title-top: 26px;
+    --solutions-card-body-top: 71px;
+    --solutions-card-body-width: 151px;
+  }
+
+  .cerco {
+    --solutions-title-width: 203px;
+    --solutions-card-title-top: 24px;
+    --solutions-card-body-top: 69px;
+    --solutions-card-body-width: 150px;
+  }
+
+  .cctv {
+    --solutions-title-width: 190px;
+    --solutions-card-title-top: 32px;
+    --solutions-card-body-top: 77px;
+    --solutions-card-body-width: 177px;
+  }
+
+  .acceso {
+    --solutions-title-width: 197px;
+    --solutions-card-title-top: 34px;
+    --solutions-card-body-top: 79px;
+    --solutions-card-body-width: 160px;
+  }
+
+  .timelapse {
+    --solutions-title-width: 203px;
+    --solutions-card-title-top: 27px;
+    --solutions-card-body-top: 71px;
+    --solutions-card-body-width: 157px;
+  }
+
   .canvas {
     width: 752px;
     max-width: none;
-    height: 1393px;
+    height: 1303px;
     left: 50%;
-    transform: translateX(calc(-50% - 8px));
+    transform: translateX(-50%);
     overflow: hidden;
   }
 
@@ -492,13 +532,14 @@
     left: 50%;
     transform: translateX(-50%);
     width: 402px;
-    height: 312px;
+    height: 222px;
     margin: 0;
+    padding: 0;
   }
 
   .intro {
     width: 402px;
-    padding-top: 51px;
+    padding-top: 43px;
     gap: 0;
     flex-direction: column;
     justify-content: flex-start;
@@ -529,12 +570,14 @@
     line-height: 24px;
   }
 
+  /* 308, que es el ancho del bloque de copy en este diseño (en edificios era
+     323, de donde venía copiado el módulo). */
   .mobileBody {
     position: absolute;
     top: 69px;
     left: 50%;
     transform: translateX(-50%);
-    width: 323px;
+    width: 308px;
     height: 72px;
     line-height: 18px;
   }
@@ -557,7 +600,7 @@
 
   .gridArea {
     position: absolute;
-    top: 312px;
+    top: 222px;
     left: 0;
     width: 752px;
     height: 1081px;
@@ -566,7 +609,7 @@
 
   .heading {
     position: absolute;
-    top: 28px;
+    top: 34px;
     left: 50%;
     width: 399px;
     transform: translateX(-50%);
@@ -579,7 +622,7 @@
 
   .grid {
     position: absolute;
-    top: 83px;
+    top: 82px;
     left: 50%;
     width: var(--solutions-grid-width);
     height: auto;
