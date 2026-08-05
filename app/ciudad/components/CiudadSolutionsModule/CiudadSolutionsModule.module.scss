@@ -2,9 +2,13 @@
  * Módulo de soluciones — misma estructura y geometría que /hogar y /comercio.
  * Lo único propio de esta página es el color de marca y el contenido.
  */
+/* Escritorio — Figma "soluciones desk" (nodo 5026:640), marco de 1920×686.
+   El copy abre en y=91, "Soluciones:" en 284 y las cards en 360. El alto del
+   área de cards se elige para que el encabezado, que va 51px por debajo de su
+   borde, caiga en 284. */
 .section {
-  --solutions-total-height: 775px;
-  --solutions-grid-height: 458px;
+  --solutions-total-height: 686px;
+  --solutions-grid-height: 453px;
   --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
   --solutions-content-width: 1196px;
   --solutions-intro-gap: 44px;
@@ -14,11 +18,11 @@
   --solutions-grid-gap: 33px;
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
   --solutions-title-width: 203px;
-  --solutions-card-title-top: 36px;
+  --solutions-card-title-top: 56px;
   --solutions-card-title-min-height: 39px;
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 112px;
+  --solutions-card-body-top: 127px;
   --solutions-card-body-font-size: 16px;
   --solutions-card-body-line-height: 16px;
   --solutions-card-body-width: 180px;
@@ -39,27 +43,26 @@
 .copyBlock {
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: 91px;
   left: 50%;
   transform: translateX(-50%);
-  height: var(--solutions-copy-height);
+  height: calc(var(--solutions-copy-height) - 91px);
   width: min(var(--solutions-content-width), calc(100% - 48px));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
+/* El copy es un solo párrafo de 995px, no las dos columnas que tenía antes. */
 .intro {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 578px) minmax(0, 574px);
-  justify-content: center;
-  gap: var(--solutions-intro-gap);
-  align-items: start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .copyMain {
-  width: 578px;
+  width: 995px;
   max-width: 100%;
 }
 
@@ -145,15 +148,106 @@
 
 .watermarkRow:first-child {
   height: 152px;
+}
+
+/* Las tres bandas se alternan para poder repetir el patrón tantas filas como
+   haga falta. Fuera de mobile sólo se ven las tres primeras, así que el
+   resultado es el mismo de siempre: banda 1, 2 y 3. */
+.watermarkRow:nth-child(3n + 1) {
   background-image: url('/image/solutions-band-1.png');
 }
 
-.watermarkRow:nth-child(2) {
+.watermarkRow:nth-child(3n + 2) {
   background-image: url('/image/solutions-band-2.png');
 }
 
-.watermarkRow:nth-child(3) {
+.watermarkRow:nth-child(3n) {
   background-image: url('/image/solutions-band-3.png');
+}
+
+/* Las de relleno sólo hacen falta donde el área de cards es más alta que las
+   tres bandas: `.watermark` es un flex vertical de alto fijo, así que si se
+   muestran todas se reparten el espacio y aplastan el patrón. */
+.watermarkRow:nth-child(n + 4) {
+  display: none;
+}
+
+@media (min-width: 601px) and (max-width: 1279px) {
+  .watermarkRow {
+    flex-shrink: 0;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+}
+
+/* Versiones de escritorio y de mobile del copy y de los textos de las cards:
+   los envoltorios van en `contents` para no meterse en el layout. */
+.desktopOnly {
+  display: contents;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.mobileBody {
+  margin: 0;
+  width: 304px;
+  max-width: 100%;
+  text-align: center;
+  line-height: 19.8px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.mobileBodyLight {
+  font-weight: 400;
+}
+
+.mobileBodyStrong {
+  font-weight: 700;
+}
+
+.cardTitle .desktopTitle {
+  display: contents;
+}
+
+.cardTitle .mobileTitle {
+  display: none;
+}
+
+.desktopBodyText {
+  display: inline;
+}
+
+.mobileBodyText {
+  display: none;
+}
+
+/* Cada card arranca su cuerpo a una altura distinta según cuántos renglones
+   ocupa su texto. */
+.puntos .cardBody {
+  top: 111px;
+  width: 178px;
+}
+
+.paradas .cardBody {
+  width: 183px;
+}
+
+.urbana .cardBody {
+  width: 199px;
+}
+
+.gps .cardBody {
+  top: 137px;
+  width: 205px;
+}
+
+.accesos .cardBody {
+  width: 152px;
 }
 
 .heading {
@@ -174,7 +268,7 @@
 .grid {
   position: relative;
   z-index: 2;
-  top: 113px;
+  top: 127px;
   width: var(--solutions-grid-width);
   margin: 0 auto;
   display: grid;
@@ -470,12 +564,204 @@
   }
 }
 
+/*
+ * Mobile — Figma "soluciones mobile" (nodo 5026:645), lienzo de 752×1254 con
+ * el marco del teléfono en x=183. El copy ocupa los primeros 173px y el área
+ * de cards los 1081 restantes, que llenan 19 bandas de 55 con 2 de separación.
+ * Los hijos se centran sobre el lienzo, que a su vez va centrado en pantalla.
+ */
 @media (max-width: 600px) {
+  .section {
+    min-height: 1254px;
+  }
+
+  .canvas {
+    width: 752px;
+    max-width: none;
+    height: 1254px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+  }
+
+  .copyBlock {
+    position: absolute;
+    top: 46px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 402px;
+    height: 127px;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 402px;
+    gap: 0;
+  }
+
+  .copyMain {
+    width: 304px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .cardTitle .desktopTitle {
+    display: none;
+  }
+
+  .cardTitle .mobileTitle {
+    display: contents;
+  }
+
+  .desktopBodyText {
+    display: none;
+  }
+
+  .mobileBodyText {
+    display: inline;
+  }
+
+  .gridArea {
+    position: absolute;
+    top: 173px;
+    left: 0;
+    width: 752px;
+    height: 1081px;
+    margin-top: 0;
+  }
+
+  .watermark {
+    top: 0;
+    left: 0;
+    width: 752px;
+    height: 100%;
+    transform: none;
+    gap: 2px;
+  }
+
+  .watermarkRow,
+  .watermarkRow:first-child {
+    height: 55px;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+
+  .heading {
+    position: absolute;
+    top: 29px;
+    left: 50%;
+    width: 399px;
+    transform: translateX(-50%);
+    margin: 0;
+    min-height: 0;
+    font-size: 24px;
+    line-height: 22.8px;
+    text-align: center;
+  }
+
+  /* Las cards arrancan en y=77 del área y van cada 194px. */
   .grid {
-    grid-template-columns: var(--solutions-card-width);
+    position: absolute;
+    top: 77px;
+    left: 50%;
+    width: var(--solutions-card-width);
+    height: auto;
+    margin: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    grid-template-columns: none;
   }
 
   .cardGroup {
-    margin: 0 auto;
+    width: 201px;
+    margin: 0;
+  }
+
+  .card {
+    width: 201px;
+    height: 164px;
+    border-radius: 22px;
+  }
+
+  .cardTitle {
+    width: 201px;
+    min-height: 35px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .cardBody {
+    width: 169px;
+    min-height: 0;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  /* Cada card tiene su propio arranque de título y cuerpo, según cuántos
+     renglones ocupa cada texto en el diseño. */
+  .puntos .cardTitle {
+    top: 26px;
+    width: 201px;
+  }
+
+  .puntos .cardBody {
+    top: 71px;
+    width: 169px;
+  }
+
+  .paradas .cardTitle {
+    top: 34px;
+    width: 201px;
+  }
+
+  .paradas .cardBody {
+    top: 79px;
+    width: 184px;
+  }
+
+  .urbana .cardTitle {
+    top: 35px;
+    width: 189px;
+  }
+
+  .urbana .cardBody {
+    top: 80px;
+    width: 174px;
+  }
+
+  .gps .cardTitle {
+    top: 25px;
+    width: 197px;
+  }
+
+  .gps .cardBody {
+    top: 69px;
+    width: 169px;
+  }
+
+  .accesos .cardTitle {
+    top: 34px;
+    width: 197px;
+  }
+
+  .accesos .cardBody {
+    top: 78px;
+    width: 184px;
   }
 }

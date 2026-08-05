@@ -751,8 +751,10 @@
   }
 }
 
+/* Sin separación: el módulo de soluciones cierra contra el cotizador. Los 57px
+   que había acá dejaban ver el fondo blanco de la página como una barra. */
 .cotizadorWrap {
-  margin-top: 57px;
+  margin-top: 0;
 }
 
 .authoritySection,
@@ -1821,26 +1823,30 @@
     );
   }
 
+  /* Hero mobile — Figma "hero mobile" (nodo 5026:636), marco de 402×592.
+     El logo va en y=363 (192×37) y el título en y=404, 352 de ancho y dos
+     renglones de 25.6. Esta página no lleva bajada de categoría. */
   .heroCopy {
-    left: 24px;
-    top: 360px;
+    left: 25px;
+    top: 363px;
     bottom: auto;
-    width: min(354px, calc(100% - 48px));
+    width: min(353px, calc(100% - 49px));
   }
 
   .heroCityLogo {
-    width: 191px;
-    height: auto;
+    width: 192px;
+    height: 37px;
   }
 
   .heroTitle {
-    /* El logo termina en y=395 y el título arranca en y=403. */
-    margin: 8px 0 0 2px;
-    width: min(343px, 100%);
+    /* El logo termina en y=400 y el título arranca en y=404, 1px corrido a la
+       derecha del eje. */
+    margin: 4px 0 0 1px;
+    width: min(352px, 100%);
     min-height: 0;
     height: auto;
     font-size: 32px;
-    line-height: 32px;
+    line-height: 25.6px;
   }
 
   .heroTitleLight {
