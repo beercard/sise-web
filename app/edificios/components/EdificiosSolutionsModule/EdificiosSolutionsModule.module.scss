@@ -1,24 +1,18 @@
-/*
- * Módulo de soluciones — misma estructura y geometría que /hogar y /comercio.
- * Lo único propio de esta página es el color de marca y el contenido.
- */
 .section {
-  --solutions-total-height: 775px;
-  --solutions-grid-height: 458px;
+  --solutions-total-height: 676px;
+  --solutions-grid-height: 454px;
   --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-  --solutions-content-width: 1196px;
-  --solutions-intro-gap: 44px;
-  --solutions-copy-gap: 22px;
+  --solutions-content-width: 1187px;
   --solutions-card-width: 211px;
   --solutions-card-height: 261px;
   --solutions-grid-gap: 33px;
   --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
   --solutions-title-width: 203px;
-  --solutions-card-title-top: 36px;
+  --solutions-card-title-top: 70px;
   --solutions-card-title-min-height: 39px;
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 112px;
+  --solutions-card-body-top: 133px;
   --solutions-card-body-font-size: 16px;
   --solutions-card-body-line-height: 16px;
   --solutions-card-body-width: 180px;
@@ -39,33 +33,28 @@
 .copyBlock {
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  height: var(--solutions-copy-height);
+  height: calc(var(--solutions-copy-height) - 80px);
   width: min(var(--solutions-content-width), calc(100% - 48px));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .intro {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 578px) minmax(0, 574px);
-  justify-content: center;
-  gap: var(--solutions-intro-gap);
-  align-items: start;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .copyMain {
-  width: 578px;
-  max-width: 100%;
+  width: 100%;
 }
 
 .lead,
-.body,
-.punch,
 .heading {
   margin: 0;
 }
@@ -73,43 +62,64 @@
 .lead {
   width: 100%;
   min-height: 59px;
-  line-height: 30px;
+  line-height: 30.4px;
   font-size: 32px;
 }
 
 .leadLight {
-  font-weight: 300;
+  font-weight: 400;
+}
+
+.desktopBodyText {
+  display: inline;
+}
+
+.mobileBodyText {
+  display: none;
+}
+
+.leadMedium {
+  font-weight: 500;
 }
 
 .leadStrong {
   font-weight: 600;
 }
 
-.body {
-  width: 100%;
-  min-height: 44px;
-  margin-top: 4px;
-  line-height: 20px;
-  font-size: 20px;
+.desktopOnly {
+  display: contents;
 }
 
-.bodyLight {
-  font-weight: 300;
+.mobileOnly {
+  display: none;
 }
 
-.bodyStrong {
-  font-weight: 600;
+.mobileLead {
+  margin: 0;
+  width: 231px;
+  text-align: center;
+  line-height: 19.36px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.punch {
-  position: relative;
-  margin-top: var(--solutions-copy-gap);
-  width: calc(100% - 4px);
-  min-height: 82px;
-  margin-left: 4px;
-  line-height: 38.712px;
-  font-size: 48px;
-  font-weight: 600;
+.mobileBody {
+  margin: 0;
+  width: 296px;
+  text-align: center;
+  line-height: 19.8px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.mobileBodyLight {
+  font-weight: 400;
+}
+
+.mobileBodyStrong {
+  font-weight: 700;
 }
 
 .gridArea {
@@ -145,15 +155,32 @@
 
 .watermarkRow:first-child {
   height: 152px;
+}
+
+.watermarkRow:nth-child(3n + 1) {
   background-image: url('/image/solutions-band-1.png');
 }
 
-.watermarkRow:nth-child(2) {
+.watermarkRow:nth-child(3n + 2) {
   background-image: url('/image/solutions-band-2.png');
 }
 
-.watermarkRow:nth-child(3) {
+.watermarkRow:nth-child(3n + 3) {
   background-image: url('/image/solutions-band-3.png');
+}
+
+.watermarkRow:nth-child(n + 4) {
+  display: none;
+}
+
+@media (min-width: 601px) and (max-width: 1279px) {
+  .watermarkRow {
+    flex-shrink: 0;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
 }
 
 .heading {
@@ -216,6 +243,14 @@
   color: #250f7f;
 }
 
+.desktopTitle {
+  display: inline;
+}
+
+.mobileTitle {
+  display: none;
+}
+
 .cardBody {
   position: absolute;
   top: var(--solutions-card-body-top);
@@ -243,8 +278,6 @@
     --solutions-grid-height: 448px;
     --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
     --solutions-content-width: 1080px;
-    --solutions-intro-gap: clamp(20px, 2vw, 32px);
-    --solutions-copy-gap: clamp(18px, 1.5vw, 22px);
     --solutions-card-width: clamp(184px, 14vw, 211px);
     --solutions-card-height: clamp(238px, 18vw, 261px);
     --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
@@ -260,34 +293,11 @@
     --solutions-card-body-width: clamp(156px, 12vw, 180px);
   }
 
-  .intro {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .copyMain {
-    width: 100%;
-  }
-
   .lead {
     width: 100%;
     min-height: 0;
     font-size: clamp(26px, 2.1vw, 32px);
     line-height: clamp(26px, 2vw, 30px);
-  }
-
-  .body {
-    width: 100%;
-    min-height: 0;
-    font-size: clamp(17px, 1.42vw, 20px);
-    line-height: clamp(18px, 1.42vw, 20px);
-  }
-
-  .punch {
-    min-height: 0;
-    font-size: clamp(38px, 3.2vw, 48px);
-    line-height: clamp(33px, 2.7vw, 39px);
-    margin-left: 0;
-    width: 100%;
   }
 
   .heading {
@@ -353,23 +363,7 @@
     width: calc(100% - 80px);
     margin: 0 auto;
     justify-content: flex-start;
-  }
-
-  .intro {
-    position: relative;
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .copyMain {
-    width: 100%;
-  }
-
-  .punch {
-    width: 100%;
-    margin-top: var(--solutions-copy-gap);
-    margin-left: 0;
-    min-height: 0;
+    padding-top: 42px;
   }
 
   .gridArea {
@@ -410,34 +404,16 @@
     --solutions-grid-gap: 24px;
   }
 
-  .intro {
-    width: 100%;
-    gap: 18px;
-  }
-
   .copyBlock {
     height: auto;
     width: calc(100% - 32px);
     justify-content: flex-start;
+    padding-top: 32px;
   }
 
   .lead {
     font-size: 18px;
     line-height: 24px;
-    text-align: center;
-  }
-
-  .body {
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-  }
-
-  .punch {
-    width: calc(100% - 32px);
-    margin-top: 18px;
-    font-size: 28px;
-    line-height: 32px;
     text-align: center;
   }
 
@@ -471,11 +447,216 @@
 }
 
 @media (max-width: 600px) {
+  .section {
+    min-height: 1324px;
+    --solutions-card-width: 201px;
+    --solutions-card-height: 164px;
+    --solutions-grid-gap: 30px;
+    --solutions-grid-width: var(--solutions-card-width);
+    --solutions-title-width: 201px;
+    --solutions-card-title-top: 33px;
+    --solutions-card-title-min-height: 18px;
+    --solutions-card-title-font-size: 20px;
+    --solutions-card-title-line-height: 20px;
+    --solutions-card-body-top: 78px;
+    --solutions-card-body-font-size: 18px;
+    --solutions-card-body-line-height: 18px;
+    --solutions-card-body-width: 189px;
+  }
+
+  /* A diferencia de comercio e industria, acá los hijos se centran sobre el
+     lienzo en vez de ir posicionados en absoluto, así que el lienzo va centrado
+     y no corrido: centrar sobre él ya equivale a centrar en la pantalla. Con el
+     -8px que tenía, todo quedaba 8px a la izquierda. */
+  .canvas {
+    width: 752px;
+    max-width: none;
+    height: 1324px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+  }
+
+  .watermark {
+    top: 0;
+    left: 0;
+    width: 752px;
+    height: 100%;
+    transform: none;
+    gap: 2px;
+    opacity: 0.4;
+  }
+
+  .watermarkRow,
+  .watermarkRow:first-child {
+    height: 55px;
+  }
+
+  .watermarkRow:nth-child(n + 4) {
+    display: block;
+  }
+
+  /* Sin el padding superior que trae de más arriba: sumado al de `.intro`
+     dejaba el título en y=83 en vez de los 51 del diseño. */
+  .copyBlock {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 402px;
+    height: 243px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .intro {
+    width: 402px;
+    padding-top: 51px;
+    gap: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .copyMain {
+    position: relative;
+    width: 323px;
+    height: 141px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .mobileLead {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 308px;
+    height: 40px;
+    line-height: 24px;
+  }
+
+  .mobileBody {
+    position: absolute;
+    top: 69px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 323px;
+    height: 72px;
+    line-height: 18px;
+  }
+
+  .desktopTitle {
+    display: none;
+  }
+
+  .mobileTitle {
+    display: contents;
+  }
+
+  .desktopBodyText {
+    display: none;
+  }
+
+  .mobileBodyText {
+    display: inline;
+  }
+
+  .gridArea {
+    position: absolute;
+    top: 243px;
+    left: 0;
+    width: 752px;
+    height: 1081px;
+    margin-top: 0;
+  }
+
+  .heading {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    width: 399px;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 24px;
+    line-height: 22.8px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
   .grid {
-    grid-template-columns: var(--solutions-card-width);
+    position: absolute;
+    top: 83px;
+    left: 50%;
+    width: var(--solutions-grid-width);
+    height: auto;
+    margin: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--solutions-grid-gap);
   }
 
   .cardGroup {
-    margin: 0 auto;
+    width: var(--solutions-card-width);
+    position: relative;
+    margin: 0;
+  }
+
+  .card {
+    width: var(--solutions-card-width);
+    height: var(--solutions-card-height);
+    border-radius: 22px;
+  }
+
+  .cardTitle {
+    letter-spacing: 1px;
+  }
+
+  .cardBody {
+    min-height: 0;
+  }
+
+  .acceso {
+    --solutions-title-width: 200px;
+    --solutions-card-title-min-height: 35px;
+    --solutions-card-body-top: 78px;
+    --solutions-card-body-width: 165px;
+  }
+
+  .guardia {
+    --solutions-title-width: 201px;
+    --solutions-card-body-top: 63px;
+    --solutions-card-body-width: 163px;
+  }
+
+  .alarmas {
+    --solutions-title-width: 178px;
+    --solutions-card-title-min-height: 35px;
+    --solutions-card-body-top: 81px;
+    --solutions-card-body-width: 182px;
+  }
+
+  .cerco {
+    --solutions-title-width: 170px;
+    --solutions-card-title-min-height: 35px;
+    --solutions-card-body-top: 81px;
+    --solutions-card-body-width: 189px;
+  }
+
+  /* La última card abre en y=873 y no en 859: el diseño le deja 44px de aire
+     en vez de los 30 que separan a las demás. */
+  .cctv {
+    --solutions-title-width: 201px;
+    --solutions-card-body-top: 59px;
+    --solutions-card-body-width: 174px;
+    margin-top: 14px;
   }
 }

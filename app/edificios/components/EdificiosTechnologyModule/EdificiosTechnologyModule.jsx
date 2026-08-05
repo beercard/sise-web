@@ -248,11 +248,11 @@ export default function EdificiosTechnologyModule() {
             text: 'Tecnología centralizada que conecta, procesa y reporta cada evento de seguridad.',
             styleVars: {
               '--tech-card-padding': '35px 83px 22px',
-              '--tech-card-align-items': 'flex-start',
-              '--tech-card-text-width': '246px',
-              '--tech-card-text-margin': '13px 0 0 15px',
+              '--tech-card-text-margin': '13px 0 0',
+              '--tech-card-text-width': '276px',
               '--tech-card-image-width': '219px',
-              '--tech-card-image-height': '156px'
+              '--tech-card-image-height': '156px',
+              '--tech-card-art-margin-top': '9px'
             },
             art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
           },
@@ -261,15 +261,15 @@ export default function EdificiosTechnologyModule() {
             title: 'Control de acceso',
             text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
             styleVars: {
-              '--tech-card-padding': '48px 43px 22px',
-              '--tech-card-title-width': '241px',
+              '--tech-card-padding': '48px 83px 22px',
+              '--tech-card-title-width': '276px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-width': '355px',
-              '--tech-card-text-margin': '11px 0 0',
+              '--tech-card-text-width': '276px',
+              '--tech-card-text-margin': '12px 0 0',
               '--tech-card-art-margin-top': '14px',
+              '--tech-card-mobile-art-height': '88px',
               '--tech-card-image-width': '94px',
-              '--tech-card-image-height': '176px',
-              '--tech-card-image-align-self': 'center'
+              '--tech-card-image-height': '176px'
             },
             art: { type: 'image', src: '/image/mpvxz539-e73c1z1.png', width: 94, height: 176 }
           }
