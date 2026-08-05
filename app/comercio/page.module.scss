@@ -885,9 +885,8 @@
   font-weight: 600;
 }
 
-.cotizadorWrap {
-  margin-top: 57px;
-}
+/* La separación con el cotizador se define más abajo, en 0: acá había un
+   `margin-top: 57px` duplicado que quedaba anulado por orden de fuente. */
 
 @media (max-width: 1366px) {
   .heroKicker,
