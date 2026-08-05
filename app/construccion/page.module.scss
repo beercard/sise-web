@@ -1426,11 +1426,15 @@
   align-items: flex-start;
 }
 
+/* Hero de escritorio — Figma "hero dektop" (nodo 5026:548), marco de 1920×800.
+   El logo va en y=360 (352×63), el título en y=440 (487 de ancho, dos renglones
+   de 51.6) y la bajada de categoría en y=571 (416 de ancho). Como los tres van
+   en flujo dentro de `.heroCopy`, las posiciones salen de sus márgenes. */
 .heroKicker {
   position: relative;
   top: auto;
   left: auto;
-  width: min(416px, 100%);
+  width: min(352px, 100%);
   height: auto;
 }
 
@@ -1438,10 +1442,10 @@
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
-  min-height: 102px;
-  margin: 16px 0 0;
-  line-height: 51px;
+  width: min(487px, 100%);
+  min-height: 103px;
+  margin: 17px 0 0;
+  line-height: 51.6px;
   font-size: 64px;
 }
 
@@ -1453,13 +1457,13 @@
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
-  margin: 22px 0 0;
+  width: min(416px, 100%);
+  margin: 28px 0 0;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 30.4px;
 }
 
 @media (max-width: 1366px) {
@@ -1584,26 +1588,32 @@
     );
   }
 
+  /* Hero mobile — Figma "hero mobile" (nodo 5026:549), marco de 402×592.
+     El logo va en y=363 (202×37), el título en y=404 (352 de ancho, dos
+     renglones de 25.6) y la bajada de categoría en y=477. Todo sobre el eje
+     de 26px de la columna. */
+  /* El eje izquierdo va en 26 pero el título llega hasta 378, así que del lado
+     derecho quedan 24: por eso se descuentan 50 y no 52. */
   .heroCopy {
-    left: 24px;
-    top: 360px;
+    left: 26px;
+    top: 363px;
     bottom: auto;
-    width: min(354px, calc(100% - 48px));
+    width: min(352px, calc(100% - 50px));
   }
 
   .heroKicker {
-    width: 191px;
-    height: auto;
+    width: 202px;
+    height: 37px;
   }
 
   .heroTitle {
-    /* El logo termina en y=395 y el título arranca en y=403. */
-    margin: 8px 0 0 2px;
-    width: min(343px, 100%);
+    /* El logo termina en y=400 y el título arranca en y=404. */
+    margin: 4px 0 0;
+    width: min(352px, 100%);
     min-height: 0;
     height: auto;
     font-size: 32px;
-    line-height: 32px;
+    line-height: 25.6px;
   }
 
   .heroTitleLight {
@@ -1614,10 +1624,17 @@
     font-weight: 600;
   }
 
+  /* El diseño mobile cierra el título con punto; el de escritorio no. */
+  .heroTitleStrong::after {
+    content: '.';
+  }
+
+  /* El título cierra en y=455 y la categoría abre en y=477. */
   .heroCategory {
-    margin: 12px 0 0;
-    font-size: 18px;
-    line-height: 20px;
+    margin: 22px 0 0;
+    width: min(354px, 100%);
+    font-size: 20px;
+    line-height: 19px;
   }
 
   /* ── Módulo de tecnología ── */

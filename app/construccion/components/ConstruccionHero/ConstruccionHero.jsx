@@ -12,7 +12,7 @@ export default function ConstruccionHero() {
         <div className={styles.heroGradient} aria-hidden="true" />
 
         <div className={styles.heroCopy}>
-          <Image src="/image/mq11fkmb-q59ieul.png" alt="SISE Urbano" className={styles.heroKicker} width={704} height={95} priority />
+          <Image src="/image/mq11fkmb-q59ieul.png" alt="SISE Urbano" className={styles.heroKicker} width={704} height={126} priority />
 
           <h1 className={styles.heroTitle}>
             <span className={styles.heroTitleLight}>Protección desde </span>
