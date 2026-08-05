@@ -291,4 +291,12 @@
     max-width: 100%;
     max-height: 100%;
   }
+
+  /* Override sólo mobile del filtro de frameBg: el diseño de GPS institucional
+     (Figma 3182:471) muestra la captura en blanco y negro, pero el asset real
+     tiene la barra "CAR-TRACKER" en rojo; se desatura sólo en este breakpoint
+     para no afectar la card de escritorio (que no tiene este override). */
+  .cardTall .frameBg {
+    filter: var(--tech-card-mobile-frame-filter, var(--tech-card-frame-filter, none));
+  }
 }

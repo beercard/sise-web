@@ -154,6 +154,8 @@ export default function CiudadTechnologyModule() {
               '--tech-card-frame-max-width': '244px',
               '--tech-card-frame-bg-size': '100% 148%',
               '--tech-card-frame-bg-position': 'center top',
+              /* Mobile (Figma 3182:471): la captura se ve en blanco y negro. */
+              '--tech-card-mobile-frame-filter': 'grayscale(1)',
               '--tech-card-mobile-title-top': '38px',
               '--tech-card-mobile-text-top': '76px',
               '--tech-card-mobile-text-width': '167px',
