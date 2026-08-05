@@ -99,7 +99,13 @@ export default function CiudadTechnologyModule() {
               '--tech-card-title-width': '276px',
               '--tech-card-title-height': '31px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-width': '276px',
+              /* Desktop (Figma 2215:1039): el cuerpo es más ancho que el título,
+                 no queda acotado a los mismos 276px. Figma mide la caja en
+                 387px, pero la línea más larga necesita 392.3px con League
+                 Spartan a 20px en el navegador, así que se ensancha un poco
+                 más para no meter una línea de más. */
+              '--tech-card-text-width': '395px',
+              '--tech-card-text-max-width': '395px',
               '--tech-card-text-margin': '8px 0 0',
               '--tech-card-art-justify-content': 'center',
               '--tech-card-image-width': '126px',
@@ -165,7 +171,13 @@ export default function CiudadTechnologyModule() {
               '--tech-card-title-width': '276px',
               '--tech-card-title-height': '31px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-width': '276px',
+              /* Desktop (Figma 2217:1049): el cuerpo es más ancho que el título,
+                 no queda acotado a los mismos 276px. Figma mide la caja en
+                 359px, pero la línea más larga necesita 364px con League
+                 Spartan a 20px en el navegador, así que se ensancha un poco
+                 más para no meter una línea de más. */
+              '--tech-card-text-width': '368px',
+              '--tech-card-text-max-width': '368px',
               '--tech-card-text-margin': '12px 0 0',
               '--tech-card-frame-width': '244px',
               '--tech-card-frame-height': '212px',

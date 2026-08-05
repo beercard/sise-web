@@ -34,8 +34,12 @@
 
 .text {
   margin: var(--tech-card-text-margin, 17px 0 0);
-  width: min(100%, var(--tech-card-text-width, 276px));
-  max-width: 100%;
+  /* --tech-card-text-max-width deja que el cuerpo sea más ancho que el resto
+     del contenido de la card (p.ej. Puntos Seguros/GPS institucional en
+     desktop, Figma 2215:1039 / 2217:1049), sin tocar el resto de los slides
+     que siguen acotados al 100% del área con padding. */
+  width: min(var(--tech-card-text-max-width, 100%), var(--tech-card-text-width, 276px));
+  max-width: var(--tech-card-text-max-width, 100%);
   min-height: var(--tech-card-text-min-height, 59px);
   height: var(--tech-card-text-height, auto);
   text-align: var(--tech-card-text-align, center);
