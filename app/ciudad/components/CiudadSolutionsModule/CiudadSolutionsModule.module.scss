@@ -24,8 +24,8 @@
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
   --solutions-card-body-top: 121px;
-  --solutions-card-body-font-size: 16px;
-  --solutions-card-body-line-height: 16px;
+  --solutions-card-body-font-size: 20px;
+  --solutions-card-body-line-height: 20px;
   --solutions-card-body-width: 180px;
   position: relative;
   width: 100%;
@@ -288,13 +288,17 @@
     --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
     --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
+    /* Título y cuerpo miden lo mismo en el diseño (20px); se escalan igual y
+       ambos "top" quedan proporcionales al alto real de la card, para que a
+       1440px coincidan con los valores de escritorio (68px / 121px sobre una
+       card de 261px) en vez de saltar a otro valor en el borde del breakpoint. */
+    --solutions-card-title-top: calc(var(--solutions-card-height) * 0.2605);
     --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
-    --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
-    --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
-    --solutions-card-body-top: clamp(94px, 7.8vw, 112px);
-    --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
-    --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
+    --solutions-card-title-font-size: clamp(16px, 1.39vw, 20px);
+    --solutions-card-title-line-height: clamp(16px, 1.39vw, 20px);
+    --solutions-card-body-top: calc(var(--solutions-card-height) * 0.4636);
+    --solutions-card-body-font-size: clamp(16px, 1.39vw, 20px);
+    --solutions-card-body-line-height: clamp(16px, 1.39vw, 20px);
     --solutions-card-body-width: clamp(156px, 12vw, 180px);
   }
 
@@ -342,13 +346,13 @@
     --solutions-grid-gap: 16px;
     --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: 28px;
+    --solutions-card-title-top: calc(var(--solutions-card-height) * 0.2605);
     --solutions-card-title-min-height: 34px;
-    --solutions-card-title-font-size: 16px;
-    --solutions-card-title-line-height: 16px;
-    --solutions-card-body-top: 86px;
-    --solutions-card-body-font-size: 13px;
-    --solutions-card-body-line-height: 13px;
+    --solutions-card-title-font-size: 18px;
+    --solutions-card-title-line-height: 18px;
+    --solutions-card-body-top: calc(var(--solutions-card-height) * 0.4636);
+    --solutions-card-body-font-size: 18px;
+    --solutions-card-body-line-height: 18px;
     --solutions-card-body-width: 154px;
   }
 
