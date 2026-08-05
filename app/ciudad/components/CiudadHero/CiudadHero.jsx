@@ -22,7 +22,8 @@ export default function CiudadHero() {
           />
 
           <h1 className={styles.heroTitle}>
-            <span className={styles.heroTitleLight}>Tecnología aplicada a&nbsp;</span>
+            <span className={styles.heroTitleLight}>Tecnología aplicada a</span>
+            <br />
             <span className={styles.heroTitleStrong}>la seguridad urbana.</span>
           </h1>
         </div>
