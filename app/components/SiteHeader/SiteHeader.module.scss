@@ -1,8 +1,9 @@
 .header {
   width: 100%;
   background: #00408c;
-  position: relative;
-  z-index: 40;
+  position: sticky;
+  top: 0;
+  z-index: 300;
 }
 
 .inner {
@@ -455,13 +456,6 @@
 }
 
 @media (max-width: 1200px) {
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 300;
-    background: #00408c;
-  }
-
   .headerOpen,
   .innerOpen {
     background: #0857b5;
