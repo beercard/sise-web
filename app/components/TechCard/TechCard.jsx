@@ -94,10 +94,25 @@ function ArtContent({ art, fallbackAlt = '' }) {
 export default function TechCard({ slide, className = '' }) {
   if (!slide) return null;
 
+  const cardClassName = [styles.card, slide.mobileTall ? styles.cardTall : '', className]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div className={`${styles.card} ${className}`.trim()} style={slide.styleVars}>
+    <div className={cardClassName} style={slide.styleVars}>
       <p className={styles.title}>{slide.title}</p>
-      {slide.text ? <p className={styles.text}>{slide.text}</p> : null}
+      {slide.text ? (
+        <p className={styles.text}>
+          {slide.mobileText ? (
+            <>
+              <span className={styles.desktopText}>{slide.text}</span>
+              <span className={styles.mobileText}>{slide.mobileText}</span>
+            </>
+          ) : (
+            slide.text
+          )}
+        </p>
+      ) : null}
       <div className={styles.artStage}>
         <ArtContent art={slide.art} fallbackAlt={slide.title} />
         {slide.art?.accent ? (

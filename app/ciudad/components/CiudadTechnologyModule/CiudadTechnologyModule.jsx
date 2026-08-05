@@ -54,6 +54,7 @@ export default function CiudadTechnologyModule() {
             id: 'camarasVigilancia',
             title: 'Cámaras de vigilancia',
             text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
+            mobileTall: true,
             styleVars: {
               '--tech-card-padding': '42px 83px 27px',
               '--tech-card-align-items': 'center',
@@ -64,7 +65,14 @@ export default function CiudadTechnologyModule() {
               '--tech-card-text-margin': '17px 0 0',
               '--tech-card-image-width': '143px',
               '--tech-card-image-height': '143px',
-              '--tech-card-art-margin-top': '6px'
+              '--tech-card-art-margin-top': '6px',
+              /* Mobile (Figma 3151:2505): geometría propia de esta card. */
+              '--tech-card-mobile-title-top': '39px',
+              '--tech-card-mobile-text-top': '94px',
+              '--tech-card-mobile-text-width': '181px',
+              '--tech-card-mobile-art-top': '180px',
+              '--tech-card-mobile-art-width': '102px',
+              '--tech-card-mobile-art-height': '102px'
             },
             art: { type: 'image', src: '/image/mq1kcwk1-m8n3v94.png', width: 143, height: 143 }
           },
@@ -72,6 +80,9 @@ export default function CiudadTechnologyModule() {
             id: 'puntosSeguros',
             title: 'Puntos Seguros',
             text: 'Espacios equipados y monitoreados que permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
+            mobileTall: true,
+            /* Mobile (Figma 3182:469): texto más corto que el de escritorio. */
+            mobileText: 'Permiten solicitar asistencia ante emergencias, conectados al centro de monitoreo.',
             styleVars: {
               '--tech-card-padding': '42px 83px 18px',
               '--tech-card-align-items': 'center',
@@ -86,7 +97,12 @@ export default function CiudadTechnologyModule() {
               '--tech-card-image-fixed-width': '126px',
               '--tech-card-image-fixed-height': '188px',
               '--tech-card-art-margin-top': '11px',
-              '--tech-card-mobile-art-height': '88px'
+              '--tech-card-mobile-title-top': '38px',
+              '--tech-card-mobile-text-top': '72px',
+              '--tech-card-mobile-text-width': '187px',
+              '--tech-card-mobile-art-top': '152px',
+              '--tech-card-mobile-art-width': '89px',
+              '--tech-card-mobile-art-height': '133px'
             },
             art: { type: 'image', src: '/image/mq1ip4u2-z1dsbza.png', width: 126, height: 188 }
           },
@@ -94,6 +110,9 @@ export default function CiudadTechnologyModule() {
             id: 'paradasSeguras',
             title: 'Paradas Seguras',
             text: 'Infraestructura de seguridad en transporte público que mejora la protección de los usuarios.',
+            mobileTall: true,
+            /* Mobile (Figma 3182:470): texto más corto que el de escritorio. */
+            mobileText: 'Infraestructura en transporte público que mejora la protección de los usuarios.',
             styleVars: {
               '--tech-card-padding': '42px 83px 19px',
               '--tech-card-align-items': 'center',
@@ -107,7 +126,13 @@ export default function CiudadTechnologyModule() {
               '--tech-card-image-height': '187px',
               '--tech-card-image-fixed-width': '103px',
               '--tech-card-image-fixed-height': '187px',
-              '--tech-card-art-margin-top': '11px'
+              '--tech-card-art-margin-top': '11px',
+              '--tech-card-mobile-title-top': '38px',
+              '--tech-card-mobile-text-top': '72px',
+              '--tech-card-mobile-text-width': '169px',
+              '--tech-card-mobile-art-top': '166px',
+              '--tech-card-mobile-art-width': '63px',
+              '--tech-card-mobile-art-height': '113px'
             },
             art: { type: 'image', src: '/image/mq1ip4zv-p0t8sua.png', width: 103, height: 187 }
           },
@@ -115,6 +140,7 @@ export default function CiudadTechnologyModule() {
             id: 'gpsInstitucional',
             title: 'GPS institucional',
             text: 'Control y seguimiento de flota pública, optimizando recursos y detectando desvíos.',
+            mobileTall: true,
             styleVars: {
               '--tech-card-padding': '42px 83px 19px',
               '--tech-card-align-items': 'center',
@@ -128,7 +154,12 @@ export default function CiudadTechnologyModule() {
               '--tech-card-frame-max-width': '244px',
               '--tech-card-frame-bg-size': '100% 148%',
               '--tech-card-frame-bg-position': 'center top',
-              '--tech-card-mobile-art-height': '88px'
+              '--tech-card-mobile-title-top': '38px',
+              '--tech-card-mobile-text-top': '76px',
+              '--tech-card-mobile-text-width': '167px',
+              '--tech-card-mobile-art-top': '150px',
+              '--tech-card-mobile-art-width': '153px',
+              '--tech-card-mobile-art-height': '133px'
             },
             art: {
               type: 'gps',

@@ -1981,10 +1981,12 @@
     height: 23px;
   }
 
+  /* 300 y no 256: las cards de esta página usan el shell "alto" (ver
+     TechCard.module.scss), con ritmo vertical propio por slide. */
   .techCardViewport {
     width: 100%;
     max-width: none;
     height: auto;
-    aspect-ratio: 201 / 256;
+    aspect-ratio: 201 / 300;
   }
 }

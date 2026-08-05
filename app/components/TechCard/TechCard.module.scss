@@ -49,6 +49,17 @@
   word-break: var(--tech-card-word-break, normal);
 }
 
+/* Sólo se usan cuando el slide define `mobileText` (un texto más corto que el
+   de escritorio, como en las cards de Puntos Seguros y Paradas Seguras de
+   ciudad); el resto de las cards renderiza `text` directo, sin estos spans. */
+.desktopText {
+  display: inline;
+}
+
+.mobileText {
+  display: none;
+}
+
 .artStage {
   flex: 1 1 auto;
   min-height: 0;
@@ -177,6 +188,14 @@
     padding: 33px 20px 12px;
   }
 
+  .desktopText {
+    display: none;
+  }
+
+  .mobileText {
+    display: inline;
+  }
+
   .title {
     max-width: 187px;
     min-height: 36px;
@@ -213,5 +232,63 @@
     height: var(--tech-card-mobile-art-height, auto);
     max-width: min(100%, 146px);
     max-height: 104px;
+  }
+
+  /*
+   * Variante "alta" del shell mobile (300px de alto en vez de 256), para las
+   * cards cuyo diseño en Figma usa un ritmo vertical propio por slide en lugar
+   * del riel genérico de arriba (nodos 3151:2505, 3182:469/470/471, usados
+   * primero en ciudad). Es opt-in por slide (`TechCard` sólo la aplica si
+   * `slide.mobileTall` es true), así que no afecta a ninguna card existente:
+   * cada elemento se posiciona en absoluto con su propia coordenada de
+   * diseño, vía `--tech-card-mobile-*` por slide.
+   */
+  .cardTall {
+    padding: 0;
+    display: block;
+  }
+
+  .cardTall .title {
+    position: absolute;
+    top: var(--tech-card-mobile-title-top, 38px);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: var(--tech-card-mobile-title-width, 187px);
+    min-height: 0;
+    margin: 0;
+    font-size: 20px;
+    line-height: 100%;
+  }
+
+  .cardTall .text {
+    position: absolute;
+    top: var(--tech-card-mobile-text-top, 94px);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: var(--tech-card-mobile-text-width, 187px);
+    min-height: 0;
+    margin: 0;
+    display: block;
+    font-size: 18px;
+    line-height: 100%;
+  }
+
+  .cardTall .artStage {
+    position: absolute;
+    top: var(--tech-card-mobile-art-top, 180px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    width: var(--tech-card-mobile-art-width, 102px);
+    height: var(--tech-card-mobile-art-height, 102px);
+    flex: none;
+  }
+
+  .cardTall .artImage,
+  .cardTall .frame {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 }
