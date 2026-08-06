@@ -11,3 +11,11 @@
   width: 100%;
 }
 
+@media (max-width: 1680px) and (min-width: 961px) {
+  .page {
+    --site-laptop-zoom: clamp(0.8, calc(0.8 + ((100vw - 960px) / 3600)), 1);
+    width: calc(100% / var(--site-laptop-zoom));
+    zoom: var(--site-laptop-zoom);
+  }
+}
+
