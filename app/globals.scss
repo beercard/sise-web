@@ -18,10 +18,108 @@
   --sise-content: 1188px;
   --sise-content-wide: 1432px;
   --sise-gutter: 24px;
+
+  /*
+   * Escalado de laptop.
+   *
+   * A 1920 el contenido ocupa el 62% del ancho y deja 366px de margen a cada
+   * lado. En una pantalla más angosta ese mismo contenido en píxeles ocupa una
+   * proporción mucho mayor y la página se ve "llena" comparada con el diseño.
+   * Para acercarla a las proporciones del Figma se dibuja todo a escala, con
+   * piso en 0.85 para no comprometer la legibilidad del texto.
+   *
+   * Al bajar de 1201 (donde entra el menú hamburguesa) se vuelve a escala 1:
+   * tablet y mobile tienen su propio diseño y no deben achicarse.
+   */
+  --sise-scale: 1;
+
+  /*
+   * Ancho real de maquetado. `100vw` NO contempla el zoom: dentro del área
+   * escalada sigue midiendo el viewport físico, así que un `100vw` se dibujaría
+   * un 15% más angosto de lo que corresponde. Dividirlo por la escala devuelve
+   * el ancho verdadero (longitud / número, que sí es aritmética válida en CSS).
+   * Usar SIEMPRE var(--sise-vw) en vez de 100vw.
+   */
+  --sise-vw: calc(100vw / var(--sise-scale));
 }
 
-/* Por debajo de 1280 el contenido pasa a ser fluido y respira un poco más. */
-@media (max-width: 1279px) {
+/*
+ * La escala es `clamp(0.85, ancho / 1920, 1)`, aproximada en escalones de 32px.
+ * No se puede expresar en una sola línea porque dividir dos longitudes en
+ * `calc()` todavía no tiene soporte parejo, así que se arma como escalera.
+ *
+ * Va en `min-width` ascendente a propósito: con pares `max-width: 1919px` /
+ * `min-width: 1920px` quedan huecos, porque en pantallas con devicePixelRatio
+ * fraccionario (1.25 en Windows al 125%) el media query puede ver 1919.22px y
+ * no matchear ninguna de las dos. Con solo `min-width` gana la última que
+ * aplica y no queda ningún ancho sin cubrir.
+ */
+@media (min-width: 1201px) {
+  :root {
+    --sise-scale: 0.85;
+  }
+}
+
+@media (min-width: 1664px) {
+  :root {
+    --sise-scale: 0.867;
+  }
+}
+
+@media (min-width: 1696px) {
+  :root {
+    --sise-scale: 0.883;
+  }
+}
+
+@media (min-width: 1728px) {
+  :root {
+    --sise-scale: 0.9;
+  }
+}
+
+@media (min-width: 1760px) {
+  :root {
+    --sise-scale: 0.917;
+  }
+}
+
+@media (min-width: 1792px) {
+  :root {
+    --sise-scale: 0.933;
+  }
+}
+
+@media (min-width: 1824px) {
+  :root {
+    --sise-scale: 0.95;
+  }
+}
+
+@media (min-width: 1856px) {
+  :root {
+    --sise-scale: 0.967;
+  }
+}
+
+@media (min-width: 1888px) {
+  :root {
+    --sise-scale: 0.983;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --sise-scale: 1;
+  }
+}
+
+body {
+  zoom: var(--sise-scale);
+}
+
+/* Por debajo de 1201 el contenido pasa a ser fluido y respira un poco más. */
+@media (max-width: 1200px) {
   :root {
     --sise-gutter: 32px;
   }

@@ -2,7 +2,7 @@
   width: 100%;
   background: #ffffff;
   --hero-shell-width: 1187px;
-  --hero-shell-pad: max(24px, calc((min(1920px, 100vw) - var(--hero-shell-width)) / 2));
+  --hero-shell-pad: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-shell-width)) / 2));
 }
 
 .media {
@@ -72,7 +72,7 @@
   font-weight: 700;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .media {
     height: 720px;
   }

@@ -4,7 +4,9 @@
   align-items: center;
   background: var(--sise-white);
   width: 100%;
-  min-height: 100vh;
+  /* Dividido por la escala: bajo zoom, 100vh mide el viewport físico y dejaría
+     la página más corta que la ventana. */
+  min-height: calc(100vh / var(--sise-scale));
   overflow-x: clip;
 }
 

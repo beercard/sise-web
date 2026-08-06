@@ -197,7 +197,7 @@
    de abajo quedaba sin trama. Acá sí entran las de relleno, con `flex-shrink`
    anulado para que conserven sus 151px: lo que sobra lo recorta el `overflow`
    del contenedor. */
-@media (min-width: 601px) and (max-width: 1279px) {
+@media (min-width: 601px) and (max-width: 1200px) {
   .watermarkRow {
     flex-shrink: 0;
   }
@@ -366,7 +366,7 @@
   min-height: 63px;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section {
     --solutions-total-height: 752px;
     --solutions-grid-height: 448px;
@@ -434,56 +434,6 @@
     justify-content: center;
   }
 }
-
-@media (max-width: 1280px) and (min-width: 1201px) {
-  .section {
-    --solutions-total-height: 712px;
-    --solutions-grid-height: 426px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-    --solutions-content-width: 980px;
-    --solutions-intro-gap: 24px;
-    --solutions-card-width: 180px;
-    --solutions-card-height: 234px;
-    --solutions-grid-gap: 16px;
-    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-body-width: calc(var(--solutions-card-width) - 28px);
-    --solutions-card-title-top: 36px;
-    --solutions-card-title-min-height: 34px;
-    --solutions-card-title-font-size: 16px;
-    --solutions-card-title-line-height: 16px;
-    --solutions-card-body-top: 88px;
-    --solutions-card-body-font-size: 13px;
-    --solutions-card-body-line-height: 13px;
-    --solutions-alarmas-body-top: 87px;
-    --solutions-cctv-body-top: 95px;
-    --solutions-cerco-body-top: 95px;
-    --solutions-barrio-body-top: 98px;
-    --solutions-desocupadas-title-top: 31px;
-    --solutions-desocupadas-body-top: 108px;
-  }
-
-  .heading {
-    top: 56px;
-  }
-
-  .lead {
-    font-size: 24px;
-    line-height: 26.5px;
-  }
-
-  .punch {
-    margin-top: 18px;
-    font-size: 34px;
-    line-height: 31px;
-  }
-
-  .body {
-    font-size: 16px;
-    line-height: 19px;
-  }
-}
-
 @media (max-width: 1200px) {
   .section {
     --solutions-card-width: 211px;

@@ -956,7 +956,7 @@
   text-wrap: pretty;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
   .heroMedia {
     width: 100%;
   }
@@ -1470,7 +1470,7 @@
    de las verticales. Va al final del archivo para ganar la cascada. */
 .hero {
   --hero-group-width: 1187px;
-  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
 }
@@ -1509,7 +1509,7 @@
   height: auto;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .heroMedia {
     height: 720px;
   }
@@ -1754,7 +1754,7 @@
   font-size: 64px;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .heroOverlaySecondary { width: min(720px, 56%); }
   .heroCopy { top: 312px; width: min(620px, calc(100% - (var(--hero-content-left) * 2))); }
   .heroTitle { width: 100%; font-size: 56px; line-height: 48px; }
@@ -1984,19 +1984,6 @@
     aspect-ratio: 201 / 300;
   }
 }
-
-@media (max-width: 1440px) and (min-width: 1201px) {
-  .heroBottomInner {
-    gap: clamp(24px, 2.6vw, 48px);
-  }
-
-  .technology {
-    --tech-group-width: min(1180px, calc(100vw - 48px));
-    --tech-card-group-width: clamp(440px, 37vw, 520px);
-    --tech-house-max-width: clamp(560px, 50vw, 640px);
-  }
-}
-
 @media (max-width: 1200px) and (min-width: 961px) {
   .heroBottomInner {
     flex-direction: row;
@@ -2038,7 +2025,7 @@
   }
 
   .technology {
-    --tech-group-width: min(1120px, calc(100vw - 48px));
+    --tech-group-width: min(1120px, calc(var(--sise-vw) - 48px));
     --tech-card-group-width: clamp(420px, 41vw, 520px);
     --tech-house-max-width: clamp(500px, 50vw, 620px);
     padding-top: clamp(72px, 5.5vw, 86px);

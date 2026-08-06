@@ -3,7 +3,7 @@
 }
 
 .hero {
-  --contact-left: max(24px, calc((min(1920px, 100vw) - 944px) / 2));
+  --contact-left: max(24px, calc((min(1920px, var(--sise-vw)) - 944px) / 2));
   position: relative;
   min-height: 1053px;
   overflow: hidden;
@@ -256,15 +256,15 @@
   border: 0;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .hero {
-    --contact-left: max(24px, calc((100vw - 944px) / 2));
+    --contact-left: max(24px, calc((var(--sise-vw) - 944px) / 2));
   }
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .hero {
-    --contact-left: max(24px, calc((100vw - 860px) / 2));
+    --contact-left: max(24px, calc((var(--sise-vw) - 860px) / 2));
     min-height: 980px;
   }
 
@@ -519,9 +519,9 @@
   }
 }
 
-@media (max-width: 1440px) and (min-width: 1101px) {
+@media (max-width: 1200px) and (min-width: 1101px) {
   .hero {
-    --contact-left: max(24px, calc((100vw - 944px) / 2));
+    --contact-left: max(24px, calc((var(--sise-vw) - 944px) / 2));
     min-height: clamp(980px, 72vw, 1053px);
   }
 

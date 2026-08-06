@@ -7,7 +7,7 @@
   width: 100%;
   background: var(--sise-white);
   --hero-group-width: 1180px;
-  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
 }
@@ -834,7 +834,7 @@
   margin-bottom: 30px;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .heroKicker,
   .heroTitle {
     left: var(--hero-content-left);
@@ -850,26 +850,6 @@
     padding-right: var(--tech-pad-x);
   }
 }
-
-@media (max-width: 1280px) and (min-width: 1201px) {
-  .technology {
-    --tech-title-width: 780px;
-    --tech-title-font-size: 36px;
-    --tech-title-line-height: 38px;
-    --tech-title-tabs-gap: 24px;
-    --tech-tabs-width: 780px;
-    --tech-tab-font-size: 16px;
-    --tech-group-width: 1040px;
-    --tech-card-group-width: 460px;
-    --tech-row-gap: 24px;
-    --tech-house-max-width: 560px;
-  }
-
-  .tabs {
-    padding: 0 8px;
-  }
-}
-
 @media (max-width: 1100px) and (min-width: 961px) {
   .technology {
     --tech-title-width: 720px;
@@ -1470,19 +1450,6 @@
     background: rgba(37, 15, 127, 0.8);
   }
 }
-
-@media (max-width: 1440px) and (min-width: 1201px) {
-  .heroBottomInner {
-    gap: clamp(24px, 2.6vw, 48px);
-  }
-
-  .technology {
-    --tech-group-width: min(1180px, calc(100vw - 48px));
-    --tech-card-group-width: clamp(440px, 37vw, 520px);
-    --tech-house-max-width: clamp(560px, 50vw, 640px);
-  }
-}
-
 @media (max-width: 1200px) and (min-width: 961px) {
   .heroBottomInner {
     flex-direction: row;
@@ -1524,7 +1491,7 @@
   }
 
   .technology {
-    --tech-group-width: min(1120px, calc(100vw - 48px));
+    --tech-group-width: min(1120px, calc(var(--sise-vw) - 48px));
     --tech-card-group-width: clamp(420px, 41vw, 520px);
     --tech-house-max-width: clamp(500px, 50vw, 620px);
     padding-top: clamp(72px, 5.5vw, 86px);

@@ -1,7 +1,7 @@
 .historia {
   background: #ffffff;
   --content-group-width: 1140px;
-  --pad-x: max(24px, calc((min(1920px, 100vw) - var(--content-group-width)) / 2));
+  --pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--content-group-width)) / 2));
 }
 
 .hero {
@@ -97,7 +97,7 @@
 }
 
 .recognition {
-  --recognition-pad-x: max(24px, calc((min(1920px, 100vw) - 1190px) / 2));
+  --recognition-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - 1190px) / 2));
   padding-top: 74px;
   padding-bottom: 87px;
 }
@@ -308,7 +308,7 @@
   }
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1200px) {
   .recognitionInner {
     width: calc(100% - (var(--recognition-pad-x) * 2));
   }
@@ -387,7 +387,7 @@
 }
 
 .timeline {
-  --timeline-pad-left: max(24px, calc((min(1920px, 100vw) - 1188px) / 2));
+  --timeline-pad-left: max(24px, calc((min(1920px, var(--sise-vw)) - 1188px) / 2));
   --timeline-gap: clamp(32px, 2.92vw, 56px);
   background: #d9d9d9;
   padding-top: 0;
@@ -489,7 +489,7 @@
   }
 
   .heroSubtitle {
-    width: min(760px, calc(100vw - (var(--pad-x) * 2)));
+    width: min(760px, calc(var(--sise-vw) - (var(--pad-x) * 2)));
     font-size: 28px;
     line-height: 30px;
   }
@@ -503,7 +503,7 @@
   .timelineInner {
     grid-template-columns: 410px minmax(0, 1fr);
     column-gap: 28px;
-    padding-left: max(24px, calc((100vw - 1042px) / 2));
+    padding-left: max(24px, calc((var(--sise-vw) - 1042px) / 2));
   }
 
   .timelineContent {
@@ -884,7 +884,7 @@
 
 
 .hero {
-  --hero-copy-left: max(24px, calc((min(1920px, 100vw) - 1186px) / 2));
+  --hero-copy-left: max(24px, calc((min(1920px, var(--sise-vw)) - 1186px) / 2));
   --hero-copy-width: 931px;
   min-height: 917px;
   background: #00408c;
@@ -930,9 +930,9 @@
   line-height: 32px;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .hero {
-    --hero-copy-left: max(24px, calc((100vw - 1188px) / 2));
+    --hero-copy-left: max(24px, calc((var(--sise-vw) - 1188px) / 2));
     --hero-copy-width: 820px;
   }
 
@@ -956,7 +956,7 @@
 
 @media (max-width: 1200px) {
   .hero {
-    --hero-copy-left: max(24px, calc((100vw - 1188px) / 2));
+    --hero-copy-left: max(24px, calc((var(--sise-vw) - 1188px) / 2));
     --hero-copy-width: 720px;
     min-height: 917px;
   }
@@ -1116,61 +1116,6 @@
     width: min(337px, 100%);
   }
 }
-
-@media (max-width: 1440px) and (min-width: 1201px) {
-  .hero {
-    min-height: clamp(860px, 68vw, 917px);
-  }
-
-  .heroCopy {
-    top: clamp(412px, 31vw, 459px);
-  }
-
-  .heroTitle {
-    max-width: 456px;
-    font-size: clamp(56px, 4vw, 64px);
-    line-height: clamp(48px, 3.5vw, 51.2px);
-  }
-
-  .heroSubtitle,
-  .heroSubtitleRegular,
-  .heroSubtitleStrong {
-    max-width: min(931px, calc(100vw - (var(--pad-x) * 2)));
-    font-size: clamp(28px, 2vw, 32px);
-    line-height: clamp(30px, 2vw, 32px);
-  }
-
-  .recognitionInner {
-    width: min(1190px, calc(100% - 48px));
-  }
-
-  .recognitionLayout {
-    gap: clamp(24px, 2.2vw, 36px);
-  }
-
-  .recognitionStory,
-  .recognitionFeature {
-    flex-basis: calc((100% - clamp(24px, 2.2vw, 36px)) / 2);
-    width: calc((100% - clamp(24px, 2.2vw, 36px)) / 2);
-  }
-
-  .recognitionStoryText {
-    font-size: clamp(24px, 1.9vw, 32px);
-    line-height: clamp(29px, 2.2vw, 38px);
-  }
-
-  .recognitionFeaturePanel {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 518 / 432;
-  }
-
-  .recognitionFeatureImage {
-    width: 100%;
-    height: 100%;
-  }
-}
-
 @media (max-width: 1200px) and (min-width: 961px) {
   .hero {
     min-height: clamp(760px, 68vw, 820px);
@@ -1181,7 +1126,7 @@
   }
 
   .heroTitle {
-    max-width: min(520px, calc(100vw - (var(--pad-x) * 2)));
+    max-width: min(520px, calc(var(--sise-vw) - (var(--pad-x) * 2)));
     font-size: clamp(46px, 4.5vw, 56px);
     line-height: clamp(40px, 4vw, 48px);
   }
@@ -1189,7 +1134,7 @@
   .heroSubtitle,
   .heroSubtitleRegular,
   .heroSubtitleStrong {
-    width: min(760px, calc(100vw - (var(--pad-x) * 2)));
+    width: min(760px, calc(var(--sise-vw) - (var(--pad-x) * 2)));
     font-size: clamp(24px, 2.6vw, 28px);
     line-height: clamp(26px, 2.8vw, 30px);
   }

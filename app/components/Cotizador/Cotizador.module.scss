@@ -18,8 +18,8 @@
   /* Columna centrada de 944px (Figma). El título va con `white-space: nowrap`
      y mide ~868px a 64px, así que la columna entra completa hasta ~1000px de
      viewport: por encima de eso no hace falta achicar nada. */
-  padding-left: max(var(--sise-gutter), calc((100vw - 944px) / 2));
-  padding-right: max(var(--sise-gutter), calc((100vw - 944px) / 2));
+  padding-left: max(var(--sise-gutter), calc((var(--sise-vw) - 944px) / 2));
+  padding-right: max(var(--sise-gutter), calc((var(--sise-vw) - 944px) / 2));
 }
 
 .containerFixedStep {
@@ -646,7 +646,7 @@
 }
 
 /* Laptop: la columna de 944px entra entera, solo se recorta el aire vertical. */
-@media (max-width: 1279px) and (min-width: 1025px) {
+@media (max-width: 1200px) and (min-width: 1025px) {
   .containerFixedStep {
     min-height: 540px;
     padding-top: 72px;
@@ -661,8 +661,8 @@
 
 @media (max-width: 1024px) and (min-width: 601px) {
   .container {
-    --cotizador-header-width: min(860px, calc(100vw - 40px));
-    --cotizador-title-width: min(860px, calc(100vw - 40px));
+    --cotizador-header-width: min(860px, calc(var(--sise-vw) - 40px));
+    --cotizador-title-width: min(860px, calc(var(--sise-vw) - 40px));
     --cotizador-title-font-size: clamp(32px, 3.3vw, 42px);
     --cotizador-title-line-height: clamp(32px, 2.95vw, 40px);
     --cotizador-subtitle-font-size: clamp(22px, 2vw, 28px);

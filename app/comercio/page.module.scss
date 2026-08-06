@@ -7,7 +7,7 @@
   width: 100%;
   background: var(--sise-white);
   --hero-group-width: 1187px;
-  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
 }
@@ -888,7 +888,7 @@
 /* La separación con el cotizador se define más abajo, en 0: acá había un
    `margin-top: 57px` duplicado que quedaba anulado por orden de fuente. */
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .heroKicker,
   .heroTitle {
     left: var(--hero-content-left);
@@ -1325,7 +1325,7 @@
   padding: 77px var(--hero-pad-x) 98px;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .heroMedia {
     height: 720px;
   }
@@ -1649,7 +1649,7 @@
   margin-bottom: 30px;
 }
 
-@media (max-width: 1440px) and (min-width: 961px) {
+@media (max-width: 1200px) and (min-width: 961px) {
   .heroMedia {
     height: clamp(680px, 56vw, 800px);
   }
@@ -1827,7 +1827,7 @@
   font-weight: 700;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1200px) {
   .heroMedia { height: 720px; }
   .heroGradient { width: min(720px, 56%); }
   .heroCopy { top: 312px; }
@@ -2144,19 +2144,6 @@
     background: rgba(6, 35, 76, 0.8);
   }
 }
-
-@media (max-width: 1440px) and (min-width: 1201px) {
-  .heroBottomInner {
-    gap: clamp(24px, 2.6vw, 48px);
-  }
-
-  .technology {
-    --tech-group-width: min(1180px, calc(100vw - 48px));
-    --tech-card-group-width: clamp(440px, 37vw, 520px);
-    --tech-house-max-width: clamp(560px, 50vw, 640px);
-  }
-}
-
 @media (max-width: 1200px) and (min-width: 961px) {
   .heroBottomInner {
     flex-direction: row;
@@ -2198,7 +2185,7 @@
   }
 
   .technology {
-    --tech-group-width: min(1120px, calc(100vw - 48px));
+    --tech-group-width: min(1120px, calc(var(--sise-vw) - 48px));
     --tech-card-group-width: clamp(420px, 41vw, 520px);
     --tech-house-max-width: clamp(500px, 50vw, 620px);
     padding-top: clamp(72px, 5.5vw, 86px);

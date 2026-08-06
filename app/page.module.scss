@@ -423,7 +423,7 @@
   --footer-content-width: var(--sise-content-wide);
   --footer-pad-x: max(
     var(--sise-gutter),
-    calc((min(1920px, 100vw) - var(--footer-content-width)) / 2)
+    calc((min(1920px, var(--sise-vw)) - var(--footer-content-width)) / 2)
   );
   padding: 39px var(--footer-pad-x) 31px;
 }
@@ -838,7 +838,7 @@
   }
 }
 
-@media (max-width: 1440px) and (min-width: 961px) {
+@media (max-width: 1200px) and (min-width: 961px) {
   .whyChooseInner {
     min-height: auto;
     padding-top: clamp(112px, 10vw, 165px);

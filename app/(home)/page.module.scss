@@ -166,7 +166,7 @@
  * El bloque de 1188 entra completo hasta 1252px (1188 + gutters), así que en
  * laptop solo se recorta el aire vertical. Recién en tablet bajan tipografías.
  */
-@media (max-width: 1279px) and (min-width: 1025px) {
+@media (max-width: 1200px) and (min-width: 1025px) {
   .faqSection {
     padding-top: 64px;
     padding-bottom: 48px;

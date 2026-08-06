@@ -133,7 +133,7 @@
    bandas dejaban media sección sin trama. Acá sí entran las de relleno, con
    `flex-shrink` anulado para que conserven sus 151px: lo que sobra lo recorta
    el `overflow` del contenedor. */
-@media (min-width: 601px) and (max-width: 1279px) {
+@media (min-width: 601px) and (max-width: 1200px) {
   .watermarkRow {
     flex-shrink: 0;
   }
@@ -274,7 +274,7 @@
   min-height: 63px;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section {
     --solutions-total-height: 640px;
     --solutions-copy-height: 205px;
@@ -311,35 +311,6 @@
     line-height: clamp(13px, 0.98vw, 16px);
   }
 }
-
-@media (max-width: 1280px) and (min-width: 1201px) {
-  .section {
-    --solutions-total-height: 610px;
-    --solutions-copy-height: 188px;
-    --solutions-content-width: 980px;
-    --solutions-grid-width: 980px;
-    --solutions-card-width: 180px;
-    --solutions-card-height: 234px;
-    --solutions-grid-gap: 20px;
-  }
-
-  .copyBlock {
-    top: 76px;
-  }
-
-  .lead {
-    width: 860px;
-  }
-
-  .heading {
-    top: 40px;
-  }
-
-  .grid {
-    top: 96px;
-  }
-}
-
 @media (max-width: 1200px) {
   .section {
     --solutions-card-width: 211px;

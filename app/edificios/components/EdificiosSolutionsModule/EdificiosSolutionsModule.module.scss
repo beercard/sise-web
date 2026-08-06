@@ -173,7 +173,7 @@
   display: none;
 }
 
-@media (min-width: 601px) and (max-width: 1279px) {
+@media (min-width: 601px) and (max-width: 1200px) {
   .watermarkRow {
     flex-shrink: 0;
   }
@@ -272,7 +272,7 @@
 
 
 
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section {
     --solutions-total-height: 752px;
     --solutions-grid-height: 448px;
@@ -315,39 +315,6 @@
     height: clamp(124px, 10.5vw, 151px);
   }
 }
-
-@media (max-width: 1280px) and (min-width: 1201px) {
-  .section {
-    --solutions-total-height: 712px;
-    --solutions-grid-height: 426px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-    --solutions-content-width: 980px;
-    --solutions-intro-gap: 24px;
-    --solutions-copy-gap: 18px;
-    --solutions-card-width: 180px;
-    --solutions-card-height: 234px;
-    --solutions-grid-gap: 16px;
-    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: 28px;
-    --solutions-card-title-min-height: 34px;
-    --solutions-card-title-font-size: 16px;
-    --solutions-card-title-line-height: 16px;
-    --solutions-card-body-top: 86px;
-    --solutions-card-body-font-size: 13px;
-    --solutions-card-body-line-height: 13px;
-    --solutions-card-body-width: 154px;
-  }
-
-  .gridArea {
-    top: var(--solutions-copy-height);
-  }
-
-  .heading {
-    top: 44px;
-  }
-}
-
 @media (max-width: 1200px) {
   .canvas {
     height: auto;

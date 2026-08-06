@@ -100,7 +100,7 @@
  * Laptop: se mantiene el tipo de 64px del Figma y solo se recorta el aire
  * vertical, que es lo que sobra en pantallas bajas.
  */
-@media (max-width: 1279px) and (min-width: 1025px) {
+@media (max-width: 1200px) and (min-width: 1025px) {
   .inner {
     padding: 112px 0 92px;
   }

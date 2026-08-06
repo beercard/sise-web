@@ -7,7 +7,7 @@
   width: 100%;
   background: var(--sise-white);
   --hero-group-width: 1187px;
-  --hero-pad-x: max(24px, calc((min(1920px, 100vw) - var(--hero-group-width)) / 2));
+  --hero-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-group-width)) / 2));
   --hero-container-width: min(1920px, 100%);
   --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
 }
@@ -1014,7 +1014,7 @@
   margin-bottom: 30px;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   /* Las medidas del módulo (columna 944, mapa 735, grupo 520 y card 442×357)
      se mantienen: el mapa ya se adapta solo con `min(735px, 55vw)`, así que el
      bloque entra sin desbordar hasta los 1201px. Antes acá se encogía todo y
@@ -1056,26 +1056,6 @@
     padding-right: var(--tech-pad-x);
   }
 }
-
-@media (max-width: 1280px) and (min-width: 1201px) {
-  .technology {
-    --tech-title-width: 780px;
-    --tech-title-font-size: 36px;
-    --tech-title-line-height: 38px;
-    --tech-title-tabs-gap: 24px;
-    --tech-tabs-width: 780px;
-    --tech-tab-font-size: 16px;
-    --tech-group-width: 1040px;
-    --tech-card-group-width: 460px;
-    --tech-row-gap: 24px;
-    --tech-house-max-width: 560px;
-  }
-
-  .tabs {
-    padding: 0 8px;
-  }
-}
-
 @media (max-width: 1200px) {
   .heroMedia {
     height: 660px;
@@ -1931,19 +1911,6 @@
   /* El texto de estas dos slides ya quedó alineado al diseño mobile en el
      breakpoint de 600px, junto con el del resto de las cards. */
 }
-
-@media (max-width: 1440px) and (min-width: 1201px) {
-  .heroBottomInner {
-    gap: clamp(24px, 2.6vw, 48px);
-  }
-
-  .technology {
-    --tech-group-width: min(1180px, calc(100vw - 48px));
-    --tech-card-group-width: clamp(440px, 37vw, 520px);
-    --tech-house-max-width: clamp(560px, 50vw, 640px);
-  }
-}
-
 @media (max-width: 1200px) and (min-width: 961px) {
   .heroBottomInner {
     flex-direction: row;
@@ -1985,7 +1952,7 @@
   }
 
   .technology {
-    --tech-group-width: min(1120px, calc(100vw - 48px));
+    --tech-group-width: min(1120px, calc(var(--sise-vw) - 48px));
     --tech-card-group-width: clamp(420px, 41vw, 520px);
     --tech-house-max-width: clamp(500px, 50vw, 620px);
     padding-top: clamp(72px, 5.5vw, 86px);

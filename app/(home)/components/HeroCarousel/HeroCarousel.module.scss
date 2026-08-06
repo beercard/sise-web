@@ -4,7 +4,7 @@
    * (borde izquierdo del contenedor de 1188) y a 470px del tope del hero.
    */
   --hero-shell-width: var(--sise-content);
-  --hero-shell-pad: max(var(--sise-gutter), calc((100vw - var(--hero-shell-width)) / 2));
+  --hero-shell-pad: max(var(--sise-gutter), calc((var(--sise-vw) - var(--hero-shell-width)) / 2));
   --hero-title-width: 952px;
   --hero-title-font-size: 64px;
   --hero-title-line-height: 52px;
@@ -187,7 +187,7 @@
  * el tipo de 64px y el contenedor de 1188 del diseño; el título solo se angosta
  * cuando el viewport deja de darle lugar.
  */
-@media (max-width: 1279px) and (min-width: 961px) {
+@media (max-width: 1200px) and (min-width: 961px) {
   .hero {
     height: 700px;
   }
