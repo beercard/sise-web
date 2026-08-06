@@ -2144,3 +2144,84 @@
     background: rgba(6, 35, 76, 0.8);
   }
 }
+
+@media (max-width: 1440px) and (min-width: 1201px) {
+  .heroBottomInner {
+    gap: clamp(24px, 2.6vw, 48px);
+  }
+
+  .technology {
+    --tech-group-width: min(1180px, calc(100vw - 48px));
+    --tech-card-group-width: clamp(440px, 37vw, 520px);
+    --tech-house-max-width: clamp(560px, 50vw, 640px);
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 961px) {
+  .heroBottomInner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(20px, 2.4vw, 32px);
+    padding-top: clamp(48px, 4vw, 68px);
+    padding-bottom: clamp(56px, 5vw, 89px);
+  }
+
+  .heroText {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: min(520px, 100%);
+    align-items: flex-start;
+  }
+
+  .heroSectionTitle,
+  .heroDivider,
+  .heroLead,
+  .heroBody,
+  .heroPunch {
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+
+  .heroCard,
+  .heroCarousel {
+    flex: 0 1 clamp(420px, 41vw, 520px);
+    width: min(clamp(420px, 41vw, 520px), 100%);
+    min-width: 0;
+    margin-top: 0;
+  }
+
+  .heroCardStage,
+  .heroCardViewport {
+    width: min(100%, 460px);
+  }
+
+  .technology {
+    --tech-group-width: min(1120px, calc(100vw - 48px));
+    --tech-card-group-width: clamp(420px, 41vw, 520px);
+    --tech-house-max-width: clamp(500px, 50vw, 620px);
+    padding-top: clamp(72px, 5.5vw, 86px);
+    padding-bottom: clamp(72px, 5.5vw, 86px);
+  }
+
+  .technologyRow {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(20px, 2.2vw, 28px);
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .house {
+    width: min(var(--tech-house-max-width), 52vw);
+  }
+
+  .techCardGroup {
+    flex: 0 0 auto;
+    width: min(var(--tech-card-group-width), 100%);
+    height: 357px;
+    margin-top: clamp(16px, 3vw, 57px);
+  }
+}

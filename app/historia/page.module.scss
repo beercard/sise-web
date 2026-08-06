@@ -1116,3 +1116,142 @@
     width: min(337px, 100%);
   }
 }
+
+@media (max-width: 1440px) and (min-width: 1201px) {
+  .hero {
+    min-height: clamp(860px, 68vw, 917px);
+  }
+
+  .heroCopy {
+    top: clamp(412px, 31vw, 459px);
+  }
+
+  .heroTitle {
+    max-width: 456px;
+    font-size: clamp(56px, 4vw, 64px);
+    line-height: clamp(48px, 3.5vw, 51.2px);
+  }
+
+  .heroSubtitle,
+  .heroSubtitleRegular,
+  .heroSubtitleStrong {
+    max-width: min(931px, calc(100vw - (var(--pad-x) * 2)));
+    font-size: clamp(28px, 2vw, 32px);
+    line-height: clamp(30px, 2vw, 32px);
+  }
+
+  .recognitionInner {
+    width: min(1190px, calc(100% - 48px));
+  }
+
+  .recognitionLayout {
+    gap: clamp(24px, 2.2vw, 36px);
+  }
+
+  .recognitionStory,
+  .recognitionFeature {
+    flex-basis: calc((100% - clamp(24px, 2.2vw, 36px)) / 2);
+    width: calc((100% - clamp(24px, 2.2vw, 36px)) / 2);
+  }
+
+  .recognitionStoryText {
+    font-size: clamp(24px, 1.9vw, 32px);
+    line-height: clamp(29px, 2.2vw, 38px);
+  }
+
+  .recognitionFeaturePanel {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 518 / 432;
+  }
+
+  .recognitionFeatureImage {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 961px) {
+  .hero {
+    min-height: clamp(760px, 68vw, 820px);
+  }
+
+  .heroCopy {
+    top: clamp(300px, 32vw, 360px);
+  }
+
+  .heroTitle {
+    max-width: min(520px, calc(100vw - (var(--pad-x) * 2)));
+    font-size: clamp(46px, 4.5vw, 56px);
+    line-height: clamp(40px, 4vw, 48px);
+  }
+
+  .heroSubtitle,
+  .heroSubtitleRegular,
+  .heroSubtitleStrong {
+    width: min(760px, calc(100vw - (var(--pad-x) * 2)));
+    font-size: clamp(24px, 2.6vw, 28px);
+    line-height: clamp(26px, 2.8vw, 30px);
+  }
+
+  .recognition {
+    --recognition-pad-x: 24px;
+  }
+
+  .recognitionInner {
+    width: 100%;
+    padding-left: var(--recognition-pad-x);
+    padding-right: var(--recognition-pad-x);
+  }
+
+  .recognitionLayout {
+    gap: clamp(20px, 2.2vw, 28px);
+  }
+
+  .recognitionStory,
+  .recognitionFeature {
+    flex-basis: calc((100% - clamp(20px, 2.2vw, 28px)) / 2);
+    width: calc((100% - clamp(20px, 2.2vw, 28px)) / 2);
+  }
+
+  .recognitionStoryText {
+    font-size: clamp(22px, 2.1vw, 26px);
+    line-height: clamp(27px, 2.5vw, 31px);
+  }
+
+  .recognitionFeaturePanel {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 518 / 432;
+  }
+
+  .recognitionFeatureImage {
+    width: 100%;
+    height: 100%;
+  }
+
+  .timelineInner {
+    grid-template-columns: minmax(360px, 410px) minmax(0, 1fr);
+    column-gap: clamp(24px, 2.5vw, 28px);
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .timelineContent,
+  .timelineHeading,
+  .timelineStory {
+    width: 100%;
+  }
+
+  .timelineHeading {
+    font-size: clamp(40px, 3.8vw, 44px);
+    line-height: clamp(34px, 3.1vw, 36px);
+  }
+
+  .timelineStory,
+  .timelineStoryStrong,
+  .timelineStoryRegular {
+    font-size: clamp(17px, 1.6vw, 18px);
+    line-height: clamp(24px, 2vw, 25px);
+  }
+}
