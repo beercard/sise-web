@@ -1,41 +1,41 @@
 import styles from './AgroSolutionsModule.module.scss';
 
 /*
- * 15 bandas: es lo que pide el diseño mobile (nodo 5026:604), donde llenan
+ * 15 bandas: es lo que pide el diseño mobile (nodo 5014:470), donde llenan
  * justo el área de las cards — 15 × 55px + 14 separaciones de 2px = 853px.
  * En el resto de los breakpoints sólo se ven las tres primeras.
  */
 const WATERMARK_ROWS = Array.from({ length: 15 }, (_, index) => `row-${index + 1}`);
 
+/*
+ * El cuerpo de cada card es el mismo texto corto en desktop y mobile (Figma
+ * 5014:469 / 5014:470); el título sí difiere en la cantidad de renglones
+ * según el breakpoint, así que ese sigue separado en desktopTitle/mobileTitle.
+ */
 const solutions = [
   {
     key: 'cctv',
-    title: ['CCTV RURAL'],
+    title: ['CCTV', 'RURAL'],
     mobileTitle: ['CCTV RURAL'],
-    body: 'Vigilancia de accesos, galpones y zonas productivas con monitoreo remoto en tiempo real.',
-    mobileBody: 'Control remoto en tiempo real de tranqueras, galpones y lotes.'
+    body: 'Control remoto en tiempo real de tranqueras, galpones y lotes.'
   },
   {
     key: 'camara',
-    title: ['CÁMARA CAMPO'],
+    title: ['CÁMARA', 'CAMPO'],
     mobileTitle: ['CÁMARA CAMPO'],
-    body:
-      'Sistema autónomo con energía solar y conectividad integrada, ideal para campos sin internet ni electricidad.',
-    mobileBody: 'Vigilancia 100% autónoma (solar y 4G) para zonas sin infraestructura.'
+    body: 'Vigilancia 100% autónoma (solar y 4G) para zonas sin infraestructura.'
   },
   {
     key: 'alarmas',
-    title: ['ALARMAS RURALES'],
+    title: ['ALARMAS', 'RURALES'],
     mobileTitle: ['ALARMAS', 'RURALES'],
-    body: 'Detección de intrusiones en instalaciones aisladas con alertas inmediatas.',
-    mobileBody: 'Alerta inmediata contra intrusiones en galpones e instalaciones aisladas.'
+    body: 'Alerta inmediata contra intrusiones en galpones e instalaciones aisladas.'
   },
   {
     key: 'gps',
-    title: ['GPS PARA MAQUINARIAS Y VEHÍCULOS'],
-    mobileTitle: ['GPS PARA', 'MAQUINARIAS Y', 'VEHÍCULOS'],
-    body: 'Seguimiento y control de flota para optimizar recursos y prevenir pérdidas.',
-    mobileBody: 'Rastreo satelital de tractores y maquinaria para prevenir robos.'
+    title: ['GPS PARA', 'MAQUINARIAS Y', 'VEHÍCULOS'],
+    mobileTitle: ['GPS para maquinarias', 'y vehículos'],
+    body: 'Rastreo satelital de tractores y maquinaria para prevenir robos.'
   }
 ];
 
@@ -95,10 +95,7 @@ export default function AgroSolutionsModule() {
                       ))}
                     </span>
                   </h3>
-                  <p className={styles.cardBody}>
-                    <span className={styles.desktopBodyText}>{solution.body}</span>
-                    <span className={styles.mobileBodyText}>{solution.mobileBody}</span>
-                  </p>
+                  <p className={styles.cardBody}>{solution.body}</p>
                 </div>
               </article>
             ))}
