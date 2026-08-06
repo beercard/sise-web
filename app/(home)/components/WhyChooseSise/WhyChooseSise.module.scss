@@ -4,7 +4,7 @@
 }
 
 .section {
-  --why-shell-width: 1188px;
+  --why-shell-width: var(--sise-content);
   --why-grid-gap: 24px;
   width: 100%;
   background: var(--sise-blue);
@@ -34,7 +34,7 @@
 
 .cards {
   margin-top: 53px;
-  width: min(var(--why-shell-width), calc(100% - 48px));
+  width: min(var(--why-shell-width), calc(100% - (var(--sise-gutter) * 2)));
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -44,6 +44,11 @@
   flex-wrap: nowrap;
 }
 
+/*
+ * Las cards valen 332px en el Figma y se reparten el contenedor de 1188 con
+ * ~96px de aire entre ellas. Con flex 1 1 0 + max-width mantienen esa
+ * composición y recién se achican juntas cuando el contenedor deja de dar.
+ */
 .card,
 .cardAlt,
 .cardAlt2 {
@@ -51,7 +56,9 @@
   flex-direction: column;
   border-radius: 10px;
   background: var(--sise-white);
-  width: 332px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 332px;
   min-height: 302px;
   position: relative;
   overflow: hidden;
@@ -100,7 +107,7 @@
 
 .cardTitle {
   margin: 12px 0 0;
-  width: 194px;
+  width: min(194px, 100%);
   min-height: 54px;
   text-align: center;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -113,7 +120,7 @@
 
 .cardText {
   margin: 13px 0 0;
-  width: 283px;
+  width: min(283px, 100%);
   min-height: 60px;
   text-align: center;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -132,7 +139,7 @@
 
 .cardTitleAlt {
   margin: 12px auto 0;
-  width: 257px;
+  width: min(257px, 100%);
   min-height: 54px;
   text-align: center;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -145,7 +152,7 @@
 
 .cardTextAlt {
   margin: 13px auto 0;
-  width: 202px;
+  width: min(202px, 100%);
   min-height: 60px;
   text-align: center;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -164,7 +171,7 @@
 
 .cardTitleAlt2 {
   margin: 16px auto 0;
-  width: 265px;
+  width: min(265px, 100%);
   min-height: 54px;
   text-align: center;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -177,7 +184,7 @@
 
 .cardTextAlt2 {
   margin: 12px auto 0;
-  width: 275px;
+  width: min(275px, 100%);
   min-height: 60px;
   text-align: center;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
@@ -388,7 +395,7 @@
   top: 801px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(1433px, calc(100% - 48px));
+  width: min(var(--sise-content-wide), calc(100% - (var(--sise-gutter) * 2)));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -427,6 +434,11 @@
   display: none;
 }
 
+/*
+ * Cinco cards de 256x285 con 38px de aire, que llenan justo el contenedor de
+ * 1432 del Figma. Al achicarse el contenedor se encogen las cinco a la par
+ * (manteniendo la proporción) en vez de romper la fila.
+ */
 .categoryCardHogar,
 .categoryCardEmpresas,
 .categoryCardAgro,
@@ -436,8 +448,11 @@
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  width: 256px;
-  height: 285px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 256px;
+  height: auto;
+  aspect-ratio: 256 / 285;
   position: relative;
   text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -471,27 +486,61 @@
   padding: 0;
 }
 
-@media (max-width: 1440px) {
+/*
+ * Laptop (1025-1279). Se conserva la composición del Figma —tres cards arriba y
+ * cinco pilares en una fila— y solo se suelta el alto fijo de la sección: las
+ * guardas decorativas de 2059px se ocultan y el bloque de pilares pasa a fluir.
+ */
+@media (max-width: 1279px) and (min-width: 1025px) {
   .inner {
-    --why-shell-width: 1120px;
-    --why-grid-gap: 20px;
     min-height: auto;
-    padding-top: 104px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 96px;
+    padding-top: 96px;
+    padding-bottom: 88px;
+  }
+
+  .bandStrip1,
+  .bandStrip2,
+  .bandStrip3,
+  .bandStrip4 {
+    display: none;
+  }
+
+  .categoriesSection {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 84px auto 0;
+  }
+}
+
+/* Tablet (601-1024): los pilares pasan a grilla de tres. */
+@media (max-width: 1024px) and (min-width: 601px) {
+  .inner {
+    min-height: auto;
+    padding-top: 88px;
+    padding-left: var(--sise-gutter);
+    padding-right: var(--sise-gutter);
+    padding-bottom: 80px;
   }
 
   .title {
-    width: min(560px, calc(100% - 48px));
-    font-size: clamp(48px, 4.2vw, 60px);
-    line-height: clamp(44px, 3.8vw, 52px);
+    width: min(560px, 100%);
+    font-size: 44px;
+    line-height: 44px;
   }
 
   .cards {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .card,
+  .cardAlt,
+  .cardAlt2 {
+    flex: 0 1 320px;
+    max-width: 320px;
   }
 
   .bandStrip1,
@@ -507,21 +556,20 @@
     left: auto;
     transform: none;
     width: 100%;
-    margin-top: 72px;
+    margin: 72px auto 0;
   }
 
   .categoryHeading {
-    width: min(980px, 100%);
-    margin: 0 auto;
-    font-size: clamp(46px, 3.8vw, 58px);
-    line-height: clamp(40px, 3.2vw, 50px);
+    width: min(760px, 100%);
+    font-size: 42px;
+    line-height: 40px;
   }
 
   .categoriesDesktop {
     width: 100%;
     margin-top: 28px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     justify-items: center;
     gap: 24px;
   }
@@ -531,83 +579,8 @@
   .categoryCardAgro,
   .categoryCardCiudad,
   .categoryCardUrbano {
-    width: min(256px, 100%);
-  }
-}
-
-@media (max-width: 1200px) {
-  .inner {
-    --why-shell-width: 980px;
-    --why-grid-gap: 18px;
-    padding-top: 92px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 80px;
-  }
-
-  .title {
-    width: min(520px, calc(100% - 48px));
-    font-size: 44px;
-    line-height: 44px;
-  }
-
-  .categoryHeading {
-    width: min(760px, 100%);
-    font-size: 42px;
-    line-height: 40px;
-  }
-
-  .cards {
-    width: min(var(--why-shell-width), 100%);
-  }
-
-  .card,
-  .cardAlt,
-  .cardAlt2 {
-    width: min(320px, 100%);
-  }
-
-  .categoriesDesktop {
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
-  }
-}
-
-@media (max-width: 1100px) and (min-width: 961px) {
-  .inner {
-    --why-shell-width: 920px;
-    padding-top: 84px;
-    padding-bottom: 72px;
-  }
-
-  .title {
-    width: min(460px, calc(100% - 48px));
-    font-size: 38px;
-    line-height: 38px;
-  }
-
-  .categoryHeading {
-    width: min(760px, 100%);
-    margin-top: 44px;
-    font-size: 36px;
-    line-height: 36px;
-  }
-
-  .cards {
-    margin-top: 40px;
-    width: min(760px, 100%);
-    justify-content: center;
-  }
-
-  .card,
-  .cardAlt,
-  .cardAlt2 {
-    width: min(360px, 100%);
-    min-height: 280px;
-  }
-
-  .categoriesDesktop {
-    width: min(760px, 100%);
-    margin-top: 32px;
+    width: 100%;
+    max-width: 256px;
   }
 }
 
@@ -720,6 +693,10 @@
   .card,
   .cardAlt,
   .cardAlt2 {
+    /* En mobile las cards se apilan y llevan medidas fijas, así que se anula
+       el reparto flexible que usan en desktop. */
+    flex: 0 0 auto;
+    max-width: none;
     width: 169px;
     height: 264px;
     min-height: 264px;

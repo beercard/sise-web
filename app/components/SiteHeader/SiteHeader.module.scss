@@ -6,36 +6,47 @@
   z-index: 300;
 }
 
+/*
+ * Header desktop, calcado del Figma a 1920px:
+ *   águila 0-124 (pegada al borde, es un gráfico a sangre),
+ *   logo SISE 244-330, nav 434-1680, margen derecho 240.
+ *
+ * El águila queda anclada al borde izquierdo en cualquier ancho, así que solo
+ * se comprimen el hueco hasta el logo y el margen derecho. Ambos alcanzan el
+ * valor exacto del Figma en 1920 y se achican parejo hasta 1201px, donde entra
+ * el menú hamburguesa.
+ */
 .inner {
-  --header-gap: clamp(10px, 1.6vw, 40px);
-  --header-logo-gap: var(--header-gap);
+  --header-logo-gap: clamp(40px, calc(12.5vw - 120px), 120px);
+  /* Aire entre el texto de CONTACTO y el borde derecho (240px en el Figma). */
+  --header-margin-right: clamp(24px, calc(27.8vw - 294px), 240px);
+  /* Padding interno de cada item del nav: es la caja del hover. */
+  --nav-pad-x: clamp(10px, 1.04vw, 20px);
   display: flex;
   align-items: center;
   width: min(1920px, 100%);
   height: 80px;
   margin: 0 auto;
   padding-left: 0;
-  padding-right: clamp(16px, 6vw, 200px);
-  gap: var(--header-gap);
+  /* Se descuenta el padding del último item para que el margen del Figma se
+     mida contra el texto y no contra su caja. */
+  padding-right: calc(var(--header-margin-right) - var(--nav-pad-x));
+  gap: 0;
   position: relative;
 }
 
 .aguila {
   width: 124px;
   height: 80px;
+  flex: none;
 }
 
 .recurso {
   margin-top: 0;
-  margin-left: calc(var(--header-logo-gap) - var(--header-gap));
+  margin-left: var(--header-logo-gap);
   width: 86px;
   height: 50px;
-}
-
-@media (min-width: 1600px) {
-  .inner {
-    --header-logo-gap: 120px;
-  }
+  flex: none;
 }
 
 .menuButton {
@@ -110,18 +121,25 @@
 }
 
 .nav {
-  --nav-gap: clamp(16px, 2.2vw, 52px);
-  --nav-pad-x: clamp(10px, 1.35vw, 24px);
-  --nav-font: clamp(16px, 1.05vw, 20px);
-  --nav-subpad: clamp(22px, 2.2vw, 53px);
-  margin-left: 0;
+  /*
+   * --nav-space es la separación entre los textos de dos items contiguos.
+   * El Figma marca 106px (53px a cada lado del divisor) y baja linealmente
+   * hasta 40px en 1201, el último ancho antes del hamburguesa: así el nav
+   * nunca llega a tocar el logo. El padding interno de cada item (la caja del
+   * hover) se descuenta de ahí, para que el divisor quede siempre centrado.
+   */
+  --nav-space: clamp(40px, calc(9.19vw - 70.5px), 106px);
+  --nav-gap: calc(var(--nav-space) - (var(--nav-pad-x) * 2));
+  --nav-font: 20px;
+  --nav-subpad: var(--nav-pad-x);
+  margin-left: auto;
   height: 80px;
   display: flex;
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-end;
   padding-right: 0;
   width: auto;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
   max-width: none;
   overflow: visible;
@@ -271,11 +289,12 @@
   border-radius: 4px;
 }
 
+/* El desplegable se centra respecto de la caja de su item principal. */
 .submenu {
   position: absolute;
   top: 80px;
-  left: 0;
-  transform: none;
+  left: 50%;
+  transform: translateX(-50%);
   display: none;
   flex-direction: column;
   gap: 0;
@@ -284,7 +303,8 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
   border-radius: 0;
   z-index: 200;
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
 }
 
 .submenuInner {
@@ -292,19 +312,14 @@
   flex-direction: column;
 }
 
-.submenuempresas {
-  width: 100%;
-}
-
-.submenuurbano {
-  width: 100%;
-}
-
-.submenunosotros {
-  width: 100%;
-}
-
+/*
+ * El desplegable se mide por su item más largo ("CONSTRUCCIÓN"), así que el
+ * texto nunca se corta ni se desborda de su caja en ningún ancho. El padding
+ * lateral acompaña al del header para que el bloque no quede desproporcionado
+ * en laptops chicas.
+ */
 .submenuItem {
+  --submenu-pad-x: clamp(18px, 1.5vw, 28px);
   display: flex;
   position: relative;
   align-items: center;
@@ -312,29 +327,15 @@
   background: #00408c;
   width: 100%;
   height: 64px;
-  padding: 0 var(--nav-pad-x);
+  padding: 0 var(--submenu-pad-x);
   text-align: center;
+  white-space: nowrap;
   letter-spacing: 1px;
   color: #ffffff;
   font-size: var(--nav-font);
   font-weight: 700;
   text-decoration: none;
   transition: background 0.3s ease, opacity 0.3s ease;
-}
-
-.submenuurbano .submenuItem {
-  justify-content: center;
-  padding: 0 var(--nav-pad-x);
-  text-align: center;
-  font-size: clamp(15px, 0.95vw, 18px);
-  letter-spacing: 0.6px;
-  line-height: 18px;
-}
-
-.submenunosotros .submenuItem {
-  justify-content: center;
-  padding: 0 var(--nav-pad-x);
-  text-align: center;
 }
 
 .submenuItem:hover {
@@ -358,28 +359,20 @@
   pointer-events: none;
 }
 
-.submenuurbano::after {
-  width: 79px;
-}
-
-.submenunosotros::after {
-  width: 89px;
-}
-
 .submenuItem:last-child {
   border-bottom: 0;
 }
 
-.navItemempresas .navLinkGroup {
-  width: clamp(170px, 10.5vw, 210px);
-}
-
-.navItemurbano .navLinkGroup {
-  width: clamp(150px, 9.8vw, 190px);
-}
-
+/*
+ * Los items con submenú se miden por su propio texto, igual que el resto, para
+ * que la separación entre todos sea uniforme. El desplegable se ensancha solo
+ * hasta donde le pide su contenido (p. ej. "CONSTRUCCIÓN") sin arrastrar al
+ * item del header.
+ */
+.navItemempresas .navLinkGroup,
+.navItemurbano .navLinkGroup,
 .navItemnosotros .navLinkGroup {
-  width: clamp(176px, 11vw, 216px);
+  width: auto;
 }
 
 .navItemWithSubmenu .navLinkRow {
@@ -427,32 +420,6 @@
 .contacto {
   width: 109px;
   height: 18px;
-}
-
-@media (min-width: 1201px) and (max-width: 1366px) {
-  .inner {
-    --header-gap: clamp(10px, 1.4vw, 28px);
-    padding-left: 0;
-    padding-right: 24px;
-  }
-
-  .nav {
-    --nav-gap: clamp(14px, 1.3vw, 30px);
-    --nav-subpad: clamp(14px, 1.2vw, 32px);
-    --nav-pad-x: clamp(8px, 1vw, 16px);
-  }
-
-  .navItemempresas .navLinkGroup {
-    width: clamp(148px, 11.6vw, 196px);
-  }
-
-  .navItemurbano .navLinkGroup {
-    width: clamp(132px, 10.4vw, 176px);
-  }
-
-  .navItemnosotros .navLinkGroup {
-    width: clamp(152px, 12vw, 200px);
-  }
 }
 
 @media (max-width: 1200px) {

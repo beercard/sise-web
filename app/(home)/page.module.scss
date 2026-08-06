@@ -21,12 +21,13 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 73px 24px 52px;
+  padding: 73px var(--sise-gutter) 52px;
   background: #d9d9d9;
 }
 
+/* Figma: bloque de 1188px, alineado a la izquierda. */
 .faqInner {
-  width: min(1188px, 100%);
+  width: min(var(--sise-content), 100%);
 }
 
 .faqHeader {
@@ -161,45 +162,21 @@
   transform: translateY(0);
 }
 
-@media (max-width: 1440px) and (min-width: 601px) {
+/*
+ * El bloque de 1188 entra completo hasta 1252px (1188 + gutters), así que en
+ * laptop solo se recorta el aire vertical. Recién en tablet bajan tipografías.
+ */
+@media (max-width: 1279px) and (min-width: 1025px) {
   .faqSection {
     padding-top: 64px;
     padding-bottom: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .faqInner {
-    width: min(1080px, 100%);
-  }
-
-  .faqTitle {
-    width: min(820px, 100%);
-    font-size: clamp(40px, 3.2vw, 48px);
-    line-height: clamp(36px, 2.9vw, 39px);
-  }
-
-  .faqIntro {
-    width: min(944px, 100%);
-    font-size: clamp(21px, 1.6vw, 24px);
-    line-height: clamp(28px, 2.25vw, 33.6px);
-  }
-
-  .faqQuestion {
-    font-size: clamp(22px, 1.7vw, 24px);
-    line-height: clamp(18px, 1.4vw, 19.36px);
-  }
-
-  .faqAnswer {
-    width: min(840px, calc(100% - 72px));
-    font-size: clamp(18px, 1.4vw, 20px);
-    line-height: clamp(24px, 1.9vw, 28px);
   }
 }
 
-@media (max-width: 1200px) and (min-width: 601px) {
-  .faqInner {
-    width: min(980px, 100%);
+@media (max-width: 1024px) and (min-width: 601px) {
+  .faqSection {
+    padding-top: 56px;
+    padding-bottom: 44px;
   }
 
   .faqList {
@@ -229,45 +206,13 @@
     width: min(780px, calc(100% - 56px));
     padding-left: 28px;
     padding-right: 24px;
+    font-size: 18px;
+    line-height: 26px;
   }
 
   .faqItem[open] .faqAnswer {
     padding-left: 28px;
     padding-right: 24px;
-  }
-}
-
-@media (max-width: 1100px) and (min-width: 601px) {
-  .faqSection {
-    padding-top: 56px;
-    padding-bottom: 44px;
-  }
-
-  .faqInner {
-    width: min(920px, 100%);
-  }
-
-  .faqHeader {
-    align-items: center;
-    text-align: center;
-    gap: 14px;
-  }
-
-  .faqTitle,
-  .faqIntro {
-    width: min(760px, 100%);
-    text-align: center;
-  }
-
-  .faqQuestion {
-    font-size: 20px;
-    line-height: 22px;
-  }
-
-  .faqAnswer {
-    width: min(760px, calc(100% - 56px));
-    font-size: 17px;
-    line-height: 24px;
   }
 }
 

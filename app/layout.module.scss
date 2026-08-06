@@ -8,39 +8,6 @@
   overflow-x: clip;
 }
 
-.scaleShell {
-  width: 100%;
-}
-
 .main {
   width: 100%;
 }
-
-@media (max-width: 1920px) and (min-width: 961px) {
-  .page {
-    --site-laptop-scale: clamp(0.8, calc(0.5 + (100vw / 3840)), 1);
-  }
-
-  .scaleShell {
-    width: calc(100% / var(--site-laptop-scale));
-    margin: 0 auto;
-  }
-}
-
-@supports (zoom: 1) {
-  @media (max-width: 1920px) and (min-width: 961px) {
-    .scaleShell {
-      zoom: var(--site-laptop-scale);
-    }
-  }
-}
-
-@supports not (zoom: 1) {
-  @media (max-width: 1920px) and (min-width: 961px) {
-    .scaleShell {
-      transform: scale(var(--site-laptop-scale));
-      transform-origin: top center;
-    }
-  }
-}
-

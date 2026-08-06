@@ -415,11 +415,16 @@
   margin-top: 0;
 }
 
+/* Figma: el contenido del footer vive en el contenedor ancho de 1432px, con el
+   logo alineado a x=244 igual que el logo del header. */
 .footerInner {
   width: min(1920px, 100%);
   margin: 0 auto;
-  --footer-content-width: 1432px;
-  --footer-pad-x: max(16px, calc((min(1920px, 100vw) - var(--footer-content-width)) / 2));
+  --footer-content-width: var(--sise-content-wide);
+  --footer-pad-x: max(
+    var(--sise-gutter),
+    calc((min(1920px, 100vw) - var(--footer-content-width)) / 2)
+  );
   padding: 39px var(--footer-pad-x) 31px;
 }
 
@@ -732,31 +737,11 @@
   width: 123px;
 }
 
-@media (max-width: 1366px) {
-  .quoteBox {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .whyChooseInner {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .whyChooseTitle {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .categoriesRow {
-    left: 24px;
-    right: 24px;
-  }
-
-  .footerInner {
-    --footer-pad-x: 16px;
-  }
-
+/*
+ * El footer conserva la fila de tres columnas del Figma mientras el contenedor
+ * de 1432 tenga lugar; recién en tablet se apila.
+ */
+@media (max-width: 1024px) {
   .footerTopRow {
     flex-wrap: wrap;
     justify-content: center;

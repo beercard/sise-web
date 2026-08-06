@@ -1,6 +1,10 @@
 .hero {
-  --hero-shell-width: 1188px;
-  --hero-shell-pad: max(24px, calc((100vw - var(--hero-shell-width)) / 2));
+  /*
+   * Figma: hero de 800px de alto, título de 64px/52px arrancando en x=366
+   * (borde izquierdo del contenedor de 1188) y a 470px del tope del hero.
+   */
+  --hero-shell-width: var(--sise-content);
+  --hero-shell-pad: max(var(--sise-gutter), calc((100vw - var(--hero-shell-width)) / 2));
   --hero-title-width: 952px;
   --hero-title-font-size: 64px;
   --hero-title-line-height: 52px;
@@ -178,44 +182,19 @@
   transform: scale(1.12);
 }
 
-@media (max-width: 1440px) {
+/*
+ * Único escalón de laptop. Entre 961 y 1279 el hero baja de alto pero conserva
+ * el tipo de 64px y el contenedor de 1188 del diseño; el título solo se angosta
+ * cuando el viewport deja de darle lugar.
+ */
+@media (max-width: 1279px) and (min-width: 961px) {
   .hero {
-    --hero-shell-width: 1080px;
-    --hero-title-width: 952px;
-    --hero-title-font-size: 64px;
-    --hero-title-line-height: 52px;
-    height: 720px;
+    height: 700px;
   }
 
   .heroMedia {
     top: 0;
-    height: 720px;
-  }
-
-  .heroImage {
-    object-position: center center;
-  }
-
-  .heroTitle {
-    top: 418px;
-  }
-
-  .heroDots {
-    bottom: 40px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .hero {
-    --hero-shell-width: 980px;
-    --hero-title-width: 952px;
-    --hero-title-font-size: 64px;
-    --hero-title-line-height: 52px;
-    height: 680px;
-  }
-
-  .heroMedia {
-    height: 680px;
+    height: 700px;
   }
 
   .heroImage {
@@ -223,67 +202,11 @@
   }
 
   .heroTitle {
-    top: 372px;
+    top: 400px;
   }
 
   .heroDots {
-    bottom: 34px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .hero {
-    --hero-title-width: 952px;
-    --hero-title-font-size: 64px;
-    --hero-title-line-height: 52px;
-    height: 620px;
-  }
-
-  .heroMedia {
-    width: 100%;
-    height: 620px;
-  }
-
-  .heroImage {
-    object-position: 63% center;
-  }
-
-  .heroTitle {
-    top: 364px;
-  }
-
-  .heroDots {
-    bottom: 30px;
-  }
-
-}
-
-@media (max-width: 1100px) and (min-width: 961px) {
-  .hero {
-    --hero-shell-width: 920px;
-    --hero-title-width: 952px;
-    --hero-title-font-size: 64px;
-    --hero-title-line-height: 52px;
-    height: 620px;
-  }
-
-  .heroMedia {
-    height: 620px;
-  }
-
-  .heroImage {
-    object-position: 61% center;
-  }
-
-  .heroTitle {
-    top: 352px;
-    left: 36px;
-    width: min(952px, calc(100% - 72px));
-    max-width: 952px;
-  }
-
-  .heroDots {
-    bottom: 28px;
+    bottom: 36px;
   }
 }
 

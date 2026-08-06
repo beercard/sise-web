@@ -2,6 +2,35 @@
   --sise-blue: #00408c;
   --sise-white: #ffffff;
   --sise-gray: #d9d9d9;
+
+  /*
+   * Sistema de layout.
+   *
+   * El diseño de Figma está authorizado a 1920px con dos anchos de contenido:
+   *   - 1188px  -> hero, ¿por qué elegir?, cotizador, puente en vivo, SEO, FAQ
+   *   - 1432px  -> carrusel de pilares y footer
+   *
+   * Estos contenedores se mantienen fijos desde 1920 hasta que el viewport deja
+   * de darles lugar; ahí recién empiezan a achicarse contra el gutter. Así una
+   * pantalla de 1536px (1920 físicos con la escala 125% de Windows) ve la misma
+   * composición que el Figma, solo que con márgenes laterales más angostos.
+   */
+  --sise-content: 1188px;
+  --sise-content-wide: 1432px;
+  --sise-gutter: 24px;
+}
+
+/* Por debajo de 1280 el contenido pasa a ser fluido y respira un poco más. */
+@media (max-width: 1279px) {
+  :root {
+    --sise-gutter: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --sise-gutter: 24px;
+  }
 }
 
 *,
