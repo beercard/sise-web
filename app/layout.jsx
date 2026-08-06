@@ -190,10 +190,12 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <div className={styles.page}>
-          <SiteHeader />
-          <main className={styles.main}>{children}</main>
-          <SiteFooter />
-          <WhatsAppFloatingButton />
+          <div className={styles.scaleShell}>
+            <SiteHeader />
+            <main className={styles.main}>{children}</main>
+            <SiteFooter />
+            <WhatsAppFloatingButton />
+          </div>
         </div>
       </body>
     </html>
