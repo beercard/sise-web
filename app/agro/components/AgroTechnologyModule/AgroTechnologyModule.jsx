@@ -512,13 +512,16 @@ export default function AgroTechnologyModule() {
   const currentSlide = slides[activeIndex];
   const previousSlide = previousIndex === null ? null : slides[previousIndex];
 
+  /* Las clases de transición de esta página se llaman Right/Left (no Next/Prev
+     como en hogar): la card que entra viene del lado hacia el que se avanza y
+     la que sale se va por el opuesto. */
   const getCardClassName = (phase) => {
     if (phase === 'active') {
-      if (!isAnimating) return styles.techCardStatic;
-      return direction === 'next' ? styles.techCardEnterNext : styles.techCardEnterPrev;
+      if (!isAnimating) return '';
+      return direction === 'next' ? styles.techCardEnterRight : styles.techCardEnterLeft;
     }
 
-    return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
+    return direction === 'next' ? styles.techCardExitLeft : styles.techCardExitRight;
   };
 
   const renderSlideContent = (slide, extraClassName) => <TechCard slide={slide} className={extraClassName} />;
