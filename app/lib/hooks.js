@@ -74,33 +74,6 @@ export function useSlideTransition({ length = 0, animationMs = 420 } = {}) {
   };
 }
 
-export function useAutoplay({ paused = false, length = 0, intervalMs, advance }) {
-  useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion || paused || length <= 1) return undefined;
-
-    const intervalId = window.setInterval(advance, intervalMs);
-    return () => window.clearInterval(intervalId);
-  }, [paused, length, intervalMs, advance]);
-}
-
-export function useViewportWidth() {
-  const [viewportWidth, setViewportWidth] = useState(() =>
-    typeof window === 'undefined' ? 0 : window.innerWidth
-  );
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return undefined;
-    const onResize = () => setViewportWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  return viewportWidth;
-}
-
 export const mergeSections = (base, override) => {
   const next = { ...base };
   if (!override) return next;
