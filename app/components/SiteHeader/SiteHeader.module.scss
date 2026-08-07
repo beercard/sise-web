@@ -17,11 +17,15 @@
  * el menú hamburguesa.
  */
 .inner {
-  --header-logo-gap: clamp(40px, calc(12.5vw - 120px), 120px);
+  /* En laptops la página entera va bajo el zoom global (--sise-scale), así que
+     las proporciones se calculan contra el ancho EFECTIVO (--sise-vw) y no
+     contra 100vw: con vw crudo estos huecos se comprimían de más y el menú se
+     corría hacia la derecha en vez de conservar el layout de 1920. */
+  --header-logo-gap: clamp(40px, calc(var(--sise-vw) * 0.125 - 120px), 120px);
   /* Aire entre el texto de CONTACTO y el borde derecho (240px en el Figma). */
-  --header-margin-right: clamp(24px, calc(27.8vw - 294px), 240px);
+  --header-margin-right: clamp(24px, calc(var(--sise-vw) * 0.278 - 294px), 240px);
   /* Padding interno de cada item del nav: es la caja del hover. */
-  --nav-pad-x: clamp(10px, 1.04vw, 20px);
+  --nav-pad-x: clamp(10px, calc(var(--sise-vw) * 0.0104), 20px);
   display: flex;
   align-items: center;
   width: min(1920px, 100%);
@@ -128,7 +132,7 @@
    * nunca llega a tocar el logo. El padding interno de cada item (la caja del
    * hover) se descuenta de ahí, para que el divisor quede siempre centrado.
    */
-  --nav-space: clamp(40px, calc(9.19vw - 70.5px), 106px);
+  --nav-space: clamp(40px, calc(var(--sise-vw) * 0.0919 - 70.5px), 106px);
   --nav-gap: calc(var(--nav-space) - (var(--nav-pad-x) * 2));
   --nav-font: 20px;
   --nav-subpad: var(--nav-pad-x);
@@ -319,7 +323,7 @@
  * en laptops chicas.
  */
 .submenuItem {
-  --submenu-pad-x: clamp(18px, 1.5vw, 28px);
+  --submenu-pad-x: clamp(18px, calc(var(--sise-vw) * 0.015), 28px);
   display: flex;
   position: relative;
   align-items: center;
