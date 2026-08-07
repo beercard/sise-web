@@ -1720,6 +1720,12 @@
     height: auto;
     aspect-ratio: 201 / 256;
   }
+
+  /* Igual que en las demás verticales: las cards rediseñadas usan el shell
+     alto de 300px (data-mobile-card-size="tall" desde el módulo). */
+  .techCardViewport[data-mobile-card-size='tall'] {
+    aspect-ratio: 201 / 300;
+  }
 }
 @media (max-width: 1200px) and (min-width: 961px) {
   .heroBottomInner {

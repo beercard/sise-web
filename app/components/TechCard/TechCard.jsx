@@ -62,7 +62,8 @@ function ArtContent({ art, fallbackAlt = '' }) {
               height: art.badgeBlock.height,
               top: art.badgeBlock.top,
               left: art.badgeBlock.left,
-              background: art.badgeBlock.background
+              background: art.badgeBlock.background,
+              mixBlendMode: art.badgeBlock.mixBlendMode
             }}
           />
         ) : null}
@@ -100,11 +101,41 @@ export default function TechCard({ slide, className = '' }) {
 
   return (
     <div className={cardClassName} style={slide.styleVars}>
+      {slide.mobileShell ? (
+        <span
+          className={styles.mobileShell}
+          aria-hidden="true"
+          style={{
+            width: slide.mobileShell.width,
+            height: slide.mobileShell.height,
+            top: slide.mobileShell.top,
+            left: slide.mobileShell.left,
+            background: slide.mobileShell.background,
+            borderRadius: slide.mobileShell.borderRadius
+          }}
+        />
+      ) : null}
+      {slide.mobileAccents?.map((accent, index) => (
+        <span
+          key={`accent-${index}`}
+          className={styles.mobileAccent}
+          aria-hidden="true"
+          style={{
+            width: accent.width,
+            height: accent.height,
+            top: accent.top,
+            left: accent.left,
+            background: accent.background,
+            transform: accent.rotate ? `rotate(${accent.rotate}deg)` : undefined,
+            transformOrigin: accent.transformOrigin
+          }}
+        />
+      ))}
       <p className={styles.title}>
         {slide.mobileTitleLines ? (
           <>
             <span className={styles.desktopText}>{slide.title}</span>
-            <span className={styles.mobileText}>
+            <span className={`${styles.mobileText} ${styles.mobileFixedLines}`}>
               {slide.mobileTitleLines.flatMap((line, index) =>
                 index === 0 ? [line] : [<br key={`title-br-${index}`} />, line]
               )}
@@ -119,7 +150,7 @@ export default function TechCard({ slide, className = '' }) {
           {slide.mobileTextLines ? (
             <>
               <span className={styles.desktopText}>{slide.text}</span>
-              <span className={styles.mobileText}>
+              <span className={`${styles.mobileText} ${styles.mobileFixedLines}`}>
                 {slide.mobileTextLines.flatMap((line, index) =>
                   index === 0 ? [line] : [<br key={`text-br-${index}`} />, line]
                 )}

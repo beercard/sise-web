@@ -76,6 +76,7 @@ export default function CiudadTechnologyModule() {
               '--tech-card-mobile-art-width': '102px',
               '--tech-card-mobile-art-height': '102px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mq1kcwk1-m8n3v94.png', width: 143, height: 143 }
           },
           {
@@ -120,6 +121,7 @@ export default function CiudadTechnologyModule() {
               '--tech-card-mobile-art-width': '89px',
               '--tech-card-mobile-art-height': '133px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mq1ip4u2-z1dsbza.png', width: 126, height: 188 }
           },
           {
@@ -158,6 +160,7 @@ export default function CiudadTechnologyModule() {
               '--tech-card-mobile-art-width': '63px',
               '--tech-card-mobile-art-height': '113px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mq1ip4zv-p0t8sua.png', width: 103, height: 187 }
           },
           {
@@ -193,6 +196,7 @@ export default function CiudadTechnologyModule() {
               '--tech-card-mobile-art-width': '153px',
               '--tech-card-mobile-art-height': '133px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: {
               type: 'gps',
               overlaySrc: '/image/mq1ip585-5gdqo05.png',

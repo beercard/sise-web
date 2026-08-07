@@ -66,7 +66,18 @@ export default function AgroTechnologyModule() {
           {
             id: 'camaraCampo',
             title: 'Cámara Campo',
+            /* Mobile (Figma 3182:489): título en 38, texto de 5 renglones en 68
+               y la cámara solar de 128×96 en y=174. */
             text: 'Sistema autónomo con energía solar y conectividad integrada, ideal para campos sin internet ni electricidad.',
+            mobileTextLines: [
+              'Sistema autónomo con',
+              'energía solar y',
+              'conectividad integrada,',
+              'ideal para campos sin',
+              'internet ni electricidad.'
+            ],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-padding': '48px 68px 33px 67px',
               '--tech-card-align-items': 'center',
@@ -77,14 +88,31 @@ export default function AgroTechnologyModule() {
               '--tech-card-text-margin': '12px 0 0',
               '--tech-card-image-width': '214px',
               '--tech-card-image-height': '160px',
-              '--tech-card-art-margin-top': '14px'
+              '--tech-card-art-margin-top': '14px',
+              '--tech-card-mobile-title-top': '38px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '68px',
+              '--tech-card-mobile-text-width': '175px',
+              '--tech-card-mobile-art-top': '174px',
+              '--tech-card-mobile-art-width': '128px',
+              '--tech-card-mobile-art-height': '96px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mq1fh69q-ch04lu8.webp', width: 214, height: 160 }
           },
           {
             id: 'cartel',
             title: 'Cartel disuasivo',
             text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
+            mobileTitleLines: ['Cartel', 'disuasivo'],
+            mobileTextLines: [
+              'Refuerza visualmente',
+              'la seguridad del lugar',
+              'e informa protección',
+              'monitoreada.'
+            ],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-padding': '48px 82px 51px 84px',
               '--tech-card-title-min-height': '31px',
@@ -92,15 +120,41 @@ export default function AgroTechnologyModule() {
               '--tech-card-text-width': '276px',
               '--tech-card-image-width': '139px',
               '--tech-card-image-height': '147px',
-              '--tech-card-art-margin-top': '9px'
+              '--tech-card-art-margin-top': '9px',
+              '--tech-card-mobile-title-top': '37px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '84px',
+              '--tech-card-mobile-text-width': '164px',
+              '--tech-card-mobile-art-top': '163px',
+              '--tech-card-mobile-art-width': '108px',
+              '--tech-card-mobile-art-height': '115px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
           },
           {
             id: 'gps',
             title: 'GPS para maquinarias y vehículos',
             text: 'Seguimiento y control de flota para optimizar recursos y prevenir pérdidas.',
+            /* Mobile (Figma 3182:479): título de 3 renglones en y=26, texto de
+               4 renglones en y=97 y el teléfono de 137×116 en y=171. */
+            mobileTitleLines: ['GPS para', 'maquinarias y', 'vehículos'],
+            mobileTextLines: [
+              'Seguimiento y control',
+              'de flota para',
+              'optimizar recursos y',
+              'prevenir pérdidas.'
+            ],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
+              '--tech-card-mobile-title-top': '26px',
+              '--tech-card-mobile-title-width': '168px',
+              '--tech-card-mobile-text-top': '97px',
+              '--tech-card-mobile-text-width': '164px',
+              '--tech-card-mobile-art-top': '171px',
+              '--tech-card-mobile-art-width': '137px',
+              '--tech-card-mobile-art-height': '116px',
               '--tech-card-padding': '43px 61px 20px 60px',
               '--tech-card-align-items': 'center',
               '--tech-card-title-width': '313px',
@@ -115,12 +169,22 @@ export default function AgroTechnologyModule() {
               '--tech-card-frame-bg-size': '100% 148%',
               '--tech-card-frame-bg-position': 'center top'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'gps', backgroundSrc: '/image/mq1gm8sq-6kvccdt.webp', wrapperWidth: 221, wrapperHeight: 187, wrapperMarginTop: 32 }
           },
           {
             id: 'sirena',
             title: 'Sirena exterior',
             text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
+            mobileTitleLines: ['Sirena', 'exterior'],
+            mobileTextLines: [
+              'Alerta sonora de alto',
+              'alcance que ahuyenta',
+              'intrusos y activa la',
+              'atención del entorno.'
+            ],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-padding': '48px 83px 44px',
               '--tech-card-title-min-height': '31px',
@@ -132,8 +196,16 @@ export default function AgroTechnologyModule() {
               '--tech-card-image-fixed-height': '149px',
               '--tech-card-image-fit': 'cover',
               '--tech-card-image-position': 'bottom',
-              '--tech-card-art-margin-top': '14px'
+              '--tech-card-art-margin-top': '14px',
+              '--tech-card-mobile-title-top': '37px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '84px',
+              '--tech-card-mobile-text-width': '164px',
+              '--tech-card-mobile-art-top': '172px',
+              '--tech-card-mobile-art-width': '60px',
+              '--tech-card-mobile-art-height': '98px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
           }
         ]
@@ -153,26 +225,51 @@ export default function AgroTechnologyModule() {
             id: 'camaras',
             title: 'Cámaras de vigilancia',
             text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
+            mobileTitleLines: ['Cámaras', 'de vigilancia'],
+            mobileTextLines: [
+              'Supervisión en tiempo', 'real y grabación', 'continua para mayor', 'control y tranquilidad.'
+            ],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-title-line-height': '32px',
               '--tech-card-text-line-height': '20px',
               '--tech-card-image-width': '192px',
               '--tech-card-image-height': '117px',
-              '--tech-card-art-margin-top': '-6px'
+              '--tech-card-art-margin-top': '-6px',
+              '--tech-card-mobile-title-top': '36px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '88px',
+              '--tech-card-mobile-text-width': '167px',
+              '--tech-card-mobile-art-top': '186px',
+              '--tech-card-mobile-art-width': '129px',
+              '--tech-card-mobile-art-height': '78px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
           },
           {
             id: 'sensor',
             title: 'Sensor de movimiento',
             text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
+            mobileTitleLines: ['Sensor de', 'movimiento'],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-padding': '35px 83px 13px',
               '--tech-card-text-margin': '11px 0 0',
               '--tech-card-text-width': '273px',
               '--tech-card-image-width': '193px',
-              '--tech-card-image-height': '180px'
+              '--tech-card-image-height': '180px',
+              '--tech-card-mobile-title-top': '37px',
+              '--tech-card-mobile-title-width': '186.83px',
+              '--tech-card-mobile-text-top': '85px',
+              '--tech-card-mobile-text-width': '167px',
+              '--tech-card-mobile-art-top': '163px',
+              '--tech-card-mobile-art-width': '133px',
+              '--tech-card-mobile-art-height': '124px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: {
               type: 'overlay',
               wrapperWidth: 193,
@@ -186,20 +283,33 @@ export default function AgroTechnologyModule() {
             id: 'teclado',
             title: 'Teclado de configuración',
             text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-padding': '35px 83px 12px',
               '--tech-card-text-margin': '11px 0 0',
               '--tech-card-text-width': '216px',
               '--tech-card-image-width': '201px',
               '--tech-card-image-height': '188px',
-              '--tech-card-art-margin-top': '-12px'
+              '--tech-card-art-margin-top': '-12px',
+              '--tech-card-mobile-title-top': '37px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '84px',
+              '--tech-card-mobile-text-width': '147px',
+              '--tech-card-mobile-art-top': '163px',
+              '--tech-card-mobile-art-width': '123px',
+              '--tech-card-mobile-art-height': '119px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'absolute', src: '/image/mpvxxyfe-psjzek1.webp', width: 201, height: 188, top: 157, left: 121, rotate: 0 }
           },
           {
             id: 'mando',
             title: 'Mando a distancia',
             text: 'Activá o desactivá tu sistema con comodidad.',
+            mobileTitleLines: ['Mando a', 'distancia'],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
               '--tech-card-padding': '48px 83px 13px',
               '--tech-card-title-min-height': '31px',
@@ -207,8 +317,16 @@ export default function AgroTechnologyModule() {
               '--tech-card-text-margin': '21px 0 0',
               '--tech-card-image-width': '174px',
               '--tech-card-image-height': '163px',
-              '--tech-card-art-margin-top': '-22px'
+              '--tech-card-art-margin-top': '-22px',
+              '--tech-card-mobile-title-top': '36px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '88px',
+              '--tech-card-mobile-text-width': '145px',
+              '--tech-card-mobile-art-top': '150px',
+              '--tech-card-mobile-art-width': '115.34px',
+              '--tech-card-mobile-art-height': '107.94px'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'absolute', src: '/image/mpvxy7bq-mohx126.png', width: 174, height: 163, top: 159, left: 131, rotate: 16 }
           }
         ]
@@ -223,7 +341,25 @@ export default function AgroTechnologyModule() {
             id: 'app',
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
+            mobileTitleLines: ['Control desde', 'el celular'],
+            mobileTextLines: [
+              'Administrá tu sistema,',
+              'recibí notificaciones y',
+              'monitoreá tu hogar o negocio',
+              'estés donde estés.'
+            ],
+            mobileTall: true,
+            mobileViewport: 'tall',
             styleVars: {
+              '--tech-card-mobile-title-top': '36px',
+              '--tech-card-mobile-title-width': '187px',
+              '--tech-card-mobile-text-top': '88px',
+              '--tech-card-mobile-text-width': '167px',
+              '--tech-card-mobile-art-top': '167px',
+              '--tech-card-mobile-art-left': '34px',
+              '--tech-card-mobile-art-transform': 'none',
+              '--tech-card-mobile-art-width': '133.87px',
+              '--tech-card-mobile-art-height': '115.58px',
               '--tech-card-padding': '42px 74px 20px',
               '--tech-card-align-items': 'center',
               '--tech-card-title-width': '201px',
@@ -239,6 +375,7 @@ export default function AgroTechnologyModule() {
               '--tech-card-frame-filter': 'grayscale(1)',
               '--tech-card-frame-bar-color': '#065558'
             },
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: {
               type: 'connectivity',
               bar: true,
@@ -455,7 +592,7 @@ export default function AgroTechnologyModule() {
           })}
         </div>
 
-        <div className={styles.techCardGroup} aria-label="Detalle">
+        <div className={styles.techCardGroup} aria-label="Detalle" data-mobile-card-size={currentSlide.mobileViewport ?? 'default'}>
           {slides.length > 1 ? (
             <button type="button" className={styles.techArrow} aria-label="Anterior" onClick={handlePrev}>
               <Image src="/image/mpudc5hg-jng7cpc.png" alt="" width={30} height={18} />
@@ -464,7 +601,11 @@ export default function AgroTechnologyModule() {
             <span className={styles.techArrowSpacer} aria-hidden="true" />
           )}
 
-          <div className={`${styles.techCardViewport} ${styles.tabFadeIn}`} key={`${activeTabId}-${tabNonce}`}>
+          <div
+            className={`${styles.techCardViewport} ${styles.tabFadeIn}`}
+            key={`${activeTabId}-${tabNonce}`}
+            data-mobile-card-size={currentSlide.mobileViewport ?? 'default'}
+          >
             {previousSlide ? renderSlideContent(previousSlide, getCardClassName('previous')) : null}
             {renderSlideContent(currentSlide, getCardClassName('active'))}
           </div>

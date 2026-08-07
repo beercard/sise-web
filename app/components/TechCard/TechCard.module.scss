@@ -64,6 +64,21 @@
   display: none;
 }
 
+/* Variante con cortes forzados (`mobileTitleLines`/`mobileTextLines`): cada
+   renglón viene fijado con <br/> desde el slide para copiar el corte exacto de
+   Figma, así que nunca debe re-envolver aunque League Spartan mida un par de
+   píxeles más en el navegador que en Figma. Los renglones se centran, por lo
+   que si uno supera el ancho de la caja sobresale simétrico y sigue dentro de
+   la card. */
+.mobileFixedLines {
+  white-space: nowrap;
+}
+
+.mobileShell,
+.mobileAccent {
+  display: none;
+}
+
 .artStage {
   flex: 1 1 auto;
   min-height: 0;
@@ -250,42 +265,52 @@
   .cardTall {
     padding: 0;
     display: block;
+    background: transparent;
   }
 
+  /* `height: auto` es imprescindible: `.title`/`.text` toman su alto de
+     `--tech-card-title-height` / `--tech-card-text-height`, que son medidas de
+     escritorio. Sin reponerlo acá esa altura se filtra al shell mobile y, como
+     el título es un flex centrado, corre el texto respecto del top de diseño. */
   .cardTall .title {
     position: absolute;
     top: var(--tech-card-mobile-title-top, 38px);
-    left: 50%;
-    transform: translateX(-50%);
+    left: var(--tech-card-mobile-title-left, 50%);
+    transform: var(--tech-card-mobile-title-transform, translateX(-50%));
     max-width: var(--tech-card-mobile-title-width, 187px);
     min-height: 0;
+    height: auto;
     margin: 0;
     font-size: 20px;
     line-height: 100%;
+    z-index: 1;
   }
 
   .cardTall .text {
     position: absolute;
     top: var(--tech-card-mobile-text-top, 94px);
-    left: 50%;
-    transform: translateX(-50%);
+    left: var(--tech-card-mobile-text-left, 50%);
+    transform: var(--tech-card-mobile-text-transform, translateX(-50%));
     max-width: var(--tech-card-mobile-text-width, 187px);
     min-height: 0;
+    height: auto;
     margin: 0;
     display: block;
     font-size: 18px;
     line-height: 100%;
+    z-index: 1;
   }
 
   .cardTall .artStage {
     position: absolute;
     top: var(--tech-card-mobile-art-top, 180px);
-    left: 50%;
-    transform: translateX(-50%);
+    left: var(--tech-card-mobile-art-left, 50%);
+    transform: var(--tech-card-mobile-art-transform, translateX(-50%));
     margin-top: 0;
     width: var(--tech-card-mobile-art-width, 102px);
     height: var(--tech-card-mobile-art-height, 102px);
     flex: none;
+    z-index: 1;
   }
 
   .cardTall .artImage,
@@ -296,11 +321,33 @@
     max-height: 100%;
   }
 
+  /* En el shell alto el stage ya mide exactamente la caja del diseño, así que
+     la imagen siempre entra completa (contain). Sin esto, cards que en desktop
+     usan `--tech-card-image-fit: cover` (p.ej. Sirena exterior) heredan ese
+     cover acá y se ven con zoom/recortadas. */
+  .cardTall .artImage {
+    object-fit: var(--tech-card-mobile-image-fit, contain);
+    object-position: center;
+  }
+
   /* Override sólo mobile del filtro de frameBg: el diseño de GPS institucional
      (Figma 3182:471) muestra la captura en blanco y negro, pero el asset real
      tiene la barra "CAR-TRACKER" en rojo; se desatura sólo en este breakpoint
      para no afectar la card de escritorio (que no tiene este override). */
   .cardTall .frameBg {
     filter: var(--tech-card-mobile-frame-filter, var(--tech-card-frame-filter, none));
+  }
+
+  .mobileShell {
+    position: absolute;
+    display: block;
+    z-index: 0;
+  }
+
+  .mobileAccent {
+    position: absolute;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
   }
 }
