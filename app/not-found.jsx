@@ -5,6 +5,7 @@ import styles from './not-found.module.scss';
 
 export const metadata = {
   title: 'Página no encontrada',
+  description: 'La página solicitada no existe o fue movida. Explorá las soluciones de seguridad electrónica de SISE Argentina.',
   robots: { index: false, follow: true }
 };
 

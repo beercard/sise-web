@@ -1,5 +1,5 @@
 import LegalLayout from '../components/LegalLayout/LegalLayout';
-import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema } from '../lib/seo';
+import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema, noIndexRobots } from '../lib/seo';
 
 const PAGE_TITLE = 'Botón de arrepentimiento';
 const PAGE_DESCRIPTION =
@@ -9,7 +9,16 @@ const UPDATED_AT = '21 de junio de 2026';
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  path: '/arrepentimiento'
+  path: '/arrepentimiento',
+  category: 'Legal',
+  robots: noIndexRobots,
+  keywords: [
+    'botón de arrepentimiento SISE',
+    'derecho de arrepentimiento SISE Argentina',
+    'revocar contratación servicio de alarma',
+    'arrepentimiento servicio de monitoreo',
+    'resolución 424 2020 SISE'
+  ]
 });
 
 const structuredData = {

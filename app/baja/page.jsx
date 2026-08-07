@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import LegalLayout from '../components/LegalLayout/LegalLayout';
-import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema } from '../lib/seo';
+import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema, noIndexRobots } from '../lib/seo';
 
 const PAGE_TITLE = 'Solicitar baja de servicio';
 const PAGE_DESCRIPTION =
@@ -11,7 +11,16 @@ const UPDATED_AT = '21 de junio de 2026';
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  path: '/baja'
+  path: '/baja',
+  category: 'Legal',
+  robots: noIndexRobots,
+  keywords: [
+    'baja de servicio SISE',
+    'dar de baja alarma monitoreada',
+    'baja servicio de monitoreo',
+    'cancelar servicio de seguridad electrónica',
+    'solicitar baja SISE Argentina'
+  ]
 });
 
 const structuredData = {

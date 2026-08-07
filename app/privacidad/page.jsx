@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import LegalLayout from '../components/LegalLayout/LegalLayout';
-import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema } from '../lib/seo';
+import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema, noIndexRobots } from '../lib/seo';
 
 const PAGE_TITLE = 'Política de privacidad';
 const PAGE_DESCRIPTION =
@@ -11,7 +11,16 @@ const UPDATED_AT = '21 de junio de 2026';
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  path: '/privacidad'
+  path: '/privacidad',
+  category: 'Legal',
+  robots: noIndexRobots,
+  keywords: [
+    'política de privacidad SISE',
+    'protección de datos SISE Argentina',
+    'datos personales seguridad electrónica',
+    'privacidad siseargentina.com',
+    'ley 25326 SISE'
+  ]
 });
 
 const structuredData = {

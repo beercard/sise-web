@@ -64,6 +64,7 @@ const FIELD_CONFIG = {
 export default function ContactoHero() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [website, setWebsite] = useState('');
+  const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -99,7 +100,7 @@ export default function ContactoHero() {
       const response = await fetch('/api/contacto', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, website })
+        body: JSON.stringify({ ...form, website, formStartedAt })
       });
 
       const data = await response.json().catch(() => ({}));
@@ -112,6 +113,7 @@ export default function ContactoHero() {
       setSubmitted(true);
       setForm(INITIAL_FORM);
       setWebsite('');
+      setFormStartedAt(Date.now());
     } catch (error) {
       trackFormSubmit({ formName: 'contacto', variant: 'contacto_hero', status: 'error' });
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el formulario.');
@@ -123,6 +125,7 @@ export default function ContactoHero() {
   const handleFormFocus = () => {
     if (hasTrackedFormStart.current) return;
     hasTrackedFormStart.current = true;
+    setFormStartedAt(Date.now());
     trackFormStart({ formName: 'contacto', variant: 'contacto_hero' });
   };
 

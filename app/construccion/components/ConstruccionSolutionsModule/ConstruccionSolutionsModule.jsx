@@ -12,7 +12,7 @@ const solutions = [
   },
   {
     key: 'cerco',
-    title: ['CERCO ELÉCTRICO'],
+    title: ['CERCO', 'ELÉCTRICO'],
     mobileTitle: ['CERCO', 'ELÉCTRICO'],
     body: 'Cierre perimetral temporal para delimitar y proteger el predio.',
     mobileBody: 'Cierre perimetral de alta tensión para blindar el predio desde el día uno.'
@@ -26,14 +26,14 @@ const solutions = [
   },
   {
     key: 'acceso',
-    title: ['CONTROL DE ACCESO'],
+    title: ['CONTROL', 'DE ACCESO'],
     mobileTitle: ['CONTROL', 'DE ACCESO'],
     body: 'Registro y control de ingreso de personal y proveedores.',
     mobileBody: 'Registro estricto de contratistas, obreros y proveedores.'
   },
   {
     key: 'timelapse',
-    title: ['TIMELAPSE DE OBRA'],
+    title: ['TIMELAPSE', 'DE OBRA'],
     mobileTitle: ['TIMELAPSE', 'DE OBRA'],
     body: 'Registro audiovisual del avance del proyecto para control y documentación.',
     mobileBody: 'Documentación visual del avance del proyecto para control e inversores.'

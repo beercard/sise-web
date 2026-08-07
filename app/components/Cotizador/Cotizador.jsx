@@ -392,6 +392,7 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
   const [step, setStep] = useState(STEP.PROPERTY_TYPE);
   const [answers, setAnswers] = useState(initialAnswers);
   const [website, setWebsite] = useState('');
+  const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [stepError, setStepError] = useState('');
@@ -495,7 +496,7 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
       const response = await fetch('/api/cotizador', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answers, website, summary, variant })
+        body: JSON.stringify({ answers, website, summary, variant, formStartedAt })
       });
 
       const data = await response.json().catch(() => ({}));
@@ -517,6 +518,7 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
   const handleFormFocus = () => {
     if (hasTrackedFormStart.current) return;
     hasTrackedFormStart.current = true;
+    setFormStartedAt(Date.now());
     trackFormStart({ formName: 'cotizador', variant });
   };
 

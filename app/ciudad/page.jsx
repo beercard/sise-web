@@ -4,6 +4,7 @@ import CiudadSolutionsModule from './components/CiudadSolutionsModule/CiudadSolu
 
 import {
   buildBreadcrumbSchema,
+  buildItemListSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -13,16 +14,21 @@ import {
 import styles from './page.module.scss';
 
 export const metadata = buildPageMetadata({
-  title: 'Seguridad para ciudades y espacio público',
+  title: 'Videovigilancia y seguridad para ciudades',
   description:
-    'Soluciones de seguridad para municipios y ciudades con videovigilancia, conectividad y herramientas para la prevención del delito.',
+    'Soluciones de seguridad para municipios y ciudades con videovigilancia urbana, conectividad, analítica y herramientas para la prevención del delito en el espacio público.',
   path: '/ciudad',
   image: '/image/og-ciudad.jpg',
+  category: 'Seguridad urbana',
   keywords: [
     'seguridad para ciudades',
     'videovigilancia urbana',
     'monitoreo del espacio público',
     'seguridad municipal',
+    'cámaras para municipios',
+    'centro de monitoreo municipal',
+    'prevención del delito con cámaras',
+    'seguridad para espacio público',
     'seguridad urbana en Chaco',
     'videovigilancia para municipios',
     'videovigilancia urbana en Corrientes',
@@ -31,14 +37,34 @@ export const metadata = buildPageMetadata({
   ]
 });
 
+const ciudadSolutions = [
+  {
+    name: 'Videovigilancia urbana',
+    description: 'Cobertura visual para calles, plazas, avenidas y puntos críticos de la ciudad.'
+  },
+  {
+    name: 'Centro de monitoreo',
+    description: 'Herramientas para supervisión y gestión centralizada de eventos urbanos.'
+  },
+  {
+    name: 'Conectividad y despliegue',
+    description: 'Infraestructura para integrar cámaras, enlaces y nodos de seguridad pública.'
+  },
+  {
+    name: 'Prevención y analítica',
+    description: 'Tecnología orientada a detección temprana, trazabilidad y soporte operativo.'
+  }
+];
+
 const ciudadStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     buildWebPageSchema({
       path: '/ciudad',
-      title: 'Seguridad para ciudades y espacio público',
+      title: 'Videovigilancia y seguridad para ciudades',
       description:
-        'Soluciones de seguridad para municipios y ciudades con videovigilancia, conectividad y herramientas para la prevención del delito.'
+        'Soluciones de seguridad para municipios y ciudades con videovigilancia urbana, conectividad y herramientas para la prevención del delito.',
+      type: 'CollectionPage'
     }),
     buildBreadcrumbSchema({ path: '/ciudad', name: 'Ciudad' }),
     buildServiceSchema({
@@ -49,6 +75,11 @@ const ciudadStructuredData = {
       serviceType: 'Seguridad urbana y videovigilancia',
       audience: 'Municipios, gobiernos y organismos públicos',
       areaServed: buildLocalAreas()
+    }),
+    buildItemListSchema({
+      path: '/ciudad',
+      name: 'Soluciones de seguridad urbana para ciudades',
+      items: ciudadSolutions
     })
   ]
 };

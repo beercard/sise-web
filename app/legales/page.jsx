@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import LegalLayout from '../components/LegalLayout/LegalLayout';
-import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema } from '../lib/seo';
+import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema, noIndexRobots } from '../lib/seo';
 
 const PAGE_TITLE = 'Términos y condiciones';
 const PAGE_DESCRIPTION =
@@ -11,7 +11,16 @@ const UPDATED_AT = '21 de junio de 2026';
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  path: '/legales'
+  path: '/legales',
+  category: 'Legal',
+  robots: noIndexRobots,
+  keywords: [
+    'términos y condiciones SISE',
+    'legales SISE Argentina',
+    'condiciones del servicio de monitoreo',
+    'condiciones sitio seguridad electrónica',
+    'GRUPO SISE SA términos'
+  ]
 });
 
 const structuredData = {

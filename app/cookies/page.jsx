@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import LegalLayout from '../components/LegalLayout/LegalLayout';
-import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema } from '../lib/seo';
+import { buildBreadcrumbSchema, buildPageMetadata, buildWebPageSchema, noIndexRobots } from '../lib/seo';
 
 const PAGE_TITLE = 'Política de cookies';
 const PAGE_DESCRIPTION =
@@ -11,7 +11,16 @@ const UPDATED_AT = '21 de junio de 2026';
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  path: '/cookies'
+  path: '/cookies',
+  category: 'Legal',
+  robots: noIndexRobots,
+  keywords: [
+    'política de cookies SISE',
+    'cookies siseargentina.com',
+    'uso de cookies SISE Argentina',
+    'cookies seguridad electrónica',
+    'gestión de cookies SISE'
+  ]
 });
 
 const structuredData = {

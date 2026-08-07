@@ -208,70 +208,70 @@
   transform: translateX(-50%);
   text-align: center;
   color: #000000;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 20px;
   text-wrap: pretty;
 }
 
 .cardGroup:first-child .cardTitle {
-  top: 72px;
+  top: 75px;
   width: 203px;
   min-height: 39px;
 }
 
 .cardGroup:first-child .cardBody {
-  top: 134px;
-  width: 180px;
-  min-height: 47px;
+  top: 140px;
+  width: 192px;
+  min-height: 39px;
 }
 
 .cardGroup:nth-child(2) .cardTitle {
-  top: 72px;
+  top: 75px;
   width: 203px;
   min-height: 39px;
 }
 
 .cardGroup:nth-child(2) .cardBody {
-  top: 134px;
+  top: 130px;
   width: 180px;
-  min-height: 47px;
+  min-height: 59px;
 }
 
 .cardGroup:nth-child(3) .cardTitle {
-  top: 86px;
+  top: 75px;
   width: 212px;
-  min-height: 15px;
+  min-height: 36px;
 }
 
 .cardGroup:nth-child(3) .cardBody {
-  top: 142px;
+  top: 140px;
   width: 180px;
-  min-height: 31px;
+  min-height: 39px;
 }
 
 .cardGroup:nth-child(4) .cardTitle {
-  top: 72px;
+  top: 75px;
   width: 211px;
   min-height: 39px;
 }
 
 .cardGroup:nth-child(4) .cardBody {
-  top: 134px;
+  top: 140px;
   width: 199px;
-  min-height: 47px;
+  min-height: 39px;
 }
 
 .cardGroup:nth-child(5) .cardTitle {
-  top: 82px;
+  top: 75px;
   width: 203px;
-  min-height: 19px;
+  min-height: 39px;
 }
 
 .cardGroup:nth-child(5) .cardBody {
-  top: 126px;
-  width: 149px;
-  min-height: 63px;
+  top: 140px;
+  width: 176px;
+  min-height: 39px;
 }
 
 @media (max-width: 1200px) {
@@ -302,13 +302,13 @@
   }
 
   .cardTitle {
-    font-size: clamp(16px, 1.28vw, 20px);
-    line-height: clamp(16px, 1.28vw, 20px);
+    font-size: 20px;
+    line-height: 20px;
   }
 
   .cardBody {
-    font-size: clamp(13px, 0.98vw, 16px);
-    line-height: clamp(13px, 0.98vw, 16px);
+    font-size: 20px;
+    line-height: 20px;
   }
 }
 @media (max-width: 1200px) {

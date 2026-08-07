@@ -12,40 +12,35 @@ const solutions = [
     key: 'alarmas',
     title: ['MONITOREO', 'DE ALARMAS'],
     mobileTitle: ['MONITOREO', 'DE ALARMAS'],
-    body:
-      'Protección integral de instalaciones con respuesta inmediata ante eventos.',
+    body: 'Protección 24/7 para infraestructura crítica.',
     mobileBody: 'Protección 24/7 para infraestructura crítica.'
   },
   {
     key: 'cctv',
     title: ['CCTV / VIDEOVIGILANCIA'],
     mobileTitle: ['CCTV / VIDEOVIGILANCIA'],
-    body:
-      'Supervisión de procesos productivos, perímetros y áreas sensibles.',
+    body: 'Auditoría visual de procesos productivos y planta.',
     mobileBody: 'Auditoría visual de procesos productivos y planta.'
   },
   {
     key: 'cerco',
-    title: ['CERCO ELÉCTRICO'],
+    title: ['CERCO', 'ELÉCTRICO'],
     mobileTitle: ['CERCO', 'ELÉCTRICO'],
-    body:
-      'Defensa perimetral activa para prevenir intrusiones.',
+    body: 'Defensa perimetral de alta tensión.',
     mobileBody: 'Defensa perimetral de alta tensión.'
   },
   {
     key: 'accesos',
     title: ['CONTROL DE ACCESO'],
     mobileTitle: ['CONTROL DE', 'ACCESO'],
-    body:
-      'Gestión de ingresos por niveles de autorización, mejorando el control interno.',
+    body: 'Gestión de ingresos por niveles de seguridad.',
     mobileBody: 'Gestión de ingresos por niveles de seguridad.'
   },
   {
     key: 'gps',
-    title: ['GPS CORPORATIVO'],
+    title: ['GPS', 'CORPORATIVO'],
     mobileTitle: ['GPS', 'CORPORATIVO'],
-    body:
-      'Monitoreo de flota en tiempo real para optimizar operaciones y reducir riesgos.',
+    body: 'Telemetría logística para flota.',
     mobileBody: 'Telemetría logística para flota.'
   }
 ];

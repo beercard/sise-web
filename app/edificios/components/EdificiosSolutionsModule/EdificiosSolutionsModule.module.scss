@@ -13,8 +13,8 @@
   --solutions-card-title-font-size: 20px;
   --solutions-card-title-line-height: 20px;
   --solutions-card-body-top: 133px;
-  --solutions-card-body-font-size: 16px;
-  --solutions-card-body-line-height: 16px;
+  --solutions-card-body-font-size: 20px;
+  --solutions-card-body-line-height: 20px;
   --solutions-card-body-width: 180px;
   position: relative;
   width: 100%;
@@ -235,7 +235,7 @@
   align-items: center;
   justify-content: center;
   line-height: var(--solutions-card-title-line-height);
-  letter-spacing: 0.05em;
+  letter-spacing: 1px;
   font-size: var(--solutions-card-title-font-size);
   font-weight: 700;
   text-align: center;
@@ -243,12 +243,16 @@
   color: #250f7f;
 }
 
-.desktopTitle {
-  display: inline;
+.cardTitle .desktopTitle {
+  display: contents;
 }
 
-.mobileTitle {
+.cardTitle .mobileTitle {
   display: none;
+}
+
+.cardTitle span {
+  display: block;
 }
 
 .cardBody {
@@ -266,11 +270,45 @@
   text-wrap: pretty;
 }
 
+.acceso {
+  --solutions-title-width: 203px;
+  --solutions-card-title-top: 70px;
+  --solutions-card-title-min-height: 39px;
+  --solutions-card-body-top: 133px;
+  --solutions-card-body-width: 180px;
+}
 
+.guardia {
+  --solutions-title-width: 179px;
+  --solutions-card-title-top: 70px;
+  --solutions-card-title-min-height: 39px;
+  --solutions-card-body-top: 128px;
+  --solutions-card-body-width: 180px;
+}
 
+.alarmas {
+  --solutions-title-width: 212px;
+  --solutions-card-title-top: 70px;
+  --solutions-card-title-min-height: 39px;
+  --solutions-card-body-top: 138px;
+  --solutions-card-body-width: 183px;
+}
 
+.cerco {
+  --solutions-title-width: 211px;
+  --solutions-card-title-top: 72px;
+  --solutions-card-title-min-height: 35px;
+  --solutions-card-body-top: 128px;
+  --solutions-card-body-width: 170px;
+}
 
-
+.cctv {
+  --solutions-title-width: 203px;
+  --solutions-card-title-top: 80px;
+  --solutions-card-title-min-height: 19px;
+  --solutions-card-body-top: 125px;
+  --solutions-card-body-width: 173px;
+}
 
 @media (max-width: 1200px) {
   .section {
@@ -285,11 +323,11 @@
     --solutions-title-width: calc(var(--solutions-card-width) - 8px);
     --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
     --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
-    --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
-    --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
+    --solutions-card-title-font-size: 20px;
+    --solutions-card-title-line-height: 20px;
     --solutions-card-body-top: clamp(94px, 7.8vw, 112px);
-    --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
-    --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
+    --solutions-card-body-font-size: 20px;
+    --solutions-card-body-line-height: 20px;
     --solutions-card-body-width: clamp(156px, 12vw, 180px);
   }
 
@@ -519,11 +557,11 @@
     line-height: 18px;
   }
 
-  .desktopTitle {
+  .cardTitle .desktopTitle {
     display: none;
   }
 
-  .mobileTitle {
+  .cardTitle .mobileTitle {
     display: contents;
   }
 

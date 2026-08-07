@@ -32,8 +32,52 @@ export const siteConfig = {
     'https://www.facebook.com/sise.argentina',
     'https://www.tiktok.com/@sise.argentina',
     'https://www.youtube.com/@SISEArgentina'
-  ]
+  ],
+  foundingDate: '2009',
+  foundingLocation: 'Resistencia, Chaco, Argentina'
 };
+
+export const defaultSeoKeywords = [
+  'SISE Argentina',
+  'seguridad electrónica',
+  'alarmas monitoreadas',
+  'monitoreo de alarmas 24/7',
+  'cámaras de seguridad',
+  'videovigilancia',
+  'control de accesos',
+  'seguridad en Resistencia',
+  'seguridad en Chaco',
+  'seguridad en Corrientes',
+  'seguridad en el NEA'
+];
+
+export const defaultRobots = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  }
+};
+
+export const noIndexRobots = {
+  index: false,
+  follow: true,
+  googleBot: {
+    index: false,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  }
+};
+
+function uniqueKeywords(keywords = []) {
+  return [...new Set([...defaultSeoKeywords, ...keywords].filter(Boolean))];
+}
 
 export const seoRoutes = [
   { path: '/', changeFrequency: 'weekly', priority: 1 },
@@ -46,12 +90,7 @@ export const seoRoutes = [
   { path: '/ciudad', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/historia', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/rse', changeFrequency: 'monthly', priority: 0.6 },
-  { path: '/contacto', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/legales', changeFrequency: 'yearly', priority: 0.2 },
-  { path: '/privacidad', changeFrequency: 'yearly', priority: 0.2 },
-  { path: '/cookies', changeFrequency: 'yearly', priority: 0.2 },
-  { path: '/arrepentimiento', changeFrequency: 'yearly', priority: 0.3 },
-  { path: '/baja', changeFrequency: 'yearly', priority: 0.3 }
+  { path: '/contacto', changeFrequency: 'monthly', priority: 0.8 }
 ];
 
 export function buildPageMetadata({
@@ -59,15 +98,19 @@ export function buildPageMetadata({
   description,
   path = '/',
   keywords = [],
-  image = siteConfig.ogImage
+  image = siteConfig.ogImage,
+  category,
+  robots = defaultRobots
 }) {
   const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.defaultTitle;
+  const normalizedKeywords = uniqueKeywords(keywords);
 
   return {
     title: fullTitle,
     description,
-    keywords,
+    keywords: normalizedKeywords,
+    category,
     alternates: {
       canonical: canonicalPath
     },
@@ -92,7 +135,8 @@ export function buildPageMetadata({
       title: fullTitle,
       description,
       images: [image]
-    }
+    },
+    robots
   };
 }
 
@@ -128,6 +172,7 @@ export function buildWebPageSchema({ path = '/', title, description, type = 'Web
     isPartOf: {
       '@id': `${siteConfig.siteUrl}/#website`
     },
+    mainEntityOfPage: url,
     about: {
       '@id': `${siteConfig.siteUrl}/#organization`
     },
@@ -196,6 +241,7 @@ export function buildServiceSchema({
     name,
     description,
     serviceType,
+    mainEntityOfPage: url,
     provider: {
       '@id': `${siteConfig.siteUrl}/#organization`
     },
@@ -211,5 +257,25 @@ export function buildServiceSchema({
       serviceUrl: url,
       servicePhone: siteConfig.phone
     }
+  };
+}
+
+export function buildItemListSchema({ path = '/', name, items = [] }) {
+  const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
+  const url = `${siteConfig.siteUrl}${canonicalPath}`;
+
+  return {
+    '@type': 'ItemList',
+    '@id': `${url}#itemlist`,
+    url,
+    name,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      description: item.description
+    }))
   };
 }

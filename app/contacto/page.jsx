@@ -8,15 +8,16 @@ import {
 } from '../lib/seo';
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Contacto y atención 24 horas';
+const PAGE_TITLE = 'Contacto, cotización y atención 24 horas';
 const PAGE_DESCRIPTION =
-  'Contactá a SISE Argentina por teléfono, WhatsApp o correo. Asesoramiento en seguridad electrónica y alarmas en Resistencia, Chaco y el NEA.';
+  'Contactá a SISE Argentina por teléfono, WhatsApp o correo. Pedí cotización y asesoramiento en alarmas monitoreadas, cámaras y seguridad electrónica en Resistencia, Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   path: '/contacto',
   image: '/image/og-contacto.jpg',
+  category: 'Contacto comercial',
   keywords: [
     'contacto SISE Argentina',
     'empresa de seguridad en Resistencia',
@@ -24,6 +25,9 @@ export const metadata = buildPageMetadata({
     'teléfono de monitoreo de alarmas',
     'asesoramiento en seguridad electrónica',
     'cotizar alarma monitoreada',
+    'pedir presupuesto alarma',
+    'WhatsApp SISE',
+    'contacto empresa de alarmas',
     'servicio técnico de alarmas en el NEA',
     'atención 24 horas'
   ]

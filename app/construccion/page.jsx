@@ -5,6 +5,7 @@ import ConstruccionSolutionsModule from './components/ConstruccionSolutionsModul
 import Cotizador from '../components/Cotizador/Cotizador';
 import {
   buildBreadcrumbSchema,
+  buildItemListSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -13,15 +14,16 @@ import {
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Seguridad para obras y construcción';
+const PAGE_TITLE = 'Seguridad para obras, construcción y desarrollos';
 const PAGE_DESCRIPTION =
-  'Seguridad electrónica para obras y construcción con monitoreo, videovigilancia y control perimetral para proteger materiales, equipos y accesos.';
+  'Seguridad electrónica para obras, construcción y desarrollos con monitoreo, videovigilancia, control perimetral y registro de accesos para proteger materiales, equipos y predios.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   path: '/construccion',
   image: '/image/og-construccion.jpg',
+  category: 'Seguridad para obras',
   keywords: [
     'seguridad para obras',
     'videovigilancia de obra',
@@ -29,6 +31,9 @@ export const metadata = buildPageMetadata({
     'cámaras de seguridad para construcción',
     'cámaras solares autónomas',
     'control de acceso en obras',
+    'timelapse de obra',
+    'cerco eléctrico para obra',
+    'monitoreo de obra 24 horas',
     'seguridad para obras en Resistencia',
     'monitoreo de obras en Chaco',
     'seguridad para obras en Corrientes',
@@ -37,10 +42,34 @@ export const metadata = buildPageMetadata({
   ]
 });
 
+const construccionSolutions = [
+  {
+    name: 'Alarmas y monitoreo',
+    description: 'Supervisión fuera del horario laboral para obras, predios y obradores.'
+  },
+  {
+    name: 'Cerco eléctrico',
+    description: 'Delimitación y protección perimetral temporal para obras y frentes de trabajo.'
+  },
+  {
+    name: 'CCTV y videovigilancia',
+    description: 'Monitoreo preventivo y control remoto de cámaras en obra.'
+  },
+  {
+    name: 'Control de acceso y timelapse',
+    description: 'Registro de ingresos y documentación visual del avance del proyecto.'
+  }
+];
+
 const construccionStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    buildWebPageSchema({ path: '/construccion', title: PAGE_TITLE, description: PAGE_DESCRIPTION }),
+    buildWebPageSchema({
+      path: '/construccion',
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      type: 'CollectionPage'
+    }),
     buildBreadcrumbSchema({ path: '/construccion', name: 'Construcción' }),
     buildServiceSchema({
       path: '/construccion',
@@ -50,6 +79,11 @@ const construccionStructuredData = {
       serviceType: 'Seguridad electrónica para obras y construcción',
       audience: 'Constructoras, obras y desarrollos',
       areaServed: buildLocalAreas()
+    }),
+    buildItemListSchema({
+      path: '/construccion',
+      name: 'Soluciones de seguridad para obras y construcción',
+      items: construccionSolutions
     })
   ]
 };

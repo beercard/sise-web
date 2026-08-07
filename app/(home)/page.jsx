@@ -1,6 +1,7 @@
 import CotizadorLazy from '../components/Cotizador/CotizadorLazy';
 import {
   buildFAQPageSchema,
+  buildItemListSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -13,14 +14,15 @@ import WhyChooseSise from './components/WhyChooseSise/WhyChooseSise';
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Alarmas monitoreadas y seguridad electrónica 24/7';
+const PAGE_TITLE = 'Alarmas monitoreadas y seguridad electrónica 24/7 en el NEA';
 const PAGE_DESCRIPTION =
-  'Alarmas monitoreadas, cámaras, control de accesos y central de monitoreo 24/7 para hogares, comercios e industrias en Resistencia, Chaco y el NEA.';
+  'Alarmas monitoreadas, cámaras de seguridad, control de accesos y monitoreo 24/7 para hogares, comercios, industrias, consorcios, obras, campo y ciudades en Resistencia, Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   path: '/',
+  category: 'Seguridad electrónica',
   keywords: [
     'alarmas monitoreadas',
     'sistema de alarma para casa',
@@ -30,11 +32,41 @@ export const metadata = buildPageMetadata({
     'cámaras de seguridad monitoreadas',
     'videovigilancia',
     'control de accesos',
+    'empresa de seguridad electrónica',
+    'empresa de monitoreo de alarmas',
+    'seguridad para hogares y empresas',
+    'alarma con respuesta inmediata',
     'seguridad electrónica en Resistencia',
     'alarmas monitoreadas en Chaco',
+    'alarmas monitoreadas en Corrientes',
+    'seguridad electrónica en Formosa',
+    'seguridad electrónica en Misiones',
     'seguridad electrónica en el NEA'
   ]
 });
+
+const homeSolutions = [
+  {
+    name: 'Seguridad para hogares',
+    description: 'Alarmas monitoreadas, cámaras, sensores y control desde el celular para viviendas.'
+  },
+  {
+    name: 'Seguridad para comercios',
+    description: 'Alarmas, CCTV, control de accesos, fichaje y protección para locales y oficinas.'
+  },
+  {
+    name: 'Seguridad para industrias',
+    description: 'Protección perimetral, videovigilancia, control de accesos y GPS corporativo.'
+  },
+  {
+    name: 'Seguridad para edificios y consorcios',
+    description: 'Guardia virtual, control de accesos y videovigilancia de áreas comunes.'
+  },
+  {
+    name: 'Seguridad para obras, agro y ciudades',
+    description: 'Soluciones específicas para predios, campos, municipios y espacio público.'
+  }
+];
 
 const homeFaqs = [
   {
@@ -80,6 +112,11 @@ const homeStructuredData = {
       serviceType: 'Seguridad electrónica y monitoreo',
       audience: 'Hogares, empresas y organismos',
       areaServed: buildLocalAreas()
+    }),
+    buildItemListSchema({
+      path: '/',
+      name: 'Soluciones de seguridad electrónica SISE',
+      items: homeSolutions
     }),
     buildFAQPageSchema({
       path: '/',

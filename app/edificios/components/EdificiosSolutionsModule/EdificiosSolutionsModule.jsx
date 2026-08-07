@@ -7,39 +7,35 @@ const solutions = [
     key: 'acceso',
     title: ['CONTROL DE ACCESO'],
     mobileTitle: ['CONTROL', 'DE ACCESO'],
-    body:
-      'Ingreso digitalizado para residentes y visitas, con registro de movimientos.',
+    body: 'Ingreso digitalizado y registro exacto de residentes y visitas.',
     mobileBody: 'Ingreso digitalizado y registro exacto de residentes y visitas.'
   },
   {
     key: 'guardia',
-    title: ['GUARDIA VIRTUAL'],
+    title: ['GUARDIA', 'VIRTUAL'],
     mobileTitle: ['GUARDIA VIRTUAL'],
-    body:
-      'Supervisión remota 24/7 de accesos y espacios comunes, con intervención ante eventos y asistencia en tiempo real.',
+    body: 'Supervisión 24/7 de accesos para maximizar seguridad y reducir expensas.',
     mobileBody: 'Supervisión 24/7 de accesos para maximizar seguridad y reducir expensas.'
   },
   {
     key: 'alarmas',
     title: ['ALARMAS Y MONITOREO'],
     mobileTitle: ['ALARMAS Y MONITOREO'],
-    body:
-      'Protección de perímetros y áreas comunes con prevención y respuesta inmediata.',
+    body: 'Respuesta inmediata ante emergencias en áreas compartidas.',
     mobileBody: 'Respuesta inmediata ante emergencias en áreas compartidas.'
   },
   {
     key: 'cerco',
-    title: ['CERCO ELÉCTRICO'],
+    title: ['CERCO', 'ELÉCTRICO'],
     mobileTitle: ['CERCO ELÉCTRICO'],
-    body: 'Seguridad perimetral en espacios compartidos.',
+    body: 'Blindaje perimetral activo para muros y medianeras del complejo.',
     mobileBody: 'Blindaje perimetral activo para muros y medianeras del complejo.'
   },
   {
     key: 'cctv',
     title: ['CCTV'],
     mobileTitle: ['CCTV'],
-    body:
-      'Registro y control visual de áreas comunes para mayor seguridad y respaldo.',
+    body: 'Auditoría visual continua de pasillos, cocheras y espacios comunes.',
     mobileBody: 'Auditoría visual continua de pasillos, cocheras y espacios comunes.'
   }
 ];

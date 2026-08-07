@@ -5,6 +5,7 @@ import EdificiosSolutionsModule from './components/EdificiosSolutionsModule/Edif
 import Cotizador from '../components/Cotizador/Cotizador';
 import {
   buildBreadcrumbSchema,
+  buildItemListSchema,
   buildLocalAreas,
   buildPageMetadata,
   buildServiceSchema,
@@ -13,22 +14,27 @@ import {
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Seguridad para edificios y consorcios';
+const PAGE_TITLE = 'Seguridad para edificios, consorcios y barrios privados';
 const PAGE_DESCRIPTION =
-  'Seguridad para edificios, consorcios y entornos urbanos con control de accesos, videovigilancia y monitoreo centralizado.';
+  'Seguridad para edificios, consorcios y barrios privados con control de accesos, guardia virtual, videovigilancia y monitoreo centralizado en Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   path: '/edificios',
   image: '/image/og-edificios.jpg',
+  category: 'Seguridad para consorcios',
   keywords: [
     'seguridad para edificios',
     'seguridad para consorcios',
+    'seguridad para barrios privados',
     'control de acceso para edificios',
     'guardia virtual',
     'cámaras para áreas comunes',
     'monitoreo de edificios 24 horas',
+    'alarma para consorcio',
+    'videovigilancia para consorcios',
+    'control de acceso para barrio cerrado',
     'seguridad para consorcios en Resistencia',
     'videovigilancia de edificios en Chaco',
     'seguridad para edificios en Corrientes',
@@ -37,10 +43,34 @@ export const metadata = buildPageMetadata({
   ]
 });
 
+const edificiosSolutions = [
+  {
+    name: 'Control de acceso',
+    description: 'Ingreso digitalizado y registro de residentes, visitas y proveedores.'
+  },
+  {
+    name: 'Guardia virtual',
+    description: 'Supervisión remota 24/7 para maximizar seguridad y reducir costos operativos.'
+  },
+  {
+    name: 'Alarmas y monitoreo',
+    description: 'Respuesta inmediata ante emergencias en espacios comunes y accesos.'
+  },
+  {
+    name: 'CCTV y cerco eléctrico',
+    description: 'Videovigilancia y blindaje perimetral para edificios y complejos.'
+  }
+];
+
 const edificiosStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    buildWebPageSchema({ path: '/edificios', title: PAGE_TITLE, description: PAGE_DESCRIPTION }),
+    buildWebPageSchema({
+      path: '/edificios',
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      type: 'CollectionPage'
+    }),
     buildBreadcrumbSchema({ path: '/edificios', name: 'Edificios' }),
     buildServiceSchema({
       path: '/edificios',
@@ -50,6 +80,11 @@ const edificiosStructuredData = {
       serviceType: 'Seguridad electrónica para edificios y consorcios',
       audience: 'Consorcios, administraciones y edificios',
       areaServed: buildLocalAreas()
+    }),
+    buildItemListSchema({
+      path: '/edificios',
+      name: 'Soluciones de seguridad para edificios y consorcios',
+      items: edificiosSolutions
     })
   ]
 };

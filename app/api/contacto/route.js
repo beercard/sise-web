@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer';
 
+import { buildContactEmailHtml } from '@/app/lib/emailTemplates';
+import { siteConfig } from '@/app/lib/seo';
+
 export const runtime = 'nodejs';
 
 const MAX_FIELD_LENGTH = 200;
@@ -8,6 +11,8 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
+const MIN_FORM_FILL_MS = 1500;
+const MAX_FORM_AGE_MS = 2 * 60 * 60 * 1000;
 const rateLimitHits = new Map();
 
 function isRateLimited(ip) {
@@ -33,6 +38,35 @@ function isRateLimited(ip) {
   }
 
   return false;
+}
+
+function isAllowedRequestOrigin(request) {
+  const origin = request.headers.get('origin');
+  const referer = request.headers.get('referer');
+  const candidates = [origin, referer].filter(Boolean);
+
+  if (!candidates.length) return true;
+
+  return candidates.some((value) => {
+    try {
+      const url = new URL(value);
+      return (
+        url.origin === siteConfig.siteUrl ||
+        url.origin === 'http://localhost:3000' ||
+        url.origin === 'http://localhost:3001'
+      );
+    } catch {
+      return false;
+    }
+  });
+}
+
+function looksHumanSubmission(startedAt) {
+  const timestamp = Number(startedAt);
+  if (!Number.isFinite(timestamp)) return true;
+
+  const age = Date.now() - timestamp;
+  return age >= MIN_FORM_FILL_MS && age <= MAX_FORM_AGE_MS;
 }
 
 function requiredEnv(name) {
@@ -97,6 +131,10 @@ function getTransporter() {
 
 export async function POST(request) {
   try {
+    if (!isAllowedRequestOrigin(request)) {
+      return Response.json({ error: 'Origen no permitido.' }, { status: 403 });
+    }
+
     const ip =
       request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
       request.headers.get('x-real-ip') ||
@@ -116,6 +154,10 @@ export async function POST(request) {
     }
 
     if (safeText(payload.website)) {
+      return Response.json({ ok: true });
+    }
+
+    if (!looksHumanSubmission(payload.formStartedAt)) {
       return Response.json({ ok: true });
     }
 
@@ -156,6 +198,7 @@ export async function POST(request) {
       to,
       subject: `Contacto web - ${name}`,
       text: buildEmailText({ name, phone, email, solution, details }),
+      html: buildContactEmailHtml({ name, phone, email, solution, details }),
       replyTo: email
     });
 

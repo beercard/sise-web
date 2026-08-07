@@ -3,7 +3,7 @@ import './globals.scss';
 import { League_Spartan } from 'next/font/google';
 import Script from 'next/script';
 
-import { siteConfig } from './lib/seo';
+import { defaultRobots, defaultSeoKeywords, siteConfig } from './lib/seo';
 import SiteFooter from './components/SiteFooter/SiteFooter';
 import SiteHeader from './components/SiteHeader/SiteHeader';
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton/WhatsAppFloatingButton';
@@ -26,6 +26,7 @@ export const metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: siteConfig.defaultTitle,
   description: siteConfig.description,
+  keywords: defaultSeoKeywords,
   applicationName: siteConfig.name,
   authors: [{ name: 'Vektra Digital', url: 'https://vektra.digital' }],
   creator: 'Vektra Digital',
@@ -33,17 +34,7 @@ export const metadata = {
   alternates: {
     canonical: '/'
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1
-    }
-  },
+  robots: defaultRobots,
   openGraph: {
     title: siteConfig.defaultTitle,
     description: siteConfig.description,
@@ -84,6 +75,11 @@ export default function RootLayout({ children }) {
         url: siteConfig.siteUrl,
         logo: `${siteConfig.siteUrl}${siteConfig.icon}`,
         image: `${siteConfig.siteUrl}${siteConfig.ogImage}`,
+        foundingDate: siteConfig.foundingDate,
+        foundingLocation: {
+          '@type': 'Place',
+          name: siteConfig.foundingLocation
+        },
         email: siteConfig.email,
         telephone: siteConfig.phone,
         priceRange: '$$',
@@ -98,6 +94,19 @@ export default function RootLayout({ children }) {
           'Seguridad rural',
           'Seguridad urbana y videovigilancia para municipios'
         ],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Soluciones de seguridad SISE',
+          itemListElement: [
+            { '@type': 'OfferCatalog', name: 'Seguridad para hogares' },
+            { '@type': 'OfferCatalog', name: 'Seguridad para comercios' },
+            { '@type': 'OfferCatalog', name: 'Seguridad para industrias y empresas' },
+            { '@type': 'OfferCatalog', name: 'Seguridad para edificios y consorcios' },
+            { '@type': 'OfferCatalog', name: 'Seguridad para obras y construcción' },
+            { '@type': 'OfferCatalog', name: 'Seguridad rural para el campo' },
+            { '@type': 'OfferCatalog', name: 'Seguridad para ciudades y espacio público' }
+          ]
+        },
         sameAs: siteConfig.sameAs,
         address: {
           '@type': 'PostalAddress',
@@ -163,6 +172,10 @@ export default function RootLayout({ children }) {
         name: siteConfig.name,
         description: siteConfig.description,
         inLanguage: 'es-AR',
+        keywords: defaultSeoKeywords.join(', '),
+        about: {
+          '@id': `${siteConfig.siteUrl}/#organization`
+        },
         publisher: {
           '@id': `${siteConfig.siteUrl}/#organization`
         }
