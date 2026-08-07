@@ -6,27 +6,46 @@ import Image from 'next/image';
 import styles from './HomeLiveBridge.module.scss';
 
 /*
- * El vivo se configura con NEXT_PUBLIC_LIVE_VIDEO_ID, sin tocar el código:
- * acepta tanto el id suelto (CA3S3av3C5A) como la URL completa de YouTube
- * (watch?v=…, youtu.be/… o /live/…). Si la variable no está definida se usa
- * el id de abajo. Al ser NEXT_PUBLIC_ el valor se resuelve al compilar, así
- * que un cambio necesita volver a desplegar.
+ * Por defecto se embebe el vivo del canal (`live_stream?channel=…`), no un
+ * video puntual: YouTube resuelve solo cuál es la transmisión en curso, así
+ * que cuando cambia el vivo la sección lo sigue sin tocar nada.
+ *
+ * Las dos variables son opcionales y sólo hacen falta para casos puntuales:
+ *   NEXT_PUBLIC_LIVE_CHANNEL_ID  otro canal (id que empieza con UC…)
+ *   NEXT_PUBLIC_LIVE_VIDEO_ID    fijar un video concreto en vez del vivo;
+ *                                acepta el id o la URL entera de YouTube
+ * Al ser NEXT_PUBLIC_ se resuelven al compilar: cambiarlas exige desplegar.
  */
-const FALLBACK_VIDEO_ID = 'CA3S3av3C5A';
+const FALLBACK_CHANNEL_ID = 'UC2RkL2eATR1V6H8g4eNfA5Q';
+
+function resolveChannelId(value) {
+  const raw = String(value ?? '').trim();
+  const fromUrl = raw.match(/(UC[A-Za-z0-9_-]{22})/);
+  return fromUrl ? fromUrl[1] : FALLBACK_CHANNEL_ID;
+}
 
 function resolveVideoId(value) {
   const raw = String(value ?? '').trim();
-  if (!raw) return FALLBACK_VIDEO_ID;
+  if (!raw) return null;
 
   const fromUrl = raw.match(/(?:v=|youtu\.be\/|\/live\/|\/embed\/)([A-Za-z0-9_-]{11})/);
   if (fromUrl) return fromUrl[1];
 
-  return /^[A-Za-z0-9_-]{11}$/.test(raw) ? raw : FALLBACK_VIDEO_ID;
+  return /^[A-Za-z0-9_-]{11}$/.test(raw) ? raw : null;
 }
 
-const YOUTUBE_VIDEO_ID = resolveVideoId(process.env.NEXT_PUBLIC_LIVE_VIDEO_ID);
-const YOUTUBE_EMBED_URL = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&playsinline=1&rel=0`;
-const YOUTUBE_THUMB_URL = `https://i.ytimg.com/vi/${YOUTUBE_VIDEO_ID}/hqdefault.jpg`;
+const PINNED_VIDEO_ID = resolveVideoId(process.env.NEXT_PUBLIC_LIVE_VIDEO_ID);
+const CHANNEL_ID = resolveChannelId(process.env.NEXT_PUBLIC_LIVE_CHANNEL_ID);
+
+const PLAYER_PARAMS = 'autoplay=1&mute=1&playsinline=1&rel=0';
+const YOUTUBE_EMBED_URL = PINNED_VIDEO_ID
+  ? `https://www.youtube-nocookie.com/embed/${PINNED_VIDEO_ID}?${PLAYER_PARAMS}`
+  : `https://www.youtube-nocookie.com/embed/live_stream?channel=${CHANNEL_ID}&${PLAYER_PARAMS}`;
+
+/* En modo canal no hay id del que derivar la miniatura, así que la portada es
+   un archivo propio (un cuadro del vivo). Sirve para los dos modos y además
+   evita pegarle a i.ytimg.com antes de que el visitante toque play. */
+const POSTER_SRC = '/image/live-puente-poster.webp';
 
 export default function HomeLiveBridge() {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -58,11 +77,10 @@ export default function HomeLiveBridge() {
             >
               <Image
                 className={styles.posterImage}
-                src={YOUTUBE_THUMB_URL}
+                src={POSTER_SRC}
                 alt=""
                 fill
                 sizes="(max-width: 600px) 354px, (max-width: 960px) 720px, 802px"
-                unoptimized
               />
               <span className={styles.posterOverlay} aria-hidden="true" />
               <span className={styles.playIcon} aria-hidden="true">
