@@ -1,27 +1,32 @@
 import { siteConfig } from './seo';
 
+/*
+ * Paleta calcada de globals.scss (--sise-blue / --sise-white / --sise-gray)
+ * más los tonos de apoyo que ya usaban los módulos del sitio.
+ */
 const BRAND = {
-  primary: '#00408C',
-  accent: '#0857B5',
-  accentSoft: '#E8F1FB',
-  bg: '#F3F7FC',
-  card: '#FFFFFF',
-  text: '#11243C',
+  blue: '#00408c',
+  blueDark: '#06234c',
+  blueSoft: '#e8f1fb',
+  gray: '#d9d9d9',
+  bg: '#f3f7fc',
+  card: '#ffffff',
+  text: '#11243c',
   muted: '#617184',
-  border: '#D8E3F0'
+  border: '#d8e3f0'
 };
 
-const LOGO_MARKUP = `
-  <svg width="86" height="50" viewBox="0 0 86 50" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SISE Argentina">
-    <g>
-      <path d="M79.0423 7.96251H6.95773V34.3422H79.0423V7.96251Z" fill="white"/>
-      <g>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M42.8642 48.9587C29.1786 48.9587 15.3467 46.6366 1.7551 42.0618L1.0447 41.8223V6.75113L1.82127 6.54634C15.6462 2.89483 29.5651 1.04131 43.188 1.04131C56.811 1.04131 70.5941 2.89483 84.1822 6.54634L84.9553 6.7546V41.8258L84.2414 42.0618C70.4687 46.6366 56.5463 48.9587 42.8642 48.9587ZM11.6972 26.6053C10.6386 26.6053 9.77494 27.4662 9.77494 28.5213C9.77494 29.5765 10.6386 30.4373 11.6972 30.4373C12.1046 30.4373 12.4947 30.3124 12.822 30.0729L13.0971 29.875H24.9545C25.2644 29.875 25.5848 29.8646 25.9052 29.8507C26.1733 29.8369 26.4414 29.7917 26.7096 29.7188C26.9464 29.6564 27.1727 29.5522 27.3956 29.4099C27.6045 29.2746 27.81 29.0732 28.012 28.806C28.3463 28.3617 28.5448 27.8896 28.6144 27.369C28.7015 26.7199 28.7433 26.1263 28.7433 25.6057C28.7433 25.3037 28.7293 24.967 28.705 24.606C28.6806 24.2693 28.6318 23.9222 28.5587 23.5751C28.4925 23.2662 28.3881 22.9573 28.2418 22.6623C28.106 22.3881 27.9389 22.152 27.7229 21.9368C27.4687 21.6834 27.1449 21.4682 26.7583 21.3016C26.3022 21.1038 25.8843 20.9545 25.5186 20.8608L18.9927 19.1253C18.5922 19.0246 18.1778 18.8893 17.7739 18.7261C17.0182 18.4172 16.5864 17.8167 16.5864 17.0739C16.5864 16.4665 16.8824 15.9528 17.4013 15.6543C17.5824 15.5432 17.7948 15.4738 18.0629 15.4356C18.1883 15.4183 18.4007 15.3974 18.9544 15.3974H32.7619V27.8584C32.7619 28.2402 32.7932 28.6012 32.8559 28.9275C32.8838 29.0698 33.0335 29.2641 33.2703 29.462C33.4967 29.6529 33.7126 29.764 33.9146 29.7987C34.2523 29.8542 34.6006 29.882 34.9488 29.882H53.346C53.656 29.882 53.9763 29.8716 54.2967 29.8577C54.5649 29.8438 54.833 29.7987 55.1011 29.7258C55.3379 29.6633 55.5643 29.5592 55.7872 29.4169C55.9961 29.2815 56.2016 29.0802 56.4035 28.8129C56.7378 28.3686 56.9363 27.8966 57.006 27.3759C57.093 26.7268 57.1348 26.1333 57.1348 25.6126C57.1348 25.3072 57.1209 24.9705 57.0965 24.613C57.0722 24.2763 57.0234 23.9292 56.9503 23.5821C56.8841 23.2732 56.7796 22.9642 56.6334 22.6692C56.4976 22.395 56.3304 22.159 56.1145 21.9438C55.8603 21.6904 55.533 21.4752 55.1499 21.3086C54.6937 21.1107 54.2758 20.9615 53.9102 20.8678L47.3843 19.1322C46.9838 19.0316 46.5694 18.8962 46.1655 18.7331C45.4098 18.4242 44.978 17.8237 44.978 17.0809C44.978 16.4734 45.274 15.9597 45.7928 15.6612C45.9739 15.5502 46.1863 15.4807 46.4545 15.4426C46.5798 15.4252 46.7958 15.4044 47.3494 15.4044H61.1569V27.8445C61.1569 28.2367 61.1883 28.6047 61.251 28.9344C61.2788 29.0767 61.4286 29.2711 61.6654 29.4655C61.8917 29.6598 62.1076 29.7709 62.3096 29.8022C62.6474 29.8577 62.9956 29.8855 63.3439 29.8855H76.2216V27.2891H67.8187C67.6028 27.2891 67.3764 27.2857 67.1396 27.2753C66.6799 27.2544 66.2655 27.0878 65.9417 26.7824C65.7676 26.6366 65.6213 26.4457 65.5064 26.2201C65.3741 25.9597 65.3114 25.6543 65.3114 25.2864V22.3638H75.8629V20.2603H65.3114V17.5495C65.3114 17.369 65.3288 17.1642 65.3636 16.9281C65.4263 16.5012 65.6387 16.1229 65.973 15.8313C66.1646 15.6716 66.3665 15.5571 66.5964 15.4738L66.7705 15.4113H76.0544V15.3002H76.138V12.7039H44.4243C43.7522 12.7039 43.2124 12.7976 42.8224 12.9781C42.401 13.1725 42.0737 13.3842 41.8508 13.6099C41.4329 14.0264 41.1892 14.4637 41.1056 14.9497C40.9976 15.5849 40.9419 16.1854 40.9419 16.7303C40.9419 17.3898 40.9976 18.0875 41.1091 18.8025C41.2031 19.4065 41.4225 19.9271 41.7777 20.3992C41.9205 20.5797 42.1468 20.7983 42.4324 21.0344C42.6622 21.2218 42.993 21.3711 43.4144 21.4787L50.9223 23.5751C51.2949 23.6862 51.6327 23.8112 51.9357 23.95C52.566 24.2416 52.9282 24.8212 52.9282 25.5432C52.9282 25.8417 52.8411 26.2825 52.4302 26.6921C51.9879 27.1329 51.3298 27.1885 50.8074 27.1885H36.9198V14.7484C36.9198 14.3561 36.8885 13.9882 36.8258 13.6585C36.7979 13.5161 36.6482 13.3218 36.4114 13.1274C36.185 12.933 35.9691 12.8219 35.7672 12.7907C35.4329 12.7352 35.0916 12.7074 34.7503 12.7074H16.0327C15.3606 12.7074 14.8209 12.8011 14.4308 12.9816C14.0095 13.176 13.6821 13.3877 13.4593 13.6133C13.0414 14.0299 12.7976 14.4672 12.714 14.9531C12.6061 15.5883 12.5504 16.1888 12.5504 16.7338C12.5504 17.3933 12.6061 18.0909 12.7175 18.806C12.8115 19.4099 13.0309 19.9306 13.3861 20.4026C13.5289 20.5831 13.7553 20.8018 14.0408 21.0378C14.2706 21.2253 14.6015 21.3745 15.0228 21.4821L22.5308 23.5786C22.9069 23.6897 23.2412 23.8146 23.5441 23.9535C24.1744 24.2451 24.5366 24.8247 24.5366 25.5467C24.5366 25.8452 24.4495 26.286 24.0386 26.6956C23.5964 27.1364 22.9382 27.1919 22.4159 27.1919H13.0971L12.822 26.9941C12.4947 26.7581 12.1046 26.6296 11.6972 26.6296V26.6053Z" fill="#00408C"/>
-        <path d="M43.188 2.08261C57.3124 2.08261 70.8657 4.04373 83.9106 7.55293V41.076C70.2285 45.623 56.5428 47.9174 42.8607 47.9174C29.1786 47.9174 15.6775 45.6508 2.08592 41.076V7.55293C16.3183 3.79382 30.0004 2.08261 43.188 2.08261Z" fill="white"/>
-      </g>
-    </g>
-  </svg>
-`;
+/* League Spartan es una webfont y los clientes de correo no la cargan; se
+   declara igual para los pocos que sí (Apple Mail) y el resto cae en la
+   pila de sistema, que mantiene un gris visual parecido. */
+const FONT_STACK =
+  "'League Spartan', 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif";
+
+/* El logo va como PNG absoluto: Gmail, Outlook y Yahoo descartan el SVG
+   inline, así que un <svg> embebido no se vería para la mayoría. */
+const LOGO_URL = `${siteConfig.siteUrl}/image/email-logo-sise.png`;
+
+const WHATSAPP_URL = `https://wa.me/${siteConfig.whatsapp}`;
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -38,22 +43,22 @@ function formatPhoneHref(phone) {
 }
 
 function formatMultilineHtml(value) {
-  if (!value) return '<span style="color: #617184;">No informado</span>';
+  if (!value) return `<span style="color:${BRAND.muted};">No informado</span>`;
   return escapeHtml(value).replace(/\n/g, '<br />');
 }
 
+/* Ficha de datos en dos columnas: la etiqueta angosta a la izquierda y el
+   valor al lado. En pantallas chicas Gmail la colapsa sola. */
 function renderFieldTable(fields) {
   const rows = fields
     .filter((field) => field?.value)
     .map(
       (field) => `
         <tr>
-          <td style="padding: 0 0 8px; font-size: 13px; line-height: 16px; font-weight: 700; color: ${BRAND.primary}; text-transform: uppercase; letter-spacing: 0.08em;">
+          <td width="38%" valign="top" style="padding:10px 12px 10px 0;border-bottom:1px solid ${BRAND.border};font-family:${FONT_STACK};font-size:12px;line-height:16px;font-weight:700;color:${BRAND.muted};text-transform:uppercase;letter-spacing:0.06em;">
             ${escapeHtml(field.label)}
           </td>
-        </tr>
-        <tr>
-          <td style="padding: 0 0 18px; font-size: 16px; line-height: 24px; color: ${BRAND.text};">
+          <td valign="top" style="padding:10px 0;border-bottom:1px solid ${BRAND.border};font-family:${FONT_STACK};font-size:15px;line-height:22px;color:${BRAND.text};font-weight:600;">
             ${field.multiline ? formatMultilineHtml(field.value) : escapeHtml(field.value)}
           </td>
         </tr>
@@ -61,27 +66,21 @@ function renderFieldTable(fields) {
     )
     .join('');
 
-  return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-      ${rows}
-    </table>
-  `;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${rows}</table>`;
 }
 
 function renderSection(title, bodyHtml) {
   return `
     <tr>
-      <td style="padding: 0 0 16px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background: ${BRAND.card}; border: 1px solid ${BRAND.border}; border-radius: 18px;">
+      <td style="padding:0 0 14px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.card};border:1px solid ${BRAND.border};border-radius:14px;">
           <tr>
-            <td style="padding: 24px 24px 6px; font-size: 18px; line-height: 22px; font-weight: 700; color: ${BRAND.primary};">
+            <td style="padding:20px 22px 4px;font-family:${FONT_STACK};font-size:12px;line-height:16px;font-weight:700;color:${BRAND.blue};text-transform:uppercase;letter-spacing:0.1em;">
               ${escapeHtml(title)}
             </td>
           </tr>
           <tr>
-            <td style="padding: 0 24px 8px;">
-              ${bodyHtml}
-            </td>
+            <td style="padding:0 22px 8px;">${bodyHtml}</td>
           </tr>
         </table>
       </td>
@@ -89,35 +88,39 @@ function renderSection(title, bodyHtml) {
   `;
 }
 
+/* Botón "bulletproof": el VML del comentario condicional es lo que hace que
+   Outlook de escritorio dibuje el fondo, que si no ignora el border-radius. */
 function renderActionButton({ href, label, secondary = false }) {
-  const background = secondary ? BRAND.accentSoft : BRAND.accent;
-  const color = secondary ? BRAND.primary : '#FFFFFF';
-  const border = secondary ? `1px solid ${BRAND.border}` : `1px solid ${BRAND.accent}`;
+  const bg = secondary ? BRAND.card : BRAND.blue;
+  const fg = secondary ? BRAND.blue : '#ffffff';
+  const border = secondary ? BRAND.blue : BRAND.blue;
 
   return `
-    <a
-      href="${escapeHtml(href)}"
-      style="display: inline-block; padding: 12px 18px; border-radius: 10px; background: ${background}; color: ${color}; border: ${border}; text-decoration: none; font-size: 14px; line-height: 18px; font-weight: 700;"
-    >
+    <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${escapeHtml(href)}" style="height:42px;v-text-anchor:middle;width:220px;" arcsize="24%" strokecolor="${border}" fillcolor="${bg}">
+        <w:anchorlock/>
+        <center style="color:${fg};font-family:Arial,sans-serif;font-size:14px;font-weight:bold;">${escapeHtml(label)}</center>
+      </v:roundrect>
+    <![endif]-->
+    <!--[if !mso]><!-- -->
+    <a href="${escapeHtml(href)}" style="display:inline-block;padding:12px 22px;border-radius:10px;background:${bg};color:${fg};border:1px solid ${border};text-decoration:none;font-family:${FONT_STACK};font-size:14px;line-height:18px;font-weight:700;">
       ${escapeHtml(label)}
     </a>
+    <!--<![endif]-->
   `;
 }
 
-function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions = [] }) {
+function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions = [], footerNote }) {
   const actionsHtml = actions.length
     ? `
       <tr>
-        <td style="padding: 0 32px 24px;">
+        <td style="padding:0 0 18px;">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0">
             <tr>
               ${actions
                 .map(
-                  (action, index) => `
-                    <td style="padding-right: ${index === actions.length - 1 ? 0 : 10}px;">
-                      ${renderActionButton(action)}
-                    </td>
-                  `
+                  (action, index) =>
+                    `<td style="padding-right:${index === actions.length - 1 ? 0 : 10}px;">${renderActionButton(action)}</td>`
                 )
                 .join('')}
             </tr>
@@ -127,117 +130,119 @@ function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions =
     `
     : '';
 
-  return `
-    <!doctype html>
-    <html lang="es">
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>${escapeHtml(title)}</title>
-      </head>
-      <body style="margin: 0; padding: 0; background: ${BRAND.bg}; font-family: Arial, Helvetica, sans-serif; color: ${BRAND.text};">
-        <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">
-          ${escapeHtml(preheader)}
-        </div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background: ${BRAND.bg};">
-          <tr>
-            <td align="center" style="padding: 32px 16px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 680px;">
-                <tr>
-                  <td style="padding: 0 0 16px;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, ${BRAND.primary} 0%, ${BRAND.accent} 100%); border-radius: 22px; overflow: hidden;">
-                      <tr>
-                        <td style="padding: 28px 32px;">
-                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                              <td style="padding-bottom: 18px;">
-                                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background: #FFFFFF; border-radius: 14px;">
-                                  <tr>
-                                    <td style="padding: 12px 14px 10px;">
-                                      ${LOGO_MARKUP}
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-bottom: 10px; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75);">
-                                ${escapeHtml(eyebrow)}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-bottom: 12px; font-size: 30px; line-height: 34px; font-weight: 700; color: #FFFFFF;">
-                                ${escapeHtml(title)}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 16px; line-height: 24px; color: rgba(255,255,255,0.92);">
-                                ${escapeHtml(intro)}
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                ${actionsHtml}
-                ${sections.join('')}
-                <tr>
-                  <td style="padding: 8px 8px 0;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr>
-                        <td style="font-size: 13px; line-height: 20px; color: ${BRAND.muted}; text-align: center;">
-                          Este mensaje fue generado automáticamente desde
-                          <a href="${siteConfig.siteUrl}" style="color: ${BRAND.primary}; text-decoration: none; font-weight: 700;">${siteConfig.siteUrl.replace('https://', '')}</a>.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding-top: 10px; font-size: 13px; line-height: 20px; color: ${BRAND.muted}; text-align: center;">
-                          ${escapeHtml(siteConfig.legalName)} | ${escapeHtml(siteConfig.phone)} | ${escapeHtml(siteConfig.email)}
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </body>
-    </html>
-  `;
+  return `<!doctype html>
+<html lang="es-AR" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>${escapeHtml(title)}</title>
+    <!--[if mso]>
+      <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+    <![endif]-->
+  </head>
+  <body style="margin:0;padding:0;background:${BRAND.bg};font-family:${FONT_STACK};color:${BRAND.text};-webkit-font-smoothing:antialiased;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">${escapeHtml(preheader)}</div>
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">&#8203;&#8204;&#8205;&nbsp;&#8203;&#8204;&#8205;&nbsp;&#8203;&#8204;&#8205;&nbsp;</div>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.bg};">
+      <tr>
+        <td align="center" style="padding:28px 14px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
+
+            <!-- Cabecera azul de marca -->
+            <tr>
+              <td style="background:${BRAND.blue};border-radius:16px 16px 0 0;padding:26px 28px 22px;">
+                <img src="${LOGO_URL}" width="150" alt="${escapeHtml(siteConfig.name)}" style="display:block;border:0;width:150px;max-width:150px;height:auto;" />
+                <div style="height:18px;line-height:18px;">&nbsp;</div>
+                <div style="font-family:${FONT_STACK};font-size:11px;line-height:15px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9dc0e8;">
+                  ${escapeHtml(eyebrow)}
+                </div>
+                <div style="height:8px;line-height:8px;">&nbsp;</div>
+                <div style="font-family:${FONT_STACK};font-size:26px;line-height:30px;font-weight:700;color:#ffffff;">
+                  ${escapeHtml(title)}
+                </div>
+                <div style="height:10px;line-height:10px;">&nbsp;</div>
+                <div style="font-family:${FONT_STACK};font-size:15px;line-height:23px;color:#d6e5f6;">
+                  ${escapeHtml(intro)}
+                </div>
+              </td>
+            </tr>
+
+            <!-- Cuerpo -->
+            <tr>
+              <td style="background:${BRAND.card};border-radius:0 0 16px 16px;padding:24px 22px 10px;border:1px solid ${BRAND.border};border-top:0;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  ${actionsHtml}
+                  ${sections.join('')}
+                </table>
+              </td>
+            </tr>
+
+            <!-- Pie -->
+            <tr>
+              <td style="padding:20px 14px 0;">
+                ${
+                  footerNote
+                    ? `<div style="font-family:${FONT_STACK};font-size:13px;line-height:20px;color:${BRAND.muted};text-align:center;padding-bottom:12px;">${escapeHtml(footerNote)}</div>`
+                    : ''
+                }
+                <div style="font-family:${FONT_STACK};font-size:13px;line-height:20px;color:${BRAND.muted};text-align:center;">
+                  <a href="${siteConfig.siteUrl}" style="color:${BRAND.blue};text-decoration:none;font-weight:700;">${siteConfig.siteUrl.replace('https://', '')}</a>
+                  &nbsp;&middot;&nbsp;
+                  <a href="tel:${escapeHtml(formatPhoneHref(siteConfig.phone) ?? '')}" style="color:${BRAND.muted};text-decoration:none;">${escapeHtml(siteConfig.phone)}</a>
+                  &nbsp;&middot;&nbsp;
+                  <a href="mailto:${escapeHtml(siteConfig.email)}" style="color:${BRAND.muted};text-decoration:none;">${escapeHtml(siteConfig.email)}</a>
+                </div>
+                <div style="height:8px;line-height:8px;">&nbsp;</div>
+                <div style="font-family:${FONT_STACK};font-size:12px;line-height:18px;color:${BRAND.muted};text-align:center;">
+                  ${escapeHtml(siteConfig.legalName)} &middot; ${escapeHtml(siteConfig.address.streetAddress)}, ${escapeHtml(siteConfig.address.addressLocality)}, ${escapeHtml(siteConfig.address.addressRegion)}
+                </div>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
 }
+
+/* ── Correos internos (llegan a SISE) ─────────────────────────────────── */
 
 export function buildContactEmailHtml({ name, phone, email, solution, details }) {
   const telHref = formatPhoneHref(phone);
 
   return buildEmailShell({
-    preheader: `Nueva solicitud de contacto de ${name}.`,
+    preheader: `${name} pidió que lo contacten por ${solution || 'seguridad electrónica'}.`,
     eyebrow: 'Formulario de contacto',
     title: 'Nueva consulta recibida',
-    intro: 'Un potencial cliente completó el formulario de contacto desde el sitio web de SISE.',
+    intro: `${name} dejó sus datos en el sitio y espera una respuesta.`,
     actions: [
-      { href: `mailto:${email}`, label: 'Responder por email' },
-      ...(telHref ? [{ href: `tel:${telHref}`, label: 'Llamar al contacto', secondary: true }] : [])
+      ...(telHref ? [{ href: `https://wa.me/${telHref.replace('+', '')}`, label: 'Escribir por WhatsApp' }] : []),
+      { href: `mailto:${email}`, label: 'Responder por email', secondary: true }
     ],
     sections: [
       renderSection(
         'Datos del contacto',
         renderFieldTable([
           { label: 'Nombre', value: name },
-          { label: 'Telefono / WhatsApp', value: phone },
-          { label: 'Correo electronico', value: email }
+          { label: 'Teléfono / WhatsApp', value: phone },
+          { label: 'Correo electrónico', value: email }
         ])
       ),
       renderSection(
         'Consulta',
         renderFieldTable([
-          { label: 'Solucion buscada', value: solution },
+          { label: 'Solución buscada', value: solution },
           { label: 'Detalles', value: details, multiline: true }
         ])
       )
-    ]
+    ],
+    footerNote: 'Respondé este correo y le llega directo a la persona que consultó.'
   });
 }
 
@@ -245,39 +250,137 @@ export function buildQuoteEmailHtml({ answers, summary }) {
   const email = answers?.email || '';
   const phone = answers?.phone || '';
   const telHref = formatPhoneHref(phone);
-
-  const configurationFields = [
-    { label: 'Tipo de propiedad', value: answers?.propertyType },
-    { label: 'Paso 2', value: answers?.step2 },
-    { label: 'Paso 3', value: answers?.step3 },
-    { label: 'Paso 4', value: answers?.step4 },
-    { label: 'Paso 5', value: answers?.step5 },
-    { label: 'Paso 6', value: answers?.step6 },
-    { label: 'Paso 7', value: answers?.step7 },
-    { label: 'Resumen enviado', value: summary, multiline: true }
-  ];
+  const name = answers?.name || 'Un visitante';
 
   return buildEmailShell({
-    preheader: `Nuevo cotizador online enviado por ${answers?.name || 'un usuario'}.`,
+    preheader: `${name} completó el cotizador online.`,
     eyebrow: 'Cotizador online',
-    title: 'Nueva solicitud de cotizacion',
-    intro: 'Se recibió una nueva configuración desde el cotizador online del sitio web de SISE.',
+    title: 'Nueva solicitud de cotización',
+    intro: `${name} configuró una solución en el cotizador y pidió un presupuesto.`,
     actions: [
-      ...(email ? [{ href: `mailto:${email}`, label: 'Responder por email' }] : []),
-      ...(telHref ? [{ href: `tel:${telHref}`, label: 'Llamar al contacto', secondary: true }] : [])
+      ...(telHref ? [{ href: `https://wa.me/${telHref.replace('+', '')}`, label: 'Escribir por WhatsApp' }] : []),
+      ...(email ? [{ href: `mailto:${email}`, label: 'Responder por email', secondary: true }] : [])
     ],
     sections: [
       renderSection(
         'Datos del contacto',
         renderFieldTable([
           { label: 'Nombre', value: answers?.name },
-          { label: 'Telefono', value: answers?.phone },
+          { label: 'Teléfono', value: answers?.phone },
           { label: 'Email', value: answers?.email },
           { label: 'Ciudad', value: answers?.city },
           { label: 'Tipo de contacto', value: answers?.contactType }
         ])
       ),
-      renderSection('Configuracion solicitada', renderFieldTable(configurationFields))
-    ]
+      renderSection(
+        'Configuración solicitada',
+        renderFieldTable([
+          { label: 'Tipo de propiedad', value: answers?.propertyType },
+          { label: 'Paso 2', value: answers?.step2 },
+          { label: 'Paso 3', value: answers?.step3 },
+          { label: 'Paso 4', value: answers?.step4 },
+          { label: 'Paso 5', value: answers?.step5 },
+          { label: 'Paso 6', value: answers?.step6 },
+          { label: 'Paso 7', value: answers?.step7 },
+          { label: 'Resumen enviado', value: summary, multiline: true }
+        ])
+      )
+    ],
+    footerNote: 'Respondé este correo y le llega directo a la persona que cotizó.'
   });
+}
+
+/* ── Acuse de recibo (llega al cliente potencial) ─────────────────────── */
+
+function renderClientBody({ intro, recap }) {
+  return [
+    renderSection(
+      'Qué sigue ahora',
+      `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding:8px 0;font-family:${FONT_STACK};font-size:15px;line-height:23px;color:${BRAND.text};">
+            Un asesor de SISE se va a comunicar con vos <strong>a la brevedad</strong> para
+            entender qué necesitás y armarte una propuesta a medida, sin cargo.
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:2px 0 10px;font-family:${FONT_STACK};font-size:15px;line-height:23px;color:${BRAND.text};">
+            Si preferís no esperar, escribinos por WhatsApp y te atendemos al momento.
+          </td>
+        </tr>
+      </table>`
+    ),
+    ...(recap.length ? [renderSection('Lo que nos contaste', renderFieldTable(recap))] : [])
+  ];
+}
+
+export function buildContactAckEmailHtml({ name, solution, details }) {
+  const firstName = String(name ?? '').trim().split(/\s+/)[0] || '';
+
+  return buildEmailShell({
+    preheader: 'Recibimos tu consulta. Un asesor se comunica con vos a la brevedad.',
+    eyebrow: 'Recibimos tu consulta',
+    title: firstName ? `¡Gracias, ${firstName}!` : '¡Gracias por escribirnos!',
+    intro: 'Tu mensaje ya llegó a nuestro equipo. Te respondemos a la brevedad.',
+    actions: [{ href: WHATSAPP_URL, label: 'Escribinos por WhatsApp' }],
+    sections: renderClientBody({
+      recap: [
+        { label: 'Solución que buscás', value: solution },
+        { label: 'Tu mensaje', value: details, multiline: true }
+      ]
+    }),
+    footerNote: 'Recibís este correo porque completaste el formulario de contacto en nuestro sitio.'
+  });
+}
+
+export function buildQuoteAckEmailHtml({ answers, summary }) {
+  const firstName = String(answers?.name ?? '').trim().split(/\s+/)[0] || '';
+
+  return buildEmailShell({
+    preheader: 'Recibimos tu cotización. Un asesor se comunica con vos a la brevedad.',
+    eyebrow: 'Recibimos tu cotización',
+    title: firstName ? `¡Gracias, ${firstName}!` : '¡Gracias por cotizar con nosotros!',
+    intro: 'Ya tenemos tu configuración. Te preparamos un presupuesto a medida.',
+    actions: [{ href: WHATSAPP_URL, label: 'Escribinos por WhatsApp' }],
+    sections: renderClientBody({
+      recap: [
+        { label: 'Tipo de propiedad', value: answers?.propertyType },
+        { label: 'Ciudad', value: answers?.city },
+        { label: 'Resumen', value: summary, multiline: true }
+      ]
+    }),
+    footerNote: 'Recibís este correo porque usaste el cotizador online en nuestro sitio.'
+  });
+}
+
+/* ── Versiones en texto plano ─────────────────────────────────────────── */
+
+export function buildContactAckEmailText({ name }) {
+  const firstName = String(name ?? '').trim().split(/\s+/)[0] || '';
+  return [
+    firstName ? `Hola ${firstName},` : 'Hola,',
+    '',
+    'Recibimos tu consulta en siseargentina.com.',
+    'Un asesor de SISE se va a comunicar con vos a la brevedad para armarte una propuesta a medida, sin cargo.',
+    '',
+    `Si preferís no esperar, escribinos por WhatsApp: ${WHATSAPP_URL}`,
+    '',
+    `${siteConfig.legalName} | ${siteConfig.phone} | ${siteConfig.email}`,
+    siteConfig.siteUrl
+  ].join('\n');
+}
+
+export function buildQuoteAckEmailText({ answers }) {
+  const firstName = String(answers?.name ?? '').trim().split(/\s+/)[0] || '';
+  return [
+    firstName ? `Hola ${firstName},` : 'Hola,',
+    '',
+    'Recibimos tu solicitud de cotización en siseargentina.com.',
+    'Ya tenemos tu configuración y te preparamos un presupuesto a medida. Un asesor se comunica con vos a la brevedad.',
+    '',
+    `Si preferís no esperar, escribinos por WhatsApp: ${WHATSAPP_URL}`,
+    '',
+    `${siteConfig.legalName} | ${siteConfig.phone} | ${siteConfig.email}`,
+    siteConfig.siteUrl
+  ].join('\n');
 }

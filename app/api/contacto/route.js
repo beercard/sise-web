@@ -1,6 +1,10 @@
 import nodemailer from 'nodemailer';
 
-import { buildContactEmailHtml } from '@/app/lib/emailTemplates';
+import {
+  buildContactAckEmailHtml,
+  buildContactAckEmailText,
+  buildContactEmailHtml
+} from '@/app/lib/emailTemplates';
 import { siteConfig } from '@/app/lib/seo';
 
 export const runtime = 'nodejs';
@@ -201,6 +205,22 @@ export async function POST(request) {
       html: buildContactEmailHtml({ name, phone, email, solution, details }),
       replyTo: email
     });
+
+    /* Acuse de recibo al visitante. Va después del aviso interno y con su
+       propio try/catch: si este correo falla, la consulta igual ya llegó a
+       SISE y no tiene sentido devolverle un error al usuario. */
+    try {
+      await getTransporter().sendMail({
+        from,
+        to: email,
+        subject: 'Recibimos tu consulta | SISE Argentina',
+        text: buildContactAckEmailText({ name }),
+        html: buildContactAckEmailHtml({ name, solution, details }),
+        replyTo: to
+      });
+    } catch (ackError) {
+      console.error('[contacto] No se pudo enviar el acuse al visitante:', ackError);
+    }
 
     return Response.json({ ok: true });
   } catch (error) {

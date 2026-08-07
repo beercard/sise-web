@@ -1,6 +1,10 @@
 import nodemailer from 'nodemailer';
 
-import { buildQuoteEmailHtml } from '@/app/lib/emailTemplates';
+import {
+  buildQuoteAckEmailHtml,
+  buildQuoteAckEmailText,
+  buildQuoteEmailHtml
+} from '@/app/lib/emailTemplates';
 import { siteConfig } from '@/app/lib/seo';
 
 export const runtime = 'nodejs';
@@ -235,6 +239,22 @@ export async function POST(request) {
       html: buildQuoteEmailHtml({ answers: normalizedAnswers, summary }),
       replyTo: email
     });
+
+    /* Acuse de recibo al visitante. Va después del aviso interno y con su
+       propio try/catch: si este correo falla, la cotización igual ya llegó a
+       SISE y no tiene sentido devolverle un error al usuario. */
+    try {
+      await getTransporter().sendMail({
+        from,
+        to: email,
+        subject: 'Recibimos tu cotización | SISE Argentina',
+        text: buildQuoteAckEmailText({ answers: normalizedAnswers }),
+        html: buildQuoteAckEmailHtml({ answers: normalizedAnswers, summary }),
+        replyTo: to
+      });
+    } catch (ackError) {
+      console.error('[cotizador] No se pudo enviar el acuse al visitante:', ackError);
+    }
 
     return Response.json({ ok: true });
   } catch (error) {
