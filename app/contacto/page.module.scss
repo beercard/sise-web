@@ -82,6 +82,10 @@
   margin-top: 20px;
 }
 
+.heroLinePhone {
+  white-space: nowrap;
+}
+
 .heroLink {
   color: #ffffff;
   font-weight: 700;
@@ -111,6 +115,15 @@
   font-weight: 400;
   line-height: 32px;
   text-wrap: pretty;
+}
+
+.formIntroLead,
+.formIntroDesktopWrap {
+  display: inline;
+}
+
+.formIntroMobileLine {
+  display: none;
 }
 
 .form {
@@ -161,6 +174,10 @@
   padding-right: 34px;
 }
 
+.selectPlaceholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
@@ -182,17 +199,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 261px;
-  min-height: 40px;
+  width: 281px;
+  height: 40px;
   margin-top: 15px;
-  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border: 2px solid #00408c;
   border-radius: 10px;
   background: #0857b5;
   color: #ffffff;
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 19.36px;
+  white-space: nowrap;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
@@ -436,6 +455,11 @@
     line-height: 18px;
   }
 
+  .heroLinePhone {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
   .heroLine + .heroLine {
     margin-top: 13px;
   }
@@ -448,10 +472,27 @@
   }
 
   .formIntro {
-    width: 265px;
+    width: 290px;
+    height: 63px;
     margin-top: 19px;
     font-size: 18px;
     line-height: 18px;
+    letter-spacing: 0;
+    text-wrap: normal;
+  }
+
+  .formIntroLead {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .formIntroDesktopWrap {
+    display: none;
+  }
+
+  .formIntroMobileLine {
+    display: block;
+    white-space: nowrap;
   }
 
   .form {
@@ -486,10 +527,15 @@
   }
 
   .submitButton {
-    width: 169px;
-    min-height: 52px;
+    display: flex;
+    width: 219px;
+    height: 30px;
     margin-top: 14px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 8px;
     font-size: 18px;
+    font-weight: 700;
     line-height: 14.52px;
   }
 

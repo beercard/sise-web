@@ -307,63 +307,74 @@
 .alarmas .cardTitle {
   width: var(--solutions-title-width);
   min-height: 39px;
+  top: 67px;
 }
 
 .alarmas .cardBody {
-  top: var(--solutions-alarmas-body-top);
+  top: 131px;
   width: var(--solutions-body-width);
-  min-height: 111px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .cctv .cardTitle {
   width: var(--solutions-title-width);
   min-height: 39px;
-  top: 50px;
+  top: 67px;
 }
 
 .cctv .cardBody {
-  top: var(--solutions-cctv-body-top);
-  width: var(--solutions-body-width);
-  min-height: 95px;
+  top: 131px;
+  width: 156px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .cerco .cardTitle {
   width: 212px;
   min-height: 39px;
-  top: 50px;
+  top: 67px;
   line-height: 20px;
   letter-spacing: 1px;
   text-wrap: balance;
 }
 
 .cerco .cardBody {
-  top: var(--solutions-cerco-body-top);
+  top: 133px;
   width: var(--solutions-body-width);
-  min-height: 95px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .barrio .cardTitle {
   width: 179px;
   min-height: 39px;
-  top: 50px;
+  top: 67px;
 }
 
 .barrio .cardBody {
-  top: var(--solutions-barrio-body-top);
+  top: 133px;
   width: var(--solutions-body-width);
-  min-height: 79px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .desocupadas .cardTitle {
-  top: var(--solutions-desocupadas-title-top);
+  top: 57px;
   width: var(--solutions-title-width);
   min-height: 59px;
 }
 
 .desocupadas .cardBody {
-  top: var(--solutions-desocupadas-body-top);
+  top: 131px;
   width: var(--solutions-body-width);
   min-height: 63px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 @media (max-width: 1200px) {
@@ -832,6 +843,9 @@
   .cerco .cardBody {
     top: 84px;
     width: 169px;
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 18px;
   }
 
   .barrio {

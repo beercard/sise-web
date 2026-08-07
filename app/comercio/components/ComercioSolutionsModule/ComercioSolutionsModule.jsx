@@ -12,40 +12,35 @@ const comercioSolutions = [
     key: 'alarmas',
     title: ['MONITOREO', 'DE ALARMAS'],
     mobileTitle: ['MONITOREO', 'DE ALARMAS'],
-    body:
-      'Respuesta inmediata ante intentos de robo o emergencias, con intervención activa desde el centro de monitoreo.',
+    body: 'Respuesta inmediata ante emergencias en tu local.',
     mobileBody: 'Respuesta inmediata ante emergencias en tu local.'
   },
   {
     key: 'cctv',
     title: ['CCTV / VIDEOVIGILANCIA'],
     mobileTitle: ['CCTV / VIDEOVIGILANCIA'],
-    body:
-      'Supervisión constante de áreas críticas del negocio, con registro de eventos para control y análisis.',
+    body: 'Control visual continuo para auditar tu caja y salón.',
     mobileBody: 'Control visual continuo para auditar tu caja y salón.'
   },
   {
     key: 'humo',
     title: ['CORTINA', 'DE HUMO'],
     mobileTitle: ['CORTINA', 'DE HUMO'],
-    body:
-      'Sistema que libera una niebla densa ante intrusiones, reduciendo la visibilidad y neutralizando el accionar del delincuente.',
+    body: 'Niebla activa que frena robos en segundos.',
     mobileBody: 'Niebla activa que frena robos en segundos.'
   },
   {
     key: 'acceso',
     title: ['CONTROL DE ACCESO Y FICHAJE'],
     mobileTitle: ['CONTROL DE', 'ACCESO Y FICHAJE'],
-    body:
-      'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
+    body: 'Gestión exacta de presentismo y horarios del personal.',
     mobileBody: 'Gestión exacta de presentismo y horarios del personal.'
   },
   {
     key: 'rastreo',
     title: ['RASTREO', 'SATELITAL'],
     mobileTitle: ['RASTREO', 'SATELITAL'],
-    body:
-      'Seguimiento en tiempo real de vehículos, permitiendo detectar desvíos, optimizar recorridos y mejorar la logística.',
+    body: 'Seguimiento de vehículos de reparto en tiempo real.',
     mobileBody: 'Seguimiento de vehículos de reparto en tiempo real.'
   }
 ];

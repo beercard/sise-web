@@ -1927,6 +1927,10 @@
     height: auto;
     aspect-ratio: 201 / 256;
   }
+
+  .techCardViewport[data-mobile-card-size='tall'] {
+    aspect-ratio: 201 / 300;
+  }
 }
 
 /* ── Hero y módulo de mapa en mobile ─────────────────────────────────────

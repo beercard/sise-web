@@ -147,7 +147,7 @@ export default function ContactoHero() {
         <div className={styles.heroIntro}>
           <h1 className={styles.heroTitle}>Contactate con nosotros</h1>
 
-          <p className={styles.heroLine}>
+          <p className={`${styles.heroLine} ${styles.heroLinePhone}`}>
             <span>Atención las 24hs llamando al </span>
             <a className={styles.heroLink} href={`tel:${PHONE_NUMBER_LINK}`}>
               {PHONE_NUMBER_DISPLAY}
@@ -169,8 +169,10 @@ export default function ContactoHero() {
 
           <h2 className={styles.formTitle}>¿Preferís que te llamemos?</h2>
           <p className={styles.formIntro}>
-            Dejanos tus datos y un asesor de SISE se pondrá en contacto con vos a la brevedad para
-            asesorarte.
+            <span className={styles.formIntroLead}>Dejanos tus datos y un asesor de</span>
+            <span className={styles.formIntroDesktopWrap}>SISE se pondrá en contacto con vos a la brevedad para asesorarte.</span>
+            <span className={styles.formIntroMobileLine}>SISE se pondrá en contacto con vos</span>
+            <span className={styles.formIntroMobileLine}>a la brevedad para asesorarte.</span>
           </p>
         </div>
 
@@ -242,7 +244,7 @@ export default function ContactoHero() {
               <label className={`${styles.field} ${styles.fieldSolution}`}>
                 <span className={styles.srOnly}>{FIELD_CONFIG.solution.label}</span>
                 <select
-                  className={`${styles.input} ${styles.select}`}
+                  className={`${styles.input} ${styles.select} ${!form.solution ? styles.selectPlaceholder : ''}`}
                   value={form.solution}
                   onChange={onChange('solution')}
                 >

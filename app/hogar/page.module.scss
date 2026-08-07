@@ -1680,6 +1680,10 @@
     aspect-ratio: 201 / 256;
   }
 
+  .techCardViewport[data-mobile-card-size='tall'] {
+    aspect-ratio: 201 / 300;
+  }
+
   .techCard {
     width: 100%;
     height: 100%;

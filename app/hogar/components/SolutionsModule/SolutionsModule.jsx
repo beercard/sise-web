@@ -7,40 +7,35 @@ const hogarSolutions = [
     key: 'alarmas',
     title: ['MONITOREO', 'DE ALARMAS'],
     mobileTitle: ['MONITOREO', 'DE ALARMAS'],
-    body:
-      'Supervisión permanente las 24 horas desde nuestro centro de monitoreo. Ante cualquier evento, activamos protocolos de respuesta inmediata para asistir y dar aviso.',
+    body: 'Tu casa conectada con respuesta inmediata.',
     mobileBody: 'Tu casa conectada con respuesta inmediata.'
   },
   {
     key: 'cctv',
     title: ['CCTV / VIDEOVIGILANCIA'],
     mobileTitle: ['CCTV / VIDEOVIGILANCIA'],
-    body:
-      'Cámaras con acceso remoto que permiten ver en tiempo real lo que sucede en tu hogar y contar con grabaciones ante cualquier incidente.',
+    body: 'Mirá tu casa en tiempo real desde el celular.',
     mobileBody: 'Mirá tu casa en tiempo real desde el celular.'
   },
   {
     key: 'cerco',
     title: ['Cerco\u00A0eléctrico/', 'monitoreado'],
     mobileTitle: ['Cerco\u00A0eléctrico/', 'monitoreado'],
-    body:
-      'Protección perimetral que disuade y detecta intrusiones antes de que ocurran. Puede integrarse al monitoreo de alarmas para alertas inmediatas.',
+    body: 'Barrera perimetral disuasiva conectada a nuestra central.',
     mobileBody: 'Barrera perimetral disuasiva conectada a nuestra central.'
   },
   {
     key: 'barrio',
     title: ['SISTEMA DE BARRIO SEGURO'],
     mobileTitle: ['SISTEMA DE', 'BARRIO SEGURO'],
-    body:
-      'Solución colaborativa que integra cámaras conectadas a un monitoreo centralizado para mayor cobertura y prevención.',
+    body: 'Cámaras vecinales con monitoreo compartido.',
     mobileBody: 'Cámaras vecinales con monitoreo compartido.'
   },
   {
     key: 'desocupadas',
     title: ['MONITOREO DE', 'PROPIEDADES DESOCUPADAS'],
     mobileTitle: ['MONITOREO DE', 'PROPIEDADES', 'DESOCUPADAS'],
-    body:
-      'Protección para casas en venta, alquiler o terrenos, evitando intrusiones, vandalismo u ocupaciones.',
+    body: 'Prevención a distancia contra usurpaciones y robos.',
     mobileBody: 'Prevención a distancia contra usurpaciones y robos.'
   }
 ];

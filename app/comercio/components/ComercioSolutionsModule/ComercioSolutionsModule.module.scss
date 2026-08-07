@@ -168,6 +168,7 @@
   gap: 2px;
   pointer-events: none;
   overflow: hidden;
+  opacity: 0.6;
 }
 
 .watermarkRow {
@@ -313,49 +314,70 @@
   text-wrap: pretty;
 }
 
+.alarmas .cardTitle {
+  top: 72px;
+}
+
 .alarmas .cardBody {
-  top: var(--solutions-alarmas-body-top);
-  width: 180px;
-  min-height: 79px;
+  top: 128px;
+  width: 175px;
+  min-height: 58px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .cctv .cardTitle {
   width: 203px;
   min-height: 39px;
+  top: 72px;
 }
 
 .cctv .cardBody {
-  top: var(--solutions-cctv-body-top);
+  top: 126px;
   width: 180px;
   min-height: 63px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .humo .cardTitle {
   width: 212px;
   min-height: 39px;
+  top: 72px;
 }
 
 .humo .cardBody {
-  top: var(--solutions-humo-body-top);
+  top: 128px;
   width: 180px;
-  min-height: 78px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .acceso .cardTitle {
   width: 211px;
   min-height: 39px;
+  top: 72px;
 }
 
 .acceso .cardBody {
-  top: var(--solutions-acceso-body-top);
-  width: 159px;
-  min-height: 95px;
+  top: 127px;
+  width: 179px;
+  min-height: 60px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.rastreo .cardTitle {
+  top: 72px;
 }
 
 .rastreo .cardBody {
-  top: var(--solutions-rastreo-body-top);
-  width: 149px;
-  min-height: 95px;
+  top: 128px;
+  width: 167px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 @media (max-width: 1200px) {
@@ -657,6 +679,7 @@
     height: 100%;
     transform: none;
     gap: 2px;
+    opacity: 0.4;
   }
 
   .watermarkRow,
@@ -731,11 +754,16 @@
   /* El `top` va card por card porque la base lo fija con una variable propia
      para cada una, y esas reglas le ganan a `.cardBody` a secas. */
   .alarmas .cardTitle {
+    top: 37px;
     width: 203px;
   }
 
   .alarmas .cardBody {
     top: 81px;
+    width: 169px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
   }
 
   .cctv {
@@ -752,15 +780,25 @@
   .cctv .cardBody {
     top: 81px;
     width: 165px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
   }
 
   .humo {
     top: 388px;
   }
 
+  .humo .cardTitle {
+    top: 37px;
+  }
+
   .humo .cardBody {
     top: 82px;
     width: 119px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
   }
 
   .acceso {
@@ -774,6 +812,9 @@
   .acceso .cardBody {
     top: 81px;
     width: 167px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
   }
 
   .rastreo {
@@ -781,11 +822,15 @@
   }
 
   .rastreo .cardTitle {
+    top: 37px;
     width: 200px;
   }
 
   .rastreo .cardBody {
     top: 82px;
     width: 168px;
+    min-height: 54px;
+    font-size: 18px;
+    line-height: 18px;
   }
 }
