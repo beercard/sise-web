@@ -3,7 +3,8 @@ import nodemailer from 'nodemailer';
 import {
   buildQuoteAckEmailHtml,
   buildQuoteAckEmailText,
-  buildQuoteEmailHtml
+  buildQuoteEmailHtml,
+  getEmailLogoAttachment
 } from '@/app/lib/emailTemplates';
 import { siteConfig } from '@/app/lib/seo';
 
@@ -237,7 +238,8 @@ export async function POST(request) {
       subject: `Cotizador online - ${name}`,
       text: buildEmailText(normalizedAnswers, summary),
       html: buildQuoteEmailHtml({ answers: normalizedAnswers, summary }),
-      replyTo: email
+      replyTo: email,
+      attachments: [getEmailLogoAttachment()].filter(Boolean)
     });
 
     /* Acuse de recibo al visitante. Va después del aviso interno y con su
@@ -250,7 +252,8 @@ export async function POST(request) {
         subject: 'Recibimos tu cotización | SISE Argentina',
         text: buildQuoteAckEmailText({ answers: normalizedAnswers }),
         html: buildQuoteAckEmailHtml({ answers: normalizedAnswers, summary }),
-        replyTo: to
+        replyTo: to,
+        attachments: [getEmailLogoAttachment()].filter(Boolean)
       });
     } catch (ackError) {
       console.error('[cotizador] No se pudo enviar el acuse al visitante:', ackError);

@@ -3,7 +3,8 @@ import nodemailer from 'nodemailer';
 import {
   buildContactAckEmailHtml,
   buildContactAckEmailText,
-  buildContactEmailHtml
+  buildContactEmailHtml,
+  getEmailLogoAttachment
 } from '@/app/lib/emailTemplates';
 import { siteConfig } from '@/app/lib/seo';
 
@@ -203,7 +204,8 @@ export async function POST(request) {
       subject: `Contacto web - ${name}`,
       text: buildEmailText({ name, phone, email, solution, details }),
       html: buildContactEmailHtml({ name, phone, email, solution, details }),
-      replyTo: email
+      replyTo: email,
+      attachments: [getEmailLogoAttachment()].filter(Boolean)
     });
 
     /* Acuse de recibo al visitante. Va después del aviso interno y con su
@@ -216,7 +218,8 @@ export async function POST(request) {
         subject: 'Recibimos tu consulta | SISE Argentina',
         text: buildContactAckEmailText({ name }),
         html: buildContactAckEmailHtml({ name, solution, details }),
-        replyTo: to
+        replyTo: to,
+        attachments: [getEmailLogoAttachment()].filter(Boolean)
       });
     } catch (ackError) {
       console.error('[contacto] No se pudo enviar el acuse al visitante:', ackError);

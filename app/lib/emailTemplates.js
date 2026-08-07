@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import { siteConfig } from './seo';
 
 /*
@@ -16,15 +19,55 @@ const BRAND = {
   border: '#d8e3f0'
 };
 
+/* Equivalentes para modo oscuro. El azul de marca sube a un tono más claro
+   (#4c9bea) porque #00408c sobre fondo oscuro no llega al contraste mínimo
+   para texto. La cabecera, en cambio, conserva el azul original: el logo es
+   blanco y necesita ese fondo para leerse en ambos modos. */
+const DARK = {
+  bg: '#0d1826',
+  card: '#152437',
+  text: '#e9eff7',
+  muted: '#9db0c6',
+  border: '#26394f',
+  accent: '#4c9bea'
+};
+
 /* League Spartan es una webfont y los clientes de correo no la cargan; se
    declara igual para los pocos que sí (Apple Mail) y el resto cae en la
    pila de sistema, que mantiene un gris visual parecido. */
 const FONT_STACK =
   "'League Spartan', 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif";
 
-/* El logo va como PNG absoluto: Gmail, Outlook y Yahoo descartan el SVG
-   inline, así que un <svg> embebido no se vería para la mayoría. */
-const LOGO_URL = `${siteConfig.siteUrl}/image/email-logo-sise.png`;
+/* El logo viaja adjunto y se referencia por CID, no por URL. Un <svg> inline
+   lo descartan Gmail, Outlook y Yahoo; y una URL remota depende de que el
+   sitio responda y de que el cliente no bloquee imágenes externas (Outlook
+   de escritorio las bloquea por defecto). Adjunto rinde en los dos casos. */
+export const EMAIL_LOGO_CID = 'sise-logo';
+const LOGO_SRC = `cid:${EMAIL_LOGO_CID}`;
+const LOGO_FILE = 'email-logo-sise.png';
+
+let cachedLogo = null;
+
+/* Se adjunta a cada envío desde las rutas de API. `inline` + `cid` hace que
+   el cliente lo pinte dentro del cuerpo y no como archivo suelto. */
+export function getEmailLogoAttachment() {
+  if (cachedLogo === null) {
+    try {
+      cachedLogo = fs.readFileSync(path.join(process.cwd(), 'public', 'image', LOGO_FILE));
+    } catch {
+      cachedLogo = false;
+    }
+  }
+
+  if (!cachedLogo) return null;
+
+  return {
+    filename: LOGO_FILE,
+    content: cachedLogo,
+    cid: EMAIL_LOGO_CID,
+    contentDisposition: 'inline'
+  };
+}
 
 const WHATSAPP_URL = `https://wa.me/${siteConfig.whatsapp}`;
 
@@ -43,22 +86,23 @@ function formatPhoneHref(phone) {
 }
 
 function formatMultilineHtml(value) {
-  if (!value) return `<span style="color:${BRAND.muted};">No informado</span>`;
+  if (!value) return `<span class="em-muted" style="color:${BRAND.muted};">No informado</span>`;
   return escapeHtml(value).replace(/\n/g, '<br />');
 }
 
-/* Ficha de datos en dos columnas: la etiqueta angosta a la izquierda y el
-   valor al lado. En pantallas chicas Gmail la colapsa sola. */
+/* Ficha de datos en dos columnas. En mobile las clases em-lbl/em-val pasan a
+   display:block (ver el <style> del shell) y la etiqueta queda arriba del
+   valor, que en 320px de ancho es la única forma de que respire. */
 function renderFieldTable(fields) {
   const rows = fields
     .filter((field) => field?.value)
     .map(
       (field) => `
         <tr>
-          <td width="38%" valign="top" style="padding:10px 12px 10px 0;border-bottom:1px solid ${BRAND.border};font-family:${FONT_STACK};font-size:12px;line-height:16px;font-weight:700;color:${BRAND.muted};text-transform:uppercase;letter-spacing:0.06em;">
+          <td width="38%" valign="top" class="em-lbl em-brd" style="padding:10px 12px 10px 0;border-bottom:1px solid ${BRAND.border};font-family:${FONT_STACK};font-size:12px;line-height:16px;font-weight:700;color:${BRAND.muted};text-transform:uppercase;letter-spacing:0.06em;">
             ${escapeHtml(field.label)}
           </td>
-          <td valign="top" style="padding:10px 0;border-bottom:1px solid ${BRAND.border};font-family:${FONT_STACK};font-size:15px;line-height:22px;color:${BRAND.text};font-weight:600;">
+          <td valign="top" class="em-val em-brd em-text" style="padding:10px 0;border-bottom:1px solid ${BRAND.border};font-family:${FONT_STACK};font-size:15px;line-height:22px;color:${BRAND.text};font-weight:600;">
             ${field.multiline ? formatMultilineHtml(field.value) : escapeHtml(field.value)}
           </td>
         </tr>
@@ -73,14 +117,14 @@ function renderSection(title, bodyHtml) {
   return `
     <tr>
       <td style="padding:0 0 14px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.card};border:1px solid ${BRAND.border};border-radius:14px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="em-card em-brd" style="background:${BRAND.card};border:1px solid ${BRAND.border};border-radius:14px;">
           <tr>
-            <td style="padding:20px 22px 4px;font-family:${FONT_STACK};font-size:12px;line-height:16px;font-weight:700;color:${BRAND.blue};text-transform:uppercase;letter-spacing:0.1em;">
+            <td class="em-pad em-accent" style="padding:20px 22px 4px;font-family:${FONT_STACK};font-size:12px;line-height:16px;font-weight:700;color:${BRAND.blue};text-transform:uppercase;letter-spacing:0.1em;">
               ${escapeHtml(title)}
             </td>
           </tr>
           <tr>
-            <td style="padding:0 22px 8px;">${bodyHtml}</td>
+            <td class="em-pad" style="padding:0 22px 8px;">${bodyHtml}</td>
           </tr>
         </table>
       </td>
@@ -103,7 +147,7 @@ function renderActionButton({ href, label, secondary = false }) {
       </v:roundrect>
     <![endif]-->
     <!--[if !mso]><!-- -->
-    <a href="${escapeHtml(href)}" style="display:inline-block;padding:12px 22px;border-radius:10px;background:${bg};color:${fg};border:1px solid ${border};text-decoration:none;font-family:${FONT_STACK};font-size:14px;line-height:18px;font-weight:700;">
+    <a href="${escapeHtml(href)}" class="em-btn${secondary ? ' em-btn-sec' : ''}" style="display:inline-block;padding:12px 22px;border-radius:10px;background:${bg};color:${fg};border:1px solid ${border};text-decoration:none;font-family:${FONT_STACK};font-size:14px;line-height:18px;font-weight:700;">
       ${escapeHtml(label)}
     </a>
     <!--<![endif]-->
@@ -111,19 +155,20 @@ function renderActionButton({ href, label, secondary = false }) {
 }
 
 function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions = [], footerNote }) {
+  /* Cada botón en su propia fila de tabla y no en columnas: así en mobile
+     caen uno debajo del otro sin depender de que el cliente soporte los
+     media queries (Gmail para Android los ignora en varios casos). */
   const actionsHtml = actions.length
     ? `
       <tr>
-        <td style="padding:0 0 18px;">
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              ${actions
-                .map(
-                  (action, index) =>
-                    `<td style="padding-right:${index === actions.length - 1 ? 0 : 10}px;">${renderActionButton(action)}</td>`
-                )
-                .join('')}
-            </tr>
+        <td style="padding:0 0 8px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="em-full">
+            ${actions
+              .map(
+                (action) =>
+                  `<tr><td class="em-btn-cell" style="padding:0 0 10px;">${renderActionButton(action)}</td></tr>`
+              )
+              .join('')}
           </table>
         </td>
       </tr>
@@ -136,36 +181,93 @@ function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="x-apple-disable-message-reformatting" />
-    <meta name="color-scheme" content="light" />
-    <meta name="supported-color-schemes" content="light" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
     <title>${escapeHtml(title)}</title>
     <!--[if mso]>
       <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
     <![endif]-->
+    <style>
+      /* Responsive. Los estilos críticos van inline; esto sólo ajusta el
+         tamaño en pantallas chicas, donde 620px no entra. */
+      @media only screen and (max-width: 620px) {
+        .em-wrap { width: 100% !important; }
+        .em-outer-pad { padding: 14px 10px !important; }
+        .em-head { padding: 20px 18px 18px !important; }
+        .em-body-pad { padding: 18px 14px 6px !important; }
+        .em-pad { padding-left: 16px !important; padding-right: 16px !important; }
+        .em-title { font-size: 22px !important; line-height: 27px !important; }
+        .em-intro { font-size: 14px !important; line-height: 21px !important; }
+        .em-logo { width: 124px !important; max-width: 124px !important; }
+        /* La ficha pasa a una sola columna: etiqueta arriba, valor abajo. */
+        .em-lbl, .em-val {
+          display: block !important;
+          width: 100% !important;
+          padding-right: 0 !important;
+        }
+        .em-lbl { padding-bottom: 2px !important; border-bottom: 0 !important; }
+        .em-val { padding-top: 0 !important; }
+        /* Botones a ancho completo, más cómodos de tocar. */
+        .em-full, .em-btn-cell { width: 100% !important; }
+        .em-btn { display: block !important; text-align: center !important; }
+      }
+
+      /* Modo oscuro. Apple Mail y Outlook respetan prefers-color-scheme;
+         Outlook.com reescribe las clases con el prefijo data-ogsc. */
+      @media (prefers-color-scheme: dark) {
+        .em-bg { background: ${DARK.bg} !important; }
+        .em-card { background: ${DARK.card} !important; }
+        .em-text, .em-val { color: ${DARK.text} !important; }
+        .em-muted, .em-lbl { color: ${DARK.muted} !important; }
+        .em-brd { border-color: ${DARK.border} !important; }
+        .em-accent { color: ${DARK.accent} !important; }
+        .em-btn-sec {
+          background: ${DARK.card} !important;
+          color: ${DARK.accent} !important;
+          border-color: ${DARK.accent} !important;
+        }
+        .em-link { color: ${DARK.accent} !important; }
+      }
+      [data-ogsc] .em-bg { background: ${DARK.bg} !important; }
+      [data-ogsc] .em-card { background: ${DARK.card} !important; }
+      [data-ogsc] .em-text, [data-ogsc] .em-val { color: ${DARK.text} !important; }
+      [data-ogsc] .em-muted, [data-ogsc] .em-lbl { color: ${DARK.muted} !important; }
+      [data-ogsc] .em-brd { border-color: ${DARK.border} !important; }
+      [data-ogsc] .em-accent { color: ${DARK.accent} !important; }
+      [data-ogsc] .em-btn-sec {
+        background: ${DARK.card} !important;
+        color: ${DARK.accent} !important;
+        border-color: ${DARK.accent} !important;
+      }
+      [data-ogsc] .em-link { color: ${DARK.accent} !important; }
+    </style>
   </head>
-  <body style="margin:0;padding:0;background:${BRAND.bg};font-family:${FONT_STACK};color:${BRAND.text};-webkit-font-smoothing:antialiased;">
+  <body class="em-bg" style="margin:0;padding:0;background:${BRAND.bg};font-family:${FONT_STACK};color:${BRAND.text};-webkit-font-smoothing:antialiased;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">${escapeHtml(preheader)}</div>
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">&#8203;&#8204;&#8205;&nbsp;&#8203;&#8204;&#8205;&nbsp;&#8203;&#8204;&#8205;&nbsp;</div>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.bg};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="em-bg" bgcolor="${BRAND.bg}" style="background:${BRAND.bg};">
       <tr>
-        <td align="center" style="padding:28px 14px;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
+        <td align="center" class="em-outer-pad" style="padding:28px 14px;">
+          <table role="presentation" width="620" cellpadding="0" cellspacing="0" border="0" class="em-wrap" style="width:100%;max-width:620px;">
 
-            <!-- Cabecera azul de marca -->
+            <!-- Cabecera: conserva el azul de marca en ambos modos, porque el
+                 logo es blanco y sólo se lee sobre ese fondo. El bgcolor va
+                 como atributo para que los clientes que invierten colores no
+                 lo pisen. -->
             <tr>
-              <td style="background:${BRAND.blue};border-radius:16px 16px 0 0;padding:26px 28px 22px;">
-                <img src="${LOGO_URL}" width="150" alt="${escapeHtml(siteConfig.name)}" style="display:block;border:0;width:150px;max-width:150px;height:auto;" />
+              <td class="em-head" bgcolor="${BRAND.blue}" style="background:${BRAND.blue};border-radius:16px 16px 0 0;padding:26px 28px 22px;">
+                <img src="${LOGO_SRC}" width="150" alt="${escapeHtml(siteConfig.name)}" class="em-logo" style="display:block;border:0;width:150px;max-width:150px;height:auto;" />
                 <div style="height:18px;line-height:18px;">&nbsp;</div>
                 <div style="font-family:${FONT_STACK};font-size:11px;line-height:15px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9dc0e8;">
                   ${escapeHtml(eyebrow)}
                 </div>
                 <div style="height:8px;line-height:8px;">&nbsp;</div>
-                <div style="font-family:${FONT_STACK};font-size:26px;line-height:30px;font-weight:700;color:#ffffff;">
+                <div class="em-title" style="font-family:${FONT_STACK};font-size:26px;line-height:30px;font-weight:700;color:#ffffff;">
                   ${escapeHtml(title)}
                 </div>
                 <div style="height:10px;line-height:10px;">&nbsp;</div>
-                <div style="font-family:${FONT_STACK};font-size:15px;line-height:23px;color:#d6e5f6;">
+                <div class="em-intro" style="font-family:${FONT_STACK};font-size:15px;line-height:23px;color:#d6e5f6;">
                   ${escapeHtml(intro)}
                 </div>
               </td>
@@ -173,7 +275,7 @@ function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions =
 
             <!-- Cuerpo -->
             <tr>
-              <td style="background:${BRAND.card};border-radius:0 0 16px 16px;padding:24px 22px 10px;border:1px solid ${BRAND.border};border-top:0;">
+              <td class="em-card em-brd em-body-pad" bgcolor="${BRAND.card}" style="background:${BRAND.card};border-radius:0 0 16px 16px;padding:24px 22px 10px;border:1px solid ${BRAND.border};border-top:0;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                   ${actionsHtml}
                   ${sections.join('')}
@@ -186,18 +288,18 @@ function buildEmailShell({ preheader, eyebrow, title, intro, sections, actions =
               <td style="padding:20px 14px 0;">
                 ${
                   footerNote
-                    ? `<div style="font-family:${FONT_STACK};font-size:13px;line-height:20px;color:${BRAND.muted};text-align:center;padding-bottom:12px;">${escapeHtml(footerNote)}</div>`
+                    ? `<div class="em-muted" style="font-family:${FONT_STACK};font-size:13px;line-height:20px;color:${BRAND.muted};text-align:center;padding-bottom:12px;">${escapeHtml(footerNote)}</div>`
                     : ''
                 }
-                <div style="font-family:${FONT_STACK};font-size:13px;line-height:20px;color:${BRAND.muted};text-align:center;">
-                  <a href="${siteConfig.siteUrl}" style="color:${BRAND.blue};text-decoration:none;font-weight:700;">${siteConfig.siteUrl.replace('https://', '')}</a>
+                <div class="em-muted" style="font-family:${FONT_STACK};font-size:13px;line-height:20px;color:${BRAND.muted};text-align:center;">
+                  <a href="${siteConfig.siteUrl}" class="em-link" style="color:${BRAND.blue};text-decoration:none;font-weight:700;">${siteConfig.siteUrl.replace('https://', '')}</a>
                   &nbsp;&middot;&nbsp;
-                  <a href="tel:${escapeHtml(formatPhoneHref(siteConfig.phone) ?? '')}" style="color:${BRAND.muted};text-decoration:none;">${escapeHtml(siteConfig.phone)}</a>
+                  <a href="tel:${escapeHtml(formatPhoneHref(siteConfig.phone) ?? '')}" class="em-muted" style="color:${BRAND.muted};text-decoration:none;">${escapeHtml(siteConfig.phone)}</a>
                   &nbsp;&middot;&nbsp;
-                  <a href="mailto:${escapeHtml(siteConfig.email)}" style="color:${BRAND.muted};text-decoration:none;">${escapeHtml(siteConfig.email)}</a>
+                  <a href="mailto:${escapeHtml(siteConfig.email)}" class="em-muted" style="color:${BRAND.muted};text-decoration:none;">${escapeHtml(siteConfig.email)}</a>
                 </div>
                 <div style="height:8px;line-height:8px;">&nbsp;</div>
-                <div style="font-family:${FONT_STACK};font-size:12px;line-height:18px;color:${BRAND.muted};text-align:center;">
+                <div class="em-muted" style="font-family:${FONT_STACK};font-size:12px;line-height:18px;color:${BRAND.muted};text-align:center;">
                   ${escapeHtml(siteConfig.legalName)} &middot; ${escapeHtml(siteConfig.address.streetAddress)}, ${escapeHtml(siteConfig.address.addressLocality)}, ${escapeHtml(siteConfig.address.addressRegion)}
                 </div>
               </td>
@@ -298,13 +400,13 @@ function renderClientBody({ intro, recap }) {
       'Qué sigue ahora',
       `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td style="padding:8px 0;font-family:${FONT_STACK};font-size:15px;line-height:23px;color:${BRAND.text};">
+          <td class="em-text" style="padding:8px 0;font-family:${FONT_STACK};font-size:15px;line-height:23px;color:${BRAND.text};">
             Un asesor de SISE se va a comunicar con vos <strong>a la brevedad</strong> para
             entender qué necesitás y armarte una propuesta a medida, sin cargo.
           </td>
         </tr>
         <tr>
-          <td style="padding:2px 0 10px;font-family:${FONT_STACK};font-size:15px;line-height:23px;color:${BRAND.text};">
+          <td class="em-text" style="padding:2px 0 10px;font-family:${FONT_STACK};font-size:15px;line-height:23px;color:${BRAND.text};">
             Si preferís no esperar, escribinos por WhatsApp y te atendemos al momento.
           </td>
         </tr>
