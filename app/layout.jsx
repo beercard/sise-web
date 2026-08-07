@@ -10,9 +10,11 @@ import WhatsAppFloatingButton from './components/WhatsAppFloatingButton/WhatsApp
 
 import styles from './layout.module.scss';
 
+/* El 400 es imprescindible: sin esa cara, cualquier `font-weight: 400` del
+   sitio se resuelve con la de 500 y el texto se lee como negrita. */
 const leagueSpartan = League_Spartan({
   subsets: ['latin'],
-  weight: ['300', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap'
 });
 
