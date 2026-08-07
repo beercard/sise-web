@@ -184,7 +184,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="es" className={leagueSpartan.className} suppressHydrationWarning>
+    <html lang="es-AR" className={leagueSpartan.className} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

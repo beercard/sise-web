@@ -16,7 +16,7 @@ import styles from './page.module.scss';
 export const metadata = buildPageMetadata({
   title: 'Videovigilancia y seguridad para ciudades',
   description:
-    'Soluciones de seguridad para municipios y ciudades con videovigilancia urbana, conectividad, analítica y herramientas para la prevención del delito en el espacio público.',
+    'Videovigilancia urbana y seguridad para municipios: monitoreo del espacio público, conectividad y prevención del delito en Chaco y el NEA.',
   path: '/ciudad',
   image: '/image/og-ciudad.jpg',
   category: 'Seguridad urbana',

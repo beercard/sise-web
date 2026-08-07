@@ -16,7 +16,7 @@ import styles from './page.module.scss';
 
 const PAGE_TITLE = 'Alarmas monitoreadas para el hogar';
 const PAGE_DESCRIPTION =
-  'Alarmas monitoreadas para el hogar con sensores, sirenas, cámaras y control desde el celular para proteger tu casa con monitoreo profesional 24/7 en Chaco y el NEA.';
+  'Alarmas monitoreadas para el hogar con sensores, cámaras y control desde el celular. Monitoreo profesional 24/7 en Resistencia, Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,

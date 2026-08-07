@@ -16,7 +16,7 @@ import styles from './page.module.scss';
 
 const PAGE_TITLE = 'Alarmas y seguridad para comercios';
 const PAGE_DESCRIPTION =
-  'Alarmas, cámaras, control de accesos, cortina de humo y monitoreo para locales, oficinas y comercios con respuesta profesional y gestión remota en Chaco y el NEA.';
+  'Alarmas, cámaras, control de accesos y cortina de humo para locales, oficinas y comercios, con monitoreo 24/7 en Resistencia, Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,

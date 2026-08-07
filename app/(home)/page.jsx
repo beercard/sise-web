@@ -16,7 +16,7 @@ import styles from './page.module.scss';
 
 const PAGE_TITLE = 'Alarmas monitoreadas y seguridad electrónica 24/7 en el NEA';
 const PAGE_DESCRIPTION =
-  'Alarmas monitoreadas, cámaras de seguridad, control de accesos y monitoreo 24/7 para hogares, comercios, industrias, consorcios, obras, campo y ciudades en Resistencia, Chaco y el NEA.';
+  'Alarmas monitoreadas, cámaras y control de accesos con monitoreo 24/7 para hogares, comercios, industrias, campo y ciudades en Chaco y el NEA.';
 
 export const metadata = buildPageMetadata({
   title: PAGE_TITLE,
