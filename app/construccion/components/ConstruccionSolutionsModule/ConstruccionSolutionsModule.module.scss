@@ -437,11 +437,14 @@
     --solutions-card-body-width: 151px;
   }
 
+  /* Figma 5011:470 mide la caja en 150, pero "Cierre perimetral de" necesita
+     152 con League Spartan a 18px; se ensancha lo justo para conservar el
+     corte de 4 renglones del diseño. */
   .cerco {
     --solutions-title-width: 203px;
     --solutions-card-title-top: 24px;
     --solutions-card-body-top: 69px;
-    --solutions-card-body-width: 150px;
+    --solutions-card-body-width: 154px;
   }
 
   .cctv {

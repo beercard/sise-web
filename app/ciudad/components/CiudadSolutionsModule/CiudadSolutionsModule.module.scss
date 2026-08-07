@@ -607,9 +607,14 @@
     width: 189px;
   }
 
+  /* Figma 5011:469 mide la caja en 174, pero con League Spartan a 18px la
+     línea más larga del diseño ("el delito en tiempo real.") necesita 178, así
+     que el navegador metía un cuarto renglón. El ancho tiene que quedar entre
+     esos 178 y los 180 que ocuparía "pública para prevenir el": con 180 el
+     "el" sube de renglón y el corte deja de ser el del diseño. */
   .urbana .cardBody {
     top: 80px;
-    width: 174px;
+    width: 179px;
   }
 
   .gps .cardTitle {

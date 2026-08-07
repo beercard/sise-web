@@ -601,6 +601,13 @@
     min-height: 0;
   }
 
+  /* CCTV rural (Figma 5011:468): la caja de texto mide 152, no 161; con 161
+     entra "tranqueras, galpones" en un renglón y el corte deja de coincidir
+     con el diseño ("tranqueras," / "galpones y lotes."). */
+  .cctv {
+    --solutions-card-body-width: 152px;
+  }
+
   .camara {
     --solutions-card-title-top: 37px;
     --solutions-card-body-top: 61px;
