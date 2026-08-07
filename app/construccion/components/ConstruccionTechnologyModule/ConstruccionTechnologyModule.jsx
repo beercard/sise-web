@@ -407,7 +407,8 @@ export default function ConstruccionTechnologyModule() {
           '--tech-card-title-width': '201px',
           '--tech-card-title-height': '63px',
           '--tech-card-title-min-height': '63px',
-          '--tech-card-text-width': '293px',
+          '--tech-card-text-width': '299px',
+          '--tech-card-text-max-width': '299px',
           '--tech-card-text-margin': '17px 0 0',
           '--tech-card-frame-width': '183px',
           '--tech-card-frame-height': '158px',
@@ -429,10 +430,8 @@ export default function ConstruccionTechnologyModule() {
         mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
         art: {
           type: 'connectivity',
+          bar: true,
           backgroundSrc: '/image/mq1dsdck-ao77h8o.webp',
-          wrapperWidth: 133.87,
-          wrapperHeight: 115.58,
-          badgeBlock: { width: 73.88, height: 10.24, top: 28.53, left: 31.46, background: '#000000', mixBlendMode: 'hue' },
           text: { top: -57, right: -55, width: 292 }
         }
       }

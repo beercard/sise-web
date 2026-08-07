@@ -240,11 +240,12 @@ export default function EdificiosTechnologyModule() {
               '--tech-card-title-width': '276px',
               '--tech-card-title-height': '36px',
               '--tech-card-title-min-height': '36px',
-              '--tech-card-text-width': '339px',
+              '--tech-card-text-width': '342px',
+              '--tech-card-text-max-width': '342px',
               '--tech-card-text-margin': '4px 0 0',
               '--tech-card-image-width': '198px',
               '--tech-card-image-height': '174px',
-              '--tech-card-art-margin-top': '8px',
+              '--tech-card-art-margin-top': '4px',
               '--tech-card-mobile-title-top': '37px',
               '--tech-card-mobile-title-width': '187px',
               '--tech-card-mobile-text-top': '65px',
@@ -457,13 +458,15 @@ export default function EdificiosTechnologyModule() {
             mobileTall: true,
             mobileViewport: 'tall',
             styleVars: {
-              '--tech-card-padding': '48px 83px 22px',
-              '--tech-card-title-width': '276px',
+              /* Desktop (Figma 2202:396): igual que comercio e industria — el
+                 texto usa el ancho de 354/355 del nodo, no los 276 del título. */
+              '--tech-card-padding': '48px 43px 22px',
+              '--tech-card-title-width': '241px',
               '--tech-card-title-min-height': '31px',
-              '--tech-card-text-width': '276px',
-              '--tech-card-text-margin': '12px 0 0',
+              '--tech-card-text-width': '360px',
+              '--tech-card-text-max-width': '360px',
+              '--tech-card-text-margin': '11px 0 0',
               '--tech-card-art-margin-top': '14px',
-              '--tech-card-mobile-art-height': '88px',
               '--tech-card-image-width': '94px',
               '--tech-card-image-height': '176px',
               '--tech-card-mobile-title-top': '36px',
@@ -499,7 +502,8 @@ export default function EdificiosTechnologyModule() {
               '--tech-card-title-width': '201px',
               '--tech-card-title-height': '63px',
               '--tech-card-title-min-height': '63px',
-              '--tech-card-text-width': '293px',
+              '--tech-card-text-width': '299px',
+              '--tech-card-text-max-width': '299px',
               '--tech-card-text-margin': '17px 0 0',
               '--tech-card-frame-width': '183px',
               '--tech-card-frame-height': '158px',
@@ -521,10 +525,8 @@ export default function EdificiosTechnologyModule() {
             mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: {
               type: 'connectivity',
+              bar: true,
               backgroundSrc: '/image/mq09bjsp-72d3sht.webp',
-              wrapperWidth: 133.87,
-              wrapperHeight: 115.58,
-              badgeBlock: { width: 73.88, height: 10.24, top: 28.53, left: 31.46, background: '#000000', mixBlendMode: 'hue' },
               text: { top: -57, right: -55, width: 292 }
             }
           }

@@ -408,7 +408,8 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-title-min-height': '31px',
               '--tech-card-title-width': '241px',
               '--tech-card-text-margin': '11px 0 0',
-              '--tech-card-text-width': '355px',
+              '--tech-card-text-width': '360px',
+              '--tech-card-text-max-width': '360px',
               '--tech-card-art-margin-top': '14px',
               '--tech-card-image-width': '94px',
               '--tech-card-image-height': '176px',
@@ -445,7 +446,8 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-title-width': '201px',
               '--tech-card-title-height': '63px',
               '--tech-card-title-min-height': '63px',
-              '--tech-card-text-width': '293px',
+              '--tech-card-text-width': '299px',
+              '--tech-card-text-max-width': '299px',
               '--tech-card-text-margin': '17px 0 0',
               '--tech-card-frame-width': '183px',
               '--tech-card-frame-height': '158px',
@@ -467,10 +469,8 @@ export default function IndustriaTechnologyModule() {
             mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: {
               type: 'connectivity',
+              bar: true,
               backgroundSrc: '/image/mq03yufq-43ve40h.webp',
-              wrapperWidth: 133.87,
-              wrapperHeight: 115.58,
-              badgeBlock: { width: 73.88, height: 10.24, top: 28.53, left: 31.46, background: '#000000', mixBlendMode: 'hue' },
               imageTop: 0,
               text: { top: -57, right: -55, width: 292 }
             }
