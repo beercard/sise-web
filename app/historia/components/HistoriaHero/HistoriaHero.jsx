@@ -5,7 +5,7 @@ export default function HistoriaHero() {
     <section className={styles.hero} aria-label="Historia SISE Argentina">
       <div className={styles.heroMedia} aria-hidden="true">
         <picture className={styles.heroPicture}>
-          <source srcSet="/image/SISE HISTORIA MOBILE.png" media="(max-width: 600px)" />
+          <source srcSet="/image/hero-historia-mobile.webp" media="(max-width: 600px)" />
           <img
             src="/image/mq2q87jo-iv7vjn2.webp"
             alt=""
