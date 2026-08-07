@@ -345,7 +345,7 @@ export default function AgroTechnologyModule() {
             mobileTextLines: [
               'Administrá tu sistema,',
               'recibí notificaciones y',
-              'monitoreá tu hogar o negocio',
+              'monitoreá tu obra',
               'estés donde estés.'
             ],
             mobileTall: true,

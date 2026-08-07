@@ -490,7 +490,7 @@ export default function EdificiosTechnologyModule() {
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
             mobileTitleLines: ['Control desde', 'el celular'],
-            mobileTextLines: ['Administrá tu sistema,', 'recibí notificaciones y', 'monitoreá tu hogar o negocio', 'estés donde estés.'],
+            mobileTextLines: ['Administrá tu sistema,', 'recibí notificaciones y', 'monitoreá tu obra', 'estés donde estés.'],
             mobileTall: true,
             mobileViewport: 'tall',
             styleVars: {

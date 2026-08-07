@@ -83,7 +83,13 @@ export default function IndustriaTechnologyModule() {
           {
             title: 'Cerco eléctrico perimetral',
             text: 'Primera barrera de seguridad que protege tu propiedad y disuade ingresos no autorizados.',
-            mobileTextLines: ['Primera barrera de seguridad', 'que protege tu propiedad y', 'disuade ingresos no', 'autorizados.'],
+            mobileTitleLines: ['Cerco eléctrico', 'perimetral'],
+            mobileTextLines: [
+              'Primera barrera de',
+              'seguridad que protege tu',
+              'propiedad y disuade',
+              'ingresos no autorizados.'
+            ],
             mobileTall: true,
             mobileViewport: 'tall',
             styleVars: {
@@ -98,24 +104,14 @@ export default function IndustriaTechnologyModule() {
               '--tech-card-image-height': '154px',
               '--tech-card-art-margin-top': '0px',
               '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-left': '37px',
-              '--tech-card-mobile-title-transform': 'none',
               '--tech-card-mobile-title-width': '187px',
               '--tech-card-mobile-text-top': '88px',
-              '--tech-card-mobile-text-left': '30px',
-              '--tech-card-mobile-text-transform': 'none',
               '--tech-card-mobile-text-width': '201px',
-              '--tech-card-mobile-art-top': '164.96px',
-              '--tech-card-mobile-art-left': '53px',
-              '--tech-card-mobile-art-transform': 'none',
+              '--tech-card-mobile-art-top': '165px',
               '--tech-card-mobile-art-width': '155px',
               '--tech-card-mobile-art-height': '111px'
             },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '30px', background: '#D9D9D9', borderRadius: '22px' },
-            mobileAccents: [
-              { width: '29.01px', height: '15px', top: '139px', left: '15px', background: '#D9D9D9', rotate: 90, transformOrigin: 'top left' },
-              { width: '29.01px', height: '15px', top: '168.01px', left: '246px', background: '#D9D9D9', rotate: -90, transformOrigin: 'top left' }
-            ],
+            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
             art: { type: 'image', src: '/image/mpudc5hr-kxw5icp.png', width: 215, height: 154 }
           },
           {
@@ -440,7 +436,7 @@ export default function IndustriaTechnologyModule() {
             title: 'Control desde el celular',
             text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
             mobileTitleLines: ['Control desde', 'el celular'],
-            mobileTextLines: ['Administrá tu sistema,', 'recibí notificaciones y', 'monitoreá tu hogar o negocio', 'estés donde estés.'],
+            mobileTextLines: ['Administrá tu sistema,', 'recibí notificaciones y', 'monitoreá tu obra', 'estés donde estés.'],
             mobileTall: true,
             mobileViewport: 'tall',
             styleVars: {
