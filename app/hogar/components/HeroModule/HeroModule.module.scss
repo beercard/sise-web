@@ -1,3 +1,9 @@
+/*
+ * Hero de /hogar — Figma 5001:272 (desktop, 1920×900) y 5001:281 (mobile,
+ * 402×600). La foto va al 90% de opacidad sobre el azul #00408c, sin
+ * gradiente; el kicker "SISE HOGAR" y el título quedan abajo a la izquierda
+ * (título en y=704, a 94px del borde inferior en el marco de 900).
+ */
 .hero {
   width: 100%;
   background: #ffffff;
@@ -8,7 +14,7 @@
 .media {
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 900px;
   overflow: hidden;
   background: #00408c;
   isolation: isolate;
@@ -16,29 +22,21 @@
 
 .image {
   object-fit: cover;
-  object-position: center;
-  opacity: 0.5;
+  /* La foto original es más alta que el marco: el encuadre del diseño corta
+     casi todo el sobrante por arriba (offset -14.14% sobre 116.25%). */
+  object-position: center 87%;
+  opacity: 0.9;
   z-index: 0;
 }
 
-.gradient {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 1108px;
-  height: 100%;
-  background-image: linear-gradient(
-    90deg,
-    #2177a5 0%,
-    rgba(33, 119, 165, 0.5) 49.52%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  z-index: 1;
+.imageMobile {
+  display: none;
 }
 
 .content {
   position: absolute;
   left: var(--hero-shell-pad);
-  top: 360px;
+  bottom: 94px;
   width: min(700px, calc(100% - (var(--hero-shell-pad) * 2)));
   display: flex;
   flex-direction: column;
@@ -47,17 +45,26 @@
   z-index: 2;
 }
 
-.logo {
-  display: block;
-  width: 334px;
-  height: auto;
+/* "SISE HOGAR" tipográfico (Arial Black + Arial Bold), como en el diseño. */
+.kicker {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 51px;
+  line-height: 0.8;
+  letter-spacing: -2.04px;
+}
+
+.kickerBlack {
+  font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+  font-weight: 900;
 }
 
 .title {
-  margin: 16px 0 0;
+  margin: 25px 0 0;
   width: 100%;
   min-height: 102px;
-  line-height: 51px;
+  line-height: 51.6px;
   font-size: 64px;
   letter-spacing: 0;
 }
@@ -74,139 +81,78 @@
 
 @media (max-width: 1200px) {
   .media {
-    height: 720px;
-  }
-
-  .image {
-    object-position: 58% center;
-  }
-
-  .gradient {
-    width: min(900px, 62vw);
-  }
-
-  .content {
-    top: 312px;
-    width: min(620px, calc(100% - (var(--hero-shell-pad) * 2)));
-  }
-
-  .logo {
-    width: 314px;
-  }
-
-  .title {
-    min-height: 96px;
-    font-size: 56px;
-    line-height: 48px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .media {
     height: 660px;
-  }
-
-  .image {
-    object-position: 62% center;
-  }
-
-  .gradient {
-    width: min(760px, 68vw);
   }
 
   .content {
     left: 32px;
-    top: 286px;
+    bottom: 70px;
     width: min(560px, calc(100% - 64px));
   }
 
-  .logo {
-    width: 290px;
+  .kicker {
+    font-size: 40px;
+    letter-spacing: -1.6px;
   }
 
   .title {
-    margin-top: 16px;
-    min-height: 88px;
+    margin-top: 20px;
+    min-height: 0;
     font-size: 50px;
-    line-height: 44px;
+    line-height: 42px;
   }
 }
 
 @media (max-width: 960px) {
   .media {
-    height: 591px;
-  }
-
-  .image {
-    object-position: 62% center;
-  }
-
-  .gradient {
-    width: 100%;
-    background: linear-gradient(90deg, rgba(33, 119, 165, 0.94) 0%, rgba(33, 119, 165, 0.75) 38%, rgba(33, 119, 165, 0.18) 100%);
+    height: 600px;
   }
 
   .content {
     left: 24px;
-    top: auto;
-    bottom: 106px;
-    width: min(360px, calc(100% - 48px));
+    bottom: 48px;
+    width: min(460px, calc(100% - 48px));
   }
 
-  .logo {
-    width: 236px;
+  .kicker {
+    font-size: 32px;
+    letter-spacing: -1.3px;
   }
 
   .title {
-    margin-top: 12px;
-    width: 100%;
-    height: auto;
-    font-size: 36px;
-    line-height: 36px;
+    margin-top: 16px;
+    font-size: 40px;
+    line-height: 38px;
   }
 }
 
 @media (max-width: 600px) {
   .media {
-    height: 591px;
-    background-image: url('/image/home-hero-mobile.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: 600px;
   }
 
-  .image {
+  .imageDesktop {
     display: none;
   }
 
-  .gradient {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-      90deg,
-      #2177a5 0%,
-      rgba(33, 119, 165, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
+  .imageMobile {
+    display: block;
   }
 
   .content {
     left: 24px;
-    top: 360px;
-    bottom: auto;
+    bottom: 32px;
     width: min(354px, calc(100% - 48px));
   }
 
-  .logo {
-    width: 191px;
-    height: 35px;
+  .kicker {
+    font-size: 26px;
+    letter-spacing: -1.04px;
   }
 
   .title {
-    margin: 8px 0 0 2px;
+    margin: 13px 0 0 2px;
     width: min(343px, 100%);
-    height: auto;
     font-size: 32px;
     line-height: 32px;
   }
@@ -216,6 +162,7 @@
     font-weight: 400;
   }
 
+  /* En mobile la mitad fuerte va en 600 y cierra con punto (Figma 3046:346). */
   .titleStrong {
     display: inline;
     font-weight: 600;
