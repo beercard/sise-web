@@ -1,95 +1,53 @@
+/*
+ * Soluciones de /hogar — Figma 5001:274 (desktop 1920×1079) y 5001:275
+ * (mobile 402×1845). Fondo azul de marca con el patrón de eses al 4% desde
+ * y=316 (desktop) / y=311 (mobile), intro en dos columnas de 578/582 px y
+ * grilla de 6 tarjetas de 211×261 (201×221 en mobile). Cada tarjeta fija por
+ * variables la posición de su título y su texto, que difieren entre sí.
+ */
 .section {
-  --solutions-total-height: 775px;
-  --solutions-grid-height: 458px;
-  --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-  --solutions-content-width: 1187px;
-  --solutions-intro-gap: 27px;
-  --solutions-card-width: 211px;
-  --solutions-card-height: 261px;
-  --solutions-grid-gap: 33px;
-  --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-  --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-  --solutions-body-width: calc(var(--solutions-card-width) - 31px);
-  --solutions-card-title-top: 50px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-title-font-size: 20px;
-  --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 110px;
-  --solutions-card-body-font-size: 16px;
-  --solutions-card-body-line-height: 16px;
-  --solutions-alarmas-body-top: 106px;
-  --solutions-cctv-body-top: 114px;
-  --solutions-cerco-body-top: 114px;
-  --solutions-barrio-body-top: 117px;
-  --solutions-desocupadas-title-top: 40px;
-  --solutions-desocupadas-body-top: 131px;
   position: relative;
-  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
   background: #2177a5;
   color: #ffffff;
-  overflow: hidden;
+  padding: 81px 0 61px;
 }
 
-.canvas {
-  position: relative;
-  width: min(1920px, 100%);
-  height: var(--solutions-total-height);
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.copyBlock {
+/* Patrón de eses SISE en blanco al 4%: un tile de 1993×154.56 que repite la
+   fila de vectores de "Capa 4" con su paso vertical exacto. */
+.watermark {
   position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: var(--solutions-copy-height);
-  width: min(var(--solutions-content-width), calc(100% - 48px));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  top: 316px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/image/patron-sise.svg');
+  background-size: 1993px 154.56px;
+  background-position: -37px 0;
 }
 
 .intro {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 578px) minmax(0, 582px);
-  gap: var(--solutions-intro-gap);
-  justify-content: center;
-  align-items: start;
+  z-index: 1;
+  width: min(1188px, calc(100% - 48px));
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 28px;
 }
 
-.copyMain {
-  width: 578px;
-}
-
-/* `contents` y no `block`: el envoltorio desaparece del layout, así sus <p>
-   siguen siendo hijos directos de la grilla de `.intro` y de `.copyMain`,
-   igual que antes de partir el contenido en dos versiones. */
-.desktopOnly {
-  display: contents;
-}
-
-.mobileOnly {
-  display: none;
+.introLeft {
+  flex: 0 1 578px;
 }
 
 .lead {
   margin: 0;
-  width: 578px;
-  height: 59px;
-  line-height: 30.4px;
   font-size: 32px;
-}
-
-.mobileLead {
-  margin: 0;
-  width: 231px;
-  text-align: center;
-  line-height: 19.36px;
-  font-size: 24px;
-  font-weight: 700;
+  line-height: 0.95;
 }
 
 .leadLight {
@@ -101,614 +59,243 @@
 }
 
 .punch {
-  margin: 28px 0 0;
-  width: 578px;
-  height: 82px;
-  line-height: 38.71px;
+  margin: 24px 0 0;
   font-size: 48px;
+  line-height: 0.85;
   font-weight: 600;
 }
 
 .body {
+  flex: 0 1 582px;
   margin: 5px 0 0;
-  width: 582px;
-  height: 153px;
-  line-height: 22px;
   font-size: 20px;
-}
-
-.bodyLight {
+  line-height: 1.1;
   font-weight: 400;
 }
 
-.bodyStrong {
+.body strong {
   font-weight: 600;
 }
 
-.mobileBody {
-  margin: 0;
-  width: 296px;
-  text-align: center;
-  line-height: 19.8px;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.gridArea {
-  position: absolute;
-  top: var(--solutions-copy-height);
-  left: 0;
-  width: 100%;
-  height: var(--solutions-grid-height);
-  overflow: hidden;
-}
-
-.watermark {
-  position: absolute;
-  inset: 0;
-  top: 0;
-  left: 50%;
-  width: 2059px;
-  transform: translateX(calc(-50% + 12.5px));
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.watermarkRow {
-  margin: 0;
-  height: 151px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-indent: -9999px;
-}
-
-.watermarkRow:first-child {
-  height: 152px;
-}
-
-/* Las tres bandas se alternan para poder repetir el patrón tantas filas como
-   haga falta. En desktop sólo se ven las tres primeras, así que el resultado
-   es el mismo de siempre: banda 1, 2 y 3. */
-.watermarkRow:nth-child(3n + 1) {
-  background-image: url('/image/solutions-band-1.png');
-}
-
-.watermarkRow:nth-child(3n + 2) {
-  background-image: url('/image/solutions-band-2.png');
-}
-
-.watermarkRow:nth-child(3n) {
-  background-image: url('/image/solutions-band-3.png');
-}
-
-/* Sólo las tres primeras filas llevan banda; el resto son relleno que necesita
-   el lienzo alto de mobile. Fuera de mobile hay que ocultarlas: `.watermark` es
-   un flex vertical de alto fijo, así que las filas de más se reparten el
-   espacio y aplastaban las tres bandas de 151px a 17px. */
-.watermarkRow:nth-child(n + 4) {
+/* La versión corta del texto sólo existe en mobile (Figma 3253:456). */
+.introMobile {
   display: none;
 }
 
-/* Entre 601 y 1279px las cards se apilan en dos columnas y el área crece de
-   ~450 a ~825px, así que las tres bandas cubrían menos de la mitad y la parte
-   de abajo quedaba sin trama. Acá sí entran las de relleno, con `flex-shrink`
-   anulado para que conserven sus 151px: lo que sobra lo recorta el `overflow`
-   del contenedor. */
-@media (min-width: 601px) and (max-width: 1200px) {
-  .watermarkRow {
-    flex-shrink: 0;
-  }
-
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
-  }
-}
-
 .heading {
-  position: absolute;
-  z-index: 2;
-  top: 55px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  width: min(var(--solutions-content-width), calc(100% - 48px));
-  height: 37px;
-  line-height: 45.6px;
+  position: relative;
+  z-index: 1;
+  margin: 131px 0 0;
+  text-align: center;
   font-size: 48px;
-  font-weight: 600;
-  text-align: left;
+  line-height: 0.95;
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
 .grid {
-  position: absolute;
-  z-index: 2;
-  top: 117px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--solutions-grid-width);
+  position: relative;
+  z-index: 1;
+  width: min(944px, calc(100% - 48px));
+  margin: 32px auto 0;
   display: grid;
-  grid-template-columns: repeat(5, var(--solutions-card-width));
-  gap: var(--solutions-grid-gap);
+  grid-template-columns: repeat(3, 211px);
+  justify-content: space-between;
+  row-gap: 40px;
 }
 
-.cardGroup {
-  width: var(--solutions-card-width);
+.card {
   position: relative;
+  width: 211px;
+  height: 261px;
+  background: #d9d9d9;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
 }
 
 .cardTitle {
-  margin: 0;
   position: absolute;
-  top: var(--solutions-card-title-top);
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--solutions-title-width);
-  min-height: var(--solutions-card-title-min-height);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: var(--solutions-card-title-line-height);
-  letter-spacing: 0.05em;
-  font-size: var(--solutions-card-title-font-size);
+  top: var(--title-top);
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1;
   font-weight: 700;
-  text-align: center;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #2177a5;
-  text-wrap: balance;
-}
-
-/* `.cardTitle` apila sus líneas con flex, así que el envoltorio va en
-   `display: contents` para no meterse en medio. El de mobile se oculta acá y
-   se invierten los dos en el bloque de 600px. */
-.desktopTitle {
-  display: contents;
 }
 
 .mobileTitle {
   display: none;
 }
 
-.card {
-  width: var(--solutions-card-width);
-  height: var(--solutions-card-height);
-  position: relative;
-  box-sizing: border-box;
-  border-radius: 10px;
-  background: #d9d9d9;
-}
-
 .cardBody {
   position: absolute;
-  top: var(--solutions-card-body-top);
+  top: var(--body-top);
   left: 50%;
   transform: translateX(-50%);
+  width: var(--body-width);
   margin: 0;
-  width: var(--solutions-body-width);
-  line-height: var(--solutions-card-body-line-height);
-  font-size: var(--solutions-card-body-font-size);
+  font-size: 20px;
+  line-height: 1;
   font-weight: 400;
-  text-align: center;
-  color: #000000;
-  text-wrap: pretty;
 }
 
-.desktopBodyText {
-  display: inline;
+.cardButton {
+  position: absolute;
+  bottom: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 40px;
+  background: #2177a5;
+  border: 2px solid #52a2c9;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.mobileBodyText {
-  display: none;
+/* Posiciones internas por tarjeta (desktop / mobile), tomadas del diseño. */
+.alarmas {
+  --title-top: 33px;
+  --body-top: 83px;
+  --body-width: 180px;
+  --m-title-top: 29px;
+  --m-body-top: 81px;
+  --m-body-width: 201px;
 }
 
-.alarmas .cardTitle {
-  width: var(--solutions-title-width);
-  min-height: 39px;
-  top: 67px;
+.cctv {
+  --title-top: 41px;
+  --body-top: 98px;
+  --body-width: 168px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 143px;
 }
 
-.alarmas .cardBody {
-  top: 131px;
-  width: var(--solutions-body-width);
-  min-height: 59px;
-  font-size: 20px;
-  line-height: 20px;
+.cerco {
+  --title-top: 41px;
+  --body-top: 98px;
+  --body-width: 180px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 143px;
 }
 
-.cctv .cardTitle {
-  width: var(--solutions-title-width);
-  min-height: 39px;
-  top: 67px;
+.barrio {
+  --title-top: 41px;
+  --body-top: 98px;
+  --body-width: 211px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 201px;
 }
 
-.cctv .cardBody {
-  top: 131px;
-  width: 156px;
-  min-height: 59px;
-  font-size: 20px;
-  line-height: 20px;
+.desocupadas {
+  --title-top: 33px;
+  --body-top: 117px;
+  --body-width: 180px;
+  --m-title-top: 30px;
+  --m-body-top: 100px;
+  --m-body-width: 162px;
 }
 
-.cerco .cardTitle {
-  width: 212px;
-  min-height: 39px;
-  top: 67px;
-  line-height: 20px;
-  letter-spacing: 1px;
-  text-wrap: balance;
-}
-
-.cerco .cardBody {
-  top: 133px;
-  width: var(--solutions-body-width);
-  min-height: 59px;
-  font-size: 20px;
-  line-height: 20px;
-}
-
-.barrio .cardTitle {
-  width: 179px;
-  min-height: 39px;
-  top: 67px;
-}
-
-.barrio .cardBody {
-  top: 133px;
-  width: var(--solutions-body-width);
-  min-height: 59px;
-  font-size: 20px;
-  line-height: 20px;
-}
-
-.desocupadas .cardTitle {
-  top: 57px;
-  width: var(--solutions-title-width);
-  min-height: 59px;
-}
-
-.desocupadas .cardBody {
-  top: 131px;
-  width: var(--solutions-body-width);
-  min-height: 63px;
-  font-size: 20px;
-  line-height: 20px;
-}
-
-@media (max-width: 1200px) {
-  .section {
-    --solutions-total-height: 752px;
-    --solutions-grid-height: 448px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-    --solutions-content-width: 1080px;
-    --solutions-intro-gap: clamp(20px, 2vw, 28px);
-    --solutions-card-width: clamp(184px, 14vw, 211px);
-    --solutions-card-height: clamp(238px, 18vw, 261px);
-    --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
-    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-body-width: calc(var(--solutions-card-width) - 31px);
-    --solutions-card-title-top: clamp(38px, 3vw, 50px);
-    --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
-    --solutions-card-title-font-size: clamp(16px, 1.28vw, 20px);
-    --solutions-card-title-line-height: clamp(16px, 1.28vw, 20px);
-    --solutions-card-body-top: clamp(92px, 7.5vw, 110px);
-    --solutions-card-body-font-size: clamp(13px, 0.98vw, 16px);
-    --solutions-card-body-line-height: clamp(13px, 0.98vw, 16px);
-    --solutions-alarmas-body-top: clamp(94px, 7.5vw, 106px);
-    --solutions-cctv-body-top: clamp(102px, 8vw, 114px);
-    --solutions-cerco-body-top: clamp(102px, 8vw, 114px);
-    --solutions-barrio-body-top: clamp(105px, 8.2vw, 117px);
-    --solutions-desocupadas-title-top: clamp(32px, 2.7vw, 40px);
-    --solutions-desocupadas-body-top: clamp(111px, 8.8vw, 131px);
-  }
-
-  .intro {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .copyMain,
-  .lead,
-  .punch,
-  .body {
-    width: 100%;
-  }
-
-  .lead {
-    height: auto;
-    font-size: clamp(26px, 2.05vw, 32px);
-    line-height: clamp(26px, 2.1vw, 30.4px);
-  }
-
-  .punch {
-    height: auto;
-    margin-top: clamp(20px, 1.9vw, 28px);
-    font-size: clamp(38px, 3.25vw, 48px);
-    line-height: clamp(33px, 2.7vw, 38.71px);
-  }
-
-  .body {
-    height: auto;
-    font-size: clamp(17px, 1.4vw, 20px);
-    line-height: clamp(19px, 1.55vw, 22px);
-  }
-
-  .heading {
-    height: auto;
-    font-size: clamp(40px, 3.2vw, 48px);
-    line-height: clamp(40px, 3.2vw, 45.6px);
-  }
-
-  .grid {
-    justify-content: center;
-  }
-}
-@media (max-width: 1200px) {
-  .section {
-    --solutions-card-width: 211px;
-    --solutions-grid-gap: 32px;
-    --solutions-title-width: 203px;
-    --solutions-body-width: 180px;
-  }
-
-  .canvas {
-    height: auto;
-    padding-bottom: 64px;
-  }
-
-  .copyBlock {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    height: auto;
-    width: calc(100% - 80px);
-    margin: 0 auto;
-    justify-content: flex-start;
-  }
-
-  .intro {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    padding-top: 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .copyMain,
-  .lead,
-  .punch,
-  .body {
-    width: 100%;
-    height: auto;
-  }
-
-  .body {
-    margin-top: 0;
-  }
-
-  .gridArea {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
-    margin-top: 48px;
-  }
-
-  .heading {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto 32px;
-    text-align: center;
-  }
-
-  .grid {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto;
-    grid-template-columns: repeat(3, var(--solutions-card-width));
-    justify-content: center;
-    gap: var(--solutions-grid-gap);
-  }
-
-  .watermark {
-    top: 34px;
-  }
-
-  .watermarkRow {
-    height: 126px;
-  }
+.gps {
+  --title-top: 41px;
+  --body-top: 98px;
+  --body-width: 177px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 155px;
 }
 
 @media (max-width: 960px) {
-  .section {
-    --solutions-grid-gap: 24px;
-  }
-
-  .intro {
-    width: 100%;
-    padding-top: 28px;
-    gap: 18px;
-  }
-
-  .copyBlock {
-    width: calc(100% - 32px);
-  }
-
-  .lead {
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-  }
-
-  .punch {
-    margin-top: 10px;
-    font-size: 30px;
-    line-height: 34px;
-    text-align: center;
-  }
-
-  .body {
-    margin-top: 0;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-  }
-
-  .gridArea {
-    margin-top: 22px;
+  .grid {
+    width: min(560px, calc(100% - 48px));
+    grid-template-columns: repeat(2, 211px);
+    justify-content: space-between;
   }
 
   .heading {
-    width: calc(100% - 32px);
-    margin-bottom: 24px;
-    font-size: 36px;
-    line-height: 38px;
-    text-align: center;
-  }
-
-  .grid {
-    width: calc(100% - 32px);
-    grid-template-columns: repeat(2, minmax(0, var(--solutions-card-width)));
-    gap: var(--solutions-grid-gap);
-  }
-
-  .watermark {
-    top: 18px;
-    width: 1300px;
-    transform: translateX(-50%);
-  }
-
-  .watermarkRow {
-    height: 96px;
-  }
-}
-
-@media (max-width: 1100px) and (min-width: 961px) {
-  .intro {
-    width: 100%;
-    padding-top: 40px;
-    gap: 24px;
-  }
-
-  .copyBlock {
-    width: calc(100% - 64px);
-  }
-
-  .lead {
-    font-size: 22px;
-    line-height: 26px;
-  }
-
-  .punch {
-    font-size: 32px;
-    line-height: 34px;
-  }
-
-  .body {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .gridArea {
-    margin-top: 36px;
-  }
-
-  .heading {
-    width: calc(100% - 64px);
-    margin-bottom: 28px;
-    font-size: 34px;
-    line-height: 36px;
-  }
-
-  .grid {
-    width: calc(100% - 64px);
-    grid-template-columns: repeat(2, var(--solutions-card-width));
-    gap: 24px;
+    margin-top: 72px;
   }
 }
 
 @media (max-width: 600px) {
   .section {
-    min-height: 1336px;
+    padding: 64px 0 39px;
   }
 
-  /* El lienzo del diseño mide 752 pero el marco del teléfono no está centrado
-     en él: va de x=183 a x=585, o sea 183 de margen a la izquierda y 167 a la
-     derecha. Centrar el lienzo dejaba todo el contenido 8px corrido a la
-     derecha, así que se corre esa mitad de diferencia para que lo que quede
-     centrado en la pantalla sea el marco y no el lienzo. */
-  .canvas {
-    width: 752px;
-    max-width: none;
-    height: 1336px;
-    padding-bottom: 0;
-    left: 50%;
-    transform: translateX(calc(-50% - 8px));
-    overflow: hidden;
-  }
-
-  /* Las bandas arrancan al ras del área de cards y la llenan enteras: en el
-     diseño van de y=312 a y=1336, que son los 1024px de `.gridArea`. */
   .watermark {
-    top: 0;
-    left: 0;
-    width: 752px;
-    height: 100%;
-    transform: none;
-    gap: 2px;
-    opacity: 0.4;
-  }
-
-  .watermarkRow,
-  .watermarkRow:first-child {
-    height: 55px;
-  }
-
-  /* Acá sí entran las filas de relleno: el lienzo de mobile es mucho más alto. */
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
-  }
-
-  .copyBlock {
-    position: absolute;
-    top: 0;
-    left: 183px;
-    transform: none;
-    width: 402px;
-    height: 312px;
-    margin: 0;
+    top: 311px;
+    background-size: 684.5px 53.08px;
+    background-position: -141px 0;
   }
 
   .intro {
-    width: 402px;
-    padding-top: 64px;
-    gap: 23px;
-    align-items: center;
+    width: calc(100% - 48px);
   }
 
-  .copyMain {
-    width: 231px;
-  }
-
-  .desktopOnly {
+  /* En mobile el intro largo se reemplaza por la versión corta. */
+  .introLeft,
+  .body {
     display: none;
   }
 
-  .mobileOnly {
+  .introMobile {
     display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobilePunch {
+    margin: 0 auto;
+    width: min(231px, 100%);
+    font-size: 24px;
+    line-height: 0.85;
+    font-weight: 700;
+  }
+
+  .mobileBody {
+    margin: 23px auto 0;
+    width: min(296px, 100%);
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .heading {
+    margin-top: 90px;
+    font-size: 24px;
+    line-height: 0.95;
+  }
+
+  .grid {
+    width: 100%;
+    margin-top: 20px;
+    grid-template-columns: 201px;
+    justify-content: center;
+    row-gap: 20px;
+  }
+
+  /* Del diseño mobile: "propiedades desocupadas" pasa delante de "barrio". */
+  .card {
+    order: var(--mobile-order);
+    width: 201px;
+    height: 221px;
+  }
+
+  .cardTitle {
+    top: var(--m-title-top);
   }
 
   .desktopTitle {
@@ -716,180 +303,20 @@
   }
 
   .mobileTitle {
-    display: contents;
-  }
-
-  .desktopBodyText {
-    display: none;
-  }
-
-  .mobileBodyText {
     display: inline;
   }
 
-  .gridArea {
-    position: absolute;
-    top: 312px;
-    left: 0;
-    width: 752px;
-    height: 1024px;
-    margin-top: 0;
-  }
-
-  .heading {
-    position: absolute;
-    top: 28px;
-    left: 184px;
-    width: 399px;
-    transform: none;
-    margin: 0;
-    font-size: 24px;
-    line-height: 22.8px;
-    text-align: center;
-  }
-
-  .grid {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 752px;
-    height: 944px;
-    margin: 0;
-    transform: none;
-    display: block;
-  }
-
-  .cardGroup {
-    position: absolute;
-    left: 284px;
-    width: 201px;
-    margin: 0;
-  }
-
-  .card {
-    width: 201px;
-    height: 153px;
-  }
-
-  .cardTitle {
-    top: 38px;
-    width: 182px;
-    min-height: 35px;
-    font-size: 20px;
-    line-height: 20px;
-    letter-spacing: 0.05em;
-  }
-
   .cardBody {
-    top: 83px;
-    width: 169px;
+    top: var(--m-body-top);
+    width: var(--m-body-width);
     font-size: 18px;
-    line-height: 18px;
   }
 
-  .alarmas .cardTitle {
-    width: 182px;
-    top: 38px;
-  }
-
-  .alarmas {
-    top: 0;
-  }
-
-  .alarmas .cardBody {
-    top: 83px;
-    width: 169px;
-    min-height: 33px;
-    font-size: 18px;
-    line-height: 18px;
-    text-wrap: balance;
-    overflow-wrap: break-word;
-  }
-
-  .cctv {
-    top: 183px;
-  }
-
-  .cctv .cardTitle {
-    width: 187px;
-    top: 39px;
-  }
-
-  /* En el diseño la caja mide 169, pero el navegador dibuja League Spartan un
-     poco más ancha que Figma y "tiempo" se caía a una tercera línea. Con 173
-     entran los dos renglones del diseño ("Mirá tu casa en tiempo / real desde
-     el celular.") y, como el texto va centrado, no se mueve de lugar. */
-  .cctv .cardBody {
-    top: 81px;
-    width: 173px;
-    min-height: 33px;
-    font-size: 18px;
-    line-height: 18px;
-  }
-
-  .cerco {
-    top: 366px;
-  }
-
-  .cerco .card {
-    height: 164px;
-  }
-
-  .cerco .cardTitle {
-    width: 193px;
-    top: 39px;
-  }
-
-  .cerco .cardBody {
-    top: 84px;
-    width: 169px;
-    min-height: 50px;
-    font-size: 18px;
-    line-height: 18px;
-  }
-
-  .barrio {
-    top: 560px;
-  }
-
-  .barrio .cardTitle {
-    width: 170px;
-    top: 37px;
-    min-height: 40px;
-  }
-
-  /* 173 en lugar de los 171 del diseño, por el mismo motivo: así quedan los
-     dos renglones "Cámaras vecinales con / monitoreo compartido." */
-  .barrio .cardBody {
-    top: 82px;
-    width: 173px;
-    min-height: 36px;
-    font-size: 18px;
-    line-height: 18px;
-  }
-
-  .desocupadas {
-    top: 743px;
-  }
-
-  .desocupadas .card {
-    height: 171px;
-  }
-
-  .desocupadas .cardTitle {
-    top: 29px;
-    width: 201px;
-    min-height: 60px;
-  }
-
-  /* Ventana angosta: con menos de 164 "robos." se va a un cuarto renglón y con
-     168 o más sube "distancia". 165 deja los tres del diseño: "Prevención a /
-     distancia contra / usurpaciones y robos." */
-  .desocupadas .cardBody {
-    top: 94px;
-    width: 165px;
-    min-height: 50px;
-    font-size: 18px;
-    line-height: 18px;
+  .cardButton {
+    bottom: 22px;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 20px;
   }
 }
