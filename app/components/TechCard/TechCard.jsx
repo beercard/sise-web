@@ -132,7 +132,12 @@ export default function TechCard({ slide, className = '' }) {
         />
       ))}
       <p className={styles.title}>
-        {slide.mobileTitleLines ? (
+        {slide.titleLines ? (
+          /* Corte fijo en ambos breakpoints (p.ej. "Monitoreo" / "de Alarmas"). */
+          slide.titleLines.flatMap((line, index) =>
+            index === 0 ? [line] : [<br key={`title-br-${index}`} />, line]
+          )
+        ) : slide.mobileTitleLines ? (
           <>
             <span className={styles.desktopText}>{slide.title}</span>
             <span className={`${styles.mobileText} ${styles.mobileFixedLines}`}>
@@ -147,7 +152,18 @@ export default function TechCard({ slide, className = '' }) {
       </p>
       {slide.text ? (
         <p className={styles.text}>
-          {slide.mobileTextLines ? (
+          {slide.desktopTextLines ? (
+            /* Corte fijo sólo en escritorio; en mobile el texto envuelve solo
+               (sin nowrap: cada renglón forzado puede seguir envolviendo). */
+            <>
+              <span className={styles.desktopText}>
+                {slide.desktopTextLines.flatMap((line, index) =>
+                  index === 0 ? [line] : [<br key={`dtext-br-${index}`} />, line]
+                )}
+              </span>
+              <span className={styles.mobileText}>{slide.mobileText ?? slide.text}</span>
+            </>
+          ) : slide.mobileTextLines ? (
             <>
               <span className={styles.desktopText}>{slide.text}</span>
               <span className={`${styles.mobileText} ${styles.mobileFixedLines}`}>
