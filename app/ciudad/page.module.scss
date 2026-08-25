@@ -1,279 +1,24 @@
 .ciudad {
   width: 100%;
-}
-
-.hero {
-  width: 100%;
-}
-
-.heroMedia {
-  position: relative;
-  width: min(1920px, 100%);
-  margin: 0 auto;
-  height: 800px;
-  overflow: hidden;
-  background: #00408c;
-}
-
-.heroImage {
-  object-fit: cover;
-}
-
-.heroOverlayPrimary {
-  position: absolute;
-  left: 148px;
-  bottom: -154px;
-  width: 800px;
-  height: 1108px;
-  rotate: -90deg;
-  opacity: 0.75;
-  background-image: linear-gradient(180deg, #250f7f 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-.heroOverlaySecondary {
-  position: absolute;
-  left: 154px;
-  bottom: -154px;
-  width: 800px;
-  height: 1108px;
-  rotate: -90deg;
-  opacity: 0.95;
-  background-image: linear-gradient(180deg, #597a9c 0%, rgba(89, 122, 156, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
-}
-
-.heroCopy {
-  position: absolute;
-  top: 360px;
-  left: max(24px, calc((100% - 1920px) / 2 + 367px));
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 610px;
-}
-
-.heroTitle {
-  margin: 17px 0 0;
-  width: 610px;
-  height: 102px;
-  line-height: 52px;
-  color: #ffffff;
-  font-size: 64px;
-}
-
-.heroTitleStrong {
-  font-weight: 700;
-}
-
-.heroTitleLight {
-  font-weight: 400;
-}
-
-.heroCityLogo {
-  margin-top: 0;
-  width: 325px;
-  height: 63px;
-}
-
-.heroBottom {
-  background: #597a9c;
-  width: 100%;
-}
-
-.heroBottomInner {
-  width: min(1920px, 100%);
-  margin: 0 auto;
-  padding: 114px 366px 113px 367px;
-  height: 471px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0;
-}
-
-.heroBody {
-  margin: 0;
-  width: 460px;
-  line-height: 20px;
-  color: #ffffff;
-  font-size: 20px;
-}
-
-.heroCarousel {
-  width: min(520px, 100%);
-  height: 244px;
-  display: grid;
-  grid-template-columns: 30px 1fr 30px;
-  align-items: center;
-}
-
-.heroArrow {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.heroArrow:disabled {
-  cursor: default;
-  opacity: 0.55;
-}
-
-.heroArrow img {
-  display: block;
-}
-
-.heroArrowLeft img {
-  transform: rotate(90deg);
-}
-
-.heroArrowRight img {
-  transform: rotate(-90deg);
-}
-
-.heroCardViewport {
-  position: relative;
-  width: 100%;
-  height: 244px;
-  overflow: hidden;
-}
-
-.heroCard {
-  position: absolute;
-  inset: 0;
-}
-
-.heroCardBox {
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  background: #d9d9d9;
-  padding: var(--hero-card-padding, 58px 68px 59px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.heroCardTitle {
-  margin: 0 0 10px;
-  width: var(--hero-card-width, 306px);
-  text-align: center;
-  line-height: 32px;
-  color: #597a9c;
-  font-size: 32px;
-  font-weight: 600;
-  white-space: pre-line;
-}
-
-.heroCardText {
-  margin: 0;
-  width: var(--hero-card-width, 306px);
-  text-align: center;
-  line-height: 20px;
-  color: #597a9c;
-  font-size: 20px;
-  white-space: pre-line;
-}
-
-.heroCardEnterRight {
-  animation: heroCardEnterRight 420ms ease both;
-}
-
-.heroCardEnterLeft {
-  animation: heroCardEnterLeft 420ms ease both;
-}
-
-.heroCardExitLeft {
-  animation: heroCardExitLeft 420ms ease both;
-}
-
-.heroCardExitRight {
-  animation: heroCardExitRight 420ms ease both;
-}
-
-@keyframes heroCardEnterRight {
-  0% {
-    opacity: 0;
-    transform: translateX(18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes heroCardEnterLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes heroCardExitLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-}
-
-@keyframes heroCardExitRight {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(18px);
-  }
+  background: var(--sise-white);
 }
 
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
-  --tech-title-width: 944px;
-  --tech-title-font-size: 48px;
-  --tech-title-line-height: 45.6px;
-  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
-  --tech-tabs-width: 944px;
-  --tech-tab-font-size: 20px;
-  --tech-group-width: 1255px;
-  --tech-card-group-width: 520px;
-  --tech-row-gap: 0px;
-  --tech-house-max-width: 735px;
   padding-top: 86px;
-  padding-bottom: 86px;
+  --tech-group-width: 1320px;
   --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
 .technologyTitle {
   margin: 0 auto;
-  width: min(var(--tech-title-width), calc(100% - 48px));
-  height: auto;
+  width: 944px;
+  height: 91px;
   text-align: center;
-  line-height: var(--tech-title-line-height);
+  line-height: 45.6px;
   color: #000000;
-  font-size: var(--tech-title-font-size);
-}
-
-.technologyTitleDesktop {
-  display: block;
-}
-
-.technologyTitleMobile {
-  display: none;
+  font-size: 48px;
 }
 
 .technologyTitleStrong {
@@ -284,98 +29,37 @@
   font-weight: 400;
 }
 
-.tabs {
-  margin-top: var(--tech-title-tabs-gap);
-  width: min(var(--tech-tabs-width), calc(100% - 48px));
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tab {
-  border: 0;
-  background: transparent;
-  padding: 0 0 10px;
-  height: 29px;
-  text-align: center;
-  line-height: 19px;
-  letter-spacing: 1px;
-  color: #597a9c;
-  font-size: var(--tech-tab-font-size);
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-  cursor: pointer;
-  position: relative;
-}
-
-.tabs > :nth-child(1) {
-  width: 254px;
-}
-
-.tabs > :nth-child(2) {
-  width: 229px;
-}
-
-.tabs > :nth-child(3) {
-  width: 153px;
-}
-
-.tabActive::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: var(--tab-underline-left, 0px);
-  width: var(--tab-underline-width, 100%);
-  height: 3px;
-  background: #597a9c;
-}
-
-.tabUnderlinePerimetral {
-  --tab-underline-left: 0px;
-  --tab-underline-width: 254px;
-}
-
-.tabUnderlineInterior {
-  --tab-underline-left: 2px;
-  --tab-underline-width: 225px;
-}
-
-.tabUnderlineConectividad {
-  --tab-underline-left: 3px;
-  --tab-underline-width: 147px;
-}
-
 .technologyRow {
+  /* Del diseño (5001:253): el mapa arranca 48px debajo del título. */
+  margin-top: 48px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--tech-pad-x);
+  padding-right: var(--tech-pad-x);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: var(--tech-row-gap);
-  margin-top: 30px;
-  padding-left: var(--tech-pad-x);
-  padding-right: var(--tech-pad-x);
+  gap: clamp(24px, 3vw, 64px);
 }
 
 .house {
-  width: min(var(--tech-house-max-width), 55vw);
+  width: min(800px, 55vw);
   max-width: 100%;
   height: auto;
-  aspect-ratio: 2528 / 1682;
-  position: relative;
-  background-position: 0 0;
-  background-size: 100% 100%;
+  /* Caja del plano según el diseño nuevo (Figma 5001:253: 800×532). */
+  aspect-ratio: 800 / 532;
+  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
-  flex: 0 0 auto;
-}
-
-.housePerimetral {
-  background-image: url('/image/mq1invd0-czaywzp.webp');
+  position: relative;
 }
 
 .houseEdit {
-  touch-action: none;
+  position: relative;
+}
+
+.housePerimetral {
+  background-image: url('/image/tech-ciudad-mapa.webp');
 }
 
 .pointButton {
@@ -391,18 +75,6 @@
     transform 0.2s ease,
     background-color 0.2s ease,
     filter 0.2s ease;
-}
-
-.ellipse1,
-.ellipse12,
-.ellipse13,
-.ellipse14,
-.ellipse15 {
-  display: flex;
-  align-items: center;
-  border-radius: 50%;
-  background: rgba(89, 122, 156, 0.2);
-  padding: 6.315px;
 }
 
 .ellipse2 {
@@ -435,74 +107,36 @@
 .pointAbsolute {
   position: absolute;
   margin: 0 !important;
-  transform: translate(-50%, -50%);
 }
 
 .pointButton.pointActive {
-  background: rgba(89, 122, 156, 0.75);
+  background: rgba(89, 122, 156, 0.8);
   filter:
     drop-shadow(0 0 20px rgba(89, 122, 156, 0.4))
     drop-shadow(0 0 41.4px rgba(89, 122, 156, 0.75));
-  transform: translate(-50%, -50%) scale(1.4);
+  transform: scale(1.4);
   z-index: 2;
 }
 
-.techEditor {
-  margin-top: 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(89, 122, 156, 0.25);
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.85);
-}
-
-.techEditorRow {
+.ellipse1,
+.ellipse12,
+.ellipse13,
+.ellipse14,
+.ellipse15 {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.techEditorRow + .techEditorRow {
-  margin-top: 10px;
-}
-
-.techEditorButton {
-  border: 0;
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: #597a9c;
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.techEditorButtonSecondary {
-  border: 1px solid rgba(89, 122, 156, 0.65);
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: transparent;
-  color: #597a9c;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.techEditorHint {
-  color: #0a0a0a;
-  opacity: 0.75;
-  font-size: 13px;
-}
-
-.techEditorHintStrong {
-  font-weight: 600;
-  color: #0a0a0a;
-  font-size: 13px;
+  border-radius: 50%;
+  background: rgba(89, 122, 156, 0.2);
+  padding: 6.315px;
 }
 
 .techCardGroup {
   /* El alto lo define la card (aspect-ratio 442/357). */
   height: auto;
-  margin-top: 47px;
+  margin-top: 53px;
   width: min(520px, 100%);
   min-width: 0;
+
   display: grid;
   align-items: center;
   justify-content: center;
@@ -521,6 +155,11 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+}
+
+.techArrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .techArrow img {
@@ -544,27 +183,13 @@
   aspect-ratio: 442 / 357;
   position: relative;
   flex: 0 0 auto;
-  overflow: hidden;
   justify-self: center;
-}
-
-.tabFadeIn {
-  animation: tabFadeIn 360ms ease both;
-}
-
-@keyframes tabFadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .techCard {
   border-radius: 22px;
   background: #d9d9d9;
-  padding: var(--tech-card-padding, 42px 83px 18px);
+  padding: var(--tech-card-padding, 42px 83px 22px);
   display: flex;
   flex-direction: column;
   align-items: var(--tech-card-align-items, center);
@@ -581,8 +206,8 @@
   margin: var(--tech-card-title-margin, 0);
   width: var(--tech-card-title-width, 276px);
   max-width: 100%;
-  height: auto;
-  min-height: var(--tech-card-title-min-height, var(--tech-card-title-height, 31px));
+  height: var(--tech-card-title-height, auto);
+  min-height: var(--tech-card-title-min-height, 63px);
   text-align: var(--tech-card-title-align, center);
   line-height: 32px;
   color: #00408c;
@@ -592,11 +217,11 @@
 }
 
 .techCardText {
-  margin: var(--tech-card-text-margin, 8px 0 0);
+  margin: var(--tech-card-text-margin, 17px 0 0);
   width: var(--tech-card-text-width, 276px);
   max-width: 100%;
-  height: auto;
-  min-height: var(--tech-card-text-min-height, 0px);
+  height: var(--tech-card-text-height, auto);
+  min-height: var(--tech-card-text-min-height, 59px);
   text-align: var(--tech-card-text-align, center);
   line-height: 22px;
   color: #00408c;
@@ -605,370 +230,281 @@
 }
 
 .techCardImageWrap {
-  margin-top: var(--tech-card-image-margin-top, 11px);
-  margin-left: var(--tech-card-image-margin-left, 0px);
-  margin-right: var(--tech-card-image-margin-right, 0px);
-  width: var(--tech-card-image-width, 126px);
-  height: var(--tech-card-image-height, 188px);
+  margin-top: var(--tech-card-image-margin-top, 22px);
+  margin-left: auto;
+  margin-right: auto;
+  width: min(var(--tech-card-image-width, 192px), 240px);
+  height: min(var(--tech-card-image-height, 117px), 200px);
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scale(var(--tech-card-image-scale, 1));
-  transform-origin: top center;
+  align-self: var(--tech-card-image-align-self, center);
 }
 
 .techCardImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
+  transform: scale(var(--tech-card-image-scale, 0.92));
+  transform-origin: center;
 }
 
-.techCardParadasWrap {
-  position: relative;
-  margin-top: 11px;
-  width: 103px;
-  height: 187px;
-}
-
-.techCardParadasImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.techCardParadasChip {
+.techCardAbsoluteImage {
   position: absolute;
-  top: 174px;
-  left: 198px;
-  background: #43484e;
-  width: 25px;
-  height: 8px;
-  rotate: -5deg;
 }
 
-.techCardGpsAutoWrapper {
+.techCardOverlay {
   position: relative;
-  margin-top: 2px;
-  margin-left: 57px;
-  width: 244px;
-  height: 212px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.techCardGpsOverlay {
+.techCardOverlayText {
   position: absolute;
-  top: 61px;
-  left: 50px;
-  width: 143px;
-  height: 143px;
+  margin: 0;
+  text-align: center;
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
 }
 
-.techCardGpsBg {
+.techCardOverlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.techCardSirenaFrame {
+  margin-top: var(--tech-card-sirena-margin-top, 14px);
+  margin-left: 93px;
+  margin-right: 93px;
+  padding: 123px 4px 2px 18px;
+  background-image: var(--sirena-bg);
+  background-position: -21px -10px;
+  background-size: 138.38% 111.04%;
+  background-repeat: no-repeat;
+}
+
+.techCardSirenaSvg {
+  display: block;
+}
+
+.techCardConnectivityWrap {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.techCardConnectivityText {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  line-height: 20px;
+  color: #00408c;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.techCardConnectivityImage {
   display: flex;
   position: absolute;
   top: 0;
   left: 0;
-  flex-direction: column;
   align-items: flex-start;
-  padding: 52px 52px 22px 58px;
-  width: 244px;
-  height: 212px;
-  background-image: var(--gps-bg);
-  background-position: -1px 0px;
-  background-size: 100.07% 150.89%;
+  width: 183px;
+  height: 158px;
+  background-image: var(--connectivity-bg);
+  background-position: 0px -1px;
+  background-size: 100% 151.77%;
   background-repeat: no-repeat;
+  padding: 39px 39px 105px 43px;
+  z-index: 1;
 }
 
-.techCardGpsBar {
+.techCardConnectivityBar {
+  width: 101px;
+  height: 14px;
   background: #00408c;
-  width: 134px;
-  height: 19px;
 }
 
-.techCardGpsCorner {
-  margin-top: 108px;
-  margin-left: 108px;
-  width: 18px;
-  height: 11px;
+.techCardStatic {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
-.techCardEnterRight {
-  animation: techCardEnterRight 420ms ease both;
+.techCardEnterNext {
+  animation: techCardEnterNext 420ms ease-out both;
 }
 
-.techCardEnterLeft {
-  animation: techCardEnterLeft 420ms ease both;
+.techCardExitNext {
+  animation: techCardExitNext 420ms ease-out both;
 }
 
-.techCardExitLeft {
-  animation: techCardExitLeft 420ms ease both;
+.techCardEnterPrev {
+  animation: techCardEnterPrev 420ms ease-out both;
 }
 
-.techCardExitRight {
-  animation: techCardExitRight 420ms ease both;
+.techCardExitPrev {
+  animation: techCardExitPrev 420ms ease-out both;
 }
 
-@keyframes techCardEnterRight {
-  0% {
+@keyframes techCardEnterNext {
+  from {
     opacity: 0;
-    transform: translateX(18px);
+    transform: translate3d(0, 14px, 0);
   }
-  100% {
+  to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes techCardEnterLeft {
-  0% {
+@keyframes techCardExitNext {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
     opacity: 0;
-    transform: translateX(-18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, -14px, 0);
   }
 }
 
-@keyframes techCardExitLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
+@keyframes techCardEnterPrev {
+  from {
     opacity: 0;
-    transform: translateX(-18px);
+    transform: translate3d(0, -14px, 0);
   }
-}
-
-@keyframes techCardExitRight {
-  0% {
+  to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
-  100% {
+}
+
+@keyframes techCardExitPrev {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
     opacity: 0;
-    transform: translateX(18px);
+    transform: translate3d(0, 14px, 0);
   }
 }
 
-.authoritySection,
-.contextSection,
-.faqSection {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: clamp(44px, 6vw, 82px) 24px 0;
+@media (prefers-reduced-motion: reduce) {
+  .techCardEnterNext,
+  .techCardExitNext,
+  .techCardEnterPrev,
+  .techCardExitPrev {
+    animation: none;
+  }
+
+  .pointButton.pointActive {
+    transform: none;
+  }
 }
 
-.sectionInner {
-  width: min(1120px, 100%);
-}
-
-.sectionHeading {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.sectionEyebrow {
-  margin: 0;
-  color: rgba(89, 122, 156, 0.9);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-}
-
-.sectionTitle {
-  margin: 0;
-  max-width: 920px;
-  color: #00408c;
-  font-size: clamp(34px, 4vw, 50px);
-  font-weight: 700;
-  line-height: clamp(38px, 4.3vw, 56px);
-  text-wrap: balance;
-}
-
-.sectionText {
-  margin: 0;
-  max-width: 980px;
-  color: rgba(0, 64, 140, 0.88);
-  font-size: clamp(18px, 1.7vw, 24px);
-  line-height: clamp(28px, 2.2vw, 34px);
-  text-wrap: pretty;
-}
-
-.sectionText a {
-  color: inherit;
-  font-weight: 700;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.15em;
-}
-
-.authorityGrid {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.authorityCard {
-  min-height: 100%;
-  border-radius: 24px;
-  background: linear-gradient(180deg, rgba(89, 122, 156, 0.12) 0%, rgba(89, 122, 156, 0.04) 100%);
-  border: 1px solid rgba(89, 122, 156, 0.2);
-  padding: 28px 26px 30px;
-}
-
-.authorityCardEyebrow {
-  margin: 0;
-  color: #597a9c;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-}
-
-.authorityCardTitle {
-  margin: 16px 0 0;
-  color: #00408c;
-  font-size: clamp(24px, 2vw, 30px);
-  font-weight: 700;
-  line-height: 1.12;
-  text-wrap: balance;
-}
-
-.authorityCardText {
-  margin: 14px 0 0;
-  color: rgba(0, 64, 140, 0.88);
-  font-size: 18px;
-  line-height: 28px;
-  text-wrap: pretty;
-}
-
-.contextGrid {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.contextCard {
+.techEditor {
+  margin: 20px 366px 0 234px;
+  width: 956px;
+  border-radius: 14px;
+  background: rgba(0, 64, 140, 0.05);
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  min-height: 100%;
-  border-radius: 24px;
-  background: #597a9c;
-  padding: 28px 26px 30px;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  gap: 10px;
 }
 
-.contextCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 28px rgba(89, 122, 156, 0.2);
-}
-
-.contextCard:focus-visible {
-  outline: 2px solid #597a9c;
-  outline-offset: 4px;
-}
-
-.contextCardTitle {
-  color: #ffffff;
-  font-size: clamp(24px, 2vw, 30px);
-  font-weight: 700;
-  line-height: 1.12;
-  text-wrap: balance;
-}
-
-.contextCardText {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 18px;
-  line-height: 28px;
-  text-wrap: pretty;
-}
-
-.contextCardLink {
-  margin-top: auto;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
-.faqSection {
-  padding-bottom: 0;
-}
-
-.faqList {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.faqItem {
-  border-radius: 22px;
-  border: 1px solid rgba(89, 122, 156, 0.2);
-  background: rgba(89, 122, 156, 0.05);
-  padding: 0 24px;
-}
-
-.faqQuestion {
-  list-style: none;
+.techEditorHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  cursor: pointer;
-  padding: 24px 0;
-  color: #00408c;
-  font-size: clamp(22px, 2vw, 28px);
-  font-weight: 700;
-  line-height: 1.2;
+  gap: 16px;
 }
 
-.faqQuestion::-webkit-details-marker {
-  display: none;
-}
-
-.faqQuestion::after {
-  content: '+';
-  flex: 0 0 auto;
-  color: #597a9c;
-  font-size: 34px;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-
-.faqItem[open] .faqQuestion::after {
-  transform: rotate(45deg);
-}
-
-.faqAnswer {
+.techEditorTitle {
   margin: 0;
-  padding: 0 0 24px;
-  color: rgba(0, 64, 140, 0.88);
-  font-size: 18px;
-  line-height: 28px;
-  text-wrap: pretty;
+  line-height: 18px;
+  color: #00408c;
+  font-size: 16px;
+  font-weight: 700;
 }
+
+.techEditorActions {
+  display: flex;
+  gap: 10px;
+}
+
+.techEditorBtn {
+  border: 0;
+  border-radius: 10px;
+  background: #00408c;
+  padding: 8px 12px;
+  line-height: 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.techEditorRows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.techEditorRow {
+  display: grid;
+  grid-template-columns: 1fr 240px 120px;
+  align-items: center;
+  gap: 12px;
+}
+
+.techEditorPick {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  line-height: 16px;
+  color: #00408c;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.techEditorPickActive {
+  text-decoration: underline;
+}
+
+.techEditorSelect {
+  width: 100%;
+  border: 1px solid rgba(0, 64, 140, 0.25);
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 8px 10px;
+  line-height: 16px;
+  color: #00408c;
+  font-size: 14px;
+}
+
+.techEditorPos {
+  margin: 0;
+  text-align: right;
+  line-height: 16px;
+  color: rgba(0, 64, 140, 0.8);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* La separación con el cotizador se define más abajo, en 0: acá había un
+   `margin-top: 57px` duplicado que quedaba anulado por orden de fuente. */
 
 @media (max-width: 1200px) {
-  .heroMedia {
-    width: 100%;
-  }
-
-  .heroCopy {
-    left: max(24px, calc((100% - 1320px) / 2));
-    width: min(610px, calc(100% - 48px));
-  }
-
-  .heroBottomInner {
-    width: min(1320px, 100%);
-    padding: 114px 24px 113px;
+  .technologyRow {
+    padding-left: var(--tech-pad-x);
+    padding-right: var(--tech-pad-x);
   }
 }
 
@@ -981,145 +517,36 @@
 
   .techCardGroup {
     margin-top: 0;
-    width: min(var(--tech-card-group-width), 100%);
+  }
+
+  /* La fila pasa a columna acá, así que el `flex: 0 1 520px` de la regla base
+     deja de ser ancho y se aplica como alto, dejando ~163px de aire muerto
+     debajo de la card. */
+  .techCardGroup {
     flex: 0 0 auto;
     height: auto;
   }
 }
 
 @media (max-width: 960px) {
-  .heroMedia {
-    height: 640px;
-  }
-
-  .heroOverlayPrimary,
-  .heroOverlaySecondary {
-    left: -90px;
-    bottom: -260px;
-  }
-
-  .heroImage {
-    object-position: 92% 28%;
-  }
-
-  .heroCopy {
-    top: 240px;
-    left: 24px;
-    width: min(610px, calc(100% - 48px));
-  }
-
-  .heroTitle {
-    width: 100%;
-    height: auto;
-    line-height: 46px;
-    font-size: 56px;
-  }
-
-  .heroCityLogo {
-    margin-top: 18px;
-    width: 260px;
-    height: auto;
-  }
-
-  .heroBottomInner {
-    padding: 46px 24px 52px;
-    flex-direction: column;
-    height: auto;
-    gap: 28px;
-  }
-
-  .heroBody {
-    margin-top: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 20px;
-    line-height: 26px;
-  }
-
-  .heroCarousel {
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-columns: 24px 1fr 24px;
-    width: min(460px, calc(100% - 48px));
-  }
-
-  .heroArrow {
-    width: 24px;
-    height: 24px;
-  }
-
-  .heroCardViewport {
-    height: 244px;
-  }
-
-  .heroCardBox {
-    padding: 28px 24px;
-  }
-
-  .heroCardTitle,
-  .heroCardText {
-    width: 100%;
-  }
-
-  .heroCardTitle {
-    font-size: 24px;
-    line-height: 26px;
-  }
-
   .technologyTitle {
     width: 100%;
     height: auto;
     padding: 0 16px;
+    font-size: 36px;
     line-height: 36px;
-    font-size: 34px;
-  }
-
-  .tabs {
-    margin-top: 24px;
-    width: 100%;
-    padding: 0 16px;
-    gap: 10px;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tab {
-    border: 1px solid rgba(89, 122, 156, 0.35);
-    border-radius: 999px;
-    padding: 10px 14px;
-    height: auto;
-    line-height: 18px;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .tabActive {
-    background: #597a9c;
-    color: #ffffff;
-  }
-
-  .tabActive::after {
-    display: none;
   }
 
   .technologyRow {
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 
   .house {
-    width: min(735px, 100%);
+    width: min(800px, 100%);
+    height: auto;
+    aspect-ratio: 800 / 532;
   }
 
   .techCardGroup {
@@ -1132,119 +559,6 @@
     justify-content: center;
     gap: 12px;
     max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    flex: 0 0 auto;
-    height: auto;
-  }
-
-  .techArrow,
-  .techArrowSpacer {
-    width: 24px;
-    height: 24px;
-  }
-
-  .techCardViewport {
-    width: 100%;
-    max-width: 460px;
-    height: 396px;
-    justify-self: center;
-  }
-
-  .techCard {
-    width: 100%;
-    height: 396px;
-    padding: 28px 24px !important;
-  }
-
-  .techCardTitle {
-    width: 100% !important;
-    min-height: 0 !important;
-  }
-
-  .techCardText {
-    width: 100% !important;
-    min-height: 0 !important;
-  }
-
-
-  .heroCardText {
-    margin-top: 12px;
-    font-size: 15px;
-    line-height: 18px;
-  }
-
-  .technologyTitle {
-    width: 100%;
-    height: auto;
-    padding: 0 16px;
-    line-height: 36px;
-    font-size: 34px;
-  }
-
-  .tabs {
-    margin-top: 24px;
-    width: 100%;
-    padding: 0 16px;
-    justify-content: flex-start;
-    gap: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tab {
-    border: 1px solid rgba(89, 122, 156, 0.35);
-    border-radius: 999px;
-    padding: 10px 14px;
-    height: auto;
-    line-height: 18px;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .tabs > :nth-child(1),
-  .tabs > :nth-child(2),
-  .tabs > :nth-child(3) {
-    width: auto;
-  }
-
-  .tabUnderline {
-    display: none;
-  }
-
-  .techBody {
-    margin-top: 22px;
-    padding: 0 16px;
-    flex-direction: column;
-  }
-
-  .houseViewport {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .house {
-    width: min(980px, 100%);
-  }
-
-  .techCardGroup {
-    width: 100%;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: 24px minmax(0, 1fr) 24px;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    max-width: 520px;
-    margin-top: 18px;
     margin-left: auto;
     margin-right: auto;
     /* .technologyRow pasa a columna acá, así que el `flex: 0 1 520px` de la
@@ -1264,83 +578,66 @@
   .techCard {
     width: 100%;
     height: 396px;
-    padding: 28px 24px;
+    padding: 28px 24px !important;
   }
 
   .techCardTitle,
   .techCardText {
-    width: 100%;
+    width: 100% !important;
     height: auto;
   }
 
   .techCardTitle {
-    min-height: 0;
+    min-height: 0 !important;
     font-size: 32px;
     line-height: 32px;
   }
 
   .techCardText {
-    margin-top: 12px;
+    min-height: 0 !important;
+    margin-top: 12px !important;
     font-size: 18px;
     line-height: 22px;
   }
 
   .techCardImageWrap {
-    width: min(var(--tech-card-image-width, 220px), 70vw);
-    height: var(--tech-card-image-height, auto);
-    margin-top: var(--tech-card-image-margin-top, 14px);
-    transform: scale(var(--tech-card-image-scale, 1));
-    transform-origin: top center;
+    width: min(220px, 70vw) !important;
+    height: auto !important;
+    margin-top: 14px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .techCardImage {
-    width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: auto !important;
     max-height: 150px;
-    object-fit: contain;
+    transform: none;
   }
 
-  .techCardGpsAutoWrapper {
-    margin-left: auto;
-    margin-right: auto;
+  .techCardOverlayText,
+  .techCardConnectivityText {
+    font-size: 15px;
+    line-height: 18px;
   }
 
-  .authorityGrid,
-  .contextGrid {
+  .techEditor {
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .techEditorRow {
     grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .techEditorPos {
+    text-align: left;
   }
 }
 
 @media (max-width: 600px) {
-  .authoritySection,
-  .contextSection,
-  .faqSection {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .sectionHeading {
-    gap: 12px;
-  }
-
-  .sectionEyebrow {
-    font-size: 13px;
-    letter-spacing: 1.3px;
-  }
-
-  .sectionTitle {
-    font-size: 32px;
-    line-height: 36px;
-  }
-
-  .sectionText,
-  .authorityCardText,
-  .contextCardText,
-  .faqAnswer {
-    font-size: 18px;
-    line-height: 26px;
-  }
-
   .technologyTitle {
     font-size: 32px;
     line-height: 32px;
@@ -1359,81 +656,14 @@
 }
 
 @media (max-width: 480px) {
-  .heroMedia {
-    height: 560px;
-  }
-
-  .heroOverlayPrimary,
-  .heroOverlaySecondary {
-    left: -210px;
-    bottom: -320px;
-  }
-
-  .heroImage {
-    object-position: 96% 22%;
-  }
-
-  .heroCopy {
-    top: 220px;
-  }
-
-  .heroTitle {
-    font-size: 40px;
-    line-height: 38px;
-  }
-
   .technologyTitle {
     font-size: 28px;
     line-height: 30px;
   }
 
-  .authoritySection,
-  .contextSection,
-  .faqSection {
-    padding-top: 32px;
-  }
-
-  .authorityGrid,
-  .contextGrid,
-  .faqList {
-    margin-top: 22px;
-  }
-
-  .authorityCard,
-  .contextCard {
-    padding: 22px 18px 24px;
-  }
-
-  .faqItem {
-    padding: 0 18px;
-  }
-
-  .faqQuestion {
-    padding: 20px 0;
-    font-size: 24px;
-  }
-
-  .faqQuestion::after {
-    font-size: 30px;
-  }
-
-  .faqAnswer {
-    padding-bottom: 20px;
-  }
-
 }
 
 @media (max-width: 360px) {
-  .heroCardTitle {
-    font-size: 22px;
-    line-height: 24px;
-  }
-
-  .heroCardText {
-    font-size: 14px;
-    line-height: 17px;
-  }
-
   .techCardTitle {
     font-size: 28px;
     line-height: 28px;
@@ -1444,418 +674,150 @@
     line-height: 20px;
   }
 
-  .techCardImage {
-    max-height: 130px;
-  }
-
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .heroCardEnterRight,
-  .heroCardEnterLeft,
-  .heroCardExitLeft,
-  .heroCardExitRight,
-  .techCardEnterRight,
-  .techCardEnterLeft,
-  .techCardExitLeft,
-  .techCardExitRight {
-    animation: none;
-  }
-}
-
-
-/* ── Armonización con la referencia de /hogar (posición + tipografía) ────
-   Adopta el sistema de variables de hogar para anclar el copy del hero y
-   el bloque inferior con el carrusel en la misma posición que el resto
-   de las verticales. Va al final del archivo para ganar la cascada. */
-.hero {
-  --hero-group-width: 1187px;
-  --hero-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-group-width)) / 2));
-  --hero-container-width: min(1920px, 100%);
-  --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
-}
-
-.heroMedia {
-  height: 800px;
-}
-
-.heroCopy {
-  top: 360px;
-  left: var(--hero-content-left);
-  width: min(700px, calc(100% - (var(--hero-content-left) * 2)));
-}
-
-.heroBottom {
-  height: auto;
-}
-
-/* Columna de texto y carrusel en la misma posición que hogar. */
-.heroBody {
-  width: 391px;
-  line-height: 32px;
-  font-size: 32px;
-}
-
-.heroCarousel {
-  margin-top: 0;
-}
-
-.heroBottomInner {
-  width: min(1920px, 100%);
-  padding: 77px var(--hero-pad-x) 98px;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(24px, 3vw, 64px);
-  height: auto;
-}
-
-@media (max-width: 1200px) {
-  .heroMedia {
-    height: 720px;
-  }
-
-  .heroCopy {
-    top: 312px;
-    width: min(620px, calc(100% - (var(--hero-content-left) * 2)));
-  }
-
-  .heroTitle {
-    width: 100%;
-    height: auto;
-    font-size: 56px;
-    line-height: 48px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .heroMedia {
-    height: 660px;
-  }
-
-  .heroCopy {
-    top: 286px;
-    width: min(560px, calc(100% - 64px));
-  }
-
-  .heroCityLogo {
-    width: 300px;
-    height: auto;
-  }
-
-  .heroTitle {
-    margin-top: 14px;
-    font-size: 50px;
-    line-height: 44px;
-  }
-
-  .heroCarousel {
-    margin-top: 0;
-  }
-
-  .heroText {
-    align-items: flex-start;
-    width: min(760px, 100%);
-  }
-
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: left;
-  }
-
-  .heroBottomInner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-    padding-top: 48px;
-    padding-bottom: 56px;
-  }
-}
-
-@media (max-width: 960px) {
-  .heroMedia {
-    height: 640px;
-  }
-
-  .heroCopy {
-    left: 16px;
-    top: 320px;
-    width: calc(100% - 32px);
-  }
-
-  .heroCityLogo {
-    margin-top: 0;
-    width: 260px;
-    height: auto;
-  }
-
-  .heroTitle {
-    margin-top: 16px;
-    font-size: 44px;
-    line-height: 44px;
-  }
-
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: center;
-  }
-
-  .heroText {
-    align-items: center;
-  }
-
-  .heroLead {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .heroBody {
-    margin-top: 20px;
-    min-height: 0;
-    font-size: 20px;
-    line-height: 26px;
-  }
-
-  .heroPunch {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .heroCardTitle {
-    font-size: 26px;
-    line-height: 28px;
-  }
-
-  .heroCardText {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .heroBottomInner {
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-    padding: 40px 16px 48px;
-  }
-}
-
-@media (max-width: 600px) {
-  .heroMedia {
-    height: 580px;
-  }
-
-  .heroCopy {
-    top: 280px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-    line-height: 34px;
-  }
-
-  .heroLead,
-  .heroPunch {
-    font-size: 22px;
-    line-height: 26px;
-  }
-
-  .heroBody {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .heroMedia {
-    height: 520px;
-  }
-
-  .heroCopy {
-    top: 240px;
-  }
-
-  .heroCityLogo {
-    width: 224px;
-  }
-
-  .heroTitle {
-    font-size: 32px;
-    line-height: 30px;
-  }
-
-  .heroBottomInner {
-    padding: 28px 16px 36px;
-  }
-
-  .heroCardTitle {
-    font-size: 24px;
-    line-height: 26px;
-  }
-
-  .heroCardText {
-    font-size: 15px;
-    line-height: 19px;
-  }
-}
+/* ── Armonización con la referencia de /hogar (módulo de tecnología) ────
+   Va al final del archivo para ganar la cascada. */
 
 /* Modulo technology alineado a la geometria de /hogar (desktop). */
-.techBody {
-  margin-top: 31px;
-}
-
-.techHouseColumn {
-  flex: 0 0 auto;
-}
-
 .techCardGroup {
   height: auto;
-  margin-top: 53px;
 }
 
-/* Hero de ciudad alineado al mismo sistema visual del resto de verticales. */
-.heroImage {
-  object-position: center;
+/* Estructura de comercio alineada a la secuencia de /hogar:
+   Hero -> Technology -> Solutions -> Cotizador, manteniendo intacto
+   el módulo de mapa y sus posiciones. */
+.technology {
+  --tech-title-width: 944px;
+  --tech-title-font-size: 48px;
+  --tech-title-line-height: 45.6px;
+  /* Del diseño (5001:253): mapa 800 + 14 de aire + grupo de 520 = 1334. */
+  --tech-group-width: 1334px;
+  --tech-card-group-width: 520px;
+  --tech-row-gap: 14px;
+  --tech-house-max-width: 800px;
+  /* Del diseño: título 76px bajo el hero y 53px de aire hasta soluciones. */
+  padding-top: 76px;
+  padding-bottom: 53px;
+  --tech-pad-x: max(24px, calc((100% - var(--tech-group-width)) / 2));
 }
 
-.heroOverlayPrimary {
+.technologyTitle {
+  width: min(var(--tech-title-width), calc(100% - 48px));
+  height: auto;
+  font-size: var(--tech-title-font-size);
+  line-height: var(--tech-title-line-height);
+}
+
+/* Corte extra del título que sólo existe en el mobile (5001:254: tres
+   renglones en vez de dos). */
+.technologyTitleMobileBreak {
   display: none;
 }
 
-.heroOverlaySecondary {
-  inset: 0 auto 0 0;
-  width: 800px;
-  height: 100%;
-  rotate: 0deg;
-  opacity: 1;
-  background-image: linear-gradient(90deg, #597a9c 0%, rgba(89, 122, 156, 0.5) 49.52%, rgba(255, 255, 255, 0) 100%);
+.technologyRow {
+  margin-top: 48px;
+  gap: var(--tech-row-gap);
 }
 
-.heroCopy {
-  top: 360px;
-  left: var(--hero-content-left);
-  width: min(610px, calc(100% - (var(--hero-content-left) * 2)));
+/* Acá había un `.house { width: min(735px, 55vw) }` repetido: dice lo mismo que
+   la regla base de más arriba, pero al estar declarado después del bloque de
+   960px le ganaba por orden de fuente y lo anulaba. Con eso el mapa se quedaba
+   en 422px en tablet —contra los 735 del resto de las verticales— y los puntos,
+   que miden lo mismo en píxeles, pasaban de ocupar el 4.1% del plano al 7.1%.
+   Por eso se veían grandes sólo en comercio. */
+
+/* Del diseño (5001:253): la card arranca 48px bajo el borde superior del mapa. */
+.techCardGroup {
+  margin-top: 48px;
+  width: min(var(--tech-card-group-width), 100%);
 }
 
-.heroCityLogo {
-  width: 325px;
-  height: auto;
+.cotizadorWrap {
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
-.heroTitle {
-  margin-top: 17px;
-  width: 610px;
-  min-height: 102px;
-  line-height: 51px;
-  font-size: 64px;
+@media (max-width: 1200px) and (min-width: 961px) {
+  /* Las medidas del módulo se mantienen (columna 944, mapa 735, grupo 520 y
+     card 442×357): el mapa ya se adapta con `min(735px, 55vw)`, así que entra
+     sin desbordar hasta los 1201px. */
+
+  .techCardGroup {
+    margin-top: 46px;
+  }
 }
 
 @media (max-width: 1200px) {
-  .heroOverlaySecondary { width: min(720px, 56%); }
-  .heroCopy { top: 312px; width: min(620px, calc(100% - (var(--hero-content-left) * 2))); }
-  .heroTitle { width: 100%; font-size: 56px; line-height: 48px; }
-}
+  /* Las medidas del módulo (columna 944, mapa 735, grupo 520 y card 442×357)
+     se mantienen: el mapa ya se adapta solo con `min(735px, 55vw)`, así que el
+     bloque entra sin desbordar hasta los 1201px. Antes acá se encogía todo y
+     la card bajaba a 407, rompiendo la uniformidad con el resto de las
+     verticales y con el diseño. */
 
-@media (max-width: 1200px) {
-  .heroOverlaySecondary { width: min(620px, 58%); }
-  .heroCopy { top: 286px; width: min(560px, calc(100% - 64px)); }
-  .heroCityLogo { width: 300px; }
-  .heroTitle { width: 100%; min-height: 88px; font-size: 50px; line-height: 44px; }
+  .techCardGroup {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 960px) {
-  .heroOverlaySecondary {
-    inset: 0;
-    width: 100%;
-    background-image: linear-gradient(180deg, rgba(89, 122, 156, 0.92) 0%, rgba(89, 122, 156, 0.72) 52%, rgba(89, 122, 156, 0) 100%);
-  }
-  .heroCopy { left: 16px; top: 320px; width: calc(100% - 32px); }
-  .heroCityLogo { width: 260px; }
-  .heroTitle { margin-top: 16px; width: 100%; min-height: 0; font-size: 44px; line-height: 44px; }
-}
-
-@media (max-width: 600px) {
-  .heroCopy { top: 280px; }
-  .heroTitle { font-size: 36px; line-height: 34px; }
-}
-
-@media (max-width: 480px) {
-  .heroCopy { top: 240px; }
-  .heroCityLogo { width: 224px; }
-  .heroTitle { font-size: 32px; line-height: 30px; }
-}
-
-
-@media (max-width: 600px) {
-  .heroMedia {
-    height: 591px;
-    background-image: url('/image/hero-ciudad-mobile.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  .heroImage {
-    display: none;
-  }
-
-  .heroOverlaySecondary {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    rotate: none;
-    opacity: 1;
-    background-image: linear-gradient(
-      90deg,
-      #597a9c 0%,
-      rgba(89, 122, 156, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
-
-  /* Hero mobile — Figma "hero mobile" (nodo 5026:636), marco de 402×592.
-     El logo va en y=363 (192×37) y el título en y=404, 352 de ancho y dos
-     renglones de 25.6. Esta página no lleva bajada de categoría. */
-  .heroCopy {
-    left: 25px;
-    top: 363px;
-    bottom: auto;
-    width: min(353px, calc(100% - 49px));
-  }
-
-  .heroCityLogo {
-    width: 192px;
-    height: 37px;
-  }
-
-  .heroTitle {
-    /* El logo termina en y=400 y el título arranca en y=404, 1px corrido a la
-       derecha del eje. */
-    margin: 4px 0 0 1px;
-    width: min(352px, 100%);
-    min-height: 0;
-    height: auto;
-    font-size: 32px;
-    line-height: 25.6px;
-  }
-
-  .heroTitleLight {
-    font-weight: 400;
-  }
-
-  .heroTitleStrong {
-    font-weight: 600;
-  }
-
   .technology {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 40px;
+  }
+}
+
+/* ── Card mobile (diseño de Figma) ───────────────────────────────────────
+   Va al final del archivo a propósito: más arriba hay reglas de
+   `.techCardGroup` sin media query que, por orden de fuente, le ganaban al
+   bloque mobile y devolvían el grupo a su ancho de desktop. */
+@media (max-width: 600px) {
+  /* Card mobile del diseño de Figma: grupo de 265×256, card de 201×256 y
+     flechas de 15×23. Es el mismo encuadre en todas las verticales y todos
+     los tabs; lo único que cambia por página es el mapa. Las medidas internas
+     (título, texto, ilustración) viven en TechCard.module.scss. */
+  .techCardGroup {
+    width: min(265px, calc(100% - 24px));
+    max-width: none;
+    grid-template-columns: 15px minmax(0, 1fr) 15px;
+    gap: 17px;
   }
 
+  .techArrow,
+  .techArrowSpacer {
+    width: 15px;
+    height: 23px;
+  }
+
+  .techCardViewport {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 201 / 256;
+  }
+
+  .techCardViewport[data-mobile-card-size='tall'] {
+    aspect-ratio: 201 / 300;
+  }
+}
+
+/* ── Módulo de mapa en mobile ────────────────────────────────────────────
+   Misma geometría que el diseño mobile de /hogar, con el color, las fotos y
+   los textos propios de esta página. Va al final del archivo porque más
+   arriba hay reglas sin media query que, por orden de fuente, le ganarían al
+   bloque mobile. */
+@media (max-width: 600px) {
+  /* ── Módulo de tecnología ── */
+  /* Del diseño mobile (5001:254): 36px bajo el hero y 59px hasta soluciones. */
+  .technology {
+    padding-top: 36px;
+    padding-bottom: 59px;
+  }
+
+  /* Módulo de mapa mobile — Figma "Component 10" (nodo 5016:500), columna de
+     354. El título va en y=0 (dos renglones), los tabs en y=84, el mapa en
+     y=149 y el grupo de la card en y=408.
+     Sin el padding lateral: dejaba el contenido en 322px y "Seguridad total
+     para tu negocio," mide 341.8, así que se partía en un tercer renglón. */
   .technologyTitle {
     width: min(354px, calc(100% - 48px));
     margin-left: auto;
@@ -1863,14 +825,6 @@
     padding: 0;
     font-size: clamp(22px, 5.85vw, 24px);
     line-height: 1.1;
-  }
-
-  .technologyTitleDesktop {
-    display: none;
-  }
-
-  .technologyTitleMobile {
-    display: block;
   }
 
   .technologyTitleStrong {
@@ -1881,61 +835,30 @@
     font-weight: 400;
   }
 
-  .tabs {
-    margin-top: 36px;
-    width: min(354px, calc(100% - 48px));
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 0;
-    overflow: visible;
+  .technologyTitleMobileBreak {
+    display: inline;
   }
 
-  .tab,
-  .tabActive {
-    flex: 0 0 auto;
-    width: min(254px, 100%);
-    border: 0;
-    border-radius: 0;
-    padding: 0;
-    height: 31px;
-    background: transparent;
-    color: #597a9c;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 13.3px;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .tabActive::after {
-    display: block;
-    top: 29px;
-    left: 0;
-    width: min(254px, 100%);
-    height: 2px;
-    background: #597a9c;
-  }
-
+  /* Del diseño mobile (5001:254): el mapa arranca 34px bajo el título y la
+     card 48px bajo el mapa. */
   .technologyRow {
-    margin-top: 5px;
-    gap: 19px;
-    padding-left: 24px;
-    padding-right: 24px;
+    margin-top: 34px;
+    gap: 48px;
+    /* El mapa mobile casi va a sangre (386.5 en el marco de 402): el aire
+       lateral del diseño es de 8px. */
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
+  /* El mapa no va a sangre: el diseño lo deja dentro de la columna de 354. */
   .house,
   .housePerimetral {
-    width: calc(100% + 48px);
+    width: 100%;
     max-width: none;
     height: auto;
-    margin-left: -24px;
-    margin-right: -24px;
+    aspect-ratio: 800 / 532;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .ellipse1,
@@ -1957,73 +880,11 @@
   }
 
   .pointButton.pointActive {
-    transform: translate(-50%, -50%) scale(1.533);
+    transform: scale(1.533);
     background: rgba(89, 122, 156, 0.8);
-  }
-
-  .techCardGroup {
-    width: min(265px, calc(100% - 24px));
-    max-width: none;
-    grid-template-columns: 15px minmax(0, 1fr) 15px;
-    gap: 17px;
-    margin-top: 0;
-  }
-
-  .techArrow,
-  .techArrowSpacer {
-    width: 15px;
-    height: 23px;
-  }
-
-  /* 300 y no 256: las cards de esta página usan el shell "alto" (ver
-     TechCard.module.scss), con ritmo vertical propio por slide. */
-  .techCardViewport {
-    width: 100%;
-    max-width: none;
-    height: auto;
-    aspect-ratio: 201 / 300;
   }
 }
 @media (max-width: 1200px) and (min-width: 961px) {
-  .heroBottomInner {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: clamp(20px, 2.4vw, 32px);
-    padding-top: clamp(48px, 4vw, 68px);
-    padding-bottom: clamp(56px, 5vw, 89px);
-  }
-
-  .heroText {
-    flex: 1 1 auto;
-    min-width: 0;
-    width: min(520px, 100%);
-    align-items: flex-start;
-  }
-
-  .heroSectionTitle,
-  .heroDivider,
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: left;
-  }
-
-  .heroCard,
-  .heroCarousel {
-    flex: 0 1 clamp(420px, 41vw, 520px);
-    width: min(clamp(420px, 41vw, 520px), 100%);
-    min-width: 0;
-    margin-top: 0;
-  }
-
-  .heroCardStage,
-  .heroCardViewport {
-    width: min(100%, 460px);
-  }
-
   .technology {
     --tech-group-width: min(1120px, calc(var(--sise-vw) - 48px));
     --tech-card-group-width: clamp(420px, 41vw, 520px);

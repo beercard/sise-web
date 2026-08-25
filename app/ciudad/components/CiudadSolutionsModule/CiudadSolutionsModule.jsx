@@ -1,96 +1,112 @@
+import Link from 'next/link';
+import { Fragment } from 'react';
+
 import styles from './CiudadSolutionsModule.module.scss';
 
 /*
- * 19 bandas: es lo que pide el diseño mobile (nodo 5011:457), donde llenan
- * justo el área de las cards — 19 × 55px + 18 separaciones de 2px = 1081px.
- * En el resto de los breakpoints sólo se ven las tres primeras.
+ * Módulo de soluciones de /ciudad según Figma 5001:257 (desktop 1920×966) y
+ * 5001:258 (mobile 402×2467): fondo azul acero #597a9c con el patrón de eses
+ * SISE, una bajada única y nueve tarjetas grises en dos filas (5 + 4) con
+ * botón "+ info". En mobile las tarjetas se apilan; dos usan textos propios
+ * más cortos.
  */
-const WATERMARK_ROWS = Array.from({ length: 19 }, (_, index) => `row-${index + 1}`);
-
-/*
- * Título y cuerpo son iguales en desktop y mobile (Figma 5011:455 / 5011:457):
- * mismo texto corto, mismo corte de título en dos líneas en ambos breakpoints.
- */
-const solutions = [
+const SOLUTIONS = [
   {
     key: 'puntos',
-    title: ['PUNTOS', 'SEGUROS'],
-    body: 'Asistencia ciudadana inmediata con conexión directa a nuestra central.'
+    title: ['PUNTOS SEGUROS'],
+    body: 'Espacios equipados y monitoreados para que los ciudadanos soliciten asistencia inmediata ante emergencias.'
   },
   {
     key: 'paradas',
-    title: ['PARADAS', 'SEGURAS'],
-    body: 'Monitoreo y prevención activa en refugios de transporte público.'
+    title: ['PARADAS SEGURAS'],
+    body: 'Infraestructura tecnológica de seguridad diseñada para mejorar la protección de los usuarios en el transporte público.'
   },
   {
-    key: 'urbana',
-    title: ['VIDEOVIGILANCIA', 'URBANA'],
-    body: 'Red de cámaras en vía pública para prevenir el delito en tiempo real.'
+    key: 'videovigilancia',
+    title: ['VIDEOVIGILANCIA', 'Y ANALÍTICA'],
+    body: 'Red de cámaras HD con inteligencia artificial (reconocimiento facial y patentes) para respuesta urbana inmediata.'
   },
   {
-    key: 'gps',
-    title: ['GPS', 'INSTITUCIONAL'],
-    body: 'Control satelital de flota oficial para auditar recorridos y optimizar recursos.'
+    key: 'semaforizacion',
+    title: ['SEMAFORIZACIÓN', 'ADAPTATIVA'],
+    body: 'Semáforos adaptativos que mejoran la fluidez general del tránsito y otorgan prioridad absoluta a las emergencias.',
+    mobileBody:
+      'Semáforos que mejoran la fluidez general del tránsito y otorgan prioridad absoluta a las emergencias'
+  },
+  {
+    key: 'parking',
+    title: ['SMART PARKING', '(LPR)'],
+    body: 'Ordenamiento del estacionamiento céntrico mediante cámaras de lectura de patentes para un control exacto y monetización.',
+    mobileBody:
+      'Orden del estacionamiento céntrico mediante cámaras de lectura de patentes para un control exacto y monetización.'
+  },
+  {
+    key: 'flotas',
+    title: ['FLOTAS Y CÁMARAS', 'MÓVILES'],
+    body: 'Trazabilidad satelital de vehículos oficiales y cámaras corporales para auditar el accionar del personal en tiempo real.'
   },
   {
     key: 'accesos',
     title: ['CONTROL', 'DE ACCESOS'],
-    body: 'Gestión estricta de ingresos y seguridad en dependencias oficiales.'
+    body: 'Sistemas tecnológicos para la gestión estricta de ingresos, seguridad y personal en dependencias oficiales.'
+  },
+  {
+    key: 'totems',
+    title: ['TÓTEMS Y', 'COMUNICACIÓN'],
+    body: 'Pantallas interactivas y LED para brindar asistencia turística, emitir alertas ciudadanas y monetizar publicidad.'
+  },
+  {
+    key: 'mobiliario',
+    title: ['MOBILIARIO', 'SUSTENTABLE'],
+    body: 'Modernización de los espacios públicos integrando tecnología eco-amigable e iluminación inteligente.'
   }
 ];
 
+function TitleLines({ lines }) {
+  return lines.map((line, index) => (
+    <Fragment key={`line-${index}`}>
+      {index > 0 ? <br /> : null}
+      {line}
+    </Fragment>
+  ));
+}
+
 export default function CiudadSolutionsModule() {
   return (
-    <section className={styles.section} aria-label="Soluciones para ciudades y municipios">
-      <div className={styles.canvas}>
-        <div className={styles.copyBlock}>
-          <div className={styles.intro}>
-            <div className={styles.copyMain}>
-              <div className={styles.desktopOnly}>
-                <p className={styles.lead}>
-                  Desarrollamos infraestructura para la prevención del delito y el control del
-                  espacio público, trabajando junto a gobiernos y organismos.
-                </p>
-              </div>
+    <section className={styles.section} aria-label="Soluciones para ciudades">
+      <div className={styles.watermark} aria-hidden="true" />
 
-              <div className={styles.mobileOnly}>
-                <p className={styles.mobileBody}>
-                  <span className={styles.mobileBodyLight}>Desarrollamos infraestructura para la </span>
-                  <span className={styles.mobileBodyStrong}>prevención del delito y el control del espacio público</span>
-                  <span className={styles.mobileBodyLight}>, trabajando junto a gobiernos y organismos.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className={styles.intro}>
+        <p className={styles.lead}>
+          Desarrollamos infraestructura para la <strong>prevención del delito</strong> y{' '}
+          <strong>el control del espacio público</strong>, trabajando junto a gobiernos y
+          organismos.
+        </p>
+      </div>
 
-        <div className={styles.gridArea}>
-          <div className={styles.watermark} aria-hidden="true">
-            {WATERMARK_ROWS.map((row) => (
-              <div key={row} className={styles.watermarkRow} />
-            ))}
-          </div>
+      <h2 className={styles.heading}>Soluciones:</h2>
 
-          <h2 className={styles.heading}>Soluciones:</h2>
-
-          <div className={styles.grid}>
-            {solutions.map((solution) => (
-              <article
-                key={solution.key}
-                className={`${styles.cardGroup} ${styles[solution.key] ?? ''}`.trim()}
-              >
-                <div className={styles.card}>
-                  <h3 className={styles.cardTitle}>
-                    {solution.title.map((line) => (
-                      <span key={`${solution.key}-${line}`}>{line}</span>
-                    ))}
-                  </h3>
-                  <p className={styles.cardBody}>{solution.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+      <div className={styles.grid}>
+        {SOLUTIONS.map((solution) => (
+          <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
+            <h3 className={styles.cardTitle}>
+              <TitleLines lines={solution.title} />
+            </h3>
+            <p className={styles.cardBody}>
+              {solution.mobileBody ? (
+                <>
+                  <span className={styles.desktopBody}>{solution.body}</span>
+                  <span className={styles.mobileBody}>{solution.mobileBody}</span>
+                </>
+              ) : (
+                solution.body
+              )}
+            </p>
+            <Link href="/contacto" className={styles.cardButton}>
+              + info
+            </Link>
+          </article>
+        ))}
       </div>
     </section>
   );

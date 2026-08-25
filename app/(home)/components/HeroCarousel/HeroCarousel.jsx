@@ -8,7 +8,6 @@ import styles from './HeroCarousel.module.scss';
  * Cada slide usa las mismas fotos que el hero de su página de negocio, ya
  * exportadas al tamaño final (desktop 1920, mobile 804 @2x), así que van
  * directo sin el optimizador de Next (que en dev se cuelga con estos webp).
- * Ciudad conserva sus fotos viejas hasta que llegue su rediseño.
  */
 const HERO_SLIDES = [
   { id: 'hogar', desktopImage: '/image/hero-hogar-casa-desktop.webp', mobileImage: '/image/hero-hogar-casa-mobile.webp' },
@@ -17,7 +16,7 @@ const HERO_SLIDES = [
   { id: 'edificios', desktopImage: '/image/hero-edificios-torre-desktop.webp', mobileImage: '/image/hero-edificios-torre-mobile.webp' },
   { id: 'construccion', desktopImage: '/image/hero-construccion-obra-desktop.webp', mobileImage: '/image/hero-construccion-obra-mobile.webp' },
   { id: 'agro', desktopImage: '/image/hero-agro-campo-desktop.webp', mobileImage: '/image/hero-agro-campo-mobile.webp' },
-  { id: 'ciudad', desktopImage: '/image/mq1jm0cy-0248t30.webp', mobileImage: '/image/hero-ciudad-mobile.webp' }
+  { id: 'ciudad', desktopImage: '/image/hero-ciudad-poste-desktop.webp', mobileImage: '/image/hero-ciudad-poste-mobile.webp' }
 ].map((slide) => ({
   ...slide,
   id: `hero-slide-${slide.id}`,
