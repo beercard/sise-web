@@ -1,47 +1,54 @@
-'use client';
-
 import Image from 'next/image';
 
-import styles from '../../page.module.scss';
+import styles from './ComercioHero.module.scss';
+
+/*
+ * Hero de /comercio según Figma 5001:269 (desktop 1920×900) y 5001:270
+ * (mobile 402×600): la foto del local al 90% sobre el azul #00408c, sin
+ * gradiente, con "SISE EMPRESAS" como texto, el título y la categoría
+ * "COMERCIOS" anclados abajo a la izquierda. El mobile usa un recorte propio
+ * de la misma foto y cierra el título con punto. Los webp ya están exportados
+ * al tamaño final, así que van sin el optimizador de Next (unoptimized).
+ */
+const HERO_IMAGE_DESKTOP = '/image/hero-comercio-local-desktop.webp';
+const HERO_IMAGE_MOBILE = '/image/hero-comercio-local-mobile.webp';
 
 export default function ComercioHero() {
   return (
     <section className={styles.hero} aria-label="SISE Comercio">
-      <div className={styles.heroMedia}>
+      <div className={styles.media}>
         <Image
-          src="/image/mpvuunzj-eolvy7n.webp"
-          alt="Cámaras de seguridad y alarma monitoreada en un comercio"
-          className={styles.heroImage}
+          src={HERO_IMAGE_DESKTOP}
+          alt="Vidriera de un comercio protegido con seguridad SISE"
+          className={`${styles.image} ${styles.imageDesktop}`}
           fill
           priority
+          unoptimized
           sizes="100vw"
         />
-        <div className={styles.heroGradient} aria-hidden="true" />
+        <Image
+          src={HERO_IMAGE_MOBILE}
+          alt=""
+          className={`${styles.image} ${styles.imageMobile}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
 
-        <div className={styles.heroCopy}>
-          <Image
-            src="/image/mpvuunzj-tkfn7dr.png"
-            alt="SISE Comercio"
-            className={styles.heroKicker}
-            width={416}
-            height={64}
-            priority
-          />
+        <div className={styles.content}>
+          <p className={styles.kicker}>
+            <span className={styles.kickerBlack}>SISE</span> EMPRESAS
+          </p>
 
-          <h1 className={styles.heroTitle}>
-            <span className={styles.heroTitleLight}>
-              Seguridad que protege
-              <br />
-            </span>
-            <span className={styles.heroTitleStrong}>tu rentabilidad</span>
+          <h1 className={styles.title}>
+            <span className={styles.titleLight}>Seguridad que protege </span>
+            <span className={styles.titleStrong}>tu rentabilidad</span>
           </h1>
 
-          {/* Sólo lo muestra el diseño mobile (nodo 5016:499); del resto de los
-              breakpoints se sacó a propósito, así que el CSS lo oculta. */}
-          <p className={styles.heroCategory}>COMERCIOS</p>
+          <p className={styles.category}>COMERCIOS</p>
         </div>
       </div>
     </section>
   );
 }
-
