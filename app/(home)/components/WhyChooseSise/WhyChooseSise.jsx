@@ -241,7 +241,7 @@ export default function WhyChooseSise() {
           <div className={styles.categoriesDesktop}>
             <Link className={styles.categoryCardHogar} href={categoryLinks.hogar}>
               <Image
-                src="/image/sisehogar.webp"
+                src="/image/sise-marca-hogar.webp"
                 alt="SISE Hogar"
                 fill
                 sizes="256px"
@@ -251,7 +251,7 @@ export default function WhyChooseSise() {
 
             <Link className={styles.categoryCardEmpresas} href={categoryLinks.empresas}>
               <Image
-                src="/image/siseempresa.webp"
+                src="/image/sise-marca-empresas.webp"
                 alt="SISE Empresas"
                 fill
                 sizes="256px"
@@ -261,7 +261,7 @@ export default function WhyChooseSise() {
 
             <Link className={styles.categoryCardUrbano} href={categoryLinks.urbano}>
               <Image
-                src="/image/siseurbano.webp"
+                src="/image/sise-marca-urbano.webp"
                 alt="SISE Urbano"
                 fill
                 sizes="256px"
@@ -271,7 +271,7 @@ export default function WhyChooseSise() {
 
             <Link className={styles.categoryCardAgro} href={categoryLinks.agro}>
               <Image
-                src="/image/siseagro.webp"
+                src="/image/sise-marca-agro.webp"
                 alt="SISE Agro"
                 fill
                 sizes="256px"
@@ -281,7 +281,7 @@ export default function WhyChooseSise() {
 
             <Link className={styles.categoryCardCiudad} href={categoryLinks.ciudad}>
               <Image
-                src="/image/siseciudad.webp"
+                src="/image/sise-marca-ciudad.webp"
                 alt="SISE Ciudad"
                 fill
                 sizes="256px"
@@ -292,23 +292,23 @@ export default function WhyChooseSise() {
 
           <div className={styles.categoriesMobile}>
             <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
-              <Image src="/image/sisehogar.webp" alt="SISE Hogar" fill sizes="256px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-hogar.webp" alt="SISE Hogar" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
-              <Image src="/image/siseempresa.webp" alt="SISE Empresas" fill sizes="256px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-empresas.webp" alt="SISE Empresas" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
-              <Image src="/image/siseurbano.webp" alt="SISE Urbano" fill sizes="256px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-urbano.webp" alt="SISE Urbano" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
-              <Image src="/image/siseagro.webp" alt="SISE Agro" fill sizes="256px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-agro.webp" alt="SISE Agro" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
-              <Image src="/image/siseciudad.webp" alt="SISE Ciudad" fill sizes="256px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-ciudad.webp" alt="SISE Ciudad" fill sizes="256px" className={styles.categoryFullImage} />
             </Link>
           </div>
 
@@ -329,23 +329,23 @@ export default function WhyChooseSise() {
 
           <div className={styles.mobileCategoryStack}>
             <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
-              <Image src="/image/sisehogar.webp" alt="SISE Hogar" fill sizes="169px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-hogar.webp" alt="SISE Hogar" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
-              <Image src="/image/siseempresa.webp" alt="SISE Empresas" fill sizes="169px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-empresas.webp" alt="SISE Empresas" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
-              <Image src="/image/siseurbano.webp" alt="SISE Urbano" fill sizes="169px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-urbano.webp" alt="SISE Urbano" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
-              <Image src="/image/siseagro.webp" alt="SISE Agro" fill sizes="169px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-agro.webp" alt="SISE Agro" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
 
             <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
-              <Image src="/image/siseciudad.webp" alt="SISE Ciudad" fill sizes="169px" className={styles.categoryFullImage} />
+              <Image src="/image/sise-marca-ciudad.webp" alt="SISE Ciudad" fill sizes="169px" className={styles.categoryFullImage} />
             </Link>
           </div>
         </div>
