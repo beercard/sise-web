@@ -28,14 +28,14 @@ const AREA_ID = 'mapa';
 const DEFAULT_POSITIONS = {
   [AREA_ID]: {
     puntos: { top: 283, left: 399 },
-    paradas: { top: 287, left: 315 },
+    paradas: { top: 264, left: 487 },
     videovigilancia: { top: 182, left: 559 },
-    semaforo: { top: 190, left: 152 },
-    parking: { top: 271, left: 253 },
-    flotas: { top: 265, left: 488 },
-    dependencias: { top: 245, left: 537 },
-    totems: { top: 251, left: 271 },
-    mobiliario: { top: 196, left: 92 }
+    semaforo: { top: 284, left: 314 },
+    parking: { top: 192, left: 95 },
+    flotas: { top: 283, left: 253 },
+    dependencias: { top: 190, left: 152 },
+    totems: { top: 248, left: 536 },
+    mobiliario: { top: 251, left: 267 }
   }
 };
 

@@ -28,15 +28,15 @@ const AREA_ID = 'mapa';
 
 const DEFAULT_POSITIONS = {
   [AREA_ID]: {
-    guardia: { top: 377, left: 270 },
-    videoportero: { top: 327, left: 180 },
-    vehicular: { top: 273, left: 592 },
-    ascensor: { top: 273, left: 313 },
-    amenities: { top: 135, left: 46 },
-    cerraduras: { top: 258, left: 377 },
-    terminal: { top: 145, left: 257 },
-    alarma: { top: 260, left: 27 },
-    videovigilancia: { top: 66, left: 537 }
+    guardia: { top: 358, left: 265 },
+    videoportero: { top: 333, left: 177 },
+    vehicular: { top: 271, left: 603 },
+    ascensor: { top: 271, left: 318 },
+    amenities: { top: 68, left: 527 },
+    cerraduras: { top: 145, left: 254 },
+    terminal: { top: 139, left: 53 },
+    alarma: { top: 272, left: 373 },
+    videovigilancia: { top: 256, left: 19 }
   }
 };
 

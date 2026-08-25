@@ -28,10 +28,10 @@ const AREA_ID = 'mapa';
 const DEFAULT_POSITIONS = {
   [AREA_ID]: {
     alarma: { top: 321, left: 256 },
-    cctv: { top: 147, left: 561 },
+    cctv: { top: 189, left: 506 },
     cerco: { top: 278, left: 605 },
     acceso: { top: 379, left: 486 },
-    timelapse: { top: 191, left: 505 }
+    timelapse: { top: 151, left: 557 }
   }
 };
 
