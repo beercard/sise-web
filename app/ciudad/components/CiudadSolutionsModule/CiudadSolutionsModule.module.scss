@@ -11,6 +11,9 @@
   background: #597a9c;
   color: #ffffff;
   padding: 67px 0 72px;
+  /* Mismo aire blanco hasta el footer que dejan las demás verticales (el
+     margin-bottom de 30px del bloque del cotizador, que ciudad no tiene). */
+  margin-bottom: 30px;
 }
 
 /* El mismo tile del patrón de eses que en las demás verticales. */
