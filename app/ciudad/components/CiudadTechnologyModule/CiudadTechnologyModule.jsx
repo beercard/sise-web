@@ -96,7 +96,16 @@ const SLIDES = [
       '--tech-card-mobile-art-height': '133px'
     },
     mobileShell: MOBILE_SHELL,
-    art: { type: 'image', src: '/image/tech-ciudad-puntos.webp', width: 101, height: 172 }
+    art: {
+      type: 'image',
+      src: '/image/tech-ciudad-puntos.webp',
+      width: 101,
+      height: 172,
+      /* El mobile usa un recorte más angosto del poste (Figma 3151:2524). */
+      mobileSrc: '/image/tech-ciudad-puntos-mobile.webp',
+      mobileWidth: 32,
+      mobileHeight: 133
+    }
   },
   {
     id: 'paradas',
@@ -318,7 +327,16 @@ const SLIDES = [
       '--tech-card-mobile-art-height': '119px'
     },
     mobileShell: MOBILE_SHELL,
-    art: { type: 'image', src: '/image/tech-ciudad-totems.webp', width: 198, height: 174 }
+    art: {
+      type: 'image',
+      src: '/image/tech-ciudad-totems.webp',
+      width: 198,
+      height: 174,
+      /* El mobile recorta sólo el tótem, sin el aire lateral (Figma 3564:283). */
+      mobileSrc: '/image/tech-ciudad-totems-mobile.webp',
+      mobileWidth: 61,
+      mobileHeight: 119
+    }
   },
   {
     id: 'mobiliario',
