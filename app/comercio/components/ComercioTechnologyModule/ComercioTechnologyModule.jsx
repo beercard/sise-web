@@ -15,483 +15,209 @@ import TechCard from '../../../components/TechCard/TechCard';
 
 import styles from '../../page.module.scss';
 
-const STORAGE_KEY = 'sise-comercio-tech-editor-v3';
+/*
+ * Rediseño Figma 5001:271 (mapa único, sin tabs) + 5001:277 (fichas desktop) +
+ * 5001:272/273 (mobile). Un solo plano del local de ropa (756×504) con 5
+ * puntos: cerco (activo al entrar), monitoreo, cctv, cortina de humo y
+ * control de acceso.
+ */
+const STORAGE_KEY = 'sise-comercio-tech-editor-v4';
+const AREA_ID = 'mapa';
 
 const DEFAULT_POSITIONS = {
-  perimetral: {
-    camaras: { top: 190, left: 670 },
-    magneticos: { top: 334, left: 524 },
-    cartel: { top: 263, left: 662 },
-    sirena: { top: 227, left: 664 }
-  },
-  interior: {
-    sensor: { top: 98, left: 206 },
-    teclado: { top: 214, left: 219 },
-    mando: { top: 231, left: 123 },
-    central: { top: 172, left: 218 },
-    humo: { top: 88, left: 458 },
-    acceso: { top: 171, left: 513 },
-    camara: { top: 50, left: 354 }
-  },
-  conectividad: {
-    app: { top: 231, left: 126 }
+  [AREA_ID]: {
+    cerco: { top: 264, left: 103 },
+    monitoreo: { top: 75, left: 203 },
+    cctv: { top: 8, left: 372 },
+    cortina: { top: 188, left: 244 },
+    acceso: { top: 177, left: 547 }
   }
 };
 
-const TAB_IDS = {
-  PERIMETRAL: 'perimetral',
-  INTERIOR: 'interior',
-  CONECTIVIDAD: 'conectividad'
+const HOUSE_BASE_SIZES = {
+  [AREA_ID]: { width: 756, height: 504 }
 };
 
-const HOUSE_BASE_SIZES = {
-  perimetral: { width: 735, height: 511 },
-  interior: { width: 735, height: 511 },
-  conectividad: { width: 735, height: 511 }
-};
+const POINTS = [
+  { id: 'cerco', label: 'Cerco eléctrico perimetral', pointClassName: styles.ellipse1 },
+  { id: 'monitoreo', label: 'Monitoreo de Alarmas', pointClassName: styles.ellipse12 },
+  { id: 'cctv', label: 'CCTV / Videovigilancia', pointClassName: styles.ellipse13 },
+  { id: 'cortina', label: 'Cortina de Humo', pointClassName: styles.ellipse14 },
+  { id: 'acceso', label: 'Control de Acceso y Fichaje', pointClassName: styles.ellipse15 }
+];
+
+const SLIDES = [
+  {
+    id: 'cerco',
+    title: 'Cerco eléctrico perimetral',
+    text: 'Primera barrera física 100% legal, conectada directo a nuestra central operativa.',
+    mobileTall: true,
+    mobileViewport: 'tall',
+    styleVars: {
+      '--tech-card-padding': '42px 48px 25px',
+      '--tech-card-align-items': 'center',
+      '--tech-card-title-width': '276px',
+      '--tech-card-title-height': '63px',
+      '--tech-card-title-min-height': '63px',
+      '--tech-card-text-width': '260px',
+      '--tech-card-text-margin': '18px 0 0',
+      '--tech-card-image-width': '215px',
+      '--tech-card-image-height': '107px',
+      '--tech-card-mobile-title-top': '36px',
+      '--tech-card-mobile-title-width': '187px',
+      '--tech-card-mobile-text-top': '88px',
+      '--tech-card-mobile-text-width': '173px',
+      '--tech-card-mobile-art-top': '165px',
+      '--tech-card-mobile-art-width': '155px',
+      '--tech-card-mobile-art-height': '111px'
+    },
+    mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
+    art: {
+      type: 'image',
+      src: '/image/tech-comercio-cerco.webp',
+      width: 215,
+      height: 107,
+      /* El mobile muestra la foto completa del cerco (otro aspecto). */
+      mobileSrc: '/image/tech-comercio-cerco-mobile.webp',
+      mobileWidth: 155,
+      mobileHeight: 111
+    }
+  },
+  {
+    id: 'monitoreo',
+    title: 'Monitoreo de Alarmas',
+    titleLines: ['Monitoreo', 'de Alarmas'],
+    text: 'Respaldo 100% local. Actuamos al instante para proteger tu local y darte tranquilidad cuando cerrás las puertas.',
+    mobileTall: true,
+    mobileViewport: 'tall',
+    styleVars: {
+      '--tech-card-padding': '42px 48px 22px',
+      '--tech-card-align-items': 'center',
+      '--tech-card-title-width': '276px',
+      '--tech-card-title-height': '63px',
+      '--tech-card-title-min-height': '63px',
+      '--tech-card-text-width': '334px',
+      '--tech-card-text-margin': '12px 0 0',
+      '--tech-card-image-width': '175px',
+      '--tech-card-image-height': '128px',
+      '--tech-card-mobile-title-top': '29px',
+      '--tech-card-mobile-title-width': '188px',
+      '--tech-card-mobile-text-top': '77px',
+      '--tech-card-mobile-text-width': '158px',
+      '--tech-card-mobile-art-top': '193px',
+      '--tech-card-mobile-art-width': '116px',
+      '--tech-card-mobile-art-height': '89px'
+    },
+    mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
+    art: {
+      type: 'image',
+      src: '/image/tech-comercio-monitoreo.webp',
+      width: 175,
+      height: 128,
+      mobileSrc: '/image/tech-comercio-monitoreo-mobile.webp',
+      mobileWidth: 116,
+      mobileHeight: 89
+    }
+  },
+  {
+    id: 'cctv',
+    title: 'CCTV / Videovigilancia',
+    /* Mobile (Figma 3513:1804): la card conserva el título "Cámaras de vigilancia". */
+    mobileTitleLines: ['Cámaras', 'de vigilancia'],
+    text: 'Prevención activa 24/7. Respaldamos tu negocio en tiempo real con la mayor infraestructura de la región.',
+    mobileTall: true,
+    mobileViewport: 'tall',
+    styleVars: {
+      '--tech-card-padding': '42px 48px 22px',
+      '--tech-card-align-items': 'center',
+      '--tech-card-title-width': '276px',
+      '--tech-card-title-height': '63px',
+      '--tech-card-title-min-height': '63px',
+      '--tech-card-text-width': '342px',
+      '--tech-card-text-margin': '12px 0 0',
+      '--tech-card-image-width': '192px',
+      '--tech-card-image-height': '117px',
+      '--tech-card-mobile-title-top': '29px',
+      '--tech-card-mobile-title-width': '187px',
+      '--tech-card-mobile-text-top': '84px',
+      '--tech-card-mobile-text-width': '184px',
+      '--tech-card-mobile-art-top': '194px',
+      '--tech-card-mobile-art-width': '129px',
+      '--tech-card-mobile-art-height': '73px'
+    },
+    mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
+    art: {
+      type: 'image',
+      src: '/image/tech-comercio-cctv.webp',
+      width: 192,
+      height: 117,
+      mobileSrc: '/image/tech-comercio-cctv-mobile.webp',
+      mobileWidth: 129,
+      mobileHeight: 73
+    }
+  },
+  {
+    id: 'cortina',
+    title: 'Cortina de Humo',
+    titleLines: ['Cortina', 'de Humo'],
+    text: 'Niebla activa que bloquea la visión y neutraliza asaltos en segundos.',
+    mobileTall: true,
+    mobileViewport: 'tall',
+    styleVars: {
+      '--tech-card-padding': '42px 48px 10px',
+      '--tech-card-align-items': 'center',
+      '--tech-card-title-width': '276px',
+      '--tech-card-title-height': '63px',
+      '--tech-card-title-min-height': '63px',
+      '--tech-card-text-width': '217px',
+      '--tech-card-text-margin': '14px 0 0',
+      '--tech-card-image-width': '194px',
+      '--tech-card-image-height': '135px',
+      '--tech-card-mobile-title-top': '29px',
+      '--tech-card-mobile-title-width': '187px',
+      '--tech-card-mobile-text-top': '86px',
+      '--tech-card-mobile-text-width': '146px',
+      '--tech-card-mobile-art-top': '174px',
+      '--tech-card-mobile-art-width': '160px',
+      '--tech-card-mobile-art-height': '111px'
+    },
+    mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
+    art: { type: 'image', src: '/image/tech-comercio-cortina.webp', width: 194, height: 135 }
+  },
+  {
+    id: 'acceso',
+    title: 'Control de Acceso y Fichaje',
+    titleLines: ['Control de Acceso', 'y Fichaje'],
+    text: 'Automatizá el control de presentismo, accesos y horarios de tu equipo.',
+    mobileTall: true,
+    mobileViewport: 'tall',
+    styleVars: {
+      '--tech-card-padding': '42px 48px 10px',
+      '--tech-card-align-items': 'center',
+      '--tech-card-title-width': '276px',
+      '--tech-card-title-height': '63px',
+      '--tech-card-title-min-height': '63px',
+      '--tech-card-text-width': '221px',
+      '--tech-card-text-margin': '14px 0 0',
+      '--tech-card-image-width': '84px',
+      '--tech-card-image-height': '153px',
+      '--tech-card-mobile-title-top': '29px',
+      '--tech-card-mobile-title-width': '187px',
+      '--tech-card-mobile-text-top': '77px',
+      '--tech-card-mobile-text-width': '178px',
+      '--tech-card-mobile-art-top': '174px',
+      '--tech-card-mobile-art-width': '61px',
+      '--tech-card-mobile-art-height': '112px'
+    },
+    mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
+    art: { type: 'image', src: '/image/tech-comercio-acceso.webp', width: 84, height: 153 }
+  }
+];
 
 export default function ComercioTechnologyModule() {
-  const tabs = useMemo(
-    () => [
-      {
-        id: TAB_IDS.PERIMETRAL,
-        label: 'PROTECCIÓN PERIMETRAL',
-        houseClassName: styles.housePerimetral,
-        points: [
-          { id: 'camaras', label: 'Cámaras de vigilancia', slideIndex: 0, pointClassName: styles.ellipse1 },
-          { id: 'magneticos', label: 'Magnéticos', slideIndex: 1, pointClassName: styles.ellipse12 },
-          { id: 'cartel', label: 'Cartel disuasivo', slideIndex: 2, pointClassName: styles.ellipse13 },
-          { id: 'sirena', label: 'Sirena exterior', slideIndex: 3, pointClassName: styles.ellipse14 }
-        ],
-        slides: [
-          {
-            title: 'Cámaras de vigilancia',
-            text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
-            mobileTitleLines: ['Cámaras', 'de vigilancia'],
-            mobileTextLines: [
-              'Supervisión en tiempo', 'real y grabación', 'continua para mayor', 'control y tranquilidad.'
-            ],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-title-line-height': '32px',
-              '--tech-card-text-line-height': '20px',
-              '--tech-card-image-width': '192px',
-              '--tech-card-image-height': '117px',
-              '--tech-card-art-margin-top': '-6px',
-              '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '88px',
-              '--tech-card-mobile-text-width': '167px',
-              '--tech-card-mobile-art-top': '186px',
-              '--tech-card-mobile-art-width': '129px',
-              '--tech-card-mobile-art-height': '78px'
-            },
-            mobileShell: {
-              width: '201px',
-              height: '300px',
-              top: '0px',
-              left: '0px',
-              background: '#D9D9D9',
-              borderRadius: '22px'
-            },
-            art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
-          },
-          {
-            title: 'Magnéticos',
-            text: 'Protección inteligente en puertas y ventanas con alerta inmediata ante aperturas.',
-            mobileTextLines: [
-              'Protección inteligente',
-              'en puertas y ventanas',
-              'con alerta inmediata',
-              'ante aperturas.'
-            ],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '48px 84px 33px 82px',
-              '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '12px 0 0',
-              '--tech-card-text-width': '265px',
-              '--tech-card-image-width': '160px',
-              '--tech-card-image-height': '160px',
-              '--tech-card-art-margin-top': '14px',
-              '--tech-card-mobile-title-top': '44px',
-              '--tech-card-mobile-title-width': '168px',
-              '--tech-card-mobile-text-top': '81px',
-              '--tech-card-mobile-text-width': '171px',
-              '--tech-card-mobile-art-top': '173px',
-              '--tech-card-mobile-art-width': '111px',
-              '--tech-card-mobile-art-height': '111px'
-            },
-            mobileShell: {
-              width: '201px',
-              height: '300px',
-              top: '0px',
-              left: '0px',
-              background: '#D9D9D9',
-              borderRadius: '22px'
-            },
-            art: { type: 'image', src: '/image/mpvxvi4u-1mah6ht.png', width: 160, height: 160 }
-          },
-          {
-            title: 'Cartel disuasivo',
-            text: 'Refuerza visualmente la seguridad del lugar e informa protección monitoreada.',
-            mobileTitleLines: ['Cartel', 'disuasivo'],
-            mobileTextLines: [
-              'Refuerza visualmente',
-              'la seguridad del lugar',
-              'e informa protección',
-              'monitoreada.'
-            ],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '48px 82px 51px 84px',
-              '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '12px 0 0',
-              '--tech-card-image-width': '139px',
-              '--tech-card-image-height': '147px',
-              '--tech-card-art-margin-top': '9px',
-              '--tech-card-mobile-title-top': '37px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '84px',
-              '--tech-card-mobile-text-width': '164px',
-              '--tech-card-mobile-art-top': '163px',
-              '--tech-card-mobile-art-width': '108px',
-              '--tech-card-mobile-art-height': '115px'
-            },
-            mobileShell: {
-              width: '201px',
-              height: '300px',
-              top: '0px',
-              left: '0px',
-              background: '#D9D9D9',
-              borderRadius: '22px'
-            },
-            art: { type: 'image', src: '/image/mpvxvwmp-fq0hs19.png', width: 139, height: 147 }
-          },
-          {
-            title: 'Sirena exterior',
-            text: 'Alerta sonora de alto alcance que ahuyenta intrusos y activa la atención del entorno.',
-            mobileTitleLines: ['Sirena', 'exterior'],
-            mobileTextLines: [
-              'Alerta sonora de alto',
-              'alcance que ahuyenta',
-              'intrusos y activa la',
-              'atención del entorno.'
-            ],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '48px 83px 44px',
-              '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '12px 0 0',
-              '--tech-card-text-width': '273px',
-              '--tech-card-image-width': '91px',
-              '--tech-card-image-height': '149px',
-              '--tech-card-image-fixed-width': '91px',
-              '--tech-card-image-fixed-height': '149px',
-              '--tech-card-image-fit': 'cover',
-              '--tech-card-image-position': 'bottom',
-              '--tech-card-art-margin-top': '14px',
-              '--tech-card-mobile-title-top': '37px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '84px',
-              '--tech-card-mobile-text-width': '164px',
-              '--tech-card-mobile-art-top': '172px',
-              '--tech-card-mobile-art-width': '60px',
-              '--tech-card-mobile-art-height': '98px'
-            },
-            mobileShell: {
-              width: '201px',
-              height: '300px',
-              top: '0px',
-              left: '0px',
-              background: '#D9D9D9',
-              borderRadius: '22px'
-            },
-            art: { type: 'image', src: '/image/sirena-exterior.webp', width: 91, height: 149 }
-          }
-        ]
-      },
-      {
-        id: TAB_IDS.INTERIOR,
-        label: 'PROTECCIÓN INTERIOR',
-        houseClassName: styles.houseInterior,
-        points: [
-          { id: 'sensor', label: 'Sensor de movimiento', slideIndex: 0, pointClassName: styles.ellipse1 },
-          { id: 'teclado', label: 'Teclado de configuración', slideIndex: 1, pointClassName: styles.ellipse12 },
-          { id: 'mando', label: 'Mando a distancia', slideIndex: 2, pointClassName: styles.ellipse13 },
-          { id: 'central', label: 'Central con comunicador', slideIndex: 3, pointClassName: styles.ellipse14 },
-          { id: 'camara', label: 'Cámaras de vigilancia', slideIndex: 4, pointClassName: styles.ellipse15 },
-          { id: 'humo', label: 'Cortina de humo', slideIndex: 5, pointClassName: styles.ellipse12 },
-          { id: 'acceso', label: 'Control de acceso', slideIndex: 6, pointClassName: styles.ellipse13 }
-        ],
-        slides: [
-          {
-            title: 'Sensor de movimiento',
-            text: 'Detecta movimientos sospechosos y activa el sistema de alerta automáticamente.',
-            mobileTitleLines: ['Sensor de', 'movimiento'],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '35px 83px 13px',
-              '--tech-card-text-margin': '11px 0 0',
-              '--tech-card-text-width': '273px',
-              '--tech-card-image-width': '193px',
-              '--tech-card-image-height': '180px',
-              '--tech-card-mobile-title-top': '37px',
-              '--tech-card-mobile-title-width': '186.83px',
-              '--tech-card-mobile-text-top': '85px',
-              '--tech-card-mobile-text-width': '167px',
-              '--tech-card-mobile-art-top': '163px',
-              '--tech-card-mobile-art-width': '133px',
-              '--tech-card-mobile-art-height': '124px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: {
-              type: 'overlay',
-              wrapperWidth: 193,
-              wrapperHeight: 180,
-              wrapperMarginTop: 66,
-              image: { src: '/image/mpvxxnnb-wpq90tr.png', width: 193, height: 180, top: 0, left: 0 },
-              text: { top: -55, right: -40, width: 273 }
-            }
-          },
-          {
-            title: 'Teclado de configuración',
-            text: 'Gestión simple y rápida para controlar tu alarma en todo momento.',
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '35px 83px 12px',
-              '--tech-card-text-margin': '11px 0 0',
-              '--tech-card-text-width': '216px',
-              '--tech-card-image-width': '201px',
-              '--tech-card-image-height': '188px',
-              '--tech-card-art-margin-top': '-12px',
-              '--tech-card-mobile-title-top': '37px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '84px',
-              '--tech-card-mobile-text-width': '147px',
-              '--tech-card-mobile-art-top': '163px',
-              '--tech-card-mobile-art-width': '123px',
-              '--tech-card-mobile-art-height': '119px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: {
-              type: 'absolute',
-              src: '/image/mpvxxyfe-psjzek1.webp',
-              width: 201,
-              height: 188,
-              top: 157,
-              left: 121,
-              rotate: 0
-            }
-          },
-          {
-            title: 'Mando a distancia',
-            text: 'Activá o desactivá tu sistema con comodidad.',
-            mobileTitleLines: ['Mando a', 'distancia'],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '48px 83px 13px',
-              '--tech-card-title-min-height': '31px',
-              '--tech-card-text-margin': '21px 0 0',
-              '--tech-card-text-width': '216px',
-              '--tech-card-image-width': '174px',
-              '--tech-card-image-height': '163px',
-              '--tech-card-art-margin-top': '-22px',
-              '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '88px',
-              '--tech-card-mobile-text-width': '145px',
-              '--tech-card-mobile-art-top': '150px',
-              '--tech-card-mobile-art-width': '115.34px',
-              '--tech-card-mobile-art-height': '107.94px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: {
-              type: 'absolute',
-              src: '/image/mpvxy7bq-mohx126.png',
-              width: 174,
-              height: 163,
-              top: 159,
-              left: 131,
-              rotate: 16
-            }
-          },
-          {
-            title: 'Central con comunicador',
-            text: 'Tecnología centralizada que conecta, procesa y reporta cada evento de seguridad.',
-            mobileTextLines: ['Tecnología centralizada', 'que conecta, procesa y', 'reporta cada evento de', 'seguridad.'],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '35px 83px 22px',
-              '--tech-card-align-items': 'flex-start',
-              '--tech-card-text-margin': '13px 0 0 15px',
-              '--tech-card-text-width': '246px',
-              '--tech-card-image-width': '219px',
-              '--tech-card-image-height': '156px',
-              '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '84px',
-              '--tech-card-mobile-text-width': '174px',
-              '--tech-card-mobile-art-top': '175px',
-              '--tech-card-mobile-art-width': '150px',
-              '--tech-card-mobile-art-height': '107px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: { type: 'image', src: '/image/mpvxygrd-lio0o1u.png', width: 219, height: 156 }
-          },
-          {
-            title: 'Cámaras de vigilancia',
-            text: 'Supervisión en tiempo real y grabación continua para mayor control y tranquilidad.',
-            mobileTitleLines: ['Cámaras', 'de vigilancia'],
-            mobileTextLines: ['Supervisión en tiempo', 'real y grabación', 'continua para mayor', 'control y tranquilidad.'],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-title-line-height': '32px',
-              '--tech-card-text-line-height': '20px',
-              '--tech-card-image-width': '192px',
-              '--tech-card-image-height': '117px',
-              '--tech-card-art-margin-top': '-6px',
-              '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '88px',
-              '--tech-card-mobile-text-width': '167px',
-              '--tech-card-mobile-art-top': '186px',
-              '--tech-card-mobile-art-width': '129px',
-              '--tech-card-mobile-art-height': '78px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: { type: 'image', src: '/image/mpvuunzj-551nhie.png', width: 192, height: 117 }
-          },
-          {
-            title: 'Cortina de humo',
-            text: 'Sistema que libera una niebla densa ante intrusiones, reduciendo la visibilidad y neutralizando el accionar del delincuente.',
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '48px 42px 22px',
-              '--tech-card-title-min-height': '39px',
-              '--tech-card-text-margin': '4px 0 0',
-              '--tech-card-text-width': '357px',
-              '--tech-card-image-width': '262px',
-              '--tech-card-image-height': '187px',
-              '--tech-card-image-align-self': 'center',
-              '--tech-card-mobile-title-top': '40px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '67px',
-              '--tech-card-mobile-text-width': '187px',
-              '--tech-card-mobile-art-top': '182px',
-              '--tech-card-mobile-art-width': '141px',
-              '--tech-card-mobile-art-height': '110px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: { type: 'image', src: '/image/mpvxyq6j-i5v6nap.png', width: 262, height: 187 }
-          },
-          {
-            title: 'Control de acceso',
-            text: 'Gestión de ingresos del personal mediante tarjetas, biometría o reconocimiento facial, con control de horarios y presencia.',
-            mobileTitleLines: ['Control', 'de acceso'],
-            mobileText: 'Gestión de ingresos del personal con control de horarios y presencia.',
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '48px 43px 22px',
-              '--tech-card-title-min-height': '31px',
-              '--tech-card-title-width': '241px',
-              '--tech-card-text-margin': '11px 0 0',
-              '--tech-card-text-width': '360px',
-              '--tech-card-text-max-width': '360px',
-              '--tech-card-art-margin-top': '14px',
-              '--tech-card-image-width': '94px',
-              '--tech-card-image-height': '176px',
-              '--tech-card-image-align-self': 'center',
-              '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-width': '186.83px',
-              '--tech-card-mobile-text-top': '88px',
-              '--tech-card-mobile-text-width': '167px',
-              '--tech-card-mobile-art-top': '168px',
-              '--tech-card-mobile-art-width': '61px',
-              '--tech-card-mobile-art-height': '114px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: { type: 'image', src: '/image/mpvxz539-e73c1z1.png', width: 94, height: 176 }
-          }
-        ]
-      },
-      {
-        id: TAB_IDS.CONECTIVIDAD,
-        label: 'CONECTIVIDAD',
-        houseClassName: styles.houseConectividad,
-        points: [{ id: 'app', label: 'Control desde el celular', slideIndex: 0, pointClassName: styles.ellipse13 }],
-        slides: [
-          {
-            title: 'Control desde el celular',
-            text: 'Administrá tu sistema, recibí notificaciones y monitoreá tu hogar o negocio estés donde estés.',
-            mobileTitleLines: ['Control desde', 'el celular'],
-            mobileTextLines: ['Administrá tu sistema,', 'recibí notificaciones y', 'monitoreá tu obra', 'estés donde estés.'],
-            mobileTall: true,
-            mobileViewport: 'tall',
-            styleVars: {
-              '--tech-card-padding': '42px 74px 20px',
-              '--tech-card-title-min-height': '63px',
-              '--tech-card-title-width': '201px',
-              '--tech-card-title-height': '63px',
-              '--tech-card-text-margin': '17px 0 0',
-              '--tech-card-text-width': '299px',
-              '--tech-card-text-max-width': '299px',
-              '--tech-card-frame-width': '183px',
-              '--tech-card-frame-height': '158px',
-              '--tech-card-frame-max-width': '183px',
-              '--tech-card-frame-bg-position': '0 -1px',
-              '--tech-card-frame-bg-size': '100% 151.77%',
-              '--tech-card-frame-filter': 'grayscale(1)',
-              '--tech-card-frame-bar-color': '#06234c',
-              '--tech-card-mobile-title-top': '36px',
-              '--tech-card-mobile-title-width': '187px',
-              '--tech-card-mobile-text-top': '88px',
-              '--tech-card-mobile-text-width': '167px',
-              '--tech-card-mobile-art-top': '167px',
-              '--tech-card-mobile-art-left': '34px',
-              '--tech-card-mobile-art-transform': 'none',
-              '--tech-card-mobile-art-width': '133.87px',
-              '--tech-card-mobile-art-height': '115.58px'
-            },
-            mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-            art: {
-              type: 'connectivity',
-              bar: true,
-              backgroundSrc: '/image/mpvy051r-8qcdbbi.webp',
-              imageTop: 0,
-              text: { top: -57, right: -55, width: 292 }
-            }
-          }
-        ]
-      }
-    ],
-    []
-  );
-
-  const [activeTabId, setActiveTabId] = useState(TAB_IDS.PERIMETRAL);
-  const [activePointId, setActivePointId] = useState(() => tabs[0]?.points?.[0]?.id ?? null);
-  const [tabNonce, setTabNonce] = useState(0);
+  const [activePointId, setActivePointId] = useState(POINTS[0].id);
 
   const houseRef = useRef(null);
-
-  const activeTab = useMemo(
-    () => tabs.find((tab) => tab.id === activeTabId) ?? tabs[0],
-    [activeTabId, tabs]
-  );
-
-  const slides = activeTab.slides;
-  const points = activeTab.points;
 
   const {
     activeIndex,
@@ -499,30 +225,29 @@ export default function ComercioTechnologyModule() {
     direction,
     isAnimating,
     activeIndexRef,
-    startTransition,
-    resetTo
-  } = useSlideTransition({ length: slides.length });
+    startTransition
+  } = useSlideTransition({ length: SLIDES.length });
 
   const { getScale } = useAreaScale({
     baseSizes: HOUSE_BASE_SIZES,
-    activeAreaId: activeTabId,
+    activeAreaId: AREA_ID,
     areaRef: houseRef
   });
 
-  const defaultPointToSlide = useMemo(() => {
-    return tabs.reduce((acc, tab) => {
-      acc[tab.id] = tab.points.reduce((map, point, idx) => {
-        map[point.id] = Math.min(point.slideIndex ?? idx, tab.slides.length - 1);
+  const defaultPointToSlide = useMemo(
+    () => ({
+      [AREA_ID]: POINTS.reduce((map, point, idx) => {
+        map[point.id] = Math.min(idx, SLIDES.length - 1);
         return map;
-      }, {});
-      return acc;
-    }, {});
-  }, [tabs]);
+      }, {})
+    }),
+    []
+  );
 
   const {
     isEditMode,
     pointToSlide,
-    positionsForArea: positionsForTab,
+    positionsForArea,
     pointRefs,
     handlePointPointerDown,
     handlePointPointerMove,
@@ -534,69 +259,60 @@ export default function ComercioTechnologyModule() {
     storageKey: STORAGE_KEY,
     defaultPositions: DEFAULT_POSITIONS,
     defaultMapping: defaultPointToSlide,
-    activeAreaId: activeTabId,
-    points,
+    activeAreaId: AREA_ID,
+    points: POINTS,
     areaRef: houseRef,
     pointSize: 30,
     getScale,
     onPointGrabbed: setActivePointId
   });
 
-  const mappingForTab = useMemo(
-    () => pointToSlide[activeTabId] ?? defaultPointToSlide[activeTabId] ?? {},
-    [activeTabId, defaultPointToSlide, pointToSlide]
+  const mapping = useMemo(
+    () => pointToSlide[AREA_ID] ?? defaultPointToSlide[AREA_ID] ?? {},
+    [defaultPointToSlide, pointToSlide]
   );
 
-  const reverseMappingForTab = useMemo(() => {
+  const reverseMapping = useMemo(() => {
     const reverse = {};
-    Object.entries(mappingForTab).forEach(([pointId, slideIndex]) => {
+    Object.entries(mapping).forEach(([pointId, slideIndex]) => {
       if (reverse[slideIndex] == null) reverse[slideIndex] = pointId;
     });
     return reverse;
-  }, [mappingForTab]);
+  }, [mapping]);
 
   useEffect(() => {
     if (!activePointId) return;
-    const mapped = mappingForTab[activePointId];
+    const mapped = mapping[activePointId];
     if (mapped == null) return;
     if (mapped === activeIndexRef.current) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
-  }, [activePointId, activeIndexRef, mappingForTab, startTransition]);
+  }, [activePointId, activeIndexRef, mapping, startTransition]);
 
   const handleSelectPoint = (pointId) => {
     setActivePointId(pointId);
-    const mapped = mappingForTab[pointId];
+    const mapped = mapping[pointId];
     if (mapped == null) return;
     startTransition(mapped, getDirection(activeIndexRef.current, mapped));
   };
 
   const handlePrev = () => {
     const currentIndex = activeIndexRef.current;
-    const nextIndex = (currentIndex - 1 + slides.length) % slides.length;
+    const nextIndex = (currentIndex - 1 + SLIDES.length) % SLIDES.length;
     startTransition(nextIndex, 'prev');
-    const nextPointId = reverseMappingForTab[nextIndex];
+    const nextPointId = reverseMapping[nextIndex];
     if (nextPointId) setActivePointId(nextPointId);
   };
 
   const handleNext = () => {
     const currentIndex = activeIndexRef.current;
-    const nextIndex = (currentIndex + 1) % slides.length;
+    const nextIndex = (currentIndex + 1) % SLIDES.length;
     startTransition(nextIndex, 'next');
-    const nextPointId = reverseMappingForTab[nextIndex];
+    const nextPointId = reverseMapping[nextIndex];
     if (nextPointId) setActivePointId(nextPointId);
   };
 
-  const handleTabChange = (tabId) => {
-    if (tabId === activeTabId) return;
-    setActiveTabId(tabId);
-    resetTo(0);
-    setTabNonce((nonce) => nonce + 1);
-    const firstPoint = tabs.find((tab) => tab.id === tabId)?.points?.[0];
-    setActivePointId(firstPoint?.id ?? null);
-  };
-
-  const currentSlide = slides[activeIndex];
-  const previousSlide = previousIndex === null ? null : slides[previousIndex];
+  const currentSlide = SLIDES[activeIndex];
+  const previousSlide = previousIndex === null ? null : SLIDES[previousIndex];
 
   const getCardClassName = (phase) => {
     if (phase === 'active') {
@@ -607,57 +323,27 @@ export default function ComercioTechnologyModule() {
     return direction === 'next' ? styles.techCardExitNext : styles.techCardExitPrev;
   };
 
-  const renderSlideContent = (slide, extraClassName) => (
-    <TechCard slide={slide} className={extraClassName} />
-  );
-
   return (
-    <section className={styles.technology} aria-label="Seguridad total para tu negocio">
+    <section className={styles.technology} aria-label="Tecnología para comercios">
       <h2 className={styles.technologyTitle}>
         <span className={styles.technologyTitleStrong}>Seguridad total para tu negocio,</span>
         <br />
         <span className={styles.technologyTitleLight}>en todo momento.</span>
       </h2>
 
-      <div className={styles.tabs} role="tablist" aria-label="Categorías">
-        {tabs.map((tab) => {
-          const isActive = tab.id === activeTabId;
-          const underlineClassName =
-            tab.id === TAB_IDS.PERIMETRAL
-              ? styles.tabUnderlinePerimetral
-              : tab.id === TAB_IDS.INTERIOR
-                ? styles.tabUnderlineInterior
-                : styles.tabUnderlineConectividad;
-
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              className={`${styles.tab} ${isActive ? styles.tabActive : ''} ${isActive ? underlineClassName : ''}`}
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => handleTabChange(tab.id)}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </div>
-
-      <div className={styles.technologyRow} data-anim={tabNonce}>
+      <div className={styles.technologyRow}>
         <div
           ref={houseRef}
-          className={`${styles.house} ${activeTab.houseClassName} ${isEditMode ? styles.houseEdit : ''}`}
-          aria-label="Mapa comercio"
+          className={`${styles.house} ${styles.housePerimetral} ${isEditMode ? styles.houseEdit : ''}`}
+          aria-label="Plano del local"
           onPointerMove={handlePointPointerMove}
           onPointerUp={handlePointPointerUp}
           onPointerCancel={handlePointPointerUp}
         >
-          {points.map((point) => {
+          {POINTS.map((point) => {
             const isActive = point.id === activePointId;
-            const position = positionsForTab[point.id];
-            const pointStyle = getPointPercentPosition(position, HOUSE_BASE_SIZES[activeTabId]);
-
+            const position = positionsForArea[point.id];
+            const pointStyle = getPointPercentPosition(position, HOUSE_BASE_SIZES[AREA_ID]);
             return (
               <button
                 key={point.id}
@@ -684,30 +370,23 @@ export default function ComercioTechnologyModule() {
         </div>
 
         <div className={styles.techCardGroup} aria-label="Detalle" data-mobile-card-size={currentSlide.mobileViewport ?? 'default'}>
-          {slides.length > 1 ? (
-            <button type="button" className={styles.techArrow} aria-label="Anterior" onClick={handlePrev}>
-              <Image src="/image/mpvuunz9-n1vmngd.png" alt="" width={30} height={18} />
-            </button>
-          ) : (
-            <span className={styles.techArrowSpacer} aria-hidden="true" />
-          )}
+          <button type="button" className={styles.techArrow} aria-label="Anterior" onClick={handlePrev}>
+            <Image src="/image/mpudc5hg-jng7cpc.png" alt="" width={30} height={18} />
+          </button>
 
           <div
-            className={`${styles.techCardViewport} ${styles.tabFadeIn}`}
-            key={`${activeTabId}-${tabNonce}`}
+            className={styles.techCardViewport}
             data-mobile-card-size={currentSlide.mobileViewport ?? 'default'}
           >
-            {previousSlide ? renderSlideContent(previousSlide, getCardClassName('previous')) : null}
-            {renderSlideContent(currentSlide, getCardClassName('active'))}
+            {previousSlide ? (
+              <TechCard slide={previousSlide} className={getCardClassName('previous')} />
+            ) : null}
+            <TechCard slide={currentSlide} className={getCardClassName('active')} />
           </div>
 
-          {slides.length > 1 ? (
-            <button type="button" className={styles.techArrow} aria-label="Siguiente" onClick={handleNext}>
-              <Image src="/image/mpvuunz9-l51ejtw.png" alt="" width={30} height={17} />
-            </button>
-          ) : (
-            <span className={styles.techArrowSpacer} aria-hidden="true" />
-          )}
+          <button type="button" className={styles.techArrow} aria-label="Siguiente" onClick={handleNext}>
+            <Image src="/image/mpudc5hg-5099gqg.png" alt="" width={30} height={17} />
+          </button>
         </div>
       </div>
 
@@ -726,9 +405,9 @@ export default function ComercioTechnologyModule() {
           </div>
 
           <div className={styles.techEditorRows}>
-            {points.map((point) => {
-              const position = positionsForTab[point.id];
-              const value = mappingForTab[point.id] ?? 0;
+            {POINTS.map((point) => {
+              const position = positionsForArea[point.id];
+              const value = mapping[point.id] ?? 0;
               const isSelected = point.id === activePointId;
               return (
                 <div key={point.id} className={styles.techEditorRow}>
@@ -739,14 +418,20 @@ export default function ComercioTechnologyModule() {
                   >
                     {point.label}
                   </button>
-                  <select className={styles.techEditorSelect} value={value} onChange={(e) => handleMappingChange(point.id, Number(e.target.value))}>
-                    {slides.map((slide, idx) => (
-                      <option key={`${slide.title}-${idx}`} value={idx}>
+                  <select
+                    className={styles.techEditorSelect}
+                    value={value}
+                    onChange={(e) => handleMappingChange(point.id, Number(e.target.value))}
+                  >
+                    {SLIDES.map((slide, idx) => (
+                      <option key={slide.id} value={idx}>
                         {slide.title}
                       </option>
                     ))}
                   </select>
-                  <p className={styles.techEditorPos}>{position ? `x:${position.left} y:${position.top}` : 'x:- y:-'}</p>
+                  <p className={styles.techEditorPos}>
+                    {position ? `x:${position.left} y:${position.top}` : 'x:- y:-'}
+                  </p>
                 </div>
               );
             })}

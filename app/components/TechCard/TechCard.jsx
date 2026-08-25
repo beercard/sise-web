@@ -7,6 +7,31 @@ function ArtContent({ art, fallbackAlt = '' }) {
 
   const mainSrc = art.src ?? art.image?.src;
   if (mainSrc) {
+    /* `mobileSrc` es opt-in: cuando el diseño mobile usa un recorte distinto
+       de la misma foto (otro aspecto), se renderizan dos <Image> y el CSS
+       muestra una por breakpoint. Sin `mobileSrc` todo sigue como antes. */
+    if (art.mobileSrc) {
+      return (
+        <>
+          <Image
+            src={mainSrc}
+            alt={art.alt ?? fallbackAlt}
+            className={`${styles.artImage} ${styles.artImageDesktop}`}
+            width={art.width ?? art.image?.width ?? 220}
+            height={art.height ?? art.image?.height ?? 170}
+            style={art.rotate ? { transform: `rotate(${art.rotate}deg)` } : undefined}
+          />
+          <Image
+            src={art.mobileSrc}
+            alt={art.alt ?? fallbackAlt}
+            className={`${styles.artImage} ${styles.artImageMobile}`}
+            width={art.mobileWidth ?? art.width ?? 220}
+            height={art.mobileHeight ?? art.height ?? 170}
+          />
+        </>
+      );
+    }
+
     return (
       <Image
         src={mainSrc}

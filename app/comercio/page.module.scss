@@ -29,73 +29,9 @@
   font-weight: 400;
 }
 
-.tabs {
-  margin-top: 45px;
-  width: min(944px, 100%);
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.tab {
-  border: 0;
-  background: transparent;
-  padding: 0 0 10px;
-  height: 29px;
-  text-align: center;
-  line-height: 19px;
-  letter-spacing: 1px;
-  color: #06234c;
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex: 0 0 auto;
-  cursor: pointer;
-  position: relative;
-}
-
-.tabs > :nth-child(1) {
-  width: 254px;
-}
-
-.tabs > :nth-child(2) {
-  width: 229px;
-}
-
-.tabs > :nth-child(3) {
-  width: 153px;
-}
-
-.tabActive::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: var(--tab-underline-left, 0px);
-  width: var(--tab-underline-width, 100%);
-  height: 3px;
-  background: #06234c;
-}
-
-.tabUnderlinePerimetral {
-  --tab-underline-left: 0px;
-  --tab-underline-width: 254px;
-}
-
-.tabUnderlineInterior {
-  --tab-underline-left: 2px;
-  --tab-underline-width: 225px;
-}
-
-.tabUnderlineConectividad {
-  --tab-underline-left: 3px;
-  --tab-underline-width: 147px;
-}
-
 .technologyRow {
-  margin-top: 32px;
+  /* Del diseño (5001:271): el mapa arranca 54px debajo del título. */
+  margin-top: 54px;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: var(--tech-pad-x);
@@ -107,14 +43,11 @@
 }
 
 .house {
-  width: min(735px, 55vw);
+  width: min(756px, 55vw);
   max-width: 100%;
   height: auto;
-  /* Proporción real de los tres planos (2486×1728 y 1470×1022, ambos 1.4384).
-     Antes acá decía 735/527 (1.3947): como el plano se pinta con
-     `background-size: 100% 100%`, perimetral se estiraba un 3% en vertical y
-     el mapa saltaba 16px de alto al cambiar de tab. */
-  aspect-ratio: 735 / 511;
+  /* Caja del plano según el diseño nuevo (Figma 3511:763: 756×504). */
+  aspect-ratio: 756 / 504;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -126,23 +59,7 @@
 }
 
 .housePerimetral {
-  background-image: url('/image/mpvuunzj-xlmkksx.webp');
-}
-
-.houseInterior {
-  background-image: url('/image/mpvxx6dk-abr86k8.webp');
-  height: auto;
-  aspect-ratio: 735 / 511;
-  background-size: 100% 100%;
-  background-position: 0 0;
-}
-
-.houseConectividad {
-  background-image: url('/image/mpvxzsty-pl5cyho.webp');
-  height: auto;
-  aspect-ratio: 735 / 511;
-  background-size: 100% 100%;
-  background-position: 0 0;
+  background-image: url('/image/comercio-local-mapa.webp');
 }
 
 .pointButton {
@@ -411,10 +328,6 @@
   background: #00408c;
 }
 
-.tabFadeIn {
-  animation: tabFadeIn 420ms ease-out both;
-}
-
 .techCardStatic {
   opacity: 1;
   transform: translate3d(0, 0, 0);
@@ -434,17 +347,6 @@
 
 .techCardExitPrev {
   animation: techCardExitPrev 420ms ease-out both;
-}
-
-@keyframes tabFadeIn {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 @keyframes techCardEnterNext {
@@ -492,7 +394,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tabFadeIn,
   .techCardEnterNext,
   .techCardExitNext,
   .techCardEnterPrev,
@@ -636,60 +537,16 @@
     line-height: 36px;
   }
 
-  .tabs {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 8px;
-    margin-top: 16px;
-    padding: 0 16px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tab {
-    border: 1px solid rgba(6, 35, 76, 0.35);
-    border-radius: 999px;
-    padding: 10px 14px;
-    height: auto;
-    line-height: 18px;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .tabs > :nth-child(1),
-  .tabs > :nth-child(2),
-  .tabs > :nth-child(3) {
-    width: auto;
-  }
-
-  .tabActive {
-    background: #06234c;
-    color: #ffffff;
-  }
-
-  .tabActive::after {
-    display: none;
-  }
-
   .technologyRow {
     flex-direction: column;
     align-items: center;
     gap: 24px;
   }
 
-  /* Misma proporción real que en desktop para los tres tabs. */
-  .house,
-  .houseInterior,
-  .houseConectividad {
-    width: min(735px, 100%);
+  .house {
+    width: min(756px, 100%);
     height: auto;
-    aspect-ratio: 735 / 511;
+    aspect-ratio: 756 / 504;
   }
 
   .techCardGroup {
@@ -834,13 +691,11 @@
   --tech-title-width: 944px;
   --tech-title-font-size: 48px;
   --tech-title-line-height: 45.6px;
-  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
-  --tech-tabs-width: 944px;
-  --tech-tab-font-size: 20px;
-  --tech-group-width: 1255px;
+  /* Del diseño (5001:271): mapa 756 + 62 de aire + grupo de 520 = 1338. */
+  --tech-group-width: 1338px;
   --tech-card-group-width: 520px;
-  --tech-row-gap: 0px;
-  --tech-house-max-width: 735px;
+  --tech-row-gap: 62px;
+  --tech-house-max-width: 756px;
   /* Mismo aire que el resto de las verticales. */
   padding-top: 86px;
   padding-bottom: 86px;
@@ -854,18 +709,8 @@
   line-height: var(--tech-title-line-height);
 }
 
-.tabs {
-  margin-top: var(--tech-title-tabs-gap);
-  width: min(var(--tech-tabs-width), calc(100% - 48px));
-  padding: 0;
-}
-
-.tab {
-  font-size: var(--tech-tab-font-size);
-}
-
 .technologyRow {
-  margin-top: 30px;
+  margin-top: 54px;
   gap: var(--tech-row-gap);
 }
 
@@ -902,10 +747,6 @@
      bloque entra sin desbordar hasta los 1201px. Antes acá se encogía todo y
      la card bajaba a 407, rompiendo la uniformidad con el resto de las
      verticales y con el diseño. */
-
-  .tabs {
-    padding: 0 8px;
-  }
 
   .techCardGroup {
     margin-top: 0;
@@ -986,80 +827,22 @@
     font-weight: 400;
   }
 
-  /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
-     habían convertido en pastillas con scroll horizontal. */
-  /* El título cierra en y=51 y los tabs abren en y=84. */
-  .tabs {
-    margin-top: 36px;
-    width: min(354px, calc(100% - 48px));
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    gap: 0;
-    overflow: visible;
-  }
-
-  .tab,
-  .tabActive {
-    /* 107px es la medida del diseño, pero tres tabs suman 321 y desbordarían
-       por debajo de ~370px de ancho; así pueden encogerse. */
-    flex: 0 1 107px;
-    min-width: 0;
-    border: 0;
-    border-radius: 0;
-    padding: 0;
-    height: 31px;
-    background: transparent;
-    color: #06234c;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 13.3px;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-    white-space: normal;
-  }
-
-  .tabs > :nth-child(1),
-  .tabs > :nth-child(2),
-  .tabs > :nth-child(3) {
-    width: 107px;
-  }
-
-  /* El subrayado va en y=112, o sea 28px por debajo del tope de los tabs. */
-  .tabActive::after {
-    display: block;
-    top: 29px;
-    left: 0;
-    /* Acompaña al tab si se encoge. */
-    width: 100%;
-    height: 2px;
-    background: #06234c;
-  }
-
-  /* Los tabs cierran en y=114 y el mapa arranca en y=149; el mapa termina en
-     y=393 y el grupo de la card empieza en y=408. */
+  /* Del diseño mobile (5001:272): el mapa arranca 51px bajo el título y las
+     cards 62px bajo el mapa. */
   .technologyRow {
-    margin-top: 5px;
-    gap: 19px;
+    margin-top: 51px;
+    gap: 62px;
   }
 
-  /* A diferencia de hogar, acá el mapa no va a sangre: el diseño lo deja
-     dentro de la columna de 354. La proporción es la real de las imágenes
-     (1.4384); perimetral declaraba 735/527 y estiraba el plano un 3%. */
+  /* El mapa no va a sangre: el diseño lo deja dentro de la columna de 354. */
   .house,
-  .housePerimetral,
-  .houseInterior,
-  .houseConectividad {
-    width: calc(100% + 48px);
+  .housePerimetral {
+    width: 100%;
     max-width: none;
     height: auto;
-    aspect-ratio: 735 / 511;
-    margin-left: -24px;
-    margin-right: -24px;
+    aspect-ratio: 756 / 504;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .ellipse1,

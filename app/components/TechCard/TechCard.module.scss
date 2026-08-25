@@ -107,6 +107,12 @@
   transform-origin: center;
 }
 
+/* Variante mobile del arte (`art.mobileSrc`): fuera de mobile sólo se ve la
+   imagen de escritorio; en ≤600 se invierte. */
+.artImageMobile {
+  display: none;
+}
+
 .frame {
   position: relative;
   width: var(--tech-card-frame-width, 100%);
@@ -336,6 +342,14 @@
      para no afectar la card de escritorio (que no tiene este override). */
   .cardTall .frameBg {
     filter: var(--tech-card-mobile-frame-filter, var(--tech-card-frame-filter, none));
+  }
+
+  .artImageDesktop {
+    display: none;
+  }
+
+  .artImageMobile {
+    display: block;
   }
 
   .mobileShell {
