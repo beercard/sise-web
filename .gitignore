@@ -15,12 +15,3 @@ yarn-error.log
 .vercel
 tmp
 .tmp
-
-# Salidas de test y logs de depuracion
-test-results
-playwright-report
-debug.log
-
-# Capturas temporales de verificacion
-.tmp-*.png
-why-tech-mobile.png

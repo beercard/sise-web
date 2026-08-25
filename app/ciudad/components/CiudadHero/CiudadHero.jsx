@@ -30,7 +30,7 @@ export default function CiudadHero() {
           alt=""
           className={`${styles.image} ${styles.imageMobile}`}
           fill
-          priority
+          loading="eager"
           unoptimized
           sizes="100vw"
         />

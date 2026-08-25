@@ -32,7 +32,7 @@ export default function AgroHero() {
           alt=""
           className={`${styles.image} ${styles.imageMobile}`}
           fill
-          priority
+          loading="eager"
           unoptimized
           sizes="100vw"
         />

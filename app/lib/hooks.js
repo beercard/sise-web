@@ -74,7 +74,7 @@ export function useSlideTransition({ length = 0, animationMs = 420 } = {}) {
   };
 }
 
-export const mergeSections = (base, override) => {
+const mergeSections = (base, override) => {
   const next = { ...base };
   if (!override) return next;
   Object.keys(override).forEach((areaId) => {

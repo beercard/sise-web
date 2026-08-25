@@ -207,16 +207,16 @@ export default function SiteFooter() {
 
           <div className={styles.footerMobileBottom}>
             <div className={styles.footerMobileLegalColumn} aria-label="Links legales">
-              <Link className={`${styles.footerMobileSmallLink} ${styles.footerMobileArrepentimiento}`} href="/arrepentimiento">
+              <Link className={styles.footerMobileSmallLink} href="/arrepentimiento">
                 Arrepentimiento de Compra/Revocación
               </Link>
-              <Link className={`${styles.footerMobileSmallLink} ${styles.footerMobileBaja}`} href="/baja">
+              <Link className={styles.footerMobileSmallLink} href="/baja">
                 Solicitar Baja de Servicio
               </Link>
-              <Link className={`${styles.footerMobileSmallLink} ${styles.footerMobileCookies}`} href="/cookies">
+              <Link className={styles.footerMobileSmallLink} href="/cookies">
                 Gestión de Cookies
               </Link>
-              <Link className={`${styles.footerMobileSmallLink} ${styles.footerMobileLegales}`} href="/legales">
+              <Link className={styles.footerMobileSmallLink} href="/legales">
                 Legales
               </Link>
             </div>
@@ -276,19 +276,6 @@ export default function SiteFooter() {
               />
             </a>
             <a
-              href="mailto:info@siseargentina.com"
-              aria-label="Email info@siseargentina.com"
-              className={styles.footerMobileSocialLink}
-            >
-              <Image
-                src="/image/mpr027zq-sdf4kqo.svg"
-                alt=""
-                className={styles.footerMobileIconMail}
-                width={24}
-                height={18}
-              />
-            </a>
-            <a
               href="https://www.tiktok.com/@sise.argentina"
               target="_blank"
               rel="noreferrer"
@@ -316,6 +303,19 @@ export default function SiteFooter() {
                 className={styles.footerMobileIconYoutube}
                 width={24}
                 height={16}
+              />
+            </a>
+            <a
+              href="mailto:info@siseargentina.com"
+              aria-label="Email info@siseargentina.com"
+              className={styles.footerMobileSocialLink}
+            >
+              <Image
+                src="/image/mpr027zq-sdf4kqo.svg"
+                alt=""
+                className={styles.footerMobileIconMail}
+                width={24}
+                height={18}
               />
             </a>
           </div>

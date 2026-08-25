@@ -13,7 +13,7 @@ function getLocationFromPath(pathname) {
   return segment || 'home';
 }
 
-export function trackEvent(eventName, params = {}) {
+function trackEvent(eventName, params = {}) {
   if (!isAnalyticsReady()) return;
   const pagePath = typeof window !== 'undefined' ? window.location.pathname : undefined;
 

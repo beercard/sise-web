@@ -3,272 +3,6 @@
   background: var(--sise-white);
 }
 
-.hero {
-  width: 100%;
-  background: var(--sise-white);
-  --hero-group-width: 1187px;
-  --hero-pad-x: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-group-width)) / 2));
-  --hero-container-width: min(1920px, 100%);
-  --hero-content-left: calc((100% - var(--hero-container-width)) / 2 + var(--hero-pad-x));
-}
-
-.heroMedia {
-  position: relative;
-  width: 100%;
-  height: 800px;
-  overflow: hidden;
-  background: #00408c;
-}
-
-.heroImage {
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.9;
-}
-
-.heroGradient {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1108px;
-  height: 800px;
-  background-image: linear-gradient(90deg, #2177a5 0%, rgba(33, 119, 165, 0.5) 49.52%, rgba(255, 255, 255, 0) 100%);
-}
-
-.heroTitleGroup {
-  position: absolute;
-  left: var(--hero-content-left);
-  top: 360px;
-  width: 700px;
-}
-
-.heroLogo {
-  display: block;
-  width: 334px;
-  height: 60px;
-}
-
-.heroTitle {
-  margin: 20px 0 0;
-  width: 700px;
-  line-height: 52px;
-  letter-spacing: 0;
-  color: #ffffff;
-  font-size: 64px;
-}
-
-.heroTitleLight {
-  font-weight: 400;
-}
-
-.heroTitleStrong {
-  font-weight: 700;
-}
-
-.heroBottom {
-  width: 100%;
-  height: 471px;
-  background: #2177a5;
-}
-
-.heroBottomInner {
-  width: min(1920px, 100%);
-  margin: 0 auto;
-  padding: 77px var(--hero-pad-x) 98px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: clamp(24px, 3vw, 64px);
-  height: 100%;
-}
-
-.heroText {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.heroLead {
-  margin: 0;
-  width: 578px;
-  min-height: 59px;
-  line-height: 30px;
-  color: #ffffff;
-  font-size: 32px;
-}
-
-.heroLeadLight {
-  font-weight: 400;
-}
-
-.heroLeadStrong {
-  font-weight: 600;
-}
-
-.heroBody {
-  margin: 32px 0 0;
-  width: 524px;
-  min-height: 139px;
-  line-height: 20px;
-  color: #ffffff;
-  font-size: 20px;
-}
-
-.heroPunch {
-  margin: 38px 0 0;
-  width: 578px;
-  height: 28px;
-  line-height: 26px;
-  color: #ffffff;
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.heroCard {
-  margin-top: 37px;
-  width: 520px;
-  min-width: 520px;
-  height: 244px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.heroCardStage {
-  position: relative;
-  width: 460px;
-  height: 244px;
-  flex: 0 0 auto;
-  overflow: hidden;
-}
-
-.heroArrow {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.heroArrowLeft img {
-  display: block;
-  transform: rotate(90deg);
-}
-
-.heroArrowRight img {
-  display: block;
-  transform: rotate(-90deg);
-}
-
-.heroCardBox {
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  background: #d9d9d9;
-  padding-top: var(--hero-card-pad-top, 46px);
-  padding-right: var(--hero-card-pad-right, 54px);
-  padding-bottom: var(--hero-card-pad-bottom, 46px);
-  padding-left: var(--hero-card-pad-left, 54px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.heroCardEnterRight {
-  animation: heroCardEnterRight 420ms ease both;
-}
-
-.heroCardEnterLeft {
-  animation: heroCardEnterLeft 420ms ease both;
-}
-
-.heroCardExitLeft {
-  animation: heroCardExitLeft 420ms ease both;
-}
-
-.heroCardExitRight {
-  animation: heroCardExitRight 420ms ease both;
-}
-
-@keyframes heroCardEnterRight {
-  0% {
-    opacity: 0;
-    transform: translateX(18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes heroCardEnterLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes heroCardExitLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-}
-
-@keyframes heroCardExitRight {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(18px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroCardEnterRight,
-  .heroCardEnterLeft,
-  .heroCardExitLeft,
-  .heroCardExitRight {
-    animation: none;
-  }
-}
-
-.heroCardTitle {
-  margin: 0;
-  width: var(--hero-card-content-width, 334px);
-  text-align: center;
-  line-height: 32px;
-  color: #2177a5;
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.heroCardText {
-  margin: 14px 0 0;
-  width: var(--hero-card-content-width, 334px);
-  text-align: center;
-  line-height: 20px;
-  color: #2177a5;
-  font-size: 20px;
-}
-
 .technology {
   width: min(1920px, 100%);
   margin: 0 auto;
@@ -510,14 +244,6 @@
   gap: 12px;
 }
 
-.techEditorLabel {
-  margin: 0;
-  line-height: 16px;
-  color: #00408c;
-  font-size: 14px;
-  font-weight: 600;
-}
-
 .techEditorPick {
   border: 0;
   background: transparent;
@@ -575,12 +301,6 @@
   transform: rotate(-90deg);
 }
 
-.techArrowSpacer {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 auto;
-}
-
 .techCardViewport {
   /* La grilla del grupo ya reserva las columnas de las flechas; restarlas de
      nuevo achicaba la card de 442 a 364. */
@@ -608,148 +328,6 @@
   overflow: hidden;
 }
 
-.techCardTitle {
-  margin: 0;
-  width: var(--tech-card-title-width, 276px);
-  max-width: var(--tech-card-title-max-width, 276px);
-  height: var(--tech-card-title-height, auto);
-  min-height: var(--tech-card-title-min-height, 63px);
-  text-align: center;
-  line-height: 100%;
-  letter-spacing: 0;
-  color: #000000;
-  font-size: 32px;
-  font-weight: 600;
-  text-wrap: balance;
-}
-
-.techCardText {
-  margin: var(--tech-card-text-margin, 17px 0 0);
-  width: var(--tech-card-text-width, 276px);
-  max-width: var(--tech-card-text-max-width, 276px);
-  height: var(--tech-card-text-height, auto);
-  min-height: var(--tech-card-text-min-height, 59px);
-  text-align: center;
-  line-height: 100%;
-  letter-spacing: 0;
-  color: #000000;
-  font-size: 20px;
-  font-weight: 400;
-  text-wrap: pretty;
-}
-
-.techCardArtStage {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-items: var(--tech-card-art-stage-align-items, center);
-  justify-content: flex-start;
-  width: 100%;
-  /* Sin mínimos ni margen por defecto: la posición de cada ilustración la
-     define su propio `--tech-card-image-margin`, según el Figma. */
-  min-height: var(--tech-card-art-stage-min-height, 0);
-  margin-top: var(--tech-card-art-stage-margin-top, 0);
-}
-
-.techCardImage {
-  display: block;
-  margin: var(--tech-card-image-margin, 0 auto);
-  width: var(--tech-card-image-width, auto);
-  max-width: min(100%, var(--tech-card-image-max-width, 220px));
-  height: var(--tech-card-image-height, auto);
-  max-height: var(--tech-card-image-max-height, 170px);
-  object-fit: contain;
-}
-
-.techCardAbsoluteImage {
-  display: block;
-  position: relative;
-  width: auto;
-  max-width: min(100%, var(--tech-card-image-max-width, 205px));
-  height: auto;
-  max-height: var(--tech-card-image-max-height, 176px);
-  object-fit: contain;
-}
-
-.techCardOverlay {
-  position: relative;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.techCardOverlayText {
-  position: absolute;
-  margin: 0;
-  text-align: center;
-  line-height: 20px;
-  /* Igual que el resto de las cards: el diseño las pide en negro. */
-  color: #000000;
-  font-size: 20px;
-}
-
-.techCardOverlayImage {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.techCardSirenaFrame {
-  margin: auto;
-  margin-top: var(--tech-card-sirena-margin-top, auto);
-  padding: 123px 4px 2px 18px;
-  background-image: var(--sirena-bg);
-  background-position: -20px 2px;
-  background-size: 122% 100%;
-  background-repeat: no-repeat;
-  transform: translateY(var(--tech-card-sirena-shift-y, 0px));
-}
-
-.techCardSirenaSvg {
-  display: block;
-}
-
-/* Ilustración de la sirena exclusiva del diseño mobile: en desktop manda el
-   marco (.techCardSirenaFrame). El breakpoint de 600px invierte el par. */
-.techCardSirenaMobile {
-  display: none;
-}
-
-.techCardConnectivityWrap {
-  position: relative;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.techCardConnectivityText {
-  position: absolute;
-  margin: 0;
-  text-align: center;
-  line-height: 20px;
-  /* Igual que el resto de las cards: el diseño las pide en negro. */
-  color: #000000;
-  font-size: 20px;
-  z-index: 2;
-}
-
-.techCardConnectivityImage {
-  display: flex;
-  position: relative;
-  top: auto !important;
-  left: auto;
-  align-items: flex-start;
-  width: 183px;
-  height: 158px;
-  padding: 39px 39px 105px 43px;
-  z-index: 1;
-}
-
 /* La ilustración va en un pseudo-elemento para poder pasarla a escala de
    grises sin afectar a la barra, que conserva el azul institucional. */
 .techCardConnectivityImage::before {
@@ -763,14 +341,6 @@
   background-repeat: no-repeat;
   filter: grayscale(1);
   pointer-events: none;
-}
-
-.techCardConnectivityBar {
-  position: relative;
-  z-index: 1;
-  width: 101px;
-  height: 14px;
-  background: #00408c;
 }
 
 .techCardStatic {
@@ -867,96 +437,12 @@
     height: 720px;
   }
 
-  .heroImage {
-    object-position: 58% center;
-  }
-
-  .heroGradient {
-    width: 900px;
-    height: 720px;
-  }
-
-  .heroTitleGroup {
-    left: var(--hero-content-left);
-    top: 312px;
-    width: min(620px, calc(100% - (var(--hero-content-left) * 2)));
-  }
-
-  .heroTitle {
-    width: 100%;
-    font-size: 56px;
-    line-height: 48px;
-  }
-
-  .heroBottomInner {
-    padding-left: var(--hero-pad-x);
-    padding-right: var(--hero-pad-x);
-  }
-
   .technologyRow {
     padding-left: var(--tech-pad-x);
     padding-right: var(--tech-pad-x);
   }
 }
 @media (max-width: 1200px) {
-  .heroMedia {
-    height: 660px;
-  }
-
-  .heroImage {
-    object-position: 62% center;
-  }
-
-  .heroGradient {
-    width: 100%;
-    height: 660px;
-  }
-
-  .heroTitleGroup {
-    top: 286px;
-    width: min(560px, calc(100% - 64px));
-  }
-
-  .heroLogo {
-    width: 300px;
-    height: auto;
-  }
-
-  .heroTitle {
-    margin-top: 16px;
-    font-size: 50px;
-    line-height: 44px;
-  }
-
-  .heroBottom {
-    height: auto;
-  }
-
-  .heroBottomInner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-    padding-top: 48px;
-    padding-bottom: 56px;
-  }
-
-  .heroText {
-    align-items: flex-start;
-    width: min(760px, 100%);
-  }
-
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: left;
-  }
-
-  .heroCard {
-    margin-top: 0;
-    width: min(520px, 100%);
-  }
 
   .technologyRow {
     flex-direction: column;
@@ -983,21 +469,6 @@
 }
 
 @media (max-width: 1100px) and (min-width: 961px) {
-  .heroTitleGroup {
-    top: 276px;
-    width: min(520px, calc(100% - 64px));
-  }
-
-  .heroTitle {
-    font-size: 44px;
-    line-height: 40px;
-  }
-
-  .heroBottomInner {
-    gap: 24px;
-    padding-top: 42px;
-    padding-bottom: 48px;
-  }
 
   .technology {
     --tech-title-width: 720px;
@@ -1018,113 +489,6 @@
 }
 
 @media (max-width: 960px) {
-  .heroMedia {
-    height: 640px;
-  }
-
-  .heroGradient {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-      90deg,
-      rgba(33, 119, 165, 0.96) 0%,
-      rgba(33, 119, 165, 0.82) 36%,
-      rgba(33, 119, 165, 0.45) 68%,
-      rgba(33, 119, 165, 0.12) 100%
-    );
-  }
-
-  .heroImage {
-    object-position: 66% center;
-  }
-
-  .heroTitleGroup {
-    width: calc(100% - 32px);
-    left: 16px;
-    top: 320px;
-  }
-
-  .heroTitle {
-    width: 100%;
-    font-size: 44px;
-    line-height: 44px;
-  }
-
-  .heroLogo {
-    width: 280px;
-    height: auto;
-  }
-
-  .heroBottom {
-    height: auto;
-  }
-
-  .heroBottomInner {
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-    padding: 32px 16px 40px;
-  }
-
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: center;
-  }
-
-  .heroLead {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .heroBody {
-    margin-top: 20px;
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .heroPunch {
-    margin-top: 24px;
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .heroText {
-    align-items: center;
-  }
-
-  .heroCard {
-    margin-top: 0;
-    min-width: 0;
-    width: 100%;
-    max-width: 520px;
-  }
-
-  .heroCardStage {
-    width: min(460px, calc(100% - 60px));
-  }
-
-  .heroCardBox {
-    padding: 32px 24px !important;
-  }
-
-  .heroCardTitle,
-  .heroCardText {
-    width: 100%;
-  }
-
-  .heroCardTitle {
-    font-size: 26px;
-    line-height: 28px;
-  }
-
-  .heroCardText {
-    font-size: 16px;
-    line-height: 20px;
-  }
 
   .technologyTitle {
     width: 100%;
@@ -1179,37 +543,6 @@
     height: 396px;
     padding: 28px 24px !important;
   }
-
-  .techCardTitle {
-    width: 100% !important;
-    min-height: 0 !important;
-  }
-
-  .techCardText {
-    width: 100% !important;
-    min-height: 0 !important;
-  }
-
-  .techCardImage {
-    width: min(220px, 70vw);
-    height: auto;
-    margin-top: 0 !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    object-fit: contain;
-    max-height: 150px;
-  }
-
-  .techCardOverlayText,
-  .techCardConnectivityText {
-    font-size: 15px;
-    line-height: 18px;
-  }
-
-  .techCardOverlay,
-  .techCardConnectivityWrap {
-    max-width: 100%;
-  }
 }
 
 @media (max-width: 960px) and (min-width: 601px) {
@@ -1220,42 +553,6 @@
 }
 
 @media (max-width: 600px) {
-  .heroMedia {
-    height: 580px;
-  }
-
-  .heroTitleGroup {
-    top: 280px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-    line-height: 34px;
-  }
-
-  .heroGradient {
-    background-image: linear-gradient(
-      90deg,
-      rgba(33, 119, 165, 0.98) 0%,
-      rgba(33, 119, 165, 0.88) 42%,
-      rgba(33, 119, 165, 0.54) 74%,
-      rgba(33, 119, 165, 0.18) 100%
-    );
-  }
-
-  .heroImage {
-    object-position: 70% center;
-  }
-
-  .heroLead {
-    font-size: 22px;
-    line-height: 26px;
-  }
-
-  .heroPunch {
-    font-size: 22px;
-    line-height: 26px;
-  }
 
   /* ── Título, tabs y mapa en mobile (diseño de Figma) ───────────────────
      El frame mobile es de 402px: los tabs viven en la columna de 354 (de
@@ -1417,18 +714,6 @@
     text-align: center;
   }
 
-  .techCardArtStage {
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    /* En el sensor y en la conectividad el texto se dibuja dentro del arte, así
-       que no ocupa lugar en el flujo y la banda subía 65px. Esas dos slides
-       reponen ese espacio con `--tech-card-mobile-stage-margin-top`. */
-    margin-top: var(--tech-card-mobile-stage-margin-top, 6px);
-    min-height: 0;
-    height: 104px;
-  }
-
   /* Cada ilustración conserva su alto de diseño (`--tech-card-mobile-art-height`)
      y queda centrada en la banda de 104: de ahí salen los tops del diseño
      (104→140, 76→154, 93→146, 101→140). */
@@ -1447,19 +732,6 @@
      armado para la card de desktop) por una ilustración plana de 57×93. */
   .techCardSirenaFrame {
     display: none;
-  }
-
-  .techCardSirenaMobile {
-    display: block;
-    width: auto;
-    height: var(--tech-card-mobile-art-height, 93px);
-    /* El PNG exportado (783×1024) trae aire a los costados; el nodo de Figma lo
-       encuadra en 100/163 anclado abajo, que es lo que reproduce el recorte. */
-    aspect-ratio: 100 / 163;
-    max-width: 100%;
-    margin: var(--tech-card-mobile-art-offset, 0px) auto 0;
-    object-fit: cover;
-    object-position: bottom;
   }
 
   /* Las slides con arte "absolute" se posicionan con coordenadas inline
@@ -1489,13 +761,6 @@
     margin: var(--tech-card-mobile-art-offset, 0px) auto 0 !important;
   }
 
-  .techCardOverlayImage {
-    width: auto;
-    height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  }
-
   /* La conectividad es una ilustración compuesta (celular + barra azul) de
      183×172 en desktop. El diseño mobile la lleva a 123×106 con la barra en
      68×9, así que se aplica ese factor (0.671) al padding y a la barra. */
@@ -1503,18 +768,6 @@
     width: auto !important;
     height: var(--tech-card-mobile-art-height, 106px) !important;
     margin: var(--tech-card-mobile-art-offset, 0px) auto 0 !important;
-  }
-
-  .techCardConnectivityImage {
-    width: 123px;
-    height: 106px;
-    margin: 0 auto;
-    padding: 26px 26px 70px 29px;
-  }
-
-  .techCardConnectivityBar {
-    width: 68px !important;
-    height: 9px !important;
   }
 
   /* En la slide del sensor y en la de conectividad el texto de la card se
@@ -1530,68 +783,9 @@
   .techCardConnectivityWrap {
     position: static;
   }
-
-  .techCardOverlayText,
-  .techCardConnectivityText {
-    top: calc(78px + var(--tech-card-mobile-text-offset, 0px)) !important;
-    right: auto !important;
-    /* Centrado dentro de la card (201) para el ancho que fije cada slide. */
-    left: calc((201px - var(--tech-card-mobile-text-width, 160px)) / 2) !important;
-    width: var(--tech-card-mobile-text-width, 160px) !important;
-    margin: 0;
-    /* En desktop estos dos textos van en azul sobre la ilustración; el diseño
-       mobile los pide negros, igual que el texto del resto de las cards. */
-    color: #000000;
-    font-size: 14px;
-    line-height: 100%;
-    text-align: center;
-  }
 }
 
 @media (max-width: 480px) {
-  .heroMedia {
-    height: 520px;
-  }
-
-  .heroTitleGroup {
-    top: 240px;
-  }
-
-  .heroLogo {
-    width: 240px;
-  }
-
-  .heroTitle {
-    font-size: 32px;
-    line-height: 30px;
-  }
-
-  .heroImage {
-    object-position: 73% center;
-  }
-
-  .heroBottomInner {
-    padding: 28px 16px 36px;
-  }
-
-  .heroCardStage {
-    width: min(460px, calc(100% - 48px));
-  }
-
-  .heroArrow {
-    width: 24px;
-    height: 24px;
-  }
-
-  .heroCardTitle {
-    font-size: 24px;
-    line-height: 26px;
-  }
-
-  .heroCardText {
-    font-size: 15px;
-    line-height: 19px;
-  }
 
   /* La card ya quedó fijada al diseño mobile de Figma en el breakpoint de
      600px (grupo de 265 y flechas de 15x23), así que acá no se toca. */
@@ -1602,44 +796,6 @@
      breakpoint de 600px, junto con el del resto de las cards. */
 }
 @media (max-width: 1200px) and (min-width: 961px) {
-  .heroBottomInner {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: clamp(20px, 2.4vw, 32px);
-    padding-top: clamp(48px, 4vw, 68px);
-    padding-bottom: clamp(56px, 5vw, 89px);
-  }
-
-  .heroText {
-    flex: 1 1 auto;
-    min-width: 0;
-    width: min(520px, 100%);
-    align-items: flex-start;
-  }
-
-  .heroSectionTitle,
-  .heroDivider,
-  .heroLead,
-  .heroBody,
-  .heroPunch {
-    width: 100%;
-    height: auto;
-    text-align: left;
-  }
-
-  .heroCard,
-  .heroCarousel {
-    flex: 0 1 clamp(420px, 41vw, 520px);
-    width: min(clamp(420px, 41vw, 520px), 100%);
-    min-width: 0;
-    margin-top: 0;
-  }
-
-  .heroCardStage,
-  .heroCardViewport {
-    width: min(100%, 460px);
-  }
 
   .technology {
     --tech-group-width: min(1120px, calc(var(--sise-vw) - 48px));

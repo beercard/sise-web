@@ -11,13 +11,10 @@ export default function manifest() {
     theme_color: siteConfig.themeColor,
     lang: 'es-AR',
     icons: [
+      /* app/icon.png (512×512 real): declarar tamaños que no coinciden con el
+         archivo hace que Chrome descarte el ícono y la PWA no sea instalable. */
       {
-        src: siteConfig.icon,
-        sizes: '192x192',
-        type: 'image/png'
-      },
-      {
-        src: siteConfig.icon,
+        src: '/icon.png',
         sizes: '512x512',
         type: 'image/png'
       }

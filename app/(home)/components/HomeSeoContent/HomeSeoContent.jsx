@@ -15,9 +15,10 @@ export default function HomeSeoContent() {
           y monitoreo en todo el NEA
         </h2>
 
-        <h2 className={`${styles.title} ${styles.titleMobile}`}>
+        {/* Variante visual mobile: aria-hidden para no duplicar el h2. */}
+        <p className={`${styles.title} ${styles.titleMobile}`} aria-hidden="true">
           Seguridad electrónica y monitoreo en todo el NEA
-        </h2>
+        </p>
 
         <p className={`${styles.copy} ${styles.copyDesktop}`}>
           <span className={styles.textRegular}>Nacimos en </span>

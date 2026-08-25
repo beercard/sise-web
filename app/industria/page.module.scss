@@ -37,10 +37,6 @@
   font-weight: 500;
 }
 
-.technologyTitleDesktopPeriod {
-  display: inline;
-}
-
 .technologyRow {
   display: flex;
   align-items: flex-start;
@@ -183,12 +179,6 @@
   transform: rotate(-90deg);
 }
 
-.techArrowSpacer {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 auto;
-}
-
 .techCardViewport {
   width: min(442px, 100%);
   height: auto;
@@ -210,117 +200,6 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-}
-
-.techCardTitle {
-  margin: var(--tech-card-title-margin, 0);
-  width: var(--tech-card-title-width, 276px);
-  max-width: 100%;
-  height: var(--tech-card-title-height, auto);
-  min-height: var(--tech-card-title-min-height, 63px);
-  text-align: var(--tech-card-title-align, center);
-  line-height: 32px;
-  color: #00408c;
-  font-size: 32px;
-  font-weight: 600;
-  text-wrap: balance;
-}
-
-.techCardText {
-  margin: var(--tech-card-text-margin, 17px 0 0);
-  width: var(--tech-card-text-width, 276px);
-  max-width: 100%;
-  height: var(--tech-card-text-height, auto);
-  min-height: var(--tech-card-text-min-height, 59px);
-  text-align: var(--tech-card-text-align, center);
-  line-height: 22px;
-  color: #00408c;
-  font-size: 20px;
-  text-wrap: pretty;
-}
-
-.techCardImageWrap {
-  margin-top: var(--tech-card-image-margin-top, 22px);
-  margin-left: var(--tech-card-image-margin-left, auto);
-  margin-right: var(--tech-card-image-margin-right, auto);
-  width: min(var(--tech-card-image-width, 192px), 240px);
-  height: min(var(--tech-card-image-height, 117px), 200px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: var(--tech-card-image-align-self, center);
-}
-
-.techCardImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  transform: scale(var(--tech-card-image-scale, 0.92));
-  transform-origin: center;
-}
-
-.techCardAbsoluteImage {
-  position: absolute;
-}
-
-.techCardOverlay {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.techCardOverlayText {
-  position: absolute;
-  margin: 0;
-  text-align: center;
-  line-height: 20px;
-  color: #00408c;
-  font-size: 20px;
-}
-
-.techCardOverlayImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.techCardConnectivityWrap {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.techCardConnectivityText {
-  position: absolute;
-  margin: 0;
-  text-align: center;
-  line-height: 20px;
-  color: #00408c;
-  font-size: 20px;
-  z-index: 2;
-}
-
-.techCardConnectivityImage {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  align-items: flex-start;
-  width: 183px;
-  height: 158px;
-  background-image: var(--connectivity-bg);
-  background-position: 0px -1px;
-  background-size: 100% 151.77%;
-  background-repeat: no-repeat;
-  padding: 39px 39px 105px 43px;
-  z-index: 1;
-}
-
-.techCardConnectivityBar {
-  width: 101px;
-  height: 14px;
-  background: #00408c;
 }
 
 .techCardStatic {
@@ -585,48 +464,6 @@
     align-items: center !important;
   }
 
-  .techCardTitle,
-  .techCardText {
-    width: 100% !important;
-    height: auto;
-    text-align: center !important;
-  }
-
-  .techCardTitle {
-    margin: 0 !important;
-    min-height: 0 !important;
-    font-size: 32px;
-    line-height: 32px;
-  }
-
-  .techCardText {
-    margin: 12px 0 0 !important;
-    min-height: 0 !important;
-    font-size: 18px;
-    line-height: 22px;
-  }
-
-  .techCardImageWrap {
-    width: min(220px, 70vw) !important;
-    height: auto !important;
-    margin-top: 14px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  .techCardImage {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 150px;
-    transform: none;
-  }
-
-  .techCardOverlayText,
-  .techCardConnectivityText {
-    font-size: 15px;
-    line-height: 18px;
-  }
-
   .techEditor {
     width: calc(100% - 32px);
     margin-left: 16px;
@@ -649,35 +486,12 @@
     line-height: 32px;
   }
 
-  .techCardTitle {
-    font-size: 32px;
-    line-height: 32px;
-  }
-
-  .techCardText {
-    font-size: 18px;
-    line-height: 22px;
-  }
-
 }
 
 @media (max-width: 480px) {
   .technologyTitle {
     font-size: 28px;
     line-height: 30px;
-  }
-
-}
-
-@media (max-width: 360px) {
-  .techCardTitle {
-    font-size: 28px;
-    line-height: 28px;
-  }
-
-  .techCardText {
-    font-size: 16px;
-    line-height: 20px;
   }
 
 }

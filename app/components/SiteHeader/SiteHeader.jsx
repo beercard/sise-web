@@ -19,7 +19,7 @@ export default function SiteHeader() {
     () => [
       { href: '/hogar', label: 'HOGAR', className: styles.hogar },
       {
-        href: '/#empresas',
+        href: '/comercio',
         label: 'EMPRESAS',
         className: styles.empresas,
         submenu: [
@@ -28,7 +28,7 @@ export default function SiteHeader() {
         ]
       },
       {
-        href: '/#urbano',
+        href: '/edificios',
         label: 'URBANO',
         className: styles.urbano,
         submenu: [

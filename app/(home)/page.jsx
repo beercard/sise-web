@@ -1,5 +1,6 @@
 import CotizadorLazy from '../components/Cotizador/CotizadorLazy';
 import {
+  buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildItemListSchema,
   buildLocalAreas,
@@ -14,7 +15,7 @@ import WhyChooseSise from './components/WhyChooseSise/WhyChooseSise';
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Alarmas monitoreadas y seguridad electrónica 24/7 en el NEA';
+const PAGE_TITLE = 'Alarmas monitoreadas 24/7 en Chaco y el NEA';
 const PAGE_DESCRIPTION =
   'Alarmas monitoreadas, cámaras y control de accesos con monitoreo 24/7 para hogares, comercios, industrias, campo y ciudades en Chaco y el NEA.';
 
@@ -104,6 +105,9 @@ const homeStructuredData = {
       title: PAGE_TITLE,
       description: PAGE_DESCRIPTION
     }),
+    /* buildWebPageSchema referencia <url>#breadcrumb: sin este nodo el @id
+       queda colgando en el validador. */
+    buildBreadcrumbSchema({ path: '/', name: 'Inicio' }),
     buildServiceSchema({
       path: '/',
       name: 'Seguridad electrónica integral SISE Argentina',
@@ -128,6 +132,21 @@ const homeStructuredData = {
 export default function HomePage() {
   return (
     <div className={styles.page}>
+      {/* Precarga del hero LCP (React los iza al <head>; el head.jsx legado de
+          App Router ya no se emite desde Next 13.2). Cada media query evita
+          bajar la variante que no se muestra. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/image/hero-hogar-casa-desktop.webp"
+        media="(min-width: 961px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="/image/hero-hogar-casa-mobile.webp"
+        media="(max-width: 960px)"
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeStructuredData) }}

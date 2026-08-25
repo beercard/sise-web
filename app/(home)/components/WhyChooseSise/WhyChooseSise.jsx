@@ -301,9 +301,10 @@ export default function WhyChooseSise() {
             ))}
           </div>
 
-          <h3 className={`${styles.categoryHeading} ${styles.categoryHeadingMobile}`}>
+          {/* Variante visual mobile: aria-hidden para no duplicar el heading. */}
+          <p className={`${styles.categoryHeading} ${styles.categoryHeadingMobile}`} aria-hidden="true">
             Desarrollamos soluciones a medida
-          </h3>
+          </p>
 
           <div className={styles.mobileCategoryStack}>
             <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>

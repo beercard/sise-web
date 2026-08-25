@@ -31,7 +31,7 @@ export default function RseHero() {
           alt=""
           className={`${styles.image} ${styles.imageMobile}`}
           fill
-          priority
+          loading="eager"
           unoptimized
           sizes="100vw"
         />
@@ -40,13 +40,14 @@ export default function RseHero() {
           <h1 className={`${styles.title} ${styles.titleDesktop}`}>
             Responsabilidad Social Empresarial
           </h1>
-          <h1 className={`${styles.title} ${styles.titleMobile}`}>
+          {/* Variante visual mobile: aria-hidden para no duplicar el h1. */}
+          <p className={`${styles.title} ${styles.titleMobile}`} aria-hidden="true">
             Responsabilidad
             <br />
             Social
             <br />
             Empresarial
-          </h1>
+          </p>
 
           <p className={styles.paragraph}>
             En SISE Argentina entendemos que la seguridad también implica{' '}

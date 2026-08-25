@@ -14,7 +14,7 @@ import {
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Seguridad para edificios, consorcios y barrios privados';
+const PAGE_TITLE = 'Seguridad para edificios y consorcios';
 const PAGE_DESCRIPTION =
   'Seguridad para edificios, consorcios y barrios privados con control de accesos, guardia virtual, videovigilancia y monitoreo centralizado en Chaco y el NEA.';
 

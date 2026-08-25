@@ -135,8 +135,9 @@
   margin: 32px 0;
 }
 
-.prose .dataBox,
-.dataBox {
+/* Las páginas legales aplican className="dataBox" global (no vía el módulo),
+   así que la regla se expone con :global, acotada al prose del layout. */
+.prose :global(.dataBox) {
   margin: 24px 0;
   padding: 22px 26px;
   border-radius: 14px;

@@ -33,9 +33,8 @@ export const metadata = {
   authors: [{ name: 'Vektra Digital', url: 'https://vektra.digital' }],
   creator: 'Vektra Digital',
   publisher: siteConfig.legalName,
-  alternates: {
-    canonical: '/'
-  },
+  /* Sin canonical global: cada página declara el suyo vía buildPageMetadata;
+     un canonical acá haría que cualquier ruta que lo olvide herede el del home. */
   robots: defaultRobots,
   openGraph: {
     title: siteConfig.defaultTitle,

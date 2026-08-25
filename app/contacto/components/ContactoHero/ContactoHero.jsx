@@ -172,7 +172,7 @@ export default function ContactoHero() {
 
           <h2 className={styles.formTitle}>¿Preferís que te llamemos?</h2>
           <p className={styles.formIntro}>
-            <span className={styles.formIntroLead}>Dejanos tus datos y un asesor de</span>
+            <span className={styles.formIntroLead}>Dejanos tus datos y un asesor de{' '}</span>
             <span className={styles.formIntroDesktopWrap}>SISE se pondrá en contacto con vos a la brevedad para asesorarte.</span>
             <span className={styles.formIntroMobileLine}>SISE se pondrá en contacto con vos</span>
             <span className={styles.formIntroMobileLine}>a la brevedad para asesorarte.</span>

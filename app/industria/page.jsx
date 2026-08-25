@@ -14,7 +14,7 @@ import {
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Seguridad electrónica para industrias y empresas';
+const PAGE_TITLE = 'Seguridad para industrias y empresas';
 const PAGE_DESCRIPTION =
   'Seguridad electrónica para industrias y empresas con videovigilancia, control de accesos, alarmas, GPS corporativo y monitoreo 24/7 en Chaco y el NEA.';
 

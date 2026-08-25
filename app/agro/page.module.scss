@@ -37,10 +37,6 @@
   font-weight: 400;
 }
 
-.technologyTitleDesktopPeriod {
-  display: inline;
-}
-
 .technologyRow {
   /* Del diseño (5011:246): el mapa arranca 49px debajo del título. */
   margin-top: 49px;
@@ -178,12 +174,6 @@
   transform: rotate(-90deg);
 }
 
-.techArrowSpacer {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 auto;
-}
-
 .techCardViewport {
   width: min(442px, 100%);
   height: auto;
@@ -209,226 +199,6 @@
   inset: 0;
 }
 
-.techCardInner {
-  display: flex;
-  flex-direction: column;
-  align-items: var(--tech-card-align-items, center);
-}
-
-.techCardTitle {
-  margin: var(--tech-card-title-margin, 0);
-  width: var(--tech-card-title-width, 276px);
-  max-width: 100%;
-  height: var(--tech-card-title-height, 63px);
-  min-height: var(--tech-card-title-min-height, 0px);
-  text-align: var(--tech-card-title-align, center);
-  line-height: 32px;
-  color: #00408c;
-  font-size: 32px;
-  font-weight: 600;
-  text-wrap: balance;
-}
-
-.techCardText {
-  margin: var(--tech-card-text-margin, 17px 0 0);
-  width: var(--tech-card-text-width, 276px);
-  max-width: 100%;
-  height: auto;
-  min-height: var(--tech-card-text-min-height, 0px);
-  text-align: var(--tech-card-text-align, center);
-  line-height: 22px;
-  color: #00408c;
-  font-size: 20px;
-  text-wrap: pretty;
-}
-
-.techCardImageWrap {
-  margin-top: var(--tech-card-image-margin-top, 17px);
-  margin-left: var(--tech-card-image-margin-left, 0px);
-  margin-right: var(--tech-card-image-margin-right, 0px);
-  width: var(--tech-card-image-width, 192px);
-  height: var(--tech-card-image-height, 117px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: scale(var(--tech-card-image-scale, 1));
-  transform-origin: top center;
-}
-
-.techCardImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.techCardAbsoluteImage {
-  position: absolute;
-}
-
-.techCardGpsWrap {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.techCardGpsImage {
-  display: flex;
-  align-items: flex-start;
-  width: 221px;
-  height: 187px;
-  background-image: var(--gps-bg);
-  background-position: 0px -1px;
-  background-size: 100% 154.72%;
-  background-repeat: no-repeat;
-  padding: 47px 47px 123px 52px;
-}
-
-.techCardGpsBar {
-  background: #00408c;
-  width: 122px;
-  height: 17px;
-}
-
-.techCardOverlay {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.techCardOverlayText {
-  position: absolute;
-  margin: 0;
-  text-align: center;
-  line-height: 20px;
-  color: #00408c;
-  font-size: 20px;
-}
-
-.techCardOverlayImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.techCardConnectivityWrap {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.techCardConnectivityText {
-  position: absolute;
-  margin: 0;
-  text-align: center;
-  line-height: 20px;
-  color: #00408c;
-  font-size: 20px;
-  z-index: 2;
-}
-
-.techCardConnectivityImage {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  align-items: flex-start;
-  width: 183px;
-  height: 158px;
-  background-image: var(--connectivity-bg);
-  background-position: 0px -1px;
-  background-size: 100% 151.77%;
-  background-repeat: no-repeat;
-  padding: 39px 39px 105px 43px;
-  z-index: 1;
-}
-
-.techCardConnectivityBar {
-  background: #00408c;
-  width: 101px;
-  height: 14px;
-}
-
-.techCardSirena {
-  margin-top: var(--tech-card-sirena-margin-top, 14px);
-  margin-left: var(--sirena-margin-x, 93px);
-  margin-right: var(--sirena-margin-x, 93px);
-  padding-top: var(--sirena-pad-top, 123px);
-  padding-right: var(--sirena-pad-right, 4px);
-  padding-bottom: var(--sirena-pad-bottom, 2px);
-  padding-left: var(--sirena-pad-left, 18px);
-  background-image: var(--sirena-bg);
-  background-position: -21px -10px;
-  background-size: 138.38% 111.04%;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.techCardSirenaIcon {
-  display: block;
-}
-
-.techCardEnterRight {
-  animation: techCardEnterRight 420ms ease both;
-}
-
-.techCardEnterLeft {
-  animation: techCardEnterLeft 420ms ease both;
-}
-
-.techCardExitLeft {
-  animation: techCardExitLeft 420ms ease both;
-}
-
-.techCardExitRight {
-  animation: techCardExitRight 420ms ease both;
-}
-
-@keyframes techCardEnterRight {
-  0% {
-    opacity: 0;
-    transform: translateX(18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes techCardEnterLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes techCardExitLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-}
-
-@keyframes techCardExitRight {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(18px);
-  }
-}
-
 .techEditor {
   margin-top: 14px;
   border-radius: 14px;
@@ -447,58 +217,9 @@
   margin-top: 10px;
 }
 
-.techEditorButton {
-  border: 0;
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: #065558;
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.techEditorButtonSecondary {
-  border: 1px solid rgba(6, 85, 88, 0.35);
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: transparent;
-  color: #065558;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.techEditorHint {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: 13px;
-}
-
-.techEditorHintStrong {
-  color: #065558;
-  font-weight: 700;
-  font-size: 13px;
-}
-
 .cotizadorWrap {
   margin-top: 0;
   margin-bottom: 30px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .techCardEnterRight,
-  .techCardEnterLeft,
-  .techCardExitLeft,
-  .techCardExitRight {
-    animation: none;
-  }
-}
-
-/* ── Armonización con la referencia de /hogar (módulo de tecnología) ────
-   Va al final del archivo para ganar la cascada. */
-/* Carrusel alineado verticalmente como en hogar. */
-
-/* Modulo technology alineado a la geometria de /hogar (desktop). */
-.techHouseColumn {
-  flex: 0 0 auto;
 }
 
 .techCardGroup {
@@ -601,10 +322,6 @@
     padding: 0;
     font-size: clamp(22px, 5.85vw, 24px);
     line-height: 1.1;
-  }
-
-  .technologyTitleDesktopPeriod {
-    display: none;
   }
 
   /* Del diseño mobile (5011:247): el mapa arranca 54px bajo el título y las

@@ -32,7 +32,7 @@ export default function HistoriaHero() {
           alt=""
           className={`${styles.image} ${styles.imageMobile}`}
           fill
-          priority
+          loading="eager"
           unoptimized
           sizes="100vw"
         />
@@ -44,12 +44,13 @@ export default function HistoriaHero() {
             compromiso
             <br />y respaldo real
           </h1>
-          <h1 className={`${styles.title} ${styles.titleMobile}`}>
+          {/* Variante visual mobile: aria-hidden para no duplicar el h1. */}
+          <p className={`${styles.title} ${styles.titleMobile}`} aria-hidden="true">
             Tecnología,
             <br />
             compromiso
             <br />y respaldo real.
-          </h1>
+          </p>
 
           <p className={`${styles.subtitle} ${styles.subtitleDesktop}`}>
             En SISE Argentina contamos con{' '}

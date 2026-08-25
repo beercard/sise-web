@@ -42,7 +42,7 @@ const FONT_STACK =
    lo descartan Gmail, Outlook y Yahoo; y una URL remota depende de que el
    sitio responda y de que el cliente no bloquee imágenes externas (Outlook
    de escritorio las bloquea por defecto). Adjunto rinde en los dos casos. */
-export const EMAIL_LOGO_CID = 'sise-logo';
+const EMAIL_LOGO_CID = 'sise-logo';
 const LOGO_SRC = `cid:${EMAIL_LOGO_CID}`;
 const LOGO_FILE = 'email-logo-sise.png';
 

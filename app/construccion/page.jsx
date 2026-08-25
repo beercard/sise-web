@@ -14,7 +14,7 @@ import {
 
 import styles from './page.module.scss';
 
-const PAGE_TITLE = 'Seguridad para obras, construcción y desarrollos';
+const PAGE_TITLE = 'Seguridad para obras y construcción';
 const PAGE_DESCRIPTION =
   'Seguridad para obras y desarrollos: monitoreo 24/7, videovigilancia, control perimetral y registro de accesos para proteger materiales y equipos.';
 
