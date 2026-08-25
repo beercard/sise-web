@@ -134,11 +134,14 @@
   padding-bottom: 4px;
 }
 
-/* Vista previa lateral (353×463, tipografías al 78% del diseño). */
+/* Vista previa lateral (353×463, tipografías al 78% del diseño). Del diseño
+   (3498:457/449): la tarjeta entera va "en suspenso", al 50% de opacidad
+   sobre el blanco, a diferencia de las dos activas del centro. */
 .card-preview {
   width: 353px;
   height: 463px;
   border-radius: 39px;
+  opacity: 0.5;
 }
 
 .card-preview .photo {
