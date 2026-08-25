@@ -1,138 +1,93 @@
+import Link from 'next/link';
+
 import styles from './ComercioSolutionsModule.module.scss';
 
 /*
- * 19 bandas: es lo que pide el diseño mobile (nodo 5016:503), donde llenan
- * justo el área de las cards — 19 × 55px + 18 separaciones de 2px = 1081px.
- * En el resto de los breakpoints sólo se ven las tres primeras.
+ * Módulo de soluciones de /comercio según Figma 5001:275 (desktop 1920×1079)
+ * y 5001:276 (mobile 402×1574): fondo azul oscuro #06234c con el patrón de
+ * eses SISE al 4%, intro en dos columnas más una bajada a todo el ancho, y
+ * cinco tarjetas grises (fila de 3 + fila de 2 centrada) con botón "+ info".
  */
-const WATERMARK_ROWS = Array.from({ length: 19 }, (_, index) => index + 1);
-
-const comercioSolutions = [
+const SOLUTIONS = [
   {
     key: 'alarmas',
     title: ['MONITOREO', 'DE ALARMAS'],
-    mobileTitle: ['MONITOREO', 'DE ALARMAS'],
-    body: 'Respuesta inmediata ante emergencias en tu local.',
-    mobileBody: 'Respuesta inmediata ante emergencias en tu local.'
+    body: 'Protección 24/7 con respuesta inmediata ante emergencias en tus instalaciones.'
   },
   {
     key: 'cctv',
-    title: ['CCTV / VIDEOVIGILANCIA'],
-    mobileTitle: ['CCTV / VIDEOVIGILANCIA'],
-    body: 'Control visual continuo para auditar tu caja y salón.',
-    mobileBody: 'Control visual continuo para auditar tu caja y salón.'
+    title: ['CCTV /', 'VIDEOVIGILANCIA'],
+    body: 'Auditoría visual en tiempo real para el control total de la operatoria de tu negocio.'
   },
   {
-    key: 'humo',
+    key: 'cortina',
     title: ['CORTINA', 'DE HUMO'],
-    mobileTitle: ['CORTINA', 'DE HUMO'],
-    body: 'Niebla activa que frena robos en segundos.',
-    mobileBody: 'Niebla activa que frena robos en segundos.'
+    body: 'Sistema de niebla activa que neutraliza robos e intrusiones en cuestión de segundos.'
   },
   {
     key: 'acceso',
-    title: ['CONTROL DE ACCESO Y FICHAJE'],
-    mobileTitle: ['CONTROL DE', 'ACCESO Y FICHAJE'],
-    body: 'Gestión exacta de presentismo y horarios del personal.',
-    mobileBody: 'Gestión exacta de presentismo y horarios del personal.'
+    title: ['CONTROL DE', 'ACCESO Y FICHAJE'],
+    body: 'Gestión inteligente y exacta de presentismo, horarios y accesos del personal.'
   },
   {
-    key: 'rastreo',
-    title: ['RASTREO', 'SATELITAL'],
-    mobileTitle: ['RASTREO', 'SATELITAL'],
-    body: 'Seguimiento de vehículos de reparto en tiempo real.',
-    mobileBody: 'Seguimiento de vehículos de reparto en tiempo real.'
+    key: 'cerco',
+    title: ['CERCO ELÉCTRICO', 'CORPORATIVO'],
+    body: 'Seguridad perimetral de máxima disuasión y 100% legal para resguardar tu empresa.'
   }
 ];
+
+function TitleLines({ lines }) {
+  return lines.flatMap((line, index) => (index === 0 ? [line] : [<br key={`br-${index}`} />, line]));
+}
 
 export default function ComercioSolutionsModule() {
   return (
     <section className={styles.section} aria-label="Soluciones para comercios">
-      <div className={styles.canvas}>
-        <div className={styles.copyBlock}>
-          <div className={styles.intro}>
-            <div className={styles.copyMain}>
-              <div className={styles.desktopOnly}>
-                <p className={styles.lead}>
-                  <span className={styles.leadLight}>En los comercios, la seguridad impacta directamente en </span>
-                  <span className={styles.leadStrong}>el resultado del negocio</span>
-                  <span className={styles.leadLight}>.</span>
-                </p>
-              </div>
+      <div className={styles.watermark} aria-hidden="true" />
 
-              <div className={styles.mobileOnly}>
-                <p className={styles.mobileLead}>Blindamos tu inversión.</p>
-              </div>
-            </div>
+      <div className={styles.intro}>
+        <p className={styles.lead}>
+          <span className={styles.leadLight}>En los comercios, la seguridad impacta directamente en </span>
+          <span className={styles.leadStrong}>el resultado del negocio.</span>
+        </p>
 
-            <div className={styles.desktopOnly}>
-              <p className={styles.body}>
-                <span className={styles.bodyLight}>En SISE ofrecemos soluciones orientadas a </span>
-                <span className={styles.bodyStrong}>prevenir pérdidas</span>
-                <span className={styles.bodyLight}>, </span>
-                <span className={styles.bodyStrong}>reducir riesgos</span>
-                <span className={styles.bodyLight}> y </span>
-                <span className={styles.bodyStrong}>garantizar la continuidad operativa</span>
-                <span className={styles.bodyLight}>.</span>
-              </p>
-            </div>
+        <p className={styles.body}>
+          En SISE ofrecemos soluciones orientadas a <strong>prevenir pérdidas, reducir riesgos</strong> y{' '}
+          <strong>garantizar la continuidad operativa</strong>.
+        </p>
 
-            <div className={styles.mobileOnly}>
-              <p className={styles.mobileBody}>
-                Soluciones orientadas a prevenir pérdidas y garantizar la continuidad operativa de tu
-                comercio.
-                <br />
-                <br />
-                <strong className={styles.mobileBodyStrong}>
-                  Seguridad que protege tu rentabilidad.
-                </strong>
-              </p>
-            </div>
-          </div>
+        <p className={styles.punch}>
+          No se trata sólo de evitar robos,
+          <br />
+          sino de cuidar tu inversión todos los días.
+        </p>
 
-          <div className={styles.desktopOnly}>
-            <p className={styles.punch}>
-              No se trata sólo de evitar robos,
-              <br />
-              sino de cuidar tu inversión todos los días.
-            </p>
-          </div>
+        <div className={styles.introMobile}>
+          <p className={styles.mobilePunch}>Blindamos tu inversión.</p>
+          <p className={styles.mobileBody}>
+            Soluciones orientadas a prevenir pérdidas y garantizar la continuidad operativa de tu
+            comercio.
+            <br />
+            <br />
+            <strong>Seguridad que protege tu rentabilidad.</strong>
+          </p>
         </div>
+      </div>
 
-        <div className={styles.gridArea}>
-          <div className={styles.watermark} aria-hidden="true">
-            {WATERMARK_ROWS.map((row) => (
-              <div key={row} className={styles.watermarkRow} />
-            ))}
-          </div>
+      <h2 className={styles.heading}>Soluciones:</h2>
 
-          <h2 className={styles.heading}>Soluciones:</h2>
-
-          <div className={styles.grid}>
-            {comercioSolutions.map((solution) => (
-              <article key={solution.key} className={`${styles.cardGroup} ${styles[solution.key]}`}>
-                <div className={styles.card}>
-                  <h3 className={styles.cardTitle}>
-                    <span className={styles.desktopTitle}>
-                      {solution.title.map((line) => (
-                        <span key={`${solution.key}-desktop-${line}`}>{line}</span>
-                      ))}
-                    </span>
-                    <span className={styles.mobileTitle}>
-                      {solution.mobileTitle.map((line) => (
-                        <span key={`${solution.key}-mobile-${line}`}>{line}</span>
-                      ))}
-                    </span>
-                  </h3>
-                  <p className={styles.cardBody}>
-                    <span className={styles.desktopBodyText}>{solution.body}</span>
-                    <span className={styles.mobileBodyText}>{solution.mobileBody}</span>
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+      <div className={styles.grid}>
+        {SOLUTIONS.map((solution) => (
+          <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
+            <h3 className={styles.cardTitle}>
+              <TitleLines lines={solution.title} />
+            </h3>
+            <p className={styles.cardBody}>{solution.body}</p>
+            <Link href="/contacto" className={styles.cardButton}>
+              + info
+            </Link>
+          </article>
+        ))}
       </div>
     </section>
   );
