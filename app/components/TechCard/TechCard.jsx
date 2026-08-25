@@ -1,6 +1,19 @@
 import Image from 'next/image';
+import { Fragment } from 'react';
 
 import styles from './TechCard.module.scss';
+
+
+/* Renglones forzados: cada línea va en un Fragment con key para que React no
+   pida keys por los strings sueltos del array. */
+function renderLines(lines, prefix) {
+  return lines.map((line, index) => (
+    <Fragment key={`${prefix}-${index}`}>
+      {index > 0 ? <br /> : null}
+      {line}
+    </Fragment>
+  ));
+}
 
 function ArtContent({ art, fallbackAlt = '' }) {
   if (!art) return null;
@@ -159,16 +172,12 @@ export default function TechCard({ slide, className = '' }) {
       <p className={styles.title}>
         {slide.titleLines ? (
           /* Corte fijo en ambos breakpoints (p.ej. "Monitoreo" / "de Alarmas"). */
-          slide.titleLines.flatMap((line, index) =>
-            index === 0 ? [line] : [<br key={`title-br-${index}`} />, line]
-          )
+          renderLines(slide.titleLines, 'title')
         ) : slide.mobileTitleLines ? (
           <>
             <span className={styles.desktopText}>{slide.title}</span>
             <span className={`${styles.mobileText} ${styles.mobileFixedLines}`}>
-              {slide.mobileTitleLines.flatMap((line, index) =>
-                index === 0 ? [line] : [<br key={`title-br-${index}`} />, line]
-              )}
+              {renderLines(slide.mobileTitleLines, 'mtitle')}
             </span>
           </>
         ) : (
@@ -182,9 +191,7 @@ export default function TechCard({ slide, className = '' }) {
                (sin nowrap: cada renglón forzado puede seguir envolviendo). */
             <>
               <span className={styles.desktopText}>
-                {slide.desktopTextLines.flatMap((line, index) =>
-                  index === 0 ? [line] : [<br key={`dtext-br-${index}`} />, line]
-                )}
+                {renderLines(slide.desktopTextLines, 'dtext')}
               </span>
               <span className={styles.mobileText}>{slide.mobileText ?? slide.text}</span>
             </>
@@ -192,9 +199,7 @@ export default function TechCard({ slide, className = '' }) {
             <>
               <span className={styles.desktopText}>{slide.text}</span>
               <span className={`${styles.mobileText} ${styles.mobileFixedLines}`}>
-                {slide.mobileTextLines.flatMap((line, index) =>
-                  index === 0 ? [line] : [<br key={`text-br-${index}`} />, line]
-                )}
+                {renderLines(slide.mobileTextLines, 'mtext')}
               </span>
             </>
           ) : slide.mobileText ? (

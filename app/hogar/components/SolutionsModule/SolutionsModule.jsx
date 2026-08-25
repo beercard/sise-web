@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 import styles from './SolutionsModule.module.scss';
 
@@ -55,7 +56,12 @@ const SOLUTIONS = [
 ];
 
 function TitleLines({ lines }) {
-  return lines.flatMap((line, index) => (index === 0 ? [line] : [<br key={`br-${index}`} />, line]));
+  return lines.map((line, index) => (
+    <Fragment key={`line-${index}`}>
+      {index > 0 ? <br /> : null}
+      {line}
+    </Fragment>
+  ));
 }
 
 export default function SolutionsModule() {
