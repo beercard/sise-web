@@ -1,0 +1,164 @@
+/*
+ * Hero de /agro — Figma 5011:244 (desktop, 1920×900) y 5011:245 (mobile,
+ * 402×600). La foto va al 90% de opacidad sobre el azul #00408c, sin
+ * gradiente; "SISE AGRO" y el título (líneas de 51.2px) quedan abajo a la
+ * izquierda (kicker en y=637, título en y=705, sin bajada de categoría; el
+ * título termina a 93px del borde inferior en el marco de 900).
+ */
+.hero {
+  width: 100%;
+  background: #ffffff;
+  --hero-shell-width: 1187px;
+  --hero-shell-pad: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-shell-width)) / 2));
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  height: 900px;
+  overflow: hidden;
+  background: #00408c;
+  isolation: isolate;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.imageMobile {
+  display: none;
+}
+
+.content {
+  position: absolute;
+  left: var(--hero-shell-pad);
+  bottom: 93px;
+  width: min(700px, calc(100% - (var(--hero-shell-pad) * 2)));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+  z-index: 2;
+}
+
+/* "SISE AGRO" tipográfico (Arial Black + Arial Bold), como en el diseño. */
+.kicker {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 51px;
+  line-height: 0.8;
+  letter-spacing: -2.04px;
+}
+
+.kickerBlack {
+  font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.title {
+  margin: 27px 0 0;
+  width: 100%;
+  font-size: 64px;
+  line-height: 51.2px;
+  letter-spacing: 0;
+}
+
+.titleLight {
+  display: block;
+  font-weight: 400;
+}
+
+.titleStrong {
+  display: block;
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  .media {
+    height: 660px;
+  }
+
+  .content {
+    left: 32px;
+    bottom: 70px;
+    width: min(560px, calc(100% - 64px));
+  }
+
+  .kicker {
+    font-size: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .title {
+    margin-top: 20px;
+    font-size: 50px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 960px) {
+  .media {
+    height: 600px;
+  }
+
+  .content {
+    left: 24px;
+    bottom: 48px;
+    width: min(460px, calc(100% - 48px));
+  }
+
+  .kicker {
+    font-size: 32px;
+    letter-spacing: -1.3px;
+  }
+
+  .title {
+    margin-top: 16px;
+    font-size: 40px;
+    line-height: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .media {
+    height: 600px;
+  }
+
+  .imageDesktop {
+    display: none;
+  }
+
+  .imageMobile {
+    display: block;
+  }
+
+  .content {
+    left: 24px;
+    bottom: 45px;
+    width: min(354px, calc(100% - 48px));
+  }
+
+  .kicker {
+    font-size: 26px;
+    letter-spacing: -1.04px;
+  }
+
+  .title {
+    margin: 13px 0 0;
+    width: min(352px, 100%);
+    font-size: 32px;
+    line-height: 25.6px;
+  }
+
+  .titleLight {
+    display: inline;
+  }
+
+  .titleStrong {
+    display: inline;
+  }
+}

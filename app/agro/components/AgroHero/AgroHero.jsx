@@ -1,25 +1,51 @@
-'use client';
-
 import Image from 'next/image';
 
-import styles from '../../page.module.scss';
+import styles from './AgroHero.module.scss';
+
+/*
+ * Hero de /agro según Figma 5011:244 (desktop 1920×900) y 5011:245 (mobile
+ * 402×600): la foto del campo al 90% sobre el azul #00408c, sin gradiente,
+ * con "SISE AGRO" como texto y el título ("estés donde estés." en negrita)
+ * anclados abajo a la izquierda; esta vertical no lleva bajada de categoría.
+ * El mobile usa un recorte propio de la misma foto. Los webp ya están
+ * exportados al tamaño final, así que van sin el optimizador de Next
+ * (unoptimized).
+ */
+const HERO_IMAGE_DESKTOP = '/image/hero-agro-campo-desktop.webp';
+const HERO_IMAGE_MOBILE = '/image/hero-agro-campo-mobile.webp';
 
 export default function AgroHero() {
   return (
     <section className={styles.hero} aria-label="SISE Agro">
-      <div className={styles.heroMedia}>
-        <Image src="/image/mq1fh69q-uknmp86.webp" alt="Cámaras de seguridad y monitoreo rural en un campo" className={styles.heroImage} fill priority sizes="100vw" />
-        <div className={styles.heroGradient} aria-hidden="true" />
+      <div className={styles.media}>
+        <Image
+          src={HERO_IMAGE_DESKTOP}
+          alt="Campo protegido con seguridad SISE"
+          className={`${styles.image} ${styles.imageDesktop}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
+        <Image
+          src={HERO_IMAGE_MOBILE}
+          alt=""
+          className={`${styles.image} ${styles.imageMobile}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
 
-        <div className={styles.heroCopy}>
-          <Image src="/image/mq1fh69q-07xoj3d.png" alt="SISE Agro" className={styles.heroKicker} width={572} height={126} priority />
+        <div className={styles.content}>
+          <p className={styles.kicker}>
+            <span className={styles.kickerBlack}>SISE</span> AGRO
+          </p>
 
-          <h1 className={styles.heroTitle}>
-            <span className={styles.heroTitleLight}>Seguridad sin límites, </span>
-            <span className={styles.heroTitleStrong}>adaptada al campo.</span>
+          <h1 className={styles.title}>
+            <span className={styles.titleLight}>El control de tu campo, </span>
+            <span className={styles.titleStrong}>estés donde estés.</span>
           </h1>
-
-          <p className={styles.heroCategory}>SEGURIDAD RURAL</p>
         </div>
       </div>
     </section>

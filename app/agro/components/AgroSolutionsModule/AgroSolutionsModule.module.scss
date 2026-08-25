@@ -1,642 +1,241 @@
+/*
+ * Soluciones de /agro — Figma 5011:253 (desktop 1920×709) y 5011:254 (mobile
+ * 402×1248). Fondo verde agro #065558 con el patrón de eses al 4% desde y=251
+ * (desktop) / y=191 (mobile), una bajada única centrada de 995px y cuatro
+ * tarjetas de 211×261 (201×221 en mobile) en una sola fila.
+ */
 .section {
-  --solutions-total-height: 713px;
-  --solutions-grid-height: 458px;
-  --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-  --solutions-content-width: 1187px;
-  /* Figma 5014:469: las cards miden 234.5px con 124px de separación (no
-     212/154, que era lo que había antes) — el total sigue siendo 1310px,
-     por eso el resto del grid no necesitó ajustes. */
-  --solutions-card-width: 234.5px;
-  --solutions-card-height: 261px;
-  --solutions-grid-gap: 124px;
-  --solutions-grid-width: calc((var(--solutions-card-width) * 4) + (var(--solutions-grid-gap) * 3));
-  --solutions-title-width: 203px;
-  --solutions-card-title-top: 68px;
-  --solutions-card-title-min-height: 19px;
-  --solutions-card-title-font-size: 20px;
-  --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 124px;
-  --solutions-card-body-font-size: 20px;
-  --solutions-card-body-line-height: 20px;
-  --solutions-card-body-width: 180px;
   position: relative;
-  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
   background: #065558;
   color: #ffffff;
-  overflow: hidden;
+  padding: 99px 0 66px;
 }
 
-.canvas {
-  position: relative;
-  width: min(1920px, 100%);
-  height: var(--solutions-total-height);
-  margin: 0 auto;
-}
-
-.copyBlock {
+/* El mismo tile del patrón de eses que en /hogar (blanco al 4%). */
+.watermark {
   position: absolute;
-  z-index: 2;
-  top: 99px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: auto;
-  width: min(var(--solutions-content-width), calc(100% - 48px));
+  top: 251px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/image/patron-sise.svg');
+  background-size: 1993px 154.56px;
+  background-position: -37px 0;
 }
 
 .intro {
   position: relative;
-  display: block;
-}
-
-.copyMain {
-  width: 995px;
-  max-width: 100%;
-}
-
-.lead,
-.heading {
-  margin: 0;
+  z-index: 1;
+  width: min(1188px, calc(100% - 48px));
+  margin: 0 auto;
 }
 
 .lead {
-  width: 100%;
-  min-height: 59px;
-  line-height: 30.4px;
+  margin: 0 auto;
+  width: min(995px, 100%);
+  text-align: center;
   font-size: 32px;
-  font-weight: 400;
-  text-align: left;
-  letter-spacing: 0;
-  overflow-wrap: break-word;
-}
-
-.leadLine1 {
-  white-space: nowrap;
-}
-
-.leadBreak {
-  display: block;
-}
-
-.desktopOnly {
-  display: contents;
-}
-
-.mobileOnly {
-  display: none;
-}
-
-.mobileLead {
-  margin: 0;
-  width: 308px;
-  max-width: 100%;
-  text-align: center;
-  line-height: 19.36px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.mobileBody {
-  margin: 0;
-  width: 354px;
-  max-width: 100%;
-  text-align: center;
-  line-height: 19.8px;
-  font-size: 20px;
+  line-height: 0.95;
   font-weight: 400;
 }
 
-.mobileBodyStrong {
+.lead strong {
   font-weight: 700;
-}
-
-.desktopTitle {
-  display: contents;
-}
-
-.mobileTitle {
-  display: none;
-}
-
-.gridArea {
-  position: absolute;
-  top: var(--solutions-copy-height);
-  left: 0;
-  width: 100%;
-  height: var(--solutions-grid-height);
-}
-
-.watermark {
-  position: absolute;
-  inset: 0;
-  top: 0;
-  left: 50%;
-  width: 2059px;
-  transform: translateX(calc(-50% + 12.5px));
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.watermarkRow {
-  margin: 0;
-  height: 151px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  user-select: none;
-}
-
-.watermarkRow:first-child {
-  height: 152px;
-}
-
-.watermarkRow:nth-child(3n + 1) {
-  background-image: url('/image/solutions-band-1.png');
-}
-
-.watermarkRow:nth-child(3n + 2) {
-  background-image: url('/image/solutions-band-2.png');
-}
-
-.watermarkRow:nth-child(3n) {
-  background-image: url('/image/solutions-band-3.png');
-}
-
-.watermarkRow:nth-child(n + 4) {
-  display: none;
-}
-
-@media (min-width: 601px) and (max-width: 1200px) {
-  .watermarkRow {
-    flex-shrink: 0;
-  }
-
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
-  }
 }
 
 .heading {
-  position: absolute;
-  z-index: 2;
-  top: 51px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  width: min(var(--solutions-content-width), calc(100% - 48px));
-  min-height: 37px;
-  line-height: 46px;
+  position: relative;
+  z-index: 1;
+  margin: 145px 0 0;
+  text-align: center;
   font-size: 48px;
-  font-weight: 600;
-  text-align: left;
+  line-height: 0.95;
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
+/* Una sola fila de 4 tarjetas (1310px) centrada. */
 .grid {
   position: relative;
-  z-index: 2;
-  top: 119px;
-  left: calc((100% - var(--solutions-content-width)) / 2);
-  width: var(--solutions-grid-width);
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(4, var(--solutions-card-width));
-  gap: var(--solutions-grid-gap);
-}
-
-.cardGroup {
-  width: var(--solutions-card-width);
-  position: relative;
+  z-index: 1;
+  width: min(1320px, calc(100% - 48px));
+  margin: 32px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 155px;
+  row-gap: 40px;
 }
 
 .card {
-  width: var(--solutions-card-width);
-  height: var(--solutions-card-height);
   position: relative;
-  border-radius: 10px;
+  width: 211px;
+  height: 261px;
   background: #d9d9d9;
-}
-
-/* Anchos por card según Figma 5014:469 (cctv usa el ancho default 180px). */
-.cctv {
-  --solutions-card-body-width: 161px;
-}
-
-.camara {
-  --solutions-title-width: 195px;
-  --solutions-card-body-width: 195px;
-}
-
-.alarmas {
-  --solutions-title-width: 212px;
-  --solutions-card-body-width: 195px;
-}
-
-.gps {
-  --solutions-title-width: 211px;
-  /* Su título ocupa 3 renglones y necesita arrancar más arriba que el resto;
-     igual que el top de la sección, queda proporcional al alto real de la
-     card para no perder esa relación en los breakpoints intermedios. */
-  --solutions-card-title-top: calc(var(--solutions-card-height) * 0.2145);
-  --solutions-card-title-min-height: calc(var(--solutions-card-height) * 0.226);
-  --solutions-card-body-width: 173px;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
 }
 
 .cardTitle {
   position: absolute;
-  top: var(--solutions-card-title-top);
-  left: var(--solutions-card-title-left, 50%);
-  transform: var(--solutions-card-title-transform, translateX(-50%));
-  width: var(--solutions-title-width);
-  min-height: var(--solutions-card-title-min-height);
+  top: var(--title-top, 33px);
+  left: 0;
+  right: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: var(--solutions-card-title-line-height);
-  letter-spacing: var(--solutions-card-title-letter-spacing, 0.05em);
-  font-size: var(--solutions-card-title-font-size);
+  font-size: 20px;
+  line-height: 1;
   font-weight: 700;
-  text-align: center;
-  text-transform: var(--solutions-card-title-text-transform, uppercase);
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: #065558;
 }
 
 .cardBody {
   position: absolute;
-  top: var(--solutions-card-body-top);
-  left: var(--solutions-card-body-left, 50%);
-  transform: var(--solutions-card-body-transform, translateX(-50%));
+  top: var(--body-top);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--body-width);
   margin: 0;
-  width: var(--solutions-card-body-width);
-  line-height: var(--solutions-card-body-line-height);
-  font-size: var(--solutions-card-body-font-size);
+  font-size: 20px;
+  line-height: 1;
   font-weight: 400;
-  text-align: center;
-  color: #000000;
-  text-wrap: pretty;
 }
 
-
-
-
-
-
-
-@media (max-width: 1200px) {
-  .section {
-    --solutions-total-height: 752px;
-    --solutions-grid-height: 448px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-    --solutions-content-width: 1080px;
-    --solutions-card-width: clamp(184px, 16.28vw, 234.5px);
-    --solutions-card-height: clamp(238px, 18vw, 261px);
-    --solutions-grid-gap: clamp(90px, 8.61vw, 124px);
-    --solutions-grid-width: calc((var(--solutions-card-width) * 4) + (var(--solutions-grid-gap) * 3));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    /* Título y cuerpo escalan igual (20px en desktop real) y su "top" queda
-       proporcional al alto de la card, para que a 1440px coincidan con los
-       68px/124px de escritorio en vez de saltar a otro valor en el borde. */
-    --solutions-card-title-top: calc(var(--solutions-card-height) * 0.2605);
-    --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
-    --solutions-card-title-font-size: clamp(16px, 1.39vw, 20px);
-    --solutions-card-title-line-height: clamp(16px, 1.39vw, 20px);
-    --solutions-card-body-top: calc(var(--solutions-card-height) * 0.4751);
-    --solutions-card-body-font-size: clamp(16px, 1.39vw, 20px);
-    --solutions-card-body-line-height: clamp(16px, 1.39vw, 20px);
-    --solutions-card-body-width: clamp(156px, 12vw, 180px);
-  }
-
-  .copyMain {
-    width: 100%;
-  }
-
-  .lead {
-    width: 100%;
-    min-height: 0;
-    font-size: clamp(26px, 2.1vw, 32px);
-    line-height: clamp(26px, 2vw, 30px);
-  }
-
-  .heading {
-    top: 47px;
-    font-size: clamp(40px, 3.2vw, 48px);
-    line-height: clamp(40px, 3.2vw, 46px);
-  }
-
-  .gridArea {
-    top: var(--solutions-copy-height);
-    height: var(--solutions-grid-height);
-  }
-
-  .watermarkRow {
-    height: clamp(124px, 10.5vw, 151px);
-  }
+.cardButton {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 40px;
+  background: #065558;
+  border: 2px solid #0f6f74;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
 }
-@media (max-width: 1200px) {
-  .canvas {
-    height: auto;
-    padding-bottom: 64px;
-  }
 
-  .copyBlock {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    height: auto;
-    width: calc(100% - 80px);
-    margin: 0 auto;
-  }
+/* Posiciones internas por tarjeta (desktop / mobile), tomadas del diseño. */
+.cctv {
+  --title-top: 45px;
+  --body-top: 94px;
+  --body-width: 204px;
+  --m-title-top: 29px;
+  --m-body-top: 70px;
+  --m-body-width: 172px;
+}
 
-  .intro {
-    position: relative;
-  }
+.camara {
+  --title-top: 45px;
+  --body-top: 82px;
+  --body-width: 212px;
+  --m-title-top: 30px;
+  --m-body-top: 65px;
+  --m-body-width: 189px;
+}
 
-  .copyMain {
-    width: 100%;
-  }
+.alarmas {
+  --title-top: 33px;
+  --body-top: 94px;
+  --body-width: 205px;
+  --m-title-top: 30px;
+  --m-body-top: 84px;
+  --m-body-width: 200px;
+}
 
-  .lead {
-    text-align: center;
-  }
+.gps {
+  --title-top: 33px;
+  --body-top: 87px;
+  --body-width: 199px;
+  --m-title-top: 23px;
+  --m-body-top: 69px;
+  --m-body-width: 186px;
+}
 
-  .leadLine1 {
-    white-space: normal;
-  }
-
-  .leadBreak {
-    display: none;
-  }
-
-  .gridArea {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
-    margin-top: 38px;
-  }
-
-  .heading {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto 32px;
-    min-height: 0;
-    text-align: center;
-  }
-
+@media (max-width: 1360px) {
   .grid {
-    top: auto;
-    left: auto;
-    width: calc(100% - 80px);
-    grid-template-columns: repeat(2, var(--solutions-card-width));
-    justify-content: center;
-    gap: var(--solutions-grid-gap);
-  }
-
-  .watermark {
-    top: 22px;
+    column-gap: clamp(40px, 8vw, 155px);
   }
 }
 
 @media (max-width: 960px) {
-  .section {
-    --solutions-grid-gap: 24px;
-  }
-
-  .copyBlock {
-    height: auto;
-    width: calc(100% - 32px);
-  }
-
-  .lead {
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
+  .grid {
+    width: min(560px, calc(100% - 48px));
+    column-gap: 60px;
   }
 
   .heading {
-    width: calc(100% - 32px);
-    margin-bottom: 24px;
-    font-size: 36px;
-    line-height: 38px;
-    text-align: center;
-  }
-
-  .gridArea {
-    margin-top: 24px;
-  }
-
-  .grid {
-    width: calc(100% - 32px);
-    grid-template-columns: repeat(2, minmax(0, var(--solutions-card-width)));
-    gap: 24px;
-  }
-
-  .watermark {
-    top: 18px;
-    width: 1300px;
-    transform: translateX(-50%);
-  }
-
-  .watermarkRow {
-    height: 96px;
+    margin-top: 72px;
   }
 }
 
 @media (max-width: 600px) {
   .section {
-    min-height: 1101px;
-    --solutions-card-width: 201px;
-    --solutions-title-width: 203px;
-    --solutions-card-title-top: 35px;
-    --solutions-card-title-min-height: 14px;
-    --solutions-card-title-font-size: 20px;
-    --solutions-card-title-line-height: 20px;
-    --solutions-card-body-top: 59px;
-    --solutions-card-body-font-size: 18px;
-    --solutions-card-body-line-height: 18px;
-    --solutions-card-body-width: 152px;
-  }
-
-  .canvas {
-    width: 752px;
-    max-width: none;
-    height: 1101px;
-    left: 50%;
-    transform: translateX(calc(-50% - 8px));
-    overflow: hidden;
-  }
-
-  .copyBlock {
-    position: absolute;
-    top: 52px;
-    left: 207px;
-    width: 354px;
-    height: 179px;
-    margin: 0;
-  }
-
-  .intro {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .copyMain {
-    width: 100%;
-    height: 100%;
-  }
-
-  .desktopOnly {
-    display: none;
-  }
-
-  .mobileOnly {
-    display: block;
-  }
-
-  .mobileLead {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .mobileBody {
-    position: absolute;
-    top: 67px;
-    left: 0;
-  }
-
-  .desktopTitle {
-    display: none;
-  }
-
-  .mobileTitle {
-    display: contents;
-  }
-
-  .desktopBodyText {
-    display: none;
-  }
-
-  .mobileBodyText {
-    display: inline;
-  }
-
-  .gridArea {
-    position: absolute;
-    top: 248px;
-    left: 0;
-    width: 752px;
-    height: 853px;
-    margin-top: 0;
+    padding: 62px 0 50px;
   }
 
   .watermark {
-    top: 0;
-    left: 0;
-    width: 752px;
-    height: 100%;
-    transform: none;
-    gap: 2px;
-    opacity: 0.5;
+    top: 191px;
+    background-size: 684.5px 53.08px;
+    background-position: -141px 0;
   }
 
-  .watermarkRow,
-  .watermarkRow:first-child {
-    height: 55px;
+  .intro {
+    width: calc(100% - 48px);
   }
 
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
+  .lead {
+    width: min(308px, 100%);
+    font-size: 18px;
+    line-height: 1.1;
   }
 
   .heading {
-    position: absolute;
-    top: 26px;
-    left: 184px;
-    width: 399px;
-    transform: none;
-    margin: 0;
+    margin-top: 70px;
     font-size: 24px;
-    line-height: 22.8px;
-    text-align: center;
+    line-height: 0.95;
   }
 
   .grid {
-    position: absolute;
-    top: 72px;
-    left: 284px;
-    width: var(--solutions-card-width);
-    height: auto;
-    margin: 0;
-    transform: none;
-    display: flex;
+    width: 100%;
+    margin-top: 20px;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-  }
-
-  .cardGroup {
-    position: relative;
-    width: 201px;
-    margin: 0;
+    row-gap: 20px;
   }
 
   .card {
     width: 201px;
-    height: 164px;
-    border-radius: 22px;
+    height: 221px;
+  }
+
+  .cardTitle {
+    top: var(--m-title-top);
   }
 
   .cardBody {
-    min-height: 0;
+    top: var(--m-body-top);
+    width: var(--m-body-width);
+    font-size: 18px;
   }
 
-  /* CCTV rural (Figma 5011:468): la caja de texto mide 152, no 161; con 161
-     entra "tranqueras, galpones" en un renglón y el corte deja de coincidir
-     con el diseño ("tranqueras," / "galpones y lotes."). */
-  .cctv {
-    --solutions-card-body-width: 152px;
-  }
-
-  .camara {
-    --solutions-card-title-top: 37px;
-    --solutions-card-body-top: 61px;
-    --solutions-card-body-width: 181px;
-  }
-
-  .alarmas {
-    --solutions-title-width: 178px;
-    --solutions-card-title-top: 34px;
-    --solutions-card-title-min-height: 39px;
-    --solutions-card-body-top: 78px;
-    --solutions-card-body-width: 184px;
-  }
-
-  .gps {
-    --solutions-title-width: 197px;
-    --solutions-card-title-left: 2px;
-    --solutions-card-title-transform: none;
-    --solutions-card-title-top: 26px;
-    --solutions-card-title-min-height: 59px;
-    --solutions-card-title-font-size: 20px;
-    --solutions-card-title-line-height: 20px;
-    --solutions-card-title-letter-spacing: 1px;
-    --solutions-card-title-text-transform: uppercase;
-    --solutions-card-body-top: 90px;
-    --solutions-card-body-left: 50%;
-    --solutions-card-body-transform: translateX(-50%);
-    --solutions-card-body-width: 178px;
-    --solutions-card-body-font-size: 17px;
-    --solutions-card-body-line-height: 17px;
+  .cardButton {
+    bottom: 22px;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 20px;
   }
 }
