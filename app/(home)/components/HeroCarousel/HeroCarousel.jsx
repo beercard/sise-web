@@ -4,13 +4,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from './HeroCarousel.module.scss';
 
+/*
+ * Cada slide usa las mismas fotos que el hero de su página de negocio, ya
+ * exportadas al tamaño final (desktop 1920, mobile 804 @2x), así que van
+ * directo sin el optimizador de Next (que en dev se cuelga con estos webp).
+ * Ciudad conserva sus fotos viejas hasta que llegue su rediseño.
+ */
 const HERO_SLIDES = [
-  { id: 'hogar', desktopImage: '/image/hero-hogar-desktop.webp', mobileImage: '/image/home-hero-mobile.webp' },
-  { id: 'comercio', desktopImage: '/image/mpvuunzj-eolvy7n.webp', mobileImage: '/image/hero-comercio-mobile.webp' },
-  { id: 'industria', desktopImage: '/image/hero-industria-desktop.webp', mobileImage: '/image/hero-industria-mobile.webp' },
-  { id: 'edificios', desktopImage: '/image/hero-edificios-desktop.webp', mobileImage: '/image/hero-edificios-mobile.webp' },
-  { id: 'construccion', desktopImage: '/image/mq11fkmb-be8tqg4.webp', mobileImage: '/image/hero-construccion-mobile.webp' },
-  { id: 'agro', desktopImage: '/image/mq1fh69q-uknmp86.webp', mobileImage: '/image/hero-agro-mobile.webp' },
+  { id: 'hogar', desktopImage: '/image/hero-hogar-casa-desktop.webp', mobileImage: '/image/hero-hogar-casa-mobile.webp' },
+  { id: 'comercio', desktopImage: '/image/hero-comercio-local-desktop.webp', mobileImage: '/image/hero-comercio-local-mobile.webp' },
+  { id: 'industria', desktopImage: '/image/hero-industria-planta-desktop.webp', mobileImage: '/image/hero-industria-planta-mobile.webp' },
+  { id: 'edificios', desktopImage: '/image/hero-edificios-torre-desktop.webp', mobileImage: '/image/hero-edificios-torre-mobile.webp' },
+  { id: 'construccion', desktopImage: '/image/hero-construccion-obra-desktop.webp', mobileImage: '/image/hero-construccion-obra-mobile.webp' },
+  { id: 'agro', desktopImage: '/image/hero-agro-campo-desktop.webp', mobileImage: '/image/hero-agro-campo-mobile.webp' },
   { id: 'ciudad', desktopImage: '/image/mq1jm0cy-0248t30.webp', mobileImage: '/image/hero-ciudad-mobile.webp' }
 ].map((slide) => ({
   ...slide,
@@ -22,16 +28,6 @@ const HERO_SLIDES = [
 
 const AUTOPLAY_DELAY = 5000;
 const TRANSITION_MS = 720;
-
-const IMAGE_OPTIMIZER_QUALITY = 75;
-
-const buildOptimizedImageUrl = (src, width) => {
-  const url = encodeURIComponent(src);
-  return `/_next/image?url=${url}&w=${width}&q=${IMAGE_OPTIMIZER_QUALITY}`;
-};
-
-const buildSrcSet = (src, widths) =>
-  widths.map((width) => `${buildOptimizedImageUrl(src, width)} ${width}w`).join(', ');
 
 export default function HeroCarousel() {
   const slides = useMemo(() => HERO_SLIDES, []);
@@ -105,11 +101,11 @@ export default function HeroCarousel() {
     const preload = () => {
       const desktopPreload = new Image();
       desktopPreload.decoding = 'async';
-      desktopPreload.src = buildOptimizedImageUrl(nextSlide.desktopImage, 1200);
+      desktopPreload.src = nextSlide.desktopImage;
 
       const mobilePreload = new Image();
       mobilePreload.decoding = 'async';
-      mobilePreload.src = buildOptimizedImageUrl(nextSlide.mobileImage, 828);
+      mobilePreload.src = nextSlide.mobileImage;
     };
 
     if (typeof window === 'undefined') return undefined;
@@ -151,16 +147,10 @@ export default function HeroCarousel() {
             >
               {shouldRenderMedia ? (
                 <picture className={styles.heroMedia}>
-                  <source
-                    srcSet={buildSrcSet(slide.mobileImage, [384, 640, 828])}
-                    sizes="(max-width: 600px) 412px, (max-width: 960px) 720px, 952px"
-                    media="(max-width: 960px)"
-                  />
+                  <source srcSet={slide.mobileImage} media="(max-width: 960px)" />
                   <img
                     className={styles.heroImage}
-                    src={buildOptimizedImageUrl(slide.desktopImage, 1200)}
-                    srcSet={buildSrcSet(slide.desktopImage, [960, 1080, 1200, 1920])}
-                    sizes="(min-width: 961px) 952px, 100vw"
+                    src={slide.desktopImage}
                     alt=""
                     decoding="async"
                     loading={isPriority ? 'eager' : 'lazy'}
@@ -170,8 +160,6 @@ export default function HeroCarousel() {
               ) : (
                 <div className={styles.heroMedia} aria-hidden="true" />
               )}
-              <div className={styles.heroGradient} aria-hidden="true" />
-
               <div className={styles.heroContent}>
                 <TitleTag className={styles.heroTitle}>
                   <span className={styles.heroTitleLine}>

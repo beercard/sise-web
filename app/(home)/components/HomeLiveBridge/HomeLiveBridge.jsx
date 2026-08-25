@@ -43,9 +43,10 @@ const YOUTUBE_EMBED_URL = PINNED_VIDEO_ID
   : `https://www.youtube-nocookie.com/embed/live_stream?channel=${CHANNEL_ID}&${PLAYER_PARAMS}`;
 
 /* En modo canal no hay id del que derivar la miniatura, así que la portada es
-   un archivo propio (un cuadro del vivo). Sirve para los dos modos y además
-   evita pegarle a i.ytimg.com antes de que el visitante toque play. */
-const POSTER_SRC = '/image/live-puente-poster.webp';
+   un archivo propio (el cuadro del vivo del diseño, Figma 3182:607/653 — la
+   misma captura sirve para desktop y mobile). Además evita pegarle a
+   i.ytimg.com antes de que el visitante toque play. */
+const POSTER_SRC = '/image/live-puente-captura.webp';
 
 export default function HomeLiveBridge() {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -80,7 +81,8 @@ export default function HomeLiveBridge() {
                 src={POSTER_SRC}
                 alt=""
                 fill
-                sizes="(max-width: 600px) 354px, (max-width: 960px) 720px, 802px"
+                unoptimized
+                sizes="100vw"
               />
               <span className={styles.posterOverlay} aria-hidden="true" />
               <span className={styles.playIcon} aria-hidden="true">

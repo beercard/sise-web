@@ -290,28 +290,6 @@ export default function WhyChooseSise() {
             </Link>
           </div>
 
-          <div className={styles.categoriesMobile}>
-            <Link className={styles.categoryCardHogarMobile} href={categoryLinks.hogar}>
-              <Image src="/image/sise-marca-hogar.webp" alt="SISE Hogar" fill sizes="256px" className={styles.categoryFullImage} />
-            </Link>
-
-            <Link className={styles.categoryCardEmpresasMobile} href={categoryLinks.empresas}>
-              <Image src="/image/sise-marca-empresas.webp" alt="SISE Empresas" fill sizes="256px" className={styles.categoryFullImage} />
-            </Link>
-
-            <Link className={styles.categoryCardUrbanoMobile} href={categoryLinks.urbano}>
-              <Image src="/image/sise-marca-urbano.webp" alt="SISE Urbano" fill sizes="256px" className={styles.categoryFullImage} />
-            </Link>
-
-            <Link className={styles.categoryCardAgroMobile} href={categoryLinks.agro}>
-              <Image src="/image/sise-marca-agro.webp" alt="SISE Agro" fill sizes="256px" className={styles.categoryFullImage} />
-            </Link>
-
-            <Link className={styles.categoryCardCiudadMobile} href={categoryLinks.ciudad}>
-              <Image src="/image/sise-marca-ciudad.webp" alt="SISE Ciudad" fill sizes="256px" className={styles.categoryFullImage} />
-            </Link>
-          </div>
-
           <div className={styles.categoriesMobileColumn}>
           <div className={styles.mobilePattern} aria-hidden="true">
             {Array.from({ length: 24 }).map((_, index) => (
