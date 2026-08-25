@@ -10,13 +10,15 @@ export default function SiteFooter() {
         <div className={styles.footerDesktopGroup} aria-label="Footer desktop">
           <div className={styles.footerTopRow}>
             <div className={styles.footerLeft}>
-              <Image
-                src="/image/mpr027zv-1hix4r9.png"
-                alt="Grupo SISE"
-                className={styles.footerLogo}
-                width={185}
-                height={50}
-              />
+              <Link href="/" aria-label="Ir al inicio">
+                <Image
+                  src="/image/mpr027zv-1hix4r9.png"
+                  alt="Grupo SISE"
+                  className={styles.footerLogo}
+                  width={185}
+                  height={50}
+                />
+              </Link>
               <p className={styles.footerText}>
                 GRUPO SISE S.A.
                 <br />
@@ -174,13 +176,15 @@ export default function SiteFooter() {
         </div>
 
         <div className={styles.footerMobileGroup} aria-label="Footer mobile">
-          <Image
-            src="/image/mpr027zv-1hix4r9.png"
-            alt="Grupo SISE"
-            className={styles.footerMobileLogo}
-            width={185}
-            height={50}
-          />
+          <Link href="/" aria-label="Ir al inicio" className={styles.footerMobileLogoLink}>
+            <Image
+              src="/image/mpr027zv-1hix4r9.png"
+              alt="Grupo SISE"
+              className={styles.footerMobileLogo}
+              width={185}
+              height={50}
+            />
+          </Link>
 
           <p className={styles.footerMobileText}>
             GRUPO SISE S.A.
@@ -272,21 +276,6 @@ export default function SiteFooter() {
               />
             </a>
             <a
-              href="https://www.youtube.com/@SISEArgentina"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="YouTube SISE Argentina"
-              className={styles.footerMobileSocialLink}
-            >
-              <Image
-                src="/image/mpr027zq-tjycpem.svg"
-                alt=""
-                className={styles.footerMobileIconYoutube}
-                width={24}
-                height={16}
-              />
-            </a>
-            <a
               href="mailto:info@siseargentina.com"
               aria-label="Email info@siseargentina.com"
               className={styles.footerMobileSocialLink}
@@ -312,6 +301,21 @@ export default function SiteFooter() {
                 className={styles.footerMobileIconTiktok}
                 width={18}
                 height={22}
+              />
+            </a>
+            <a
+              href="https://www.youtube.com/@SISEArgentina"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube SISE Argentina"
+              className={styles.footerMobileSocialLink}
+            >
+              <Image
+                src="/image/mpr027zq-tjycpem.svg"
+                alt=""
+                className={styles.footerMobileIconYoutube}
+                width={24}
+                height={16}
               />
             </a>
           </div>

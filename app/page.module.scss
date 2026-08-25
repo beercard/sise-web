@@ -936,11 +936,17 @@
     overflow: hidden;
   }
 
-  .footerMobileLogo {
-    display: block;
+  /* Del diseño mobile (5015:460): el logo va a 16px del borde y linkea al
+     inicio. */
+  .footerMobileLogoLink {
     position: absolute;
     top: 49px;
-    left: 24px;
+    left: 16px;
+    display: block;
+  }
+
+  .footerMobileLogo {
+    display: block;
     width: 185px;
     height: 50px;
   }
