@@ -3,21 +3,19 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import styles from '../../page.module.scss';
+import styles from './HistoriaRecognition.module.scss';
 
+/*
+ * Reconocimientos de /historia según Figma 5011:265 (desktop) y 5011:266
+ * (mobile): título de 48px, relato en 24px con negritas, y a la derecha un
+ * marco gris con el carrusel de fotos (la primera es la placa de los Premios
+ * CASEL) y sus tres puntos. En mobile el relato se parte en dos bloques con
+ * la foto en el medio.
+ */
 const slides = [
-  {
-    src: '/image/historia-carousel-1.webp',
-    alt: 'Reconocimientos de SISE'
-  },
-  {
-    src: '/image/historia-carousel-2.webp',
-    alt: 'Reconocimientos de SISE'
-  },
-  {
-    src: '/image/historia-carousel-3.webp',
-    alt: 'Reconocimientos de SISE'
-  }
+  { src: '/image/historia-premio-casel.webp', alt: 'Placa de los Premios CASEL 2024 a Grupo SISE' },
+  { src: '/image/historia-carousel-2.webp', alt: 'Reconocimientos de SISE' },
+  { src: '/image/historia-carousel-3.webp', alt: 'Reconocimientos de SISE' }
 ];
 
 export default function HistoriaRecognition() {
@@ -32,190 +30,80 @@ export default function HistoriaRecognition() {
     return () => window.clearInterval(autoplayId);
   }, []);
 
+  const lead = (
+    <>
+      El liderazgo de <strong>Grupo SISE</strong> se fundamenta en{' '}
+      <strong>15 años de evolución ininterrumpida</strong>, una trayectoria que cuenta con el
+      respaldo de las principales instituciones del país.
+    </>
+  );
+
+  const story = (
+    <>
+      Nuestra visión tecnológica fue distinguida a nivel nacional en los{' '}
+      <strong>Premios CASEL 2024</strong>, obteniendo el reconocimiento en{' '}
+      <strong>Desarrollo Sustentable</strong>.
+      <br />
+      <br />
+      Este hito en innovación motivó a la <strong>Cámara de Comercio de Resistencia</strong> a
+      otorgarnos un reconocimiento especial, destacando nuestra historia empresarial y el impacto
+      positivo de nuestras soluciones en la región.
+    </>
+  );
+
+  const feature = (
+    <div className={styles.feature}>
+      <div className={styles.panel}>
+        <Image
+          key={currentSlide.src}
+          src={currentSlide.src}
+          alt={currentSlide.alt}
+          className={styles.photo}
+          width={521}
+          height={425}
+        />
+      </div>
+      <div className={styles.dots} role="tablist" aria-label="Fotos de reconocimientos">
+        {slides.map((slide, index) => (
+          <button
+            key={slide.src}
+            type="button"
+            role="tab"
+            aria-selected={index === activeSlide}
+            aria-label={`Foto ${index + 1}`}
+            className={`${styles.dot} ${index === activeSlide ? styles.dotActive : ''}`}
+            onClick={() => setActiveSlide(index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+
   return (
-    <section className={styles.recognition} aria-label="Reconocimientos">
-      <div className={styles.recognitionInner}>
-        <div className={styles.recognitionDesktop}>
-          <div className={styles.recognitionDesktopLayout}>
-            <div className={styles.recognitionDesktopCopy}>
-              <div className={styles.recognitionDesktopTitle}>
-                <span className={styles.recognitionTitleRegular}>Nuestro trabajo ha sido </span>
-                <span className={styles.recognitionTitleStrong}>reconocido a nivel nacional.</span>
-              </div>
-              <div className={styles.recognitionDesktopText}>
-                <span className={styles.recognitionStoryRegular}>El liderazgo de </span>
-                <span className={styles.recognitionStoryStrong}>Grupo SISE</span>
-                <span className={styles.recognitionStoryRegular}> se fundamenta en </span>
-                <span className={styles.recognitionStoryStrong}>
-                  15 años de evolución ininterrumpida
-                </span>
-                <span className={styles.recognitionStoryRegular}>
-                  , una trayectoria que cuenta con el respaldo de las principales instituciones del
-                  país.
-                  <br />
-                  <br />
-                  Nuestra visión tecnológica fue distinguida a nivel nacional en los{' '}
-                </span>
-                <span className={styles.recognitionStoryStrong}>Premios CASEL 2024</span>
-                <span className={styles.recognitionStoryRegular}>
-                  , obteniendo el reconocimiento en{' '}
-                </span>
-                <span className={styles.recognitionStoryStrong}>Desarrollo Sustentable</span>
-                <span className={styles.recognitionStoryRegular}>
-                  .<br />
-                  <br />
-                  Este hito en innovación motivó a la{' '}
-                </span>
-                <span className={styles.recognitionStoryStrong}>Cámara de Comercio de Resistencia</span>
-                <span className={styles.recognitionStoryRegular}>
-                  {' '}
-                  a otorgarnos un reconocimiento especial, destacando nuestra historia empresarial y
-                  el impacto positivo de nuestras soluciones en la región.
-                </span>
-              </div>
-            </div>
-            <article className={styles.recognitionDesktopFeature}>
-              <div className={styles.recognitionFeaturePanel}>
-                <Image
-                  key={currentSlide.src}
-                  src={currentSlide.src}
-                  alt={currentSlide.alt}
-                  width={521}
-                  height={425}
-                  className={styles.recognitionFeatureImage}
-                />
-              </div>
-              <div className={styles.recognitionDots}>
-                {slides.map((slide, index) => (
-                  <button
-                    key={slide.src}
-                    type="button"
-                    className={`${styles.recognitionDot} ${
-                      index === activeSlide ? styles.recognitionDotActive : ''
-                    }`}
-                    onClick={() => setActiveSlide(index)}
-                    aria-label={`Ver imagen ${index + 1} de reconocimientos`}
-                    aria-pressed={index === activeSlide}
-                  />
-                ))}
-              </div>
-            </article>
-          </div>
+    <section className={styles.section} aria-label="Reconocimientos">
+      <div className={styles.inner}>
+        <div className={styles.copy}>
+          <h2 className={styles.title}>
+            Nuestro trabajo ha sido <strong>reconocido a nivel nacional.</strong>
+          </h2>
+          <p className={styles.text}>
+            {lead}
+            <br />
+            <br />
+            {story}
+          </p>
         </div>
 
-        <div className={styles.recognitionResponsive}>
-          <h2 className={`${styles.recognitionTitle} ${styles.recognitionTitleDesktop}`}>
-            <span className={styles.recognitionTitleRegular}>Nuestro trabajo ha sido&nbsp;</span>
-            <br className={styles.recognitionTitleBreakMobile} />
-            <span className={styles.recognitionTitleStrong}>reconocido a nivel nacional.</span>
+        {feature}
+
+        {/* En mobile el relato se parte: liderazgo arriba, foto, y el resto debajo. */}
+        <div className={styles.mobileFlow}>
+          <h2 className={styles.title}>
+            Nuestro trabajo ha sido <strong>reconocido a nivel nacional.</strong>
           </h2>
-
-          <h2 className={`${styles.recognitionTitle} ${styles.recognitionTitleMobile}`}>
-            <span className={styles.recognitionTitleRegular}>
-              Nuestro trabajo ha sido
-              <br />
-            </span>
-            <span className={styles.recognitionTitleStrong}>reconocido a nivel nacional</span>
-            <span className={styles.recognitionTitleRegular}>.</span>
-          </h2>
-
-          <div className={styles.recognitionLayout}>
-            <div className={`${styles.recognitionStory} ${styles.recognitionStoryDesktop}`}>
-              <p className={styles.recognitionStoryText}>
-                <span className={styles.recognitionStoryRegular}>El liderazgo de&nbsp;</span>
-                <span className={styles.recognitionStoryStrong}>Grupo SISE</span>
-                <span className={styles.recognitionStoryRegular}>&nbsp;se fundamenta en&nbsp;</span>
-                <span className={styles.recognitionStoryStrong}>
-                  15 años de evolución ininterrumpida
-                </span>
-                <span className={styles.recognitionStoryRegular}>
-                  , una trayectoria que cuenta con el respaldo de las principales instituciones del
-                  país.
-                  <br />
-                  <br />
-                  Nuestra visión tecnológica fue distinguida a nivel nacional en los&nbsp;
-                </span>
-                <span className={styles.recognitionStoryStrong}>Premios CASEL 2024</span>
-                <span className={styles.recognitionStoryRegular}>
-                  , obteniendo el reconocimiento en&nbsp;
-                </span>
-                <span className={styles.recognitionStoryStrong}>Desarrollo Sustentable</span>
-                <span className={styles.recognitionStoryRegular}>
-                  .<br />
-                  <br />
-                  Este hito en innovación motivó a la&nbsp;
-                </span>
-                <span className={styles.recognitionStoryStrong}>Cámara de Comercio de Resistencia</span>
-                <span className={styles.recognitionStoryRegular}>
-                  &nbsp;a otorgarnos un reconocimiento especial, destacando nuestra historia
-                  empresarial y el impacto positivo de nuestras soluciones en la región.
-                </span>
-              </p>
-            </div>
-
-            <div className={`${styles.recognitionStory} ${styles.recognitionStoryMobileIntro}`}>
-              <p className={styles.recognitionStoryText}>
-                <span className={styles.recognitionStoryRegular}>El liderazgo de&nbsp;</span>
-                <span className={styles.recognitionStoryStrong}>Grupo SISE</span>
-                <span className={styles.recognitionStoryRegular}>&nbsp;se fundamenta en&nbsp;</span>
-                <span className={styles.recognitionStoryStrong}>
-                  15 años de evolución ininterrumpida
-                </span>
-                <span className={styles.recognitionStoryRegular}>
-                  , una trayectoria que cuenta con el respaldo de las principales instituciones del
-                  país.
-                </span>
-              </p>
-            </div>
-
-            <article className={styles.recognitionFeature}>
-              <div className={styles.recognitionFeaturePanel}>
-                <Image
-                  key={currentSlide.src}
-                  src={currentSlide.src}
-                  alt={currentSlide.alt}
-                  width={521}
-                  height={425}
-                  className={styles.recognitionFeatureImage}
-                />
-              </div>
-              <div className={styles.recognitionDots}>
-                {slides.map((slide, index) => (
-                  <button
-                    key={slide.src}
-                    type="button"
-                    className={`${styles.recognitionDot} ${
-                      index === activeSlide ? styles.recognitionDotActive : ''
-                    }`}
-                    onClick={() => setActiveSlide(index)}
-                    aria-label={`Ver imagen ${index + 1} de reconocimientos`}
-                    aria-pressed={index === activeSlide}
-                  />
-                ))}
-              </div>
-            </article>
-
-            <div className={`${styles.recognitionStory} ${styles.recognitionStoryMobileOutro}`}>
-              <p className={styles.recognitionStoryText}>
-                <span className={styles.recognitionStoryRegular}>
-                  Nuestra visión tecnológica fue distinguida a nivel nacional en los&nbsp;
-                </span>
-                <span className={styles.recognitionStoryStrong}>Premios CASEL 2024</span>
-                <span className={styles.recognitionStoryRegular}>
-                  , obteniendo el reconocimiento en&nbsp;
-                </span>
-                <span className={styles.recognitionStoryStrong}>Desarrollo Sustentable</span>
-                <span className={styles.recognitionStoryRegular}>
-                  . Este hito en innovación motivó a la&nbsp;
-                </span>
-                <span className={styles.recognitionStoryStrong}>Cámara de Comercio de Resistencia</span>
-                <span className={styles.recognitionStoryRegular}>
-                  &nbsp;a otorgarnos un reconocimiento especial, destacando nuestra historia
-                  empresarial y el impacto positivo de nuestras soluciones en la región.
-                </span>
-              </p>
-            </div>
-          </div>
+          <p className={styles.text}>{lead}</p>
+          {feature}
+          <p className={styles.text}>{story}</p>
         </div>
       </div>
     </section>

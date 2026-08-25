@@ -1,60 +1,77 @@
-import styles from '../../page.module.scss';
+import Image from 'next/image';
+
+import styles from './HistoriaHero.module.scss';
+
+/*
+ * Hero de /historia según Figma 5011:263 (desktop 1920×900) y 5011:264
+ * (mobile 402×591): la foto del equipo al 50% sobre el azul #00408c, sin
+ * gradiente, con el título en negrita y la bajada de "más de 15 años"
+ * anclados abajo a la izquierda. El mobile usa un recorte propio de la misma
+ * foto, el título en tres renglones (con punto final) y la bajada con su
+ * corte propio. Los webp ya están exportados al tamaño final, así que van sin
+ * el optimizador de Next (unoptimized).
+ */
+const HERO_IMAGE_DESKTOP = '/image/hero-historia-equipo-desktop.webp';
+const HERO_IMAGE_MOBILE = '/image/hero-historia-equipo-mobile.webp';
 
 export default function HistoriaHero() {
   return (
     <section className={styles.hero} aria-label="Historia SISE Argentina">
-      <div className={styles.heroMedia} aria-hidden="true">
-        <picture className={styles.heroPicture}>
-          <source srcSet="/image/hero-historia-mobile.webp" media="(max-width: 600px)" />
-          <img
-            src="/image/mq2q87jo-iv7vjn2.webp"
-            alt=""
-            className={styles.heroImage}
-            decoding="async"
-            loading="eager"
-            fetchPriority="high"
-          />
-        </picture>
-        <div className={styles.heroOverlay} />
-      </div>
+      <div className={styles.media}>
+        <Image
+          src={HERO_IMAGE_DESKTOP}
+          alt="Equipo de SISE Argentina"
+          className={`${styles.image} ${styles.imageDesktop}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
+        <Image
+          src={HERO_IMAGE_MOBILE}
+          alt=""
+          className={`${styles.image} ${styles.imageMobile}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
 
-      <div className={styles.heroCopy}>
-        <h1 className={`${styles.heroTitle} ${styles.heroTitleDesktop}`}>
-          Tecnología, compromiso
-          <br />y respaldo real
-        </h1>
-        <h1 className={`${styles.heroTitle} ${styles.heroTitleMobile}`}>
-          Tecnología,
-          <br />
-          compromiso
-          <br />y respaldo real.
-        </h1>
-        <p className={`${styles.heroSubtitle} ${styles.heroSubtitleDesktop}`}>
-          <span className={styles.heroSubtitleRegular}>
-            En SISE Argentina contamos con&nbsp;
-          </span>
-          <span className={styles.heroSubtitleStrong}>
-            más de 15 años de experiencia
+        <div className={styles.content}>
+          <h1 className={`${styles.title} ${styles.titleDesktop}`}>
+            Tecnología,
             <br />
-            en seguridad electrónica y monitoreo
-          </span>
-          <span className={styles.heroSubtitleRegular}>
+            compromiso
+            <br />y respaldo real
+          </h1>
+          <h1 className={`${styles.title} ${styles.titleMobile}`}>
+            Tecnología,
+            <br />
+            compromiso
+            <br />y respaldo real.
+          </h1>
+
+          <p className={`${styles.subtitle} ${styles.subtitleDesktop}`}>
+            En SISE Argentina contamos con{' '}
+            <strong>
+              más de 15 años de experiencia
+              <br />
+              en seguridad electrónica y monitoreo
+            </strong>
             , desarrollando soluciones que integran tecnología, prevención y compromiso con la
             comunidad.
-          </span>
-        </p>
-        <p className={`${styles.heroSubtitle} ${styles.heroSubtitleMobile}`}>
-          <span className={styles.heroSubtitleRegular}>En SISE Argentina contamos con </span>
-          <span className={styles.heroSubtitleStrong}>
-            más de
-            <br />
-            15 años de experiencia en seguridad electrónica y monitoreo
-          </span>
-          <span className={styles.heroSubtitleRegular}>
+          </p>
+          <p className={`${styles.subtitle} ${styles.subtitleMobile}`}>
+            En SISE Argentina contamos con{' '}
+            <strong>
+              más de
+              <br />
+              15 años de experiencia en seguridad electrónica y monitoreo
+            </strong>
             , desarrollando soluciones que integran tecnología, prevención y compromiso con la
             comunidad.
-          </span>
-        </p>
+          </p>
+        </div>
       </div>
     </section>
   );

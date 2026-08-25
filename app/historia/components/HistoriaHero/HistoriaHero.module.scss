@@ -1,0 +1,159 @@
+/*
+ * Hero de /historia — Figma 5011:263 (desktop, 1920×900) y 5011:264 (mobile,
+ * 402×591). La foto va al 50% de opacidad sobre el azul #00408c, sin
+ * gradiente; el título (bold, líneas de 51.2px) va en y=459 y la bajada de
+ * 32px termina a 140px del borde inferior. En mobile (591 de alto) el título
+ * va en y=341 y la bajada de 18px termina a 52px del borde.
+ */
+.hero {
+  width: 100%;
+  background: #ffffff;
+  --hero-shell-width: 1187px;
+  --hero-shell-pad: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-shell-width)) / 2));
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  height: 900px;
+  overflow: hidden;
+  background: #00408c;
+  isolation: isolate;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.imageMobile {
+  display: none;
+}
+
+.content {
+  position: absolute;
+  left: var(--hero-shell-pad);
+  bottom: 140px;
+  width: min(960px, calc(100% - (var(--hero-shell-pad) * 2)));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.title {
+  margin: 0;
+  font-size: 64px;
+  line-height: 51.2px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.titleMobile {
+  display: none;
+}
+
+.subtitle {
+  margin: 52px 0 0;
+  width: min(931px, 100%);
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.subtitle strong {
+  font-weight: 700;
+}
+
+.subtitleMobile {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .media {
+    height: 660px;
+  }
+
+  .content {
+    left: 32px;
+    bottom: 90px;
+    width: min(760px, calc(100% - 64px));
+  }
+
+  .title {
+    font-size: 50px;
+    line-height: 40px;
+  }
+
+  .subtitle {
+    margin-top: 36px;
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 960px) {
+  .media {
+    height: 600px;
+  }
+
+  .content {
+    left: 24px;
+    bottom: 64px;
+    width: min(560px, calc(100% - 48px));
+  }
+
+  .title {
+    font-size: 40px;
+    line-height: 32px;
+  }
+
+  .subtitle {
+    margin-top: 28px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .media {
+    height: 591px;
+  }
+
+  .imageDesktop {
+    display: none;
+  }
+
+  .imageMobile {
+    display: block;
+  }
+
+  .content {
+    left: 24px;
+    bottom: 52px;
+    width: min(352px, calc(100% - 48px));
+  }
+
+  .titleDesktop {
+    display: none;
+  }
+
+  .titleMobile {
+    display: block;
+    font-size: 32px;
+    line-height: 25.6px;
+  }
+
+  .subtitleDesktop {
+    display: none;
+  }
+
+  .subtitleMobile {
+    display: block;
+    margin-top: 26px;
+    width: min(337px, 100%);
+    font-size: 18px;
+    line-height: 1;
+  }
+}

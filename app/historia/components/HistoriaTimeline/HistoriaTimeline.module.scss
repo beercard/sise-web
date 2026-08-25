@@ -1,0 +1,113 @@
+/*
+ * Bloque "Historia" — Figma 5011:267 (desktop 1920×638) y 5011:268 (mobile
+ * 402×1188). Banda gris #d9d9d9: texto a la izquierda ("Historia" en y=67 y
+ * el relato de 20px/1.4 en y=131, columna de 539px) y la foto del equipo al
+ * 80% ocupando la mitad derecha (944×638). En mobile la foto va arriba a
+ * sangre (402×286) y el texto centrado en una columna de 259px.
+ */
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 638px;
+  background: #d9d9d9;
+  color: #000000;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: max(944px, calc(100% - 976px));
+  max-width: 60%;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.8;
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  width: min(1192px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 67px 0 62px;
+}
+
+.title {
+  margin: 0;
+  font-size: 48px;
+  line-height: 0.8;
+  font-weight: 700;
+}
+
+.text {
+  margin: 36px 0 0;
+  width: min(539px, 100%);
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.text strong {
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  .media {
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 960px) {
+  .media {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    height: 320px;
+  }
+
+  .copy {
+    padding: 48px 0 56px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .text {
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    min-height: 0;
+  }
+
+  .media {
+    height: 286px;
+  }
+
+  .copy {
+    width: 100%;
+    padding: 53px 24px 54px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 24px;
+    line-height: 0.9;
+  }
+
+  .text {
+    margin: 24px auto 0;
+    width: min(259px, 100%);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+}

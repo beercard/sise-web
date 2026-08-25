@@ -1,0 +1,191 @@
+/*
+ * Reconocimientos de /historia — Figma 5011:265 (desktop) y 5011:266
+ * (mobile). Dos columnas de 578px sobre blanco: título de 48px y relato de
+ * 24px a la izquierda; marco gris de 578×482 con la foto (521×425) y los
+ * puntos del carrusel a la derecha. En mobile el relato se parte en dos con
+ * la foto (294×245) en el medio.
+ */
+.section {
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+  padding: 115px 0 85px;
+}
+
+.inner {
+  width: min(1190px, calc(100% - 48px));
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 34px;
+}
+
+.copy {
+  width: min(578px, 100%);
+  flex: 0 1 578px;
+}
+
+.title {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+.title strong {
+  font-weight: 600;
+}
+
+.text {
+  margin: 33px 0 0;
+  width: min(569px, 100%);
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.text strong {
+  font-weight: 600;
+}
+
+.feature {
+  flex: 0 0 auto;
+  width: 578px;
+  max-width: 100%;
+}
+
+.panel {
+  width: 578px;
+  max-width: 100%;
+  height: 482px;
+  background: #d9d9d9;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo {
+  width: 521px;
+  max-width: calc(100% - 32px);
+  height: 425px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.dots {
+  margin-top: 21px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #d9d9d9;
+  cursor: pointer;
+}
+
+.dotActive {
+  background: #9b9b9b;
+}
+
+/* El flujo mobile (título, relato partido y foto en el medio) sólo existe en
+   ≤600. */
+.mobileFlow {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .copy {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 960px) {
+  .section {
+    padding: 72px 0 64px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 64px 0 56px;
+  }
+
+  .inner {
+    display: block;
+  }
+
+  /* En mobile sólo se ve el flujo partido. */
+  .copy,
+  .inner > .feature {
+    display: none;
+  }
+
+  .mobileFlow {
+    display: block;
+    text-align: center;
+  }
+
+  .mobileFlow .title {
+    margin: 0 auto;
+    width: min(354px, 100%);
+    font-size: 24px;
+    line-height: 1.05;
+  }
+
+  .mobileFlow .text {
+    margin: 33px auto 0;
+    width: min(266px, 100%);
+    font-size: 18px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .mobileFlow .feature {
+    width: min(294px, 100%);
+    margin: 25px auto 0;
+  }
+
+  .mobileFlow .panel {
+    width: 100%;
+    height: 245px;
+    border-radius: 22px;
+  }
+
+  .mobileFlow .photo {
+    width: 265px;
+    max-width: calc(100% - 28px);
+    height: 216px;
+  }
+
+  .mobileFlow .dots {
+    margin-top: 11px;
+    gap: 25px;
+  }
+
+  .mobileFlow .dot {
+    width: 6px;
+    height: 6px;
+  }
+}
