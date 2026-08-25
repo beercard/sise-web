@@ -1,645 +1,292 @@
+/*
+ * Soluciones de /industria — Figma 5001:330 (desktop 1920×966) y 5001:331
+ * (mobile 402×1969). Fondo azul oscuro #06234c con el patrón de eses al 4%
+ * desde y=203 (desktop) / y=171 (mobile), una bajada única de 954px y siete
+ * tarjetas de 211×261 (201×221 en mobile) en fila de 3 + fila de 4 centrada.
+ */
 .section {
-  --solutions-total-height: 673px;
-  --solutions-copy-height: 215px;
-  --solutions-grid-height: calc(var(--solutions-total-height) - var(--solutions-copy-height));
-  --solutions-content-width: 1196px;
-  --solutions-grid-width: 1187px;
-  --solutions-card-width: 211px;
-  --solutions-card-height: 261px;
-  --solutions-grid-gap: 33px;
   position: relative;
-  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
   background: #06234c;
   color: #ffffff;
-  overflow: hidden;
+  padding: 76px 0 72px;
 }
 
-.canvas {
-  position: relative;
-  width: min(1920px, 100%);
-  height: var(--solutions-total-height);
-  margin: 0 auto;
-}
-
-.copyBlock {
+/* El mismo tile del patrón de eses que en /hogar (blanco al 4%). */
+.watermark {
   position: absolute;
-  z-index: 2;
-  top: 88px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(var(--solutions-content-width), calc(100% - 48px));
+  top: 203px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/image/patron-sise.svg');
+  background-size: 1993px 154.56px;
+  background-position: -37px 0;
 }
 
-.lead,
-.heading,
-.cardTitle,
-.cardBody {
-  margin: 0;
+.intro {
+  position: relative;
+  z-index: 1;
+  width: min(1188px, calc(100% - 48px));
+  margin: 0 auto;
 }
 
 .lead {
-  width: 1027px;
-  max-width: 100%;
-  min-height: 69px;
-  line-height: 30.4px;
+  margin: 0;
+  width: min(954px, 100%);
   font-size: 32px;
+  line-height: 0.95;
+  font-weight: 400;
 }
 
-.leadLight {
-  font-weight: 500;
-}
-
-.leadStrong {
+.lead strong {
   font-weight: 700;
 }
 
-.gridArea {
-  position: absolute;
-  top: var(--solutions-copy-height);
-  left: 0;
-  width: 100%;
-  height: var(--solutions-grid-height);
-}
-
-.watermark {
-  position: absolute;
-  inset: 0;
-  left: 50%;
-  width: 2059px;
-  transform: translateX(calc(-50% + 12.5px));
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.watermarkRow {
-  height: 151px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  user-select: none;
-}
-
-/* `.cardTitle` apila sus líneas con `.cardTitle span { display: block }`, así
-   que los envoltorios se escriben con esa misma especificidad o más: si no,
-   esa regla les gana y las dos versiones se dibujan una debajo de la otra.
-   El de escritorio va en `contents` para no meterse en medio y el de mobile
-   se oculta; en el bloque de 600px se invierten. */
-.cardTitle .desktopTitle {
-  display: contents;
-}
-
-.cardTitle .mobileTitle {
+/* La versión centrada del intro sólo existe en mobile (Figma 3512:1131). */
+.mobileLead {
   display: none;
-}
-
-.desktopBodyText {
-  display: inline;
-}
-
-.mobileBodyText {
-  display: none;
-}
-
-.watermarkRow:first-child {
-  height: 152px;
-}
-
-/* Las tres bandas se alternan para poder repetir el patrón tantas filas como
-   haga falta. Fuera de mobile sólo se ven las tres primeras, así que el
-   resultado es el mismo de siempre: banda 1, 2 y 3. */
-.watermarkRow:nth-child(3n + 1) {
-  background-image: url('/image/solutions-band-1.png');
-}
-
-.watermarkRow:nth-child(3n + 2) {
-  background-image: url('/image/solutions-band-2.png');
-}
-
-.watermarkRow:nth-child(3n) {
-  background-image: url('/image/solutions-band-3.png');
-}
-
-/* Las de relleno sólo hacen falta donde el área de cards es más alta que las
-   tres bandas: `.watermark` es un flex vertical de alto fijo, así que si se
-   muestran todas se reparten el espacio y aplastan el patrón. */
-.watermarkRow:nth-child(n + 4) {
-  display: none;
-}
-
-/* Entre 601 y 1279px las cards se apilan y el área crece, así que las tres
-   bandas dejaban media sección sin trama. Acá sí entran las de relleno, con
-   `flex-shrink` anulado para que conserven sus 151px: lo que sobra lo recorta
-   el `overflow` del contenedor. */
-@media (min-width: 601px) and (max-width: 1200px) {
-  .watermarkRow {
-    flex-shrink: 0;
-  }
-
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
-  }
 }
 
 .heading {
-  position: absolute;
-  z-index: 2;
-  top: 51px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(var(--solutions-content-width), calc(100% - 48px));
-  min-height: 37px;
-  line-height: 45.6px;
+  position: relative;
+  z-index: 1;
+  margin: 123px 0 0;
+  text-align: center;
   font-size: 48px;
-  font-weight: 600;
-  text-align: left;
+  line-height: 0.95;
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
+/* flex + wrap con corte forzado: fila de 3 (943px) + fila de 4 (1309px)
+   centrada. El row-gap es 20 porque el separador de fila mide 0 y aporta dos
+   gaps (20 + 20 = los 40 del diseño). */
 .grid {
   position: relative;
-  z-index: 2;
-  top: 113px;
-  width: var(--solutions-grid-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(5, var(--solutions-card-width));
-  gap: var(--solutions-grid-gap);
+  z-index: 1;
+  width: min(1320px, calc(100% - 48px));
+  margin: 27px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 155px;
+  row-gap: 20px;
 }
 
-.cardGroup {
-  width: var(--solutions-card-width);
-  position: relative;
+.gridBreak {
+  flex-basis: 100%;
+  height: 0;
 }
 
 .card {
-  width: var(--solutions-card-width);
-  height: var(--solutions-card-height);
   position: relative;
-  border-radius: 10px;
+  width: 211px;
+  height: 261px;
   background: #d9d9d9;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
 }
 
 .cardTitle {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  top: 33px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #06234c;
-  letter-spacing: 0.05em;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 20px;
-}
-
-.cardTitle span {
-  display: block;
 }
 
 .cardBody {
   position: absolute;
+  top: var(--body-top);
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
-  color: #000000;
+  width: var(--body-width);
+  margin: 0;
   font-size: 20px;
+  line-height: 1;
   font-weight: 400;
-  line-height: 20px;
-  text-wrap: pretty;
 }
 
-.cardGroup:first-child .cardTitle {
-  top: 75px;
-  width: 203px;
-  min-height: 39px;
+.cardButton {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 40px;
+  background: #06234c;
+  border: 2px solid #113564;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.cardGroup:first-child .cardBody {
-  top: 140px;
-  width: 192px;
-  min-height: 39px;
+/* Posiciones internas por tarjeta (desktop / mobile), tomadas del diseño. */
+.alarmas {
+  --body-top: 100px;
+  --body-width: 196px;
+  --m-title-top: 29px;
+  --m-body-top: 81px;
+  --m-body-width: 176px;
 }
 
-.cardGroup:nth-child(2) .cardTitle {
-  top: 75px;
-  width: 203px;
-  min-height: 39px;
+.cctv {
+  --body-top: 87px;
+  --body-width: 153px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 189px;
 }
 
-.cardGroup:nth-child(2) .cardBody {
-  top: 130px;
-  width: 180px;
-  min-height: 59px;
+.cortina {
+  --body-top: 95px;
+  --body-width: 182px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 172px;
 }
 
-.cardGroup:nth-child(3) .cardTitle {
-  top: 75px;
-  width: 212px;
-  min-height: 36px;
+.acceso {
+  --body-top: 95px;
+  --body-width: 191px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 201px;
 }
 
-.cardGroup:nth-child(3) .cardBody {
-  top: 140px;
-  width: 180px;
-  min-height: 39px;
+.rastreo {
+  --body-top: 87px;
+  --body-width: 187px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 201px;
 }
 
-.cardGroup:nth-child(4) .cardTitle {
-  top: 75px;
-  width: 211px;
-  min-height: 39px;
+.cerco {
+  --body-top: 87px;
+  --body-width: 187px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 185px;
 }
 
-.cardGroup:nth-child(4) .cardBody {
-  top: 140px;
-  width: 199px;
-  min-height: 39px;
+.vehicular {
+  --body-top: 87px;
+  --body-width: 187px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 201px;
 }
 
-.cardGroup:nth-child(5) .cardTitle {
-  top: 75px;
-  width: 203px;
-  min-height: 39px;
-}
-
-.cardGroup:nth-child(5) .cardBody {
-  top: 140px;
-  width: 176px;
-  min-height: 39px;
-}
-
-@media (max-width: 1200px) {
-  .section {
-    --solutions-total-height: 640px;
-    --solutions-copy-height: 205px;
-    --solutions-content-width: 1080px;
-    --solutions-grid-width: 1080px;
-    --solutions-card-width: 188px;
-    --solutions-card-height: 246px;
-    --solutions-grid-gap: 22px;
-  }
-
-  .lead {
-    width: 920px;
-    font-size: clamp(26px, 2.1vw, 32px);
-    line-height: clamp(26px, 2vw, 30.4px);
-  }
-
-  .heading {
-    top: 44px;
-    font-size: clamp(40px, 3.1vw, 48px);
-    line-height: clamp(40px, 3vw, 45.6px);
-  }
-
+@media (max-width: 1360px) {
+  /* La fila de 4 no entra: se achica el gap para que siga entrando hasta
+     ~1200 y de ahí para abajo envuelve sola. */
   .grid {
-    top: 104px;
-  }
-
-  .cardTitle {
-    font-size: 20px;
-    line-height: 20px;
-  }
-
-  .cardBody {
-    font-size: 20px;
-    line-height: 20px;
-  }
-}
-@media (max-width: 1200px) {
-  .section {
-    --solutions-card-width: 211px;
-    --solutions-grid-gap: 32px;
-  }
-
-  .canvas {
-    height: auto;
-    padding-bottom: 64px;
-  }
-
-  .copyBlock {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto;
-    padding-top: 64px;
-  }
-
-  .lead {
-    width: 100%;
-    text-align: center;
-  }
-
-  .gridArea {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
-    margin-top: 36px;
-  }
-
-  .heading {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto 32px;
-    text-align: center;
-  }
-
-  .grid {
-    top: auto;
-    width: calc(100% - 80px);
-    grid-template-columns: repeat(3, minmax(0, var(--solutions-card-width)));
-    justify-content: center;
+    column-gap: clamp(40px, 8vw, 155px);
   }
 }
 
 @media (max-width: 960px) {
-  .copyBlock {
-    width: calc(100% - 32px);
-    padding-top: 48px;
-  }
-
-  .lead {
-    font-size: 18px;
-    line-height: 24px;
+  .grid {
+    width: min(560px, calc(100% - 48px));
+    column-gap: 60px;
   }
 
   .heading {
-    width: calc(100% - 32px);
-    margin-bottom: 24px;
-    font-size: 36px;
-    line-height: 38px;
-  }
-
-  .grid {
-    width: calc(100% - 32px);
-    grid-template-columns: repeat(2, minmax(0, var(--solutions-card-width)));
-    gap: 24px;
-  }
-
-  .watermark {
-    width: 1300px;
-    transform: translateX(-50%);
-  }
-
-  .watermarkRow {
-    height: 96px;
+    margin-top: 72px;
   }
 }
 
-/*
- * Módulo de soluciones mobile — Figma "Component 15" (nodo 5026:465).
- * Lienzo de 752×1195 con el marco del teléfono en x=183: el copy ocupa los
- * primeros 171px y el área de cards los 1024 restantes.
- */
 @media (max-width: 600px) {
   .section {
-    min-height: 1195px;
-  }
-
-  /* El marco del teléfono no está centrado en el lienzo de 752 (va de x=183 a
-     585), así que se corre esa mitad de diferencia para que lo centrado en
-     pantalla sea el marco y no el lienzo. */
-  .canvas {
-    width: 752px;
-    max-width: none;
-    height: 1195px;
-    left: 50%;
-    transform: translateX(calc(-50% - 8px));
-    overflow: hidden;
-  }
-
-  /* El párrafo arranca en y=53 y mide 294 de ancho. */
-  .copyBlock {
-    position: absolute;
-    top: 0;
-    left: 183px;
-    transform: none;
-    width: 402px;
-    height: 171px;
-    margin: 0;
-    padding: 53px 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .lead {
-    width: 294px;
-    max-width: 100%;
-    min-height: 0;
-    margin: 0;
-    text-align: center;
-    font-size: 18px;
-    line-height: 17.1px;
-  }
-
-  .leadLight {
-    font-weight: 400;
-  }
-
-  .leadStrong {
-    font-weight: 600;
-  }
-
-  .cardTitle .desktopTitle {
-    display: none;
-  }
-
-  .cardTitle .mobileTitle {
-    display: contents;
-  }
-
-  .desktopBodyText {
-    display: none;
-  }
-
-  .mobileBodyText {
-    display: inline;
-  }
-
-  /* 18 bandas de 55px con 2px de separación llenan exactamente los 1024. */
-  .gridArea {
-    position: absolute;
-    top: 171px;
-    left: 0;
-    width: 752px;
-    height: 1024px;
-    margin-top: 0;
+    padding: 53px 0 41px;
   }
 
   .watermark {
-    top: 0;
-    left: 0;
-    width: 752px;
-    height: 100%;
-    transform: none;
-    gap: 2px;
+    top: 171px;
+    background-size: 684.5px 53.08px;
+    background-position: -141px 0;
   }
 
-  .watermarkRow,
-  .watermarkRow:first-child {
-    height: 55px;
+  .intro {
+    width: calc(100% - 48px);
   }
 
-  .watermarkRow:nth-child(n + 4) {
+  /* En mobile el intro pasa a la versión centrada de 18px. */
+  .lead {
+    display: none;
+  }
+
+  .mobileLead {
     display: block;
+    margin: 0 auto;
+    width: min(309px, 100%);
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .mobileLead strong {
+    font-weight: 700;
   }
 
   .heading {
-    position: absolute;
-    top: 32px;
-    left: 184px;
-    width: 399px;
-    transform: none;
-    margin: 0;
-    min-height: 0;
+    margin-top: 62px;
     font-size: 24px;
-    line-height: 22.8px;
-    text-align: center;
+    line-height: 0.95;
   }
 
-  /* Las cards arrancan en y=90 y alternan alturas de 145 y 164, siempre con
-     30px de separación. */
   .grid {
-    position: absolute;
-    top: 90px;
-    left: 0;
-    width: 752px;
-    height: 883px;
-    margin: 0;
-    transform: none;
-    display: block;
-    grid-template-columns: none;
-    gap: 0;
+    width: 100%;
+    margin-top: 35px;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
   }
 
-  .cardGroup {
-    position: absolute;
-    left: 284px;
-    width: 201px;
-    margin: 0;
+  .gridBreak {
+    display: none;
   }
 
+  /* Del diseño mobile: "cerco corporativo" pasa delante de "rastreo". */
   .card {
+    order: var(--mobile-order);
     width: 201px;
-    border-radius: 22px;
+    height: 221px;
   }
 
   .cardTitle {
-    width: 201px;
-    min-height: 35px;
-    font-size: 20px;
-    line-height: 20px;
+    top: var(--m-title-top);
   }
 
   .cardBody {
-    width: 169px;
+    top: var(--m-body-top);
+    width: var(--m-body-width);
     font-size: 18px;
-    line-height: 18px;
   }
 
-  .cardGroup:first-child {
-    top: 0;
-  }
-
-  .cardGroup:first-child .card {
-    height: 145px;
-  }
-
-  .cardGroup:first-child .cardTitle {
-    top: 35px;
-    width: 203px;
-  }
-
-  /* 169 en lugar de los 165 del diseño: el navegador dibuja League Spartan un
-     poco más ancha que Figma y "crítica." se caía a un tercer renglón. Como el
-     texto va centrado, no se mueve de lugar. */
-  .cardGroup:first-child .cardBody {
-    top: 80px;
-    width: 169px;
-  }
-
-  .cardGroup:nth-child(2) {
-    top: 175px;
-  }
-
-  .cardGroup:nth-child(2) .card {
-    height: 164px;
-  }
-
-  .cardGroup:nth-child(2) .cardTitle {
-    top: 33px;
-    width: 203px;
-  }
-
-  .cardGroup:nth-child(2) .cardBody {
-    top: 78px;
-    width: 158px;
-  }
-
-  .cardGroup:nth-child(3) {
-    top: 369px;
-  }
-
-  .cardGroup:nth-child(3) .card {
-    height: 145px;
-  }
-
-  .cardGroup:nth-child(3) .cardTitle {
-    top: 35px;
-    width: 169px;
-  }
-
-  .cardGroup:nth-child(3) .cardBody {
-    top: 80px;
-    width: 153px;
-  }
-
-  .cardGroup:nth-child(4) {
-    top: 544px;
-  }
-
-  .cardGroup:nth-child(4) .card {
-    height: 164px;
-  }
-
-  .cardGroup:nth-child(4) .cardTitle {
-    top: 33px;
-    width: 170px;
-  }
-
-  .cardGroup:nth-child(4) .cardBody {
-    top: 78px;
-    width: 169px;
-  }
-
-  .cardGroup:nth-child(5) {
-    top: 738px;
-  }
-
-  .cardGroup:nth-child(5) .card {
-    height: 145px;
-  }
-
-  .cardGroup:nth-child(5) .cardTitle {
-    top: 34px;
-    width: 201px;
-  }
-
-  .cardGroup:nth-child(5) .cardBody {
-    top: 79px;
-    width: 168px;
+  .cardButton {
+    bottom: 22px;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 20px;
   }
 }

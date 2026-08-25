@@ -1,97 +1,106 @@
+import Link from 'next/link';
+import { Fragment } from 'react';
+
 import styles from './IndustriaSolutionsModule.module.scss';
 
 /*
- * 18 bandas: es lo que pide el diseño mobile (nodo 5026:465), donde llenan
- * justo el área de las cards — 18 × 55px + 17 separaciones de 2px = 1024px.
- * En el resto de los breakpoints sólo se ven las tres primeras.
+ * Módulo de soluciones de /industria según Figma 5001:330 (desktop 1920×966)
+ * y 5001:331 (mobile 402×1969): fondo azul oscuro #06234c con el patrón de
+ * eses SISE al 4%, una bajada única de dos renglones y siete tarjetas grises
+ * (fila de 3 + fila de 4 centrada) con botón "+ info". En mobile las
+ * tarjetas se apilan y "cerco corporativo" pasa delante de "rastreo".
  */
-const WATERMARK_ROWS = Array.from({ length: 18 }, (_, index) => `row-${index + 1}`);
-
-const solutions = [
+const SOLUTIONS = [
   {
     key: 'alarmas',
     title: ['MONITOREO', 'DE ALARMAS'],
-    mobileTitle: ['MONITOREO', 'DE ALARMAS'],
-    body: 'Protección 24/7 para infraestructura crítica.',
-    mobileBody: 'Protección 24/7 para infraestructura crítica.'
+    body: 'Protección 24/7 con respuesta inmediata ante emergencias en tus instalaciones.',
+    mobileOrder: 1
   },
   {
     key: 'cctv',
-    title: ['CCTV / VIDEOVIGILANCIA'],
-    mobileTitle: ['CCTV / VIDEOVIGILANCIA'],
-    body: 'Auditoría visual de procesos productivos y planta.',
-    mobileBody: 'Auditoría visual de procesos productivos y planta.'
+    title: ['CCTV /', 'VIDEOVIGILANCIA'],
+    body: 'Auditoría visual en tiempo real para el control total de la operatoria de tu negocio.',
+    mobileOrder: 2
+  },
+  {
+    key: 'cortina',
+    title: ['CORTINA', 'DE HUMO'],
+    body: 'Sistema de niebla activa que neutraliza robos e intrusiones en cuestión de segundos.',
+    mobileOrder: 3,
+    breakAfter: true
+  },
+  {
+    key: 'acceso',
+    title: ['CONTROL DE', 'ACCESO Y FICHAJE'],
+    body: 'Gestión inteligente y exacta de presentismo, horarios y accesos del personal.',
+    mobileOrder: 4
+  },
+  {
+    key: 'rastreo',
+    title: ['RASTREO SATELITAL', 'Y DASHCAMS'],
+    body: 'Control total de tu flota comercial con rastreo GPS y cámaras vehiculares en tiempo real.',
+    mobileOrder: 6
   },
   {
     key: 'cerco',
-    title: ['CERCO', 'ELÉCTRICO'],
-    mobileTitle: ['CERCO', 'ELÉCTRICO'],
-    body: 'Defensa perimetral de alta tensión.',
-    mobileBody: 'Defensa perimetral de alta tensión.'
+    title: ['CERCO ELÉCTRICO', 'CORPORATIVO'],
+    body: 'Seguridad perimetral de máxima disuasión y 100% legal para resguardar tu empresa.',
+    mobileOrder: 5
   },
   {
-    key: 'accesos',
-    title: ['CONTROL DE ACCESO'],
-    mobileTitle: ['CONTROL DE', 'ACCESO'],
-    body: 'Gestión de ingresos por niveles de seguridad.',
-    mobileBody: 'Gestión de ingresos por niveles de seguridad.'
-  },
-  {
-    key: 'gps',
-    title: ['GPS', 'CORPORATIVO'],
-    mobileTitle: ['GPS', 'CORPORATIVO'],
-    body: 'Telemetría logística para flota.',
-    mobileBody: 'Telemetría logística para flota.'
+    key: 'vehicular',
+    title: ['ACCESO VEHICULAR', 'AUTÓNOMO'],
+    body: 'Lectura de patentes para automatizar y auditar el flujo de camiones, flotas y visitas en tiempo real.',
+    mobileOrder: 7
   }
 ];
 
+function TitleLines({ lines }) {
+  return lines.flatMap((line, index) => (index === 0 ? [line] : [<br key={`br-${index}`} />, line]));
+}
+
 export default function IndustriaSolutionsModule() {
   return (
-    <section className={styles.section} aria-label="Soluciones para industrias y empresas">
-      <div className={styles.canvas}>
-        <div className={styles.copyBlock}>
-          <p className={styles.lead}>
-            <span className={styles.leadLight}>
-              Diseñamos soluciones robustas y personalizadas para proteger activos, procesos y logística,
-            </span>
-            <span className={styles.leadStrong}> garantizando la continuidad del negocio.</span>
-          </p>
-        </div>
+    <section className={styles.section} aria-label="Soluciones para industrias">
+      <div className={styles.watermark} aria-hidden="true" />
 
-        <div className={styles.gridArea}>
-          <div className={styles.watermark} aria-hidden="true">
-            {WATERMARK_ROWS.map((row) => (
-              <div key={row} className={styles.watermarkRow} />
-            ))}
-          </div>
+      <div className={styles.intro}>
+        <p className={styles.lead}>
+          Diseñamos soluciones robustas y personalizadas para proteger activos, procesos y logística,{' '}
+          <strong>garantizando la continuidad del negocio</strong>.
+        </p>
 
-          <h2 className={styles.heading}>Soluciones:</h2>
+        <p className={styles.mobileLead}>
+          Diseñamos soluciones robustas y personalizadas para proteger activos, procesos y logística,{' '}
+          <strong>garantizando la continuidad del negocio</strong>.
+        </p>
+      </div>
 
-          <div className={styles.grid}>
-            {solutions.map((solution) => (
-              <article key={solution.key} className={styles.cardGroup}>
-                <div className={styles.card}>
-                  <h3 className={styles.cardTitle}>
-                    <span className={styles.desktopTitle}>
-                      {solution.title.map((line) => (
-                        <span key={`${solution.key}-desktop-${line}`}>{line}</span>
-                      ))}
-                    </span>
-                    <span className={styles.mobileTitle}>
-                      {solution.mobileTitle.map((line) => (
-                        <span key={`${solution.key}-mobile-${line}`}>{line}</span>
-                      ))}
-                    </span>
-                  </h3>
-                  <p className={styles.cardBody}>
-                    <span className={styles.desktopBodyText}>{solution.body}</span>
-                    <span className={styles.mobileBodyText}>{solution.mobileBody}</span>
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+      <h2 className={styles.heading}>Soluciones:</h2>
+
+      <div className={styles.grid}>
+        {SOLUTIONS.map((solution) => (
+          <Fragment key={solution.key}>
+            <article
+              className={`${styles.card} ${styles[solution.key]}`}
+              style={{ '--mobile-order': solution.mobileOrder }}
+            >
+              <h3 className={styles.cardTitle}>
+                <TitleLines lines={solution.title} />
+              </h3>
+              <p className={styles.cardBody}>{solution.body}</p>
+              <Link href="/contacto" className={styles.cardButton}>
+                + info
+              </Link>
+            </article>
+            {solution.breakAfter ? (
+              /* Fuerza el corte 3 + 4 del diseño: sin esto flex-wrap metería
+                 cuatro tarjetas en la primera fila. */
+              <span className={styles.gridBreak} aria-hidden="true" />
+            ) : null}
+          </Fragment>
+        ))}
       </div>
     </section>
   );
