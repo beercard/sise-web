@@ -9,12 +9,10 @@
   --tech-title-width: 944px;
   --tech-title-font-size: 48px;
   --tech-title-line-height: 45.6px;
-  --tech-title-tabs-gap: clamp(24px, 2vw, 31px);
-  --tech-tabs-width: 944px;
-  --tech-tab-font-size: 20px;
-  --tech-group-width: 1255px;
+  /* Del diseño (5011:238): mapa 735 + 54 de aire + grupo de 520 = 1309. */
+  --tech-group-width: 1309px;
   --tech-card-group-width: 520px;
-  --tech-row-gap: 0px;
+  --tech-row-gap: 54px;
   --tech-house-max-width: 735px;
   padding-top: 86px;
   padding-bottom: 86px;
@@ -43,74 +41,9 @@
   display: inline;
 }
 
-.tabs {
-  margin-top: var(--tech-title-tabs-gap);
-  width: min(var(--tech-tabs-width), calc(100% - 48px));
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.tab {
-  border: 0;
-  background: transparent;
-  padding: 0 0 10px;
-  height: 29px;
-  text-align: center;
-  line-height: 19px;
-  letter-spacing: 1px;
-  color: #250f7f;
-  font-size: var(--tech-tab-font-size);
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex: 0 0 auto;
-  cursor: pointer;
-  position: relative;
-}
-
-.tabs > :nth-child(1) {
-  width: 254px;
-}
-
-.tabs > :nth-child(2) {
-  width: 229px;
-}
-
-.tabs > :nth-child(3) {
-  width: 153px;
-}
-
-.tabActive::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: var(--tab-underline-left, 0px);
-  width: var(--tab-underline-width, 100%);
-  height: 3px;
-  background: #250f7f;
-}
-
-.tabUnderlinePerimetral {
-  --tab-underline-left: 0px;
-  --tab-underline-width: 254px;
-}
-
-.tabUnderlineInterior {
-  --tab-underline-left: 2px;
-  --tab-underline-width: 225px;
-}
-
-.tabUnderlineConectividad {
-  --tab-underline-left: 3px;
-  --tab-underline-width: 147px;
-}
-
 .technologyRow {
-  margin-top: 30px;
+  /* Del diseño (5011:238): el mapa arranca 56px debajo del título. */
+  margin-top: 56px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -125,7 +58,8 @@
   width: min(var(--tech-house-max-width), 55vw);
   max-width: 100%;
   height: auto;
-  aspect-ratio: 2486 / 1728;
+  /* Caja del plano según el diseño nuevo (Figma 2138:164: 735×511). */
+  aspect-ratio: 735 / 511;
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -134,15 +68,7 @@
 }
 
 .housePerimetral {
-  background-image: url('/image/mq11fkmb-wexdi8h.webp');
-}
-
-.houseInterior {
-  background-image: url('/image/mq11fkmb-wexdi8h.webp');
-}
-
-.houseConectividad {
-  background-image: url('/image/mq11fkmb-wexdi8h.webp');
+  background-image: url('/image/construccion-obra-mapa.webp');
 }
 
 .houseEdit {
@@ -432,21 +358,6 @@
   animation: techCardExitPrev 420ms ease both;
 }
 
-.tabFadeIn {
-  animation: tabFadeIn 420ms ease-out both;
-}
-
-@keyframes tabFadeIn {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 @keyframes techCardFadeIn {
   0% {
     opacity: 0;
@@ -605,50 +516,10 @@
     line-height: 36px;
   }
 
-  .tabs {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 8px;
-    margin-top: 16px;
-    padding: 0 16px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tab {
-    border: 1px solid rgba(37, 15, 127, 0.35);
-    border-radius: 999px;
-    padding: 10px 14px;
-    height: auto;
-    line-height: 18px;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .tabs > :nth-child(1),
-  .tabs > :nth-child(2),
-  .tabs > :nth-child(3) {
-    width: auto;
-  }
-
-  .tabActive {
-    background: #250f7f;
-    color: #ffffff;
-  }
-
-  .tabActive::after {
-    display: none;
-  }
-
   .house {
     width: min(735px, 100%);
     height: auto;
+    aspect-ratio: 735 / 511;
   }
 
   .techCardGroup {
@@ -762,7 +633,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tabFadeIn,
   .techCardStatic,
   .techCardEnterNext,
   .techCardExitNext,
@@ -849,74 +719,23 @@
     font-weight: 400;
   }
 
-  /* Los tabs vuelven al estilo del diseño (texto + subrayado): en tablet se
-     habían convertido en pastillas con scroll horizontal. */
-  .tabs {
-    margin-top: 36px;
-    width: min(354px, calc(100% - 48px));
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    gap: 0;
-    overflow: visible;
-  }
-
-  .tab,
-  .tabActive {
-    /* 107px es la medida del diseño, pero tres tabs suman 321 y desbordarían
-       por debajo de ~370px de ancho; así pueden encogerse. */
-    flex: 0 1 107px;
-    min-width: 0;
-    border: 0;
-    border-radius: 0;
-    padding: 0;
-    height: 31px;
-    background: transparent;
-    color: #250f7f;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 13.3px;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-    white-space: normal;
-  }
-
-  .tabs > :nth-child(1),
-  .tabs > :nth-child(2),
-  .tabs > :nth-child(3) {
-    width: 107px;
-  }
-
-  .tabActive::after {
-    display: block;
-    top: 29px;
-    left: 0;
-    /* Acompaña al tab si se encoge. */
-    width: 100%;
-    height: 2px;
-    background: #250f7f;
-  }
-
+  /* Del diseño mobile (5011:239): el mapa arranca 39px bajo el título y las
+     cards 58px bajo el mapa. */
   .technologyRow {
-    margin-top: 5px;
-    gap: 19px;
+    margin-top: 39px;
+    gap: 58px;
     padding-left: 24px;
     padding-right: 24px;
   }
 
+  /* El mapa no va a sangre: el diseño lo deja dentro de la columna de 354. */
   .house,
-  .housePerimetral,
-  .houseInterior,
-  .houseConectividad {
-    width: calc(100% + 48px);
+  .housePerimetral {
+    width: 100%;
     max-width: none;
     height: auto;
-    margin-left: -24px;
-    margin-right: -24px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .ellipse1,

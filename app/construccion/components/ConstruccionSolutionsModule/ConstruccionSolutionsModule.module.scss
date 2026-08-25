@@ -1,666 +1,264 @@
-/* Escritorio — Figma "soluciones desktop" (nodo 5026:552), marco de 1920×697.
-   El copy abre en y=96, "Soluciones:" en 294 y las cards en 356. Los dos
-   últimos salen solos del alto total menos el del área de cards. */
+/*
+ * Soluciones de /construccion — Figma 5011:242 (desktop 1920×697) y 5011:243
+ * (mobile 402×1725). Fondo púrpura urbano #250f7f con el patrón de eses al 4%
+ * desde y=240 (desktop) / y=191 (mobile), una bajada única de 1187px y cinco
+ * tarjetas de 211×261 (201×221 en mobile) en una sola fila.
+ */
 .section {
-  --solutions-total-height: 697px;
-  --solutions-grid-height: 454px;
-  --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-  --solutions-content-width: 1187px;
-  --solutions-card-width: 211px;
-  --solutions-card-height: 261px;
-  --solutions-grid-gap: 33px;
-  --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-  --solutions-title-width: 203px;
-  --solutions-card-title-top: 66px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-title-font-size: 20px;
-  --solutions-card-title-line-height: 20px;
-  --solutions-card-body-top: 122px;
-  --solutions-card-body-font-size: 20px;
-  --solutions-card-body-line-height: 20px;
-  --solutions-card-body-width: 180px;
   position: relative;
-  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
   background: #250f7f;
   color: #ffffff;
-  overflow: hidden;
+  padding: 96px 0 73px;
 }
 
-.canvas {
-  position: relative;
-  width: min(1920px, 100%);
-  height: var(--solutions-total-height);
-  margin: 0 auto;
-}
-
-.copyBlock {
+/* El mismo tile del patrón de eses que en /hogar (blanco al 4%). */
+.watermark {
   position: absolute;
-  z-index: 2;
-  top: 96px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: calc(var(--solutions-copy-height) - 96px);
-  width: min(var(--solutions-content-width), calc(100% - 48px));
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  top: 240px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/image/patron-sise.svg');
+  background-size: 1993px 154.56px;
+  background-position: -37px 0;
 }
 
 .intro {
   position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.copyMain {
-  width: 100%;
-}
-
-.lead,
-.heading {
-  margin: 0;
+  z-index: 1;
+  width: min(1188px, calc(100% - 48px));
+  margin: 0 auto;
 }
 
 .lead {
-  width: 100%;
-  min-height: 59px;
-  line-height: 30.4px;
+  margin: 0;
+  width: min(1187px, 100%);
   font-size: 32px;
-}
-
-.leadLight {
+  line-height: 0.95;
   font-weight: 400;
 }
 
-.desktopBodyText {
-  display: inline;
-}
-
-.mobileBodyText {
-  display: none;
-}
-
-.leadMedium {
-  font-weight: 500;
-}
-
-.leadStrong {
-  font-weight: 600;
-}
-
-.desktopOnly {
-  display: contents;
-}
-
-.mobileOnly {
-  display: none;
-}
-
-.mobileLead {
-  margin: 0;
-  width: 231px;
-  text-align: center;
-  line-height: 19.36px;
-  color: #ffffff;
-  font-size: 24px;
+.lead strong {
   font-weight: 700;
-}
-
-.mobileBody {
-  margin: 0;
-  width: 296px;
-  text-align: center;
-  line-height: 19.8px;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.mobileBodyLight {
-  font-weight: 400;
-}
-
-.mobileBodyStrong {
-  font-weight: 700;
-}
-
-.gridArea {
-  position: absolute;
-  top: var(--solutions-copy-height);
-  left: 0;
-  width: 100%;
-  height: var(--solutions-grid-height);
-}
-
-.watermark {
-  position: absolute;
-  inset: 0;
-  top: 0;
-  left: 50%;
-  width: 2059px;
-  transform: translateX(calc(-50% + 12.5px));
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.watermarkRow {
-  margin: 0;
-  height: 151px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  user-select: none;
-}
-
-.watermarkRow:first-child {
-  height: 152px;
-}
-
-.watermarkRow:nth-child(3n + 1) {
-  background-image: url('/image/solutions-band-1.png');
-}
-
-.watermarkRow:nth-child(3n + 2) {
-  background-image: url('/image/solutions-band-2.png');
-}
-
-.watermarkRow:nth-child(3n + 3) {
-  background-image: url('/image/solutions-band-3.png');
-}
-
-.watermarkRow:nth-child(n + 4) {
-  display: none;
-}
-
-@media (min-width: 601px) and (max-width: 1200px) {
-  .watermarkRow {
-    flex-shrink: 0;
-  }
-
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
-  }
 }
 
 .heading {
-  position: absolute;
-  z-index: 2;
-  top: 51px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  width: min(var(--solutions-content-width), calc(100% - 48px));
-  min-height: 37px;
-  line-height: 46px;
+  position: relative;
+  z-index: 1;
+  margin: 130px 0 0;
+  text-align: center;
   font-size: 48px;
-  font-weight: 600;
-  text-align: left;
+  line-height: 0.95;
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
+/* Una sola fila de 5 tarjetas (1423px) centrada. */
 .grid {
   position: relative;
-  z-index: 2;
-  top: 113px;
-  width: var(--solutions-grid-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(5, var(--solutions-card-width));
-  gap: var(--solutions-grid-gap);
-}
-
-.cardGroup {
-  width: var(--solutions-card-width);
-  position: relative;
+  z-index: 1;
+  width: min(1440px, calc(100% - 48px));
+  margin: 33px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 92px;
+  row-gap: 40px;
 }
 
 .card {
-  width: var(--solutions-card-width);
-  height: var(--solutions-card-height);
   position: relative;
-  border-radius: 10px;
+  width: 211px;
+  height: 261px;
   background: #d9d9d9;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
 }
 
 .cardTitle {
   position: absolute;
-  top: var(--solutions-card-title-top);
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--solutions-title-width);
-  min-height: var(--solutions-card-title-min-height);
+  top: 33px;
+  left: 0;
+  right: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: var(--solutions-card-title-line-height);
-  letter-spacing: 1px;
-  font-size: var(--solutions-card-title-font-size);
+  font-size: 20px;
+  line-height: 1;
   font-weight: 700;
-  text-align: center;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #250f7f;
 }
 
-.desktopTitle {
+.cardBody {
+  position: absolute;
+  top: var(--body-top);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--body-width);
+  margin: 0;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* Los textos mobile son propios (Figma 5011:243). */
+.desktopBody {
   display: inline;
 }
 
-.mobileTitle {
+.mobileBody {
   display: none;
 }
 
-.cardBody {
+.cardButton {
   position: absolute;
-  top: var(--solutions-card-body-top);
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  margin: 0;
-  width: var(--solutions-card-body-width);
-  line-height: var(--solutions-card-body-line-height);
-  font-size: var(--solutions-card-body-font-size);
-  font-weight: 400;
-  text-align: center;
-  color: #000000;
-  text-wrap: pretty;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 40px;
+  background: #250f7f;
+  border: 2px solid #344daf;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
 }
 
+/* Posiciones internas por tarjeta (desktop / mobile), tomadas del diseño. */
 .alarmas {
-  --solutions-title-width: 203px;
-  --solutions-card-title-top: 66px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-body-top: 122px;
-  --solutions-card-body-width: 180px;
+  --body-top: 104px;
+  --body-width: 204px;
+  --m-title-top: 29px;
+  --m-body-top: 81px;
+  --m-body-width: 151px;
 }
 
 .cerco {
-  --solutions-title-width: 195px;
-  --solutions-card-title-top: 66px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-body-top: 122px;
-  --solutions-card-body-width: 171px;
+  --body-top: 93px;
+  --body-width: 154px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 158px;
 }
 
 .cctv {
-  --solutions-title-width: 212px;
-  --solutions-card-title-top: 66px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-body-top: 122px;
-  --solutions-card-body-width: 171px;
+  --body-top: 94px;
+  --body-width: 160px;
+  --m-title-top: 30px;
+  --m-body-top: 89px;
+  --m-body-width: 200px;
 }
 
 .acceso {
-  --solutions-title-width: 211px;
-  --solutions-card-title-top: 68px;
-  --solutions-card-title-min-height: 35px;
-  --solutions-card-body-top: 133px;
-  --solutions-card-body-width: 173px;
+  --body-top: 94px;
+  --body-width: 148px;
+  --m-title-top: 30px;
+  --m-body-top: 91px;
+  --m-body-width: 154px;
 }
 
 .timelapse {
-  --solutions-title-width: 211px;
-  --solutions-card-title-top: 66px;
-  --solutions-card-title-min-height: 39px;
-  --solutions-card-body-top: 123px;
-  --solutions-card-body-width: 180px;
+  --body-top: 94px;
+  --body-width: 187px;
+  --m-title-top: 30px;
+  --m-body-top: 82px;
+  --m-body-width: 157px;
 }
 
-@media (max-width: 1200px) {
-  .section {
-    --solutions-total-height: 752px;
-    --solutions-grid-height: 448px;
-    --solutions-copy-height: calc(var(--solutions-total-height) - var(--solutions-grid-height));
-    --solutions-content-width: 1080px;
-    --solutions-card-width: clamp(184px, 14vw, 211px);
-    --solutions-card-height: clamp(238px, 18vw, 261px);
-    --solutions-grid-gap: clamp(12px, 1.3vw, 20px);
-    --solutions-grid-width: calc((var(--solutions-card-width) * 5) + (var(--solutions-grid-gap) * 4));
-    --solutions-title-width: calc(var(--solutions-card-width) - 8px);
-    --solutions-card-title-top: clamp(30px, 2.4vw, 36px);
-    --solutions-card-title-min-height: clamp(34px, 2.4vw, 39px);
-    --solutions-card-title-font-size: 20px;
-    --solutions-card-title-line-height: 20px;
-    --solutions-card-body-top: clamp(94px, 7.8vw, 112px);
-    --solutions-card-body-font-size: 20px;
-    --solutions-card-body-line-height: 20px;
-    --solutions-card-body-width: clamp(156px, 12vw, 180px);
-  }
-
-  .lead {
-    width: 100%;
-    min-height: 0;
-    font-size: clamp(26px, 2.1vw, 32px);
-    line-height: clamp(26px, 2vw, 30px);
-  }
-
-  .heading {
-    top: 47px;
-    font-size: clamp(40px, 3.2vw, 48px);
-    line-height: clamp(40px, 3.2vw, 46px);
-  }
-
-  .gridArea {
-    top: var(--solutions-copy-height);
-    height: var(--solutions-grid-height);
-  }
-
-  .watermarkRow {
-    height: clamp(124px, 10.5vw, 151px);
-  }
-}
-@media (max-width: 1200px) {
-  .canvas {
-    height: auto;
-    padding-bottom: 64px;
-  }
-
-  .copyBlock {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    height: auto;
-    width: calc(100% - 80px);
-    margin: 0 auto;
-    justify-content: flex-start;
-    padding-top: 42px;
-  }
-
-  .gridArea {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
-    margin-top: 38px;
-  }
-
-  .heading {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: calc(100% - 80px);
-    margin: 0 auto 32px;
-    min-height: 0;
-    text-align: center;
-  }
-
+@media (max-width: 1500px) {
+  /* La fila de 5 se achica antes de envolver. */
   .grid {
-    top: auto;
-    width: calc(100% - 80px);
-    grid-template-columns: repeat(3, var(--solutions-card-width));
-    justify-content: center;
-    gap: var(--solutions-grid-gap);
-  }
-
-  .watermark {
-    top: 22px;
+    column-gap: clamp(32px, 5vw, 92px);
   }
 }
 
 @media (max-width: 960px) {
-  .section {
-    --solutions-grid-gap: 24px;
-  }
-
-  .copyBlock {
-    height: auto;
-    width: calc(100% - 32px);
-    justify-content: flex-start;
-    padding-top: 32px;
-  }
-
-  .lead {
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
+  .grid {
+    width: min(560px, calc(100% - 48px));
+    column-gap: 60px;
   }
 
   .heading {
-    width: calc(100% - 32px);
-    margin-bottom: 24px;
-    font-size: 36px;
-    line-height: 38px;
-    text-align: center;
-  }
-
-  .gridArea {
-    margin-top: 24px;
-  }
-
-  .grid {
-    width: calc(100% - 32px);
-    grid-template-columns: repeat(2, minmax(0, var(--solutions-card-width)));
-    gap: 24px;
-  }
-
-  .watermark {
-    top: 18px;
-    width: 1300px;
-    transform: translateX(-50%);
-  }
-
-  .watermarkRow {
-    height: 96px;
+    margin-top: 72px;
   }
 }
 
 @media (max-width: 600px) {
   .section {
-    min-height: 1303px;
-    --solutions-card-width: 201px;
-    --solutions-card-height: 164px;
-    --solutions-grid-gap: 30px;
-    --solutions-grid-width: var(--solutions-card-width);
-    --solutions-title-width: 201px;
-    --solutions-card-title-top: 33px;
-    --solutions-card-title-min-height: 18px;
-    --solutions-card-title-font-size: 20px;
-    --solutions-card-title-line-height: 20px;
-    --solutions-card-body-top: 78px;
-    --solutions-card-body-font-size: 18px;
-    --solutions-card-body-line-height: 18px;
-    --solutions-card-body-width: 189px;
-  }
-
-  /* Cada card tiene su propio arranque de título y cuerpo: el diseño los
-     acomoda según cuántos renglones ocupa cada texto. */
-  .alarmas {
-    --solutions-title-width: 203px;
-    --solutions-card-title-top: 26px;
-    --solutions-card-body-top: 71px;
-    --solutions-card-body-width: 151px;
-  }
-
-  /* Figma 5011:470 mide la caja en 150, pero "Cierre perimetral de" necesita
-     152 con League Spartan a 18px; se ensancha lo justo para conservar el
-     corte de 4 renglones del diseño. */
-  .cerco {
-    --solutions-title-width: 203px;
-    --solutions-card-title-top: 24px;
-    --solutions-card-body-top: 69px;
-    --solutions-card-body-width: 154px;
-  }
-
-  .cctv {
-    --solutions-title-width: 190px;
-    --solutions-card-title-top: 32px;
-    --solutions-card-body-top: 77px;
-    --solutions-card-body-width: 177px;
-  }
-
-  .acceso {
-    --solutions-title-width: 197px;
-    --solutions-card-title-top: 34px;
-    --solutions-card-body-top: 79px;
-    --solutions-card-body-width: 160px;
-  }
-
-  .timelapse {
-    --solutions-title-width: 203px;
-    --solutions-card-title-top: 27px;
-    --solutions-card-body-top: 71px;
-    --solutions-card-body-width: 157px;
-  }
-
-  .canvas {
-    width: 752px;
-    max-width: none;
-    height: 1303px;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow: hidden;
+    padding: 62px 0 45px;
   }
 
   .watermark {
-    top: 0;
-    left: 0;
-    width: 752px;
-    height: 100%;
-    transform: none;
-    gap: 2px;
-    opacity: 0.4;
-  }
-
-  .watermarkRow,
-  .watermarkRow:first-child {
-    height: 55px;
-  }
-
-  .watermarkRow:nth-child(n + 4) {
-    display: block;
-  }
-
-  .copyBlock {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 402px;
-    height: 222px;
-    margin: 0;
-    padding: 0;
+    top: 191px;
+    background-size: 684.5px 53.08px;
+    background-position: -141px 0;
   }
 
   .intro {
-    width: 402px;
-    padding-top: 43px;
-    gap: 0;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    width: calc(100% - 48px);
   }
 
-  .copyMain {
-    position: relative;
-    width: 323px;
-    height: 141px;
-  }
-
-  .desktopOnly {
-    display: none;
-  }
-
-  .mobileOnly {
-    display: block;
-  }
-
-  .mobileLead {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 308px;
-    height: 40px;
-    line-height: 24px;
-  }
-
-  /* 308, que es el ancho del bloque de copy en este diseño (en edificios era
-     323, de donde venía copiado el módulo). */
-  .mobileBody {
-    position: absolute;
-    top: 69px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 308px;
-    height: 72px;
-    line-height: 18px;
-  }
-
-  .desktopTitle {
-    display: none;
-  }
-
-  .mobileTitle {
-    display: contents;
-  }
-
-  .desktopBodyText {
-    display: none;
-  }
-
-  .mobileBodyText {
-    display: inline;
-  }
-
-  .gridArea {
-    position: absolute;
-    top: 222px;
-    left: 0;
-    width: 752px;
-    height: 1081px;
-    margin-top: 0;
+  .lead {
+    margin: 0 auto;
+    width: min(292px, 100%);
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.1;
   }
 
   .heading {
-    position: absolute;
-    top: 34px;
-    left: 50%;
-    width: 399px;
-    transform: translateX(-50%);
-    margin: 0;
+    margin-top: 70px;
     font-size: 24px;
-    line-height: 22.8px;
-    text-align: center;
-    text-transform: capitalize;
+    line-height: 0.95;
   }
 
   .grid {
-    position: absolute;
-    top: 82px;
-    left: 50%;
-    width: var(--solutions-grid-width);
-    height: auto;
-    margin: 0;
-    transform: translateX(-50%);
-    display: flex;
+    width: 100%;
+    margin-top: 20px;
     flex-direction: column;
     align-items: center;
-    gap: var(--solutions-grid-gap);
-  }
-
-  .cardGroup {
-    width: var(--solutions-card-width);
-    position: relative;
-    margin: 0;
+    row-gap: 20px;
   }
 
   .card {
-    width: var(--solutions-card-width);
-    height: var(--solutions-card-height);
-    border-radius: 22px;
+    width: 201px;
+    height: 221px;
   }
 
   .cardTitle {
-    letter-spacing: 1px;
+    top: var(--m-title-top);
   }
 
   .cardBody {
-    min-height: 0;
+    top: var(--m-body-top);
+    width: var(--m-body-width);
+    font-size: 18px;
+  }
+
+  .desktopBody {
+    display: none;
+  }
+
+  .mobileBody {
+    display: inline;
+  }
+
+  .cardButton {
+    bottom: 22px;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 20px;
   }
 }
