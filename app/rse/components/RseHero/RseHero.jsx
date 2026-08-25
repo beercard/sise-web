@@ -1,44 +1,63 @@
-import styles from '../../page.module.scss';
+import Image from 'next/image';
+
+import styles from './RseHero.module.scss';
+
+/*
+ * Hero de /rse según Figma 5014:400 (desktop 1920×917) y 5014:401 (mobile
+ * 402×591): la foto de la comunidad al 50% sobre el azul #00408c, sin
+ * gradiente, con el título en negrita y la bajada de dos párrafos anclados
+ * abajo a la izquierda. El mobile usa un recorte propio de la misma foto y el
+ * título en tres renglones. Los webp ya están exportados al tamaño final, así
+ * que van sin el optimizador de Next (unoptimized).
+ */
+const HERO_IMAGE_DESKTOP = '/image/hero-rse-comunidad-desktop.webp';
+const HERO_IMAGE_MOBILE = '/image/hero-rse-comunidad-mobile.webp';
 
 export default function RseHero() {
   return (
     <section className={styles.hero} aria-label="Responsabilidad Social Empresarial">
-      <div className={styles.heroMedia} aria-hidden="true">
-        <picture className={styles.heroPicture}>
-          <source srcSet="/image/hero-rse-mobile.webp" media="(max-width: 600px)" />
-          <img
-            src="/image/hero-rse-desktop.webp"
-            alt=""
-            className={styles.heroImage}
-            decoding="async"
-            loading="eager"
-            fetchPriority="high"
-          />
-        </picture>
-        <div className={styles.heroOverlay} />
-      </div>
+      <div className={styles.media}>
+        <Image
+          src={HERO_IMAGE_DESKTOP}
+          alt="Acciones de responsabilidad social de SISE Argentina"
+          className={`${styles.image} ${styles.imageDesktop}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
+        <Image
+          src={HERO_IMAGE_MOBILE}
+          alt=""
+          className={`${styles.image} ${styles.imageMobile}`}
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+        />
 
-      <div className={styles.heroCopy}>
-        <h1 className={`${styles.heroTitle} ${styles.heroTitleDesktop}`}>
-          Responsabilidad Social Empresarial
-        </h1>
-        <h1 className={`${styles.heroTitle} ${styles.heroTitleMobile}`}>
-          Responsabilidad
-          <br />
-          Social
-          <br />
-          Empresarial
-        </h1>
+        <div className={styles.content}>
+          <h1 className={`${styles.title} ${styles.titleDesktop}`}>
+            Responsabilidad Social Empresarial
+          </h1>
+          <h1 className={`${styles.title} ${styles.titleMobile}`}>
+            Responsabilidad
+            <br />
+            Social
+            <br />
+            Empresarial
+          </h1>
 
-        <p className={styles.heroParagraph}>
-          En SISE Argentina entendemos que la seguridad también implica compromiso con la
-          comunidad, el ambiente y el desarrollo social.
-          <br />
-          <br />
-          Por eso, llevamos adelante acciones sostenidas de Responsabilidad Social Empresarial
-          orientadas a generar un <strong>impacto positivo real</strong>, promoviendo{' '}
-          <strong>la inclusión, la educación, el deporte y el cuidado del entorno.</strong>
-        </p>
+          <p className={styles.paragraph}>
+            En SISE Argentina entendemos que la seguridad también implica{' '}
+            <strong>compromiso con la comunidad, el ambiente y el desarrollo social</strong>.
+            <br />
+            <br />
+            Por eso, llevamos adelante acciones sostenidas de Responsabilidad Social Empresarial
+            orientadas a generar un <strong>impacto positivo real</strong>, promoviendo{' '}
+            <strong>la inclusión, la educación, el deporte y el cuidado del entorno</strong>.
+          </p>
+        </div>
       </div>
     </section>
   );

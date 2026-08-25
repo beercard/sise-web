@@ -1,0 +1,321 @@
+/*
+ * Carrusel de iniciativas de /rse — Figma 5014:402/403 (desktop) y
+ * 5014:404/405 (mobile). Tarjetas de 455×597 (radio 50): foto de 294 arriba,
+ * banda de categoría (42, texto azul 22 sobre gris), franja azul #00408c de
+ * 88 con el convenio en 32, y descripción de 26/0.92 centrada. Al frente van
+ * dos tarjetas y a cada lado una vista previa de 353×463; en mobile una sola
+ * de 262×373 con flechas de 15×23.
+ */
+.section {
+  padding: 67px 0 90px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.deck {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Las vistas previas asoman recortadas por los bordes, como en el diseño. */
+.previewSlot {
+  flex: 0 0 auto;
+  margin-top: 67px;
+}
+
+.previewSlot:first-child {
+  margin-left: -160px;
+}
+
+.previewSlot:last-child {
+  margin-right: -160px;
+}
+
+.arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  border: 0;
+  background: transparent;
+  color: #d9d9d9;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 455px;
+  height: 597px;
+  border-radius: 50px;
+  background: #d9d9d9;
+  overflow: hidden;
+  text-align: center;
+  color: #000000;
+}
+
+.photo {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 294px;
+}
+
+.photoImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.category {
+  flex: 0 0 auto;
+  margin: 0;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #cfcfcf;
+  color: #00408c;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  flex: 0 0 auto;
+  margin: 0;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  background: #00408c;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.subtitle strong {
+  font-weight: 700;
+}
+
+.description {
+  flex: 1 1 auto;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  font-size: 26px;
+  line-height: 0.92;
+  font-weight: 400;
+}
+
+.liveButton {
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 261px;
+  height: 40px;
+  background: #0857b5;
+  border: 2px solid #00408c;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* La tarjeta del puente reparte la descripción y el botón. */
+.card:has(.liveButton) .description {
+  padding-bottom: 4px;
+}
+
+/* Vista previa lateral (353×463, tipografías al 78%). */
+.card-preview {
+  width: 353px;
+  height: 463px;
+}
+
+.card-preview .photo {
+  height: 228px;
+}
+
+.card-preview .category {
+  height: 33px;
+  font-size: 17px;
+}
+
+.card-preview .subtitle {
+  min-height: 68px;
+  font-size: 25px;
+  padding: 6px 18px;
+}
+
+.card-preview .description {
+  font-size: 20px;
+  padding: 12px 22px;
+}
+
+.card-preview .liveButton {
+  width: 202px;
+  height: 31px;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+/* Mobile (262×373) sólo se ve en ≤600. */
+.mobileDeck {
+  display: none;
+}
+
+.card-mobile {
+  width: 262px;
+  height: 373px;
+  border-radius: 30px;
+}
+
+.card-mobile .photo {
+  height: 181px;
+}
+
+.card-mobile .category {
+  height: 24px;
+  font-size: 13px;
+}
+
+.card-mobile .subtitle {
+  min-height: 51px;
+  font-size: 18px;
+  padding: 5px 14px;
+}
+
+.card-mobile .description {
+  font-size: 15px;
+  padding: 10px 18px;
+}
+
+.card-mobile .liveButton {
+  width: 160px;
+  height: 26px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+}
+
+@media (max-width: 1500px) {
+  .previewSlot:first-child {
+    margin-left: -240px;
+  }
+
+  .previewSlot:last-child {
+    margin-right: -240px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .previewSlot {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .deck {
+    gap: 12px;
+  }
+
+  .card {
+    width: min(455px, calc(50vw - 60px));
+    height: auto;
+    min-height: 500px;
+  }
+
+  .card .photo {
+    height: 200px;
+  }
+
+  .card .category {
+    font-size: 16px;
+  }
+
+  .card .subtitle {
+    font-size: 22px;
+  }
+
+  .card .description {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 48px 0 64px;
+  }
+
+  .deck {
+    display: none;
+  }
+
+  .mobileDeck {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .mobileDeck .arrow {
+    color: #d9d9d9;
+    padding: 4px;
+  }
+
+  .mobileDeck .arrow svg {
+    width: 15px;
+    height: 23px;
+  }
+
+  /* Repone las medidas de la tarjeta mobile: las reglas de ≤960 (que achican
+     la tarjeta del deck de escritorio) vienen después en la cascada. */
+  .mobileDeck .card {
+    width: 262px;
+    height: 373px;
+    min-height: 0;
+    border-radius: 30px;
+  }
+
+  .mobileDeck .card .photo {
+    height: 181px;
+  }
+
+  .mobileDeck .card .category {
+    height: 24px;
+    font-size: 13px;
+  }
+
+  .mobileDeck .card .subtitle {
+    min-height: 51px;
+    font-size: 18px;
+    padding: 5px 14px;
+  }
+
+  .mobileDeck .card .description {
+    font-size: 15px;
+    padding: 10px 18px;
+  }
+
+  .mobileDeck .card .liveButton {
+    width: 160px;
+    height: 26px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+  }
+}
