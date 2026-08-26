@@ -337,3 +337,44 @@ export function useTechEditor({
     handleResetEditorConfig
   };
 }
+
+
+/*
+ * Precarga las ilustraciones de todas las fichas del módulo de tecnología en
+ * cuanto el navegador queda ocioso: sin esto, cada card pide su imagen recién
+ * al mostrarse por primera vez y el cambio de ficha se ve con retardo. Sirve
+ * porque las cards renderizan los webp directo (unoptimized): la URL que se
+ * calienta acá es la misma que va a pedir el <Image>.
+ */
+export function useWarmSlideImages(slides) {
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+
+    const urls = [];
+    slides.forEach((slide) => {
+      const art = slide.art;
+      if (!art) return;
+      [art.src, art.mobileSrc, art.backgroundSrc, art.overlaySrc, art.svgSrc, art.iconSrc, art.cornerSrc].forEach(
+        (url) => {
+          if (url) urls.push(url);
+        }
+      );
+    });
+
+    const warm = () => {
+      urls.forEach((url) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = url;
+      });
+    };
+
+    if (window.requestIdleCallback) {
+      const idleId = window.requestIdleCallback(warm, { timeout: 2000 });
+      return () => window.cancelIdleCallback?.(idleId);
+    }
+
+    const timeoutId = window.setTimeout(warm, 900);
+    return () => window.clearTimeout(timeoutId);
+  }, [slides]);
+}

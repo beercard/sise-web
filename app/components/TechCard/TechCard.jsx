@@ -32,6 +32,7 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={`${styles.artImage} ${styles.artImageDesktop}`}
             width={art.width ?? art.image?.width ?? 220}
             height={art.height ?? art.image?.height ?? 170}
+            unoptimized
             style={art.rotate ? { transform: `rotate(${art.rotate}deg)` } : undefined}
           />
           <Image
@@ -40,6 +41,7 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={`${styles.artImage} ${styles.artImageMobile}`}
             width={art.mobileWidth ?? art.width ?? 220}
             height={art.mobileHeight ?? art.height ?? 170}
+            unoptimized
           />
         </>
       );
@@ -52,6 +54,7 @@ function ArtContent({ art, fallbackAlt = '' }) {
         className={styles.artImage}
         width={art.width ?? art.image?.width ?? 220}
         height={art.height ?? art.image?.height ?? 170}
+        unoptimized
         style={art.rotate ? { transform: `rotate(${art.rotate}deg)` } : undefined}
       />
     );
@@ -78,6 +81,7 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={styles.frameOverlay}
             width={art.overlayWidth ?? 143}
             height={art.overlayHeight ?? 143}
+            unoptimized
             style={{
               top: art.overlayTop,
               right: art.overlayRight,
@@ -112,6 +116,7 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={styles.frameBadge}
             width={art.iconWidth ?? 69}
             height={art.iconHeight ?? 24}
+            unoptimized
           />
         ) : null}
         {art.cornerSrc ? (
@@ -121,6 +126,7 @@ function ArtContent({ art, fallbackAlt = '' }) {
             className={styles.frameCorner}
             width={art.cornerWidth ?? 18}
             height={art.cornerHeight ?? 11}
+            unoptimized
           />
         ) : null}
       </div>

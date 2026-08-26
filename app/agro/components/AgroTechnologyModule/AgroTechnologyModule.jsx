@@ -8,7 +8,8 @@ import {
   getDirection,
   useAreaScale,
   useSlideTransition,
-  useTechEditor
+  useTechEditor,
+  useWarmSlideImages
 } from '../../../lib/hooks';
 
 import TechCard from '../../../components/TechCard/TechCard';
@@ -201,6 +202,8 @@ export default function AgroTechnologyModule() {
     activeIndexRef,
     startTransition
   } = useSlideTransition({ length: SLIDES.length });
+
+  useWarmSlideImages(SLIDES);
 
   const { getScale } = useAreaScale({
     baseSizes: HOUSE_BASE_SIZES,
