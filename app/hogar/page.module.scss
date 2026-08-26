@@ -587,19 +587,22 @@
     display: none;
   }
 
-  /* El mapa va a sangre: compensa el padding lateral de la fila. */
+  /* Del diseño mobile vigente (3550:729): el mapa ya no va a sangre, vive en
+     la columna de 354 (x=24) como en el resto de las verticales. Se conserva
+     el aspecto del plano de escritorio para que los puntos porcentuales
+     queden exactos. */
   .house,
   .housePerimetral {
-    width: calc(100% + 48px);
+    width: 100%;
     max-width: none;
     height: auto;
     aspect-ratio: 735 / 534;
-    margin-left: -24px;
-    margin-right: -24px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  /* Del diseño mobile (5001:278): el mapa arranca 26px bajo el título y las
-     cards 55px bajo el mapa. */
+  /* Del diseño mobile (3550:729/716): el mapa arranca 26px bajo el título y
+     las cards 55px bajo el mapa. */
   .technologyRow {
     margin-top: 26px;
     gap: 55px;
