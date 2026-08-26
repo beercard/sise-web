@@ -211,7 +211,7 @@ const SLIDES = [
       '--tech-card-mobile-art-height': '112px'
     },
     mobileShell: { width: '201px', height: '300px', top: '0px', left: '0px', background: '#D9D9D9', borderRadius: '22px' },
-    art: { type: 'image', src: '/image/tech-comercio-acceso.webp', width: 84, height: 153 }
+    art: { type: 'image', src: '/image/tech-acceso-terminal.webp', width: 84, height: 153 }
   }
 ];
 

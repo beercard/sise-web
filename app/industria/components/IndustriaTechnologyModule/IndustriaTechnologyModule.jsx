@@ -242,7 +242,7 @@ const SLIDES = [
       '--tech-card-mobile-art-height': '112px'
     },
     mobileShell: MOBILE_SHELL,
-    art: { type: 'image', src: '/image/tech-comercio-acceso.webp', width: 84, height: 153 }
+    art: { type: 'image', src: '/image/tech-acceso-terminal.webp', width: 84, height: 153 }
   },
   {
     id: 'rastreo',

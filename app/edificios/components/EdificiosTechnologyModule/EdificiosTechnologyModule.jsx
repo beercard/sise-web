@@ -120,7 +120,7 @@ const SLIDES = [
       '--tech-card-mobile-art-height': '141px'
     },
     mobileShell: MOBILE_SHELL,
-    art: { type: 'image', src: '/image/tech-comercio-acceso.webp', width: 95, height: 173 }
+    art: { type: 'image', src: '/image/tech-acceso-terminal.webp', width: 95, height: 173 }
   },
   {
     id: 'vehicular',
