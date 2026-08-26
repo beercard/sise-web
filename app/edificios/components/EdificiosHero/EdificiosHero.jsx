@@ -11,8 +11,8 @@ import styles from './EdificiosHero.module.scss';
  * están exportados al tamaño final, así que van sin el optimizador de Next
  * (unoptimized).
  */
-const HERO_IMAGE_DESKTOP = '/image/hero-edificios-torre-desktop.webp';
-const HERO_IMAGE_MOBILE = '/image/hero-edificios-torre-mobile.webp';
+const HERO_IMAGE_DESKTOP = '/image/hero-edificios-edificio-desktop.webp';
+const HERO_IMAGE_MOBILE = '/image/hero-edificios-edificio-mobile.webp';
 
 export default function EdificiosHero() {
   return (

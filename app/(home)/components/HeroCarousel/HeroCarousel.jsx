@@ -13,7 +13,7 @@ const HERO_SLIDES = [
   { id: 'hogar', desktopImage: '/image/hero-hogar-casa-desktop.webp', mobileImage: '/image/hero-hogar-casa-mobile.webp' },
   { id: 'comercio', desktopImage: '/image/hero-comercio-local-desktop.webp', mobileImage: '/image/hero-comercio-local-mobile.webp' },
   { id: 'industria', desktopImage: '/image/hero-industria-planta-desktop.webp', mobileImage: '/image/hero-industria-planta-mobile.webp' },
-  { id: 'edificios', desktopImage: '/image/hero-edificios-torre-desktop.webp', mobileImage: '/image/hero-edificios-torre-mobile.webp' },
+  { id: 'edificios', desktopImage: '/image/hero-edificios-edificio-desktop.webp', mobileImage: '/image/hero-edificios-edificio-mobile.webp' },
   { id: 'construccion', desktopImage: '/image/hero-construccion-obra-desktop.webp', mobileImage: '/image/hero-construccion-obra-mobile.webp' },
   { id: 'agro', desktopImage: '/image/hero-agro-campo-desktop.webp', mobileImage: '/image/hero-agro-campo-mobile.webp' },
   { id: 'ciudad', desktopImage: '/image/hero-ciudad-poste-desktop.webp', mobileImage: '/image/hero-ciudad-poste-mobile.webp' }
