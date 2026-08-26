@@ -113,7 +113,9 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '36px',
       '--tech-card-mobile-title-width': '187px',
       '--tech-card-mobile-text-top': '66px',
-      '--tech-card-mobile-text-width': '167px',
+      /* 190 y no los 167 del diseño: League Spartan mide más en el navegador
+         y con 167 el texto caía en 7 renglones pisando el panel solar. */
+      '--tech-card-mobile-text-width': '190px',
       '--tech-card-mobile-art-top': '181px',
       '--tech-card-mobile-art-width': '128px',
       '--tech-card-mobile-art-height': '96px'

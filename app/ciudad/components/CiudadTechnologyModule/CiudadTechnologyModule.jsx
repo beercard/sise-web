@@ -271,6 +271,9 @@ const SLIDES = [
   {
     id: 'dependencias',
     title: 'Control de Dependencias',
+    /* Mobile (3562:277): una sola línea; sin el corte fijo, la fuente del
+       navegador lo partía en dos. */
+    mobileTitleLines: ['Control de Dependencias'],
     text: 'Gestión de RRHH público. Auditoría estricta de ingresos y presentismo en edificios gubernamentales.',
     desktopTextLines: [
       'Gestión de RRHH público.',

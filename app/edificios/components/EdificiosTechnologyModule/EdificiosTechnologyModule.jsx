@@ -229,6 +229,9 @@ const SLIDES = [
       '--tech-card-mobile-text-top': '85px',
       '--tech-card-mobile-text-width': '183px',
       '--tech-card-mobile-art-top': '150px',
+      /* El diseño (3541:520) no centra la cerradura: va en x=79. */
+      '--tech-card-mobile-art-left': '79px',
+      '--tech-card-mobile-art-transform': 'none',
       '--tech-card-mobile-art-width': '65px',
       '--tech-card-mobile-art-height': '140px'
     },
