@@ -104,7 +104,7 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '29px',
       '--tech-card-mobile-title-width': '188px',
       '--tech-card-mobile-text-top': '77px',
-      '--tech-card-mobile-text-width': '158px',
+      '--tech-card-mobile-text-width': '175px',
       '--tech-card-mobile-art-top': '193px',
       '--tech-card-mobile-art-width': '116px',
       '--tech-card-mobile-art-height': '89px'
@@ -141,7 +141,7 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '29px',
       '--tech-card-mobile-title-width': '187px',
       '--tech-card-mobile-text-top': '84px',
-      '--tech-card-mobile-text-width': '184px',
+      '--tech-card-mobile-text-width': '196px',
       '--tech-card-mobile-art-top': '194px',
       '--tech-card-mobile-art-width': '129px',
       '--tech-card-mobile-art-height': '73px'
@@ -177,7 +177,7 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '29px',
       '--tech-card-mobile-title-width': '187px',
       '--tech-card-mobile-text-top': '86px',
-      '--tech-card-mobile-text-width': '146px',
+      '--tech-card-mobile-text-width': '164px',
       '--tech-card-mobile-art-top': '174px',
       '--tech-card-mobile-art-width': '160px',
       '--tech-card-mobile-art-height': '111px'

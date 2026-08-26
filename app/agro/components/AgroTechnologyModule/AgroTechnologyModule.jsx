@@ -150,7 +150,7 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '31px',
       '--tech-card-mobile-title-width': '187px',
       '--tech-card-mobile-text-top': '81px',
-      '--tech-card-mobile-text-width': '174px',
+      '--tech-card-mobile-text-width': '190px',
       '--tech-card-mobile-art-top': '172px',
       '--tech-card-mobile-art-width': '123px',
       '--tech-card-mobile-art-height': '119px'

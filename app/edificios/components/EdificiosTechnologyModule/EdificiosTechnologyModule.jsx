@@ -87,7 +87,7 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '36px',
       '--tech-card-mobile-title-width': '187px',
       '--tech-card-mobile-text-top': '66px',
-      '--tech-card-mobile-text-width': '178px',
+      '--tech-card-mobile-text-width': '195px',
       '--tech-card-mobile-art-top': '139px',
       '--tech-card-mobile-art-width': '164px',
       '--tech-card-mobile-art-height': '146px'
@@ -227,7 +227,7 @@ const SLIDES = [
       '--tech-card-mobile-title-top': '33px',
       '--tech-card-mobile-title-width': '187px',
       '--tech-card-mobile-text-top': '85px',
-      '--tech-card-mobile-text-width': '183px',
+      '--tech-card-mobile-text-width': '198px',
       '--tech-card-mobile-art-top': '150px',
       /* El diseño (3541:520) no centra la cerradura: va en x=79. */
       '--tech-card-mobile-art-left': '79px',
