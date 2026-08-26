@@ -24,6 +24,7 @@ const SOLUTIONS = [
   },
   {
     key: 'camara',
+    info: 'camara-campo',
     title: ['CÁMARA CAMPO'],
     body: 'Vigilancia 100% autónoma (energía solar y 4G/ Starlink) para zonas sin infraestructura eléctrica ni internet.'
   },

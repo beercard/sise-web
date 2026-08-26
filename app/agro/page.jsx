@@ -73,6 +73,13 @@ const agroSolutions = [
       'gps-dashcams',
       'Seguimiento y control de vehículos, maquinaria y activos rurales.'
     )
+  },
+  {
+    name: 'Cámara Campo autónoma',
+    description: buildSolutionSeoDescription(
+      'camara-campo',
+      'Vigilancia autónoma con energía solar y enlace satelital para zonas sin infraestructura.'
+    )
   }
 ];
 

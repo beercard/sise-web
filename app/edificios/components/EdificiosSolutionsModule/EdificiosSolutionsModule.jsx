@@ -25,6 +25,7 @@ const SOLUTIONS = [
   },
   {
     key: 'videoportero',
+    info: 'videoportero',
     title: ['VIDEOPORTERO'],
     body: 'Gestión ágil de visitas y apertura de puertas del edificio directamente desde diversos métodos.'
   },
@@ -36,6 +37,7 @@ const SOLUTIONS = [
   },
   {
     key: 'terminal',
+    info: 'terminal-unidad',
     title: ['TERMINAL DE', 'UNIDAD'],
     body: 'Pantalla de control central para gestionar los accesos del edificio desde adentro del departamento.'
   },
@@ -47,16 +49,19 @@ const SOLUTIONS = [
   },
   {
     key: 'ascensor',
+    info: 'ascensor-sincronizado',
     title: ['ASCENSOR', 'SINCRONIZADO'],
     body: 'El ecosistema detecta el ingreso principal y llama automáticamente al ascensor.'
   },
   {
     key: 'amenities',
+    info: 'gestion-amenities',
     title: ['GESTIÓN DE', 'AMENITIES'],
     body: 'Reserva de espacios comunes 100% digital y autogestionada por el residente.'
   },
   {
     key: 'cerraduras',
+    info: 'cerraduras-electronicas',
     title: ['CERRADURAS', 'ELECTRÓNICAS'],
     body: 'Cerraduras de alta tecnología para departamentos completamente libres de llaves físicas.'
   }

@@ -210,7 +210,227 @@ export const SOLUTIONS_INFO = {
     distinctive: [
       'El sistema se sincroniza con tus cámaras o alarmas, y al estar en la zona, nuestro equipo técnico te garantiza una respuesta rápida ante cualquier fallo de la barrera o del lector.'
     ]
+  },
+  videoportero: {
+    title: 'VIDEOPORTERO',
+    tagline: 'Control y comunicación segura en los accesos.',
+    photo: '/image/solucion-videoportero-foto.webp',
+    photoAlt: 'Frente de videoportería en el acceso de un edificio',
+    description:
+      'Sistema de comunicación y apertura inteligente que permite identificar visual y auditivamente a quienes llaman a la puerta de tu edificio o propiedad, gestionando el ingreso de forma segura.',
+    components: [
+      'Frente de videoportería.',
+      'Cámara.',
+      'Micrófono y parlante.',
+      'Monitor o dispositivo de recepción.',
+      'Sistema de apertura.',
+      'Cerradura eléctrica o electromagnética.',
+      'Fuente de alimentación.',
+      'Cableado y elementos de instalación.'
+    ],
+    benefits: [
+      'Identificación clara antes de abrir la puerta.',
+      'Permite ver, hablar y dar acceso a visitas de forma remota o desde el interior, sumando comodidad y control cotidiano.'
+    ],
+    distinctive: [
+      'Instalación profesional y soporte técnico local en la región para asegurar el funcionamiento continuo del sistema en tu propiedad.'
+    ]
+  },
+  'terminal-unidad': {
+    title: 'TERMINAL DE UNIDAD',
+    tagline: 'Control total de accesos, domótica y amenities desde el interior de tu unidad.',
+    photo: '/image/solucion-terminal-foto.webp',
+    photoAlt: 'Terminal táctil de control dentro de un departamento',
+    description:
+      'Dispositivo táctil instalado en el interior de cada departamento para centralizar la gestión de los servicios tecnológicos, la seguridad y el confort del hogar.',
+    components: [
+      'Pantalla o terminal de control',
+      'Interfaz de usuario',
+      'Software de integración con los sistemas del edificio.'
+    ],
+    benefits: [
+      'Comodidad y control absoluto centralizado.',
+      'Permite visualizar notificaciones, comunicarse con sistemas de acceso, gestionar reservas de amenities y comandar funciones domóticas o de seguridad propias de la unidad.'
+    ],
+    distinctive: [
+      'Ecosistema integrado.',
+      'No funciona aislado: vincula la domótica de tu departamento con la videoportería y la seguridad general del edificio, respaldado por soporte técnico local en la región.'
+    ]
+  },
+  'cerraduras-electronicas': {
+    title: 'CERRADURAS ELECTRÓNICAS',
+    tagline: 'Acceso inteligente por código, tarjeta o huella para tu hogar o empresa.',
+    photo: '/image/solucion-cerraduras-foto.webp',
+    photoAlt: 'Cerradura electrónica instalada en una puerta',
+    description:
+      'Sistema de control de acceso diseñado para ingresar a unidades funcionales mediante mecanismos electrónicos, eliminando la dependencia de las llaves físicas tradicionales.',
+    components: [
+      'Cerradura electrónica.',
+      'Sistema de identificación (código, tarjeta, tag, app o biometría según la tecnología elegida)',
+      'Instalación.',
+      'Configuración inicial.'
+    ],
+    benefits: [
+      'Seguridad y comodidad en la gestión diaria.',
+      'Permite administrar altas, bajas y permisos de usuarios, obteniendo un registro de accesos en los modelos compatibles.'
+    ],
+    distinctive: [
+      'Integración inteligente y respaldo local.',
+      'La cerradura no queda aislada: puede vincularse con los sistemas generales del edificio y cuenta con el soporte técnico directo de nuestra región.'
+    ]
+  },
+  'gestion-amenities': {
+    title: 'GESTIÓN DE AMENITIES',
+    tagline: 'Reserva de amenities digital: gestión de espacios comunes para residentes.',
+    photo: '/image/solucion-amenities-foto.webp',
+    photoAlt: 'Plataforma digital de reserva de amenities',
+    description:
+      'Plataforma digital para la autogestión de reservas y administración de espacios comunes del edificio por parte de los residentes.',
+    components: [
+      'Plataforma de gestión digital (App/Web).',
+      'Visualización de disponibilidad.',
+      'Módulo de reservas y cancelaciones.',
+      'Administración de usuarios y configuración de reglas de uso.'
+    ],
+    benefits: [
+      'Transparencia y agilidad en el uso del SUM, parrillas u otros espacios comunes.',
+      'Evita conflictos, organiza horarios automáticamente y ofrece un registro claro de utilización para la administración.'
+    ],
+    distinctive: [
+      'Integración exclusiva.',
+      'La plataforma no es un software aislado; se vincula con los sistemas de acceso y domótica de SISE en el edificio, permitiendo habilitar accesos solo cuando existe una reserva confirmada, todo con soporte regional.'
+    ]
+  },
+  'ascensor-sincronizado': {
+    title: 'ASCENSOR SINCRONIZADO',
+    tagline: 'Te espera y te lleva a tu piso automáticamente al validar tu acceso en la entrada.',
+    photo: '/image/solucion-ascensor-foto.webp',
+    photoAlt: 'Ascensor sincronizado con el control de acceso del edificio',
+    description:
+      'Sistema de integración tecnológica que activa la llamada automática del ascensor en cuanto un usuario autorizado ingresa al edificio o sector permitido.',
+    components: [
+      'Integración entre control de acceso y sistema de ascensores.',
+      'Identificación de usuarios.',
+      'Módulo de envío de señales.',
+      'Configuración de permisos.',
+      'Enlace con otros sistemas de seguridad del edificio.'
+    ],
+    benefits: [
+      'Comodidad y fluidez en la circulación vertical.',
+      'Reduce tiempos de espera y optimiza el movimiento interno habilitando el piso correspondiente de forma automatizada.'
+    ],
+    distinctive: [
+      'Conectividad total y soporte local en la región.',
+      'Vincula de forma inteligente el control de ingreso con la elevación del edificio para una experiencia de uso integrada.'
+    ]
+  },
+  'camara-campo': {
+    title: 'CÁMARA CAMPO',
+    tagline: 'El control de tu campo estés donde estés.',
+    taglineWidth: 232,
+    photo: '/image/solucion-camara-campo-foto.webp',
+    photoAlt: 'Cámara autónoma con panel solar en el campo',
+    description:
+      'Sistema autónomo de videovigilancia diseñado específicamente para el monitoreo de establecimientos rurales, zonas alejadas o lugares que carecen de infraestructura convencional de energía o conectividad.',
+    components: [
+      'Cámara autónoma.',
+      'Alimentación solar.',
+      'Sistema de almacenamiento.',
+      'Dispositivos de transmisión de imágenes.',
+      'Conectividad disponible y opción de integración satelital.'
+    ],
+    benefits: [
+      'Vigilancia ininterrumpida en terrenos complejos.',
+      'Permite la visualización remota de zonas descampadas y la detección de eventos en tiempo real donde otros sistemas no llegan.'
+    ],
+    distinctive: [
+      'Autonomía total y soporte regional.',
+      'Combina tecnología autosustentable con la opción de monitoreo remoto por operadores para proteger tu campo o perímetro alejado sin depender de la red eléctrica tradicional.'
+    ]
+  },
+  'punto-seguro': {
+    title: 'PUNTO SEGURO',
+    tagline: 'Tótem de asistencia, comunicación y videovigilancia.',
+    photo: '/image/solucion-punto-seguro-foto.webp',
+    photoAlt: 'Tótem de punto seguro en la vía pública',
+    description:
+      'Solución tecnológica autónoma diseñada para brindar un punto de comunicación, monitoreo y asistencia remota en espacios públicos, rutas, accesos o zonas determinadas mediante dispositivos de seguridad.',
+    components: [
+      'Estructura o terminal de seguridad.',
+      'Cámara de videovigilancia.',
+      'Sistema de comunicación.',
+      'Botón de emergencia.',
+      'Audio bidireccional.',
+      'Iluminación.',
+      'Alimentación solar.',
+      'Conectividad (con opción satelital).',
+      'Almacenamiento.',
+      'Sensores (opcionales).'
+    ],
+    benefits: [
+      'Respuesta inmediata ante emergencias en zonas críticas.',
+      'Permite la interacción directa mediante audio y video, facilitando la asistencia en tiempo real y la disuasión en áreas desprotegidas o de alto tránsito.'
+    ],
+    distinctive: [
+      'Autonomía y gestión centralizada.',
+      'Integra conectividad flexible y sistemas de respaldo para operar en cualquier punto geográfico, gestionando eventos bajo protocolos estrictos y con el respaldo técnico de la región.'
+    ]
+  },
+  /*
+   * Ojo: el nodo de Figma de este popup (3619:445) todavía trae el texto de
+   * Guardia Virtual copiado; este contenido es una redacción provisoria
+   * coherente con la tarjeta de construcción hasta que llegue el definitivo.
+   */
+  'timelapse-obra': {
+    title: 'TIMELAPSE DE OBRA',
+    tagline: 'Registro audiovisual del avance de tu proyecto, cuadro por cuadro.',
+    photo: '/image/solucion-timelapse-foto.webp',
+    photoAlt: 'Cámara de timelapse registrando el avance de una obra',
+    description:
+      'Sistema de captura fotográfica programada que documenta la evolución completa de tu obra, generando un registro visual cronológico del proyecto desde el inicio hasta la entrega.',
+    components: [
+      'Cámara de captura programada.',
+      'Alimentación autónoma (opción solar).',
+      'Sistema de almacenamiento.',
+      'Transmisión remota de imágenes.',
+      'Plataforma de visualización.',
+      'Edición del video final del proyecto.'
+    ],
+    benefits: [
+      'Control y documentación permanente del avance.',
+      'Permite auditar plazos y etapas a distancia, respaldar certificaciones ante inversores y obtener un material audiovisual de alto valor comercial para difundir el proyecto.'
+    ],
+    distinctive: [
+      'Integración con la seguridad de tu obra.',
+      'El registro convive con las cámaras y alarmas de SISE en el predio, con instalación profesional y soporte técnico local en la región durante toda la ejecución.'
+    ]
+  },
+  'parada-segura': {
+    title: 'PARADA SEGURA',
+    tagline: 'Tótems de videovigilancia, comunicación y asistencia para proteger las esperas.',
+    photo: '/image/solucion-parada-segura-foto.webp',
+    photoAlt: 'Parada de transporte público con videovigilancia',
+    description:
+      'Solución tecnológica diseñada para mejorar las condiciones de seguridad en puntos de espera o circulación de personas mediante sistemas de videovigilancia, comunicación y monitoreo remoto.',
+    components: [
+      'Cámaras de videovigilancia.',
+      'Botón de emergencia.',
+      'Sistema de comunicación bidireccional con audio.',
+      'Iluminación de seguridad.',
+      'Almacenamiento de imágenes.',
+      'Conectividad.',
+      'Cartelería informativa.'
+    ],
+    benefits: [
+      'Mayor tranquilidad y prevención para los usuarios en la vía pública.',
+      'Permite la interacción directa ante situaciones de riesgo y asegura la visibilidad en zonas de espera.'
+    ],
+    distinctive: [
+      'Integración operativa directa.',
+      'Se conecta de forma permanente con nuestra Central de Monitoreo para gestionar cualquier evento bajo protocolos estrictos de respuesta y con el respaldo técnico local.'
+    ]
   }
+
 };
 
 /*

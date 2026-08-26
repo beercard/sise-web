@@ -73,7 +73,12 @@ export default function SolutionInfoPopup({ info, onClose }) {
 
         <div className={styles.columns}>
           <div className={styles.colLeft}>
-            <p className={styles.tagline}>{info.tagline}</p>
+            <p
+              className={styles.tagline}
+              style={info.taglineWidth ? { width: `min(${info.taglineWidth + 22}px, 100%)` } : undefined}
+            >
+              {info.tagline}
+            </p>
           </div>
 
           <div className={styles.divider} aria-hidden="true" />

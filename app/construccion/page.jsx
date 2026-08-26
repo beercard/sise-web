@@ -66,10 +66,17 @@ const construccionSolutions = [
     )
   },
   {
-    name: 'Control de acceso y timelapse',
+    name: 'Control de acceso',
     description: buildSolutionSeoDescription(
       'control-acceso',
-      'Registro de ingresos y documentación visual del avance del proyecto.'
+      'Registro de ingresos de personal y proveedores en obra.'
+    )
+  },
+  {
+    name: 'Timelapse de obra',
+    description: buildSolutionSeoDescription(
+      'timelapse-obra',
+      'Registro audiovisual del avance del proyecto para control y documentación.'
     )
   }
 ];

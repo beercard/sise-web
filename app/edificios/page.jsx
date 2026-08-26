@@ -76,6 +76,41 @@ const edificiosSolutions = [
       'acceso-vehicular',
       'Ingreso a cocheras por lectura de patente, sin controles remotos.'
     )
+  },
+  {
+    name: 'Videoportero',
+    description: buildSolutionSeoDescription(
+      'videoportero',
+      'Atención a visitas y apertura de puertas directamente desde el celular.'
+    )
+  },
+  {
+    name: 'Terminal de unidad',
+    description: buildSolutionSeoDescription(
+      'terminal-unidad',
+      'Pantalla de control central dentro de cada departamento.'
+    )
+  },
+  {
+    name: 'Cerraduras electrónicas',
+    description: buildSolutionSeoDescription(
+      'cerraduras-electronicas',
+      'Departamentos sin llaves físicas con cerraduras de alta seguridad.'
+    )
+  },
+  {
+    name: 'Gestión de amenities',
+    description: buildSolutionSeoDescription(
+      'gestion-amenities',
+      'Reservas de espacios comunes 100% digitales y autogestionadas.'
+    )
+  },
+  {
+    name: 'Ascensor sincronizado',
+    description: buildSolutionSeoDescription(
+      'ascensor-sincronizado',
+      'Llamada automática del ascensor al ingresar al edificio.'
+    )
   }
 ];
 

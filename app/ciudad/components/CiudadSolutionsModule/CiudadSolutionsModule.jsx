@@ -18,16 +18,19 @@ import styles from './CiudadSolutionsModule.module.scss';
 const SOLUTIONS = [
   {
     key: 'puntos',
+    info: 'punto-seguro',
     title: ['PUNTOS SEGUROS'],
     body: 'Espacios equipados y monitoreados para que los ciudadanos soliciten asistencia inmediata ante emergencias.'
   },
   {
     key: 'paradas',
+    info: 'parada-segura',
     title: ['PARADAS SEGURAS'],
     body: 'Infraestructura tecnológica de seguridad diseñada para mejorar la protección de los usuarios en el transporte público.'
   },
   {
     key: 'videovigilancia',
+    info: 'cctv-videovigilancia',
     title: ['VIDEOVIGILANCIA', 'Y ANALÍTICA'],
     body: 'Red de cámaras HD con inteligencia artificial (reconocimiento facial y patentes) para respuesta urbana inmediata.'
   },

@@ -41,7 +41,24 @@ export const metadata = buildPageMetadata({
 const ciudadSolutions = [
   {
     name: 'Videovigilancia urbana',
-    description: 'Cobertura visual para calles, plazas, avenidas y puntos críticos de la ciudad.'
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Cobertura visual para calles, plazas, avenidas y puntos críticos de la ciudad.'
+    )
+  },
+  {
+    name: 'Puntos Seguros',
+    description: buildSolutionSeoDescription(
+      'punto-seguro',
+      'Postes de pánico en la vía pública, monitoreados 24/7 para emergencias.'
+    )
+  },
+  {
+    name: 'Paradas Seguras',
+    description: buildSolutionSeoDescription(
+      'parada-segura',
+      'Refugios de transporte público con monitoreo activo para prevenir el delito.'
+    )
   },
   {
     name: 'Centro de monitoreo',

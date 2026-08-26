@@ -46,6 +46,7 @@ const SOLUTIONS = [
   },
   {
     key: 'timelapse',
+    info: 'timelapse-obra',
     title: ['TIMELAPSE', 'DE OBRA'],
     body: 'Registro audiovisual del avance del proyecto para control y documentación.',
     mobileBody: 'Documentación visual del avance del proyecto para control e inversores.'
