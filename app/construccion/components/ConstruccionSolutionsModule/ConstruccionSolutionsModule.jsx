@@ -77,10 +77,7 @@ export default function ConstruccionSolutionsModule() {
 
       <h2 className={styles.heading}>Soluciones:</h2>
 
-      <div
-        className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}
-        style={activeInfo ? { minHeight: '562px' } : undefined}
-      >
+      <div className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}>
         {SOLUTIONS.map((solution) => (
           <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
             <h3 className={styles.cardTitle}>

@@ -5,11 +5,14 @@
  * ya está centrada) para cubrir el ancho de contenido de 1432. Sólo existe en
  * desktop/laptop: en ≤960 el botón "+ info" sigue llevando a /contacto.
  */
+/* Anclado al borde inferior de la grilla: en las páginas de una sola fila
+   (construcción, agro) el panel crece hacia arriba tapando la bajada en vez
+   de estirar la sección; en las de dos filas (562px) cubre la grilla justo. */
 .overlay {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 4;
   width: min(1432px, calc(100vw - 48px));
   animation: popupIn 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -22,22 +25,22 @@
 @keyframes popupIn {
   from {
     opacity: 0;
-    transform: translate(-50%, calc(-50% + 16px)) scale(0.97);
+    transform: translateX(-50%) translateY(16px) scale(0.97);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 
 @keyframes popupOut {
   from {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
   to {
     opacity: 0;
-    transform: translate(-50%, calc(-50% + 10px)) scale(0.98);
+    transform: translateX(-50%) translateY(10px) scale(0.98);
   }
 }
 
