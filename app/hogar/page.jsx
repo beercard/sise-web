@@ -7,6 +7,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import HeroModule from './components/HeroModule/HeroModule';
 import SolutionsModule from './components/SolutionsModule/SolutionsModule';
@@ -47,15 +48,31 @@ export const metadata = buildPageMetadata({
 const hogarSolutions = [
   {
     name: 'Monitoreo de alarmas',
-    description: 'Respuesta profesional 24/7 ante eventos de seguridad en viviendas y casas.'
+    description: buildSolutionSeoDescription(
+      'alarma-monitoreada',
+      'Respuesta profesional 24/7 ante eventos de seguridad en viviendas y casas.'
+    )
   },
   {
     name: 'CCTV y videovigilancia',
-    description: 'Cámaras para ver tu hogar en tiempo real desde el celular.'
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Cámaras para ver tu hogar en tiempo real desde el celular.'
+    )
   },
   {
     name: 'Cerco eléctrico monitoreado',
-    description: 'Protección perimetral disuasiva conectada a la central de monitoreo.'
+    description: buildSolutionSeoDescription(
+      'cerco-electrico',
+      'Protección perimetral disuasiva conectada a la central de monitoreo.'
+    )
+  },
+  {
+    name: 'GPS y dashcams',
+    description: buildSolutionSeoDescription(
+      'gps-dashcams',
+      'Cámaras vehiculares y rastreo GPS para proteger tu auto en movimiento.'
+    )
   },
   {
     name: 'Sistema de barrio seguro',

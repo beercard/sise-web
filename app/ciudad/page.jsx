@@ -10,6 +10,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import styles from './page.module.scss';
 
@@ -45,6 +46,13 @@ const ciudadSolutions = [
   {
     name: 'Centro de monitoreo',
     description: 'Herramientas para supervisión y gestión centralizada de eventos urbanos.'
+  },
+  {
+    name: 'Control de accesos para dependencias',
+    description: buildSolutionSeoDescription(
+      'control-acceso',
+      'Sistemas tecnológicos para la gestión estricta de ingresos, seguridad y personal en dependencias oficiales.'
+    )
   },
   {
     name: 'Conectividad y despliegue',

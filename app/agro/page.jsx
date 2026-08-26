@@ -11,6 +11,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import styles from './page.module.scss';
 
@@ -50,11 +51,17 @@ export const metadata = buildPageMetadata({
 const agroSolutions = [
   {
     name: 'Monitoreo rural',
-    description: 'Protección permanente de accesos, cascos, galpones y establecimientos agropecuarios.'
+    description: buildSolutionSeoDescription(
+      'alarma-monitoreada',
+      'Protección permanente de accesos, cascos, galpones y establecimientos agropecuarios.'
+    )
   },
   {
     name: 'Videovigilancia y cámaras solares',
-    description: 'Supervisión remota en zonas rurales con soluciones autónomas y conectadas.'
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Supervisión remota en zonas rurales con soluciones autónomas y conectadas.'
+    )
   },
   {
     name: 'Conectividad y control remoto',
@@ -62,7 +69,10 @@ const agroSolutions = [
   },
   {
     name: 'GPS y telemetría',
-    description: 'Seguimiento y control de vehículos, maquinaria y activos rurales.'
+    description: buildSolutionSeoDescription(
+      'gps-dashcams',
+      'Seguimiento y control de vehículos, maquinaria y activos rurales.'
+    )
   }
 ];
 

@@ -11,6 +11,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import styles from './page.module.scss';
 
@@ -50,15 +51,31 @@ const edificiosSolutions = [
   },
   {
     name: 'Guardia virtual',
-    description: 'Supervisión remota 24/7 para maximizar seguridad y reducir costos operativos.'
+    description: buildSolutionSeoDescription(
+      'guardia-virtual',
+      'Supervisión remota 24/7 para maximizar seguridad y reducir costos operativos.'
+    )
   },
   {
     name: 'Alarmas y monitoreo',
-    description: 'Respuesta inmediata ante emergencias en espacios comunes y accesos.'
+    description: buildSolutionSeoDescription(
+      'alarma-monitoreada',
+      'Respuesta inmediata ante emergencias en espacios comunes y accesos.'
+    )
   },
   {
-    name: 'CCTV y cerco eléctrico',
-    description: 'Videovigilancia y blindaje perimetral para edificios y complejos.'
+    name: 'CCTV y videovigilancia',
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Videovigilancia de áreas comunes para edificios y complejos.'
+    )
+  },
+  {
+    name: 'Acceso vehicular autónomo (LPR)',
+    description: buildSolutionSeoDescription(
+      'acceso-vehicular',
+      'Ingreso a cocheras por lectura de patente, sin controles remotos.'
+    )
   }
 ];
 

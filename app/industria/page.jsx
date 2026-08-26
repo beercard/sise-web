@@ -11,6 +11,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import styles from './page.module.scss';
 
@@ -46,19 +47,52 @@ export const metadata = buildPageMetadata({
 const industriaSolutions = [
   {
     name: 'Monitoreo de alarmas industriales',
-    description: 'Protección 24/7 para infraestructura crítica, plantas y depósitos.'
+    description: buildSolutionSeoDescription(
+      'alarma-monitoreada',
+      'Protección 24/7 para infraestructura crítica, plantas y depósitos.'
+    )
   },
   {
     name: 'CCTV industrial',
-    description: 'Auditoría visual de procesos, perímetro, accesos y sectores operativos.'
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Auditoría visual de procesos, perímetro, accesos y sectores operativos.'
+    )
   },
   {
     name: 'Cerco eléctrico',
-    description: 'Defensa perimetral de alta tensión para predios industriales y logísticos.'
+    description: buildSolutionSeoDescription(
+      'cerco-electrico',
+      'Defensa perimetral de alta tensión para predios industriales y logísticos.'
+    )
   },
   {
-    name: 'Control de acceso y GPS corporativo',
-    description: 'Gestión de ingresos y telemetría para personal, vehículos y flota.'
+    name: 'Control de acceso y fichaje',
+    description: buildSolutionSeoDescription(
+      'control-acceso',
+      'Gestión de ingresos, presentismo y zonas restringidas para el personal.'
+    )
+  },
+  {
+    name: 'Cortina de humo',
+    description: buildSolutionSeoDescription(
+      'cortina-humo',
+      'Protección de activos críticos con niebla de seguridad de reacción inmediata.'
+    )
+  },
+  {
+    name: 'Rastreo satelital y dashcams',
+    description: buildSolutionSeoDescription(
+      'gps-dashcams',
+      'Telemetría y videoregistro para la flota y la logística corporativa.'
+    )
+  },
+  {
+    name: 'Acceso vehicular autónomo (LPR)',
+    description: buildSolutionSeoDescription(
+      'acceso-vehicular',
+      'Lectura de patentes y barreras automáticas para el flujo de camiones y visitas.'
+    )
   }
 ];
 

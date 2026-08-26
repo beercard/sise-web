@@ -11,6 +11,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import styles from './page.module.scss';
 
@@ -45,19 +46,31 @@ export const metadata = buildPageMetadata({
 const construccionSolutions = [
   {
     name: 'Alarmas y monitoreo',
-    description: 'Supervisión fuera del horario laboral para obras, predios y obradores.'
+    description: buildSolutionSeoDescription(
+      'alarma-monitoreada',
+      'Supervisión fuera del horario laboral para obras, predios y obradores.'
+    )
   },
   {
     name: 'Cerco eléctrico',
-    description: 'Delimitación y protección perimetral temporal para obras y frentes de trabajo.'
+    description: buildSolutionSeoDescription(
+      'cerco-electrico',
+      'Delimitación y protección perimetral temporal para obras y frentes de trabajo.'
+    )
   },
   {
     name: 'CCTV y videovigilancia',
-    description: 'Monitoreo preventivo y control remoto de cámaras en obra.'
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Monitoreo preventivo y control remoto de cámaras en obra.'
+    )
   },
   {
     name: 'Control de acceso y timelapse',
-    description: 'Registro de ingresos y documentación visual del avance del proyecto.'
+    description: buildSolutionSeoDescription(
+      'control-acceso',
+      'Registro de ingresos y documentación visual del avance del proyecto.'
+    )
   }
 ];
 

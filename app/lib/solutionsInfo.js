@@ -212,3 +212,16 @@ export const SOLUTIONS_INFO = {
     ]
   }
 };
+
+/*
+ * Descripción larga para el SEO de cada página: junta la descripción y los
+ * beneficios de la ficha del popup en un solo párrafo, para enriquecer los
+ * ItemList de datos estructurados (JSON-LD) sin duplicar contenido a mano.
+ */
+const toParas = (value) => (Array.isArray(value) ? value : [value]);
+
+export function buildSolutionSeoDescription(infoKey, fallback) {
+  const info = SOLUTIONS_INFO[infoKey];
+  if (!info) return fallback;
+  return [...toParas(info.description), ...toParas(info.benefits)].join(' ');
+}

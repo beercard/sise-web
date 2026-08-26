@@ -11,6 +11,7 @@ import {
   buildServiceSchema,
   buildWebPageSchema
 } from '../lib/seo';
+import { buildSolutionSeoDescription } from '../lib/solutionsInfo';
 
 import styles from './page.module.scss';
 
@@ -46,19 +47,38 @@ export const metadata = buildPageMetadata({
 const comercioSolutions = [
   {
     name: 'Monitoreo de alarmas',
-    description: 'Respuesta inmediata ante emergencias y eventos de seguridad en el local.'
+    description: buildSolutionSeoDescription(
+      'alarma-monitoreada',
+      'Respuesta inmediata ante emergencias y eventos de seguridad en el local.'
+    )
   },
   {
     name: 'CCTV y videovigilancia',
-    description: 'Control visual para salón, caja, depósitos y accesos del comercio.'
+    description: buildSolutionSeoDescription(
+      'cctv-videovigilancia',
+      'Control visual para salón, caja, depósitos y accesos del comercio.'
+    )
   },
   {
     name: 'Cortina de humo',
-    description: 'Sistema antirrobo que reduce la visibilidad y frena intrusiones en segundos.'
+    description: buildSolutionSeoDescription(
+      'cortina-humo',
+      'Sistema antirrobo que reduce la visibilidad y frena intrusiones en segundos.'
+    )
   },
   {
     name: 'Control de acceso y fichaje',
-    description: 'Gestión de horarios, ingresos y presentismo del personal.'
+    description: buildSolutionSeoDescription(
+      'control-acceso',
+      'Gestión de horarios, ingresos y presentismo del personal.'
+    )
+  },
+  {
+    name: 'Cerco eléctrico corporativo',
+    description: buildSolutionSeoDescription(
+      'cerco-electrico',
+      'Barrera perimetral de alta tensión, 100% legal, para locales y depósitos.'
+    )
   }
 ];
 
