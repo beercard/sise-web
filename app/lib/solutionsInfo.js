@@ -165,6 +165,28 @@ export const SOLUTIONS_INFO = {
       'Al detectarse la intrusión, la cortina se dispara bloqueando el ataque físico, mientras nuestra Central de Monitoreo ya está enviando asistencia policial al lugar.'
     ]
   },
+  'guardia-virtual': {
+    title: 'GUARDIA VIRTUAL',
+    tagline: 'Seguridad con tótems y operadores en vivo para proteger accesos.',
+    photo: '/image/solucion-guardia-foto.webp',
+    photoAlt: 'Tótem de guardia virtual en el acceso de un edificio',
+    description:
+      'Sistema de supervisión remota inteligente que resguarda los accesos de edificios o predios mediante tótems interactivos táctiles y cámaras estratégicas vinculadas a operadores en vivo.',
+    components: [
+      'Tótem con pantalla táctil.',
+      'Cámaras de alta definición.',
+      'Sistema de audio bidireccional (altoparlante). Sirenas disuasivas.',
+      'Conexión permanente con nuestra Central.'
+    ],
+    benefits: [
+      'Prevención activa ininterrumpida.',
+      'Permite custodiar espacios comunes a menor costo, detectando situaciones sospechosas en tiempo real para disuadir por voz antes de que se conviertan en un problema.'
+    ],
+    distinctive: [
+      'Respaldo humano de la región.',
+      'No te entregamos tecnología aislada: tu propiedad es custodiada desde nuestro Centro de Monitoreo por operadores locales que entienden el contexto y ejecutan protocolos inmediatos ante cualquier emergencia.'
+    ]
+  },
   'acceso-vehicular': {
     title: 'ACCESO VEHICULAR AUTÓNOMO (LPR)',
     tagline: 'Control absoluto de ingresos por patentes y barreras automáticas.',

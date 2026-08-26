@@ -17,6 +17,7 @@ import styles from './EdificiosSolutionsModule.module.scss';
 const SOLUTIONS = [
   {
     key: 'guardia',
+    info: 'guardia-virtual',
     title: ['GUARDIA', 'VIRTUAL'],
     body: 'Supervisión remota 24/7 que maximiza la seguridad del consorcio y reduce drásticamente las expensas.',
     /* Mobile (Figma 3513:1638): sin "drásticamente". */
