@@ -1,5 +1,10 @@
+'use client';
+
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
+import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './EdificiosSolutionsModule.module.scss';
 
@@ -24,6 +29,7 @@ const SOLUTIONS = [
   },
   {
     key: 'vehicular',
+    info: 'acceso-vehicular',
     title: ['ACCESO VEHICULAR', 'AUTÓNOMO'],
     body: 'Ingreso fluido a cocheras mediante lectura de patentes (LPR), sin controles remotos.'
   },
@@ -34,6 +40,7 @@ const SOLUTIONS = [
   },
   {
     key: 'cctv',
+    info: 'cctv-videovigilancia',
     title: ['CCTV /', 'VIDEOVIGILANCIA'],
     body: 'Monitoreo de cámaras con enfoque preventivo y control remoto.'
   },
@@ -64,6 +71,8 @@ function TitleLines({ lines }) {
 }
 
 export default function EdificiosSolutionsModule() {
+  const [activeInfo, setActiveInfo] = useState(null);
+
   return (
     <section className={styles.section} aria-label="Soluciones para consorcios">
       <div className={styles.watermark} aria-hidden="true" />
@@ -78,7 +87,10 @@ export default function EdificiosSolutionsModule() {
 
       <h2 className={styles.heading}>Soluciones:</h2>
 
-      <div className={styles.grid}>
+      <div
+        className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}
+        style={activeInfo ? { minHeight: '562px' } : undefined}
+      >
         {SOLUTIONS.map((solution) => (
           <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
             <h3 className={styles.cardTitle}>
@@ -94,11 +106,31 @@ export default function EdificiosSolutionsModule() {
                 solution.body
               )}
             </p>
-            <Link href="/contacto" className={styles.cardButton}>
-              + info
-            </Link>
+            {solution.info ? (
+              <>
+                {/* En desktop abre el popup; en mobile (sin diseño todavia)
+                    sigue llevando a /contacto. */}
+                <button
+                  type="button"
+                  className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
+                  onClick={() => setActiveInfo(solution.info)}
+                >
+                  + info
+                </button>
+                <Link href="/contacto" className={`${styles.cardButton} ${styles.cardButtonMobile}`}>
+                  + info
+                </Link>
+              </>
+            ) : (
+              <Link href="/contacto" className={styles.cardButton}>
+                + info
+              </Link>
+            )}
           </article>
         ))}
+        {activeInfo ? (
+          <SolutionInfoPopup info={SOLUTIONS_INFO[activeInfo]} onClose={() => setActiveInfo(null)} />
+        ) : null}
       </div>
     </section>
   );

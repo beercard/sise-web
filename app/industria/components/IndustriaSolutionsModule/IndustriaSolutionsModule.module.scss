@@ -290,3 +290,36 @@
     font-size: 20px;
   }
 }
+
+
+/* El "+ info" con popup: en desktop es un <button> que abre el panel
+   (SolutionInfoPopup) y en mobile sigue siendo el link a /contacto. */
+.cardButtonDesktop {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.cardButtonMobile {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .cardButtonDesktop {
+    display: none;
+  }
+
+  .cardButtonMobile {
+    display: flex;
+  }
+}
+
+/* Con el popup abierto las tarjetas se desvanecen para que no asomen
+   detras del panel. */
+.grid > article {
+  transition: opacity 220ms ease;
+}
+
+.gridPopupOpen > article {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,262 @@
+/*
+ * Popup de soluciones — Figma 3585:458 (1432×562). Se monta centrado sobre la
+ * grilla de tarjetas: los módulos ponen la grilla en position:relative y este
+ * overlay se centra en la página (translate desde el centro de la grilla, que
+ * ya está centrada) para cubrir el ancho de contenido de 1432. Sólo existe en
+ * desktop/laptop: en ≤960 el botón "+ info" sigue llevando a /contacto.
+ */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  width: min(1432px, calc(100vw - 48px));
+  animation: popupIn 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.overlayClosing {
+  animation: popupOut 220ms ease both;
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 16px)) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes popupOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 10px)) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .overlayClosing {
+    animation: none;
+  }
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  height: 562px;
+  border-radius: 11px;
+  background: #d9d9d9;
+  color: #000000;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.header {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  right: 15px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  padding-left: 22px;
+  background: #00408c;
+  border-radius: 11px 11px 0 0;
+}
+
+.title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Del diseño: divisores en x=470 y x=958; las columnas de contenido arrancan
+   18px después de cada divisor. */
+.columns {
+  position: absolute;
+  top: 69px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: stretch;
+}
+
+.colLeft {
+  flex: 0 0 auto;
+  width: 455px;
+  min-width: 0;
+}
+
+.tagline {
+  margin: 25px 0 0;
+  padding-left: 22px;
+  width: min(441px, 100%);
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: 32px;
+  line-height: 0.9;
+  font-weight: 600;
+}
+
+.divider {
+  flex: 0 0 auto;
+  width: 4px;
+  margin-top: 11px;
+  height: 467px;
+  background: #ffffff;
+}
+
+.col {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Del diseño: la columna del medio mide 484 (divisores en x=470 y x=958) y la
+   derecha se queda con el resto (455). */
+.colMid {
+  flex: 0 1 484px;
+}
+
+.chip {
+  margin: 29px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 25px;
+  padding: 2px 9px 0;
+  background: #00408c;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* El segundo chip de cada columna va a 33px del bloque anterior. */
+.chip + .text + .chip,
+.text + .chip {
+  margin-top: 33px;
+}
+
+.chipLogo {
+  display: block;
+  width: 49px;
+  height: 14px;
+}
+
+.text {
+  margin: 13px 0 0;
+  max-width: 428px;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* Los párrafos del distintivo van separados por un renglón en blanco. */
+.textSpaced + .textSpaced {
+  margin-top: 20px;
+}
+
+.list {
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 456px;
+}
+
+.listItem {
+  position: relative;
+  padding-left: 30px;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.listItem::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: #00408c;
+}
+
+.note {
+  margin: 20px 0 0;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.photo {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  width: 425px;
+  height: 345px;
+  border-bottom-left-radius: 11px;
+  overflow: hidden;
+}
+
+.photoImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.closeButton {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: #00408c;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  opacity: 0.92;
+}
+
+/* Entre 961 y ~1500 el panel se achica con el viewport: la columna izquierda
+   cede primero para que el contenido no desborde. */
+@media (max-width: 1500px) {
+  .colLeft {
+    width: clamp(300px, 30vw, 455px);
+  }
+
+  .photo {
+    width: clamp(300px, 29.6vw, 425px);
+    height: auto;
+    aspect-ratio: 425 / 345;
+  }
+
+  .tagline {
+    font-size: clamp(24px, 2.2vw, 32px);
+  }
+}

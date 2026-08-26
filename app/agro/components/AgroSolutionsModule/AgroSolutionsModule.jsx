@@ -1,5 +1,10 @@
+'use client';
+
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
+import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './AgroSolutionsModule.module.scss';
 
@@ -13,6 +18,7 @@ import styles from './AgroSolutionsModule.module.scss';
 const SOLUTIONS = [
   {
     key: 'cctv',
+    info: 'cctv-videovigilancia',
     title: ['CCTV RURAL'],
     body: 'Control remoto en tiempo real para supervisar tranqueras, galpones y lotes.'
   },
@@ -23,11 +29,13 @@ const SOLUTIONS = [
   },
   {
     key: 'alarmas',
+    info: 'alarma-monitoreada',
     title: ['ALARMAS', 'RURALES'],
     body: 'Protección y alerta inmediata contra intrusiones en galpones e instalaciones aisladas.'
   },
   {
     key: 'gps',
+    info: 'gps-dashcams',
     title: ['GPS Y DASHCAMS', 'RURALES'],
     body: 'Seguimiento y control total de vehículos y maquinaria, con registro continuo incluso en zonas sin cobertura.'
   }
@@ -43,6 +51,8 @@ function TitleLines({ lines }) {
 }
 
 export default function AgroSolutionsModule() {
+  const [activeInfo, setActiveInfo] = useState(null);
+
   return (
     <section className={styles.section} aria-label="Soluciones para el campo">
       <div className={styles.watermark} aria-hidden="true" />
@@ -57,18 +67,41 @@ export default function AgroSolutionsModule() {
 
       <h2 className={styles.heading}>Soluciones:</h2>
 
-      <div className={styles.grid}>
+      <div
+        className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}
+        style={activeInfo ? { minHeight: '562px' } : undefined}
+      >
         {SOLUTIONS.map((solution) => (
           <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
             <h3 className={styles.cardTitle}>
               <TitleLines lines={solution.title} />
             </h3>
             <p className={styles.cardBody}>{solution.body}</p>
-            <Link href="/contacto" className={styles.cardButton}>
-              + info
-            </Link>
+            {solution.info ? (
+              <>
+                {/* En desktop abre el popup; en mobile (sin diseño todavia)
+                    sigue llevando a /contacto. */}
+                <button
+                  type="button"
+                  className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
+                  onClick={() => setActiveInfo(solution.info)}
+                >
+                  + info
+                </button>
+                <Link href="/contacto" className={`${styles.cardButton} ${styles.cardButtonMobile}`}>
+                  + info
+                </Link>
+              </>
+            ) : (
+              <Link href="/contacto" className={styles.cardButton}>
+                + info
+              </Link>
+            )}
           </article>
         ))}
+        {activeInfo ? (
+          <SolutionInfoPopup info={SOLUTIONS_INFO[activeInfo]} onClose={() => setActiveInfo(null)} />
+        ) : null}
       </div>
     </section>
   );

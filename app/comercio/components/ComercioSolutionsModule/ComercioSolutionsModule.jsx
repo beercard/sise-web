@@ -1,5 +1,10 @@
+'use client';
+
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
+import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './ComercioSolutionsModule.module.scss';
 
@@ -12,26 +17,31 @@ import styles from './ComercioSolutionsModule.module.scss';
 const SOLUTIONS = [
   {
     key: 'alarmas',
+    info: 'alarma-monitoreada',
     title: ['MONITOREO', 'DE ALARMAS'],
     body: 'Protección 24/7 con respuesta inmediata ante emergencias en tus instalaciones.'
   },
   {
     key: 'cctv',
+    info: 'cctv-videovigilancia',
     title: ['CCTV /', 'VIDEOVIGILANCIA'],
     body: 'Auditoría visual en tiempo real para el control total de la operatoria de tu negocio.'
   },
   {
     key: 'cortina',
+    info: 'cortina-humo',
     title: ['CORTINA', 'DE HUMO'],
     body: 'Sistema de niebla activa que neutraliza robos e intrusiones en cuestión de segundos.'
   },
   {
     key: 'acceso',
+    info: 'control-acceso',
     title: ['CONTROL DE', 'ACCESO Y FICHAJE'],
     body: 'Gestión inteligente y exacta de presentismo, horarios y accesos del personal.'
   },
   {
     key: 'cerco',
+    info: 'cerco-electrico',
     title: ['CERCO ELÉCTRICO', 'CORPORATIVO'],
     body: 'Seguridad perimetral de máxima disuasión y 100% legal para resguardar tu empresa.'
   }
@@ -47,6 +57,8 @@ function TitleLines({ lines }) {
 }
 
 export default function ComercioSolutionsModule() {
+  const [activeInfo, setActiveInfo] = useState(null);
+
   return (
     <section className={styles.section} aria-label="Soluciones para comercios">
       <div className={styles.watermark} aria-hidden="true" />
@@ -82,18 +94,41 @@ export default function ComercioSolutionsModule() {
 
       <h2 className={styles.heading}>Soluciones:</h2>
 
-      <div className={styles.grid}>
+      <div
+        className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}
+        style={activeInfo ? { minHeight: '562px' } : undefined}
+      >
         {SOLUTIONS.map((solution) => (
           <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
             <h3 className={styles.cardTitle}>
               <TitleLines lines={solution.title} />
             </h3>
             <p className={styles.cardBody}>{solution.body}</p>
-            <Link href="/contacto" className={styles.cardButton}>
-              + info
-            </Link>
+            {solution.info ? (
+              <>
+                {/* En desktop abre el popup; en mobile (sin diseño todavia)
+                    sigue llevando a /contacto. */}
+                <button
+                  type="button"
+                  className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
+                  onClick={() => setActiveInfo(solution.info)}
+                >
+                  + info
+                </button>
+                <Link href="/contacto" className={`${styles.cardButton} ${styles.cardButtonMobile}`}>
+                  + info
+                </Link>
+              </>
+            ) : (
+              <Link href="/contacto" className={styles.cardButton}>
+                + info
+              </Link>
+            )}
           </article>
         ))}
+        {activeInfo ? (
+          <SolutionInfoPopup info={SOLUTIONS_INFO[activeInfo]} onClose={() => setActiveInfo(null)} />
+        ) : null}
       </div>
     </section>
   );

@@ -1,5 +1,10 @@
+'use client';
+
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
+import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './ConstruccionSolutionsModule.module.scss';
 
@@ -13,24 +18,28 @@ import styles from './ConstruccionSolutionsModule.module.scss';
 const SOLUTIONS = [
   {
     key: 'alarmas',
+    info: 'alarma-monitoreada',
     title: ['ALARMAS Y', 'MONITOREO'],
     body: 'Protección fuera del horario laboral con supervisión permanente.',
     mobileBody: 'Protección activa de materiales y obrador fuera del horario de trabajo.'
   },
   {
     key: 'cerco',
+    info: 'cerco-electrico',
     title: ['CERCO', 'ELÉCTRICO'],
     body: 'Cierre perimetral temporal para delimitar y proteger el predio.',
     mobileBody: 'Cierre perimetral de alta tensión para blindar el predio desde el día uno.'
   },
   {
     key: 'cctv',
+    info: 'cctv-videovigilancia',
     title: ['CCTV /', 'VIDEOVIGILANCIA'],
     body: 'Monitoreo de cámaras con enfoque preventivo y control remoto.',
     mobileBody: 'Control preventivo del terreno y supervisión remota de la ejecución.'
   },
   {
     key: 'acceso',
+    info: 'control-acceso',
     title: ['CONTROL', 'DE ACCESO'],
     body: 'Registro y control de ingreso de personal y proveedores.',
     mobileBody: 'Registro estricto de contratistas, obreros y proveedores.'
@@ -53,6 +62,8 @@ function TitleLines({ lines }) {
 }
 
 export default function ConstruccionSolutionsModule() {
+  const [activeInfo, setActiveInfo] = useState(null);
+
   return (
     <section className={styles.section} aria-label="Soluciones para obras">
       <div className={styles.watermark} aria-hidden="true" />
@@ -66,7 +77,10 @@ export default function ConstruccionSolutionsModule() {
 
       <h2 className={styles.heading}>Soluciones:</h2>
 
-      <div className={styles.grid}>
+      <div
+        className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}
+        style={activeInfo ? { minHeight: '562px' } : undefined}
+      >
         {SOLUTIONS.map((solution) => (
           <article key={solution.key} className={`${styles.card} ${styles[solution.key]}`}>
             <h3 className={styles.cardTitle}>
@@ -76,11 +90,31 @@ export default function ConstruccionSolutionsModule() {
               <span className={styles.desktopBody}>{solution.body}</span>
               <span className={styles.mobileBody}>{solution.mobileBody}</span>
             </p>
-            <Link href="/contacto" className={styles.cardButton}>
-              + info
-            </Link>
+            {solution.info ? (
+              <>
+                {/* En desktop abre el popup; en mobile (sin diseño todavia)
+                    sigue llevando a /contacto. */}
+                <button
+                  type="button"
+                  className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
+                  onClick={() => setActiveInfo(solution.info)}
+                >
+                  + info
+                </button>
+                <Link href="/contacto" className={`${styles.cardButton} ${styles.cardButtonMobile}`}>
+                  + info
+                </Link>
+              </>
+            ) : (
+              <Link href="/contacto" className={styles.cardButton}>
+                + info
+              </Link>
+            )}
           </article>
         ))}
+        {activeInfo ? (
+          <SolutionInfoPopup info={SOLUTIONS_INFO[activeInfo]} onClose={() => setActiveInfo(null)} />
+        ) : null}
       </div>
     </section>
   );

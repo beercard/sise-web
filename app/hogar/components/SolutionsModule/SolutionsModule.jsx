@@ -1,5 +1,10 @@
+'use client';
+
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
+import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './SolutionsModule.module.scss';
 
@@ -13,6 +18,7 @@ import styles from './SolutionsModule.module.scss';
 const SOLUTIONS = [
   {
     key: 'alarmas',
+    info: 'alarma-monitoreada',
     title: ['MONITOREO', 'DE ALARMAS'],
     mobileTitle: ['MONITOREO', 'DE ALARMAS'],
     body: 'Protección ininterrumpida 24/7 con respuesta inmediata desde nuestro centro local.',
@@ -20,6 +26,7 @@ const SOLUTIONS = [
   },
   {
     key: 'cctv',
+    info: 'cctv-videovigilancia',
     title: ['CCTV /', 'VIDEOVIGILANCIA'],
     mobileTitle: ['CCTV /', 'VIDEOVIGILANCIA'],
     body: 'Mirá tu casa en tiempo real o sumá videovigilancia activa 24/7.',
@@ -27,6 +34,7 @@ const SOLUTIONS = [
   },
   {
     key: 'cerco',
+    info: 'cerco-electrico',
     title: ['CERCO ELÉCTRICO/', 'MONITOREADO'],
     mobileTitle: ['CERCO ELÉCTRICO', '/MONITOREADO'],
     body: 'Barrera perimetral 100% legal, con opción de conexión a nuestra central.',
@@ -48,6 +56,7 @@ const SOLUTIONS = [
   },
   {
     key: 'gps',
+    info: 'gps-dashcams',
     title: ['GPS /', 'DASHCAMS'],
     mobileTitle: ['GPS /', 'DASHCAMS'],
     body: 'Cámaras vehiculares y rastreo GPS para proteger tu auto en movimiento.',
@@ -65,6 +74,8 @@ function TitleLines({ lines }) {
 }
 
 export default function SolutionsModule() {
+  const [activeInfo, setActiveInfo] = useState(null);
+
   return (
     <section className={styles.section} aria-label="Soluciones para el hogar">
       <div className={styles.watermark} aria-hidden="true" />
@@ -102,7 +113,10 @@ export default function SolutionsModule() {
 
       <h2 className={styles.heading}>Soluciones:</h2>
 
-      <div className={styles.grid}>
+      <div
+        className={`${styles.grid} ${activeInfo ? styles.gridPopupOpen : ''}`}
+        style={activeInfo ? { minHeight: '562px' } : undefined}
+      >
         {SOLUTIONS.map((solution) => (
           <article
             key={solution.key}
@@ -118,11 +132,31 @@ export default function SolutionsModule() {
               </span>
             </h3>
             <p className={styles.cardBody}>{solution.body}</p>
-            <Link href="/contacto" className={styles.cardButton}>
-              + info
-            </Link>
+            {solution.info ? (
+              <>
+                {/* En desktop abre el popup; en mobile (sin diseño todavía)
+                    sigue llevando a /contacto. */}
+                <button
+                  type="button"
+                  className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
+                  onClick={() => setActiveInfo(solution.info)}
+                >
+                  + info
+                </button>
+                <Link href="/contacto" className={`${styles.cardButton} ${styles.cardButtonMobile}`}>
+                  + info
+                </Link>
+              </>
+            ) : (
+              <Link href="/contacto" className={styles.cardButton}>
+                + info
+              </Link>
+            )}
           </article>
         ))}
+        {activeInfo ? (
+          <SolutionInfoPopup info={SOLUTIONS_INFO[activeInfo]} onClose={() => setActiveInfo(null)} />
+        ) : null}
       </div>
     </section>
   );
