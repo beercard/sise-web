@@ -83,6 +83,9 @@ const SLIDES = [
       '--tech-card-mobile-text-top': '81px',
       '--tech-card-mobile-text-width': '201px',
       '--tech-card-mobile-art-top': '198px',
+      /* El diseño (3550:1097) no centra la cámara: va en x=40. */
+      '--tech-card-mobile-art-left': '40px',
+      '--tech-card-mobile-art-transform': 'none',
       '--tech-card-mobile-art-width': '129px',
       '--tech-card-mobile-art-height': '78px'
     },
