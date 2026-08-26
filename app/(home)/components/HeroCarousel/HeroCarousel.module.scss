@@ -72,6 +72,12 @@
     filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* El slide de historia replica su hero: la foto al 50% sobre el azul #00408c
+   de fondo de la sección. */
+.heroImageDimmed {
+  opacity: 0.5;
+}
+
 .heroContent {
   position: relative;
   width: 100%;
@@ -326,5 +332,156 @@
   .heroSlideActive .heroContent,
   .heroDotActive {
     transform: none;
+  }
+}
+
+/* ── Slides de negocio: réplica del hero de cada vertical ─────────────────
+   Mismas tipografías y anclajes que los ComercioHero/CiudadHero/etc.
+   (kicker Arial 51, título 64/62 en dos líneas y categoría Arial 32),
+   apoyados abajo a la izquierda sobre el padding de shell del carrusel. */
+.heroSlideLink {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  /* Los slides llevan pointer-events:none (el click del carrusel vive en la
+     sección); el link del slide activo los repone para poder navegar. */
+  pointer-events: auto;
+}
+
+.heroBrand {
+  position: absolute;
+  left: var(--hero-shell-pad);
+  bottom: 92px;
+  width: min(700px, calc(100% - (var(--hero-shell-pad) * 2)));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.heroKicker {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 51px;
+  line-height: 0.8;
+  letter-spacing: -2.04px;
+}
+
+.heroKickerBlack {
+  font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.heroBrandTitle {
+  margin: 20px 0 0;
+  width: 100%;
+  font-size: 64px;
+  line-height: 62px;
+  letter-spacing: 0;
+}
+
+.heroBrandLight {
+  display: block;
+  font-weight: 400;
+}
+
+.heroBrandStrong {
+  display: block;
+  font-weight: 700;
+}
+
+.heroCategory {
+  margin: 23px 0 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+  .heroBrand {
+    left: 32px;
+    bottom: 70px;
+    width: min(560px, calc(100% - 64px));
+  }
+
+  .heroKicker {
+    font-size: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .heroBrandTitle {
+    margin-top: 16px;
+    font-size: 50px;
+    line-height: 48px;
+  }
+
+  .heroCategory {
+    margin-top: 18px;
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 960px) {
+  .heroBrand {
+    left: 24px;
+    bottom: 48px;
+    width: min(460px, calc(100% - 48px));
+  }
+
+  .heroKicker {
+    font-size: 32px;
+    letter-spacing: -1.3px;
+  }
+
+  .heroBrandTitle {
+    margin-top: 14px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .heroCategory {
+    margin-top: 16px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroBrand {
+    left: 24px;
+    bottom: 37px;
+    width: min(354px, calc(100% - 48px));
+  }
+
+  .heroKicker {
+    font-size: 26px;
+    letter-spacing: -1.04px;
+  }
+
+  .heroBrandTitle {
+    margin: 14px 0 0 1px;
+    width: min(325px, 100%);
+    font-size: 32px;
+    line-height: 30.4px;
+  }
+
+  .heroBrandLight,
+  .heroBrandStrong {
+    display: inline;
+  }
+
+  /* Igual que en los heros de las verticales: el título mobile cierra con
+     punto en las páginas cuyo diseño lo agrega. */
+  .heroBrandPeriod::after {
+    content: '.';
+  }
+
+  .heroCategory {
+    margin-top: 20px;
+    font-size: 20px;
   }
 }

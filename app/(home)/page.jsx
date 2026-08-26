@@ -138,13 +138,13 @@ export default function HomePage() {
       <link
         rel="preload"
         as="image"
-        href="/image/hero-hogar-casa-desktop.webp"
+        href="/image/hero-historia-equipo-desktop.webp"
         media="(min-width: 961px)"
       />
       <link
         rel="preload"
         as="image"
-        href="/image/hero-hogar-casa-mobile.webp"
+        href="/image/hero-historia-equipo-mobile.webp"
         media="(max-width: 960px)"
       />
       <script

@@ -1,29 +1,100 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from './HeroCarousel.module.scss';
 
 /*
- * Cada slide usa las mismas fotos que el hero de su página de negocio, ya
- * exportadas al tamaño final (desktop 1920, mobile 804 @2x), así que van
- * directo sin el optimizador de Next (que en dev se cuelga con estos webp).
+ * El slide principal lleva la foto del hero de /historia con la frase
+ * institucional; los siete siguientes replican tal cual el hero de cada
+ * página de negocio (kicker "SISE X", título en dos líneas y categoría) y al
+ * clickearlos navegan a esa página. Fotos ya exportadas al tamaño final
+ * (desktop 1920, mobile 804 @2x), servidas sin el optimizador de Next.
  */
 const HERO_SLIDES = [
-  { id: 'hogar', desktopImage: '/image/hero-hogar-casa-desktop.webp', mobileImage: '/image/hero-hogar-casa-mobile.webp' },
-  { id: 'comercio', desktopImage: '/image/hero-comercio-local-desktop.webp', mobileImage: '/image/hero-comercio-local-mobile.webp' },
-  { id: 'industria', desktopImage: '/image/hero-industria-planta-desktop.webp', mobileImage: '/image/hero-industria-planta-mobile.webp' },
-  { id: 'edificios', desktopImage: '/image/hero-edificios-edificio-desktop.webp', mobileImage: '/image/hero-edificios-edificio-mobile.webp' },
-  { id: 'construccion', desktopImage: '/image/hero-construccion-obra-desktop.webp', mobileImage: '/image/hero-construccion-obra-mobile.webp' },
-  { id: 'agro', desktopImage: '/image/hero-agro-campo-desktop.webp', mobileImage: '/image/hero-agro-campo-mobile.webp' },
-  { id: 'ciudad', desktopImage: '/image/hero-ciudad-poste-desktop.webp', mobileImage: '/image/hero-ciudad-poste-mobile.webp' }
-].map((slide) => ({
-  ...slide,
-  id: `hero-slide-${slide.id}`,
-  titleLineOne: 'Soluciones en seguridad electrónica',
-  titleBold: 'accesible, moderna y humana',
-  titleRegularEnd: '.'
-}));
+  {
+    id: 'hero-slide-historia',
+    desktopImage: '/image/hero-historia-equipo-desktop.webp',
+    mobileImage: '/image/hero-historia-equipo-mobile.webp',
+    /* Mismo overlay que el hero de /historia: foto al 50% sobre el azul. */
+    dimmed: true,
+    titleLineOne: 'Soluciones en seguridad electrónica',
+    titleBold: 'accesible, moderna y humana',
+    titleRegularEnd: '.'
+  },
+  {
+    id: 'hero-slide-hogar',
+    href: '/hogar',
+    desktopImage: '/image/hero-hogar-casa-desktop.webp',
+    mobileImage: '/image/hero-hogar-casa-mobile.webp',
+    kicker: 'HOGAR',
+    titleLight: 'Protección integral para ',
+    titleStrong: 'vivir con tranquilidad',
+    mobilePeriod: true
+  },
+  {
+    id: 'hero-slide-comercio',
+    href: '/comercio',
+    desktopImage: '/image/hero-comercio-local-desktop.webp',
+    mobileImage: '/image/hero-comercio-local-mobile.webp',
+    kicker: 'EMPRESAS',
+    titleLight: 'Seguridad que protege ',
+    titleStrong: 'tu rentabilidad',
+    category: 'COMERCIOS',
+    mobilePeriod: true
+  },
+  {
+    id: 'hero-slide-industria',
+    href: '/industria',
+    desktopImage: '/image/hero-industria-planta-desktop.webp',
+    mobileImage: '/image/hero-industria-planta-mobile.webp',
+    kicker: 'EMPRESAS',
+    titleLight: 'Protección para ',
+    titleStrong: 'operaciones críticas',
+    category: 'EMPRESAS E INDUSTRIAS',
+    mobilePeriod: true
+  },
+  {
+    id: 'hero-slide-edificios',
+    href: '/edificios',
+    desktopImage: '/image/hero-edificios-edificio-desktop.webp',
+    mobileImage: '/image/hero-edificios-edificio-mobile.webp',
+    kicker: 'URBANO',
+    titleLight: 'Más seguridad, ',
+    titleStrong: 'menor costo operativo.',
+    category: 'Edificios y Consorcios'
+  },
+  {
+    id: 'hero-slide-construccion',
+    href: '/construccion',
+    desktopImage: '/image/hero-construccion-obra-desktop.webp',
+    mobileImage: '/image/hero-construccion-obra-mobile.webp',
+    kicker: 'URBANO',
+    titleLight: 'Protección desde ',
+    titleStrong: 'el primer día',
+    category: 'Construcción y Obras',
+    mobilePeriod: true
+  },
+  {
+    id: 'hero-slide-agro',
+    href: '/agro',
+    desktopImage: '/image/hero-agro-campo-desktop.webp',
+    mobileImage: '/image/hero-agro-campo-mobile.webp',
+    kicker: 'AGRO',
+    titleLight: 'El control de tu campo, ',
+    titleStrong: 'estés donde estés.'
+  },
+  {
+    id: 'hero-slide-ciudad',
+    href: '/ciudad',
+    desktopImage: '/image/hero-ciudad-poste-desktop.webp',
+    mobileImage: '/image/hero-ciudad-poste-mobile.webp',
+    kicker: 'CIUDAD',
+    titleLight: 'Tecnología aplicada a ',
+    titleStrong: 'la seguridad urbana.'
+  }
+];
 
 const AUTOPLAY_DELAY = 5000;
 const TRANSITION_MS = 720;
@@ -148,7 +219,7 @@ export default function HeroCarousel() {
                 <picture className={styles.heroMedia}>
                   <source srcSet={slide.mobileImage} media="(max-width: 960px)" />
                   <img
-                    className={styles.heroImage}
+                    className={`${styles.heroImage} ${slide.dimmed ? styles.heroImageDimmed : ''}`}
                     src={slide.desktopImage}
                     alt=""
                     decoding="async"
@@ -160,18 +231,47 @@ export default function HeroCarousel() {
                 <div className={styles.heroMedia} aria-hidden="true" />
               )}
               <div className={styles.heroContent}>
-                <TitleTag className={styles.heroTitle}>
-                  <span className={styles.heroTitleLine}>
-                    <span className={styles.heroTitleRegular}>
-                      {slide.titleLineOne}{' '}
+                {slide.kicker ? (
+                  /* Réplica del hero de la página de negocio. */
+                  <div className={styles.heroBrand}>
+                    <p className={styles.heroKicker}>
+                      <span className={styles.heroKickerBlack}>SISE</span> {slide.kicker}
+                    </p>
+                    <TitleTag className={styles.heroBrandTitle}>
+                      <span className={styles.heroBrandLight}>{slide.titleLight}</span>
+                      <span
+                        className={`${styles.heroBrandStrong} ${
+                          slide.mobilePeriod ? styles.heroBrandPeriod : ''
+                        }`}
+                      >
+                        {slide.titleStrong}
+                      </span>
+                    </TitleTag>
+                    {slide.category ? <p className={styles.heroCategory}>{slide.category}</p> : null}
+                  </div>
+                ) : (
+                  <TitleTag className={styles.heroTitle}>
+                    <span className={styles.heroTitleLine}>
+                      <span className={styles.heroTitleRegular}>
+                        {slide.titleLineOne}{' '}
+                      </span>
                     </span>
-                  </span>
-                  <span className={styles.heroTitleLine}>
-                    <span className={styles.heroTitleBold}>{slide.titleBold}</span>
-                    <span className={styles.heroTitleRegular}>{slide.titleRegularEnd}</span>
-                  </span>
-                </TitleTag>
+                    <span className={styles.heroTitleLine}>
+                      <span className={styles.heroTitleBold}>{slide.titleBold}</span>
+                      <span className={styles.heroTitleRegular}>{slide.titleRegularEnd}</span>
+                    </span>
+                  </TitleTag>
+                )}
               </div>
+              {slide.href && index === activeIndex ? (
+                /* El slide activo de una vertical navega a su página. */
+                <Link
+                  href={slide.href}
+                  className={styles.heroSlideLink}
+                  aria-label={`Ir a SISE ${slide.kicker}`}
+                  onClick={(event) => event.stopPropagation()}
+                />
+              ) : null}
             </article>
           );
         })}
