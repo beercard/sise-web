@@ -321,8 +321,9 @@
   }
 }
 
-/* El "+ info" con popup: en desktop es un <button> que abre el panel
-   (SolutionInfoPopup) y en mobile sigue siendo el link a /contacto. */
+/* El "+ info" con popup: es un <button> que abre el panel (SolutionInfoPopup)
+   sólo desde 1280px, el ancho mínimo donde el panel de 1432×562 entra sin
+   desbordar. Por debajo (tablets y mobile) vuelve a ser el link a /contacto. */
 .cardButtonDesktop {
   font-family: inherit;
   cursor: pointer;
@@ -332,7 +333,7 @@
   display: none;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1279px) {
   .cardButtonDesktop {
     display: none;
   }

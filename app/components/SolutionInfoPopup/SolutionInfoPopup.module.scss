@@ -3,7 +3,8 @@
  * grilla de tarjetas: los módulos ponen la grilla en position:relative y este
  * overlay se centra en la página (translate desde el centro de la grilla, que
  * ya está centrada) para cubrir el ancho de contenido de 1432. Sólo existe en
- * desktop/laptop: en ≤960 el botón "+ info" sigue llevando a /contacto.
+ * desktop/laptop: por debajo de 1280 (tablets y mobile) el botón "+ info"
+ * sigue llevando a /contacto.
  */
 /* Anclado al borde inferior de la grilla: en las páginas de una sola fila
    (construcción, agro) el panel crece hacia arriba tapando la bajada en vez
@@ -246,7 +247,7 @@
   opacity: 0.92;
 }
 
-/* Entre 961 y ~1500 el panel se achica con el viewport: la columna izquierda
+/* Entre 1280 y ~1500 el panel se achica con el viewport: la columna izquierda
    cede primero para que el contenido no desborde. */
 @media (max-width: 1500px) {
   .colLeft {
@@ -261,5 +262,18 @@
 
   .tagline {
     font-size: clamp(24px, 2.2vw, 32px);
+  }
+}
+
+/* Debajo de 1440 las dos columnas de texto necesitan más aire: la izquierda
+   (y su foto) cede otro tanto para que las fichas más largas (control de
+   acceso, tótems, timelapse) sigan entrando en los 562px de alto. */
+@media (max-width: 1439px) {
+  .colLeft {
+    width: clamp(240px, 20vw, 455px);
+  }
+
+  .photo {
+    width: clamp(225px, 18.8vw, 425px);
   }
 }
