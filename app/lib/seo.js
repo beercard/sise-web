@@ -1,5 +1,24 @@
+/*
+ * Base absoluta del sitio para canónicas, og:image y sitemap. Mientras el
+ * dominio propio no esté enganchado, usa el de producción que informa Vercel
+ * (VERCEL_PROJECT_PRODUCTION_URL, que pasa a ser el dominio propio en cuanto
+ * se lo asigna) para que los enlaces compartidos por WhatsApp o redes puedan
+ * descargar la imagen. NEXT_PUBLIC_SITE_URL lo fuerza a mano si hace falta.
+ */
+const FALLBACK_SITE_URL = 'https://siseargentina.com';
+
+function resolveSiteUrl() {
+  const explicito = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicito) return explicito.replace(/\/$/, '');
+
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercel) return `https://${vercel.replace(/\/$/, '')}`;
+
+  return FALLBACK_SITE_URL;
+}
+
 export const siteConfig = {
-  siteUrl: 'https://siseargentina.com',
+  siteUrl: resolveSiteUrl(),
   name: 'SISE Argentina',
   legalName: 'GRUPO SISE S.A.',
   defaultTitle: 'SISE Argentina | Soluciones de seguridad electrónica',

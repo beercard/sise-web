@@ -10,6 +10,6 @@ export default function robots() {
       }
     ],
     sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
-    host: 'siseargentina.com'
+    host: new URL(siteConfig.siteUrl).host
   };
 }
