@@ -42,6 +42,7 @@ const SOLUTIONS = [
   },
   {
     key: 'barrio',
+    info: 'barrio-seguro',
     title: ['SISTEMA DE', 'BARRIO SEGURO'],
     mobileTitle: ['SISTEMA DE', 'BARRIO SEGURO'],
     body: 'Cámaras vecinales y altoparlante disuasivo, conectados a nuestra central y al 911.',
@@ -49,6 +50,7 @@ const SOLUTIONS = [
   },
   {
     key: 'desocupadas',
+    info: 'propiedades-desocupadas',
     title: ['MONITOREO DE', 'PROPIEDADES', 'DESOCUPADAS'],
     mobileTitle: ['MONITOREO DE', 'PROPIEDADES', 'DESOCUPADAS'],
     body: 'Prevención a distancia contra usurpaciones y robos.',

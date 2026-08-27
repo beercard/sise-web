@@ -61,6 +61,41 @@ const ciudadSolutions = [
     )
   },
   {
+    name: 'Flotas y cámaras móviles',
+    description: buildSolutionSeoDescription(
+      'gps-dashcams',
+      'Trazabilidad satelital de vehículos oficiales y cámaras corporales para auditar el accionar del personal en tiempo real.'
+    )
+  },
+  {
+    name: 'Semaforización inteligente',
+    description: buildSolutionSeoDescription(
+      'semaforizacion',
+      'Semáforos adaptativos que mejoran la fluidez del tránsito y priorizan las emergencias.'
+    )
+  },
+  {
+    name: 'Smart Parking (LPR)',
+    description: buildSolutionSeoDescription(
+      'smart-parking',
+      'Fiscalización automatizada del estacionamiento medido por lectura de patentes.'
+    )
+  },
+  {
+    name: 'Tótems de comunicación',
+    description: buildSolutionSeoDescription(
+      'totems-comunicacion',
+      'Pantallas urbanas para alertas, información turística y publicidad digital.'
+    )
+  },
+  {
+    name: 'Mobiliario urbano sustentable',
+    description: buildSolutionSeoDescription(
+      'mobiliario-sustentable',
+      'Estaciones de descanso con energía solar, carga de dispositivos y conectividad.'
+    )
+  },
+  {
     name: 'Centro de monitoreo',
     description: 'Herramientas para supervisión y gestión centralizada de eventos urbanos.'
   },

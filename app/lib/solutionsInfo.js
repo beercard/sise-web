@@ -1,8 +1,8 @@
 /*
- * Contenido de los popups "+ info" de las tarjetas de soluciones (Figma
- * 3585:458/459/460/461/462/495/529). Cada entrada se comparte entre todas las
- * páginas que ofrecen la misma solución: los módulos referencian la clave con
- * `info: '<clave>'` en su tarjeta y SolutionInfoPopup la renderiza.
+ * Contenido de los popups "+ info" de las tarjetas de soluciones. Cada entrada
+ * se comparte entre todas las páginas que ofrecen la misma solución: los
+ * módulos referencian la clave con `info: '<clave>'` en su tarjeta y
+ * SolutionInfoPopup la renderiza.
  *
  * Campos: `description` y `benefits` aceptan string o lista de párrafos;
  * `distinctive` es lista de párrafos; `components` es una lista donde cada
@@ -376,33 +376,27 @@ export const SOLUTIONS_INFO = {
       'Integra conectividad flexible y sistemas de respaldo para operar en cualquier punto geográfico, gestionando eventos bajo protocolos estrictos y con el respaldo técnico de la región.'
     ]
   },
-  /*
-   * Ojo: el nodo de Figma de este popup (3619:445) todavía trae el texto de
-   * Guardia Virtual copiado; este contenido es una redacción provisoria
-   * coherente con la tarjeta de construcción hasta que llegue el definitivo.
-   */
   'timelapse-obra': {
     title: 'TIMELAPSE DE OBRA',
-    tagline: 'Registro audiovisual del avance de tu proyecto, cuadro por cuadro.',
-    photo: '/image/solucion-timelapse-foto.webp',
+    tagline: 'Documentá y auditá la evolución de tu proyecto constructivo.',
+    taglineWidth: 304,
+    photo: '/image/solucion-timelapse-obra-foto.webp',
     photoAlt: 'Cámara de timelapse registrando el avance de una obra',
     description:
-      'Sistema de captura fotográfica programada que documenta la evolución completa de tu obra, generando un registro visual cronológico del proyecto desde el inicio hasta la entrega.',
+      'Sistema de registro fotográfico automatizado y prolongado que captura la evolución completa de un proyecto constructivo, condensando meses de trabajo en un video dinámico de alto impacto.',
     components: [
-      'Cámara de captura programada.',
-      'Alimentación autónoma (opción solar).',
-      'Sistema de almacenamiento.',
-      'Transmisión remota de imágenes.',
-      'Plataforma de visualización.',
-      'Edición del video final del proyecto.'
+      'Cámaras de alta resolución en gabinetes estancos (resistentes a la intemperie).',
+      'Sistema de alimentación eléctrica o solar.',
+      'Módulo de conectividad.',
+      'Almacenamiento.'
     ],
     benefits: [
-      'Control y documentación permanente del avance.',
-      'Permite auditar plazos y etapas a distancia, respaldar certificaciones ante inversores y obtener un material audiovisual de alto valor comercial para difundir el proyecto.'
+      'Transparencia absoluta.',
+      'Permite certificar el avance físico de la obra a distancia, mantener informados a los inversores con pruebas visuales concretas y generar material comercial de altísimo valor para la venta del desarrollo.'
     ],
     distinctive: [
-      'Integración con la seguridad de tu obra.',
-      'El registro convive con las cámaras y alarmas de SISE en el predio, con instalación profesional y soporte técnico local en la región durante toda la ejecución.'
+      'Servicio integral "llave en mano".',
+      'Nos encargamos de la instalación segura en altura, el mantenimiento preventivo del equipo durante los meses que dure la obra y la edición profesional del material final, garantizando que no pierdas ni un solo día de registro.'
     ]
   },
   'parada-segura': {
@@ -428,6 +422,147 @@ export const SOLUTIONS_INFO = {
     distinctive: [
       'Integración operativa directa.',
       'Se conecta de forma permanente con nuestra Central de Monitoreo para gestionar cualquier evento bajo protocolos estrictos de respuesta y con el respaldo técnico local.'
+    ]
+  },
+  'barrio-seguro': {
+    title: 'SISTEMA DE BARRIO SEGURO',
+    tagline: 'Videovigilancia comunitaria para proteger tu cuadra en tiempo real.',
+    taglineWidth: 377,
+    photo: '/image/solucion-barrio-seguro-foto.webp',
+    photoAlt: 'Cámaras de videovigilancia comunitaria en una calle de barrio',
+    description:
+      'Ecosistema de seguridad perimetral urbana diseñado para comisiones vecinales, que permite monitorear las calles y actuar de forma preventiva ante movimientos sospechosos.',
+    components: [
+      'Cámaras de videovigilancia HD para exteriores.',
+      'Bocinas o altoparlantes IP de alta potencia.',
+      'Conectividad estable.',
+      'Plataforma de gestión.'
+    ],
+    benefits: [
+      'Disuasión activa y colectiva.',
+      'Transforma a los vecinos en un bloque preventivo, permitiendo alertar por voz a través del altoparlante antes de que el ilícito ocurra y acelerando los tiempos de respuesta.'
+    ],
+    distinctive: [
+      'Enlace oficial e inmediato.',
+      'No es un circuito cerrado aislado; el sistema está integrado con nuestra Central de Monitoreo y cuenta con conexión directa a la red del 911 para derivar emergencias policiales al instante.'
+    ]
+  },
+  'propiedades-desocupadas': {
+    title: 'MONITOREO DE PROPIEDADES DESOCUPADAS',
+    tagline: 'Vigilancia activa 24/7 para prevenir usurpaciones y vandalismo.',
+    taglineWidth: 376,
+    photo: '/image/solucion-desocupadas-foto.webp',
+    photoAlt: 'Propiedad desocupada protegida con cámaras y sirenas',
+    description:
+      'Sistema de seguridad preventiva diseñado para terrenos, lotes o edificios vacíos, enfocado en detectar y disuadir intentos de intrusión antes de que se consolide una ocupación ilegal.',
+    components: [
+      'Cámaras con analíticas de video (detección de movimiento humano).',
+      'Alarmas de intrusión.',
+      'Sirenas de alta potencia.',
+      'Reflectores.',
+      'Enlace remoto constante.'
+    ],
+    benefits: [
+      'Mitigación de riesgos patrimoniales.',
+      'Evita usurpaciones, robo de materiales (cables, aberturas) y vandalismo en la fase más vulnerable del inmueble, sin requerir personal físico en el lugar.'
+    ],
+    distinctive: [
+      'Acción inmediata y protocolo legal.',
+      'Ante una detección, nuestra Central de Monitoreo activa las sirenas para disuadir en el acto y da aviso inmediato a las fuerzas de seguridad, evitando que el propietario deba exponerse físicamente en el lugar.'
+    ]
+  },
+  semaforizacion: {
+    title: 'SEMAFORIZACIÓN INTELIGENTE',
+    tagline: 'Gestión inteligente del tráfico urbano para agilizar la circulación.',
+    taglineWidth: 335,
+    photo: '/image/solucion-semaforizacion-foto.webp',
+    photoAlt: 'Semáforo inteligente en una avenida urbana',
+    description:
+      'Sistema de control de tránsito que adapta los tiempos de cruce en tiempo real según la demanda vehicular, optimizando la fluidez y la seguridad en avenidas o intersecciones críticas.',
+    components: [
+      'Controladores de semáforo inteligentes.',
+      'Ópticas LED.',
+      'Sensores de tráfico (cámaras o espiras).',
+      'Software de gestión centralizada.',
+      'Módulos de prioridad de paso.'
+    ],
+    benefits: [
+      'Descongestión vial inmediata.',
+      'Reduce tiempos de espera, disminuye la emisión de gases por embotellamientos y asegura el paso rápido de ambulancias, policías o bomberos, salvando vidas.'
+    ],
+    distinctive: [
+      'Integración operativa directa.',
+      'Se conecta de forma permanente con nuestra Central de Monitoreo para gestionar cualquier evento bajo protocolos estrictos de respuesta y con el respaldo técnico local.'
+    ]
+  },
+  'smart-parking': {
+    title: 'SMART PARKING (LPR)',
+    tagline: 'Automatización del estacionamiento medido inteligente.',
+    taglineWidth: 318,
+    photo: '/image/solucion-smart-parking-foto.webp',
+    photoAlt: 'Cámara de lectura de patentes controlando el estacionamiento medido',
+    description:
+      'Sistema avanzado de lectura de patentes diseñado para la fiscalización, control automatizado y gestión del estacionamiento urbano en tiempo real.',
+    components: [
+      'Cámaras LPR (fijas o móviles en vehículos de patrullaje).',
+      'Software de procesamiento óptico de caracteres (OCR).',
+      'Servidores de procesamiento local y plataforma de integración con el sistema de infracciones del municipio.'
+    ],
+    benefits: [
+      'Recaudación eficiente, objetiva y auditable.',
+      'Elimina la dependencia del control humano manual y la evasión, detectando vehículos en infracción en segundos para emitir multas automatizadas y liberar el espacio público.'
+    ],
+    distinctive: [
+      'Calibración y despliegue regional.',
+      'Un sistema de alta precisión adaptado a la infraestructura de nuestras calles, integrado de manera directa y segura con el centro de control gubernamental para garantizar operatividad continua.'
+    ]
+  },
+  'totems-comunicacion': {
+    title: 'TÓTEMS DE COMUNICACIÓN',
+    tagline: 'El canal para emitir alertas, brindar información turística y publicidad digital.',
+    taglineWidth: 402,
+    photo: '/image/solucion-totems-foto.webp',
+    photoAlt: 'Tótem digital de comunicación en el espacio público',
+    description:
+      'Estructuras digitales de alto impacto visual diseñadas para el espacio público, que funcionan como un canal de comunicación bidireccional entre el municipio, los ciudadanos y las marcas.',
+    components: [
+      'Gabinete antivandálico apto para intemperie.',
+      'Pantallas (táctiles o informativas) de ultra alto brillo legibles bajo luz solar.',
+      'Sistema de refrigeración interno.',
+      'Conectividad remota.',
+      'Software de gestión de contenidos (CMS).'
+    ],
+    benefits: [
+      'Transformación digital rentable.',
+      'Permite al gobierno emitir alertas de emergencia en tiempo real, guiar a turistas de forma interactiva y, fundamentalmente, recuperar la inversión monetizando los espacios con pauta publicitaria dinámica.'
+    ],
+    distinctive: [
+      'Hardware extremo y gestión centralizada.',
+      'Equipos preparados para soportar las máximas exigencias climáticas de la región, vinculados a una plataforma que permite actualizar campañas o lanzar alertas en toda la red de tótems al mismo tiempo, con un solo clic.'
+    ]
+  },
+  'mobiliario-sustentable': {
+    title: 'MOBILIARIO URBANO SUSTENTABLE',
+    tagline: 'El espacio público con estaciones de descanso eco-amigables',
+    taglineWidth: 318,
+    photo: '/image/solucion-mobiliario-foto.webp',
+    photoAlt: 'Mobiliario urbano sustentable con panel solar en una plaza',
+    description:
+      'Solución arquitectónica y tecnológica que transforma plazas, parques o paseos tradicionales en entornos inteligentes, autónomos y al servicio del ciudadano.',
+    components: [
+      'Estructuras modulares de descanso.',
+      'Paneles solares integrados.',
+      'Puertos de carga USB/inalámbricos.',
+      'Puntos de acceso a conectividad (WiFi).',
+      'Iluminación LED automatizada.'
+    ],
+    benefits: [
+      'Modernización urbana con impacto ambiental cero.',
+      'Fomenta el uso del espacio público brindando comodidad, conectividad y mayor seguridad nocturna de forma completamente autosustentable.'
+    ],
+    distinctive: [
+      'Integración robusta y mantenimiento local.',
+      'Equipamiento diseñado con materiales de alta durabilidad para resistir la intemperie y el uso intensivo, respaldado por un equipo técnico de la región.'
     ]
   }
 

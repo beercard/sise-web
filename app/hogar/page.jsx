@@ -76,7 +76,17 @@ const hogarSolutions = [
   },
   {
     name: 'Sistema de barrio seguro',
-    description: 'Soluciones vecinales con cámaras y monitoreo compartido.'
+    description: buildSolutionSeoDescription(
+      'barrio-seguro',
+      'Soluciones vecinales con cámaras y monitoreo compartido.'
+    )
+  },
+  {
+    name: 'Monitoreo de propiedades desocupadas',
+    description: buildSolutionSeoDescription(
+      'propiedades-desocupadas',
+      'Vigilancia activa de lotes, terrenos y viviendas vacías para prevenir usurpaciones.'
+    )
   }
 ];
 

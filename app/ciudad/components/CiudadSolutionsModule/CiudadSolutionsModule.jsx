@@ -36,6 +36,7 @@ const SOLUTIONS = [
   },
   {
     key: 'semaforizacion',
+    info: 'semaforizacion',
     title: ['SEMAFORIZACIÓN', 'ADAPTATIVA'],
     body: 'Semáforos adaptativos que mejoran la fluidez general del tránsito y otorgan prioridad absoluta a las emergencias.',
     mobileBody:
@@ -43,6 +44,7 @@ const SOLUTIONS = [
   },
   {
     key: 'parking',
+    info: 'smart-parking',
     title: ['SMART PARKING', '(LPR)'],
     body: 'Ordenamiento del estacionamiento céntrico mediante cámaras de lectura de patentes para un control exacto y monetización.',
     mobileBody:
@@ -50,6 +52,7 @@ const SOLUTIONS = [
   },
   {
     key: 'flotas',
+    info: 'gps-dashcams',
     title: ['FLOTAS Y CÁMARAS', 'MÓVILES'],
     body: 'Trazabilidad satelital de vehículos oficiales y cámaras corporales para auditar el accionar del personal en tiempo real.'
   },
@@ -61,11 +64,13 @@ const SOLUTIONS = [
   },
   {
     key: 'totems',
+    info: 'totems-comunicacion',
     title: ['TÓTEMS Y', 'COMUNICACIÓN'],
     body: 'Pantallas interactivas y LED para brindar asistencia turística, emitir alertas ciudadanas y monetizar publicidad.'
   },
   {
     key: 'mobiliario',
+    info: 'mobiliario-sustentable',
     title: ['MOBILIARIO', 'SUSTENTABLE'],
     body: 'Modernización de los espacios públicos integrando tecnología eco-amigable e iluminación inteligente.'
   }
