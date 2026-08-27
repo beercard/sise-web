@@ -14,8 +14,14 @@ import styles from './HistoriaRecognition.module.scss';
  */
 const slides = [
   { src: '/image/historia-premio-casel.webp', alt: 'Placa de los Premios CASEL 2024 a Grupo SISE' },
-  { src: '/image/historia-carousel-2.webp', alt: 'Reconocimientos de SISE' },
-  { src: '/image/historia-carousel-3.webp', alt: 'Reconocimientos de SISE' }
+  {
+    src: '/image/historia-premio-casel-2024.webp',
+    alt: 'Trofeo de los Premios CASEL 2024 a SISE en Desarrollo Sustentable'
+  },
+  {
+    src: '/image/historia-carousel-3.webp',
+    alt: 'Reconocimiento de la Cámara de Comercio de Resistencia a Grupo SISE'
+  }
 ];
 
 export default function HistoriaRecognition() {
