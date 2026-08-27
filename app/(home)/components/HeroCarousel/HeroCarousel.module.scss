@@ -103,9 +103,11 @@
   transform: translateY(0);
 }
 
+/* Se apoya en el mismo punto que el bloque de los slides de negocio
+   (.heroBrand): abajo a la izquierda, sobre el padding de shell. */
 .heroTitle {
   position: absolute;
-  top: 470px;
+  bottom: 92px;
   left: var(--hero-shell-pad);
   width: min(var(--hero-title-width), calc(100% - (var(--hero-shell-pad) * 2)));
   max-width: var(--hero-title-width);
@@ -194,7 +196,8 @@
   }
 
   .heroTitle {
-    top: 400px;
+    left: 32px;
+    bottom: 70px;
   }
 
   .heroDots {
@@ -223,7 +226,7 @@
   }
 
   .heroTitle {
-    top: 332px;
+    bottom: 48px;
     left: 24px;
     width: min(360px, calc(100% - 48px));
   }
@@ -257,9 +260,9 @@
   }
 
   .heroTitle {
-    top: 347px;
-    bottom: auto;
-    left: 26px;
+    top: auto;
+    bottom: 37px;
+    left: 24px;
     width: 332px;
     max-width: 332px;
     min-height: 86px;
@@ -301,8 +304,8 @@
 
   .heroTitle {
     top: auto;
-    bottom: 148px;
-    left: max(24px, calc(50% - 177px));
+    bottom: 48px;
+    left: 24px;
     width: min(390px, calc(100% - 48px));
     height: auto;
     max-width: 390px;
