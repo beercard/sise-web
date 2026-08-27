@@ -1,0 +1,256 @@
+# ==========================================================================
+# SISE Argentina — configuración de Apache (hosting Ferozo / DonWeb)
+#
+# GENERADO POR scripts/generate-htaccess.mjs — no editar a mano.
+# Los 301 del sitio anterior salen de app/lib/legacyRedirects.js; para
+# cambiarlos, editar ese archivo y volver a compilar.
+# ==========================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# --- 1. Un solo host y siempre por HTTPS ----------------------------------
+# Sin esto el mismo contenido queda accesible en cuatro direcciones (con y
+# sin www, con y sin TLS) y Google las trata como sitios distintos.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://siseargentina.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www\.siseargentina\.com$ [NC]
+RewriteRule ^(.*)$ https://siseargentina.com/$1 [R=301,L]
+
+# --- 2. Redirecciones del sitio anterior ----------------------------------
+RewriteRule ^servicios/monitoreo-de-alarmas/?$ / [R=301,L,NE]
+RewriteRule ^projects/monitoreo-de-alarmas/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/monitoreo-de-alarmas\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/monitoreo-de-alarmas\.html/?$ / [R=301,L,NE]
+RewriteRule ^servicios/circuito-cerrado-de-television/?$ / [R=301,L,NE]
+RewriteRule ^projects/circuito-cerrado-de-television/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/circuito-cerrado-de-television\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/circuito-cerrado-de-television\.html/?$ / [R=301,L,NE]
+RewriteRule ^servicios/circuito-cerrado-de-television-cctv/?$ / [R=301,L,NE]
+RewriteRule ^projects/circuito-cerrado-de-television-cctv/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/circuito-cerrado-de-television-cctv\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/circuito-cerrado-de-television-cctv\.html/?$ / [R=301,L,NE]
+RewriteRule ^servicios/video-vigilancia/?$ / [R=301,L,NE]
+RewriteRule ^projects/video-vigilancia/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/video-vigilancia\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/video-vigilancia\.html/?$ / [R=301,L,NE]
+RewriteRule ^servicios/camaras-de-seguridad/?$ / [R=301,L,NE]
+RewriteRule ^projects/camaras-de-seguridad/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/camaras-de-seguridad\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/camaras-de-seguridad\.html/?$ / [R=301,L,NE]
+RewriteRule ^servicios/vigilancia-remota/?$ / [R=301,L,NE]
+RewriteRule ^projects/vigilancia-remota/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/vigilancia-remota\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/vigilancia-remota\.html/?$ / [R=301,L,NE]
+RewriteRule ^servicios/video-vigilancia-rural/?$ /agro [R=301,L,NE]
+RewriteRule ^projects/video-vigilancia-rural/?$ /agro [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/video-vigilancia-rural\.html/?$ /agro [R=301,L,NE]
+RewriteRule ^seguridad-electronica/video-vigilancia-rural\.html/?$ /agro [R=301,L,NE]
+RewriteRule ^servicios/cerco-perimetral/?$ /hogar [R=301,L,NE]
+RewriteRule ^projects/cerco-perimetral/?$ /hogar [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cerco-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cerco-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^servicios/cerco-electrico-perimetral/?$ /hogar [R=301,L,NE]
+RewriteRule ^projects/cerco-electrico-perimetral/?$ /hogar [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cerco-electrico-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cerco-electrico-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^servicios/cerco-electrico-perimetral-de-uso-legal/?$ /hogar [R=301,L,NE]
+RewriteRule ^projects/cerco-electrico-perimetral-de-uso-legal/?$ /hogar [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cerco-electrico-perimetral-de-uso-legal\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cerco-electrico-perimetral-de-uso-legal\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^servicios/cercos-electricos-legales/?$ /hogar [R=301,L,NE]
+RewriteRule ^projects/cercos-electricos-legales/?$ /hogar [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cercos-electricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cercos-electricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^servicios/gps-rastreo-satelital/?$ /industria [R=301,L,NE]
+RewriteRule ^projects/gps-rastreo-satelital/?$ /industria [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/gps-rastreo-satelital\.html/?$ /industria [R=301,L,NE]
+RewriteRule ^seguridad-electronica/gps-rastreo-satelital\.html/?$ /industria [R=301,L,NE]
+RewriteRule ^servicios/seguimiento-vehicular-por-gps/?$ /industria [R=301,L,NE]
+RewriteRule ^projects/seguimiento-vehicular-por-gps/?$ /industria [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/seguimiento-vehicular-por-gps\.html/?$ /industria [R=301,L,NE]
+RewriteRule ^seguridad-electronica/seguimiento-vehicular-por-gps\.html/?$ /industria [R=301,L,NE]
+RewriteRule ^servicios/edificios-inteligentes/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/edificios-inteligentes/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/edificios-inteligentes\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/edificios-inteligentes\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/video-control-y-accesos-a-edificios/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/video-control-y-accesos-a-edificios/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/video-control-y-accesos-a-edificios\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/video-control-y-accesos-a-edificios\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/videoporteros-samsung-smarthome/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/videoporteros-samsung-smarthome/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/videoporteros-samsung-smarthome\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/videoporteros-samsung-smarthome\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/cerraduras-samsung/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/cerraduras-samsung/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cerraduras-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cerraduras-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/cerraduras-residenciales-samsung/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/cerraduras-residenciales-samsung/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cerraduras-residenciales-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cerraduras-residenciales-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/cerraduras-electronicas/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/cerraduras-electronicas/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cerraduras-electronicas\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cerraduras-electronicas\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/guardia-virtual/?$ /edificios [R=301,L,NE]
+RewriteRule ^projects/guardia-virtual/?$ /edificios [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/guardia-virtual\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^seguridad-electronica/guardia-virtual\.html/?$ /edificios [R=301,L,NE]
+RewriteRule ^servicios/poste-inteligente/?$ /ciudad [R=301,L,NE]
+RewriteRule ^projects/poste-inteligente/?$ /ciudad [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/poste-inteligente\.html/?$ /ciudad [R=301,L,NE]
+RewriteRule ^seguridad-electronica/poste-inteligente\.html/?$ /ciudad [R=301,L,NE]
+RewriteRule ^servicios/maxima-seguridad/?$ / [R=301,L,NE]
+RewriteRule ^projects/maxima-seguridad/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/maxima-seguridad\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica/maxima-seguridad\.html/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/cercos-eléctricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^seguridad-electronica/cercos-eléctricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica/máxima-seguridad\.html/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/tecnología-y-conectividad\.html/?$ / [R=301,L,NE]
+RewriteRule ^quienes-somos/?$ /historia [R=301,L,NE]
+RewriteRule ^about-us/?$ /historia [R=301,L,NE]
+RewriteRule ^about-us-2/?$ /historia [R=301,L,NE]
+RewriteRule ^about-us-3/?$ /historia [R=301,L,NE]
+RewriteRule ^index\.php/s-i-s-e\.html/?$ /historia [R=301,L,NE]
+RewriteRule ^s-i-s-e\.html/?$ /historia [R=301,L,NE]
+RewriteRule ^sise\.html/?$ /historia [R=301,L,NE]
+RewriteRule ^contacto\.html/?$ /contacto [R=301,L,NE]
+RewriteRule ^index\.php/contacto\.html/?$ /contacto [R=301,L,NE]
+RewriteRule ^contact-form/?$ /contacto [R=301,L,NE]
+RewriteRule ^contacts-3/?$ /contacto [R=301,L,NE]
+RewriteRule ^gracias-por-su-consulta/?$ /contacto [R=301,L,NE]
+RewriteRule ^gracias-por-su-consulta-2/?$ /contacto [R=301,L,NE]
+RewriteRule ^gracias-por-su-consulta-4/?$ /contacto [R=301,L,NE]
+RewriteRule ^newsletter/?$ /contacto [R=301,L,NE]
+RewriteRule ^servicios/?$ / [R=301,L,NE]
+RewriteRule ^projects/?$ / [R=301,L,NE]
+RewriteRule ^soluciones-y-servicios\.html/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/seguridad-electronica\.html/?$ / [R=301,L,NE]
+RewriteRule ^seguridad-electronica\.html/?$ / [R=301,L,NE]
+RewriteRule ^features/?$ / [R=301,L,NE]
+RewriteRule ^home\.html/?$ / [R=301,L,NE]
+RewriteRule ^home/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/?$ / [R=301,L,NE]
+RewriteRule ^ya-se-transmite-en-vivo-el-estado-de-transitabilidad-del-puente/?$ / [R=301,L,NE]
+RewriteRule ^instalacion-de-centro-de-videovigilancia-con-camaras-de-ultima-generacion-en-oficinas-del-911-saenz-pena-chaco/?$ /ciudad [R=301,L,NE]
+RewriteRule ^novedades/?$ / [R=301,L,NE]
+RewriteRule ^novedades\.html/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/novedades_news\.html/?$ / [R=301,L,NE]
+RewriteRule ^blog/?$ / [R=301,L,NE]
+RewriteRule ^videos/?$ / [R=301,L,NE]
+RewriteRule ^clientes/?$ /contacto [R=301,L,NE]
+RewriteRule ^clientes\.html/?$ /contacto [R=301,L,NE]
+RewriteRule ^index\.php/clientes\.html/?$ /contacto [R=301,L,NE]
+RewriteRule ^index\.php/acceso-clientes\.html/?$ /contacto [R=301,L,NE]
+RewriteRule ^login-camaras/?$ /contacto [R=301,L,NE]
+RewriteRule ^camaras/?$ / [R=301,L,NE]
+RewriteRule ^camaras-en-vivo/?$ / [R=301,L,NE]
+RewriteRule ^control-de-precencia\.html/?$ /industria [R=301,L,NE]
+RewriteRule ^category/[^/]+/?$ / [R=301,L,NE]
+RewriteRule ^tag/911/?$ /ciudad [R=301,L,NE]
+RewriteRule ^tag/chaco/?$ / [R=301,L,NE]
+RewriteRule ^tag/camaras/?$ / [R=301,L,NE]
+RewriteRule ^tag/monitoreo/?$ / [R=301,L,NE]
+RewriteRule ^tag/seguridad/?$ / [R=301,L,NE]
+RewriteRule ^tag/sise/?$ /historia [R=301,L,NE]
+RewriteRule ^tag/videovigilancia/?$ / [R=301,L,NE]
+RewriteRule ^tag/[^/]+/?$ / [R=301,L,NE]
+RewriteRule ^projects-category/[^/]+/?$ / [R=301,L,NE]
+RewriteRule ^author/[^/]+/?$ /historia [R=301,L,NE]
+RewriteRule ^feed/?$ / [R=301,L,NE]
+RewriteRule ^comments/feed/?$ / [R=301,L,NE]
+RewriteRule ^index\.php/.*\.feed/?$ / [R=301,L,NE]
+
+# --- 3. URLs sin extensión ------------------------------------------------
+# La exportación deja hogar.html, contacto.html, etc. y, al lado, un directorio
+# hogar/ con los payloads que usa Next para navegar sin recargar. Por eso acá
+# NO se puede condicionar con !-d como es habitual: /hogar existe como
+# directorio y la regla nunca se aplicaría. Se pregunta directamente si existe
+# el .html, y se apaga DirectorySlash para que Apache no intente listar ese
+# directorio antes de reescribir.
+<IfModule mod_dir.c>
+DirectorySlash Off
+</IfModule>
+
+# Los payloads de prefetch de Next: el router los pide como
+# /contacto/__next.contacto.__PAGE__.txt, pero la exportación los escribe en
+# /contacto/__next.contacto/__PAGE__.txt (punto contra barra). Sin esta regla
+# cada página dispara varios 404 y la navegación pierde el prefetch: sigue
+# funcionando, pero recargando la página entera.
+RewriteRule ^(.*)__next\.([^/]+)\.__PAGE__\.txt$ /$1__next.$2/__PAGE__.txt [L]
+
+# La barra final sobra: /hogar/ va a /hogar.
+RewriteRule ^(.+)/$ /$1 [R=301,L,NE]
+
+# /hogar sirve hogar.html sin redirigir, para que la URL publicada sea
+# exactamente la que declara el canonical.
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+)$ /$1.html [L]
+
+# Y /hogar.html manda a /hogar, para no tener la misma página en dos URLs.
+# THE_REQUEST conserva el pedido original, así que la reescritura interna de
+# arriba no dispara esta regla ni genera un bucle.
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+</IfModule>
+
+# --- 4. Página de error ---------------------------------------------------
+ErrorDocument 404 /404.html
+
+# --- 5. Cabeceras de seguridad -------------------------------------------
+# Son las mismas que servía Vercel desde next.config.mjs.
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+
+# Los archivos de /_next/static llevan un hash en el nombre: cuando cambia el
+# contenido cambia la URL, así que se pueden cachear para siempre.
+<FilesMatch "\.(js|css|woff2)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# El HTML no: tiene que revalidar para que un deploy se vea enseguida.
+<FilesMatch "\.html$">
+  Header set Cache-Control "public, max-age=0, must-revalidate"
+</FilesMatch>
+
+<FilesMatch "\.(webp|jpg|jpeg|png|svg|ico|mp4)$">
+  Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+</IfModule>
+
+# --- 6. Compresión --------------------------------------------------------
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+AddOutputFilterByType DEFLATE application/json application/xml image/svg+xml
+</IfModule>
+
+# --- 7. Protección de la configuración del backend ------------------------
+# config.php lleva la clave del correo. Si algún día PHP quedara deshabilitado,
+# sin esta regla el archivo se serviría como texto plano.
+<Files "config.php">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</Files>
+
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>

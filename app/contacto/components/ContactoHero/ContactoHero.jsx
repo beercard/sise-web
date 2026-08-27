@@ -99,7 +99,7 @@ export default function ContactoHero() {
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/contacto', {
+      const response = await fetch('/api/contacto.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, website, formStartedAt })

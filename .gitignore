@@ -15,3 +15,7 @@ yarn-error.log
 .vercel
 tmp
 .tmp
+
+# Credenciales del correo en el hosting (se crea en el servidor)
+public/api/config.php
+out/api/config.php

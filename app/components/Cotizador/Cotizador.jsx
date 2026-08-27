@@ -502,7 +502,7 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
 
     try {
       const summary = buildSummary(answers, flowConfig.summaryRows);
-      const response = await fetch('/api/cotizador', {
+      const response = await fetch('/api/cotizador.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ answers, website, summary, variant, formStartedAt })

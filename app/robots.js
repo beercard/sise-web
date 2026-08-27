@@ -1,5 +1,9 @@
 import { siteConfig } from './lib/seo';
 
+/* La exportación estática necesita saber que esta ruta se resuelve en
+   tiempo de compilación; sin esto el build se detiene. */
+export const dynamic = 'force-static';
+
 export default function robots() {
   return {
     rules: [

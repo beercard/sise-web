@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "next dev --webpack",
     "dev:turbo": "next dev --turbo",
-    "build": "next build",
-    "start": "next start",
+    "build": "node scripts/generate-htaccess.mjs && next build",
+    "start": "npx serve out -l 3100",
     "lint": "eslint .",
     "setup:githooks": "node scripts/setup-githooks.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "next": "^16.2.6",
-    "nodemailer": "^8.0.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
