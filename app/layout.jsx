@@ -47,6 +47,12 @@ export const metadata = {
       {
         url: siteConfig.ogImage,
         width: 1200,
+        height: 1200,
+        alt: `${siteConfig.name} - Seguridad electrónica`
+      },
+      {
+        url: siteConfig.ogImageWide,
+        width: 1200,
         height: 630,
         alt: `${siteConfig.name} - Seguridad electrónica`
       }
@@ -56,7 +62,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: siteConfig.defaultTitle,
     description: siteConfig.description,
-    images: [siteConfig.ogImage]
+    images: [siteConfig.ogImageWide]
   }
 };
 

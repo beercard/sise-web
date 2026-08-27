@@ -27,7 +27,9 @@ export const siteConfig = {
   locale: 'es_AR',
   themeColor: '#00408c',
   icon: '/image/mpr0za9r-avr9t9i.png',
+  /* Cuadrada para WhatsApp, apaisada para X/LinkedIn (scripts/generate-og.mjs). */
   ogImage: '/image/og-home.jpg',
+  ogImageWide: '/image/og-home-wide.jpg',
   phone: '+54 800 222 5153',
   email: 'info@siseargentina.com',
   whatsapp: '5493624231144',
@@ -122,6 +124,7 @@ export function buildPageMetadata({
   robots = defaultRobots
 }) {
   const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
+  const wideImage = image.replace(/\.jpg$/, '-wide.jpg');
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.defaultTitle;
   const normalizedKeywords = uniqueKeywords(keywords);
 
@@ -140,9 +143,17 @@ export function buildPageMetadata({
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: 'website',
+      /* La cuadrada primero: es la que toma WhatsApp y la que se ve más
+         grande en el chat. La apaisada queda de alternativa. */
       images: [
         {
           url: image,
+          width: 1200,
+          height: 1200,
+          alt: `${siteConfig.name} - ${title ?? 'Seguridad electrónica'}`
+        },
+        {
+          url: wideImage,
           width: 1200,
           height: 630,
           alt: `${siteConfig.name} - ${title ?? 'Seguridad electrónica'}`
@@ -153,7 +164,7 @@ export function buildPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [image]
+      images: [wideImage]
     },
     robots
   };
