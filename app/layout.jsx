@@ -1,9 +1,11 @@
 import './globals.scss';
 
 import { League_Spartan } from 'next/font/google';
-import Script from 'next/script';
+import { Suspense } from 'react';
 
 import { defaultRobots, defaultSeoKeywords, siteConfig } from './lib/seo';
+import AnalyticsScripts from './components/Analytics/AnalyticsScripts';
+import PageviewTracker from './components/Analytics/PageviewTracker';
 import SiteFooter from './components/SiteFooter/SiteFooter';
 import SiteHeader from './components/SiteHeader/SiteHeader';
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton/WhatsAppFloatingButton';
@@ -66,7 +68,6 @@ export const metadata = {
   }
 };
 
-const GA_MEASUREMENT_ID = 'G-G1WY55DRWQ';
 
 export default function RootLayout({ children }) {
   const structuredData = {
@@ -124,17 +125,10 @@ export default function RootLayout({ children }) {
           latitude: siteConfig.geo.latitude,
           longitude: siteConfig.geo.longitude
         },
-        ...(siteConfig.aggregateRating
-          ? {
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: siteConfig.aggregateRating.ratingValue,
-                reviewCount: siteConfig.aggregateRating.reviewCount,
-                bestRating: 5,
-                worstRating: 1
-              }
-            }
-          : {}),
+        /* Sin aggregateRating: eran reseñas auto-declaradas, sin nodos Review
+           ni fuente verificable. Google las ignora en Organization desde 2019
+           y son causa habitual de acción manual por spam de datos
+           estructurados. Vuelve el día que haya reseñas reales publicadas. */
         areaServed: [
           { '@type': 'City', name: 'Resistencia' },
           { '@type': 'City', name: 'Corrientes' },
@@ -193,18 +187,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es-AR" className={leagueSpartan.className} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
+        <AnalyticsScripts />
+        {/* Suspense porque el tracker lee los search params. */}
+        <Suspense fallback={null}>
+          <PageviewTracker />
+        </Suspense>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

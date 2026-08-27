@@ -44,10 +44,6 @@ export const siteConfig = {
     latitude: -27.451,
     longitude: -58.9867
   },
-  aggregateRating: {
-    ratingValue: 4.6,
-    reviewCount: 90
-  },
   sameAs: [
     'https://www.instagram.com/sise.argentina',
     'https://www.facebook.com/sise.argentina',

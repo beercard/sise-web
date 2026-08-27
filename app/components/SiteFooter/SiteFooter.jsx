@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import TrackedContactLink from '../TrackedContactLink/TrackedContactLink';
+
 import styles from '../../page.module.scss';
 
 export default function SiteFooter() {
@@ -49,9 +51,13 @@ export default function SiteFooter() {
                   width={17}
                   height={23}
                 />
-                <a className={styles.footerPhoneNumber} href="tel:08002225153">
+                <TrackedContactLink
+                  className={styles.footerPhoneNumber}
+                  href="tel:08002225153"
+                  location="footer"
+                >
                   0800-222-5153
-                </a>
+                </TrackedContactLink>
               </div>
             </div>
 
@@ -117,8 +123,10 @@ export default function SiteFooter() {
                     height={26}
                   />
                 </a>
-                <a
+                <TrackedContactLink
                   href="mailto:info@siseargentina.com"
+                  kind="email"
+                  location="footer_desktop"
                   aria-label="Email info@siseargentina.com"
                   className={styles.footerDesktopSocial}
                 >
@@ -129,7 +137,7 @@ export default function SiteFooter() {
                     width={38}
                     height={28}
                   />
-                </a>
+                </TrackedContactLink>
               </div>
               <p className={styles.footerAfip}>
                 AFIP
@@ -171,10 +179,6 @@ export default function SiteFooter() {
             <div className={styles.footerBottomDivider} aria-hidden="true" />
             <Link className={styles.footerBottomLinkCookies} href="/cookies">
               Gestión de Cookies
-            </Link>
-            <div className={styles.footerBottomDivider} aria-hidden="true" />
-            <Link className={styles.footerBottomLinkPrivacidad} href="/privacidad">
-              Privacidad
             </Link>
           </div>
         </div>
@@ -222,9 +226,6 @@ export default function SiteFooter() {
               </Link>
               <Link className={styles.footerMobileSmallLink} href="/legales">
                 Legales
-              </Link>
-              <Link className={styles.footerMobileSmallLink} href="/privacidad">
-                Privacidad
               </Link>
             </div>
 
@@ -312,8 +313,10 @@ export default function SiteFooter() {
                 height={16}
               />
             </a>
-            <a
+            <TrackedContactLink
               href="mailto:info@siseargentina.com"
+              kind="email"
+              location="footer_mobile"
               aria-label="Email info@siseargentina.com"
               className={styles.footerMobileSocialLink}
             >
@@ -324,7 +327,7 @@ export default function SiteFooter() {
                 width={24}
                 height={18}
               />
-            </a>
+            </TrackedContactLink>
           </div>
         </div>
 

@@ -1,8 +1,14 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useRef, useState } from 'react';
 
-import { trackFormStart, trackFormSubmit, useTrackSectionView } from '../../lib/analytics';
+import {
+  trackFormStart,
+  trackFormSubmit,
+  trackQuoteStep,
+  useTrackSectionView
+} from '../../lib/analytics';
 import styles from './Cotizador.module.scss';
 
 const STEP = {
@@ -418,10 +424,13 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
           }
 
           setAnswers((prev) => ({ ...prev, [stepConfig.key]: value }));
+          /* Un evento por paso completado: es lo único que después permite
+             ver en qué pregunta se cae la gente. */
+          trackQuoteStep({ stepIndex: index + 1, stepKey: stepConfig.key, variant });
           setStep(index + 1);
         }
       })),
-    [flowConfig]
+    [flowConfig, variant]
   );
 
   const contactDetailsStep = steps.length;
@@ -618,6 +627,16 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
             aria-live="polite"
           >
             {submitError || '\u00A0'}
+          </p>
+          {/* Ley 25.326: hay que informar quien trata los datos y para que en
+              el momento mismo de pedirlos. */}
+          <p className={styles.privacyNote}>
+            Tus datos los trata GRUPO SISE S.A. para responder esta consulta. Podés conocer tus
+            derechos en la{' '}
+            <Link className={styles.privacyNoteLink} href="/privacidad">
+              Política de Privacidad
+            </Link>
+            .
           </p>
         </form>
       </div>

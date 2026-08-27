@@ -28,6 +28,52 @@ function trackEvent(eventName, params = {}) {
   window.gtag('event', eventName, payload);
 }
 
+/*
+ * Vista de página. En App Router el `config` de gtag corre una sola vez, así
+ * que las navegaciones internas hay que reportarlas a mano (lo hace
+ * PageviewTracker). Por eso el layout arranca con `send_page_view: false`:
+ * la primera vista también sale de acá y no se duplica.
+ */
+export function trackPageView({ pagePath, pageTitle } = {}) {
+  if (isAnalyticsReady()) {
+    window.gtag('event', 'page_view', {
+      page_path: pagePath,
+      page_title: pageTitle,
+      page_location: typeof window !== 'undefined' ? window.location.href : undefined
+    });
+  }
+
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    window.fbq('track', 'PageView');
+  }
+}
+
+export function trackPhoneClick({ location } = {}) {
+  trackEvent('phone_click', { link_location: location });
+}
+
+export function trackEmailClick({ location } = {}) {
+  trackEvent('email_click', { link_location: location });
+}
+
+/* Apertura del popup "+ info" de una tarjeta de soluciones: es el mejor
+   indicador de qué producto está mirando cada visitante. */
+export function trackSolutionInfo({ solution, vertical } = {}) {
+  trackEvent('solution_info_open', {
+    solution_name: solution,
+    vertical
+  });
+}
+
+/* Avance del cotizador paso a paso, para ver dónde abandona la gente. */
+export function trackQuoteStep({ stepIndex, stepKey, variant } = {}) {
+  trackEvent('quote_step', {
+    step_index: stepIndex,
+    step_key: stepKey,
+    form_variant: variant
+  });
+}
+
 export function trackWhatsAppClick({ location, label = 'whatsapp' } = {}) {
   trackEvent('whatsapp_click', {
     link_location: location,

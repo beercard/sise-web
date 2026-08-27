@@ -258,7 +258,6 @@
 .footerBottomLinkArrepentimiento,
 .footerBottomLinkBaja,
 .footerBottomLinkLegales,
-.footerBottomLinkPrivacidad,
 .footerBottomLinkCookies {
   margin: 0;
   height: 25px;
@@ -278,7 +277,6 @@
 .footerBottomLinkArrepentimiento:hover,
 .footerBottomLinkBaja:hover,
 .footerBottomLinkLegales:hover,
-.footerBottomLinkPrivacidad:hover,
 .footerBottomLinkCookies:hover {
   opacity: 0.85;
 }
@@ -297,10 +295,6 @@
 
 .footerBottomLinkCookies {
   width: 123px;
-}
-
-.footerBottomLinkPrivacidad {
-  width: 84px;
 }
 
 /*
@@ -343,7 +337,6 @@
   .footerBottomLinkArrepentimiento,
   .footerBottomLinkBaja,
   .footerBottomLinkLegales,
-  .footerBottomLinkPrivacidad,
   .footerBottomLinkCookies {
     width: auto;
   }

@@ -716,3 +716,20 @@
     white-space: normal;
   }
 }
+
+/* Aviso de tratamiento de datos al pie del formulario (Ley 25.326). */
+.privacyNote {
+  width: 100%;
+  margin: 8px 0 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.privacyNoteLink {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

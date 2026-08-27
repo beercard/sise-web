@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Fragment, useState } from 'react';
 
 import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { trackSolutionInfo } from '../../../lib/analytics';
 import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './ConstruccionSolutionsModule.module.scss';
@@ -95,7 +96,13 @@ export default function ConstruccionSolutionsModule() {
                 <button
                   type="button"
                   className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
-                  onClick={() => setActiveInfo(solution.info)}
+                  onClick={() => {
+                    setActiveInfo(solution.info);
+                    trackSolutionInfo({
+                      solution: SOLUTIONS_INFO[solution.info]?.title ?? solution.info,
+                      vertical: 'construccion'
+                    });
+                  }}
                 >
                   + info
                 </button>

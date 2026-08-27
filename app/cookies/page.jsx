@@ -59,7 +59,9 @@ export default function CookiesPage() {
           <li>
             <strong>Cookies de rendimiento y analíticas:</strong> nos ayudan a comprender cómo
             interactúan los visitantes con el sitio (páginas más vistas, tiempo de permanencia) de
-            forma agregada y, en general, anónima. Se utilizan únicamente con tu consentimiento.
+            forma agregada y, en general, anónima. Se activan al ingresar al sitio y podés
+            desactivarlas en cualquier momento desde la configuración de tu navegador, siguiendo los
+            pasos que detallamos más abajo.
           </li>
           <li>
             <strong>Cookies de terceros:</strong> en caso de incorporar servicios externos (por

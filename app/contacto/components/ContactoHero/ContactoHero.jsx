@@ -1,10 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 import {
   trackFormStart,
   trackFormSubmit,
+  trackPhoneClick,
   trackWhatsAppClick,
   useTrackSectionView
 } from '../../../lib/analytics';
@@ -152,7 +154,11 @@ export default function ContactoHero() {
 
           <p className={`${styles.heroLine} ${styles.heroLinePhone}`}>
             <span>Atención las 24hs llamando al </span>
-            <a className={styles.heroLink} href={`tel:${PHONE_NUMBER_LINK}`}>
+            <a
+              className={styles.heroLink}
+              href={`tel:${PHONE_NUMBER_LINK}`}
+              onClick={() => trackPhoneClick({ location: 'contacto_hero' })}
+            >
               {PHONE_NUMBER_DISPLAY}
             </a>
           </p>
@@ -277,6 +283,17 @@ export default function ContactoHero() {
             <button className={styles.submitButton} type="submit" disabled={submitting}>
               {submitting ? 'Enviando...' : 'Solicitar asesoramiento'}
             </button>
+
+            {/* Ley 25.326: hay que informar quien trata los datos y para que en
+                el momento mismo de pedirlos. */}
+            <p className={styles.privacyNote}>
+              Tus datos los trata GRUPO SISE S.A. para responder esta consulta. Podés conocer tus
+              derechos en la{' '}
+              <Link className={styles.privacyNoteLink} href="/privacidad">
+                Política de Privacidad
+              </Link>
+              .
+            </p>
           </form>
         )}
       </div>

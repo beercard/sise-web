@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Fragment, useState } from 'react';
 
 import SolutionInfoPopup from '../../../components/SolutionInfoPopup/SolutionInfoPopup';
+import { trackSolutionInfo } from '../../../lib/analytics';
 import { SOLUTIONS_INFO } from '../../../lib/solutionsInfo';
 
 import styles from './EdificiosSolutionsModule.module.scss';
@@ -116,7 +117,13 @@ export default function EdificiosSolutionsModule() {
                 <button
                   type="button"
                   className={`${styles.cardButton} ${styles.cardButtonDesktop}`}
-                  onClick={() => setActiveInfo(solution.info)}
+                  onClick={() => {
+                    setActiveInfo(solution.info);
+                    trackSolutionInfo({
+                      solution: SOLUTIONS_INFO[solution.info]?.title ?? solution.info,
+                      vertical: 'edificios'
+                    });
+                  }}
                 >
                   + info
                 </button>
