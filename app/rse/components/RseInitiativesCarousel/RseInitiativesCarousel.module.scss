@@ -42,7 +42,17 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Sin encogerse: cuando las cuatro no entraban, el flex las comprimía y el
+     texto se recortaba. La sección ya recorta los bordes por overflow, que es
+     como lo resuelve el diseño. */
+  flex: 0 0 auto;
   width: 455px;
+  /*
+   * Alto fijo del diseño, igual para las siete tarjetas: con `min-height`
+   * cada una crecía según el largo de su texto y quedaban desparejas en la
+   * fila. Entra el caso más largo (la del puente, que suma el botón) porque
+   * la banda de categoría ya no ocupa alto propio: va sobre la foto.
+   */
   height: 597px;
   border-radius: 50px;
   background: #d9d9d9;
@@ -56,6 +66,8 @@
   flex: 0 0 auto;
   width: 100%;
   height: 294px;
+  /* Recorta la banda contra la esquina redondeada de la tarjeta. */
+  overflow: hidden;
 }
 
 .photoImage {
@@ -63,19 +75,30 @@
   object-position: center;
 }
 
+/*
+ * Del diseño (3486:960): la banda no va debajo de la foto sino apoyada sobre
+ * su borde inferior, con el gris de la tarjeta al 70% para que la imagen se
+ * insinúe detrás. Por eso el alto de la foto no se descuenta dos veces y la
+ * descripción gana el espacio que antes se comía esta franja.
+ */
 .category {
-  flex: 0 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: 0;
-  height: 42px;
+  min-height: 42px;
+  padding: 2px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #cfcfcf;
+  background: rgba(217, 217, 217, 0.7);
   color: #00408c;
   font-size: 22px;
   line-height: 1;
   font-weight: 700;
   text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .subtitle {
@@ -86,12 +109,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px 24px;
+  padding: 8px calc((100% - 81.3%) / 2);
   background: #00408c;
   color: #ffffff;
   font-size: 32px;
   line-height: 1;
   font-weight: 400;
+}
+
+.subtitleText {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .subtitle strong {
@@ -104,7 +134,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 28px;
+  /*
+   * El diseño le da a cada tarjeta un ancho de caja distinto (303 a 397 sobre
+   * 455) para controlar dónde corta cada renglón. Va en porcentaje para que
+   * las variantes chicas hereden la misma proporción.
+   */
+  padding-left: calc((100% - var(--rse-texto, 88%)) / 2);
+  padding-right: calc((100% - var(--rse-texto, 88%)) / 2);
+  /* Aire mínimo arriba y abajo: con el zoom global de las laptops el texto
+     puede ganar un renglón y este margen es el que evita que se recorte. */
+  padding-top: 10px;
+  padding-bottom: 14px;
   font-size: 26px;
   line-height: 0.92;
   font-weight: 400;
@@ -131,7 +171,7 @@
 
 /* La tarjeta del puente reparte la descripción y el botón. */
 .card:has(.liveButton) .description {
-  padding-bottom: 4px;
+  padding-bottom: 12px;
 }
 
 /* Vista previa lateral (353×463, tipografías al 78% del diseño). Del diseño
@@ -149,20 +189,22 @@
 }
 
 .card-preview .category {
-  height: 33px;
+  min-height: 33px;
   font-size: 17px;
 }
 
 .card-preview .subtitle {
   min-height: 68px;
   font-size: 25px;
-  padding: 5px 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .card-preview .description {
   font-size: 20px;
   line-height: 0.92;
-  padding: 10px 20px;
+  padding-top: 10px;
+  padding-bottom: 14px;
 }
 
 .card-preview .liveButton {
@@ -189,19 +231,21 @@
 }
 
 .card-mobile .category {
-  height: 24px;
+  min-height: 24px;
   font-size: 13px;
 }
 
 .card-mobile .subtitle {
   min-height: 51px;
   font-size: 18px;
-  padding: 5px 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .card-mobile .description {
   font-size: 15px;
-  padding: 10px 18px;
+  padding-top: 10px;
+  padding-bottom: 12px;
 }
 
 .card-mobile .liveButton {
@@ -225,8 +269,7 @@
 
   .card {
     width: min(455px, calc(50vw - 60px));
-    height: auto;
-    min-height: 500px;
+    height: 500px;
   }
 
   .card .photo {
@@ -277,7 +320,6 @@
   .mobileDeck .card {
     width: 262px;
     height: 373px;
-    min-height: 0;
     border-radius: 30px;
   }
 
@@ -286,19 +328,21 @@
   }
 
   .mobileDeck .card .category {
-    height: 24px;
+    min-height: 24px;
     font-size: 13px;
   }
 
   .mobileDeck .card .subtitle {
     min-height: 51px;
     font-size: 18px;
-    padding: 5px 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .mobileDeck .card .description {
     font-size: 15px;
-    padding: 10px 18px;
+    padding-top: 10px;
+    padding-bottom: 12px;
   }
 
   .mobileDeck .card .liveButton {

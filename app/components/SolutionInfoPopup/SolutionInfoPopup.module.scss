@@ -77,6 +77,12 @@
 
 .title {
   margin: 0;
+  /*
+   * League Spartan deja mucho aire bajo la línea base, así que la mayúscula
+   * quedaba 3,4px por encima del centro de la barra. El padding entra en el
+   * centrado del flex y baja el texto esa mitad justa.
+   */
+  padding-top: 7px;
   color: #ffffff;
   font-size: 36px;
   line-height: 1;
@@ -160,6 +166,13 @@
   display: block;
   width: 49px;
   height: 14px;
+  /*
+   * El logo se centraba contra la caja de línea del texto y quedaba 1,5px más
+   * abajo que las letras. El margen inferior entra en el cálculo del centrado
+   * (align-items: center), así que lo sube esa mitad justa y el logo queda a
+   * la misma altura que "DISTINTIVO", sin mover el texto.
+   */
+  margin-bottom: 3px;
 }
 
 .text {

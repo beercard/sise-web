@@ -17,6 +17,8 @@ import styles from './RseInitiativesCarousel.module.scss';
 const CARDS = [
   {
     id: 'puente',
+    /* Ancho de la caja de texto del diseño: 397px sobre los 455 de la tarjeta. */
+    anchoTexto: '87.3%',
     category: 'Infraestructura Pública y Salud',
     subtitle: (
       <>
@@ -32,6 +34,8 @@ const CARDS = [
   },
   {
     id: 'girasoles',
+    /* Ancho de la caja de texto del diseño: 303px sobre los 455 de la tarjeta. */
+    anchoTexto: '66.6%',
     category: 'Inclusión y Formación de Talento',
     subtitle: (
       <>
@@ -44,10 +48,16 @@ const CARDS = [
   },
   {
     id: 'lamarca',
+    /* Ancho de la caja de texto del diseño: 337px sobre los 455 de la tarjeta. */
+    anchoTexto: '74.1%',
     category: 'Inclusión y Formación de Talento',
     subtitle: (
       <>
-        Convenio con <strong>UEGP Nº 27 “Emilio Lamarca”</strong>
+        {/* El corte va donde lo marca el diseño (3486:961): sin él el título
+            se parte en tres renglones y desplaza la descripción. */}
+        Convenio con <strong>UEGP Nº 27</strong>
+        <br />
+        <strong>“Emilio Lamarca”</strong>
       </>
     ),
     description:
@@ -56,6 +66,8 @@ const CARDS = [
   },
   {
     id: 'utn',
+    /* Ancho de la caja de texto del diseño: 346px sobre los 455 de la tarjeta. */
+    anchoTexto: '76.0%',
     category: 'Inclusión y Formación de Talento',
     subtitle: (
       <>
@@ -68,6 +80,8 @@ const CARDS = [
   },
   {
     id: 'golf',
+    /* Ancho de la caja de texto del diseño: 337px sobre los 455 de la tarjeta. */
+    anchoTexto: '74.1%',
     category: 'Compromiso Ambiental y Comunitario',
     subtitle: (
       <>
@@ -80,6 +94,8 @@ const CARDS = [
   },
   {
     id: 'sixty',
+    /* Ancho de la caja de texto del diseño: 384px sobre los 455 de la tarjeta. */
+    anchoTexto: '84.4%',
     category: 'Compromiso Ambiental y Comunitario',
     subtitle: (
       <>
@@ -92,6 +108,8 @@ const CARDS = [
   },
   {
     id: 'iacco',
+    /* Ancho de la caja de texto del diseño: 384px sobre los 455 de la tarjeta. */
+    anchoTexto: '84.4%',
     category: 'Infraestructura Pública y Salud',
     subtitle: (
       <>
@@ -128,7 +146,12 @@ function ArrowIcon({ direction }) {
 
 function InitiativeCard({ card, variant }) {
   return (
-    <article className={`${styles.card} ${styles[`card-${variant}`] ?? ''}`}>
+    <article
+      className={`${styles.card} ${styles[`card-${variant}`] ?? ''}`}
+      style={{ '--rse-texto': card.anchoTexto }}
+    >
+      {/* La banda de categoría va DENTRO de la foto, apoyada en su borde
+          inferior y con el gris al 70%, como en el diseño (3486:960). */}
       <div className={styles.photo}>
         <Image
           src={card.image}
@@ -137,9 +160,14 @@ function InitiativeCard({ card, variant }) {
           sizes={variant === 'feature' ? '455px' : variant === 'preview' ? '353px' : '262px'}
           className={styles.photoImage}
         />
+        <p className={styles.category}>{card.category}</p>
       </div>
-      <p className={styles.category}>{card.category}</p>
-      <p className={styles.subtitle}>{card.subtitle}</p>
+      {/* El texto va dentro de un span: si cuelga directo del contenedor
+          flex, cada fragmento (el <strong>, el salto) se convierte en un ítem
+          y el convenio se parte en cuatro renglones en vez de dos. */}
+      <p className={styles.subtitle}>
+        <span className={styles.subtitleText}>{card.subtitle}</span>
+      </p>
       <p className={styles.description}>{card.description}</p>
       {card.live ? (
         <Link href="/" className={styles.liveButton}>

@@ -39,6 +39,7 @@ export const SOLUTIONS_INFO = {
   'cerco-electrico': {
     title: 'CERCO ELÉCTRICO PERIMETRAL',
     tagline: 'La primera línea de defensa para proteger tu propiedad.',
+    taglineWidth: 324,
     photo: '/image/solucion-cerco-foto.webp',
     photoAlt: 'Cerco eléctrico perimetral instalado por SISE',
     description:
@@ -64,6 +65,7 @@ export const SOLUTIONS_INFO = {
   'cctv-videovigilancia': {
     title: 'CCTV / VIDEOVIGILANCIA ACTIVA',
     tagline: 'Auditoría visual 24/7 y disuasión activa en tiempo real.',
+    taglineWidth: 309,
     photo: '/image/solucion-cctv-foto.webp',
     photoAlt: 'Cámara de videovigilancia instalada por SISE',
     description:
@@ -116,6 +118,7 @@ export const SOLUTIONS_INFO = {
   'control-acceso': {
     title: 'CONTROL DE ACCESO',
     tagline: 'Gestión inteligente, exacta y auditable de ingresos y egresos.',
+    taglineWidth: 363,
     photo: '/image/solucion-acceso-foto.webp',
     photoAlt: 'Terminal de control de acceso con reconocimiento facial',
     description:
@@ -401,7 +404,7 @@ export const SOLUTIONS_INFO = {
   },
   'parada-segura': {
     title: 'PARADA SEGURA',
-    tagline: 'Tótems de videovigilancia, comunicación y asistencia para proteger las esperas.',
+    tagline: 'Videovigilancia, comunicación y asistencia para proteger las esperas.',
     photo: '/image/solucion-parada-segura-foto.webp',
     photoAlt: 'Parada de transporte público con videovigilancia',
     description:

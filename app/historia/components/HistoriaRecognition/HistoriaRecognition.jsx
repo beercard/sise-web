@@ -19,7 +19,9 @@ const slides = [
     alt: 'Trofeo de los Premios CASEL 2024 a SISE en Desarrollo Sustentable'
   },
   {
-    src: '/image/historia-carousel-3.webp',
+    /* Reencuadrada al 521x425 de la caja: la original era vertical y el
+       recorte automatico dejaba el cuadro descentrado. */
+    src: '/image/historia-reconocimiento-camara.webp',
     alt: 'Reconocimiento de la Cámara de Comercio de Resistencia a Grupo SISE'
   }
 ];

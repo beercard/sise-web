@@ -28,9 +28,17 @@
   --nav-pad-x: clamp(10px, calc(var(--sise-vw) * 0.0104), 20px);
   display: flex;
   align-items: center;
-  width: min(1920px, 100%);
+  /*
+   * A todo el ancho, sin centrar. Con `min(1920px, 100%)` y `margin: 0 auto`
+   * el header quedaba centrado en cuanto el ancho efectivo superaba los 1920
+   * (entre 1620 y 1920 reales, por el zoom global), y el águila —que es un
+   * gráfico a sangre— se despegaba del borde izquierdo unos pocos píxeles.
+   * El nav ya se ancla a la derecha con su propio margen, así que el layout
+   * del Figma se conserva igual.
+   */
+  width: 100%;
   height: 80px;
-  margin: 0 auto;
+  margin: 0;
   padding-left: 0;
   /* Se descuenta el padding del último item para que el margen del Figma se
      mida contra el texto y no contra su caja. */

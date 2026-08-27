@@ -11,7 +11,9 @@
   position: relative;
   isolation: isolate;
   width: 100%;
-  height: 800px;
+  /* El mismo alto que el hero de las páginas de negocio (900 / 660 / 600),
+     para que el carrusel del home no quede más bajo que el resto del sitio. */
+  height: 900px;
   background: #00408c;
   overflow: hidden;
 }
@@ -46,9 +48,9 @@
 .heroMedia {
   position: absolute;
   left: 0;
-  top: 4px;
+  top: 0;
   width: 100%;
-  height: 796px;
+  height: 100%;
   display: block;
   overflow: hidden;
   z-index: 0;
@@ -183,12 +185,7 @@
  */
 @media (max-width: 1200px) and (min-width: 961px) {
   .hero {
-    height: 700px;
-  }
-
-  .heroMedia {
-    top: 0;
-    height: 700px;
+    height: 660px;
   }
 
   .heroImage {
@@ -207,11 +204,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: 560px;
-  }
-
-  .heroMedia {
-    height: 560px;
+    height: 600px;
   }
 
   .heroImage {
@@ -238,7 +231,7 @@
 
 @media (max-width: 600px) {
   .hero {
-    height: 591px;
+    height: 600px;
   }
 
   .heroMedia {
@@ -283,7 +276,7 @@
 
 @media (max-width: 960px) and (min-width: 601px) {
   .hero {
-    height: 620px;
+    height: 600px;
   }
 
   .heroMedia {
