@@ -116,7 +116,8 @@
   max-width: 100%;
   box-sizing: border-box;
   font-size: 32px;
-  line-height: 0.9;
+  /* El interlineado del diseño para la frase de cabecera (3619:489). */
+  line-height: 0.95;
   font-weight: 600;
 }
 

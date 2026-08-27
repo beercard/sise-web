@@ -405,6 +405,7 @@ export const SOLUTIONS_INFO = {
   'parada-segura': {
     title: 'PARADA SEGURA',
     tagline: 'Videovigilancia, comunicación y asistencia para proteger las esperas.',
+    taglineWidth: 402,
     photo: '/image/solucion-parada-segura-foto.webp',
     photoAlt: 'Parada de transporte público con videovigilancia',
     description:
