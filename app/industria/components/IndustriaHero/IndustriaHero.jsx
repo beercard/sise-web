@@ -14,6 +14,28 @@ import styles from './IndustriaHero.module.scss';
 const HERO_IMAGE_DESKTOP = '/image/hero-industria-planta-desktop.webp';
 const HERO_IMAGE_MOBILE = '/image/hero-industria-planta-mobile.webp';
 
+/*
+ * El bloque de texto vive acá y lo reutiliza el carrusel del home: así los
+ * dos comparten esta misma hoja de estilos y no se desalinean cuando se
+ * ajusta el hero.
+ */
+export function IndustriaHeroBrand({ TitleTag = 'h1' }) {
+  return (
+      <div className={styles.content}>
+        <p className={styles.kicker}>
+          <span className={styles.kickerBlack}>SISE</span> EMPRESAS
+        </p>
+
+        <TitleTag className={styles.title}>
+          <span className={styles.titleLight}>Protección para </span>
+          <span className={styles.titleStrong}>operaciones críticas</span>
+        </TitleTag>
+
+        <p className={styles.category}>EMPRESAS E INDUSTRIAS</p>
+      </div>
+  );
+}
+
 export default function IndustriaHero() {
   return (
     <section className={styles.hero} aria-label="SISE Industria">
@@ -37,18 +59,7 @@ export default function IndustriaHero() {
           sizes="100vw"
         />
 
-        <div className={styles.content}>
-          <p className={styles.kicker}>
-            <span className={styles.kickerBlack}>SISE</span> EMPRESAS
-          </p>
-
-          <h1 className={styles.title}>
-            <span className={styles.titleLight}>Protección para </span>
-            <span className={styles.titleStrong}>operaciones críticas</span>
-          </h1>
-
-          <p className={styles.category}>EMPRESAS E INDUSTRIAS</p>
-        </div>
+        <IndustriaHeroBrand />
       </div>
     </section>
   );

@@ -12,6 +12,26 @@ import styles from './CiudadHero.module.scss';
 const HERO_IMAGE_DESKTOP = '/image/hero-ciudad-poste-desktop.webp';
 const HERO_IMAGE_MOBILE = '/image/hero-ciudad-poste-mobile.webp';
 
+/*
+ * El bloque de texto vive acá y lo reutiliza el carrusel del home: así los
+ * dos comparten esta misma hoja de estilos y no se desalinean cuando se
+ * ajusta el hero.
+ */
+export function CiudadHeroBrand({ TitleTag = 'h1' }) {
+  return (
+      <div className={styles.content}>
+        <p className={styles.kicker}>
+          <span className={styles.kickerBlack}>SISE</span> CIUDAD
+        </p>
+
+        <TitleTag className={styles.title}>
+          <span className={styles.titleLight}>Tecnología aplicada a </span>
+          <span className={styles.titleStrong}>la seguridad urbana.</span>
+        </TitleTag>
+      </div>
+  );
+}
+
 export default function CiudadHero() {
   return (
     <section className={styles.hero} aria-label="SISE Ciudad">
@@ -35,16 +55,7 @@ export default function CiudadHero() {
           sizes="100vw"
         />
 
-        <div className={styles.content}>
-          <p className={styles.kicker}>
-            <span className={styles.kickerBlack}>SISE</span> CIUDAD
-          </p>
-
-          <h1 className={styles.title}>
-            <span className={styles.titleLight}>Tecnología aplicada a </span>
-            <span className={styles.titleStrong}>la seguridad urbana.</span>
-          </h1>
-        </div>
+        <CiudadHeroBrand />
       </div>
     </section>
   );

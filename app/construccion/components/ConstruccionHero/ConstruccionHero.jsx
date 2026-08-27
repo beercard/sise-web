@@ -14,6 +14,28 @@ import styles from './ConstruccionHero.module.scss';
 const HERO_IMAGE_DESKTOP = '/image/hero-construccion-obra-desktop.webp';
 const HERO_IMAGE_MOBILE = '/image/hero-construccion-obra-mobile.webp';
 
+/*
+ * El bloque de texto vive acá y lo reutiliza el carrusel del home: así los
+ * dos comparten esta misma hoja de estilos y no se desalinean cuando se
+ * ajusta el hero.
+ */
+export function ConstruccionHeroBrand({ TitleTag = 'h1' }) {
+  return (
+      <div className={styles.content}>
+        <p className={styles.kicker}>
+          <span className={styles.kickerBlack}>SISE</span> URBANO
+        </p>
+
+        <TitleTag className={styles.title}>
+          <span className={styles.titleLight}>Protección desde </span>
+          <span className={styles.titleStrong}>el primer día</span>
+        </TitleTag>
+
+        <p className={styles.category}>Construcción y Obras</p>
+      </div>
+  );
+}
+
 export default function ConstruccionHero() {
   return (
     <section className={styles.hero} aria-label="SISE Urbano - Construcción y Obras">
@@ -37,18 +59,7 @@ export default function ConstruccionHero() {
           sizes="100vw"
         />
 
-        <div className={styles.content}>
-          <p className={styles.kicker}>
-            <span className={styles.kickerBlack}>SISE</span> URBANO
-          </p>
-
-          <h1 className={styles.title}>
-            <span className={styles.titleLight}>Protección desde </span>
-            <span className={styles.titleStrong}>el primer día</span>
-          </h1>
-
-          <p className={styles.category}>Construcción y Obras</p>
-        </div>
+        <ConstruccionHeroBrand />
       </div>
     </section>
   );

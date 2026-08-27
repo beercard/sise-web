@@ -14,6 +14,26 @@ import styles from './HeroModule.module.scss';
 const HERO_IMAGE_DESKTOP = '/image/hero-hogar-casa-desktop.webp';
 const HERO_IMAGE_MOBILE = '/image/hero-hogar-casa-mobile.webp';
 
+/*
+ * El bloque de texto vive acá y lo reutiliza el carrusel del home: así los
+ * dos comparten esta misma hoja de estilos y no se desalinean cuando se
+ * ajusta el hero.
+ */
+export function HogarHeroBrand({ TitleTag = 'h1' }) {
+  return (
+      <div className={styles.content}>
+        <p className={styles.kicker}>
+          <span className={styles.kickerBlack}>SISE</span> HOGAR
+        </p>
+
+        <TitleTag className={styles.title}>
+          <span className={styles.titleLight}>Protección integral para </span>
+          <span className={styles.titleStrong}>vivir con tranquilidad</span>
+        </TitleTag>
+      </div>
+  );
+}
+
 export default function HeroModule() {
   return (
     <section className={styles.hero} aria-label="SISE Hogar">
@@ -37,16 +57,7 @@ export default function HeroModule() {
           sizes="100vw"
         />
 
-        <div className={styles.content}>
-          <p className={styles.kicker}>
-            <span className={styles.kickerBlack}>SISE</span> HOGAR
-          </p>
-
-          <h1 className={styles.title}>
-            <span className={styles.titleLight}>Protección integral para </span>
-            <span className={styles.titleStrong}>vivir con tranquilidad</span>
-          </h1>
-        </div>
+        <HogarHeroBrand />
       </div>
     </section>
   );

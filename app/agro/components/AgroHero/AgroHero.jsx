@@ -14,6 +14,26 @@ import styles from './AgroHero.module.scss';
 const HERO_IMAGE_DESKTOP = '/image/hero-agro-campo-desktop.webp';
 const HERO_IMAGE_MOBILE = '/image/hero-agro-campo-mobile.webp';
 
+/*
+ * El bloque de texto vive acá y lo reutiliza el carrusel del home: así los
+ * dos comparten esta misma hoja de estilos y no se desalinean cuando se
+ * ajusta el hero.
+ */
+export function AgroHeroBrand({ TitleTag = 'h1' }) {
+  return (
+      <div className={styles.content}>
+        <p className={styles.kicker}>
+          <span className={styles.kickerBlack}>SISE</span> AGRO
+        </p>
+
+        <TitleTag className={styles.title}>
+          <span className={styles.titleLight}>El control de tu campo, </span>
+          <span className={styles.titleStrong}>estés donde estés.</span>
+        </TitleTag>
+      </div>
+  );
+}
+
 export default function AgroHero() {
   return (
     <section className={styles.hero} aria-label="SISE Agro">
@@ -37,16 +57,7 @@ export default function AgroHero() {
           sizes="100vw"
         />
 
-        <div className={styles.content}>
-          <p className={styles.kicker}>
-            <span className={styles.kickerBlack}>SISE</span> AGRO
-          </p>
-
-          <h1 className={styles.title}>
-            <span className={styles.titleLight}>El control de tu campo, </span>
-            <span className={styles.titleStrong}>estés donde estés.</span>
-          </h1>
-        </div>
+        <AgroHeroBrand />
       </div>
     </section>
   );

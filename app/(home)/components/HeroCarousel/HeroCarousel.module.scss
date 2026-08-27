@@ -3,8 +3,10 @@
    * Figma: hero de 800px de alto, título de 64px/52px arrancando en x=366
    * (borde izquierdo del contenedor de 1188) y a 470px del tope del hero.
    */
-  --hero-shell-width: var(--sise-content);
-  --hero-shell-pad: max(var(--sise-gutter), calc((var(--sise-vw) - var(--hero-shell-width)) / 2));
+  /* Idéntico al de los heros de las verticales, para que el texto arranque
+     exactamente en la misma x. */
+  --hero-shell-width: 1187px;
+  --hero-shell-pad: max(24px, calc((min(1920px, var(--sise-vw)) - var(--hero-shell-width)) / 2));
   --hero-title-width: 952px;
   --hero-title-font-size: 64px;
   --hero-title-line-height: 52px;
@@ -61,7 +63,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  /* Mismo encuadre y misma atenuación que el hero de cada página: la foto va
+     al 90% sobre el azul de marca, centrada. */
+  object-position: center;
+  opacity: 0.9;
   transform: scale(1.035);
   transform-origin: center center;
   transition: none;
@@ -78,6 +83,23 @@
    de fondo de la sección. */
 .heroImageDimmed {
   opacity: 0.5;
+}
+
+/* Hogar es el único hero con un encuadre propio (center 87%). */
+.heroImageHogar {
+  object-position: center 87%;
+}
+
+/* Edificios muestra su foto al 80% en todos los anchos. */
+.heroImageEdificios {
+  opacity: 0.8;
+}
+
+/* Y ciudad baja al 80% sólo en mobile. */
+@media (max-width: 600px) {
+  .heroImageCiudad {
+    opacity: 0.8;
+  }
 }
 
 .heroContent {
@@ -188,9 +210,6 @@
     height: 660px;
   }
 
-  .heroImage {
-    object-position: 58% center;
-  }
 
   .heroTitle {
     left: 32px;
@@ -207,9 +226,6 @@
     height: 600px;
   }
 
-  .heroImage {
-    object-position: 66% center;
-  }
 
   .heroTitle,
   .heroTitleRegular,
@@ -241,9 +257,6 @@
     height: 100%;
   }
 
-  .heroImage {
-    object-position: center top;
-  }
 
   .heroTitle,
   .heroTitleRegular,
@@ -286,9 +299,6 @@
     height: 100%;
   }
 
-  .heroImage {
-    object-position: center top;
-  }
 
   .heroTitle,
   .heroTitleRegular,

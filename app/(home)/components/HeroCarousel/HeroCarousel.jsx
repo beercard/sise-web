@@ -3,6 +3,14 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { HogarHeroBrand } from '../../../hogar/components/HeroModule/HeroModule';
+import { ComercioHeroBrand } from '../../../comercio/components/ComercioHero/ComercioHero';
+import { IndustriaHeroBrand } from '../../../industria/components/IndustriaHero/IndustriaHero';
+import { EdificiosHeroBrand } from '../../../edificios/components/EdificiosHero/EdificiosHero';
+import { ConstruccionHeroBrand } from '../../../construccion/components/ConstruccionHero/ConstruccionHero';
+import { AgroHeroBrand } from '../../../agro/components/AgroHero/AgroHero';
+import { CiudadHeroBrand } from '../../../ciudad/components/CiudadHero/CiudadHero';
+
 import styles from './HeroCarousel.module.scss';
 
 /*
@@ -26,6 +34,9 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-hogar',
     href: '/hogar',
+    Brand: HogarHeroBrand,
+    /* Único hero con encuadre propio. */
+    encuadre: 'hogar',
     desktopImage: '/image/hero-hogar-casa-desktop.webp',
     mobileImage: '/image/hero-hogar-casa-mobile.webp',
     kicker: 'HOGAR',
@@ -36,6 +47,7 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-comercio',
     href: '/comercio',
+    Brand: ComercioHeroBrand,
     desktopImage: '/image/hero-comercio-local-desktop.webp',
     mobileImage: '/image/hero-comercio-local-mobile.webp',
     kicker: 'EMPRESAS',
@@ -47,6 +59,7 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-industria',
     href: '/industria',
+    Brand: IndustriaHeroBrand,
     desktopImage: '/image/hero-industria-planta-desktop.webp',
     mobileImage: '/image/hero-industria-planta-mobile.webp',
     kicker: 'EMPRESAS',
@@ -58,6 +71,9 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-edificios',
     href: '/edificios',
+    Brand: EdificiosHeroBrand,
+    /* Su hero muestra la foto al 80%. */
+    encuadre: 'edificios',
     desktopImage: '/image/hero-edificios-edificio-desktop.webp',
     mobileImage: '/image/hero-edificios-edificio-mobile.webp',
     kicker: 'URBANO',
@@ -68,6 +84,7 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-construccion',
     href: '/construccion',
+    Brand: ConstruccionHeroBrand,
     desktopImage: '/image/hero-construccion-obra-desktop.webp',
     mobileImage: '/image/hero-construccion-obra-mobile.webp',
     kicker: 'URBANO',
@@ -79,6 +96,7 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-agro',
     href: '/agro',
+    Brand: AgroHeroBrand,
     desktopImage: '/image/hero-agro-campo-desktop.webp',
     mobileImage: '/image/hero-agro-campo-mobile.webp',
     kicker: 'AGRO',
@@ -88,6 +106,9 @@ const HERO_SLIDES = [
   {
     id: 'hero-slide-ciudad',
     href: '/ciudad',
+    Brand: CiudadHeroBrand,
+    /* Su hero baja la foto al 80% en mobile. */
+    encuadre: 'ciudad',
     desktopImage: '/image/hero-ciudad-poste-desktop.webp',
     mobileImage: '/image/hero-ciudad-poste-mobile.webp',
     kicker: 'CIUDAD',
@@ -217,9 +238,17 @@ export default function HeroCarousel() {
             >
               {shouldRenderMedia ? (
                 <picture className={styles.heroMedia}>
-                  <source srcSet={slide.mobileImage} media="(max-width: 960px)" />
+                  {/* Mismo punto de cambio que los heros de las páginas: hasta 600
+                      va la foto mobile, arriba la de escritorio. */}
+                  <source srcSet={slide.mobileImage} media="(max-width: 600px)" />
                   <img
-                    className={`${styles.heroImage} ${slide.dimmed ? styles.heroImageDimmed : ''}`}
+                    className={`${styles.heroImage} ${slide.dimmed ? styles.heroImageDimmed : ''} ${
+                      slide.encuadre === 'hogar' ? styles.heroImageHogar : ''
+                    } ${
+                      slide.encuadre === 'ciudad' ? styles.heroImageCiudad : ''
+                    } ${
+                      slide.encuadre === 'edificios' ? styles.heroImageEdificios : ''
+                    }`}
                     src={slide.desktopImage}
                     alt=""
                     decoding="async"
@@ -231,24 +260,10 @@ export default function HeroCarousel() {
                 <div className={styles.heroMedia} aria-hidden="true" />
               )}
               <div className={styles.heroContent}>
-                {slide.kicker ? (
-                  /* Réplica del hero de la página de negocio. */
-                  <div className={styles.heroBrand}>
-                    <p className={styles.heroKicker}>
-                      <span className={styles.heroKickerBlack}>SISE</span> {slide.kicker}
-                    </p>
-                    <TitleTag className={styles.heroBrandTitle}>
-                      <span className={styles.heroBrandLight}>{slide.titleLight}</span>
-                      <span
-                        className={`${styles.heroBrandStrong} ${
-                          slide.mobilePeriod ? styles.heroBrandPeriod : ''
-                        }`}
-                      >
-                        {slide.titleStrong}
-                      </span>
-                    </TitleTag>
-                    {slide.category ? <p className={styles.heroCategory}>{slide.category}</p> : null}
-                  </div>
+                {slide.Brand ? (
+                  /* El mismo bloque que usa el hero de esa página: comparten
+                     hoja de estilos, así que quedan calcados. */
+                  <slide.Brand TitleTag={TitleTag} />
                 ) : (
                   <TitleTag className={styles.heroTitle}>
                     <span className={styles.heroTitleLine}>
