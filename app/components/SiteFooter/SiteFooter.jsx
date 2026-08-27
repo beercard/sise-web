@@ -172,6 +172,10 @@ export default function SiteFooter() {
             <Link className={styles.footerBottomLinkCookies} href="/cookies">
               Gestión de Cookies
             </Link>
+            <div className={styles.footerBottomDivider} aria-hidden="true" />
+            <Link className={styles.footerBottomLinkPrivacidad} href="/privacidad">
+              Privacidad
+            </Link>
           </div>
         </div>
 
@@ -218,6 +222,9 @@ export default function SiteFooter() {
               </Link>
               <Link className={styles.footerMobileSmallLink} href="/legales">
                 Legales
+              </Link>
+              <Link className={styles.footerMobileSmallLink} href="/privacidad">
+                Privacidad
               </Link>
             </div>
 

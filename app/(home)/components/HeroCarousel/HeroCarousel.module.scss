@@ -263,7 +263,9 @@
     top: auto;
     bottom: 37px;
     left: 24px;
-    width: 332px;
+    /* Ancho del diseño, pero cediendo en pantallas de 320 para que la última
+       palabra del título no quede cortada contra el borde. */
+    width: min(332px, calc(100% - 48px));
     max-width: 332px;
     min-height: 86px;
     text-wrap: normal;

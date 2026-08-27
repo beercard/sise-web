@@ -1,6 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { legacyRedirects } from './app/lib/legacyRedirects.js';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const securityHeaders = [
@@ -20,6 +22,10 @@ const nextConfig = {
   },
   turbopack: {
     root: __dirname
+  },
+  /* 301 de las URLs del sitio anterior (ver app/lib/legacyRedirects.js). */
+  async redirects() {
+    return legacyRedirects;
   },
   async headers() {
     return [

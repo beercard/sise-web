@@ -216,11 +216,11 @@ export function buildBreadcrumbSchema({ path = '/', name, parents = [] }) {
   const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
   const url = `${siteConfig.siteUrl}${canonicalPath}`;
 
-  const trail = [
-    { name: 'Inicio', item: `${siteConfig.siteUrl}/` },
-    ...parents,
-    { name, item: url }
-  ];
+  const inicio = { name: 'Inicio', item: `${siteConfig.siteUrl}/` };
+  /* En el home el destino ES Inicio: sin este corte el breadcrumb salía con
+     los dos ítems idénticos y los validadores lo marcaban como malformado. */
+  const trail =
+    canonicalPath === '/' ? [inicio] : [inicio, ...parents, { name, item: url }];
 
   return {
     '@type': 'BreadcrumbList',

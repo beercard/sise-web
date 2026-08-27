@@ -45,6 +45,12 @@ function isRateLimited(ip) {
   return false;
 }
 
+/*
+ * Acepta el host propio con o sin www, los deploys de Vercel y el desarrollo
+ * local. Comparar contra `siteConfig.siteUrl` a secas rechazaba con 403 los
+ * envíos hechos desde www.siseargentina.com o desde una preview, es decir
+ * perdía leads sin dejar rastro visible.
+ */
 function isAllowedRequestOrigin(request) {
   const origin = request.headers.get('origin');
   const referer = request.headers.get('referer');
@@ -52,14 +58,15 @@ function isAllowedRequestOrigin(request) {
 
   if (!candidates.length) return true;
 
+  const propio = new URL(siteConfig.siteUrl).hostname.replace(/^www\./, '');
+
   return candidates.some((value) => {
     try {
-      const url = new URL(value);
-      return (
-        url.origin === siteConfig.siteUrl ||
-        url.origin === 'http://localhost:3000' ||
-        url.origin === 'http://localhost:3001'
-      );
+      const { hostname, protocol } = new URL(value);
+      if (protocol !== 'https:' && hostname !== 'localhost') return false;
+      if (hostname === 'localhost') return true;
+      const limpio = hostname.replace(/^www\./, '');
+      return limpio === propio || limpio.endsWith('.vercel.app');
     } catch {
       return false;
     }

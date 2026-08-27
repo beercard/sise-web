@@ -464,6 +464,20 @@
     margin-top: 13px;
   }
 
+  /* Desde 360 para abajo la frase del 0800 ya no entra en un renglón y el
+     número quedaba cortado contra el borde: la dejamos envolver, pero el
+     número entero se mantiene junto. */
+  @media (max-width: 360px) {
+    .heroLinePhone {
+      white-space: normal;
+      line-height: 20px;
+    }
+
+    .heroLinePhone .heroLink {
+      white-space: nowrap;
+    }
+  }
+
   .formTitle {
     width: 175px;
     margin-top: 55px;
