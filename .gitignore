@@ -19,3 +19,6 @@ tmp
 # Credenciales del correo en el hosting (se crea en el servidor)
 public/api/config.php
 out/api/config.php
+
+# Paquete compilado para subir al hosting
+sise-web-ferozo.zip
