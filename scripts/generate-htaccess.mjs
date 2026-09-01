@@ -46,8 +46,13 @@ function bloqueRedirects() {
     if (vistos.has(patron)) continue;
     vistos.add(patron);
 
-    /* NE evita que Apache reescriba los caracteres ya codificados de las URLs
-       viejas de Joomla (las que llevan tilde). */
+    /* La condición de REDIRECT_STATUS limita cada 301 al pedido original del
+       navegador: sin ella, la reescritura interna de /contacto a contacto.html
+       volvía a caer en la redirección histórica de contacto.html (una página
+       que existía en el sitio viejo) y quedaba en bucle. NE evita que Apache
+       reescriba los caracteres ya codificados de las URLs viejas de Joomla
+       (las que llevan tilde). */
+    lineas.push('RewriteCond %{ENV:REDIRECT_STATUS} ^$');
     lineas.push(`RewriteRule ${patron} ${regla.destination} [R=301,L,NE]`);
   }
 

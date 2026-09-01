@@ -219,150 +219,295 @@ RewriteCond %{HTTP_HOST} ^www\.siseargentina\.com$ [NC]
 RewriteRule ^(.*)$ https://siseargentina.com/$1 [R=301,L]
 
 # --- 2. Redirecciones del sitio anterior ----------------------------------
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/monitoreo-de-alarmas/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/monitoreo-de-alarmas/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/monitoreo-de-alarmas\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/monitoreo-de-alarmas\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/circuito-cerrado-de-television/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/circuito-cerrado-de-television/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/circuito-cerrado-de-television\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/circuito-cerrado-de-television\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/circuito-cerrado-de-television-cctv/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/circuito-cerrado-de-television-cctv/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/circuito-cerrado-de-television-cctv\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/circuito-cerrado-de-television-cctv\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/video-vigilancia/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/video-vigilancia/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/video-vigilancia\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/video-vigilancia\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/camaras-de-seguridad/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/camaras-de-seguridad/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/camaras-de-seguridad\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/camaras-de-seguridad\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/vigilancia-remota/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/vigilancia-remota/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/vigilancia-remota\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/vigilancia-remota\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/video-vigilancia-rural/?$ /agro [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/video-vigilancia-rural/?$ /agro [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/video-vigilancia-rural\.html/?$ /agro [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/video-vigilancia-rural\.html/?$ /agro [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cerco-perimetral/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cerco-perimetral/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cerco-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cerco-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cerco-electrico-perimetral/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cerco-electrico-perimetral/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cerco-electrico-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cerco-electrico-perimetral\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cerco-electrico-perimetral-de-uso-legal/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cerco-electrico-perimetral-de-uso-legal/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cerco-electrico-perimetral-de-uso-legal\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cerco-electrico-perimetral-de-uso-legal\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cercos-electricos-legales/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cercos-electricos-legales/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cercos-electricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cercos-electricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/gps-rastreo-satelital/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/gps-rastreo-satelital/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/gps-rastreo-satelital\.html/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/gps-rastreo-satelital\.html/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/seguimiento-vehicular-por-gps/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/seguimiento-vehicular-por-gps/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/seguimiento-vehicular-por-gps\.html/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/seguimiento-vehicular-por-gps\.html/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/edificios-inteligentes/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/edificios-inteligentes/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/edificios-inteligentes\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/edificios-inteligentes\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/video-control-y-accesos-a-edificios/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/video-control-y-accesos-a-edificios/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/video-control-y-accesos-a-edificios\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/video-control-y-accesos-a-edificios\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/videoporteros-samsung-smarthome/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/videoporteros-samsung-smarthome/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/videoporteros-samsung-smarthome\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/videoporteros-samsung-smarthome\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cerraduras-samsung/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cerraduras-samsung/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cerraduras-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cerraduras-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cerraduras-residenciales-samsung/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cerraduras-residenciales-samsung/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cerraduras-residenciales-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cerraduras-residenciales-samsung\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/cerraduras-electronicas/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/cerraduras-electronicas/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cerraduras-electronicas\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cerraduras-electronicas\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/guardia-virtual/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/guardia-virtual/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/guardia-virtual\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/guardia-virtual\.html/?$ /edificios [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/poste-inteligente/?$ /ciudad [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/poste-inteligente/?$ /ciudad [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/poste-inteligente\.html/?$ /ciudad [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/poste-inteligente\.html/?$ /ciudad [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/maxima-seguridad/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/maxima-seguridad/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/maxima-seguridad\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/maxima-seguridad\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/cercos-eléctricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica/cercos-eléctricos-legales\.html/?$ /hogar [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica/máxima-seguridad\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/tecnología-y-conectividad\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^quienes-somos/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^about-us/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^about-us-2/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^about-us-3/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/s-i-s-e\.html/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^s-i-s-e\.html/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^sise\.html/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^contacto\.html/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/contacto\.html/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^contact-form/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^contacts-3/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^gracias-por-su-consulta/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^gracias-por-su-consulta-2/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^gracias-por-su-consulta-4/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^newsletter/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^servicios/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^soluciones-y-servicios\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/seguridad-electronica\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^seguridad-electronica\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^features/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^home\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^home/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^ya-se-transmite-en-vivo-el-estado-de-transitabilidad-del-puente/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^instalacion-de-centro-de-videovigilancia-con-camaras-de-ultima-generacion-en-oficinas-del-911-saenz-pena-chaco/?$ /ciudad [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^novedades/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^novedades\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/novedades_news\.html/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^blog/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^videos/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^clientes/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^clientes\.html/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/clientes\.html/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/acceso-clientes\.html/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^login-camaras/?$ /contacto [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^camaras/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^camaras-en-vivo/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^control-de-precencia\.html/?$ /industria [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^category/[^/]+/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/911/?$ /ciudad [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/chaco/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/camaras/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/monitoreo/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/seguridad/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/sise/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/videovigilancia/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^tag/[^/]+/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^projects-category/[^/]+/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^author/[^/]+/?$ /historia [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^feed/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^comments/feed/?$ / [R=301,L,NE]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^index\.php/.*\.feed/?$ / [R=301,L,NE]
 
 # --- 3. URLs sin extensión ------------------------------------------------
