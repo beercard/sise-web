@@ -98,15 +98,23 @@ ${bloqueRedirects()}
 # funcionando, pero recargando la página entera.
 RewriteRule ^(.*)__next\\.([^/]+)\\.__PAGE__\\.txt$ /$1__next.$2/__PAGE__.txt [L]
 
-# La barra final sobra: /hogar/ va a /hogar. Sólo para el host de SISE:
-# latoma es WordPress y sus permalinks llevan barra final.
+# La barra final sobra: /hogar/ va a /hogar. Sólo para el host de SISE
+# (latoma es WordPress y sus permalinks llevan barra final) y sólo si
+# existe la página: sin la condición del archivo, /image/ (directorio
+# sin .html) entraba en bucle con la barra que agrega mod_dir.
 RewriteCond %{HTTP_HOST} ^(www\\.)?${HOST.replace(/\./g, '\\.')}$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+)/$ /$1 [R=301,L,NE]
 
 # /hogar sirve hogar.html sin redirigir, para que la URL publicada sea
 # exactamente la que declara el canonical.
+# Se comprueba contra DOCUMENT_ROOT y no contra REQUEST_FILENAME: cuando
+# la URL coincide con un directorio (hogar/ existe junto a hogar.html),
+# LiteSpeed resuelve REQUEST_FILENAME como el directorio y la condición
+# no daba; el pedido caía en mod_dir, que agregaba la barra, y la regla
+# de arriba la sacaba: bucle infinito de redirecciones.
 RewriteCond %{HTTP_HOST} ^(www\\.)?${HOST.replace(/\./g, '\\.')}$ [NC]
-RewriteCond %{REQUEST_FILENAME}\\.html -f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+)$ /$1.html [L]
 
 # Y /hogar.html manda a /hogar, para no tener la misma página en dos URLs.
