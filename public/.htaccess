@@ -370,9 +370,18 @@ RewriteRule ^index\.php/.*\.feed/?$ / [R=301,L,NE]
 # hogar/ con los payloads que usa Next para navegar sin recargar. Por eso acá
 # NO se puede condicionar con !-d como es habitual: /hogar existe como
 # directorio y la regla nunca se aplicaría; se pregunta directamente si existe
-# el .html. La reescritura corre antes que mod_dir, así que el directorio
-# homónimo nunca llega a resolverse. (Sin DirectorySlash Off: se hereda en
-# /latoma y le rompería /wp-admin sin barra final.)
+# el .html.
+#
+# DirectorySlash Off es imprescindible en LiteSpeed (el servidor de Ferozo):
+# a diferencia de Apache, LiteSpeed agrega la barra a los directorios ANTES
+# de evaluar estas reglas, así que /hogar terminaba en /hogar/ y la regla de
+# quitar la barra lo devolvía: bucle infinito. Como la directiva se hereda
+# en /latoma (WordPress) y le rompería /wp-admin sin barra, el .htaccess de
+# /latoma debe llevar una línea "DirectorySlash On" al principio (fuera de
+# los marcadores de WordPress, se agrega una sola vez a mano).
+<IfModule mod_dir.c>
+DirectorySlash Off
+</IfModule>
 
 # Los payloads de prefetch de Next: el router los pide como
 # /contacto/__next.contacto.__PAGE__.txt, pero la exportación los escribe en
