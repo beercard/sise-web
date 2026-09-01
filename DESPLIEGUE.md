@@ -37,15 +37,26 @@ veces lo deja afuera por empezar con punto.)
    manda DonWeb al contratar).
 2. Abrí el **Administrador de Archivos** y entrá a la carpeta raíz web
    (**`public_html/`**; en algunos planes se llama `httpdocs/`).
-3. **Limpiá lo que haya del sitio viejo** (el WordPress): seleccioná todo lo
-   que está dentro de `public_html/` y eliminalo. Si preferís conservar una
-   copia, antes comprimilo y descargalo.
+3. **Limpiá lo que haya del sitio viejo** (el WordPress), con una excepción
+   crítica: **la carpeta `latoma/` NO se toca** — ahí vive latoma.com.ar, que
+   comparte este hosting. Antes de borrar, comprimí todo `public_html/` y
+   mové ese respaldo a la carpeta `backup/` de la raíz (junto con
+   `sisearg.zip` y `latoma.tar.gz`, que hasta ahora quedaban descargables
+   desde la web). Después eliminá todo el resto: `wp-admin`, `wp-content`,
+   `wp-includes`, `sisearg`, `mega888`, `css`, `img`, `js`, los `wp-*.php`,
+   el `.htaccess` viejo y sus copias `.BKP`, `.user.ini`, etc.
+
+   > El `.htaccess` viejo se borra tranquilo: el que trae el ZIP ya incluye
+   > sus reglas de seguridad y el enrutamiento de latoma.com.ar fusionados.
 4. **Subí `sise-web-ferozo.zip`** con el botón de subir archivos.
 5. Clic derecho sobre el ZIP → **Descomprimir / Extraer** en esa misma
    carpeta. Al terminar, borrá el ZIP.
 6. Verificá que en la raíz hayan quedado, entre otros: `index.html`,
-   `.htaccess`, las carpetas `_next/`, `image/` y `api/`. Si el administrador
-   no muestra el `.htaccess`, activá "mostrar archivos ocultos".
+   `.htaccess`, las carpetas `_next/`, `image/`, `api/` **y la carpeta
+   `latoma/` intacta**. Si el administrador no muestra el `.htaccess`,
+   activá "mostrar archivos ocultos".
+7. Entrá a **latoma.com.ar** y confirmá que sigue funcionando: su
+   enrutamiento vive en el `.htaccess` nuevo.
 
 **Alternativa por FTP:** con FileZilla, conectás con los datos FTP del panel y
 subís el **contenido** de `out/` (no la carpeta en sí) a `public_html/`. En
@@ -168,6 +179,26 @@ Como el HTML se sirve sin caché y los archivos de `_next/` llevan un hash en
 el nombre, los cambios se ven apenas termina la subida, sin vaciar nada.
 
 ---
+
+## Convivencia con latoma.com.ar
+
+El `public_html/` es compartido: latoma.com.ar vive en la subcarpeta
+`latoma/` y se enruta desde el `.htaccess` raíz. El `.htaccess` que genera la
+compilación ya trae fusionadas, en este orden: (A) los bloqueos de seguridad
+que tenía el hosting y el enrutamiento de latoma, y (B) las reglas del sitio
+de SISE, limitadas a su propio dominio para no interferir con latoma. Dos
+cambios deliberados respecto del archivo previo:
+
+- Las **ventanas horarias que frenaban a Googlebot y demás buscadores** ahora
+  aplican sólo a latoma.com.ar: el sitio de SISE es estático (servirlo no
+  cuesta nada) y en plena migración Google necesita recorrerlo sin límites.
+- Se quitaron `curl` y `wget` de la lista de herramientas bloqueadas, para
+  poder verificar el sitio y usar monitores de disponibilidad. El resto de la
+  lista (escáneres de vulnerabilidades, bots de spam) sigue igual.
+
+Si hay que cambiar esas reglas compartidas, se editan en
+`scripts/htaccess-compartido.txt` y se recompila: **no** se edita el
+`.htaccess` del servidor a mano, porque la próxima subida lo pisa.
 
 ## Notas técnicas
 

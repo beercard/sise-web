@@ -1,4 +1,199 @@
 # ==========================================================================
+# A. Reglas compartidas del hosting (seguridad + latoma.com.ar)
+#    Conservadas de la configuración previa del servidor.
+# ==========================================================================
+
+# BEGIN Block request from cloud providers
+Order Deny,Allow
+## DigitalOcean, LLC
+Deny from 68.183.224.0/20
+Deny from 104.248.144.0/20
+Deny from 128.199.128.0/18
+Deny from 134.209.96.0/20
+Deny from 139.59.240.0/20
+Deny from 146.190.80.0/20
+Deny from 152.42.160.0/19
+Deny from 152.42.224.0/20
+Deny from 157.245.192.0/20
+Deny from 159.65.0.0/20
+Deny from 159.89.192.0/20
+Deny from 159.223.32.0/20
+Deny from 159.223.80.0/20
+Deny from 164.92.96.0/19
+Deny from 165.232.160.0/20
+Deny from 167.71.192.0/19
+Deny from 167.99.64.0/20
+Deny from 167.172.64.0/19
+Deny from 170.64.192.0/19
+Deny from 178.128.16.0/20
+Deny from 178.128.112.0/20
+Deny from 188.166.208.0/20
+Deny from 209.97.160.0/20
+## 3xk Tech Gmbh
+Deny from 45.201.10.0/23
+Deny from 45.202.76.0/22
+Deny from 45.206.72.0/23
+Deny from 95.141.242.0/24
+Deny from 154.82.150.0/24
+Deny from 154.82.168.0/22
+Deny from 154.86.112.0/23
+Deny from 154.86.114.0/24
+Deny from 154.91.171.0/24
+Deny from 154.94.12.0/22
+Deny from 154.193.152.0/22
+Deny from 154.193.158.0/23
+Deny from 154.199.14.0/23
+Deny from 154.199.68.0/23
+Deny from 154.213.160.0/21
+Deny from 154.213.193.0/24
+Deny from 154.213.194.0/23
+Deny from 154.213.196.0/22
+Deny from 154.213.202.0/23
+Deny from 154.213.204.0/24
+Deny from 154.214.1.0/24
+Deny from 154.222.132.0/24
+Deny from 156.228.0.0/24
+Deny from 156.228.76.0/22
+Deny from 156.228.80.0/20
+Deny from 156.228.96.0/20
+Deny from 156.228.112.0/21
+Deny from 156.228.124.0/23
+Deny from 156.228.171.0/24
+Deny from 156.228.174.0/23
+Deny from 156.228.176.0/21
+Deny from 156.228.184.0/23
+Deny from 156.228.189.0/24
+Deny from 156.228.190.0/24
+Deny from 156.233.72.0/22
+Deny from 156.233.84.0/21
+Deny from 156.239.156.0/23
+Deny from 156.239.192.0/19
+Deny from 156.240.99.0/24
+Deny from 156.242.32.0/20
+Deny from 156.242.51.0/24
+Deny from 156.248.80.0/21
+Deny from 156.249.56.0/21
+Deny from 156.249.124.0/22
+Deny from 156.249.137.0/23
+Deny from 156.253.164.0/22
+Deny from 156.253.168.0/21
+Deny from 156.253.176.0/22
+## ORACLE-BMC-31898 (Oracle Cloud Infrastructure) ##
+Deny from 213.35.96.0/19
+Deny from 140.245.96.0/19
+Deny from 146.235.16.0/21
+## AS-26496-GO-DADDY-COM-LLC ##
+Deny from 148.72.224.0/19
+## OVH SAS (AS16276) ##
+Deny from 51.77.0.0/16
+## Inside Network LTD (AS215476) ##
+Deny from 77.90.185.0/24
+## TimeWeb LLC
+Deny from 92.53.96.0/24
+## HONICHI
+Deny from 210.149.114.0/23
+## Stacks Inc.
+Deny from 202.232.106.0/24
+## M247 Europe SRL
+Deny from 146.70.0.0/16
+## SEEWEB s.r.l.
+Deny from 212.35.192.0/19
+## GSL_Networks
+Deny from 212.30.37.0/24
+## Alibaba Cloud LLC (AL-3)
+Deny from 47.76.0.0/14
+Deny from 47.74.0.0/15
+Deny from 47.80.0.0/13
+Deny from 47.240.0.0/14
+Deny from 47.244.0.0/15
+Deny from 47.235.0.0/16
+Deny from 47.236.0.0/14
+Deny from 47.246.0.0/16
+## Alibaba Cloud (Singapore) Private Limited
+Deny from 8.208.0.0/12
+## CHINA UNICOM China169 Backbone
+Deny from 36.248.0.0/14
+Deny from 60.28.0.0/15
+## Jinhua Weian InfoTech Co., Ltd
+Deny from 116.196.148.0/22
+## Tianjij,300000
+Deny from 42.80.0.0/15
+## China Mobile Communications Group Co., Ltd
+Deny from 112.57.64.0/22
+## CHEAPY-HOST
+Deny from 196.251.85.0/24
+## Cloud Hosting Solutions, Limited.
+Deny from 217.114.43.0/24
+## Contabo GmbH
+Deny from 84.247.160.0/19
+## CHINA UNICOM China169 Backbone
+Deny from 116.179.33.0/24
+# END Block request from cloud providers
+
+# BEGIN Block WordPress xmlrpc.php requests (protege /latoma)
+<Files "xmlrpc.php">
+order deny,allow
+deny from all
+allow from 127.0.0.1
+</Files>
+# END Block WordPress xmlrpc.php requests
+
+# BEGIN Restrict good Web Crawlers a franja horaria — SOLO latoma.com.ar.
+# El sitio de SISE es estático (servirlo no cuesta nada) y en plena migración
+# Google necesita recorrerlo sin límite para digerir las redirecciones.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?latoma\.com\.ar$ [NC]
+RewriteCond %{TIME_HOUR}%{TIME_MIN} <2000
+RewriteCond %{TIME_HOUR}%{TIME_MIN} >0200
+RewriteCond %{HTTP_USER_AGENT} ^.*(Googlebot|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Bytespider|Twitterbot|LinkedInBot|FacebookBot|meta-externalagent|meta-webindexer|Applebot).*$ [NC]
+RewriteRule .* - [R=503,L]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?latoma\.com\.ar$ [NC]
+RewriteCond %{TIME_HOUR}%{TIME_MIN} <0200 [OR]
+RewriteCond %{TIME_HOUR}%{TIME_MIN} >0800
+RewriteCond %{HTTP_USER_AGENT} ^.*(Sogou|Exabot|Amazonbot|GPTBot|PerplexityBot|ClaudeBot|OAI-SearchBot|meta-externalads|TerraCotta).*$ [NC]
+RewriteRule .* - [R=503,L]
+</IfModule>
+# END Restrict good Web Crawlers
+
+# BEGIN Block Tools and Libraries/User-Agent
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} ^.*(sqlmap|WPScan|JoomlaScan|i9scan|TBI-HttpOpenPlugin|TBI-WebScanner|lkxscan|Lkx-TraversalHttpPlugin|Acunetix|CensysInspect|Nmap|FHscan|HTTrack|libwww-perl|urllib|python-requests|python-httplib2|python-httpx|winhttp|lwp-request|lwp-trivial|fasthttp|Go-http-client|Java|httplib|httpclient|Zend_Http_Client|Apache-HttpClient|Custom-AsyncHttpClient|aiohttp|GRequests|exploit-script|paloaltonetworks.com|Scrapy|Mechanize|GenomeCrawlerd|FastScan).*$ [NC]
+RewriteRule .* - [R=503,L]
+</IfModule>
+# END Block Tools and Libraries/User-Agent
+
+# BEGIN Block bad User-Agent
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} ^.*(SemrushBot|AhrefsBot|Barkrowler|UCBrowser|MQQBrowser|LieBaoFast|Mb2345Browser|serpstatbot|Linguee|PetalBot|Seekport|SeekportBot|DotBot|trendictionbot|DataForSeoBot|Semanticbot|Buck|ips-agent|GeedoBot|MJ12bot|GrapeshotCrawler|heritrix|OpenindexSpider|MetadataScraper|Verity|proximic|AwarioBot|Paqlebot|SentiBot|Friendly_Crawler|BLEXBot|GeedoProductSearch|ByteSpider|Bytedance|MuckRack|ImagesiftBot|CCBot|cortex|wine-searcherbot|VelenPublicWebCrawler|Qwantbot|iaskspider|Timpibot|BacklinksExtendedBot|Mediatoolkitbot|MixrankBot|Team\ Anon\ Force|TheSafeInternetSearch|Owler|crawler_eb_germany_2\.0|GoogleOther|KrebsOnSecurity|ias_crawler|UP\.Link|panscient\.com|newsai|IbouBot|ModatScanner|cypex\.ai|Turnitin|SERankingBacklinksBot|MojeekBot).*$ [NC]
+RewriteRule .* - [R=503,L]
+</IfModule>
+# END Block bad User-Agent
+
+# Enrutamiento para latoma.com.ar (SIN redirección visible)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1) Forzar HTTPS para latoma.com.ar
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:CDN-LOOP} !cloudflare
+RewriteCond %{REQUEST_URI} !^/.well-known/acme-challenge/
+RewriteCond %{HTTP_HOST} ^(www\.)?latoma\.com\.ar$ [NC]
+RewriteRule ^(.*)$ https://latoma.com.ar/$1 [R=301,L]
+
+# 2) Reescritura interna hacia /latoma/ (mantiene la URL en /)
+RewriteCond %{HTTP_HOST} ^(www\.)?latoma\.com\.ar$ [NC]
+RewriteCond %{REQUEST_URI} !^/latoma(/|$) [NC]
+RewriteRule ^(.*)$ /latoma/$1 [L]
+</IfModule>
+
+# ==========================================================================
 # SISE Argentina — configuración de Apache (hosting Ferozo / DonWeb)
 #
 # GENERADO POR scripts/generate-htaccess.mjs — no editar a mano.
@@ -7,7 +202,8 @@
 # ==========================================================================
 
 Options -Indexes
-DirectoryIndex index.html
+# index.php incluido porque estas directivas se heredan en /latoma (WordPress).
+DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -15,6 +211,7 @@ RewriteEngine On
 # --- 1. Un solo host y siempre por HTTPS ----------------------------------
 # Sin esto el mismo contenido queda accesible en cuatro direcciones (con y
 # sin www, con y sin TLS) y Google las trata como sitios distintos.
+RewriteCond %{HTTP_HOST} ^(www\.)?siseargentina\.com$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://siseargentina.com/$1 [R=301,L]
 
@@ -172,12 +369,10 @@ RewriteRule ^index\.php/.*\.feed/?$ / [R=301,L,NE]
 # La exportación deja hogar.html, contacto.html, etc. y, al lado, un directorio
 # hogar/ con los payloads que usa Next para navegar sin recargar. Por eso acá
 # NO se puede condicionar con !-d como es habitual: /hogar existe como
-# directorio y la regla nunca se aplicaría. Se pregunta directamente si existe
-# el .html, y se apaga DirectorySlash para que Apache no intente listar ese
-# directorio antes de reescribir.
-<IfModule mod_dir.c>
-DirectorySlash Off
-</IfModule>
+# directorio y la regla nunca se aplicaría; se pregunta directamente si existe
+# el .html. La reescritura corre antes que mod_dir, así que el directorio
+# homónimo nunca llega a resolverse. (Sin DirectorySlash Off: se hereda en
+# /latoma y le rompería /wp-admin sin barra final.)
 
 # Los payloads de prefetch de Next: el router los pide como
 # /contacto/__next.contacto.__PAGE__.txt, pero la exportación los escribe en
@@ -186,17 +381,21 @@ DirectorySlash Off
 # funcionando, pero recargando la página entera.
 RewriteRule ^(.*)__next\.([^/]+)\.__PAGE__\.txt$ /$1__next.$2/__PAGE__.txt [L]
 
-# La barra final sobra: /hogar/ va a /hogar.
+# La barra final sobra: /hogar/ va a /hogar. Sólo para el host de SISE:
+# latoma es WordPress y sus permalinks llevan barra final.
+RewriteCond %{HTTP_HOST} ^(www\.)?siseargentina\.com$ [NC]
 RewriteRule ^(.+)/$ /$1 [R=301,L,NE]
 
 # /hogar sirve hogar.html sin redirigir, para que la URL publicada sea
 # exactamente la que declara el canonical.
+RewriteCond %{HTTP_HOST} ^(www\.)?siseargentina\.com$ [NC]
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+)$ /$1.html [L]
 
 # Y /hogar.html manda a /hogar, para no tener la misma página en dos URLs.
 # THE_REQUEST conserva el pedido original, así que la reescritura interna de
 # arriba no dispara esta regla ni genera un bucle.
+RewriteCond %{HTTP_HOST} ^(www\.)?siseargentina\.com$ [NC]
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L,NE]
 </IfModule>

@@ -19,6 +19,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const DESTINO = path.join(ROOT, 'public', '.htaccess');
 
+/* Reglas previas del hosting (seguridad + enrutamiento de latoma.com.ar,
+   que convive en /latoma del mismo public_html). Se anteponen tal cual: si
+   se pierden, latoma.com.ar deja de funcionar. */
+const COMPARTIDO = fs.readFileSync(path.join(__dirname, 'htaccess-compartido.txt'), 'utf8');
+
 const HOST = 'siseargentina.com';
 
 /* De "/tag/:slug" al patrón de Apache. Next usa :param; acá se traduce a un
@@ -58,7 +63,8 @@ const CONTENIDO = `# ===========================================================
 # ==========================================================================
 
 Options -Indexes
-DirectoryIndex index.html
+# index.php incluido porque estas directivas se heredan en /latoma (WordPress).
+DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -66,6 +72,7 @@ RewriteEngine On
 # --- 1. Un solo host y siempre por HTTPS ----------------------------------
 # Sin esto el mismo contenido queda accesible en cuatro direcciones (con y
 # sin www, con y sin TLS) y Google las trata como sitios distintos.
+RewriteCond %{HTTP_HOST} ^(www\\.)?${HOST.replace(/\./g, '\\.')}$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://${HOST}/$1 [R=301,L]
 
@@ -79,12 +86,10 @@ ${bloqueRedirects()}
 # La exportación deja hogar.html, contacto.html, etc. y, al lado, un directorio
 # hogar/ con los payloads que usa Next para navegar sin recargar. Por eso acá
 # NO se puede condicionar con !-d como es habitual: /hogar existe como
-# directorio y la regla nunca se aplicaría. Se pregunta directamente si existe
-# el .html, y se apaga DirectorySlash para que Apache no intente listar ese
-# directorio antes de reescribir.
-<IfModule mod_dir.c>
-DirectorySlash Off
-</IfModule>
+# directorio y la regla nunca se aplicaría; se pregunta directamente si existe
+# el .html. La reescritura corre antes que mod_dir, así que el directorio
+# homónimo nunca llega a resolverse. (Sin DirectorySlash Off: se hereda en
+# /latoma y le rompería /wp-admin sin barra final.)
 
 # Los payloads de prefetch de Next: el router los pide como
 # /contacto/__next.contacto.__PAGE__.txt, pero la exportación los escribe en
@@ -93,17 +98,21 @@ DirectorySlash Off
 # funcionando, pero recargando la página entera.
 RewriteRule ^(.*)__next\\.([^/]+)\\.__PAGE__\\.txt$ /$1__next.$2/__PAGE__.txt [L]
 
-# La barra final sobra: /hogar/ va a /hogar.
+# La barra final sobra: /hogar/ va a /hogar. Sólo para el host de SISE:
+# latoma es WordPress y sus permalinks llevan barra final.
+RewriteCond %{HTTP_HOST} ^(www\\.)?${HOST.replace(/\./g, '\\.')}$ [NC]
 RewriteRule ^(.+)/$ /$1 [R=301,L,NE]
 
 # /hogar sirve hogar.html sin redirigir, para que la URL publicada sea
 # exactamente la que declara el canonical.
+RewriteCond %{HTTP_HOST} ^(www\\.)?${HOST.replace(/\./g, '\\.')}$ [NC]
 RewriteCond %{REQUEST_FILENAME}\\.html -f
 RewriteRule ^(.+)$ /$1.html [L]
 
 # Y /hogar.html manda a /hogar, para no tener la misma página en dos URLs.
 # THE_REQUEST conserva el pedido original, así que la reescritura interna de
 # arriba no dispara esta regla ni genera un bucle.
+RewriteCond %{HTTP_HOST} ^(www\\.)?${HOST.replace(/\./g, '\\.')}$ [NC]
 RewriteCond %{THE_REQUEST} \\s/+(.+?)\\.html[\\s?] [NC]
 RewriteRule ^ /%1 [R=301,L,NE]
 </IfModule>
@@ -163,7 +172,7 @@ AddOutputFilterByType DEFLATE application/json application/xml image/svg+xml
 </FilesMatch>
 `;
 
-fs.writeFileSync(DESTINO, CONTENIDO, 'utf8');
+fs.writeFileSync(DESTINO, COMPARTIDO + '\n' + CONTENIDO, 'utf8');
 
 const cantidad = CONTENIDO.split('\n').filter((l) => l.startsWith('RewriteRule') && l.includes('R=301')).length;
 console.log(`✓ public/.htaccess generado (${cantidad} redirecciones 301)`);
