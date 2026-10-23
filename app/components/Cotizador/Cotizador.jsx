@@ -412,6 +412,7 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
   const [website, setWebsite] = useState('');
   const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
   const [submitting, setSubmitting] = useState(false);
+  const [whatsappAutoOpened, setWhatsappAutoOpened] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [stepError, setStepError] = useState('');
   const sectionRef = useTrackSectionView(`cotizador_${variant}`);
@@ -510,6 +511,22 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
       return;
     }
 
+    /* La ventana de WhatsApp se abre ahora, dentro del gesto del clic: si se
+       abriera recién cuando responde el servidor, el navegador la bloquearía
+       como ventana emergente. Queda en blanco hasta que llega la confirmación. */
+    const whatsappWindow = window.open('', '_blank');
+    if (whatsappWindow) {
+      try {
+        whatsappWindow.opener = null;
+        whatsappWindow.document.title = 'Enviando tu consulta…';
+        whatsappWindow.document.body.style.cssText =
+          'font-family:system-ui,sans-serif;text-align:center;padding:48px 16px;color:#333';
+        whatsappWindow.document.body.textContent = 'Enviando tu consulta, un momento…';
+      } catch {
+        /* Si el navegador no deja escribir en la ventana, igual se usa. */
+      }
+    }
+
     setSubmitting(true);
 
     try {
@@ -527,8 +544,19 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
       }
 
       trackFormSubmit({ formName: 'cotizador', variant, status: 'success' });
+
+      if (whatsappWindow && !whatsappWindow.closed) {
+        whatsappWindow.location.href = buildWhatsAppUrl(summary);
+        setWhatsappAutoOpened(true);
+        trackWhatsAppClick({
+          location: 'cotizador_automatico',
+          label: `cotizador_resumen_whatsapp_${variant}`
+        });
+      }
+
       setStep(thankYouStep);
     } catch (error) {
+      if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close();
       trackFormSubmit({ formName: 'cotizador', variant, status: 'error' });
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el formulario.');
     } finally {
@@ -577,7 +605,9 @@ export default function Cotizador({ showHeader = false, variant = 'residential' 
             Enviar mi resumen por WhatsApp
           </a>
           <p className={styles.thanksHint}>
-            Se abre WhatsApp con tu consulta ya escrita: solo tenés que enviarla.
+            {whatsappAutoOpened
+              ? 'Abrimos WhatsApp en otra pestaña con tu consulta ya escrita: solo tenés que enviarla. Si no se abrió, tocá el botón.'
+              : 'Se abre WhatsApp con tu consulta ya escrita: solo tenés que enviarla.'}
           </p>
         </div>
       </div>
