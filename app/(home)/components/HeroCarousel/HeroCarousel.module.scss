@@ -15,7 +15,7 @@
   width: 100%;
   /* El mismo alto que el hero de las páginas de negocio (900 / 660 / 600),
      para que el carrusel del home no quede más bajo que el resto del sitio. */
-  height: 900px;
+  height: var(--hero-h);
   background: #00408c;
   overflow: hidden;
 }
@@ -207,7 +207,7 @@
  */
 @media (max-width: 1200px) and (min-width: 961px) {
   .hero {
-    height: 660px;
+    height: var(--hero-h);
   }
 
 
@@ -223,7 +223,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: 600px;
+    height: var(--hero-h);
   }
 
 
@@ -247,7 +247,7 @@
 
 @media (max-width: 600px) {
   .hero {
-    height: 600px;
+    height: var(--hero-h);
   }
 
   .heroMedia {
@@ -289,7 +289,7 @@
 
 @media (max-width: 960px) and (min-width: 601px) {
   .hero {
-    height: 600px;
+    height: var(--hero-h);
   }
 
   .heroMedia {

@@ -41,6 +41,53 @@
    * Usar SIEMPRE var(--sise-vw) en vez de 100vw.
    */
   --sise-vw: calc(100vw / var(--sise-scale));
+
+  /*
+   * Alto de los heros: lo que entra en pantalla debajo del header, sin pasarse
+   * de la proporción del diseño y sin bajar de un mínimo donde el texto aún
+   * entra. Los heros usan todos var(--hero-h), así quedan siempre iguales.
+   *
+   * - --sise-vh: igual que --sise-vw, un `100vh` dentro del área escalada se
+   *   dibuja un 15% más bajo, así que se divide por la escala. `svh` (alto con
+   *   las barras del navegador visibles) evita que en celulares el hero quede
+   *   tapado por la barra de direcciones.
+   * - --hero-max: en escritorio una proporción 2:1 (la del diseño, 1920×900, redondeada, con tope para
+   *   monitores gigantes); en tablet y celular, las alturas de su diseño.
+   */
+  --sise-header-h: 80px;
+  --sise-vh: calc(100vh / var(--sise-scale));
+  --hero-fit: calc(var(--sise-vh) - var(--sise-header-h));
+  --hero-max: min(calc(var(--sise-vw) * 0.5), 1400px);
+  --hero-min: 400px;
+  --hero-h: max(var(--hero-min), min(var(--hero-fit), var(--hero-max)));
+}
+
+@supports (height: 100svh) {
+  :root {
+    --sise-vh: calc(100svh / var(--sise-scale));
+  }
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --sise-header-h: 64px;
+    --hero-max: 660px;
+    --hero-min: 300px;
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --hero-max: 600px;
+  }
+}
+
+/* Celular de costado: el alto útil es muy poco; el hero baja más para que el
+   texto no quede fuera de la primera pantalla. */
+@media (max-height: 520px) and (max-width: 960px) and (orientation: landscape) {
+  :root {
+    --hero-min: 230px;
+  }
 }
 
 /*

@@ -15,7 +15,7 @@
 .media {
   position: relative;
   width: 100%;
-  height: 900px;
+  height: var(--hero-h);
   overflow: hidden;
   background: #00408c;
   isolation: isolate;
@@ -87,7 +87,7 @@
 
 @media (max-width: 1200px) {
   .media {
-    height: 660px;
+    height: var(--hero-h);
   }
 
   .content {
@@ -115,7 +115,7 @@
 
 @media (max-width: 960px) {
   .media {
-    height: 600px;
+    height: var(--hero-h);
   }
 
   .content {
@@ -143,7 +143,7 @@
 
 @media (max-width: 600px) {
   .media {
-    height: 600px;
+    height: var(--hero-h);
   }
 
   .imageDesktop {

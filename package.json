@@ -10,6 +10,7 @@
     "dev:turbo": "next dev --turbo",
     "build": "node scripts/generate-htaccess.mjs && next build",
     "start": "npx serve out -l 3100",
+    "preview": "node scripts/preview.mjs",
     "lint": "eslint .",
     "setup:githooks": "node scripts/setup-githooks.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
