@@ -103,9 +103,22 @@ Detalles de Google:
 - **La contraseña normal de la cuenta NO funciona**; sólo la de aplicación.
 - `MAIL_FROM` tiene que ser la misma casilla que autentica (o un alias
   configurado en Gmail): Google reescribe cualquier otro remitente.
-- El SPF del dominio debe incluir a Google. Si el correo del dominio ya
-  funciona en Workspace, esto ya está; el registro TXT esperado es
-  `v=spf1 include:_spf.google.com ~all`.
+- **El dominio tiene que autenticar el correo (SPF y DKIM) o el acuse cae en
+  spam.** Que el correo entrante ya funcione en Workspace NO significa que el
+  saliente esté autenticado: son registros distintos. En la Zona DNS del
+  dominio tienen que existir:
+  1. **SPF**: un TXT en `@` con `v=spf1 include:_spf.google.com ~all`
+     (si ya hay un SPF, se agrega el `include:` a ese mismo registro; nunca
+     puede haber dos).
+  2. **DKIM**: en admin.google.com → *Aplicaciones → Google Workspace → Gmail
+     → Autenticar el correo electrónico* → seleccionar el dominio →
+     *Generar nuevo registro* (selector `google`, 2048 bits). Google muestra un
+     TXT: se carga en la Zona DNS con el nombre `google._domainkey`, y después
+     se vuelve a Google a tocar **Iniciar autenticación**.
+  3. **DMARC**: `_dmarc` con `v=DMARC1; p=none` está bien para empezar.
+
+  Se verifica enviando un correo de prueba a un Gmail personal y, en el correo
+  recibido, *Mostrar original*: tienen que figurar `SPF: PASS` y `DKIM: PASS`.
 - Los enviados quedan guardados en la carpeta **Enviados** de esa casilla,
   lo que sirve de auditoría de todos los leads.
 
@@ -138,8 +151,15 @@ opción A.
    interno y el acuse a quien completó. **Es el único paso que no se puede
    verificar antes de subir.**
 
-Si algo falla, el detalle queda en el log de errores de PHP del panel; el
-sitio nunca le muestra el error al visitante.
+Si algo falla, el visitante nunca ve el error técnico. Para saber qué pasó con
+el acuse sin depender de ningún log del servidor: en el navegador, F12 →
+pestaña *Red* → enviar el cotizador → clic en `cotizador.php` → *Respuesta*.
+Trae `"acuse": true` si el servidor de correo aceptó el acuse y `false` si lo
+rechazó. Para ver además el motivo, poner `'DEBUG_ENVIOS' => true` en
+`config.php` (y volver a `false` después).
+
+Ojo: `"acuse": true` solo garantiza que el correo SALIÓ; si el cliente no lo ve,
+casi siempre está en spam por falta de SPF/DKIM (ver arriba).
 
 ---
 
