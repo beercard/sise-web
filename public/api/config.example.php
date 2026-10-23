@@ -56,5 +56,9 @@ return [
     'MAIL_FROM_NOMBRE' => 'SISE Argentina',
 
     /* Host del sitio, para validar el origen de los envíos. */
-    'HOST_SITIO' => 'siseargentina.com'
+    'HOST_SITIO' => 'siseargentina.com',
+
+    /* Diagnóstico: con true, la respuesta del cotizador explica por qué no
+       salió el acuse al cliente. Dejarlo en false en producción. */
+    'DEBUG_ENVIOS' => false
 ];

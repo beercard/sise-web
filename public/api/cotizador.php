@@ -85,4 +85,12 @@ if (isset($errores[1])) {
     error_log('[cotizador] No se pudo enviar el acuse al visitante: ' . $errores[1]);
 }
 
-responder_json(['ok' => true]);
+$respuesta = ['ok' => true, 'acuse' => !isset($errores[1])];
+
+/* Con DEBUG_ENVIOS activo en config.php la respuesta explica por qué falló el
+   acuse. Es solo para diagnosticar: se apaga una vez resuelto. */
+if (!empty($CONFIG['DEBUG_ENVIOS'])) {
+    $respuesta['detalle'] = ['acuse' => $errores[1] ?? null];
+}
+
+responder_json($respuesta);
